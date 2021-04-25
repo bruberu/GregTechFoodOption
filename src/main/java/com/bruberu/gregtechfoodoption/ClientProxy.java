@@ -52,11 +52,14 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void addFormulaHandler(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
-        if (itemStack.getItem() instanceof GTFOOredictItem.OreDictItem) {
-            GTFOOredictItem.OreDictItem oredictItem = (GTFOOredictItem.OreDictItem) itemStack.getItem();
-            String formula = oredictItem.getFormula();
-            if (formula != null && !formula.isEmpty() && event.getToolTip().size() == 0) {
-                event.getToolTip().add(1, TextFormatting.GRAY.toString() + formula);
+        Optional<String> oreDictName = OreDictUnifier.getOreDictionaryNames(itemStack).stream().findFirst();
+        if (oreDictName.isPresent() && GTFOOredictItem.NAME_TO_OREDICTITEM.containsKey(oreDictName.get())) {
+            GTFOOredictItem.OreDictItem material = GTFOOredictItem.NAME_TO_OREDICTITEM.get(oreDictName.get());
+            if (material != null) {
+                String formula = material.getFormula();
+                if (formula != null && !formula.isEmpty()/* && event.getToolTip().size() == 0 */) {
+                    event.getToolTip().add(1, TextFormatting.GRAY.toString() + material.getFormula());
+                }
             }
         }
     }

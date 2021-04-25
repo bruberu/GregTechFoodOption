@@ -29,6 +29,7 @@ public class GTFOOredictItem extends StandardMetaItem {
 
 
     public static Map<Short, GTFOOredictItem.OreDictItem> ITEMS = new HashMap<>();
+    public static Map<String, GTFOOredictItem.OreDictItem> NAME_TO_OREDICTITEM = new HashMap<>();
     private static final List<MaterialIconType> DISALLOWED_TYPES = new ArrayList<>();
 
 
@@ -57,6 +58,7 @@ public class GTFOOredictItem extends StandardMetaItem {
         for (GTFOOredictItem.OreDictItem item : ITEMS.values()) {
             addItem(item.id, item.getName());
             OreDictUnifier.registerOre(new ItemStack(this, 1, item.id), item.getOre());
+
         }
     }
 
@@ -115,6 +117,11 @@ public class GTFOOredictItem extends StandardMetaItem {
             this.orePrefix = orePrefix;
             this.chemicalFormula = calculateChemicalFormula(chemicalFormula);
             ITEMS.put(id, this);
+            NAME_TO_OREDICTITEM.put(this.getOre(), this);
+        }
+
+        public OreDictItem(int id, String materialName, int rgb, MaterialIconSet materialIconSet, OrePrefix orePrefix, String chemicalFormula) {
+            this((short) id, materialName, rgb, materialIconSet, orePrefix, chemicalFormula);
         }
 
         public OreDictItem(int id, String materialName, int rgb, MaterialIconSet materialIconSet, OrePrefix orePrefix) {
