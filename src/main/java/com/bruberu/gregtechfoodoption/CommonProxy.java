@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.GregTechFoodOption;
+import com.bruberu.gregtechfoodoption.crop.GTFOCrop;
 import com.bruberu.gregtechfoodoption.fluid.GTFOMetaFluids;
 import com.bruberu.gregtechfoodoption.item.GTFOMetaItems;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
@@ -46,6 +47,7 @@ public class CommonProxy {
     }
 
     public void onLoad() throws IOException {
+        GTFOCrop.init();
     }
 
     @SubscribeEvent

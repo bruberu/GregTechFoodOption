@@ -6,6 +6,7 @@ import gregtech.api.unification.material.IMaterialHandler;
 import gregtech.api.unification.material.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
 
+@IMaterialHandler.RegisterMaterialHandler
 public class GTFOMaterialHandler implements IMaterialHandler {
 
     public static final GTFOFluidMaterial PopcornFlavoringMixture = new GTFOFluidMaterial("popcorn_flavoring_mixture", 0xffcb21, 350);
