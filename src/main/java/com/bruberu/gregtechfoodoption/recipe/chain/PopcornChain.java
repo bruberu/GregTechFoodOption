@@ -41,7 +41,7 @@ public class PopcornChain {
                 .buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(1790).duration(40)
                 .inputs(BARE_POPCORN_KERNEL.getItemStack())
-                .inputs(EMITTER_EV.getStackForm())
+                .notConsumable(SENSOR_EV.getStackForm())
                 .chancedOutput(GRADED_POPCORN_KERNEL.getItemStack(), 9000, 300)
                 .buildAndRegister();
         CLUSTER_MILL_RECIPES.recipeBuilder().EUt(50).duration(10)
@@ -99,7 +99,7 @@ public class PopcornChain {
 
         MIXER_RECIPES.recipeBuilder().EUt(480).duration(100)
                 .inputs(Glucose.getItemStack(12))
-                .fluidInputs(WaterAgarMix.getFluid(500))
+                .fluidInputs(WaterAgarMix.getFluid(1000))
                 .fluidInputs(PeptoneMixture.getFluid(500))
                 .fluidOutputs(FungalGrowthMedium.getFluid(1500))
                 .buildAndRegister();
@@ -118,6 +118,12 @@ public class PopcornChain {
                 .fluidOutputs(IiAcetylpyridine.getFluid(1000))
                 .fluidOutputs(Butyraldehyde.getFluid(1000))
                 .fluidOutputs(IsopropylChloride.getFluid(1000))
+                .buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder().EUt(90).duration(50)
+                .input(dust, Magnesium, 1)
+                .fluidInputs(IsopropylChloride.getFluid(1000))
+                .outputs(ISOPROPYLMAGNESIUM_CHLORIDE.getItemStack(12))
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(200)
