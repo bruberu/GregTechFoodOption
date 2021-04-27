@@ -1,6 +1,5 @@
 package com.bruberu.gregtechfoodoption.item;
 
-import com.sun.org.apache.bcel.internal.generic.POP;
 import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.FoodStats;
 import gregtech.api.items.metaitem.MetaItem;
@@ -26,7 +25,6 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem DRIED_POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem PHYCOMYCES_BLAKESLEEANUS_CULTURE;
-    public static MetaItem<?>.MetaValueItem POPCORN_SEED;
 
 
     @Override

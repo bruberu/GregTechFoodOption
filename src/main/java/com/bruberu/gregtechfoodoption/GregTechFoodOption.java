@@ -48,6 +48,7 @@ public class GregTechFoodOption {
         GTFOLog.init(event.getModLog());
         proxy.preLoad();
         MinecraftForge.EVENT_BUS.register(new GTFOEventHandler());
+        MinecraftForge.EVENT_BUS.register(new GTFOSeedDropsEventHandler());
 
         MinecraftForge.EVENT_BUS.register(this);
     }
