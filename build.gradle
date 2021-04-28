@@ -6,7 +6,7 @@ buildscript {
         maven { url = "http://maven.minecraftforge.net/" }
     }
     dependencies {
-        classpath('com.github.DStrand1:ForgeGradle:FG_2.3-SNAPSHOT') {
+        classpath('com.github.GregTechCE:ForgeGradle:FG_2.3-SNAPSHOT') {
             changing = true
         }
     }
@@ -14,7 +14,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 
-version = "1.12.2-0.1.0"
+version = "1.12.2-0.3.0"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -42,29 +42,10 @@ jar {
 
 repositories {
     maven {
-        url = "http://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
-        url = "https://maven.blamejared.com/"
-    }
-    maven {
         url = "https://maven.teamacronymcoders.com/"
     }
     maven {
-        url = "http://maven.ic2.player.to"
-    }
-    maven {
-        url "https://minecraft.curseforge.com/api/maven"
-    }
-    maven {
-        url = "http://chickenbones.net/maven/"
-    }
-    maven {
         url "http://maven.shadowfacts.net/"
-    }
-    maven {
-        name 'tterrag maven'
-        url "https://maven.tterrag.com/"
     }
     maven {
         name = "OpenComputers"
@@ -72,6 +53,45 @@ repositories {
     }
     maven {
         url "http://maven.k-4u.nl"
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven {
+        name = "progwml6"
+        url = "http://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "blamejared"
+        url = "http://maven.blamejared.com/"
+    }
+    maven {
+        name = "CCL Maven"
+        url = "http://chickenbones.net/maven/"
+    }
+    maven {
+        name = "CyclopsMC"
+        url = "https://oss.jfrog.org/artifactory/simple/libs-release/"
+    }
+    maven {
+        name 'tterrag Maven'
+        url "https://maven.tterrag.com/"
+    }
+    maven {
+        name = "mcmoddev"
+        url = "https://maven.mcmoddev.com"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven {
+        name = "Ellpeck's Maven"
+        url = "https://maven.chaosfield.at"
+    }
+    maven {
+        url "http://www.ryanliptak.com/maven/"
     }
 }
 
@@ -86,7 +106,11 @@ dependencies {
     deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
     provided "com.github.mcjty:xnet:1.12-1.8.2"
     provided "com.github.mcjty:mcjtylib:1.12-3.5.4"
+    compile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"
+    compile "applecore:AppleCore:1.12-2.2.1+263.7303c:deobf"
+    //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
     provided files("libs/Gregicality-1.12.2-0.22-alpha5.jar")
+    provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
     provided files("libs/appliedenergistics2-rv6-stable-7.jar")
     compileOnly files("libs/Cucumber-1.12.2-1.1.3.jar")
 
@@ -123,4 +147,8 @@ def run(command) {
     }
 
     return outputStream.toString().trim()
+}
+
+runClient {
+    jvmArgs "-Xmx3G"
 }

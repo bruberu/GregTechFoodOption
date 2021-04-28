@@ -2,6 +2,8 @@ package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.GregTechFoodOption;
 import com.bruberu.gregtechfoodoption.fluid.GTFOMetaFluids;
+import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
+import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
 import com.bruberu.gregtechfoodoption.item.GTFOMetaItems;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeAddition;
@@ -40,9 +42,17 @@ public class CommonProxy {
 
 
     public void preLoad() {
-        GTFOMaterialHandler gaMaterials = new GTFOMaterialHandler();
+        GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
+        if(Loader.isModLoaded("nuclearcraft"))
+        {
+            GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();
+        }
+        if(Loader.isModLoaded("actuallyadditions"))
+        {
+            GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
+        }
     }
 
     public void onLoad() throws IOException {
@@ -74,6 +84,8 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering recipe low...");
+        GTFORecipeRemoval.init();
+        GTFORecipeAddition.init();
         /*
         ConfigCircuitRecipeRemoval.init();
         GAMachineRecipeRemoval.init();
@@ -82,11 +94,11 @@ public class CommonProxy {
          */
     }
 
+
+
     @SubscribeEvent
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering ore prefix...");
-        GTFORecipeRemoval.init();
-        GTFORecipeAddition.init();
         GTFOMetaItems.registerOreDict();
         OrePrefix.runMaterialHandlers();
     }
@@ -99,6 +111,8 @@ public class CommonProxy {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLowest(RegistryEvent.Register<IRecipe> event) {
+
+        GTFORecipeAddition.compatInit();
     }
 
     // These recipes are generated at the beginning of the init() phase with the proper config set.
