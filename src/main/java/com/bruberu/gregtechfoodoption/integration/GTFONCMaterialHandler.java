@@ -7,7 +7,6 @@ import gregtech.api.unification.material.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
 
 @IMaterialHandler.RegisterMaterialHandler
-
 public class GTFONCMaterialHandler implements IMaterialHandler {
 
     public static final GTFOFluidMaterial UnheatedCaneSyrup = new GTFOFluidMaterial("unheated_cane_syrup", 0xf0efe4);

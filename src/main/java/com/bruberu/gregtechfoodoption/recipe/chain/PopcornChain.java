@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
+import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -208,8 +209,6 @@ public class PopcornChain {
                 .outputs(BETA_CAROTENE.getItemStack(96))
                 .buildAndRegister();
 
-        GREEN_HOUSE_RECIPES.recipeBuilder().duration(1000).notConsumable(new IntCircuitIngredient(0)).fluidInputs(Water.getFluid(2000)).notConsumable(POPCORN_KERNEL.getItemStack()).outputs(POPCORN_EAR.getStackForm()).chancedOutput(POPCORN_KERNEL.getItemStack(), 100, 50).buildAndRegister();
-        GREEN_HOUSE_RECIPES.recipeBuilder().duration(900).notConsumable(new IntCircuitIngredient(1)).inputs(new ItemStack(Items.DYE, 1, 15)).fluidInputs(Water.getFluid(2000)).notConsumable(POPCORN_KERNEL.getItemStack()).outputs(POPCORN_EAR.getStackForm(2)).chancedOutput(POPCORN_KERNEL.getItemStack(), 100, 50).buildAndRegister();
-        GREEN_HOUSE_RECIPES.recipeBuilder().duration(600).notConsumable(new IntCircuitIngredient(2)).input(dust, OrganicFertilizer).fluidInputs(Water.getFluid(2000)).notConsumable(POPCORN_KERNEL.getItemStack()).outputs(POPCORN_EAR.getStackForm(3)).chancedOutput(POPCORN_KERNEL.getItemStack(), 100, 50).buildAndRegister();
+        RecipeUtils.addGreenHouseRecipes(POPCORN_KERNEL.getItemStack(), POPCORN_EAR.getMetaItem());
     }
 }

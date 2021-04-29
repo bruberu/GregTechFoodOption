@@ -32,6 +32,7 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem ISOPROPYLMAGNESIUM_CHLORIDE = new GTFOOredictItem.OreDictItem(1005, "isopropylmagnesium_chloride", 0x211210, MaterialIconSet.SHINY, OrePrefix.dust, "C3H7ClMg");
     public static final GTFOOredictItem.OreDictItem II_AMINOPYRIDINE = new GTFOOredictItem.OreDictItem(1006, "2-aminopyridine", 0xf0ede9, MaterialIconSet.LAPIS, OrePrefix.dust, "C5H6N2");
 
+    /* Material IDs 1017 to 1030 reserved for Coffee chain */
     /* Material IDs 1035 to 1051 reserved for S'mogus chain */
 
     @Override
