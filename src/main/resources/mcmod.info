@@ -3,7 +3,7 @@
   "modid": "gregtechfoodoption",
   "name": "GregTech Food Option",
   "description": "Adds stupid chains for food that you might like.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "mcversion": "1.12",
   "url": "",
   "updateUrl": "",
@@ -11,6 +11,8 @@
   "credits": "Thanks to the Gregicality team for creating the idea, DStrand1 (dan) for sourcing the 1.12 Forge files, the GTCE team for the original addon, and of course, GregoriusT.",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [
+    "gtadditions"
+  ]
 }
 ]

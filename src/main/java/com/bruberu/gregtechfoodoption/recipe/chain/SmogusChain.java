@@ -1,5 +1,7 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
+import com.bruberu.gregtechfoodoption.GTFOConfig;
+import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregicadditions.GAMaterials;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
@@ -72,10 +74,10 @@ public class SmogusChain {
                 SIXTY_FOUR_SMORE.getStackForm(2),
                 SMOGUS.getStackForm(2),
                 MORE_SMOGUS.getStackForm(2),
-                FOUR_SMOGUS.getStackForm(2),};
+                FOUR_SMOGUS.getStackForm(2)};
         int euPerTick = 1920;
         int ticks = 25;
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 3 + 8 * RecipeUtils.boolToInt(GTFOConfig.GTFONCConfig.addSmogus); i++) {
             if (i < 7) {
                 FORMING_PRESS_RECIPES.recipeBuilder()
                         .inputs(new ItemStack(NCItems.marshmallow))

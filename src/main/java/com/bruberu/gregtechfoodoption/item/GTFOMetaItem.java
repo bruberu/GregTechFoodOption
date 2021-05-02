@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.item;
 
+import com.bruberu.gregtechfoodoption.GTFOConfig;
 import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.FoodStats;
 import gregtech.api.items.metaitem.MetaItem;
@@ -46,9 +47,9 @@ public class GTFOMetaItem extends MaterialMetaItem {
         DRIED_POPCORN_EAR = addItem(4, "component.popcorn.dried_ear");
         POPCORN_EAR = addItem(5, "component.popcorn.ear");
         PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "phycomyces.culture");
-        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(5, 2, false, true, PAPER_BAG.getStackForm(), new RandomPotionEffect(getPotionById(10), 15, 1, 100)));
+        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(GTFOConfig.GTFOFoodConfig.popcornHunger, GTFOConfig.GTFOFoodConfig.popcornSaturaion, false, true, PAPER_BAG.getStackForm(), new RandomPotionEffect(getPotionById(10), 15, 1, 100)));
 
-        if(Loader.isModLoaded("nuclearcraft"))
+        if(Loader.isModLoaded("nuclearcraft") && GTFOConfig.GTFONCConfig.addSmogus)
         {
             int heal = 44;
             double saturation = 8.6;

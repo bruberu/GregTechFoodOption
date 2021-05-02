@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
+import com.bruberu.gregtechfoodoption.GTFOConfig;
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
@@ -34,7 +35,8 @@ public class CoffeeChain {
     }
 
     public static void init() {
-        ModHandler.removeRecipeByName(new ResourceLocation("actuallyadditions:recipes125"));
+        if(GTFOConfig.GTFOAAConfig.disableCoffeeMaker)
+            ModHandler.removeRecipeByName(new ResourceLocation("actuallyadditions:recipes125"));
 
         ItemStack basicCoffee = new ItemStack(InitItems.itemCoffee, 1);
         ItemStack energizedCoffee = new ItemStack(InitItems.itemCoffee, 1);
@@ -79,7 +81,7 @@ public class CoffeeChain {
                 .inputs(COFFEE_GROUNDS.getItemStack())
                 .inputs(coffeeFilter) // This is a paper cone, or a coffee filter, if you like.
                 .fluidInputs(Materials.Steam.getFluid(1000))
-                .output(dust, Paper, 3)
+                .output(dust, Paper, 1)
                 .fluidOutputs(Coffee.getFluid(15))
                 .EUt(120)
                 .duration(30)

@@ -209,6 +209,6 @@ public class PopcornChain {
                 .outputs(BETA_CAROTENE.getItemStack(96))
                 .buildAndRegister();
 
-        RecipeUtils.addGreenHouseRecipes(POPCORN_KERNEL.getItemStack(), POPCORN_EAR.getMetaItem());
+        RecipeUtils.addGreenHouseRecipes(POPCORN_KERNEL.getItemStack(), POPCORN_EAR);
     }
 }

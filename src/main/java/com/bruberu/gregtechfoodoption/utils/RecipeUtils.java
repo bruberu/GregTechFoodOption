@@ -1,5 +1,7 @@
 package com.bruberu.gregtechfoodoption.utils;
 
+import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
+import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.ore.OrePrefix;
 import net.minecraft.init.Items;
@@ -23,4 +25,14 @@ public class RecipeUtils {
         GREEN_HOUSE_RECIPES.recipeBuilder().duration(600).notConsumable(new IntCircuitIngredient(2)).input(OrePrefix.dust, OrganicFertilizer).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(new ItemStack(crop, 3)).chancedOutput(seed, 100, 50).buildAndRegister();
     }
 
+    public static void addGreenHouseRecipes(ItemStack seed, MetaItem.MetaValueItem crop) {
+        GREEN_HOUSE_RECIPES.recipeBuilder().duration(1000).notConsumable(new IntCircuitIngredient(0)).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(crop.getStackForm()).buildAndRegister();
+        GREEN_HOUSE_RECIPES.recipeBuilder().duration(900).notConsumable(new IntCircuitIngredient(1)).inputs(new ItemStack(Items.DYE, 1, 15)).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(crop.getStackForm(2)).chancedOutput(seed, 100, 50).buildAndRegister();
+        GREEN_HOUSE_RECIPES.recipeBuilder().duration(600).notConsumable(new IntCircuitIngredient(2)).input(OrePrefix.dust, OrganicFertilizer).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(crop.getStackForm(3)).chancedOutput(seed, 100, 50).buildAndRegister();
+    }
+
+    public static int boolToInt(boolean boole)
+    {
+        return boole ? 1 : 0;
+    }
 }

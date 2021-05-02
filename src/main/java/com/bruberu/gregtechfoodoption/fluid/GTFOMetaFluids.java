@@ -3,6 +3,7 @@ package com.bruberu.gregtechfoodoption.fluid;
 import com.bruberu.gregtechfoodoption.material.GTFOFluidMaterial;
 import gregicadditions.materials.SimpleFluidMaterial;
 import gregtech.api.util.FluidTooltipUtil;
+import gregtech.api.util.GTUtility;
 import gregtech.common.MetaFluids;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -16,7 +17,7 @@ public class GTFOMetaFluids {
 
     public static void init() {
         for (GTFOFluidMaterial fluidMat : GTFOFluidMaterial.GTFO_FLUIDS.values()) {
-            Fluid fluid = new Fluid(fluidMat.name, MetaFluids.AUTO_GENERATED_FLUID_TEXTURE, MetaFluids.AUTO_GENERATED_FLUID_TEXTURE, fluidMat.rgb);
+            Fluid fluid = new Fluid(fluidMat.name, MetaFluids.AUTO_GENERATED_FLUID_TEXTURE, MetaFluids.AUTO_GENERATED_FLUID_TEXTURE, GTUtility.convertRGBtoOpaqueRGBA_MC(fluidMat.rgb));
             fluid.setTemperature(fluidMat.temperature);
             if (!FluidRegistry.isFluidRegistered(fluid.getName())) {
                 FluidRegistry.registerFluid(fluid);

@@ -1,6 +1,8 @@
 package com.bruberu.gregtechfoodoption;
 
 import codechicken.lib.util.ItemNBTUtils;
+import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaFoodHelper;
+import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import gregicadditions.item.GADustItem;
@@ -17,6 +19,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -41,8 +44,9 @@ public class ClientProxy extends CommonProxy {
 
 
     @Override
-    public void onLoad() throws IOException {
-        super.onLoad();
+    public void onLoad() {
+        if(Loader.isModLoaded("appleskin"))
+            GTFOMetaTooltipOverlay.init();
     }
 
 

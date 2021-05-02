@@ -19,8 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.io.IOException;
 
 @Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
-        dependencies = "required-after:gregtech@[1.14.0.689,);" +
-                "after:exnihilocreatio;")
+        dependencies = "required-after:gtadditions")
 public class GregTechFoodOption {
     public static final String MODID = "gregtechfoodoption";
     public static final String NAME = "GregTech Food Option";
