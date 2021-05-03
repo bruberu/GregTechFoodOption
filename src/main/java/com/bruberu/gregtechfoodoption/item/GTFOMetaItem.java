@@ -6,10 +6,7 @@ import gregtech.api.items.metaitem.FoodStats;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.util.RandomPotionEffect;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.fml.common.Loader;
-
-import java.awt.*;
 
 import static net.minecraft.potion.Potion.getPotionById;
 
@@ -27,6 +24,17 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem DRIED_POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem PHYCOMYCES_BLAKESLEEANUS_CULTURE;
+    public static MetaItem<?>.MetaValueItem THERMOS;
+    public static MetaItem<?>.MetaValueItem THERMOS_CASING;
+    public static MetaItem<?>.MetaValueItem THERMOS_CAP;
+    public static MetaItem<?>.MetaValueItem LEACHED_THERMOS_CASING;
+    public static MetaItem<?>.MetaValueItem USED_THERMOS;
+    public static MetaItem<?>.MetaValueItem MINERAL_WATER;
+
+
+
+
+
 
     public static MetaItem<?>.MetaValueItem EIGHT_SMORE;
     public static MetaItem<?>.MetaValueItem SIXTEEN_SMORE;
@@ -47,7 +55,16 @@ public class GTFOMetaItem extends MaterialMetaItem {
         DRIED_POPCORN_EAR = addItem(4, "component.popcorn.dried_ear");
         POPCORN_EAR = addItem(5, "component.popcorn.ear");
         PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "phycomyces.culture");
+
+        THERMOS = addItem(7, "component.thermos.new");
+        USED_THERMOS = addItem(8, "component.thermos.used");
+        LEACHED_THERMOS_CASING = addItem(9, "component.thermos.casing_leached");
+        THERMOS_CAP = addItem(10, "component.thermos.cap");
+        THERMOS_CASING = addItem(11, "component.thermos.casing");
+
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(GTFOConfig.GTFOFoodConfig.popcornHunger, GTFOConfig.GTFOFoodConfig.popcornSaturaion, false, true, PAPER_BAG.getStackForm(), new RandomPotionEffect(getPotionById(10), 15, 1, 100)));
+        MINERAL_WATER = addItem(12, "food.mineral_water");
+
 
         if(Loader.isModLoaded("nuclearcraft") && GTFOConfig.GTFONCConfig.addSmogus)
         {

@@ -105,6 +105,9 @@ repositories {
     maven {
         url = "https://www.cursemaven.com"
     }
+    maven {
+        url "http://www.ryanliptak.com/maven/"
+    }
 }
 
 dependencies {
@@ -116,15 +119,14 @@ dependencies {
     deobfCompile "forge-multipart-cbe:ForgeMultipart-1.12.2:2.6.2.83:universal"
     deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.23-16"
     deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
-    provided "com.github.mcjty:xnet:1.12-1.8.2"
-    provided "com.github.mcjty:mcjtylib:1.12-3.5.4"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"
-    provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
+    //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
+    compile "applecore:AppleCore:1.12.2-3.1.5:deobf"
+    //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
     provided files("libs/Gregicality-1.12.2-0.22-alpha5.jar")
-    provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
+    //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
 
-    //compile "curse.maven:applecore-224472:2969118"
-    //compile "curse.maven:spiceoflife-220811:2571951"
+    compile "curse.maven:spiceoflife-220811:2571951"
 
     testImplementation "junit:junit:4.13.1"
 }

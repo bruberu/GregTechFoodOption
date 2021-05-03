@@ -2,9 +2,6 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
@@ -18,6 +15,7 @@ import static gregtech.common.items.MetaItems.*;
 
 public class PopcornChain {
     public static void init() {
+        
         /*
         MIXER_RECIPES.recipeBuilder().EUt(600).duration(50)
                 .input(dust, MetastableOganesson, 4)
@@ -38,23 +36,23 @@ public class PopcornChain {
                 .buildAndRegister();
         PYROLYSE_RECIPES.recipeBuilder().EUt(120).duration(60)
                 .circuitMeta(0)
-                .inputs(GRADED_POPCORN_KERNEL.getItemStack())
+                .inputs(GradedPopcornKernel.getItemStack())
                 .fluidInputs(PopcornFlavoringMixture.getFluid(100))
                 .outputs(FLAVORED_POPCORN_FLAKE.getStackForm())
                 .fluidOutputs(PopcornFlavoringMixture.getFluid(10))
                 .buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(1790).duration(40)
-                .inputs(BARE_POPCORN_KERNEL.getItemStack())
+                .inputs(BarePopcornKernel.getItemStack())
                 .notConsumable(SENSOR_EV.getStackForm())
-                .chancedOutput(GRADED_POPCORN_KERNEL.getItemStack(), 9000, 300)
+                .chancedOutput(GradedPopcornKernel.getItemStack(), 9000, 300)
                 .buildAndRegister();
         CLUSTER_MILL_RECIPES.recipeBuilder().EUt(50).duration(10)
-                .inputs(POPCORN_KERNEL.getItemStack())
-                .outputs(BARE_POPCORN_KERNEL.getItemStack())
+                .inputs(PopcornKernel.getItemStack())
+                .outputs(BarePopcornKernel.getItemStack())
                 .buildAndRegister();
         DISASSEMBLER_RECIPES.recipeBuilder().EUt(300).duration(200)
                 .inputs(DRIED_POPCORN_EAR.getStackForm())
-                .outputs(POPCORN_KERNEL.getItemStack(40))
+                .outputs(PopcornKernel.getItemStack(40))
                 .outputs(POPCORN_COB.getStackForm())
                 .buildAndRegister();
 
@@ -73,7 +71,7 @@ public class PopcornChain {
 
         LARGE_MIXER_RECIPES.recipeBuilder().EUt(480).duration(100)
                 .input(dust, Salt, 2)
-                .inputs(BETA_CAROTENE.getItemStack(2))
+                .inputs(BetaCarotene.getItemStack(2))
                 .fluidInputs(SeedOil.getFluid(250))
                 .fluidInputs(Diacetyl.getFluid(1000))
                 .fluidInputs(Acetoin.getFluid(750))
@@ -90,14 +88,14 @@ public class PopcornChain {
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(30720).duration(200)
                 .inputs(PHYCOMYCES_BLAKESLEEANUS_CULTURE.getStackForm())
                 .fluidInputs(FungalGrowthMedium.getFluid(1000))
-                .outputs(PHYCOMYCES_BLAKESLEEANUS.getItemStack())
+                .outputs(PhycomycesBlakesleeanus.getItemStack())
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .buildAndRegister();
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(1920).duration(50)
-                .inputs(PHYCOMYCES_BLAKESLEEANUS.getItemStack())
+                .inputs(PhycomycesBlakesleeanus.getItemStack())
                 .fluidInputs(FungalGrowthMedium.getFluid(250))
-                .outputs(PHYCOMYCES_BLAKESLEEANUS.getItemStack(2))
+                .outputs(PhycomycesBlakesleeanus.getItemStack(2))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
 
@@ -114,7 +112,7 @@ public class PopcornChain {
                 .buildAndRegister();
 
         CHEMICAL_PLANT_RECIPES.recipeBuilder().EUt(50210).duration(300)
-                .inputs(ISOPROPYLMAGNESIUM_CHLORIDE.getItemStack(12))
+                .inputs(IsopropylmagnesiumChloride.getItemStack(12))
                 .fluidInputs(IiBromopyridine.getFluid(1000))
                 .fluidInputs(Tetrahydrofuran.getFluid(1000))
                 .fluidInputs(AcetylChloride.getFluid(1000))
@@ -127,7 +125,7 @@ public class PopcornChain {
         CHEMICAL_RECIPES.recipeBuilder().EUt(90).duration(50)
                 .input(dust, Magnesium, 1)
                 .fluidInputs(IsopropylChloride.getFluid(1000))
-                .outputs(ISOPROPYLMAGNESIUM_CHLORIDE.getItemStack(12))
+                .outputs(IsopropylmagnesiumChloride.getItemStack(12))
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(200)
@@ -144,7 +142,7 @@ public class PopcornChain {
                 .buildAndRegister();
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(24000).duration(200)
-                .inputs(II_AMINOPYRIDINE.getItemStack(13))
+                .inputs(IiAminopyridine.getItemStack(13))
                 .inputs(SodiumNitrite.getItemStack(4))
                 .fluidInputs(HydrochloricAcid.getFluid(1000))
                 .fluidInputs(HydrobromicAcid.getFluid(1000))
@@ -158,7 +156,7 @@ public class PopcornChain {
                 .fluidInputs(Pyridine.getFluid(1000))
                 .notConsumable(Ammonia.getFluid(1000))
                 .output(dust, SodiumHydroxide, 3)
-                .outputs(II_AMINOPYRIDINE.getItemStack(13))
+                .outputs(IiAminopyridine.getItemStack(13))
                 .buildAndRegister();
 
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(840).duration(100)
@@ -204,11 +202,11 @@ public class PopcornChain {
                 .buildAndRegister();
 
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(1920).duration(400)
-                .inputs(PHYCOMYCES_BLAKESLEEANUS.getItemStack())
+                .inputs(PhycomycesBlakesleeanus.getItemStack())
                 .notConsumable(GREEN_HALIDE_LAMP.getStackForm())
-                .outputs(BETA_CAROTENE.getItemStack(96))
+                .outputs(BetaCarotene.getItemStack(96))
                 .buildAndRegister();
 
-        RecipeUtils.addGreenHouseRecipes(POPCORN_KERNEL.getItemStack(), POPCORN_EAR);
+        RecipeUtils.addGreenHouseRecipes(PopcornKernel.getItemStack(), POPCORN_EAR);
     }
 }

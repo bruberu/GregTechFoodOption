@@ -1,7 +1,5 @@
 package com.bruberu.gregtechfoodoption.material;
 
-import com.google.common.collect.ImmutableList;
-import gregtech.api.unification.stack.MaterialStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 

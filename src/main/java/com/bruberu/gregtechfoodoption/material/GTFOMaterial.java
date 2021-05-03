@@ -1,10 +1,7 @@
 package com.bruberu.gregtechfoodoption.material;
 
-import com.bruberu.gregtechfoodoption.item.GTFOOredictItem.OreDictItem;
 import com.google.common.collect.ImmutableList;
 import gregtech.api.unification.material.IMaterialHandler;
-import gregtech.api.unification.material.MaterialIconSet;
-import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.util.SmallDigits;
 
