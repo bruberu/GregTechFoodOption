@@ -98,7 +98,7 @@ public class GTFOOredictItem extends StandardMetaItem {
     public static class OreDictItem extends Item {
 
         private final String materialName;
-        private final int rgb;
+        public int rgb;
         private final MaterialIconSet materialIconSet;
         private final short id;
         private final OrePrefix orePrefix;
