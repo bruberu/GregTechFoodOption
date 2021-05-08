@@ -35,4 +35,14 @@ public class RecipeUtils {
     {
         return boole ? 1 : 0;
     }
+
+    public static int average(float divisor, int... inputs)
+    {
+        int result = 0;
+        for(int i : inputs)
+        {
+            result += i;
+        }
+        return result /= divisor;
+    }
 }

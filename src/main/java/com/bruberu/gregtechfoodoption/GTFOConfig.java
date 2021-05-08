@@ -39,6 +39,9 @@ public class GTFOConfig {
 
     @Config.Comment("Add Popcorn Chain?")
     public static boolean popcornChain = true;
+    @Config.Comment("Add Mineral Water Chain?")
+    public static boolean mineralWaterChain = true;
+
 
     @Config.Comment("Add Hunger and Saturation values for GTFO foods")
     public static GTFOFoodConfig gtfoFoodConfig = new GTFOFoodConfig();

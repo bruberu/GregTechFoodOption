@@ -24,6 +24,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem DRIED_POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem PHYCOMYCES_BLAKESLEEANUS_CULTURE;
+
     public static MetaItem<?>.MetaValueItem THERMOS;
     public static MetaItem<?>.MetaValueItem THERMOS_CASING;
     public static MetaItem<?>.MetaValueItem THERMOS_CAP;
