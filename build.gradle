@@ -123,7 +123,7 @@ dependencies {
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
     compile "applecore:AppleCore:1.12.2-3.1.5:deobf"
     //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
-    provided files("libs/Gregicality-1.12.2-0.22-alpha5.jar")
+    provided files("libs/Gregicality-1.12.2-0.22.2.jar")
     //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
 
     compile "curse.maven:spiceoflife-220811:2571951"
