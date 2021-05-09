@@ -93,7 +93,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
                         new RandomPotionEffect(getPotionById(3), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(23), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(21), potionDuration, potionStrength, 2 * i),
-                        new RandomPotionEffect(AddictionPotion.instance, 3000, potionStrength, i)));
+                        new RandomPotionEffect(AddictionPotion.instance, 3000, potionStrength, 100 - 2 * i)));
                 metaValue++;
             }
 
