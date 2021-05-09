@@ -6,6 +6,7 @@ import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
 import com.bruberu.gregtechfoodoption.item.GTFOMetaItems;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
+import com.bruberu.gregtechfoodoption.potion.GTFOPotions;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeAddition;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeRemoval;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
@@ -43,6 +44,7 @@ public class CommonProxy {
 
     public void preLoad() {
         GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
+        GTFOPotions.initPotionInstances();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
         if(Loader.isModLoaded("nuclearcraft"))

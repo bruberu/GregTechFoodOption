@@ -8,7 +8,7 @@
   "url": "",
   "updateUrl": "",
   "authorList": ["bruberu"],
-  "credits": "Thanks to the Gregicality team for creating the idea, DStrand1 (dan) for sourcing the 1.12 Forge files, the GTCE team for the original addon, and of course, GregoriusT.",
+  "credits": "Thanks to the Gregicality team for creating the idea, DStrand1 (dan) for sourcing the 1.12 Forge files, the GTCE team for the original addon, and of course, GregoriusT. As well as those people, I also took inspiration, assets, and code from a few other sources to base my work upon, such as Vazkii, Tmtravlr, and more.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": [

@@ -201,8 +201,9 @@ public class MineralWaterChain {
                 .buildAndRegister();
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
                 .inputs(TitaniumIiiOxide.getItemStack(5))
+                .fluidInputs(Hydrogen.getFluid(2000))
                 .outputs(TitaniumIiOxide.getItemStack(4))
-                .fluidOutputs(Oxygen.getFluid(1000))
+                .fluidOutputs(Water.getFluid(1000))
                 .EUt(V[ZPM] * 15/16)
                 .duration(4000)
                 .buildAndRegister();

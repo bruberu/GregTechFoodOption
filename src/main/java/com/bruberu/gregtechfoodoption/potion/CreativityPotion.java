@@ -1,0 +1,29 @@
+package com.bruberu.gregtechfoodoption.potion;
+
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+
+import javax.annotation.Nonnull;
+
+public class CreativityPotion extends GTFOPotion{
+    public static final String TAG_NAME = "gregtechfoodoption - creativity";
+    public static CreativityPotion instance = null;
+    public CreativityPotion() {
+        super("creativity", false, 0x51f5d1, 0);
+        instance = this;
+    }
+
+    @Override
+    public boolean isReady(int duration, int amplifier) {
+        return true;
+    }
+
+    @Override
+    public void performEffect(EntityLivingBase entity, int amplifier) {
+        if(entity instanceof EntityPlayer) {
+            if(((EntityPlayer)entity).capabilities.isFlying) {
+                entity.fallDistance = 0;
+            }
+        }
+    }
+}
