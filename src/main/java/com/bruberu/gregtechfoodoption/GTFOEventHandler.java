@@ -26,21 +26,28 @@ public class GTFOEventHandler {
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entityLivingBase = event.getEntityLiving();
-        if (AddictionPotion.instance != null && entityLivingBase.isPotionActive(AddictionPotion.instance)) {
-            addictedSet.add(entityLivingBase);
-            int amplifier = entityLivingBase.getActivePotionEffect(AddictionPotion.instance).getAmplifier();
-            if (addictionAmplifiers.containsKey(entityLivingBase) && addictionAmplifiers.get(entityLivingBase) < amplifier)
-                addictionAmplifiers.replace(entityLivingBase, addictionAmplifiers.get(entityLivingBase), amplifier);
-            else
-                addictionAmplifiers.put(entityLivingBase, amplifier);
-        }
-        if (addictedSet.contains(event.getEntityLiving()) && !event.getEntityLiving().isPotionActive(AddictionPotion.instance) && !entityLivingBase.world.isRemote) {
-            entityLivingBase.addPotionEffect(new PotionEffect(WithdrawalPotion.instance, 600, addictionAmplifiers.get(entityLivingBase)));
-            addictedSet.remove(entityLivingBase);
-            addictionAmplifiers.remove(entityLivingBase);
-        }
-        if (WithdrawalPotion.instance != null && entityLivingBase.isPotionActive(WithdrawalPotion.instance)) {
-            entityLivingBase.attackEntityFrom(new DamageSource("withdrawal"), ((float)(entityLivingBase.getActivePotionEffect(WithdrawalPotion.instance).getAmplifier() + 1) / 2));
+        if(GTFOConfig.gtfoPotionConfig.addictionWithdrawal) {
+            if(entityLivingBase.isDead && addictedSet.contains(entityLivingBase))
+            {
+                addictedSet.remove(entityLivingBase);
+                addictionAmplifiers.remove(entityLivingBase);
+            }
+            if (AddictionPotion.instance != null && entityLivingBase.isPotionActive(AddictionPotion.instance) && !entityLivingBase.isDead) {
+                addictedSet.add(entityLivingBase);
+                int amplifier = entityLivingBase.getActivePotionEffect(AddictionPotion.instance).getAmplifier();
+                if (addictionAmplifiers.containsKey(entityLivingBase) && addictionAmplifiers.get(entityLivingBase) < amplifier)
+                    addictionAmplifiers.replace(entityLivingBase, addictionAmplifiers.get(entityLivingBase), amplifier);
+                else
+                    addictionAmplifiers.put(entityLivingBase, amplifier);
+            }
+            if (addictedSet.contains(entityLivingBase) && !event.getEntityLiving().isPotionActive(AddictionPotion.instance) && !entityLivingBase.world.isRemote) {
+                entityLivingBase.addPotionEffect(new PotionEffect(WithdrawalPotion.instance, 600, addictionAmplifiers.get(entityLivingBase)));
+                addictedSet.remove(entityLivingBase);
+                addictionAmplifiers.remove(entityLivingBase);
+            }
+            if (WithdrawalPotion.instance != null && entityLivingBase.isPotionActive(WithdrawalPotion.instance)) {
+                entityLivingBase.attackEntityFrom(new DamageSource("withdrawal"), ((float) (entityLivingBase.getActivePotionEffect(WithdrawalPotion.instance).getAmplifier() + 1) / 2));
+            }
         }
         if ((event.getEntityLiving() instanceof EntityPlayer)) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
@@ -48,21 +55,22 @@ public class GTFOEventHandler {
             if (!player.getEntityData().hasKey(EntityPlayer.PERSISTED_NBT_TAG)) {
                 player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted);
             }
-
-            if (CreativityPotion.instance != null && player.isPotionActive(CreativityPotion.instance)) {
-                if (!persisted.getBoolean(CreativityPotion.TAG_NAME)) {
-                    persisted.setBoolean(CreativityPotion.TAG_NAME, true);
-
+            if (GTFOConfig.gtfoPotionConfig.creativity) {
+                if (CreativityPotion.instance != null && player.isPotionActive(CreativityPotion.instance)) {
+                    if (!persisted.getBoolean(CreativityPotion.TAG_NAME)) {
+                        persisted.setBoolean(CreativityPotion.TAG_NAME, true);
+                    }
                     player.capabilities.allowFlying = true;
-                }
-            } else {
-                if (persisted.getBoolean(CreativityPotion.TAG_NAME)) {
-                    persisted.setBoolean(CreativityPotion.TAG_NAME, false);
+                    //player.fallDistance = 0;
+                } else {
+                    if (persisted.getBoolean(CreativityPotion.TAG_NAME)) {
+                        persisted.setBoolean(CreativityPotion.TAG_NAME, false);
 
-                    player.fallDistance = 0;
-                    if (!player.capabilities.isCreativeMode) {
-                        player.capabilities.isFlying = false;
-                        player.capabilities.allowFlying = false;
+                        player.fallDistance = 0;
+                        if (!player.capabilities.isCreativeMode) {
+                            player.capabilities.isFlying = false;
+                            player.capabilities.allowFlying = false;
+                        }
                     }
                 }
             }

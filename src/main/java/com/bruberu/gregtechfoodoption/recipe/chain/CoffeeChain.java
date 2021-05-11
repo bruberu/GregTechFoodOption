@@ -35,7 +35,7 @@ public class CoffeeChain {
     }
 
     public static void init() {
-        if(GTFOConfig.GTFOAAConfig.disableCoffeeMaker)
+        if(GTFOConfig.gtfoaaConfig.disableCoffeeMaker)
             ModHandler.removeRecipeByName(new ResourceLocation("actuallyadditions:recipes125"));
 
         ItemStack basicCoffee = new ItemStack(InitItems.itemCoffee, 1);

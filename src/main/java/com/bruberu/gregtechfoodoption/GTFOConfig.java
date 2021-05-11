@@ -17,40 +17,75 @@ public class GTFOConfig {
     @Config.Comment("Show tooltips always, regardless of what keys are held?")
     public static boolean showTooltipsAlways = false;
 
+    @Config.Comment("Add Popcorn Chain?")
+    public static boolean popcornChain = true;
+
+    @Config.Comment("Add Mineral Water Chain?")
+    public static boolean mineralWaterChain = true;
+
     @Config.Comment("NuclearCraft compatibility")
     public static GTFONCConfig gtfoncConfig = new GTFONCConfig();
-
-    public static class GTFONCConfig {
-        @Config.Comment("Add NuclearCraft S'more recipes?")
-        public static boolean smoreChain = true;
-        @Config.Comment("Add NuclearCraft S'more extensions?")
-        public static boolean addSmogus = true;
-    }
 
     @Config.Comment("ActuallyAdditions compatibility")
     public static GTFOAAConfig gtfoaaConfig = new GTFOAAConfig();
 
-    public static class GTFOAAConfig {
-        @Config.Comment("Disable AA Coffee Maker's recipe?")
-        public static boolean disableCoffeeMaker = true;
-        @Config.Comment("Add AA Coffee Chain?")
-        public static boolean coffeeChain = true;
-    }
-
-    @Config.Comment("Add Popcorn Chain?")
-    public static boolean popcornChain = true;
-    @Config.Comment("Add Mineral Water Chain?")
-    public static boolean mineralWaterChain = true;
-
-
     @Config.Comment("Add Hunger and Saturation values for GTFO foods")
     public static GTFOFoodConfig gtfoFoodConfig = new GTFOFoodConfig();
+
+    @Config.Comment("Effect options for GTFO. NOTE: None of these actually remove the appearance of the effects in-game, they just remove the functionality.")
+    public static GTFOPotionConfig gtfoPotionConfig = new GTFOPotionConfig();
+
+
+    public static class GTFONCConfig {
+        @Config.Comment("Should NuclearCraft compatibility be turned on? (Note: only works for NuclearCraft:Overhauled)")
+        public boolean nuclearCompat = true;
+
+        @Config.Comment("Add NuclearCraft S'more recipes?")
+        public boolean smoreChain = true;
+
+        @Config.Comment("Add NuclearCraft S'more extensions?")
+        public boolean addSmogus = true;
+    }
+
+    public static class GTFOAAConfig {
+        @Config.Comment("Should ActuallyAdditions compatibility be turned on?")
+        public boolean actuallyCompat = true;
+
+        @Config.Comment("Disable AA Coffee Maker's recipe?")
+        public boolean disableCoffeeMaker = true;
+
+        @Config.Comment("Add AA Coffee Chain?")
+        public boolean coffeeChain = true;
+    }
+
+
+
     public static class GTFOFoodConfig {
         @Config.Comment("Popcorn hunger")
-        public static int popcornHunger = 5;
+        public int popcornHunger = 5;
+
         @Config.Comment("Popcorn saturation")
-        public static float popcornSaturaion = 2;
+        public float popcornSaturation = 2;
+
+        @Config.Comment("Mineral Water hunger")
+        public int mineralWaterHunger = 0;
+
+        @Config.Comment("Mineral Water saturation")
+        public float mineralWaterSaturation = 0;
+
+
         @Config.Comment("Return bag after eating popcorn?")
-        public static boolean popcornReturnsContainer = true;
+        public boolean popcornReturnsContainer = true;
+
+        @Config.Comment("Return used thermos after drinking mineral water?")
+        public boolean mineralWaterReturnsContainer = true;
+    }
+
+    public static class GTFOPotionConfig {
+        @Config.Comment("Apply effects of Creativity?")
+        public boolean creativity = true;
+
+        @Config.Comment("Apply Addiction-Withdrawal system?")
+        public boolean addictionWithdrawal = true;
     }
 }

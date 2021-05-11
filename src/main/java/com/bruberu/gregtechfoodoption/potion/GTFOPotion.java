@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -19,7 +20,7 @@ GTFOPotion is a class made by Vazkii (with a few alterations here and there)
 
  */
 
-public class GTFOPotion extends Potion {
+public abstract class GTFOPotion extends Potion {
     private static final ResourceLocation resource = new ResourceLocation(GregTechFoodOption.MODID, "textures/gui/potions.png");
     private final int iconIndex;
 
@@ -52,22 +53,28 @@ public class GTFOPotion extends Potion {
 
     @SideOnly(Side.CLIENT)
     private void render(int x, int y, float alpha) {
-        Minecraft.getMinecraft().renderEngine.bindTexture(resource);
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder buf = tessellator.getBuffer();
-        buf.begin(7, DefaultVertexFormats.POSITION_TEX);
-        GlStateManager.color(1, 1, 1, alpha);
+        if(this.canRender()) {
+            Minecraft.getMinecraft().renderEngine.bindTexture(resource);
+            Tessellator tessellator = Tessellator.getInstance();
+            BufferBuilder buf = tessellator.getBuffer();
+            buf.begin(7, DefaultVertexFormats.POSITION_TEX);
+            GlStateManager.color(1, 1, 1, alpha);
 
-        int textureX = iconIndex % 8 * 18;
-        int textureY = 198 + iconIndex / 8 * 18;
+            int textureX = iconIndex % 8 * 18;
+            int textureY = 198 + iconIndex / 8 * 18;
 
-        buf.pos(x, y + 18, 0).tex(textureX * 0.00390625, (textureY + 18) * 0.00390625).endVertex();
-        buf.pos(x + 18, y + 18, 0).tex((textureX + 18) * 0.00390625, (textureY + 18) * 0.00390625).endVertex();
-        buf.pos(x + 18, y, 0).tex((textureX + 18) * 0.00390625, textureY * 0.00390625).endVertex();
-        buf.pos(x, y, 0).tex(textureX * 0.00390625, textureY * 0.00390625).endVertex();
+            buf.pos(x, y + 18, 0).tex(textureX * 0.00390625, (textureY + 18) * 0.00390625).endVertex();
+            buf.pos(x + 18, y + 18, 0).tex((textureX + 18) * 0.00390625, (textureY + 18) * 0.00390625).endVertex();
+            buf.pos(x + 18, y, 0).tex((textureX + 18) * 0.00390625, textureY * 0.00390625).endVertex();
+            buf.pos(x, y, 0).tex(textureX * 0.00390625, textureY * 0.00390625).endVertex();
 
-        tessellator.draw();
+            tessellator.draw();
+        }
     }
+
+    @SideOnly(Side.CLIENT)
+    protected abstract boolean canRender();
+
 
 
 }

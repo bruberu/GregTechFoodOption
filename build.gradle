@@ -26,7 +26,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 
-version = "1.12.2-0.5.0"
+version = "1.12.2-0.5.2"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -116,7 +116,7 @@ dependencies {
     deobfCompile "gregtechce:gregtech:1.12.2:1.14.0.689"
     deobfCompile "codechicken:ChickenASM:1.12-1.0.2.9"
     deobfCompile "codechicken-lib-1-8:CodeChickenLib-1.12.2:3.2.3.358:universal"
-    deobfCompile "forge-multipart-cbe:ForgeMultipart-1.12.2:2.6.2.83:universal"
+    //deobfCompile "forge-multipart-cbe:ForgeMultipart-1.12.2:2.6.2.83:universal"
     deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.23-16"
     deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
     compile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"

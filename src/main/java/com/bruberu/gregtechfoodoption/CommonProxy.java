@@ -47,11 +47,11 @@ public class CommonProxy {
         GTFOPotions.initPotionInstances();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
-        if(Loader.isModLoaded("nuclearcraft"))
+        if(GTFOConfig.gtfoncConfig.nuclearCompat)
         {
             GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();
         }
-        if(Loader.isModLoaded("actuallyadditions"))
+        if(GTFOConfig.gtfoaaConfig.actuallyCompat)
         {
             GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
         }

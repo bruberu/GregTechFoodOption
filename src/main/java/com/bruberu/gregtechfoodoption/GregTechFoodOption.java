@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.potion.GTFOPotions;
+import com.bruberu.gregtechfoodoption.utils.GTFOConfigOverrider;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import com.bruberu.gregtechfoodoption.CommonProxy;
 import gregtech.api.GTValues;
@@ -46,6 +47,7 @@ public class GregTechFoodOption {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         GTFOLog.init(event.getModLog());
+        GTFOConfigOverrider.init();
         proxy.preLoad();
 
         MinecraftForge.EVENT_BUS.register(new GTFOEventHandler());

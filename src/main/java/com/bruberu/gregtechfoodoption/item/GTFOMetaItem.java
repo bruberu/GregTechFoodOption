@@ -6,11 +6,10 @@ import com.bruberu.gregtechfoodoption.potion.CreativityPotion;
 import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.FoodStats;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.items.metaitem.stats.IItemMaxStackSizeProvider;
 import gregtech.api.util.RandomPotionEffect;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-
-import java.util.Random;
 
 import static net.minecraft.potion.Potion.getPotionById;
 
@@ -35,11 +34,6 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem LEACHED_THERMOS_CASING;
     public static MetaItem<?>.MetaValueItem USED_THERMOS;
     public static MetaItem<?>.MetaValueItem MINERAL_WATER;
-
-
-
-
-
 
     public static MetaItem<?>.MetaValueItem EIGHT_SMORE;
     public static MetaItem<?>.MetaValueItem SIXTEEN_SMORE;
@@ -67,11 +61,15 @@ public class GTFOMetaItem extends MaterialMetaItem {
         THERMOS_CAP = addItem(10, "component.thermos.cap");
         THERMOS_CASING = addItem(11, "component.thermos.casing");
 
-        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(GTFOConfig.GTFOFoodConfig.popcornHunger, GTFOConfig.GTFOFoodConfig.popcornSaturaion, false, true, PAPER_BAG.getStackForm(), new RandomPotionEffect(getPotionById(10), 300, 1, 0), new RandomPotionEffect(AddictionPotion.instance, 2000, 3, 0)));
-        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new FoodStats(3, 3, true, true, USED_THERMOS.getStackForm(), new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0), new RandomPotionEffect(AddictionPotion.instance, 4000, 20, 0)));
+        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
+                new RandomPotionEffect(getPotionById(10), 300, 1, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 2000, 3, 0)));
+        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new FoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
+                new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 4000, 20, 0)));
 
 
-        if(Loader.isModLoaded("nuclearcraft") && GTFOConfig.GTFONCConfig.addSmogus)
+        if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)
         {
             int heal = 44;
             double saturation = 8.6;

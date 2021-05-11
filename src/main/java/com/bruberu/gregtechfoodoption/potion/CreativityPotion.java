@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.potion;
 
+import com.bruberu.gregtechfoodoption.GTFOConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -21,9 +22,12 @@ public class CreativityPotion extends GTFOPotion{
     @Override
     public void performEffect(EntityLivingBase entity, int amplifier) {
         if(entity instanceof EntityPlayer) {
-            if(((EntityPlayer)entity).capabilities.isFlying) {
-                entity.fallDistance = 0;
-            }
+            entity.fallDistance = 0;
         }
+    }
+
+    @Override
+    protected boolean canRender() {
+        return GTFOConfig.gtfoPotionConfig.creativity;
     }
 }

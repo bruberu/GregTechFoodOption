@@ -77,7 +77,7 @@ public class SmogusChain {
                 FOUR_SMOGUS.getStackForm(2)};
         int euPerTick = 1920;
         int ticks = 25;
-        for (int i = 0; i < 3 + 8 * RecipeUtils.boolToInt(GTFOConfig.GTFONCConfig.addSmogus); i++) {
+        for (int i = 0; i < 3 + 8 * RecipeUtils.boolToInt(GTFOConfig.gtfoncConfig.addSmogus); i++) {
             if (i < 7) {
                 FORMING_PRESS_RECIPES.recipeBuilder()
                         .inputs(new ItemStack(NCItems.marshmallow))

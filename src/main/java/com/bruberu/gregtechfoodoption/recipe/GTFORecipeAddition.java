@@ -19,11 +19,12 @@ public class GTFORecipeAddition {
 
     public static void compatInit()
     {
-        if(Loader.isModLoaded("nuclearcraft"))
-            if(GTFOConfig.GTFONCConfig.smoreChain)
+        if(GTFOConfig.gtfoncConfig.nuclearCompat) {
+            if (GTFOConfig.gtfoncConfig.smoreChain)
                 SmogusChain.init();
-        if(Loader.isModLoaded("actuallyadditions"))
-            if(GTFOConfig.GTFOAAConfig.coffeeChain)
+        }
+        if(GTFOConfig.gtfoaaConfig.actuallyCompat)
+            if(GTFOConfig.gtfoaaConfig.coffeeChain)
                 CoffeeChain.init();
     }
 }
