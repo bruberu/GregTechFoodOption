@@ -1,20 +1,21 @@
 package com.bruberu.gregtechfoodoption.recipe;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
-import com.bruberu.gregtechfoodoption.recipe.chain.CoffeeChain;
-import com.bruberu.gregtechfoodoption.recipe.chain.MineralWaterChain;
-import com.bruberu.gregtechfoodoption.recipe.chain.PopcornChain;
-import com.bruberu.gregtechfoodoption.recipe.chain.SmogusChain;
+import com.bruberu.gregtechfoodoption.recipe.chain.*;
 import net.minecraftforge.fml.common.Loader;
 
 
 public class GTFORecipeAddition {
     public static void init()
     {
+        CoreChain.init();
+        GTFOMachineRecipes.init();
         if(GTFOConfig.popcornChain)
             PopcornChain.init();
         if(GTFOConfig.mineralWaterChain)
             MineralWaterChain.init();
+        if(GTFOConfig.purpleDrinkChain)
+            PurpleDrinkChain.init();
     }
 
     public static void compatInit()

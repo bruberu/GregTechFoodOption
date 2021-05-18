@@ -6,6 +6,7 @@ import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
 import com.bruberu.gregtechfoodoption.item.GTFOMetaItems;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
+import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
 import com.bruberu.gregtechfoodoption.potion.GTFOPotions;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeAddition;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeRemoval;
@@ -47,6 +48,8 @@ public class CommonProxy {
         GTFOPotions.initPotionInstances();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
+        GTFOTileEntities.init();
+
         if(GTFOConfig.gtfoncConfig.nuclearCompat)
         {
             GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();

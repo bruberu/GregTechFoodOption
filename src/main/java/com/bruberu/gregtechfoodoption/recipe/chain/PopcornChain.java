@@ -128,12 +128,6 @@ public class PopcornChain {
                 .outputs(IsopropylmagnesiumChloride.getItemStack(12))
                 .buildAndRegister();
 
-        CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(200)
-                .fluidInputs(HydrochloricAcid.getFluid(1000))
-                .fluidInputs(Propene.getFluid(1000))
-                .fluidOutputs(IsopropylChloride.getFluid(1000))
-                .buildAndRegister();
-
         CHEMICAL_RECIPES.recipeBuilder().EUt(1620).duration(100)
                 .fluidInputs(AceticAnhydride.getFluid(1000))
                 .fluidInputs(HydrochloricAcid.getFluid(1000))

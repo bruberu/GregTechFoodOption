@@ -23,6 +23,9 @@ public class GTFOConfig {
     @Config.Comment("Add Mineral Water Chain?")
     public static boolean mineralWaterChain = true;
 
+    @Config.Comment("Add Purple Drink Chain? (Note: also adds Etirps and Apple Hard Candy as sideproducts.)")
+    public static boolean purpleDrinkChain = true;
+
     @Config.Comment("NuclearCraft compatibility")
     public static GTFONCConfig gtfoncConfig = new GTFONCConfig();
 
@@ -72,6 +75,38 @@ public class GTFOConfig {
 
         @Config.Comment("Mineral Water saturation")
         public float mineralWaterSaturation = 0;
+
+        @Config.Comment("Popcorn hunger")
+        public int limeHunger = 1;
+
+        @Config.Comment("Lime saturation")
+        public float limeSaturation = 0.5f;
+
+        @Config.Comment("Lemon hunger")
+        public int lemonHunger = 1;
+
+        @Config.Comment("Lemon saturation")
+        public float lemonSaturation = 0.5f;
+
+        @Config.Comment("Etirps hunger")
+        public int etirpsHunger = 0;
+
+        @Config.Comment("Etirps saturation")
+        public float etirpsSaturation = 0;
+
+        @Config.Comment("Hard candy hunger")
+        public int hardCandyHunger = 1;
+
+        @Config.Comment("Hard candy saturation")
+        public float hardCandySaturation = 1;
+
+        @Config.Comment("Sparkling water hunger")
+        public int sparklingWaterHunger = 1;
+
+        @Config.Comment("Sparkling water saturation")
+        public float sparklingWaterSaturation = 1;
+
+
 
 
         @Config.Comment("Return bag after eating popcorn?")

@@ -9,8 +9,6 @@ import gregtech.api.unification.ore.OrePrefix;
 @IMaterialHandler.RegisterMaterialHandler
 public class GTFONCMaterialHandler implements IMaterialHandler {
 
-    public static final GTFOFluidMaterial UnheatedCaneSyrup = new GTFOFluidMaterial("unheated_cane_syrup", 0xf0efe4);
-    public static final GTFOFluidMaterial CaneSyrup = new GTFOFluidMaterial("cane_syrup", 0xf2f1dc);
     public static final GTFOFluidMaterial SweetenedDilutedCaneSyrupMixture = new GTFOFluidMaterial("sweetened_diluted_cane_syrup_mixture", 0xdedcc8);
     public static final GTFOFluidMaterial Albumen = new GTFOFluidMaterial("albumen", 0xfffef7);
     public static final GTFOFluidMaterial Yolk = new GTFOFluidMaterial("yolk", 0xffdf00);

@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
+import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
+import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.UnheatedCaneSyrup;
 import static com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregicadditions.recipes.GARecipeMaps.*;
@@ -337,22 +339,6 @@ public class SmogusChain {
                 .fluidOutputs(PotassiumCarbonateSolution.getFluid(1000))
             	.EUt(30)
                 .duration(40)
-                .buildAndRegister();
-
-        FLUID_HEATER_RECIPES.recipeBuilder()
-                .fluidInputs(UnheatedCaneSyrup.getFluid(1000))
-	            .circuitMeta(0)
-                .fluidOutputs(CaneSyrup.getFluid(1000))
-	            .EUt(120)
-                .duration(80)
-                .buildAndRegister();
-
-        MIXER_RECIPES.recipeBuilder()
-                .inputs(GAMaterials.Glucose.getItemStack(24))
-            	.fluidInputs(Water.getFluid(2000))
-            	.fluidOutputs(UnheatedCaneSyrup.getFluid(2000))
-            	.EUt(80)
-                .duration(260)
                 .buildAndRegister();
 
         CLUSTER_MILL_RECIPES.recipeBuilder()
