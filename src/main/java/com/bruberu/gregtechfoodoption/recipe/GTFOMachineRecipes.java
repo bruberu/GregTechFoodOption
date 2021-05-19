@@ -1,6 +1,8 @@
 package com.bruberu.gregtechfoodoption.recipe;
 
+import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
 import gregicadditions.recipes.GACraftingComponents;
+import gregtech.api.items.OreDictNames;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.ModHandler;
@@ -9,6 +11,7 @@ import gregtech.api.unification.OreDictUnifier;
 import java.util.Arrays;
 
 import static com.bruberu.gregtechfoodoption.machines.GTFOTileEntities.BIOREACTOR;
+import static com.bruberu.gregtechfoodoption.machines.GTFOTileEntities.SLICER;
 import static gregicadditions.recipes.GACraftingComponents.*;
 import static gregtech.api.GTValues.*;
 import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
@@ -29,6 +32,16 @@ public class GTFOMachineRecipes {
                 'G', GLASS,
                 'I', OreDictUnifier.get("platePolytetrafluoroethylene")
                 );
+        registerMachineRecipe(SLICER,
+                "PCA", "SHC", "LOA",
+                'P', PISTON,
+                'C', CIRCUIT,
+                'A', CABLE_SINGLE,
+                'S', OreDictNames.craftingDiamondBlade,
+                'H', HULL,
+                'L', PLATE_DENSE,
+                'O', CONVEYOR
+        );
     }
 
     /**
@@ -70,5 +83,13 @@ public class GTFOMachineRecipes {
             }
         }
         return recipe;
+    }
+
+    public static void registerMachineRecipe(GTFOTileEntities.MTE<?>[] metaTileEntities, Object... recipe) {
+        for (GTFOTileEntities.MTE<?> metaTileEntity : metaTileEntities) {
+            if (metaTileEntity != null)
+                ModHandler.addShapedRecipe(String.format("ga_%s", metaTileEntity.getMetaTileEntity().getMetaName()), metaTileEntity.getMetaTileEntity().getStackForm(),
+                        prepareRecipe(metaTileEntity.getITieredMetaTileEntity().getTier(), Arrays.copyOf(recipe, recipe.length)));
+        }
     }
 }

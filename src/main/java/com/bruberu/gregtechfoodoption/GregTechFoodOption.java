@@ -4,6 +4,7 @@ import com.bruberu.gregtechfoodoption.potion.GTFOPotions;
 import com.bruberu.gregtechfoodoption.utils.GTFOConfigOverrider;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import com.bruberu.gregtechfoodoption.CommonProxy;
+import gregicadditions.recipes.DisassemblyHandler;
 import gregtech.api.GTValues;
 import gregtech.api.capability.SimpleCapabilityManager;
 import gregtech.api.net.NetworkHandler;
