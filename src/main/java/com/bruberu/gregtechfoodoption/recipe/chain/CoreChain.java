@@ -3,10 +3,19 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 //Used for cross-chain materials.
 
 import gregicadditions.GAMaterials;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.items.MetaItems;
+import net.minecraft.item.ItemStack;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
+import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.SLICER_BLADE_FLAT;
+import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.SLICER_BLADE_STRIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.plate;
+import static gregtech.api.unification.ore.OrePrefix.screw;
 
 public class CoreChain {
     public static void init()
@@ -32,5 +41,17 @@ public class CoreChain {
                 .fluidInputs(Propene.getFluid(1000))
                 .fluidOutputs(IsopropylChloride.getFluid(1000))
                 .buildAndRegister();
+
+        ModHandler.addShapedRecipe("slicer_flat", SLICER_BLADE_FLAT.getStackForm(),
+                "hPS", " M ", "fPs",
+                'P', new UnificationEntry(plate, StainlessSteel),
+                'S', new UnificationEntry(screw, StainlessSteel),
+                'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
+
+        ModHandler.addShapedRecipe("slicer_stripes", SLICER_BLADE_STRIPES.getStackForm(),
+                "hPS", "PMP", "fPs",
+                'P', new UnificationEntry(plate, StainlessSteel),
+                'S', new UnificationEntry(screw, StainlessSteel),
+                'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
     }
 }

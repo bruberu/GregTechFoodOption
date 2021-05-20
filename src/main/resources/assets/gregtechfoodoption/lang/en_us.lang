@@ -225,3 +225,5 @@ gregtechfoodoption.machine.slicer.uev.tooltip=High-Tech Slap-Chop II
 gregtechfoodoption.machine.slicer.uiv.tooltip=High-Tech Slap-Chop III
 gregtechfoodoption.machine.slicer.umv.tooltip=High-Tech Slap-Chop IV
 gregtechfoodoption.machine.slicer.uxv.tooltip=Ultimate Slap-Chop
+metaitem.config.slicer_blade.flat.name=Slicer Blade (Flat)
+metaitem.config.slicer_blade.stripes.name=Slicer Blade (Stripes)

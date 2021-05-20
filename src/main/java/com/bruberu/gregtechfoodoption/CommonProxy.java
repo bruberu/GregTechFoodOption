@@ -86,9 +86,9 @@ public class CommonProxy {
         IForgeRegistry<Item> registry = event.getRegistry();
     }
 
-    @SubscribeEvent(priority = EventPriority.LOW)
+    @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-        GTFOLog.logger.info("Registering recipe low...");
+        GTFOLog.logger.info("Registering recipe normal...");
         GTFORecipeRemoval.init();
         GTFORecipeAddition.init();
         /*
@@ -101,7 +101,7 @@ public class CommonProxy {
 
 
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering ore prefix...");
         GTFOMetaItems.registerOreDict();

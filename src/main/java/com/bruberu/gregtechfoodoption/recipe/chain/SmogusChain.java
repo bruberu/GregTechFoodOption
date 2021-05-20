@@ -22,14 +22,13 @@ import java.util.Collection;
 import java.util.Collections;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
-import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.UnheatedCaneSyrup;
 import static com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregicadditions.recipes.GARecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static nc.recipe.AbstractRecipeHandler.fluidStack;
-import static gregicadditions.recipes.GAMachineRecipeRemoval.removeRecipesByInputs;
+import static gregicadditions.recipes.helper.HelperMethods.removeRecipesByInputs;
 
 
 public class SmogusChain {

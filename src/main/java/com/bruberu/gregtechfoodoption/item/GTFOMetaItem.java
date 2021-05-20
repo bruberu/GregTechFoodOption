@@ -51,6 +51,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem ETIRPS;
     public static MetaItem<?>.MetaValueItem LACTOBACILLUS_PENTOSIS_CULTURE;
     public static MetaItem<?>.MetaValueItem BACILLUS_SUBTILIS_CULTURE;
+    public static MetaItem<?>.MetaValueItem SLICER_BLADE_FLAT;
+    public static MetaItem<?>.MetaValueItem SLICER_BLADE_STRIPES;
 
 
 
@@ -86,6 +88,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
         LACTOBACILLUS_PENTOSIS_CULTURE = addItem(20, "lactobacillus.culture");
         BACILLUS_SUBTILIS_CULTURE = addItem(21, "bacillus.culture");
 
+        SLICER_BLADE_FLAT = addItem(23, "config.slicer_blade.flat");
+        SLICER_BLADE_STRIPES = addItem(24, "config.slicer_blade.stripes");
 
         if(GTFOConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -106,10 +110,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
                 new RandomPotionEffect(AddictionPotion.instance, 3200, 2, 75)));
 
-
-
-
         MetaItems.BOTTLE_PURPLE_DRINK = addItem(22, "bottle.purple.drink").addComponents(new FoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE), new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10), new RandomPotionEffect(AddictionPotion.instance, 50, 1, 50)));
+
 
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)

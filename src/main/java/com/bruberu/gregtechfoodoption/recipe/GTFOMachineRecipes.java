@@ -1,7 +1,7 @@
 package com.bruberu.gregtechfoodoption.recipe;
 
 import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
-import gregicadditions.recipes.GACraftingComponents;
+import gregicadditions.recipes.helper.GACraftingComponents;
 import gregtech.api.items.OreDictNames;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -12,11 +12,7 @@ import java.util.Arrays;
 
 import static com.bruberu.gregtechfoodoption.machines.GTFOTileEntities.BIOREACTOR;
 import static com.bruberu.gregtechfoodoption.machines.GTFOTileEntities.SLICER;
-import static gregicadditions.recipes.GACraftingComponents.*;
-import static gregtech.api.GTValues.*;
-import static gregtech.api.unification.material.MarkerMaterials.Tier.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregicadditions.recipes.helper.GACraftingComponents.*;
 
 public class GTFOMachineRecipes {
     public static void init()
