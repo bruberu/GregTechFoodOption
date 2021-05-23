@@ -26,6 +26,9 @@ public class GTFOConfig {
     @Config.Comment("Add Purple Drink Chain? (Note: also adds Etirps and Apple Hard Candy as sideproducts.)")
     public static boolean purpleDrinkChain = true;
 
+    @Config.Comment("Add Potato processing?")
+    public static boolean potatoProcessingChain = true;
+
     @Config.Comment("NuclearCraft compatibility")
     public static GTFONCConfig gtfoncConfig = new GTFONCConfig();
 
@@ -106,8 +109,17 @@ public class GTFOConfig {
         @Config.Comment("Sparkling water saturation")
         public float sparklingWaterSaturation = 1;
 
+        @Config.Comment("French fries hunger")
+        public int friesHunger = 3;
 
+        @Config.Comment("French fries saturation")
+        public float friesSaturation = 0;
 
+        @Config.Comment("Chip hunger (also affects the hunger of the other chip items)")
+        public int chipHunger = 2;
+
+        @Config.Comment("Chip saturation (also affects the hunger of the other chip items)")
+        public float chipSaturation = 1;
 
         @Config.Comment("Return bag after eating popcorn?")
         public boolean popcornReturnsContainer = true;

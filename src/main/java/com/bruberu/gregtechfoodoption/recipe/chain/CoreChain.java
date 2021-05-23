@@ -53,5 +53,29 @@ public class CoreChain {
                 'P', new UnificationEntry(plate, StainlessSteel),
                 'S', new UnificationEntry(screw, StainlessSteel),
                 'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
+
+        FLUID_HEATER_RECIPES.recipeBuilder()
+                .fluidInputs(SeedOil.getFluid(16))
+                .fluidOutputs(FryingOil.getFluid(16))
+                .circuitMeta(0)
+                .EUt(12)
+                .duration(10)
+                .buildAndRegister();
+
+        FLUID_HEATER_RECIPES.recipeBuilder()
+                .fluidInputs(SeedOil.getFluid(16))
+                .fluidOutputs(HotFryingOil.getFluid(16))
+                .circuitMeta(1)
+                .EUt(60)
+                .duration(25)
+                .buildAndRegister();
+
+        FLUID_HEATER_RECIPES.recipeBuilder()
+                .fluidInputs(FryingOil.getFluid(16))
+                .fluidOutputs(HotFryingOil.getFluid(16))
+                .circuitMeta(0)
+                .EUt(18)
+                .duration(15)
+                .buildAndRegister();
     }
 }

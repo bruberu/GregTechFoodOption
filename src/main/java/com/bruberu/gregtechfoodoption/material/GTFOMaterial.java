@@ -5,7 +5,6 @@ import gregtech.api.unification.material.IMaterialHandler;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.util.SmallDigits;
 
-@IMaterialHandler.RegisterMaterialHandler
 public class GTFOMaterial {
     public String name;
     public int rgb;

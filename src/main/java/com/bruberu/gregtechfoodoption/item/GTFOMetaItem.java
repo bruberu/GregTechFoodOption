@@ -8,6 +8,8 @@ import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.FoodStats;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemMaxStackSizeProvider;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtech.common.items.MetaItem2;
 import gregtech.common.items.MetaItems;
@@ -18,6 +20,7 @@ import net.minecraftforge.fml.common.Loader;
 
 import static com.bruberu.gregtechfoodoption.GTFOConfig.gtfoFoodConfig;
 
+import static gregtech.api.unification.material.Materials.*;
 import static net.minecraft.potion.Potion.getPotionById;
 
 
@@ -51,8 +54,32 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem ETIRPS;
     public static MetaItem<?>.MetaValueItem LACTOBACILLUS_PENTOSIS_CULTURE;
     public static MetaItem<?>.MetaValueItem BACILLUS_SUBTILIS_CULTURE;
+
     public static MetaItem<?>.MetaValueItem SLICER_BLADE_FLAT;
     public static MetaItem<?>.MetaValueItem SLICER_BLADE_STRIPES;
+
+    public static MetaItem<?>.MetaValueItem PEELED_POTATO;
+    public static MetaItem<?>.MetaValueItem POTATO_STRIP;
+    public static MetaItem<?>.MetaValueItem POTATO_SLICE;
+    public static MetaItem<?>.MetaValueItem FRIED_POTATO_SLICE;
+    public static MetaItem<?>.MetaValueItem BATCH_FRIED_POTATO_SLICE;
+    public static MetaItem<?>.MetaValueItem OILY_POTATO_SLICE;
+    public static MetaItem<?>.MetaValueItem HOT_POTATO_SLICE;
+    public static MetaItem<?>.MetaValueItem REDUCED_FAT_POTATO_SLICE;
+    public static MetaItem<?>.MetaValueItem PARTIALLY_FILLED_CHIP_BAG;
+    public static MetaItem<?>.MetaValueItem BLANCHED_POTATO_STRIP;
+    public static MetaItem<?>.MetaValueItem FRIED_POTATO_STRIP;
+    public static MetaItem<?>.MetaValueItem USED_PAPER_BAG;
+    public static MetaItem<?>.MetaValueItem FRENCH_FRIES;
+    public static MetaItem<?>.MetaValueItem SYALS;
+    public static MetaItem<?>.MetaValueItem BAG_OF_CHIPS;
+    public static MetaItem<?>.MetaValueItem KETTLE_FRIED_CHIPS;
+    public static MetaItem<?>.MetaValueItem REDUCED_FAT_CHIPS;
+    public static MetaItem<?>.MetaValueItem POTATO_ON_A_STICK;
+
+
+
+
 
 
 
@@ -91,6 +118,21 @@ public class GTFOMetaItem extends MaterialMetaItem {
         SLICER_BLADE_FLAT = addItem(23, "config.slicer_blade.flat");
         SLICER_BLADE_STRIPES = addItem(24, "config.slicer_blade.stripes");
 
+        PEELED_POTATO = addItem(25, "component.potato.peeled");
+        POTATO_STRIP = addItem(26, "component.potato.strip");
+        POTATO_SLICE = addItem(27, "component.potato.slice");
+        FRIED_POTATO_SLICE = addItem(28, "component.potato.fried_slice");
+        BATCH_FRIED_POTATO_SLICE = addItem(29, "component.potato.batch_fried_slice");
+        OILY_POTATO_SLICE = addItem(30, "component.potato.oily_slice");
+        HOT_POTATO_SLICE = addItem(31, "component.potato.hot_slice");
+        REDUCED_FAT_POTATO_SLICE = addItem(32, "component.potato.reduced_fat_slice");
+        PARTIALLY_FILLED_CHIP_BAG = addItem(33, "component.partially_filled_chip_bag");
+        BLANCHED_POTATO_STRIP = addItem(34, "component.potato.blanched_strip");
+        FRIED_POTATO_STRIP = addItem(35, "component.potato.fried_strip");
+        USED_PAPER_BAG = addItem(36, "component.bag_used");
+
+
+
         if(GTFOConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0),
@@ -112,6 +154,22 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         MetaItems.BOTTLE_PURPLE_DRINK = addItem(22, "bottle.purple.drink").addComponents(new FoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE), new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10), new RandomPotionEffect(AddictionPotion.instance, 50, 1, 50)));
 
+        FRENCH_FRIES = addItem(37, "food.french_fries").addComponents(new FoodStats(gtfoFoodConfig.friesHunger, gtfoFoodConfig.friesSaturation, false, false, USED_PAPER_BAG.getStackForm(),
+                new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 1600, 1, 25)));
+        SYALS = addItem(38, "food.syals").addComponents(new FoodStats(gtfoFoodConfig.chipHunger / 2, gtfoFoodConfig.chipSaturation / 2, false, false, OreDictUnifier.get(OrePrefix.foil, Tin),
+                new RandomPotionEffect(MobEffects.LEVITATION, 300, 1, 0)));
+        BAG_OF_CHIPS = addItem(39, "food.bag_of_chips").addComponents(new FoodStats(gtfoFoodConfig.chipHunger, gtfoFoodConfig.chipSaturation, false, false, OreDictUnifier.get(OrePrefix.foil, Steel),
+                new RandomPotionEffect(MobEffects.HASTE, 600, 1, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 1600, 1, 60)));
+        KETTLE_FRIED_CHIPS = addItem(40, "food.kettle_chips").addComponents(new FoodStats(gtfoFoodConfig.chipHunger + 1, gtfoFoodConfig.chipSaturation, false, false, OreDictUnifier.get(OrePrefix.foil, Aluminium),
+                new RandomPotionEffect(MobEffects.HASTE, 900, 1, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 1600, 1, 55)));
+        REDUCED_FAT_CHIPS = addItem(41, "food.reduced_fat_chips").addComponents(new FoodStats(gtfoFoodConfig.chipHunger, gtfoFoodConfig.chipSaturation + 1, false, false, OreDictUnifier.get(OrePrefix.foil, StainlessSteel),
+                new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0),
+                new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50),
+                new RandomPotionEffect(AddictionPotion.instance, 1600, 2, 50)));
+        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new FoodStats(1, (float) 0.5, false, false, new ItemStack(Items.STICK)));
 
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)

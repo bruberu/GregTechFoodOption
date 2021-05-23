@@ -101,7 +101,7 @@ public class CommonProxy {
 
 
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering ore prefix...");
         GTFOMetaItems.registerOreDict();

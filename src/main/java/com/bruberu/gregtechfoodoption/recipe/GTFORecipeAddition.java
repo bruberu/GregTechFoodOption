@@ -16,6 +16,8 @@ public class GTFORecipeAddition {
             MineralWaterChain.init();
         if(GTFOConfig.purpleDrinkChain)
             PurpleDrinkChain.init();
+        if(GTFOConfig.potatoProcessingChain)
+            PotatoProcessingChain.init();
     }
 
     public static void compatInit()
