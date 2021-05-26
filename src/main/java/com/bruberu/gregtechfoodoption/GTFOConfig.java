@@ -1,11 +1,6 @@
 package com.bruberu.gregtechfoodoption;
 
 import net.minecraftforge.common.config.Config;
-import net.minecraftforge.fluids.FluidRegistry;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 @Config(modid = GregTechFoodOption.MODID)
 

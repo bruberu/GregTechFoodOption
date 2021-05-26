@@ -1,22 +1,12 @@
 package com.bruberu.gregtechfoodoption;
 
-import codechicken.lib.util.ItemNBTUtils;
-import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaFoodHelper;
 import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
-import gregicadditions.item.GADustItem;
-import gregicadditions.materials.SimpleDustMaterial;
 import gregtech.api.unification.OreDictUnifier;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -25,7 +15,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.io.IOException;
 import java.util.Optional;
 
 @SideOnly(Side.CLIENT)
