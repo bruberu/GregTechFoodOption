@@ -2,7 +2,6 @@ package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
 import com.bruberu.gregtechfoodoption.material.GTFOFluidMaterial;
-import com.sun.javafx.geom.transform.CanTransformVec3d;
 import gregicadditions.GAEnums;
 import gregicadditions.GAMaterials;
 import gregtech.api.unification.material.IMaterialHandler;
