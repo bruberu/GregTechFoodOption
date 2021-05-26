@@ -1,20 +1,17 @@
 package com.bruberu.gregtechfoodoption;
 
-import com.bruberu.gregtechfoodoption.fluid.GTFOMetaFluids;
+import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
+import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
 import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import gregicadditions.GAEnums;
 import gregicadditions.GAMaterials;
 import gregicadditions.Gregicality;
-import gregicadditions.fluid.GAMetaFluids;
-import gregicadditions.item.GAMetaBlocks;
-import gregicadditions.machines.GATileEntities;
 import gregicadditions.utils.GALog;
 import gregtech.api.GTValues;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.type.Material;
 import gregtech.api.util.GTLog;
-import gregtech.common.MetaFluids;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.init.Bootstrap;
@@ -44,11 +41,14 @@ public class SimpleMaterialTest {
         Materials.register();
         GAEnums.preInit();
 
-        // Bootstrap Addon Materials
+        // Bootstrap Gregicality Materials
         GAMaterials gaMaterials = new GAMaterials();
         gaMaterials.onMaterialsInit();
-        GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
-        gtfoMaterials.onMaterialsInit();
+
+        // Bootstrap GTFO Materials
+        new GTFOMaterialHandler().onMaterialsInit();
+        new GTFOAAMaterialHandler().onMaterialsInit();
+        new GTFONCMaterialHandler().onMaterialsInit();
         Material.freezeRegistry();
 
         // Bootstrap GTCE Blocks
@@ -78,6 +78,14 @@ public class SimpleMaterialTest {
         assertNotNull(
                 "OreDictUnifier failed to gather a GTFO Material ItemStack",
                 GTFOMaterialHandler.AppleCandySyrup
+        );
+        assertNotNull(
+                "OreDictUnifier failed to gather a GTFO AA Compat Material ItemStack",
+                GTFOAAMaterialHandler.Coffee
+        );
+        assertNotNull(
+                "OreDictUnifier failed to gather a GTFO NC Compat Material ItemStack",
+                GTFONCMaterialHandler.Butter
         );
     }
 
