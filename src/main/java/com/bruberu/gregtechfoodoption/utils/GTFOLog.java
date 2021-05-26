@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 /**
  * GregTechFoodOption logger
  * One edit to this class and you're not alive anymore
- * :troll:
  */
 public class GTFOLog {
 
