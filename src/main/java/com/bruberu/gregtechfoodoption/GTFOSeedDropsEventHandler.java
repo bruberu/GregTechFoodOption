@@ -1,6 +1,5 @@
 package com.bruberu.gregtechfoodoption;
 
-import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -13,7 +12,7 @@ import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.LIME;
 
 public class GTFOSeedDropsEventHandler {
 
-    private Random rand = new Random();
+    private final Random rand = new Random();
 
     @SubscribeEvent
     public void addSeeds(BlockEvent.HarvestDropsEvent event)

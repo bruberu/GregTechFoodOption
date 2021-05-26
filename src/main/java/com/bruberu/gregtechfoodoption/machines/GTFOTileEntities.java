@@ -3,24 +3,18 @@ package com.bruberu.gregtechfoodoption.machines;
 import com.bruberu.gregtechfoodoption.GregTechFoodOption;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
-import de.ellpeck.actuallyadditions.mod.tile.TileEntityBioReactor;
-import gregicadditions.client.ClientHandler;
-import gregicadditions.gui.GAGuiTextures;
 import gregicadditions.machines.GATileEntities;
 import gregicadditions.machines.overrides.GASimpleMachineMetaTileEntity;
-import gregicadditions.recipes.GARecipeMaps;
-import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
-import gregtech.api.metatileentity.ITieredMetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import net.minecraft.util.ResourceLocation;
 
-/* Takes up IDs 8500 - 8599 */
+import static gregicadditions.machines.GATileEntities.create;
 
+/* Takes up IDs 8500 - 8599 */
 public class GTFOTileEntities {
     public static MetaTileEntityBioReactor[] BIOREACTOR = new MetaTileEntityBioReactor[14];
-    public static GTFOTileEntities.MTE<?>[] SLICER = new GTFOTileEntities.MTE[14];
+    public static GATileEntities.MTE<?>[] SLICER = new GATileEntities.MTE[14];
 
 
     public static void init() {
@@ -43,34 +37,7 @@ public class GTFOTileEntities {
         SLICER[12] = create(8515, new GASimpleMachineMetaTileEntity(location("slicer.uxv"), GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, 13));
     }
 
-
-    public static class MTE<T extends MetaTileEntity & ITieredMetaTileEntity> {
-
-        private final T t;
-
-        MTE(T t) {
-            this.t = t;
-        }
-
-        public MetaTileEntity getMetaTileEntity() {
-            return t;
-        }
-
-        public ITieredMetaTileEntity getITieredMetaTileEntity() {
-            return t;
-        }
-    }
-
-
-    public static <T extends MetaTileEntity & ITieredMetaTileEntity> MTE<T> create(int id, T sampleMetaTileEntity) {
-        return new MTE<>(GregTechAPI.registerMetaTileEntity(id, sampleMetaTileEntity));
-    }
-
     public static ResourceLocation location(String name) {
         return new ResourceLocation(GregTechFoodOption.MODID, name);
-    }
-
-    private static ResourceLocation gregtechId(String name) {
-        return new ResourceLocation(GTValues.MODID, name);
     }
 }

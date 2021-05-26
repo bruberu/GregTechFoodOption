@@ -20,24 +20,12 @@ import java.io.IOException;
 public class GregTechFoodOption {
     public static final String MODID = "gregtechfoodoption";
     public static final String NAME = "GregTech Food Option";
-    public static final String VERSION = "@1.12@";
-
-    /*
-    static {
-        if (FMLCommonHandler.instance().getSide().isClient()) {
-
-        }
-    }
-    */
-
+    public static final String VERSION = "@VERSION@";
 
 
     @SidedProxy(modId = MODID, clientSide = "com.bruberu.gregtechfoodoption.ClientProxy", serverSide = "com.bruberu.gregtechfoodoption.CommonProxy")
     public static CommonProxy proxy;
 
-    public GregTechFoodOption() {
-
-    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -59,12 +47,5 @@ public class GregTechFoodOption {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
-    }
-
-    @Mod.EventHandler
-    public void serverStarted(FMLServerStartedEvent event) {
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
-            World world = FMLCommonHandler.instance().getMinecraftServerInstance().getEntityWorld();
-        }
     }
 }
