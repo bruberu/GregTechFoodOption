@@ -1,7 +1,6 @@
 package com.bruberu.gregtechfoodoption.fluid;
 
 import com.bruberu.gregtechfoodoption.material.GTFOFluidMaterial;
-import gregicadditions.materials.SimpleFluidMaterial;
 import gregtech.api.util.FluidTooltipUtil;
 import gregtech.api.util.GTUtility;
 import gregtech.common.MetaFluids;

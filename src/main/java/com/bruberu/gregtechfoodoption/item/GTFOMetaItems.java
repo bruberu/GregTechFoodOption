@@ -1,10 +1,6 @@
 package com.bruberu.gregtechfoodoption.item;
 
-import com.bruberu.gregtechfoodoption.material.GTFOFluidMaterial;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.unification.material.MaterialIconSet;
-import gregtech.api.unification.material.type.FluidMaterial;
-import gregtech.api.unification.ore.OrePrefix;
 
 import java.util.List;
 

@@ -1,19 +1,12 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
-import com.bruberu.gregtechfoodoption.GTFOConfig;
-import com.bruberu.gregtechfoodoption.GTFOMaterialHandler;
-import com.bruberu.gregtechfoodoption.item.GTFOMetaItem;
-import gregicadditions.GAMaterials;
 import gregicadditions.GAValues;
-import gregtech.api.recipes.RecipeMaps.*;
 import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
 
 import static gregicadditions.GAValues.*;
 
 import static gregicadditions.GAEnums.GAOrePrefix.*;
 import static gregicadditions.GAMaterials.*;
-import static gregicadditions.GAValues.*;
 import static gregicadditions.item.GAMetaItems.*;
 import static gregicadditions.recipes.GARecipeMaps.*;
 import static gregtech.api.unification.ore.OrePrefix.*;

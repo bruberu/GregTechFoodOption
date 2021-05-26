@@ -7,16 +7,13 @@ import com.bruberu.gregtechfoodoption.potion.CreativityPotion;
 import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.FoodStats;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.stats.IItemMaxStackSizeProvider;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
-import gregtech.common.items.MetaItem2;
 import gregtech.common.items.MetaItems;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
 
 import static com.bruberu.gregtechfoodoption.GTFOConfig.gtfoFoodConfig;
 

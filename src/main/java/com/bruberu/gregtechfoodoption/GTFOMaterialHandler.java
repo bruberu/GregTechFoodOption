@@ -5,12 +5,9 @@ import com.bruberu.gregtechfoodoption.material.GTFOFluidMaterial;
 import gregicadditions.GAEnums;
 import gregicadditions.GAMaterials;
 import gregtech.api.unification.material.IMaterialHandler;
-import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.MaterialIconSet;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
-
-import java.awt.*;
 
 import static com.bruberu.gregtechfoodoption.utils.RecipeUtils.average;
 

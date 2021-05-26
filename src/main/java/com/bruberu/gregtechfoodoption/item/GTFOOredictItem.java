@@ -2,14 +2,10 @@ package com.bruberu.gregtechfoodoption.item;
 
 import com.google.common.base.CaseFormat;
 import gnu.trove.map.hash.TIntObjectHashMap;
-import gregicadditions.item.GAOredictItem;
-import gregicadditions.materials.SimpleMaterial;
-import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MaterialIconSet;
 import gregtech.api.unification.material.MaterialIconType;
-import gregtech.api.unification.material.type.Material;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.SmallDigits;
 import net.minecraft.client.renderer.block.model.ModelBakery;

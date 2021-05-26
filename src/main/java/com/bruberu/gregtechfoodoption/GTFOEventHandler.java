@@ -3,7 +3,6 @@ package com.bruberu.gregtechfoodoption;
 import com.bruberu.gregtechfoodoption.potion.AddictionPotion;
 import com.bruberu.gregtechfoodoption.potion.CreativityPotion;
 import com.bruberu.gregtechfoodoption.potion.WithdrawalPotion;
-import nc.multiblock.qComputer.QuantumGate;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,7 +11,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import scala.Int;
 
 import java.util.HashMap;
 import java.util.HashSet;

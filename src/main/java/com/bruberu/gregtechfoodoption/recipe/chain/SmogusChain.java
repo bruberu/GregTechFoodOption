@@ -18,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;

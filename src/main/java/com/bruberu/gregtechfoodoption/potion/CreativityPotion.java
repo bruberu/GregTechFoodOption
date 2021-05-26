@@ -4,8 +4,6 @@ import com.bruberu.gregtechfoodoption.GTFOConfig;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
-import javax.annotation.Nonnull;
-
 public class CreativityPotion extends GTFOPotion{
     public static final String TAG_NAME = "gregtechfoodoption - creativity";
     public static CreativityPotion instance = null;

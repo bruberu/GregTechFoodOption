@@ -2,7 +2,6 @@ package com.bruberu.gregtechfoodoption.recipe;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
 import com.bruberu.gregtechfoodoption.recipe.chain.*;
-import net.minecraftforge.fml.common.Loader;
 
 
 public class GTFORecipeAddition {

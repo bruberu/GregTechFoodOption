@@ -4,10 +4,8 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import gregicadditions.GAMaterials;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
-import net.minecraft.item.ItemStack;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.SLICER_BLADE_FLAT;

@@ -4,7 +4,6 @@ import com.bruberu.gregtechfoodoption.GTFOConfig;
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
-import de.ellpeck.actuallyadditions.api.internal.IMethodHandler;
 import de.ellpeck.actuallyadditions.mod.misc.apiimpl.MethodHandler;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
