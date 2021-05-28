@@ -10,7 +10,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.7.0-hotfix"
+version = "1.12.2-0.7.1"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -107,7 +107,7 @@ dependencies {
     provided files("libs/Gregicality-1.12.2-0.22.2.jar")
     //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
 
-    compile "curse.maven:spiceoflife-220811:2571951"
+    //compile "curse.maven:spiceoflife-220811:2571951"
 
     testImplementation "junit:junit:4.13.1"
 }

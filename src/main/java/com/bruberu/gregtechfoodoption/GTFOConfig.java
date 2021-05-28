@@ -24,6 +24,9 @@ public class GTFOConfig {
     @Config.Comment("Add Potato processing?")
     public static boolean potatoProcessingChain = true;
 
+    @Config.Comment("AppleCore compatibility")
+    public static GTFOAppleCoreConfig gtfoAppleCoreConfig = new GTFOAppleCoreConfig();
+
     @Config.Comment("NuclearCraft compatibility")
     public static GTFONCConfig gtfoncConfig = new GTFONCConfig();
 
@@ -36,6 +39,30 @@ public class GTFOConfig {
     @Config.Comment("Effect options for GTFO. NOTE: None of these actually remove the appearance of the effects in-game, they just remove the functionality.")
     public static GTFOPotionConfig gtfoPotionConfig = new GTFOPotionConfig();
 
+    public static class GTFOAppleCoreConfig {
+        @Config.Comment("Should AppleCore compatibility be turned on?")
+        public boolean appleCoreCompat = true;
+
+        @Config.Comment("Should all foods not from GregTech Food Option have reduced hunger and saturation stats, to incentivize using the foods from GTFO?")
+        public boolean reduceForeignFoodStats = true;
+
+        @Config.Comment("Use the default GregTech Food Option food stats reduction (a logistic curve)?")
+        public boolean useDefaultForeignFoodStatsReduction = true;
+
+        @Config.Comment("If the above is false, you can set this to divide all vanilla food items by some value.")
+        public int constantFoodStatsDivisor = 1;
+
+        @Config.Comment("If the above is true, this setting details how many minutes it should take before the midpoint of the logistic curve is reached.")
+        public int foodStatsReductionMinuteMidpoint = 360;
+
+        @Config.Comment("If the above is true, this setting details the maximum divisor that will be reached.")
+        public int foodStatsReductionMaximum = 4;
+
+        public void setAllToFalse() {
+            appleCoreCompat = false;
+            reduceForeignFoodStats = false;
+        }
+    }
 
     public static class GTFONCConfig {
         @Config.Comment("Should NuclearCraft compatibility be turned on? (Note: only works for NuclearCraft:Overhauled)")
@@ -46,6 +73,12 @@ public class GTFOConfig {
 
         @Config.Comment("Add NuclearCraft S'more extensions?")
         public boolean addSmogus = true;
+
+        public void setAllToFalse() {
+            nuclearCompat = false;
+            smoreChain = false;
+            addSmogus = false;
+        }
     }
 
     public static class GTFOAAConfig {
@@ -57,6 +90,12 @@ public class GTFOConfig {
 
         @Config.Comment("Add AA Coffee Chain?")
         public boolean coffeeChain = true;
+
+        public void setAllToFalse() {
+            actuallyCompat = false;
+            disableCoffeeMaker = false;
+            coffeeChain = false;
+        }
     }
 
 

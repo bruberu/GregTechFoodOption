@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption;
 
+import com.bruberu.gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import com.bruberu.gregtechfoodoption.utils.GTFOConfigOverrider;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,6 +32,10 @@ public class GregTechFoodOption {
 
         MinecraftForge.EVENT_BUS.register(new GTFOEventHandler());
         MinecraftForge.EVENT_BUS.register(new GTFOSeedDropsEventHandler());
+
+        if(GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
+            MinecraftForge.EVENT_BUS.register(new GTFOAppleCoreCompat());
+
 
         MinecraftForge.EVENT_BUS.register(this);
     }
