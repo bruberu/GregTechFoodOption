@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.integration.jei.multi;
 
+import com.bruberu.gregtechfoodoption.GregTechFoodOption;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.BakingOvenRecipe;
 import gregtech.api.gui.GuiTextures;
 import gregtech.integration.jei.recipe.primitive.PrimitiveRecipeCategory;
@@ -43,10 +44,14 @@ public class BakingOvenRecipeCategory extends PrimitiveRecipeCategory<BakingOven
 
     @Override
     public void drawExtras(Minecraft minecraft) {
-        this.slot.draw(minecraft, 32, 4);
-        this.slot.draw(minecraft, 32, 22);
-        this.slot.draw(minecraft, 84, 13);
-        this.slot.draw(minecraft, 102, 13);
+        this.slot.draw(minecraft, 41, 4);
+        this.slot.draw(minecraft, 41, 22);
+        this.slot.draw(minecraft, 93, 13);
         this.progressBar.draw(minecraft, 57, 14);
+    }
+
+    @Override
+    public String getUid() {
+        return GregTechFoodOption.MODID + ":" + "baking_oven";
     }
 }

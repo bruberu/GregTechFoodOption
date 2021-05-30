@@ -62,15 +62,6 @@ public class MetaTileEntityBakingOven extends MultiblockControllerBase {
     private ItemStack lastInputStack = ItemStack.EMPTY;
     private BakingOvenRecipe previousRecipe;
 
-    private static final List<ItemStack> displayedFuels = Arrays.asList(new ItemStack(Items.STICK),
-            OreDictUnifier.get(OrePrefix.plank, Materials.Wood),
-            OreDictUnifier.get(OrePrefix.gem, Materials.Coal),
-            OreDictUnifier.get(OrePrefix.gem, Materials.Lignite),
-            OreDictUnifier.get(OrePrefix.gem, Materials.Coke),
-            OreDictUnifier.get(OrePrefix.block, Materials.Coal),
-            OreDictUnifier.get(OrePrefix.block, Materials.Lignite),
-            OreDictUnifier.get(OrePrefix.block, Materials.Coke));
-
     public MetaTileEntityBakingOven(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId);
     }
@@ -319,7 +310,7 @@ public class MetaTileEntityBakingOven extends MultiblockControllerBase {
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.INGOT_OVERLAY))
                 .widget(new SlotWidget(importItems, 1, 53, 33, true, true)
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.FURNACE_OVERLAY))
-                .progressBar(this::getProgressScaled, 78, 24, 20, 15, GuiTextures.PROGRESS_BAR_MACERATE, ProgressWidget.MoveType.HORIZONTAL)
+                .progressBar(this::getProgressScaled, 87, 24, 20, 15, GuiTextures.PROGRESS_BAR_MACERATE, ProgressWidget.MoveType.HORIZONTAL)
                 .widget(new SlotWidget(exportItems, 0, 105, 24, true, false)
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.INGOT_OVERLAY))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT)
@@ -329,11 +320,20 @@ public class MetaTileEntityBakingOven extends MultiblockControllerBase {
     public static List<ItemStack> getDisplayFuelsForRecipe(int recipeFuelTicks) {
         ArrayList<ItemStack> resultStacks = new ArrayList<>();
 
+        List<ItemStack> displayedFuels = Arrays.asList(new ItemStack(Items.STICK),
+                OreDictUnifier.get(OrePrefix.plank, Materials.Wood),
+                OreDictUnifier.get(OrePrefix.gem, Materials.Coal),
+                OreDictUnifier.get(OrePrefix.gem, Materials.Lignite),
+                OreDictUnifier.get(OrePrefix.gem, Materials.Coke),
+                OreDictUnifier.get(OrePrefix.block, Materials.Coal),
+                OreDictUnifier.get(OrePrefix.block, Materials.Lignite),
+                OreDictUnifier.get(OrePrefix.block, Materials.Coke));
+
         for(ItemStack fuelStack : displayedFuels) {
             ItemStack modifiedFuelStack = fuelStack.copy();
             int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
             if(fuelBurnTime != 0) {
-                modifiedFuelStack.setCount(recipeFuelTicks / fuelBurnTime);
+                modifiedFuelStack.setCount((int)Math.ceil((double) recipeFuelTicks / fuelBurnTime));
                 resultStacks.add(modifiedFuelStack);
             }
         }

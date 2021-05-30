@@ -28,7 +28,6 @@ public class ClientProxy extends CommonProxy {
         if (!Minecraft.getMinecraft().getFramebuffer().isStencilEnabled()) {
             Minecraft.getMinecraft().getFramebuffer().enableStencil();
         }
-        GTFOLog.logger.info(Minecraft.getMinecraft().getFramebuffer().isStencilEnabled());
     }
 
 
