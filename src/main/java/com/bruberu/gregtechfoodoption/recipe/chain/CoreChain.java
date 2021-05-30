@@ -2,18 +2,21 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 
 //Used for cross-chain materials.
 
+import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import gregicadditions.GAMaterials;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.SLICER_BLADE_FLAT;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.SLICER_BLADE_STRIPES;
+import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.plate;
-import static gregtech.api.unification.ore.OrePrefix.screw;
+import static gregtech.api.unification.ore.OrePrefix.*;
 
 public class CoreChain {
     public static void init()
@@ -75,5 +78,13 @@ public class CoreChain {
                 .EUt(18)
                 .duration(15)
                 .buildAndRegister();
+
+        BakingOvenRecipeBuilder.start()
+                .input(new ItemStack(Items.APPLE))
+                .output(dust, Ash)
+                .fuelAmount(500)
+                .duration(500)
+                .buildAndRegister();
+
     }
 }

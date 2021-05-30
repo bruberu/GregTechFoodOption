@@ -257,3 +257,6 @@ metaitem.food.potato_on_a_stick.tooltip=Totally looks like a Crab Claw
 fluid.frying_oil=Frying Oil
 fluid.starch_filled_water=Starch-Filled Water
 fluid.hot_frying_oil=Hot Frying Oil
+
+gregtechfoodoption.machine.baking_oven.name=Baking Oven
+gregtechfoodoption.machine.pizza_oven.name=Pizza Oven

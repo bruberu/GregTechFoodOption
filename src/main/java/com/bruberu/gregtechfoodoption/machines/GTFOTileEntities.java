@@ -2,6 +2,7 @@ package com.bruberu.gregtechfoodoption.machines;
 
 import com.bruberu.gregtechfoodoption.GregTechFoodOption;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
+import com.bruberu.gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregicadditions.machines.GATileEntities;
 import gregicadditions.machines.overrides.GASimpleMachineMetaTileEntity;
@@ -15,6 +16,8 @@ import static gregicadditions.machines.GATileEntities.create;
 public class GTFOTileEntities {
     public static MetaTileEntityBioReactor[] BIOREACTOR = new MetaTileEntityBioReactor[14];
     public static GATileEntities.MTE<?>[] SLICER = new GATileEntities.MTE[14];
+
+    public static MetaTileEntityBakingOven BAKING_OVEN;
 
 
     public static void init() {
@@ -35,6 +38,9 @@ public class GTFOTileEntities {
         SLICER[10] = create(8513, new GASimpleMachineMetaTileEntity(location("slicer.uiv"), GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, 11));
         SLICER[11] = create(8514, new GASimpleMachineMetaTileEntity(location("slicer.umv"), GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, 12));
         SLICER[12] = create(8515, new GASimpleMachineMetaTileEntity(location("slicer.uxv"), GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, 13));
+
+        BAKING_OVEN = GregTechAPI.registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
+
     }
 
     public static ResourceLocation location(String name) {
