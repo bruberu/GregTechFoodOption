@@ -259,8 +259,10 @@ fluid.starch_filled_water=Starch-Filled Water
 fluid.hot_frying_oil=Hot Frying Oil
 
 gregtechfoodoption.machine.baking_oven.name=Baking Oven
+gregtechfoodoption.machine.electric_baking_oven.name=Electric Baking Oven
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
-gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1=This multiblock is currently at %d degrees Kelvin.
-gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=There isn't a high enough voltage to raise the temperature to the target!
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1=Temperature: %d degrees Kelvin.
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=Not enough energy can be inputted to reach the target!
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=Set target temperature:
-gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4=This multiblock is currently consuming %d EU/t.
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4=Consumption: %d EU/t.
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.5=Target temperature: %d degrees Kelvin.
