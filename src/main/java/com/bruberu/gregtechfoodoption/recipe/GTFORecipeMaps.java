@@ -5,6 +5,7 @@ import com.bruberu.gregtechfoodoption.recipe.multiblock.BakingOvenRecipe;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.builders.BlastRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -24,6 +25,13 @@ public class GTFORecipeMaps {
             .setSlotOverlay(true, false, false, GTFOGuiTextures.SLICER_OUTPUT_OVERLAY)
             .setSlotOverlay(true, false, true, GuiTextures.DUST_OVERLAY)
             .setProgressBar(GTFOGuiTextures.PROGRESS_BAR_SLICER, ProgressWidget.MoveType.HORIZONTAL);
+
+    @ZenProperty
+    public static final RecipeMap<BlastRecipeBuilder> ELECTRIC_BAKING_OVEN_RECIPES = new RecipeMap<>("electric_baking_oven",
+            1, 1, 1, 1, 0, 0, 0, 0, new BlastRecipeBuilder())
+            .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
+
     @ZenProperty
     public static final List<BakingOvenRecipe> BAKING_OVEN_RECIPES = new CopyOnWriteArrayList<>();
 

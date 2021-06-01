@@ -3,6 +3,7 @@ package com.bruberu.gregtechfoodoption.machines;
 import com.bruberu.gregtechfoodoption.GregTechFoodOption;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
+import com.bruberu.gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregicadditions.machines.GATileEntities;
 import gregicadditions.machines.overrides.GASimpleMachineMetaTileEntity;
@@ -18,6 +19,7 @@ public class GTFOTileEntities {
     public static GATileEntities.MTE<?>[] SLICER = new GATileEntities.MTE[14];
 
     public static MetaTileEntityBakingOven BAKING_OVEN;
+    public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
 
 
     public static void init() {
@@ -40,7 +42,7 @@ public class GTFOTileEntities {
         SLICER[12] = create(8515, new GASimpleMachineMetaTileEntity(location("slicer.uxv"), GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, 13));
 
         BAKING_OVEN = GregTechAPI.registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
-
+        ELECTRIC_BAKING_OVEN = GregTechAPI.registerMetaTileEntity(8517, new MetaTileEntityElectricBakingOven(location("electric_baking_oven")));
     }
 
     public static ResourceLocation location(String name) {

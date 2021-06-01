@@ -21,9 +21,9 @@ public class GTFOSeedDropsEventHandler {
             event.getDrops().add(PopcornKernel.getItemStack());
         }
         if(event.getState().getBlock() == Blocks.LEAVES) {
-            if(rand.nextInt(30) == 0)
+            if(rand.nextInt(60) == 0)
                 event.getDrops().add(LEMON.getStackForm());
-            if(rand.nextInt(30) == 0)
+            if(rand.nextInt(60) == 0)
                 event.getDrops().add(LIME.getStackForm());
         }
     }

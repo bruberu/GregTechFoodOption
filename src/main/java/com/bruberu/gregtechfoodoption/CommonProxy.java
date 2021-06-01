@@ -38,10 +38,9 @@ public class CommonProxy {
 
         GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
         GTFOPotions.initPotionInstances();
-        GTFOMetaBlocks.init();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
-        GTFOTileEntities.init();
+
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat)
         {

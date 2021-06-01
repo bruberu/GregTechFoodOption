@@ -260,3 +260,7 @@ fluid.hot_frying_oil=Hot Frying Oil
 
 gregtechfoodoption.machine.baking_oven.name=Baking Oven
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1=This multiblock is currently at %d degrees Kelvin.
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=There isn't a high enough voltage to raise the temperature to the target!
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=Set target temperature:
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4=This multiblock is currently consuming %d EU/t.

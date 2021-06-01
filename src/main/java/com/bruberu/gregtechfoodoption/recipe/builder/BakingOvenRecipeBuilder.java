@@ -25,6 +25,7 @@ public class BakingOvenRecipeBuilder {
 
     private int duration = -1;
     private int fuelAmount = -1;
+    private int temperature = -1;
 
     private BakingOvenRecipeBuilder() {
     }
@@ -63,6 +64,12 @@ public class BakingOvenRecipeBuilder {
     @ZenMethod
     public BakingOvenRecipeBuilder fuelAmount(int fuelAmount) {
         this.fuelAmount = fuelAmount;
+        return this;
+    }
+
+    @ZenMethod
+    public BakingOvenRecipeBuilder temperature(int temperature) {
+        this.temperature = temperature;
         return this;
     }
 
@@ -113,6 +120,14 @@ public class BakingOvenRecipeBuilder {
         if (result.getType() == EnumValidationResult.VALID) {
             BakingOvenRecipe recipe = result.getResult();
             GTFORecipeMaps.BAKING_OVEN_RECIPES.add(recipe);
+
+            // Attempt to convert into a new ElectricBakingOvenRecipe
+
+            if (temperature != -1)
+                GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().EUt((int) Math.exp((double) temperature / 90)).duration(duration)
+                        .inputs(this.input)
+                        .outputs(this.output)
+                        .buildAndRegister();
         }
     }
 
