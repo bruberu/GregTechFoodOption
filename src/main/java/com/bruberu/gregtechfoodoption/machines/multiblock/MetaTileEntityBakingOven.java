@@ -5,6 +5,9 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.texture.TextureUtils;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
+import com.bruberu.gregtechfoodoption.block.GTFOBlockCasing;
+import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
+import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.BakingOvenRecipe;
 import com.google.common.collect.ImmutableList;
@@ -242,7 +245,7 @@ public class MetaTileEntityBakingOven extends MultiblockControllerBase {
     }
 
     protected IBlockState getCasingState() {
-        return MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.PRIMITIVE_BRICKS);
+        return GTFOMetaBlocks.GTFO_CASING.getState(GTFOBlockCasing.CasingType.ADOBE_BRICKS);
     }
 
     protected IBlockState getFrameState() {
@@ -251,13 +254,13 @@ public class MetaTileEntityBakingOven extends MultiblockControllerBase {
 
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
-        return Textures.PRIMITIVE_BRICKS;
+        return GTFOClientHandler.ADOBE_BRICKS;
     }
 
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        Textures.PRIMITIVE_BLAST_FURNACE_OVERLAY.render(renderState, translation, pipeline, getFrontFacing(), isActive());
+        GTFOClientHandler.BAKING_OVEN_OVERLAY.render(renderState, translation, pipeline, getFrontFacing(), isActive());
     }
 
     @Override

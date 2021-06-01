@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption;
 
+import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.fluid.GTFOMetaFluids;
 import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
@@ -10,6 +11,7 @@ import com.bruberu.gregtechfoodoption.recipe.GTFORecipeAddition;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeRemoval;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.blocks.VariantItemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -33,8 +35,10 @@ public class CommonProxy {
 
 
     public void preLoad() {
+
         GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
         GTFOPotions.initPotionInstances();
+        GTFOMetaBlocks.init();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
         GTFOTileEntities.init();
@@ -62,17 +66,19 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        /*
+
         GTFOLog.logger.info("Registering blocks...");
         IForgeRegistry<Block> registry = event.getRegistry();
-        registry.register(GAMetaBlocks.MUTLIBLOCK_CASING);
-         */
+        registry.register(GTFOMetaBlocks.GTFO_CASING);
+
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         GTFOLog.logger.info("Registering Items...");
         IForgeRegistry<Item> registry = event.getRegistry();
+        registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
+
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
@@ -80,12 +86,6 @@ public class CommonProxy {
         GTFOLog.logger.info("Registering recipe normal...");
         GTFORecipeRemoval.init();
         GTFORecipeAddition.init();
-        /*
-        ConfigCircuitRecipeRemoval.init();
-        GAMachineRecipeRemoval.init();
-        GARecipeAddition.generatedRecipes();
-        RecipeHandler.registerGreenHouseRecipes();
-         */
     }
 
 

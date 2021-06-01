@@ -1,5 +1,7 @@
 package com.bruberu.gregtechfoodoption.integration.jei.multi;
 
+import com.bruberu.gregtechfoodoption.block.GTFOBlockCasing;
+import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
 import com.google.common.collect.Lists;
 import gregtech.api.metatileentity.multiblock.MultiblockControllerBase;
@@ -26,7 +28,7 @@ public class BakingOvenInfo extends MultiblockInfoPage {
                 .aisle("XXXX", "XXXX", "XXXX", "#XX#")
                 .aisle("XXXX", "XFFX", "X##X", "#XX#")
                 .aisle("XXXX", "YFFX", "X##X", "#XX#")
-                .where('X', MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.PRIMITIVE_BRICKS))
+                .where('X', GTFOMetaBlocks.GTFO_CASING.getState(GTFOBlockCasing.CasingType.ADOBE_BRICKS))
                 .where('F', MetaBlocks.FRAMES.get(Iron).getDefaultState())
                 .where('Y', this.getController(), EnumFacing.SOUTH)
                 .where('#', Blocks.AIR.getDefaultState())

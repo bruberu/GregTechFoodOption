@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption;
 
+import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
@@ -40,7 +41,10 @@ public class ClientProxy extends CommonProxy {
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
+        //GTFOMetaBlocks.registerStateMappers();
+        GTFOMetaBlocks.registerItemModels();
     }
+
     @SubscribeEvent
     public static void addFormulaHandler(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
