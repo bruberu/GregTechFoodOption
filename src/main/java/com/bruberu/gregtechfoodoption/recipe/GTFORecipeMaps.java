@@ -3,6 +3,7 @@ package com.bruberu.gregtechfoodoption.recipe;
 import com.bruberu.gregtechfoodoption.client.GTFOGuiTextures;
 import com.bruberu.gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.BakingOvenRecipe;
+import com.bruberu.gregtechfoodoption.recipe.multiblock.ElectricBakingOvenRecipeMap;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeMap;
@@ -28,8 +29,7 @@ public class GTFORecipeMaps {
             .setProgressBar(GTFOGuiTextures.PROGRESS_BAR_SLICER, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
-    public static final RecipeMap<ElectricBakingOvenRecipeBuilder> ELECTRIC_BAKING_OVEN_RECIPES = new RecipeMap<>("electric_baking_oven",
-            1, 1, 1, 1, 0, 0, 0, 0, new ElectricBakingOvenRecipeBuilder())
+    public static final ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder> ELECTRIC_BAKING_OVEN_RECIPES = (ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder>) new ElectricBakingOvenRecipeMap<>("electric_baking_oven", new ElectricBakingOvenRecipeBuilder())
             .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
 

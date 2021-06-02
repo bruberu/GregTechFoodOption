@@ -5,9 +5,12 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
+import com.bruberu.gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
+import com.bruberu.gregtechfoodoption.recipe.multiblock.ElectricBakingOvenRecipeMap;
 import gregicadditions.item.GAMetaBlocks;
 import gregicadditions.item.GATransparentCasing;
 import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.gui.Widget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
@@ -16,8 +19,11 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.multiblock.BlockPattern;
 import gregtech.api.multiblock.FactoryBlockPattern;
+import gregtech.api.recipes.CountableIngredient;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.render.ICubeRenderer;
+import gregtech.api.util.GTUtility;
+import gregtech.api.util.InventoryUtils;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -26,9 +32,12 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nullable;
-import java.util.List;
+import java.util.*;
 
 import static gregtech.api.gui.widgets.AdvancedTextWidget.withButton;
 import static gregtech.api.unification.material.Materials.BismuthBronze;
@@ -42,7 +51,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
     private boolean hasEnoughEnergy;
 
     public MetaTileEntityElectricBakingOven(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, 0, 100, 100, 1, true);
+        super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, 0, 100, 100, 1, false);
         this.recipeMapWorkable = new ElectricBakingOvenLogic(this);
 
         temp = 300;
@@ -60,7 +69,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
             return;
         }
 
-        if(temp > 300)
+        if (temp > 300)
             hasEnoughEnergy = drainEnergy();
         else {
             hasEnoughEnergy = true;
@@ -69,7 +78,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
         if (getTimer() % 20 == 9 && targetTemp != temp)
             stepTowardsTargetTemp();
-        else if(targetTemp == temp) {
+        else if (targetTemp == temp) {
             canAchieveTargetTemp = true;
 
         }
@@ -78,18 +87,17 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     private void stepTowardsTargetTemp() {
         canAchieveTargetTemp = true;
-        if(targetTemp < temp) {
+        if (targetTemp < temp) {
             setTemp(temp - 5);
-            if(temp == 300)
+            if (temp == 300)
                 markDirty();
             return;
         }
-        if(temperatureEnergyCost(this.temp + 5) <= this.getEnergyContainer().getInputVoltage() * this.getEnergyContainer().getInputAmperage() && hasEnoughEnergy) {
+        if (temperatureEnergyCost(this.temp + 5) <= this.getEnergyContainer().getInputVoltage() * this.getEnergyContainer().getInputAmperage() && hasEnoughEnergy) {
             setTemp(temp + 5);
-            if(temp == 305)
+            if (temp == 305)
                 markDirty();
-        }
-        else {
+        } else {
             canAchieveTargetTemp = false;
         }
     }
@@ -134,11 +142,9 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
                 textList.add(new TextComponentTranslation("gregtech.multiblock.not_enough_energy")
                         .setStyle(new Style().setColor(TextFormatting.RED)));
 
-        }
-        else
+        } else
             super.addDisplayText(textList);
     }
-
 
 
     @Override
@@ -146,7 +152,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
         super.handleDisplayClick(componentData, clickData);
         int modifier = componentData.equals("add") ? 1 : -1;
         targetTemp += 5 * modifier;
-        if(targetTemp < 300)
+        if (targetTemp < 300)
             targetTemp = 300;
     }
 
@@ -213,7 +219,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     public void setTemp(int temp) {
         this.temp = temp;
-        if(!getWorld().isRemote) {
+        if (!getWorld().isRemote) {
             writeCustomData(600, buf -> buf.writeInt(temp));
             markDirty();
         }
@@ -263,7 +269,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     @Override
     public boolean checkRecipe(Recipe recipe, boolean consumeIfSuccess) {
-        return (long)recipe.getEUt() < this.maxVoltage && recipe.getIntegerProperty("temperature") == temp;
+        return (long) recipe.getEUt() < this.maxVoltage && recipe.getIntegerProperty("temperature") == temp;
     }
 
     private class ElectricBakingOvenLogic extends LargeSimpleMultiblockRecipeLogic {
@@ -271,6 +277,164 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
             super(tileEntity, 0, 100, 100, 1);
         }
 
+        protected int lastTemp = 300;
 
+        @Override
+        protected void trySearchNewRecipe() {
+            Recipe currentRecipe = null;
+            IItemHandlerModifiable importInventory = this.getInputInventory();
+
+            if (!(getMetaTileEntity() instanceof MetaTileEntityElectricBakingOven)) {
+                return; // This is done like this so that tileTemperature can have an increased scope.
+            }
+            int tileTemperature = ((MetaTileEntityElectricBakingOven) getMetaTileEntity()).temp;
+
+            boolean dirty = this.checkRecipeInputsDirty(importInventory, tileTemperature);
+            if (!dirty && !this.forceRecipeRecheck) {
+                if (this.previousRecipe != null && this.previousRecipe.matches(false, importInventory, importFluids)) {
+                    currentRecipe = this.previousRecipe;
+                }
+            } else {
+                this.forceRecipeRecheck = false;
+                currentRecipe = this.findRecipe(importInventory, temp);
+                if (currentRecipe != null) {
+                    this.previousRecipe = currentRecipe;
+                }
+            }
+
+            if (currentRecipe != null && this.setupAndConsumeRecipeInputs(currentRecipe)) {
+                this.setupRecipe(currentRecipe);
+            }
+        }
+
+
+        protected boolean checkRecipeInputsDirty(IItemHandler inputs, int temperature) {
+
+            boolean shouldRecheckRecipe = false;
+
+            if (this.lastItemInputs == null || this.lastItemInputs.length != inputs.getSlots()) {
+                this.lastItemInputs = new ItemStack[inputs.getSlots()];
+                Arrays.fill(this.lastItemInputs, ItemStack.EMPTY);
+            }
+
+            int i;
+            for(i = 0; i < this.lastItemInputs.length; ++i) {
+                ItemStack currentStack = inputs.getStackInSlot(i);
+                ItemStack lastStack = this.lastItemInputs[i];
+                if (!areItemStacksEqual(currentStack, lastStack)) {
+                    this.lastItemInputs[i] = currentStack.isEmpty() ? ItemStack.EMPTY : currentStack.copy();
+                    shouldRecheckRecipe = true;
+                } else if (currentStack.getCount() != lastStack.getCount()) {
+                    lastStack.setCount(currentStack.getCount());
+                    shouldRecheckRecipe = true;
+                }
+            }
+
+            if (temperature != lastTemp) {
+                lastTemp = temp;
+                shouldRecheckRecipe = true;
+            }
+
+            return shouldRecheckRecipe;
+
+        }
+
+        protected Recipe findRecipe(IItemHandlerModifiable inputs, int temp) {
+            List<ItemStack> itemStackList = new ArrayList<>();
+            for(int i = 0; i < inputs.getSlots(); i++)
+                itemStackList.add(inputs.getStackInSlot(i));
+
+            assert this.recipeMap instanceof ElectricBakingOvenRecipeMap;
+            Recipe recipe = ((ElectricBakingOvenRecipeMap)this.recipeMap).findRecipe(temp, itemStackList);
+            if (recipe != null)
+                return createRecipe(inputs, temp, recipe);
+            return null;
+        }
+
+        private Recipe createRecipe(IItemHandlerModifiable inputs, int temp, Recipe matchingRecipe) {
+            //int maxItemsLimit = this.stack;
+            int duration;
+            //int minMultiplier = Integer.MAX_VALUE;
+
+            //maxItemsLimit *= currentTier - tierNeeded;
+            //maxItemsLimit = Math.max(1, maxItemsLimit);
+
+
+            Set<ItemStack> countIngredients = new HashSet<>();
+            /*
+            if (matchingRecipe.getInputs().size() != 0) {
+                this.findIngredients(countIngredients, inputs);
+                minMultiplier = Math.min(maxItemsLimit, this.getMinRatioItem(countIngredients, matchingRecipe, maxItemsLimit));
+            }
+
+            if (minMultiplier == Integer.MAX_VALUE) {
+                GALog.logger.error("Cannot calculate ratio of items for processing array");
+                return null;
+            }
+            */
+
+            duration = matchingRecipe.getDuration();
+
+            List<CountableIngredient> newRecipeInputs = new ArrayList<>();
+            List<ItemStack> outputI = new ArrayList<>();
+            //this.multiplyInputsAndOutputs(newRecipeInputs, newFluidInputs, outputI, outputF, matchingRecipe, minMultiplier);
+
+            // determine if there is enough room in the output to fit all of this
+            boolean canFitOutputs = InventoryUtils.simulateItemStackMerge(outputI, this.getOutputInventory());
+            // if there isn't, we can't process this recipe.
+            if (!canFitOutputs)
+                return null;
+
+
+            ElectricBakingOvenRecipeBuilder newRecipe = (ElectricBakingOvenRecipeBuilder) recipeMap.recipeBuilder()
+                    .inputsIngredients(newRecipeInputs)
+                    .outputs(outputI)
+                    .duration(duration);
+
+            return newRecipe.build().getResult();
+        }
+
+
+        protected boolean checkRecipeInputsDirty(IItemHandler inputs, int temperature, int index) {
+            boolean shouldRecheckRecipe = false;
+            if (this.lastItemInputsMatrix == null || this.lastItemInputsMatrix.length != this.getInputBuses().size()) {
+                this.lastItemInputsMatrix = new ItemStack[this.getInputBuses().size()][];
+            }
+
+            if (this.lastItemInputsMatrix[index] == null || this.lastItemInputsMatrix[index].length != inputs.getSlots()) {
+                this.lastItemInputsMatrix[index] = new ItemStack[inputs.getSlots()];
+                Arrays.fill(this.lastItemInputsMatrix[index], ItemStack.EMPTY);
+            }
+
+            int i;
+            for (i = 0; i < this.lastItemInputsMatrix[index].length; ++i) {
+                ItemStack currentStack = inputs.getStackInSlot(i);
+                ItemStack lastStack = this.lastItemInputsMatrix[index][i];
+                if (!areItemStacksEqual(currentStack, lastStack)) {
+                    this.lastItemInputsMatrix[index][i] = currentStack.isEmpty() ? ItemStack.EMPTY : currentStack.copy();
+                    shouldRecheckRecipe = true;
+                } else if (currentStack.getCount() != lastStack.getCount()) {
+                    lastStack.setCount(currentStack.getCount());
+                    shouldRecheckRecipe = true;
+                }
+            }
+
+            if (temperature != lastTemp) {
+                lastTemp = temp;
+                shouldRecheckRecipe = true;
+            }
+
+            return shouldRecheckRecipe;
+
+        }
+        protected void setupRecipe(Recipe recipe) {
+            this.progressTime = 1;
+            this.itemOutputs = GTUtility.copyStackList(recipe.getOutputs());
+            if (this.wasActiveAndNeedsUpdate) {
+                this.wasActiveAndNeedsUpdate = false;
+            } else {
+                this.setActive(true);
+            }
+        }
     }
 }

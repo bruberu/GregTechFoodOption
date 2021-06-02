@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.recipe.builder;
 
+import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import com.google.common.collect.ImmutableMap;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
@@ -10,6 +11,7 @@ import gregtech.api.util.GTLog;
 import gregtech.api.util.ValidationResult;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakingOvenRecipeBuilder> {
 
@@ -50,6 +52,11 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
 
     @Override
     protected EnumValidationResult finalizeAndValidate() {
+        if (this.temp <= 300) {
+            GTLog.logger.error("Temperature cannot be less or equal to 300", new IllegalArgumentException());
+            this.recipeStatus = EnumValidationResult.INVALID;
+        }
+
         if (this.duration <= 0) {
             GTLog.logger.error("Duration cannot be less or equal to 0", new IllegalArgumentException());
             this.recipeStatus = EnumValidationResult.INVALID;
@@ -60,6 +67,14 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
         }
 
         return this.recipeStatus;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .appendSuper(super.toString())
+                .append(TemperatureProperty.getInstance().getKey(), temp)
+                .toString();
     }
 
     private static class TemperatureProperty extends RecipeProperty<Integer> {
