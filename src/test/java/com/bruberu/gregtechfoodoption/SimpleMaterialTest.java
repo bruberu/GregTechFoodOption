@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption;
 
+import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
 import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
@@ -53,6 +54,7 @@ public class SimpleMaterialTest {
 
         // Bootstrap GTCE Blocks
         MetaBlocks.init();
+        GTFOMetaBlocks.init();
 
         // Bootstrap MTEs
         MetaTileEntities.init();
