@@ -34,7 +34,7 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle-
 
       - name: Run checks and tests
-        run: ./gradlew check test
+        run: ./gradlew check test --stacktrace
 
       - name: Cleanup Gradle cache
         run: |
