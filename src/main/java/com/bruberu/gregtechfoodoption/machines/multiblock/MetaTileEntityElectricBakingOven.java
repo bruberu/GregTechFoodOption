@@ -79,11 +79,15 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
     private void stepTowardsTargetTemp() {
         canAchieveTargetTemp = true;
         if(targetTemp < temp) {
-            temp -= 5;
+            setTemp(temp - 5);
+            if(temp == 300)
+                markDirty();
             return;
         }
         if(temperatureEnergyCost(this.temp + 5) <= this.getEnergyContainer().getInputVoltage() * this.getEnergyContainer().getInputAmperage() && hasEnoughEnergy) {
-            temp += 5;
+            setTemp(temp + 5);
+            if(temp == 305)
+                markDirty();
         }
         else {
             canAchieveTargetTemp = false;
@@ -95,7 +99,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
             energyContainer.removeEnergy(temperatureEnergyCost(this.temp));
             return true;
         }
-        temp -= 5;
+        setTemp(temp - 5);
         return false;
     }
 
@@ -207,6 +211,23 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
         return data;
     }
 
+    public void setTemp(int temp) {
+        this.temp = temp;
+        if(!getWorld().isRemote) {
+            writeCustomData(600, buf -> buf.writeInt(temp));
+            markDirty();
+        }
+    }
+
+    @Override
+    public void receiveCustomData(int dataId, PacketBuffer buf) {
+        super.receiveCustomData(dataId, buf);
+        if (dataId == 600) {
+            this.temp = buf.readInt();
+            scheduleRenderUpdate();
+        }
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
@@ -237,7 +258,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
     @Override
     public void invalidateStructure() {
         super.invalidateStructure();
-        temp = 300;
+        setTemp(300);
     }
 
     @Override
