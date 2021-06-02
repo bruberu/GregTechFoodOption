@@ -30,7 +30,7 @@ public class GTFOMultiblockInfoCategory implements IRecipeCategory<MultiblockInf
 
     @Override
     public String getUid() {
-        return "gregtechfoodoption:multiblock_info2";
+        return "gregtechfoodoption:multiblock_info";
     }
 
     @Override

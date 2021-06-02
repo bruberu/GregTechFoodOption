@@ -18,6 +18,7 @@ public class JEIGTFOPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
         registry.addRecipeCategories(new GTFOMultiblockInfoCategory(registry.getJeiHelpers()));
+
         registry.addRecipeCategories(new BakingOvenRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
 
     }

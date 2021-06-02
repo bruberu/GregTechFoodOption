@@ -84,6 +84,7 @@ public class CoreChain {
                 .output(dust, Ash)
                 .fuelAmount(500)
                 .duration(500)
+                .temperature(350)
                 .buildAndRegister();
 
     }

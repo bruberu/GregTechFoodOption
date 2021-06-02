@@ -124,9 +124,11 @@ public class BakingOvenRecipeBuilder {
             // Attempt to convert into a new ElectricBakingOvenRecipe
 
             if (temperature != -1)
-                GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().EUt((int) Math.exp((double) temperature / 90)).duration(duration)
+                GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder()
+                        .duration(duration)
                         .inputs(this.input)
                         .outputs(this.output)
+                        .setTemp(temperature)
                         .buildAndRegister();
         }
     }

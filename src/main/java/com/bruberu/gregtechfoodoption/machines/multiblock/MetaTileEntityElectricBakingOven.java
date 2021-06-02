@@ -5,10 +5,9 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
-import gregicadditions.capabilities.impl.GAMultiblockRecipeLogic;
-import gregicadditions.capabilities.impl.GARecipeMapMultiblockController;
 import gregicadditions.item.GAMetaBlocks;
 import gregicadditions.item.GATransparentCasing;
+import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
 import gregtech.api.gui.Widget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
@@ -17,6 +16,7 @@ import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.multiblock.BlockPattern;
 import gregtech.api.multiblock.FactoryBlockPattern;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.render.ICubeRenderer;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
@@ -34,7 +34,7 @@ import static gregtech.api.gui.widgets.AdvancedTextWidget.withButton;
 import static gregtech.api.unification.material.Materials.BismuthBronze;
 import static gregtech.api.unification.material.Materials.Steel;
 
-public class MetaTileEntityElectricBakingOven extends GARecipeMapMultiblockController {
+public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultiblockController {
 
     private int temp;
     private int targetTemp;
@@ -42,7 +42,7 @@ public class MetaTileEntityElectricBakingOven extends GARecipeMapMultiblockContr
     private boolean hasEnoughEnergy;
 
     public MetaTileEntityElectricBakingOven(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES);
+        super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, 0, 100, 100, 1, true);
         this.recipeMapWorkable = new ElectricBakingOvenLogic(this);
 
         temp = 300;
@@ -62,10 +62,18 @@ public class MetaTileEntityElectricBakingOven extends GARecipeMapMultiblockContr
 
         if(temp > 300)
             hasEnoughEnergy = drainEnergy();
+        else {
+            hasEnoughEnergy = true;
 
-        if (getTimer() % 20 == 9 && targetTemp != temp) {
-            stepTowardsTargetTemp();
         }
+
+        if (getTimer() % 20 == 9 && targetTemp != temp)
+            stepTowardsTargetTemp();
+        else if(targetTemp == temp) {
+            canAchieveTargetTemp = true;
+
+        }
+
     }
 
     private void stepTowardsTargetTemp() {
@@ -125,7 +133,6 @@ public class MetaTileEntityElectricBakingOven extends GARecipeMapMultiblockContr
         }
         else
             super.addDisplayText(textList);
-
     }
 
 
@@ -227,11 +234,22 @@ public class MetaTileEntityElectricBakingOven extends GARecipeMapMultiblockContr
         this.hasEnoughEnergy = buf.readBoolean();
     }
 
-    private class ElectricBakingOvenLogic extends GAMultiblockRecipeLogic {
+    @Override
+    public void invalidateStructure() {
+        super.invalidateStructure();
+        temp = 300;
+    }
 
+    @Override
+    public boolean checkRecipe(Recipe recipe, boolean consumeIfSuccess) {
+        return (long)recipe.getEUt() < this.maxVoltage && recipe.getIntegerProperty("temperature") == temp;
+    }
+
+    private class ElectricBakingOvenLogic extends LargeSimpleMultiblockRecipeLogic {
         public ElectricBakingOvenLogic(RecipeMapMultiblockController tileEntity) {
-            super(tileEntity);
+            super(tileEntity, 0, 100, 100, 1);
         }
+
 
     }
 }
