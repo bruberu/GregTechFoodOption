@@ -78,7 +78,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
         }
 
-        if (getOffsetTimer() % 20 == 0 && targetTemp != temp)
+        if (getOffsetTimer() % 20 == 0 && targetTemp != temp && !recipeMapWorkable.isActive())
             stepTowardsTargetTemp();
         else if (targetTemp == temp) {
             canAchieveTargetTemp = true;
@@ -123,6 +123,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
+        super.addDisplayText(textList);
         if (this.isStructureFormed()) {
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1", temp));
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4", temperatureEnergyCost(temp)));
@@ -144,8 +145,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
                 textList.add(new TextComponentTranslation("gregtech.multiblock.not_enough_energy")
                         .setStyle(new Style().setColor(TextFormatting.RED)));
 
-        } else
-            super.addDisplayText(textList);
+        }
     }
 
 

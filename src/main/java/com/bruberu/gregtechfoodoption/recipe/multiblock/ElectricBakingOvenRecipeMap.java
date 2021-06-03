@@ -16,8 +16,11 @@ import java.util.List;
 
 public class ElectricBakingOvenRecipeMap<R> extends RecipeMap<ElectricBakingOvenRecipeBuilder> {
 
+    public static ElectricBakingOvenRecipeMap INSTANCE;
+
     public ElectricBakingOvenRecipeMap(String unlocalizedName, R defaultRecipe) {
         super(unlocalizedName, 1, 1, 1, 1, 0, 0, 0, 0, (ElectricBakingOvenRecipeBuilder) defaultRecipe);
+        INSTANCE = this;
     }
 
     @Nullable
