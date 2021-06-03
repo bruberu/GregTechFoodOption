@@ -18,7 +18,9 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.multiblock.BlockPattern;
+import gregtech.api.multiblock.BlockWorldState;
 import gregtech.api.multiblock.FactoryBlockPattern;
+import gregtech.api.multiblock.PatternMatchContext;
 import gregtech.api.recipes.CountableIngredient;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.render.ICubeRenderer;
@@ -26,10 +28,13 @@ import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
@@ -38,6 +43,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.function.Predicate;
 
 import static gregtech.api.gui.widgets.AdvancedTextWidget.withButton;
 import static gregtech.api.unification.material.Materials.BismuthBronze;
@@ -49,6 +55,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
     private int targetTemp;
     private boolean canAchieveTargetTemp;
     private boolean hasEnoughEnergy;
+    public int size;
 
     public MetaTileEntityElectricBakingOven(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, 0, 100, 100, 1, false);
@@ -179,18 +186,45 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     @Override
     protected BlockPattern createStructurePattern() {
-        return FactoryBlockPattern.start()
-                .aisle("XXXX", "XXXX", "XXXX", "#XX#")
-                .aisle("XXXX", "XFFX", "X##X", "#XX#")
-                .aisle("XXXX", "XFFX", "X##X", "#XX#")
-                .aisle("XXXX", "YGGX", "XGGX", "#XX#")
+        return FactoryBlockPattern.start(BlockPattern.RelativeDirection.FRONT, BlockPattern.RelativeDirection.UP, BlockPattern.RelativeDirection.RIGHT)
+                .aisle("XXXX", "YXXX", "XXXX", "####")
+                .aisle("XXXX", "GFFX", "GIOX", "XXXX").setRepeatable(2, 14)
+                .aisle("XXXX", "XXXX", "XXXX", "####")
                 .where('X', statePredicate(getCasingState()).or(abilityPartPredicate(ALLOWED_ABILITIES)))
                 .where('F', statePredicate(getFrameState()))
                 .where('G', statePredicate(GAMetaBlocks.TRANSPARENT_CASING.getState(GATransparentCasing.CasingType.REINFORCED_GLASS)))
                 .where('#', (tile) -> true)
+                .where('O', isAirPredicate())
+                .where('I', isIndicatorPredicate())
                 .where('Y', selfPredicate())
                 .build();
 
+    }
+
+    // This function is highly useful for detecting the length of this multiblock.
+    public static Predicate<BlockWorldState> isIndicatorPredicate() {
+        return (blockWorldState) -> {
+            if(isAirPredicate().test(blockWorldState)) {
+                blockWorldState.getMatchContext().increment("bakingOvenLength", 1);
+                return true;
+            }
+            else
+                return false;
+        };
+    }
+
+
+    @Override
+    public void invalidateStructure() {
+        setTemp(300);
+        super.invalidateStructure();
+    }
+
+    @Override
+    protected void formStructure(PatternMatchContext context) {
+        super.formStructure(context);
+        this.size = context.getOrDefault("bakingOvenLength", 1) - 2;
+        System.out.println(size);
     }
 
     @Override
@@ -198,8 +232,8 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
         return new MetaTileEntityElectricBakingOven(metaTileEntityId);
     }
 
-    public static int temperatureEnergyCost(int temp) {
-        return temp <= 300 ? 0 : (int) Math.exp(((double) temp - 100) / 100);
+    public int temperatureEnergyCost(int temp) {
+        return temp <= 300 ? 0 : (int) Math.exp(((double) temp - 100 + (size * 5)) / 100);
     }
 
     // Is the inverse of the previous function.
@@ -263,15 +297,15 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
         this.hasEnoughEnergy = buf.readBoolean();
     }
 
-    @Override
-    public void invalidateStructure() {
-        super.invalidateStructure();
-        setTemp(300);
-    }
 
     @Override
     public boolean checkRecipe(Recipe recipe, boolean consumeIfSuccess) {
         return recipe.getIntegerProperty("temperature") == temp;
+    }
+
+    @Override
+    public int getLightValueForPart(IMultiblockPart sourcePart) {
+        return sourcePart == null && temp > 300 ? 15 : 0;
     }
 
     private class ElectricBakingOvenLogic extends LargeSimpleMultiblockRecipeLogic {
@@ -379,7 +413,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
             List<CountableIngredient> newRecipeInputs = new ArrayList<>();
             List<ItemStack> outputI = new ArrayList<>();
-            this.multiplyInputsAndOutputs(newRecipeInputs, outputI, matchingRecipe, 1);
+            this.multiplyInputsAndOutputs(newRecipeInputs, outputI, matchingRecipe, size + 1);
 
             // determine if there is enough room in the output to fit all of this
             boolean canFitOutputs = InventoryUtils.simulateItemStackMerge(outputI, this.getOutputInventory());

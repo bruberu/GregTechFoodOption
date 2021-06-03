@@ -20,6 +20,7 @@ public class ElectricBakingOvenRecipeMap<R> extends RecipeMap<ElectricBakingOven
 
     public ElectricBakingOvenRecipeMap(String unlocalizedName, R defaultRecipe) {
         super(unlocalizedName, 1, 1, 1, 1, 0, 0, 0, 0, (ElectricBakingOvenRecipeBuilder) defaultRecipe);
+        //TODO: isHidden = true;
         INSTANCE = this;
     }
 

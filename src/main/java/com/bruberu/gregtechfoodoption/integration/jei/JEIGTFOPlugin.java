@@ -23,7 +23,6 @@ public class JEIGTFOPlugin implements IModPlugin {
         registry.addRecipeCategories(new BakingOvenRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
 
         registry.addRecipeCategories(new NoEnergyRecipeCategory(ElectricBakingOvenRecipeMap.INSTANCE, registry.getJeiHelpers().getGuiHelper()));
-
     }
 
     @Override
