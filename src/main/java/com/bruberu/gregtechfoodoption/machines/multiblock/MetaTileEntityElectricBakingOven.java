@@ -69,6 +69,8 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
             return;
         }
 
+        super.updateFormedValid();
+
         if (temp > 300)
             hasEnoughEnergy = drainEnergy();
         else {
@@ -76,7 +78,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
         }
 
-        if (getTimer() % 20 == 9 && targetTemp != temp)
+        if (getOffsetTimer() % 20 == 0 && targetTemp != temp)
             stepTowardsTargetTemp();
         else if (targetTemp == temp) {
             canAchieveTargetTemp = true;
@@ -269,7 +271,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     @Override
     public boolean checkRecipe(Recipe recipe, boolean consumeIfSuccess) {
-        return (long) recipe.getEUt() < this.maxVoltage && recipe.getIntegerProperty("temperature") == temp;
+        return recipe.getIntegerProperty("temperature") == temp;
     }
 
     private class ElectricBakingOvenLogic extends LargeSimpleMultiblockRecipeLogic {
@@ -377,7 +379,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
             List<CountableIngredient> newRecipeInputs = new ArrayList<>();
             List<ItemStack> outputI = new ArrayList<>();
-            //this.multiplyInputsAndOutputs(newRecipeInputs, newFluidInputs, outputI, outputF, matchingRecipe, minMultiplier);
+            this.multiplyInputsAndOutputs(newRecipeInputs, outputI, matchingRecipe, 1);
 
             // determine if there is enough room in the output to fit all of this
             boolean canFitOutputs = InventoryUtils.simulateItemStackMerge(outputI, this.getOutputInventory());
@@ -386,14 +388,27 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
                 return null;
 
 
-            ElectricBakingOvenRecipeBuilder newRecipe = (ElectricBakingOvenRecipeBuilder) recipeMap.recipeBuilder()
+            ElectricBakingOvenRecipeBuilder newRecipe = ((ElectricBakingOvenRecipeBuilder) recipeMap.recipeBuilder())
                     .inputsIngredients(newRecipeInputs)
                     .outputs(outputI)
+                    .setTemp(temp)
                     .duration(duration);
 
             return newRecipe.build().getResult();
         }
 
+        protected void multiplyInputsAndOutputs(List<CountableIngredient> newRecipeInputs, List<ItemStack> outputI, Recipe r, int multiplier) {
+            for (CountableIngredient ci : r.getInputs()) {
+                CountableIngredient newIngredient = new CountableIngredient(ci.getIngredient(), ci.getCount() * multiplier);
+                newRecipeInputs.add(newIngredient);
+            }
+            for (ItemStack s : r.getOutputs()) {
+                int num = s.getCount() * multiplier;
+                ItemStack itemCopy = s.copy();
+                itemCopy.setCount(num);
+                outputI.add(itemCopy);
+            }
+        }
 
         protected boolean checkRecipeInputsDirty(IItemHandler inputs, int temperature, int index) {
             boolean shouldRecheckRecipe = false;
@@ -429,7 +444,9 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
         }
         protected void setupRecipe(Recipe recipe) {
             this.progressTime = 1;
+            this.maxProgressTime = recipe.getDuration();
             this.itemOutputs = GTUtility.copyStackList(recipe.getOutputs());
+            this.fluidOutputs = new ArrayList<>();
             if (this.wasActiveAndNeedsUpdate) {
                 this.wasActiveAndNeedsUpdate = false;
             } else {

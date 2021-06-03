@@ -266,3 +266,4 @@ gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=Not enough energy c
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=Set target temperature:
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4=Consumption: %d EU/t.
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.5=Target temperature: %d degrees Kelvin.
+gregtechfoodoption.recipe.baking_oven.temperature=%d K
