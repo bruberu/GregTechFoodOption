@@ -74,8 +74,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem REDUCED_FAT_CHIPS;
     public static MetaItem<?>.MetaValueItem POTATO_ON_A_STICK;
 
-
-
+    public static MetaItem<?>.MetaValueItem MUD_BRICK;
+    public static MetaItem<?>.MetaValueItem ADOBE_BRICK;
 
 
 
@@ -128,6 +128,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
         FRIED_POTATO_STRIP = addItem(35, "component.potato.fried_strip");
         USED_PAPER_BAG = addItem(36, "component.bag_used");
 
+        MUD_BRICK = addItem(43, "brick.adobe");
+        ADOBE_BRICK = addItem(44, "brick.adobe_fired");
 
 
         if(GTFOConfig.popcornChain)

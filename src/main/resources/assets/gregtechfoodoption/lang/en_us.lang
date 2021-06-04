@@ -268,3 +268,5 @@ gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4=Consumption: %d EU/
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.5=Target temperature: %dK.
 gregtechfoodoption.recipe.baking_oven_temperature=Temperature: %dK
 recipemap.electric_baking_oven.name=Electric Baking Oven
+metaitem.brick.adobe.name=Mud Brick
+metaitem.brick.adobe_fired.name=Adobe Brick

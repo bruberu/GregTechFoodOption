@@ -2,17 +2,22 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 
 //Used for cross-chain materials.
 
+import com.bruberu.gregtechfoodoption.block.GTFOBlockCasing;
+import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import gregicadditions.GAMaterials;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Mod;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
-import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.SLICER_BLADE_FLAT;
-import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.SLICER_BLADE_STRIPES;
+import static com.bruberu.gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
+import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
 import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -87,5 +92,39 @@ public class CoreChain {
                 .temperature(350)
                 .buildAndRegister();
 
+        ModHandler.addShapedRecipe("mud_bricks1", MUD_BRICK.getStackForm(5),
+                "SCS", "SMS", "GCG",
+                'C', Items.CLAY_BALL,
+                'S', Blocks.SAND,
+                'G', Blocks.GRAVEL,
+                'M', MetaItems.WOODEN_FORM_BRICK);
+
+        ModHandler.addShapedRecipe("mud_bricks2", MUD_BRICK.getStackForm(10),
+                "SBS", "SMS", "GKG",
+                'S', Blocks.SAND,
+                'G', Blocks.GRAVEL,
+                'K', OreDictUnifier.get(dust, Kaolinite),
+                'B', OreDictUnifier.get(dust, Bentonite),
+                'M', MetaItems.WOODEN_FORM_BRICK);
+
+        ModHandler.addShapedRecipe("mud_bricks3", MUD_BRICK.getStackForm(8),
+                "SCS", "SMW", "GCG",
+                'C', Items.CLAY_BALL,
+                'S', Blocks.SAND,
+                'G', Blocks.GRAVEL,
+                'W', Items.WHEAT,
+                'M', MetaItems.WOODEN_FORM_BRICK);
+
+        ModHandler.addShapedRecipe("mud_bricks4", MUD_BRICK.getStackForm(16),
+                "SBS", "SMW", "GKG",
+                'S', Blocks.SAND,
+                'G', Blocks.GRAVEL,
+                'B', OreDictUnifier.get(dust, Bentonite),
+                'K', OreDictUnifier.get(dust, Kaolinite),
+                'W', Items.WHEAT,
+                'M', MetaItems.WOODEN_FORM_BRICK);
+
+        ModHandler.addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm());
+        ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
     }
 }

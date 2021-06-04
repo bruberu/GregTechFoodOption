@@ -11,6 +11,7 @@ import gregtech.api.unification.ore.OrePrefix;
 
 import static com.bruberu.gregtechfoodoption.utils.RecipeUtils.average;
 import static gregicadditions.GAMaterials.GENERATE_METAL_CASING;
+import static gregtech.api.unification.material.type.SolidMaterial.MatFlags.GENERATE_FRAME;
 
 @IMaterialHandler.RegisterMaterialHandler
 public class GTFOMaterialHandler implements IMaterialHandler {
@@ -154,6 +155,6 @@ public class GTFOMaterialHandler implements IMaterialHandler {
 
     @Override
     public void onMaterialsInit() {
-        Materials.BismuthBronze.addFlag(GENERATE_METAL_CASING);
+        Materials.BismuthBronze.addFlag(GENERATE_FRAME | GENERATE_METAL_CASING);
     }
 }

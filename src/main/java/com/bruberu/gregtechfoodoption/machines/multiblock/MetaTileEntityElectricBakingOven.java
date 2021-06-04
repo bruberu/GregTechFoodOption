@@ -7,6 +7,7 @@ import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import com.bruberu.gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.ElectricBakingOvenRecipeMap;
+import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import gregicadditions.item.GAMetaBlocks;
 import gregicadditions.item.GATransparentCasing;
 import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
@@ -388,32 +389,25 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
         }
 
         private Recipe createRecipe(IItemHandlerModifiable inputs, int temp, Recipe matchingRecipe) {
-            //int maxItemsLimit = this.stack;
             int duration;
-            //int minMultiplier = Integer.MAX_VALUE;
-
-            //maxItemsLimit *= currentTier - tierNeeded;
-            //maxItemsLimit = Math.max(1, maxItemsLimit);
-
+            int minMultiplier = Integer.MAX_VALUE;
 
             Set<ItemStack> countIngredients = new HashSet<>();
-            /*
             if (matchingRecipe.getInputs().size() != 0) {
                 this.findIngredients(countIngredients, inputs);
-                minMultiplier = Math.min(maxItemsLimit, this.getMinRatioItem(countIngredients, matchingRecipe, maxItemsLimit));
+                minMultiplier = Math.min(size + 1, this.getMinRatioItem(countIngredients, matchingRecipe, size + 1));
             }
 
             if (minMultiplier == Integer.MAX_VALUE) {
-                GALog.logger.error("Cannot calculate ratio of items for processing array");
+                GTFOLog.logger.error("Cannot calculate ratio of items for processing array");
                 return null;
             }
-            */
 
             duration = matchingRecipe.getDuration();
 
             List<CountableIngredient> newRecipeInputs = new ArrayList<>();
             List<ItemStack> outputI = new ArrayList<>();
-            this.multiplyInputsAndOutputs(newRecipeInputs, outputI, matchingRecipe, size + 1);
+            this.multiplyInputsAndOutputs(newRecipeInputs, outputI, matchingRecipe, minMultiplier);
 
             // determine if there is enough room in the output to fit all of this
             boolean canFitOutputs = InventoryUtils.simulateItemStackMerge(outputI, this.getOutputInventory());
