@@ -8,6 +8,8 @@ import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import gregicadditions.GAEnums;
 import gregicadditions.GAMaterials;
 import gregicadditions.Gregicality;
+import gregicadditions.item.GAMetaBlocks;
+import gregicadditions.machines.GATileEntities;
 import gregicadditions.utils.GALog;
 import gregtech.api.GTValues;
 import gregtech.api.unification.material.Materials;
@@ -54,6 +56,7 @@ public class SimpleMaterialTest {
 
         // Bootstrap GTCE Blocks
         MetaBlocks.init();
+        GAMetaBlocks.init();
         GTFOMetaBlocks.init();
 
         // Bootstrap MTEs
