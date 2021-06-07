@@ -84,14 +84,6 @@ public class CoreChain {
                 .duration(15)
                 .buildAndRegister();
 
-        BakingOvenRecipeBuilder.start()
-                .input(new ItemStack(Items.APPLE))
-                .output(dust, Ash)
-                .fuelAmount(500)
-                .duration(500)
-                .temperature(350)
-                .buildAndRegister();
-
         ModHandler.addShapedRecipe("mud_bricks1", MUD_BRICK.getStackForm(5),
                 "SCS", "SMS", "GCG",
                 'C', Items.CLAY_BALL,
