@@ -305,7 +305,7 @@ public class MetaTileEntityBakingOven extends MultiblockControllerBase {
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.INGOT_OVERLAY))
                 .widget(new SlotWidget(importItems, 1, 53, 33, true, true)
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.FURNACE_OVERLAY))
-                .progressBar(this::getProgressScaled, 87, 24, 20, 15, GuiTextures.PROGRESS_BAR_MACERATE, ProgressWidget.MoveType.HORIZONTAL)
+                .progressBar(this::getProgressScaled, 78, 24, 20, 15, GuiTextures.PROGRESS_BAR_MACERATE, ProgressWidget.MoveType.HORIZONTAL)
                 .widget(new SlotWidget(exportItems, 0, 105, 24, true, false)
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.INGOT_OVERLAY))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT)

@@ -1,9 +1,11 @@
 package com.bruberu.gregtechfoodoption.integration.applecore;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
+import javafx.util.Pair;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -11,10 +13,17 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.food.FoodValues;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class GTFOAppleCoreCompat {
-    public static final GTFOAppleCoreCompat GLOBAL = new GTFOAppleCoreCompat();
+    public static GTFOAppleCoreCompat INSTANCE;
+    private static ArrayList<Item> sparedItems;
+    private static HashMap<Item, Pair<Integer, Integer>> sparedItemsFoodValues;
 
-
+    public GTFOAppleCoreCompat() {
+        INSTANCE = this;
+    }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void getFoodValues(FoodEvent.GetPlayerFoodValues event) {

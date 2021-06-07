@@ -9,14 +9,16 @@ public class GTFORecipeAddition {
     {
         CoreChain.init();
         GTFOMachineRecipes.init();
-        if(GTFOConfig.popcornChain)
+        if(GTFOConfig.gtfoChainsConfig.popcornChain)
             PopcornChain.init();
-        if(GTFOConfig.mineralWaterChain)
+        if(GTFOConfig.gtfoChainsConfig.mineralWaterChain)
             MineralWaterChain.init();
-        if(GTFOConfig.purpleDrinkChain)
+        if(GTFOConfig.gtfoChainsConfig.purpleDrinkChain)
             PurpleDrinkChain.init();
-        if(GTFOConfig.potatoProcessingChain)
+        if(GTFOConfig.gtfoChainsConfig.potatoProcessingChain)
             PotatoProcessingChain.init();
+        if(GTFOConfig.gtfoChainsConfig.breadsChain)
+            BreadsChain.init();
     }
 
     public static void compatInit()

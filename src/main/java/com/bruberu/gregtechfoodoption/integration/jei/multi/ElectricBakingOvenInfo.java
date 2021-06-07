@@ -23,7 +23,7 @@ import static gregtech.api.unification.material.Materials.*;
 public class ElectricBakingOvenInfo extends MultiblockInfoPage {
     @Override
     public MultiblockControllerBase getController() {
-        return GTFOTileEntities.BAKING_OVEN;
+        return GTFOTileEntities.ELECTRIC_BAKING_OVEN;
     }
 
     @Override

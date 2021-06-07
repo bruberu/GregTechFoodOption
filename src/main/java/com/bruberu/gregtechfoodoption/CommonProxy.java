@@ -4,12 +4,15 @@ import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.fluid.GTFOMetaFluids;
 import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
+import com.bruberu.gregtechfoodoption.item.GTFOMetaItem;
 import com.bruberu.gregtechfoodoption.item.GTFOMetaItems;
 import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
 import com.bruberu.gregtechfoodoption.potion.GTFOPotions;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeAddition;
+import com.bruberu.gregtechfoodoption.recipe.GTFORecipeHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeRemoval;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
+import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.VariantItemBlock;
 import net.minecraft.block.Block;
@@ -41,6 +44,7 @@ public class CommonProxy {
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
 
+        GTFORecipeHandler.register();
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat)
         {
@@ -76,6 +80,7 @@ public class CommonProxy {
     public static void registerItems(RegistryEvent.Register<Item> event) {
         GTFOLog.logger.info("Registering Items...");
         IForgeRegistry<Item> registry = event.getRegistry();
+
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
 
     }

@@ -47,7 +47,7 @@ public class BakingOvenRecipeCategory extends PrimitiveRecipeCategory<BakingOven
         this.slot.draw(minecraft, 41, 4);
         this.slot.draw(minecraft, 41, 22);
         this.slot.draw(minecraft, 93, 13);
-        this.progressBar.draw(minecraft, 57, 14);
+        this.progressBar.draw(minecraft, 66, 14);
     }
 
     @Override

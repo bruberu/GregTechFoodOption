@@ -14,6 +14,7 @@ import gregtech.api.unification.material.type.Material;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.ValidationResult;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.fml.common.Optional;
@@ -35,21 +36,35 @@ public class BakingOvenRecipeBuilder {
         return new BakingOvenRecipeBuilder();
     }
 
+    @ZenMethod
     public BakingOvenRecipeBuilder input(Ingredient input, int amount) {
         this.input = new CountableIngredient(input, amount);
         return this;
     }
 
+    @ZenMethod
     public BakingOvenRecipeBuilder input(ItemStack itemStack) {
         this.input = CountableIngredient.from(itemStack);
         return this;
     }
 
+    @ZenMethod
+    public BakingOvenRecipeBuilder input(Item item) {
+        return this.input(new ItemStack(item));
+    }
+
+    @ZenMethod
+    public BakingOvenRecipeBuilder input(Item item, int count) {
+        return this.input(new ItemStack(item, count));
+    }
+
+    @ZenMethod
     public BakingOvenRecipeBuilder input(OrePrefix orePrefix, Material material) {
         this.input = CountableIngredient.from(orePrefix, material);
         return this;
     }
 
+    @ZenMethod
     public BakingOvenRecipeBuilder input(OrePrefix orePrefix, Material material, int amount) {
         this.input = CountableIngredient.from(orePrefix, material, amount);
         return this;
@@ -73,11 +88,23 @@ public class BakingOvenRecipeBuilder {
         return this;
     }
 
+    @ZenMethod
     public BakingOvenRecipeBuilder output(ItemStack output) {
         this.output = output;
         return this;
     }
 
+    @ZenMethod
+    public BakingOvenRecipeBuilder output(Item output) {
+        return this.input(new ItemStack(output));
+    }
+
+    @ZenMethod
+    public BakingOvenRecipeBuilder output(Item output, int count) {
+        return this.input(new ItemStack(output, count));
+    }
+
+    @ZenMethod
     public BakingOvenRecipeBuilder output(OrePrefix orePrefix, Material material) {
         this.output = OreDictUnifier.get(orePrefix, material);
         return this;

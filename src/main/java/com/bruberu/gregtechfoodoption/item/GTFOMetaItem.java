@@ -7,6 +7,8 @@ import com.bruberu.gregtechfoodoption.potion.CreativityPotion;
 import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.FoodStats;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
+import gregtech.api.items.toolitem.ToolMetaItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
@@ -77,6 +79,15 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem MUD_BRICK;
     public static MetaItem<?>.MetaValueItem ADOBE_BRICK;
 
+    public static MetaItem<?>.MetaValueItem WOODEN_FORM_BREAD;
+    public static MetaItem<?>.MetaValueItem WOODEN_FORM_BAGUETTE;
+    public static MetaItem<?>.MetaValueItem UNCOOKED_BREAD;
+    public static MetaItem<?>.MetaValueItem UNCOOKED_BAGUETTE;
+    public static MetaItem<?>.MetaValueItem BAGUETTE;
+    public static MetaItem<?>.MetaValueItem DOUGH;
+
+    public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
+
 
 
 
@@ -93,6 +104,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
     @Override
     public void registerSubItems()
     {
+        IItemContainerItemProvider selfContainerItemProvider = itemStack -> itemStack;
+
 
         PAPER_BAG = addItem(1, "component.bag");
         FLAVORED_POPCORN_FLAKE = addItem(2, "component.popcorn.flavored_flake");
@@ -131,12 +144,17 @@ public class GTFOMetaItem extends MaterialMetaItem {
         MUD_BRICK = addItem(43, "brick.adobe");
         ADOBE_BRICK = addItem(44, "brick.adobe_fired");
 
+        WOODEN_FORM_BREAD = addItem(45, "wooden_form.bread").addComponents(selfContainerItemProvider);
+        WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").addComponents(selfContainerItemProvider);
+        UNCOOKED_BREAD = addItem(47, "component.bread");
+        UNCOOKED_BAGUETTE = addItem(48, "component.baguette");
+        DOUGH = addItem(50, "component.dough");
 
-        if(GTFOConfig.popcornChain)
+        if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0),
                 new RandomPotionEffect(AddictionPotion.instance, 2000, 3, 0)));
-        if(GTFOConfig.mineralWaterChain)
+        if(GTFOConfig.gtfoChainsConfig.mineralWaterChain)
         MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new FoodStats(gtfoFoodConfig.mineralWaterHunger, gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
                 new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0),
                 new RandomPotionEffect(AddictionPotion.instance, 4000, 20, 0)));
@@ -145,7 +163,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(AddictionPotion.instance, 9000, 2, 65)));
         SPARKLING_WATER = addItem(16, "food.sparkling_water").addComponents(new FoodStats(gtfoFoodConfig.sparklingWaterHunger, gtfoFoodConfig.sparklingWaterSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 600, 1, 0)));
-        LEMON = addItem(17, "food.lemon").addComponents(new FoodStats(1, 1, false, false, ItemStack.EMPTY));
+        LEMON = addItem(17, "food.lemon").addComponents(new FoodStats(gtfoFoodConfig.lemonHunger, gtfoFoodConfig.lemonSaturation, false, false, ItemStack.EMPTY));
         LIME = addItem(18, "food.lime").addComponents(new FoodStats(gtfoFoodConfig.limeHunger, gtfoFoodConfig.limeSaturation, false, false, ItemStack.EMPTY));
         ETIRPS = addItem(19, "food.etirps").addComponents(new FoodStats(gtfoFoodConfig.etirpsHunger, gtfoFoodConfig.etirpsSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
@@ -170,6 +188,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(AddictionPotion.instance, 1600, 2, 50)));
         POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new FoodStats(1, (float) 0.5, false, false, new ItemStack(Items.STICK)));
 
+        BAGUETTE = addItem(51, "food.baguette").addComponents(new FoodStats(gtfoFoodConfig.baguetteHunger, gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0)));
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)
         {

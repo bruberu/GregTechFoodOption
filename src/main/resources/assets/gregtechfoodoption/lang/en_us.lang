@@ -270,3 +270,9 @@ gregtechfoodoption.recipe.baking_oven_temperature=Temperature: %dK
 recipemap.electric_baking_oven.name=Electric Baking Oven
 metaitem.brick.adobe.name=Mud Brick
 metaitem.brick.adobe_fired.name=Adobe Brick
+
+metaitem.component.bread.name=Unbaked Bread
+metaitem.component.baguette.name=Unbaked Baguette
+metaitem.component.dough.name=Dough
+metaitem.wooden_form.bread.name=Bread Wooden Form
+metaitem.wooden_form.baguette.name=Baguette Wooden Form

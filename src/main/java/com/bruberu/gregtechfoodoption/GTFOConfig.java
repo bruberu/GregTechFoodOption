@@ -7,22 +7,13 @@ import net.minecraftforge.common.config.Config;
 public class GTFOConfig {
 
     @Config.Comment("Show tooltips on shift?")
-    public static boolean showTooltipsOnShift = true;
+    public static boolean showTooltipsOnShift = false;
 
     @Config.Comment("Show tooltips always, regardless of what keys are held?")
-    public static boolean showTooltipsAlways = false;
+    public static boolean showTooltipsAlways = true;
 
-    @Config.Comment("Add Popcorn Chain?")
-    public static boolean popcornChain = true;
-
-    @Config.Comment("Add Mineral Water Chain?")
-    public static boolean mineralWaterChain = true;
-
-    @Config.Comment("Add Purple Drink Chain? (Note: also adds Etirps and Apple Hard Candy as sideproducts.)")
-    public static boolean purpleDrinkChain = true;
-
-    @Config.Comment("Add Potato processing?")
-    public static boolean potatoProcessingChain = true;
+    @Config.Comment("Chain Options")
+    public static GTFOChainsConfig gtfoChainsConfig = new GTFOChainsConfig();
 
     @Config.Comment("AppleCore compatibility")
     public static GTFOAppleCoreConfig gtfoAppleCoreConfig = new GTFOAppleCoreConfig();
@@ -38,6 +29,26 @@ public class GTFOConfig {
 
     @Config.Comment("Effect options for GTFO. NOTE: None of these actually remove the appearance of the effects in-game, they just remove the functionality.")
     public static GTFOPotionConfig gtfoPotionConfig = new GTFOPotionConfig();
+
+    public static class GTFOChainsConfig {
+        @Config.Comment("Add Popcorn Chain?")
+        public boolean popcornChain = true;
+
+        @Config.Comment("Add Mineral Water Chain?")
+        public boolean mineralWaterChain = true;
+
+        @Config.Comment("Add Purple Drink Chain? (Note: also adds Etirps and Apple Hard Candy as sideproducts.)")
+        public boolean purpleDrinkChain = true;
+
+        @Config.Comment("Add Potato processing?")
+        public boolean potatoProcessingChain = true;
+
+        @Config.Comment("Add Breads Chain?")
+        public boolean breadsChain = true;
+
+        @Config.Comment("Delete vanilla bread recipe?")
+        public boolean deleteBreadRecipe = true;
+    }
 
     public static class GTFOAppleCoreConfig {
         @Config.Comment("Should AppleCore compatibility be turned on?")
@@ -154,6 +165,13 @@ public class GTFOConfig {
 
         @Config.Comment("Chip saturation (also affects the hunger of the other chip items)")
         public float chipSaturation = 1;
+
+        @Config.Comment("Baguette hunger")
+        public int baguetteHunger = 2;
+
+        @Config.Comment("Baguette saturation")
+        public float baguetteSaturation = 2;
+
 
         @Config.Comment("Return bag after eating popcorn?")
         public boolean popcornReturnsContainer = true;
