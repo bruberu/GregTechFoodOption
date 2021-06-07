@@ -273,6 +273,7 @@ metaitem.brick.adobe_fired.name=Adobe Brick
 
 metaitem.component.bread.name=Unbaked Bread
 metaitem.component.baguette.name=Unbaked Baguette
+metaitem.food.baguette.name=Baguette
 metaitem.component.dough.name=Dough
 metaitem.wooden_form.bread.name=Bread Wooden Form
 metaitem.wooden_form.baguette.name=Baguette Wooden Form

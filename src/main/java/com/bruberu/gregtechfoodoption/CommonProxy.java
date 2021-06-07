@@ -88,7 +88,6 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering recipe normal...");
-        GTFORecipeRemoval.init();
         GTFORecipeAddition.init();
     }
 
@@ -109,7 +108,8 @@ public class CommonProxy {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLowest(RegistryEvent.Register<IRecipe> event) {
-
+        GTFOLog.logger.info("Registering recipe very low...");
+        GTFORecipeRemoval.init();
         GTFORecipeAddition.compatInit();
     }
 

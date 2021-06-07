@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
+import com.bruberu.gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregicadditions.GAMaterials;
 import gregtech.api.recipes.ModHandler;
@@ -50,6 +51,10 @@ public class SmogusChain {
         ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:moresmore"));
         ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:foursmore"));
         removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
+
+        GTFOAppleCoreCompat.addToSparedItems(NCItems.smore);
+        GTFOAppleCoreCompat.addToSparedItems(NCItems.moresmore);
+        GTFOAppleCoreCompat.addToSparedItems(NCItems.foursmore);
 
         ItemStack[] smoresout = {
                 new ItemStack(NCItems.smore),

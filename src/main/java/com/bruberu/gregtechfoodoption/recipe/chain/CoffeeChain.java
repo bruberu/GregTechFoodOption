@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
+import com.bruberu.gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
@@ -51,6 +52,7 @@ public class CoffeeChain {
         ItemStack emptyCoffeeCup = new ItemStack(InitItems.itemMisc, 1, TheMiscItems.CUP.ordinal());
         ItemStack coffeeFilter = new ItemStack(InitItems.itemMisc, 1, TheMiscItems.PAPER_CONE.ordinal());
 
+        GTFOAppleCoreCompat.addToSparedItems(InitItems.itemCoffee, 2, (float) 0.5);
 
         FLUID_CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(Coffee.getFluid(100))

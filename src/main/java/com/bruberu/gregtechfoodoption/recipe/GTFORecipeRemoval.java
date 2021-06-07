@@ -1,5 +1,11 @@
 package com.bruberu.gregtechfoodoption.recipe;
 
+import com.bruberu.gregtechfoodoption.GTFOConfig;
+import de.ellpeck.actuallyadditions.mod.items.InitItems;
+import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
+import gregtech.api.recipes.ModHandler;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 
 public class GTFORecipeRemoval {
@@ -11,7 +17,10 @@ public class GTFORecipeRemoval {
         }
         if(Loader.isModLoaded("actuallyadditions"))
         {
-
+            if (GTFOConfig.gtfoChainsConfig.breadsChain) {
+                ModHandler.removeFurnaceSmelting(new ItemStack(InitItems.itemMisc, 1, TheMiscItems.DOUGH.ordinal()));
+                ModHandler.removeRecipeByName(new ResourceLocation("actuallyadditions:recipes218"));
+            }
         }
     }
 }

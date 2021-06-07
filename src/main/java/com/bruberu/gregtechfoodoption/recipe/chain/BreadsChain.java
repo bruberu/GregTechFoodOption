@@ -1,11 +1,13 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
+import com.bruberu.gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import com.bruberu.gregtechfoodoption.item.GTFOMetaItem;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
-import com.bruberu.gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
-import com.bruberu.gregtechfoodoption.recipe.multiblock.ElectricBakingOvenRecipeMap;
+import de.ellpeck.actuallyadditions.mod.items.InitItems;
+import de.ellpeck.actuallyadditions.mod.items.metalists.TheFoods;
+import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
 import gregtech.api.items.ToolDictNames;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -13,12 +15,11 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
-import javafx.util.Pair;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static gregtech.api.recipes.RecipeMaps.FORMING_PRESS_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.MIXER_RECIPES;
@@ -26,9 +27,10 @@ import static gregtech.api.unification.material.Materials.Water;
 
 public class BreadsChain {
     public static void init() {
-        if (GTFOConfig.gtfoChainsConfig.deleteBreadRecipe)
+        if (GTFOConfig.gtfoChainsConfig.deleteBreadRecipe) {
             ModHandler.removeRecipes(Items.BREAD);
-
+            GTFOAppleCoreCompat.addToSparedItems(Items.BREAD, (int)((float) GTFOConfig.gtfoFoodConfig.baguetteHunger * 4)/3, GTFOConfig.gtfoFoodConfig.baguetteSaturation * 4/3);
+        }
         ModHandler.addShapedRecipe("wooden_form_bread", GTFOMetaItem.WOODEN_FORM_BREAD.getStackForm(),
                 " k ", " M ", "   ",
                 'M', MetaItems.WOODEN_FORM_EMPTY.getStackForm());
@@ -91,14 +93,12 @@ public class BreadsChain {
                 .output(GTFOMetaItem.BAGUETTE.getStackForm())
                 .buildAndRegister();
 
-
         BakingOvenRecipeBuilder.start().fuelAmount(400).duration(300).temperature(445)
                 .input(GTFOMetaItem.UNCOOKED_BREAD.getStackForm())
                 .output(new ItemStack(Items.BREAD))
                 .buildAndRegister();
 
-
-
+        GTFOAppleCoreCompat.addToSparedItems(Items.BAKED_POTATO, 1, (float) 0.5);
         BakingOvenRecipeBuilder.start().fuelAmount(500).duration(900)
                 .input(new ItemStack(Items.POTATO))
                 .output(new ItemStack(Items.BAKED_POTATO))

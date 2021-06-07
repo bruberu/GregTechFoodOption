@@ -1,32 +1,34 @@
 package com.bruberu.gregtechfoodoption.integration.applecore;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
-import javafx.util.Pair;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.food.FoodValues;
+import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GTFOAppleCoreCompat {
-    public static GTFOAppleCoreCompat INSTANCE;
-    private static ArrayList<Item> sparedItems;
-    private static HashMap<Item, Pair<Integer, Integer>> sparedItemsFoodValues;
-
-    public GTFOAppleCoreCompat() {
-        INSTANCE = this;
-    }
+    private static ArrayList<Item> sparedItems = new ArrayList<>();
+    private static HashMap<Item, FoodValues> sparedItemsFoodValues = new HashMap<>();
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void getFoodValues(FoodEvent.GetPlayerFoodValues event) {
+        Item sparedFood = event.food.getItem();
+        if (sparedItems.contains(sparedFood)) {
+            if(sparedItemsFoodValues.containsKey(sparedFood))
+                event.foodValues = sparedItemsFoodValues.get(event.food.getItem());
+            return;
+        }
         if (GTFOConfig.gtfoAppleCoreConfig.reduceForeignFoodStats) {
             ItemStack actualFood = event.food;
 
@@ -58,5 +60,16 @@ public class GTFOAppleCoreCompat {
         }
         else
             return GTFOConfig.gtfoAppleCoreConfig.constantFoodStatsDivisor;
+    }
+
+    @ZenMethod
+    public static void addToSparedItems(Item item) {
+        sparedItems.add(item);
+    }
+    @ZenMethod
+    public static void addToSparedItems(Item item, int hunger, float saturation) {
+        sparedItems.add(item);
+        if(GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
+            sparedItemsFoodValues.put(item, new FoodValues(hunger, saturation));
     }
 }
