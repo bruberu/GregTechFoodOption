@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.utils;
 
+import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.type.FluidMaterial;
@@ -93,5 +94,11 @@ public class RecipeUtils {
             result += i;
         }
         return result /= divisor;
+    }
+
+    public static ItemStack wildcardize(ItemStack itemStack)
+    {
+        itemStack.setItemDamage(GTValues.W);
+        return itemStack;
     }
 }

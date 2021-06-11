@@ -17,12 +17,17 @@ public class GTFORecipeAddition {
             PurpleDrinkChain.init();
         if(GTFOConfig.gtfoChainsConfig.potatoProcessingChain)
             PotatoProcessingChain.init();
-        if(GTFOConfig.gtfoChainsConfig.breadsChain)
-            BreadsChain.init();
     }
 
-    public static void compatInit()
-    {
+    public static void lowInit() {
+    }
+
+    public static void compatInit() {
+        if(GTFOConfig.gtfoChainsConfig.breadsChain)
+            BreadsChain.init();
+        if(GTFOConfig.gtfoChainsConfig.vanillaOverrideChain)
+            VanillaOverrideChain.init();
+
         if(GTFOConfig.gtfoncConfig.nuclearCompat) {
             if (GTFOConfig.gtfoncConfig.smoreChain)
                 SmogusChain.init();

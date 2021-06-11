@@ -29,7 +29,7 @@ public class BreadsChain {
     public static void init() {
         if (GTFOConfig.gtfoChainsConfig.deleteBreadRecipe) {
             ModHandler.removeRecipes(Items.BREAD);
-            GTFOAppleCoreCompat.addToSparedItems(Items.BREAD, (int)((float) GTFOConfig.gtfoFoodConfig.baguetteHunger * 4)/3, GTFOConfig.gtfoFoodConfig.baguetteSaturation * 4/3);
+            GTFOAppleCoreCompat.addToSparedItems(Items.BREAD, (int)((float) GTFOConfig.gtfoFoodConfig.baguetteHunger * 3)/2, GTFOConfig.gtfoFoodConfig.baguetteSaturation);
         }
         ModHandler.addShapedRecipe("wooden_form_bread", GTFOMetaItem.WOODEN_FORM_BREAD.getStackForm(),
                 " k ", " M ", "   ",
@@ -98,20 +98,7 @@ public class BreadsChain {
                 .output(new ItemStack(Items.BREAD))
                 .buildAndRegister();
 
-        GTFOAppleCoreCompat.addToSparedItems(Items.BAKED_POTATO, 1, (float) 0.5);
-        BakingOvenRecipeBuilder.start().fuelAmount(500).duration(900)
-                .input(new ItemStack(Items.POTATO))
-                .output(new ItemStack(Items.BAKED_POTATO))
-                .buildAndRegister();
 
-        HashMap<Integer, Integer> potatoTemps = new HashMap<>();
-        potatoTemps.put(435, 900);
-        potatoTemps.put(450, 600);
-        potatoTemps.put(475, 400);
-        potatoTemps.forEach((temp, duration) -> GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().setTemp(temp).duration(duration)
-                .input(Items.POTATO)
-                .output(Items.BAKED_POTATO)
-                .buildAndRegister());
 
 
     }

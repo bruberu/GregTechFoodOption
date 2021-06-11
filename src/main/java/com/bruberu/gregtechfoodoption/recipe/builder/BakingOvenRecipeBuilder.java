@@ -96,12 +96,12 @@ public class BakingOvenRecipeBuilder {
 
     @ZenMethod
     public BakingOvenRecipeBuilder output(Item output) {
-        return this.input(new ItemStack(output));
+        return this.output(new ItemStack(output));
     }
 
     @ZenMethod
     public BakingOvenRecipeBuilder output(Item output, int count) {
-        return this.input(new ItemStack(output, count));
+        return this.output(new ItemStack(output, count));
     }
 
     @ZenMethod

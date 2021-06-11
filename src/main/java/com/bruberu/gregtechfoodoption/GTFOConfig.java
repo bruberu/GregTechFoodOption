@@ -48,6 +48,12 @@ public class GTFOConfig {
 
         @Config.Comment("Delete vanilla bread recipe?")
         public boolean deleteBreadRecipe = true;
+
+        @Config.Comment("Use Vanilla Overrides Chain?")
+        public boolean vanillaOverrideChain = true;
+
+        @Config.Comment("Make Baking Oven Recipes for Meats in the Vanilla Overrides chain?")
+        public boolean useBakingOvenForMeats = true;
     }
 
     public static class GTFOAppleCoreConfig {
@@ -116,7 +122,7 @@ public class GTFOConfig {
         public int popcornHunger = 5;
 
         @Config.Comment("Popcorn saturation")
-        public float popcornSaturation = 2;
+        public float popcornSaturation = 0.4f;
 
         @Config.Comment("Mineral Water hunger")
         public int mineralWaterHunger = 0;
@@ -164,13 +170,13 @@ public class GTFOConfig {
         public int chipHunger = 2;
 
         @Config.Comment("Chip saturation (also affects the hunger of the other chip items)")
-        public float chipSaturation = 1;
+        public float chipSaturation = 0.5f;
 
         @Config.Comment("Baguette hunger")
         public int baguetteHunger = 2;
 
         @Config.Comment("Baguette saturation")
-        public float baguetteSaturation = 2;
+        public float baguetteSaturation = 1f;
 
 
         @Config.Comment("Return bag after eating popcorn?")

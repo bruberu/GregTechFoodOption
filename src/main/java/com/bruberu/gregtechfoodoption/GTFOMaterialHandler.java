@@ -71,6 +71,8 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOFluidMaterial HotFryingOil = new GTFOFluidMaterial("hot_frying_oil", 0xffd166);
     public static final GTFOFluidMaterial StarchFilledWater = new GTFOFluidMaterial("starch_filled_water", 0xd1cbbe);
 
+    public static final GTFOFluidMaterial MushroomSoup = new GTFOFluidMaterial("mushroom_soup", 0xedcaaf);
+    public static final GTFOFluidMaterial BeetrootSoup = new GTFOFluidMaterial("beetroot_soup", 0xc25132);
 
 
 

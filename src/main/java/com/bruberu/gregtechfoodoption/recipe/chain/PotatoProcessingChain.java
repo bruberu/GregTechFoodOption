@@ -114,10 +114,10 @@ public class PotatoProcessingChain {
                 .chancedOutput(PotatoStarch.getItemStack(), 2000, 150)
                 .fluidOutputs(SeedOil.getFluid(300))
                 .buildAndRegister();
-        ModHandler.addShapelessRecipe("potato_on_a_stick", POTATO_ON_A_STICK.getStackForm(), new ItemStack(Items.POTATO), new ItemStack(Items.STICK));
+        ModHandler.addShapelessRecipe("potato_on_a_stick", POTATO_ON_A_STICK.getStackForm(), new ItemStack(Items.BAKED_POTATO), new ItemStack(Items.STICK));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(4).duration(5)
                 .input(Items.STICK)
-                .input(Items.POTATO)
+                .input(Items.BAKED_POTATO)
                 .outputs(POTATO_ON_A_STICK.getStackForm())
                 .buildAndRegister();
     }

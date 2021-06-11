@@ -11,13 +11,17 @@ import com.bruberu.gregtechfoodoption.potion.GTFOPotions;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeAddition;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeRemoval;
+import com.bruberu.gregtechfoodoption.recipe.chain.VanillaOverrideChain;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.VariantItemBlock;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -91,6 +95,11 @@ public class CommonProxy {
         GTFORecipeAddition.init();
     }
 
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void registerLowRecipes(RegistryEvent.Register<IRecipe> event) {
+        GTFOLog.logger.info("Registering recipe low...");
+        GTFORecipeAddition.lowInit();
+    }
 
 
     @SubscribeEvent(priority = EventPriority.LOW)

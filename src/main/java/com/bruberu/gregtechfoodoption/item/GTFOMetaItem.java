@@ -86,6 +86,10 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem BAGUETTE;
     public static MetaItem<?>.MetaValueItem DOUGH;
 
+    public static MetaItem<?>.MetaValueItem CARROT_STRUCTURAL_MESH;
+    public static MetaItem<?>.MetaValueItem APPLE_STRUCTURAL_MESH;
+    public static MetaItem<?>.MetaValueItem TUNGSTENSTEEL_APPLE;
+
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
 
 
@@ -150,6 +154,10 @@ public class GTFOMetaItem extends MaterialMetaItem {
         UNCOOKED_BAGUETTE = addItem(48, "component.baguette");
         DOUGH = addItem(50, "component.dough");
 
+        CARROT_STRUCTURAL_MESH = addItem(52, "component.structural_mesh.carrot");
+        APPLE_STRUCTURAL_MESH = addItem(53, "component.structural_mesh.apple");
+
+
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0),
@@ -186,10 +194,16 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0),
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50),
                 new RandomPotionEffect(AddictionPotion.instance, 1600, 2, 50)));
-        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new FoodStats(1, (float) 0.5, false, false, new ItemStack(Items.STICK)));
+        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new FoodStats(2, (float) 0.5, false, false, new ItemStack(Items.STICK)));
 
         BAGUETTE = addItem(51, "food.baguette").addComponents(new FoodStats(gtfoFoodConfig.baguetteHunger, gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0)));
+                new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 50)));
+        TUNGSTENSTEEL_APPLE = addItem(54, "food.tungstensteel_apple").addComponents(new FoodStats(3, 1f, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
+                new RandomPotionEffect(MobEffects.RESISTANCE, 1200, 3, 0),
+                new RandomPotionEffect(MobEffects.NIGHT_VISION, 3600, 2, 40),
+                new RandomPotionEffect(MobEffects.INSTANT_DAMAGE, 0, 1, 0)));
+
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)
         {

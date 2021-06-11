@@ -277,3 +277,7 @@ metaitem.food.baguette.name=Baguette
 metaitem.component.dough.name=Dough
 metaitem.wooden_form.bread.name=Bread Wooden Form
 metaitem.wooden_form.baguette.name=Baguette Wooden Form
+
+metaitem.component.structural_mesh.apple.name=Apple Structural Mesh
+metaitem.component.structural_mesh.carrot.name=Carrot Structural Mesh
+metaitem.food.tungstensteel_apple.name=Tungstensteel Apple
