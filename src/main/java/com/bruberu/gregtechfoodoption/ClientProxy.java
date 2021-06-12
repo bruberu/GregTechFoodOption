@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
+import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaHUDOverlay;
 import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
@@ -34,8 +35,10 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void onLoad() {
-        if(Loader.isModLoaded("appleskin"))
+        if(Loader.isModLoaded("appleskin")) {
             GTFOMetaTooltipOverlay.init();
+            GTFOMetaHUDOverlay.init();
+        }
     }
 
 

@@ -30,6 +30,9 @@ public class GTFOConfig {
     @Config.Comment("Effect options for GTFO. NOTE: None of these actually remove the appearance of the effects in-game, they just remove the functionality.")
     public static GTFOPotionConfig gtfoPotionConfig = new GTFOPotionConfig();
 
+    @Config.Comment("Miscellaneous features for GTFO.")
+    public static GTFOMiscConfig gtfoMiscConfig = new GTFOMiscConfig();
+
     public static class GTFOChainsConfig {
         @Config.Comment("Add Popcorn Chain?")
         public boolean popcornChain = true;
@@ -192,5 +195,13 @@ public class GTFOConfig {
 
         @Config.Comment("Apply Addiction-Withdrawal system?")
         public boolean addictionWithdrawal = true;
+    }
+
+    public static class GTFOMiscConfig {
+        @Config.Comment("Allow for lemons and limes to drop from trees? Note: makes the early game *much* easier to deal with.")
+        public boolean dropLemonsAndLimes = true;
+
+        @Config.Comment("Create methane centrifuging recipes for GTFO seeds?")
+        public boolean centrifugeSeeds = true;
     }
 }

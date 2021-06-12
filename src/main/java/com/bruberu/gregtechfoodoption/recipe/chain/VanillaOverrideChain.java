@@ -158,17 +158,15 @@ public class VanillaOverrideChain {
                 .fluidInputs(GAMaterials.ChloroauricAcid.getFluid(6000))
                 .output(Items.GOLDEN_APPLE)
                 .buildAndRegister();
-        RecipeMaps.CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(1000000000).duration(100000)
+        RecipeMaps.CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(100000000).duration(100000)
                 .inputs(GTFOMetaItem.APPLE_STRUCTURAL_MESH.getStackForm())
                 .fluidInputs(GAMaterials.ChloroauricAcid.getFluid(54000))
                 .outputs(new ItemStack(Items.GOLDEN_APPLE, 1, 1))
                 .buildAndRegister();
-        RecipeMaps.CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(10000000).duration(10000)
+        RecipeMaps.CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(1000000).duration(10000)
                 .inputs(GTFOMetaItem.APPLE_STRUCTURAL_MESH.getStackForm())
                 .fluidInputs(TungstenSteel.getFluid(12000))
                 .outputs(GTFOMetaItem.TUNGSTENSTEEL_APPLE.getStackForm())
                 .buildAndRegister();
-
-        ModHandler.removeRecipes(Items.CAKE);
     }
 }

@@ -89,10 +89,11 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem CARROT_STRUCTURAL_MESH;
     public static MetaItem<?>.MetaValueItem APPLE_STRUCTURAL_MESH;
     public static MetaItem<?>.MetaValueItem TUNGSTENSTEEL_APPLE;
+    public static MetaItem<?>.MetaValueItem SUGARY_DOUGH;
+    public static MetaItem<?>.MetaValueItem CAKE_BOTTOM;
+    public static MetaItem<?>.MetaValueItem BAKED_CAKE_BOTTOM;
 
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
-
-
 
 
     public static MetaItem<?>.MetaValueItem EIGHT_SMORE;
@@ -156,7 +157,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         CARROT_STRUCTURAL_MESH = addItem(52, "component.structural_mesh.carrot");
         APPLE_STRUCTURAL_MESH = addItem(53, "component.structural_mesh.apple");
-
+        SUGARY_DOUGH = addItem(55, "component.sugary_dough");
 
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -202,7 +203,10 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
                 new RandomPotionEffect(MobEffects.RESISTANCE, 1200, 3, 0),
                 new RandomPotionEffect(MobEffects.NIGHT_VISION, 3600, 2, 40),
-                new RandomPotionEffect(MobEffects.INSTANT_DAMAGE, 0, 1, 0)));
+                new RandomPotionEffect(MobEffects.INSTANT_DAMAGE, 1, 1, 0)));
+        CAKE_BOTTOM = addItem(56, "food.cake_bottom").addComponents(new FoodStats(2, 0.5f, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.POISON, 200, 1, 0)));
+        BAKED_CAKE_BOTTOM = addItem(57, "food.cake_bottom_baked").addComponents(new FoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
 
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)

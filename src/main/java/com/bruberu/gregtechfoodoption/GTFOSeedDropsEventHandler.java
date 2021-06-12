@@ -17,10 +17,7 @@ public class GTFOSeedDropsEventHandler {
     @SubscribeEvent
     public void addSeeds(BlockEvent.HarvestDropsEvent event)
     {
-        if(event.getState().getBlock() == Blocks.TALLGRASS && rand.nextInt(30) == 0) {
-            event.getDrops().add(PopcornKernel.getItemStack());
-        }
-        if(event.getState().getBlock() == Blocks.LEAVES) {
+        if(event.getState().getBlock() == Blocks.LEAVES && GTFOConfig.gtfoMiscConfig.dropLemonsAndLimes) {
             if(rand.nextInt(60) == 0)
                 event.getDrops().add(LEMON.getStackForm());
             if(rand.nextInt(60) == 0)

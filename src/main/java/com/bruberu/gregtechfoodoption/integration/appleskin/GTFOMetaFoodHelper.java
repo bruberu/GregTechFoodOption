@@ -32,12 +32,17 @@ public class GTFOMetaFoodHelper extends FoodHelper {
         MetaItem<?> metaItem = (MetaItem<?>) stackInHand.getItem();
         MetaItem<?>.MetaValueItem metaValueItem = metaItem.getItem(stackInHand);
         IItemUseManager useManager = metaValueItem.getUseManager();
-        FoodUseManager foodUseManager = (FoodUseManager) useManager;
-        IFoodBehavior foodStats = foodUseManager.getFoodStats();
-        int hunger = foodStats.getFoodLevel(stackInHand, null);
-        float saturationModifier = foodStats.getSaturation(stackInHand, null);
+        if(useManager != null) {
+            if(useManager instanceof FoodUseManager) {
+                FoodUseManager foodUseManager = (FoodUseManager) useManager;
+                IFoodBehavior foodStats = foodUseManager.getFoodStats();
+                int hunger = foodStats.getFoodLevel(stackInHand, null);
+                float saturationModifier = foodStats.getSaturation(stackInHand, null);
 
-        return new FoodHelper.BasicFoodValues(hunger, saturationModifier);
+                return new BasicFoodValues(hunger, saturationModifier);
+            }
+        }
+        return new BasicFoodValues(0, 0f);
     }
 
     public static FoodHelper.BasicFoodValues getModifiedFoodValues(ItemStack itemStack, EntityPlayer player) {

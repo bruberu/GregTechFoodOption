@@ -84,6 +84,7 @@ public class CoreChain {
                 .duration(15)
                 .buildAndRegister();
 
+        // Adobe Bricks for the Baking Oven
         ModHandler.addShapedRecipe("mud_bricks1", MUD_BRICK.getStackForm(5),
                 "SCS", "SMS", "GCG",
                 'C', Items.CLAY_BALL,

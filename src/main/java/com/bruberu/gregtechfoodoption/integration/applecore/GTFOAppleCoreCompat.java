@@ -22,19 +22,24 @@ public class GTFOAppleCoreCompat {
     private static HashMap<Item, FoodValues> sparedItemsFoodValues = new HashMap<>();
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
-    public void getFoodValues(FoodEvent.GetPlayerFoodValues event) {
-        Item sparedFood = event.food.getItem();
+    public void setFoodValuesForEvent(FoodEvent.GetPlayerFoodValues event) {
+        event.foodValues = getGTFOFoodValues(event.unmodifiedFoodValues, event.food, event.player);
+    }
+
+    public FoodValues getGTFOFoodValues(FoodValues originalValues, ItemStack food, EntityPlayer player) {
+        Item sparedFood = food.getItem();
         if (sparedItems.contains(sparedFood)) {
             if(sparedItemsFoodValues.containsKey(sparedFood))
-                event.foodValues = sparedItemsFoodValues.get(event.food.getItem());
-            return;
+                return sparedItemsFoodValues.get(sparedFood);
+            return originalValues;
         }
         if (GTFOConfig.gtfoAppleCoreConfig.reduceForeignFoodStats) {
-            ItemStack actualFood = event.food;
+            ItemStack actualFood = food;
 
-            float modifier = this.getFoodModifier(event.player, actualFood);
-            event.foodValues = this.getModifiedFoodValues(event.foodValues, modifier);
+            float modifier = this.getFoodModifier(player, actualFood);
+            return this.getModifiedFoodValues(originalValues, modifier);
         }
+        return originalValues;
     }
 
     private FoodValues getModifiedFoodValues(FoodValues foodValues, float modifier) {
