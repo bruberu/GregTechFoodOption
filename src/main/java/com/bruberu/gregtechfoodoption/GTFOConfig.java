@@ -15,6 +15,9 @@ public class GTFOConfig {
     @Config.Comment("Chain Options")
     public static GTFOChainsConfig gtfoChainsConfig = new GTFOChainsConfig();
 
+    @Config.Comment("Vanilla Overrides Options")
+    public static GTFOVanillaOverridesConfig gtfoVanillaOverridesConfig = new GTFOVanillaOverridesConfig();
+
     @Config.Comment("AppleCore compatibility")
     public static GTFOAppleCoreConfig gtfoAppleCoreConfig = new GTFOAppleCoreConfig();
 
@@ -51,12 +54,17 @@ public class GTFOConfig {
 
         @Config.Comment("Delete vanilla bread recipe?")
         public boolean deleteBreadRecipe = true;
+    }
 
-        @Config.Comment("Use Vanilla Overrides Chain?")
+    public static class GTFOVanillaOverridesConfig {
+        @Config.Comment("Enable GTFO Vanilla Overrides features?")
         public boolean vanillaOverrideChain = true;
 
         @Config.Comment("Make Baking Oven Recipes for Meats in the Vanilla Overrides chain?")
         public boolean useBakingOvenForMeats = true;
+
+        @Config.Comment("Replace manual paper recipe with one with a Rolling Pin?")
+        public boolean useRollingPinForPaper = true;
     }
 
     public static class GTFOAppleCoreConfig {

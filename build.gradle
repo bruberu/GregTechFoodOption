@@ -10,7 +10,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.9.0"
+version = "1.12.2-0.9.1"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -111,7 +111,7 @@ dependencies {
     compileOnly "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
     compileOnly "net.sengir.forestry:forestry_1.12.2:5.8.2.387"
-    compileOnly "applecore:AppleCore:1.12.2-3.1.5:deobf"
+    deobfCompile "applecore:AppleCore:1.12.2-3.1.5:deobf"
     //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
     //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
 

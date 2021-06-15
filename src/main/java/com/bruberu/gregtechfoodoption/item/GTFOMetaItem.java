@@ -92,6 +92,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem SUGARY_DOUGH;
     public static MetaItem<?>.MetaValueItem CAKE_BOTTOM;
     public static MetaItem<?>.MetaValueItem BAKED_CAKE_BOTTOM;
+    public static MetaItem<?>.MetaValueItem PIE_CRUST;
 
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
 
@@ -158,6 +159,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
         CARROT_STRUCTURAL_MESH = addItem(52, "component.structural_mesh.carrot");
         APPLE_STRUCTURAL_MESH = addItem(53, "component.structural_mesh.apple");
         SUGARY_DOUGH = addItem(55, "component.sugary_dough");
+        PIE_CRUST = addItem(58, "component.pie_crust");
 
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),

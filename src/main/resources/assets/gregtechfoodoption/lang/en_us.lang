@@ -290,3 +290,7 @@ metaitem.component.sugary_dough.name=Sugary Dough
 metaitem.component.sugary_dough.tooltip=Highly effective at provoking Heart Attacks
 fluid.mushroom_soup=Mushroom Stew
 fluid.beetroot_soup=Beetroot Soup
+
+metaitem.component.pie_crust.name=Pie Crust
+metaitem.component.pie_crust.tooltip=For making Pies
+metaitem.tool.tooltip.rolling_pin.slime=Does extra damage against slimes!

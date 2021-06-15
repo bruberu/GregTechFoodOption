@@ -18,9 +18,9 @@ public class GTFOSeedDropsEventHandler {
     public void addSeeds(BlockEvent.HarvestDropsEvent event)
     {
         if(event.getState().getBlock() == Blocks.LEAVES && GTFOConfig.gtfoMiscConfig.dropLemonsAndLimes) {
-            if(rand.nextInt(60) == 0)
+            if(rand.nextInt(200) == 0)
                 event.getDrops().add(LEMON.getStackForm());
-            if(rand.nextInt(60) == 0)
+            if(rand.nextInt(200) == 0)
                 event.getDrops().add(LIME.getStackForm());
         }
     }

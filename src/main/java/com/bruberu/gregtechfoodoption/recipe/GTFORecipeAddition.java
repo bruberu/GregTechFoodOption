@@ -26,7 +26,7 @@ public class GTFORecipeAddition {
     public static void compatInit() {
         if(GTFOConfig.gtfoChainsConfig.breadsChain)
             BreadsChain.init();
-        if(GTFOConfig.gtfoChainsConfig.vanillaOverrideChain)
+        if(GTFOConfig.gtfoVanillaOverridesConfig.vanillaOverrideChain)
             VanillaOverrideChain.init();
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat) {

@@ -65,8 +65,7 @@ public class BreadsChain {
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("bread_dough", UNCOOKED_BREAD.getStackForm(),
-                " R ", "DDD", " M ",
-                'R', OreDictUnifier.get(String.valueOf(ToolDictNames.craftingToolRollingPin)),
+                "DDD", " M ",
                 'D', DOUGH,
                 'M', WOODEN_FORM_BREAD);
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(100)
@@ -76,8 +75,7 @@ public class BreadsChain {
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("baguette_dough", UNCOOKED_BAGUETTE.getStackForm(),
-                " R ", "D D", " M ",
-                'R', OreDictUnifier.get(String.valueOf(ToolDictNames.craftingToolRollingPin)),
+                "D D", " M ",
                 'D', DOUGH,
                 'M', WOODEN_FORM_BAGUETTE);
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(100)
@@ -104,8 +102,7 @@ public class BreadsChain {
                 .outputs(SUGARY_DOUGH.getStackForm(2))
                 .buildAndRegister();
         ModHandler.addShapedRecipe("cake_bottom", CAKE_BOTTOM.getStackForm(),
-                " R ", "D D", "DMD",
-                'R', OreDictUnifier.get(String.valueOf(ToolDictNames.craftingToolRollingPin)),
+                "D D", "DMD",
                 'D', SUGARY_DOUGH.getStackForm(),
                 'M', MetaItems.SHAPE_MOLD_CYLINDER.getStackForm());
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(100)
@@ -134,5 +131,19 @@ public class BreadsChain {
         GTFOAppleCoreCompat.addToSparedItems(Items.COOKIE, 3, 0.2f);
         ModHandler.removeRecipes(Items.COOKIE);
         ModHandler.addShapelessRecipe("gtfo_cookie", new ItemStack(Items.COOKIE), SUGARY_DOUGH, SUGARY_DOUGH, OreDictUnifier.get(dust, Cocoa));
+
+        ModHandler.removeRecipes(Items.PUMPKIN_PIE);
+        GTFOAppleCoreCompat.addToSparedItems(Items.PUMPKIN_PIE);
+        ModHandler.addShapedRecipe("gtfo_pie_crust", PIE_CRUST.getStackForm(),
+                "RD",
+                'R', OreDictUnifier.get(String.valueOf(ToolDictNames.craftingToolRollingPin)),
+                'D', SUGARY_DOUGH.getStackForm());
+        ModHandler.addShapedRecipe("gtfo_pumpkin_pie", new ItemStack(Items.PUMPKIN_PIE),
+                "SSS",
+                "PP ",
+                "C  ",
+                'S', new ItemStack(Items.SUGAR),
+                'P', new ItemStack(Blocks.PUMPKIN),
+                'C', PIE_CRUST.getStackForm());
     }
 }

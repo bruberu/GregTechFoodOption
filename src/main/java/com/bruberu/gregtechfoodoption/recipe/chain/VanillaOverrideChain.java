@@ -9,6 +9,7 @@ import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregicadditions.GAMaterials;
 import gregicadditions.recipes.helper.HelperMethods;
+import gregtech.api.items.ToolDictNames;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.OreDictUnifier;
@@ -44,7 +45,7 @@ public class VanillaOverrideChain {
                 .output(new ItemStack(Items.BAKED_POTATO))
                 .buildAndRegister();
 
-        if(GTFOConfig.gtfoChainsConfig.useBakingOvenForMeats) {
+        if(GTFOConfig.gtfoVanillaOverridesConfig.useBakingOvenForMeats) {
             HelperMethods.removeFurnaceRecipe(RecipeUtils.wildcardize(new ItemStack(Items.BEEF)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_BEEF, 7, (float) 0.6);
             BakingOvenRecipeBuilder.start().fuelAmount(3200).duration(2000).temperature(500)
@@ -97,9 +98,15 @@ public class VanillaOverrideChain {
 
         }
 
+        if(GTFOConfig.gtfoVanillaOverridesConfig.useRollingPinForPaper) {
+            ModHandler.removeRecipes(new ItemStack(Items.PAPER, 2));
+            ModHandler.addShapedRecipe("gtfo_paper", new ItemStack(Items.PAPER, 2),
+                    " R ", "CCC",
+                    'R', OreDictUnifier.get(String.valueOf(ToolDictNames.craftingToolRollingPin)),
+                    'C', OreDictUnifier.get(OrePrefix.dust, Materials.Paper));
+        }
+
         GTFOAppleCoreCompat.addToSparedItems(Items.RABBIT_STEW, 11, (float) 1.2);
-        ModHandler.removeRecipes(Items.PUMPKIN_PIE);
-        GTFOAppleCoreCompat.addToSparedItems(Items.PUMPKIN_PIE);
         ModHandler.removeRecipes(Items.MUSHROOM_STEW);
         GTFOAppleCoreCompat.addToSparedItems(Items.MUSHROOM_STEW, 5, (float) 0.9);
         ModHandler.removeRecipes(Items.BEETROOT_SOUP);
