@@ -94,6 +94,49 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem BAKED_CAKE_BOTTOM;
     public static MetaItem<?>.MetaValueItem PIE_CRUST;
 
+    public static MetaItem<?>.MetaValueItem SANDWICH_VEGGIE;
+    public static MetaItem<?>.MetaValueItem SANDWICH_CHEESE;
+    public static MetaItem<?>.MetaValueItem SANDWICH_BACON;
+    public static MetaItem<?>.MetaValueItem SANDWICH_STEAK;
+    public static MetaItem<?>.MetaValueItem SANDWICH_LARGE_VEGGIE;
+    public static MetaItem<?>.MetaValueItem SANDWICH_LARGE_CHEESE;
+    public static MetaItem<?>.MetaValueItem SANDWICH_LARGE_BACON;
+    public static MetaItem<?>.MetaValueItem SANDWICH_LARGE_STEAK;
+
+    public static MetaItem<?>.MetaValueItem PIZZA_VEGGIE_RAW;
+    public static MetaItem<?>.MetaValueItem PIZZA_CHEESE_RAW;
+    public static MetaItem<?>.MetaValueItem PIZZA_MINCE_MEAT_RAW;
+    public static MetaItem<?>.MetaValueItem PIZZA_VEGGIE;
+    public static MetaItem<?>.MetaValueItem PIZZA_CHEESE;
+    public static MetaItem<?>.MetaValueItem PIZZA_MINCE_MEAT;
+
+    public static MetaItem<?>.MetaValueItem OLIVE;
+    public static MetaItem<?>.MetaValueItem OLIVE_SLICE;
+    public static MetaItem<?>.MetaValueItem MUSHROOM_SLICE;
+
+    public static MetaItem<?>.MetaValueItem TOMATO;
+    public static MetaItem<?>.MetaValueItem ONION;
+    public static MetaItem<?>.MetaValueItem CUCUMBER;
+    public static MetaItem<?>.MetaValueItem TOMATO_SLICE;
+    public static MetaItem<?>.MetaValueItem ONION_SLICE;
+    public static MetaItem<?>.MetaValueItem CUCUMBER_SLICE;
+
+    public static MetaItem<?>.MetaValueItem WOODEN_FORM_BUN;
+    public static MetaItem<?>.MetaValueItem UNCOOKED_BUN;
+    public static MetaItem<?>.MetaValueItem BUN;
+
+    public static MetaItem<?>.MetaValueItem PRESLICED_BUN;
+    public static MetaItem<?>.MetaValueItem PRESLICED_BREAD;
+    public static MetaItem<?>.MetaValueItem PRESLICED_BAGUETTE;
+
+    public static MetaItem<?>.MetaValueItem BURGER_VEGGIE;
+    public static MetaItem<?>.MetaValueItem BURGER_CHEESE;
+    public static MetaItem<?>.MetaValueItem BURGER_MEAT;
+
+
+
+
+
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
 
 
@@ -161,6 +204,28 @@ public class GTFOMetaItem extends MaterialMetaItem {
         SUGARY_DOUGH = addItem(55, "component.sugary_dough");
         PIE_CRUST = addItem(58, "component.pie_crust");
 
+        PIZZA_CHEESE_RAW = addItem(59, "component.pizza.cheese");
+        PIZZA_VEGGIE_RAW = addItem(60, "component.pizza.veggie");
+        PIZZA_MINCE_MEAT_RAW = addItem(61, "component.pizza.mince_meat");
+
+        OLIVE = addItem(73, "crop.olive");
+        OLIVE_SLICE = addItem(74, "component.olive_slice");
+        MUSHROOM_SLICE = addItem(75, "component.mushroom_slice");
+
+        TOMATO = addItem(76, "crop.tomato");
+        ONION = addItem(77, "crop.onion");
+        CUCUMBER = addItem(78, "crop.cucumber");
+        TOMATO_SLICE = addItem(79, "component.tomato_slice");
+        ONION_SLICE = addItem(80, "component.onion_slice");
+        CUCUMBER_SLICE = addItem(81, "component.cucumber_slice");
+
+        WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").addComponents(selfContainerItemProvider);
+        UNCOOKED_BUN = addItem(83, "component.bun");
+
+        PRESLICED_BUN = addItem(84, "component.buns");
+        PRESLICED_BREAD = addItem(85, "component.breads");
+        PRESLICED_BAGUETTE = addItem(86, "component.baguettes");
+
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0),
@@ -210,13 +275,38 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.POISON, 200, 1, 0)));
         BAKED_CAKE_BOTTOM = addItem(57, "food.cake_bottom_baked").addComponents(new FoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
 
+        PIZZA_CHEESE = addItem(62, "food.pizza.cheese").addComponents(new FoodStats(5, 0.8f, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 2000, 2, 75)));
+        PIZZA_VEGGIE = addItem(63, "food.pizza.veggie").addComponents(new FoodStats(5, 0.7f, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.JUMP_BOOST, 2000, 1, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 2000, 2, 75)));
+        PIZZA_MINCE_MEAT = addItem(64, "food.pizza.mince_meat").addComponents(new FoodStats(6, 0.8f, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.STRENGTH, 2000, 2, 0),
+                new RandomPotionEffect(AddictionPotion.instance, 2000, 2, 75)));
+
+        SANDWICH_VEGGIE = addItem(65, "food.sandwich.veggie").addComponents(new FoodStats(4, 0.6f, false, false, ItemStack.EMPTY));
+        SANDWICH_CHEESE = addItem(66, "food.sandwich.cheese").addComponents(new FoodStats(5, 0.6f, false, false, ItemStack.EMPTY));
+        SANDWICH_BACON = addItem(67, "food.sandwich.bacon").addComponents(new FoodStats(5, 0.7f, false, false, ItemStack.EMPTY));
+        SANDWICH_STEAK = addItem(68, "food.sandwich.steak").addComponents(new FoodStats(6, 0.7f, false, false, ItemStack.EMPTY));
+
+        SANDWICH_LARGE_VEGGIE = addItem(69, "food.sandwich.veggie.large").addComponents(new FoodStats(9, 0.6f, false, false, ItemStack.EMPTY));
+        SANDWICH_LARGE_CHEESE = addItem(70, "food.sandwich.cheese.large").addComponents(new FoodStats(11, 0.6f, false, false, ItemStack.EMPTY));
+        SANDWICH_LARGE_BACON = addItem(71, "food.sandwich.bacon.large").addComponents(new FoodStats(10, 0.7f, false, false, ItemStack.EMPTY));
+        SANDWICH_LARGE_STEAK = addItem(72, "food.sandwich.steak.large").addComponents(new FoodStats(13, 0.7f, false, false, ItemStack.EMPTY));
+
+        BUN = addItem(87, "food.bun").addComponents(new FoodStats(gtfoFoodConfig.baguetteHunger / 3, gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY));
+
+        BURGER_VEGGIE = addItem(88, "food.burger.veggie").addComponents(new FoodStats(3, 0.6f, false, false, ItemStack.EMPTY));
+        BURGER_CHEESE = addItem(89, "food.burger.cheese").addComponents(new FoodStats(4, 0.6f, false, false, ItemStack.EMPTY));
+        BURGER_MEAT = addItem(90, "food.burger.meat").addComponents(new FoodStats(4, 0.7f, false, false, ItemStack.EMPTY));
+
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)
         {
             int heal = 44;
             double saturation = 8.6;
             int potionDuration = 1200;
-            int metaValue = 100;
 
             MetaItem<?>.MetaValueItem[] smores = {EIGHT_SMORE, SIXTEEN_SMORE, THIRTY_TWO_SMORE, SIXTY_FOUR_SMORE, SMOGUS, MORE_SMOGUS, FOUR_SMOGUS, HEART_SMOGUS};
             String[] smoreStrings = {"smore.eight", "smore.sixteen", "smore.thirtytwo", "smore.sixtyfour", "smore.gusone", "smore.gustwo", "smore.gusfour", "smore.heartofthesmogus"};
@@ -227,14 +317,13 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 potionDuration = (int)(((float)potionDuration) * 1.25);
                 int potionStrength = (int)((int)(Math.pow(2,(((double)i)+8)))/Math.pow((((double)i)+8), 2));
 
-                smores[i] = addItem(metaValue, smoreStrings[i]).addComponents(new FoodStats(heal, (float) saturation, false, true, ItemStack.EMPTY,
+                smores[i] = addItem(100 + i, smoreStrings[i]).addComponents(new FoodStats(heal, (float) saturation, false, true, ItemStack.EMPTY,
                         new RandomPotionEffect(getPotionById(1), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(22), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(3), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(23), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(21), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(AddictionPotion.instance, 3000, potionStrength, 100 - 2 * i)));
-                metaValue++;
             }
 
             EIGHT_SMORE = smores[0];
