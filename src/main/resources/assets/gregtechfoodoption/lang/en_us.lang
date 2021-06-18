@@ -343,3 +343,5 @@ metaitem.crop.onion.name=Onion
 metaitem.crop.tomato.name=Tomato
 metaitem.crop.olive.name=Olive
 
+entity.italian_buffalo.name=Italian Buffalo
+fluid.italian_buffalo_milk=Italian Buffalo's Milk

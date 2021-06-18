@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
+import com.bruberu.gregtechfoodoption.entity.GTFOEntities;
 import com.bruberu.gregtechfoodoption.fluid.GTFOMetaFluids;
 import com.bruberu.gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import com.bruberu.gregtechfoodoption.integration.GTFONCMaterialHandler;
@@ -17,6 +18,7 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.VariantItemBlock;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

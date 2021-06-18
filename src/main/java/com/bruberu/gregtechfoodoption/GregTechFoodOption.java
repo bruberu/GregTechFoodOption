@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
+import com.bruberu.gregtechfoodoption.entity.GTFOEntities;
 import com.bruberu.gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
 import com.bruberu.gregtechfoodoption.utils.GTFOConfigOverrider;
@@ -21,6 +22,9 @@ public class GregTechFoodOption {
     public static final String NAME = "GregTech Food Option";
     public static final String VERSION = "@VERSION@";
 
+    @Mod.Instance
+    public static GregTechFoodOption instance;
+
 
     @SidedProxy(modId = MODID, clientSide = "com.bruberu.gregtechfoodoption.ClientProxy", serverSide = "com.bruberu.gregtechfoodoption.CommonProxy")
     public static CommonProxy proxy;
@@ -37,6 +41,9 @@ public class GregTechFoodOption {
 
         GTFOMetaBlocks.init();
         GTFOTileEntities.init();
+
+        GTFOEntities.registerRenders();
+        MinecraftForge.EVENT_BUS.register(new GTFOEntities()); // For entity registration through EntityEntries!
 
         if(GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
             MinecraftForge.EVENT_BUS.register(new GTFOAppleCoreCompat());
