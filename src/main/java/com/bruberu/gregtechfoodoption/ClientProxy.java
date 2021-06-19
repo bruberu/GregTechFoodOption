@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption;
 
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
+import com.bruberu.gregtechfoodoption.entity.GTFOEntities;
 import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaHUDOverlay;
 import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
@@ -30,6 +31,7 @@ public class ClientProxy extends CommonProxy {
         if (!Minecraft.getMinecraft().getFramebuffer().isStencilEnabled()) {
             Minecraft.getMinecraft().getFramebuffer().enableStencil();
         }
+        GTFOEntities.registerRenders();
     }
 
 

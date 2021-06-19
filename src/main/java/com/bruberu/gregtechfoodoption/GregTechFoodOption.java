@@ -42,7 +42,7 @@ public class GregTechFoodOption {
         GTFOMetaBlocks.init();
         GTFOTileEntities.init();
 
-        GTFOEntities.registerRenders();
+
         MinecraftForge.EVENT_BUS.register(new GTFOEntities()); // For entity registration through EntityEntries!
 
         if(GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
