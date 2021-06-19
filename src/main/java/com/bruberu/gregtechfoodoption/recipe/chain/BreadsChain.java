@@ -114,7 +114,7 @@ public class BreadsChain {
                 .input(CAKE_BOTTOM.getStackForm())
                 .output(BAKED_CAKE_BOTTOM.getStackForm())
                 .buildAndRegister();
-        ModHandler.addShapedRecipe("gtfo_cake", Items.CAKE.getDefaultInstance(),
+        ModHandler.addShapedRecipe("gtfo_cake", new ItemStack(Items.CAKE),
                 "SES", "EBE", "MMM",
                 'S', OreDictUnifier.get(dust, Sugar),
                 'E', new ItemStack(Items.EGG),
