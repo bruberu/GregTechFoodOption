@@ -107,8 +107,8 @@ dependencies {
     deobfCompile "codechicken-lib-1-8:CodeChickenLib-1.12.2:3.2.3.358:universal"
     deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.23-16"
 
-    deobfCompile "nuclearcraft-overhauled:NuclearCraft:2o.5.0:1.12.2"
-    deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"
+    compileOnly "nuclearcraft-overhauled:NuclearCraft:2o.5.0:1.12.2"
+    compileOnly "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
     compileOnly "net.sengir.forestry:forestry_1.12.2:5.8.2.387"
     deobfCompile "applecore:AppleCore:1.12.2-3.1.5:deobf"
