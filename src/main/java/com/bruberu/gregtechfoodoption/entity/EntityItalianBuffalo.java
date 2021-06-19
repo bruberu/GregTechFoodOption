@@ -1,7 +1,6 @@
 package com.bruberu.gregtechfoodoption.entity;
 
 import com.bruberu.gregtechfoodoption.GTFOMaterialHandler;
-import net.minecraft.client.renderer.entity.RenderMooshroom;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
