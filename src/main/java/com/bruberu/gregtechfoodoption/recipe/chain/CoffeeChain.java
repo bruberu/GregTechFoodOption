@@ -6,6 +6,7 @@ import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
 import de.ellpeck.actuallyadditions.mod.misc.apiimpl.MethodHandler;
+import gregicadditions.GAConfig;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.items.MetaItems;
@@ -143,20 +144,33 @@ public class CoffeeChain {
                 .EUt(60)
                 .duration(10)
                 .buildAndRegister();
-
-        CLUSTER_MILL_RECIPES.recipeBuilder()
-                .inputs(LARGE_DRIED_COFFEE.getItemStack())
-                .outputs(LARGE_HULLED_COFFEE.getItemStack())
-                .EUt(30)
-                .duration(10)
-                .buildAndRegister();
-
-        CLUSTER_MILL_RECIPES.recipeBuilder()
+        if (GAConfig.GT6.BendingFoilsAutomatic) {
+            CLUSTER_MILL_RECIPES.recipeBuilder()
                 .inputs(SMALL_DRIED_COFFEE.getItemStack())
                 .outputs(SMALL_HULLED_COFFEE.getItemStack())
                 .EUt(30)
                 .duration(10)
                 .buildAndRegister();
+            CLUSTER_MILL_RECIPES.recipeBuilder()
+                    .inputs(LARGE_DRIED_COFFEE.getItemStack())
+                    .outputs(LARGE_HULLED_COFFEE.getItemStack())
+                    .EUt(30)
+                    .duration(10)
+                    .buildAndRegister();
+        } else {
+            LATHE_RECIPES.recipeBuilder()
+                    .inputs(SMALL_DRIED_COFFEE.getItemStack())
+                    .outputs(SMALL_HULLED_COFFEE.getItemStack())
+                    .EUt(30)
+                    .duration(10)
+                    .buildAndRegister();
+            LATHE_RECIPES.recipeBuilder()
+                    .inputs(LARGE_DRIED_COFFEE.getItemStack())
+                    .outputs(LARGE_HULLED_COFFEE.getItemStack())
+                    .EUt(30)
+                    .duration(10)
+                    .buildAndRegister();
+        }
 
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
                 .inputs(LARGE_WET_COFFEE.getItemStack(32))
