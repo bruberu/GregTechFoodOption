@@ -125,7 +125,7 @@ public class BreadsChain {
                 .input(Items.EGG)
                 .inputs(BAKED_CAKE_BOTTOM.getStackForm())
                 .fluidInputs(Milk.getFluid(3000))
-                .outputs(Items.CAKE.getDefaultInstance())
+                .outputs(new ItemStack(Items.CAKE))
                 .buildAndRegister();
 
         GTFOAppleCoreCompat.addToSparedItems(Items.COOKIE, 3, 0.2f);
