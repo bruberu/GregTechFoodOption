@@ -4,6 +4,7 @@ import com.bruberu.gregtechfoodoption.GTFOConfig;
 import com.bruberu.gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregicadditions.GAMaterials;
+import gregicadditions.GAConfig;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -344,12 +345,12 @@ public class SmogusChain {
                 .duration(40)
                 .buildAndRegister();
 
-        CLUSTER_MILL_RECIPES.recipeBuilder()
-                .inputs(CHOCOLATE_LIQUOR.getItemStack())
-	            .outputs(CHOCOLATE_LIQUOR_REFINED.getItemStack())
-	            .EUt(200)
-                .duration(60)
-                .buildAndRegister();
+        RecipeUtils.clusterMillBuilderProxy().recipeBuilder()
+                    .inputs(CHOCOLATE_LIQUOR.getItemStack())
+                    .outputs(CHOCOLATE_LIQUOR_REFINED.getItemStack())
+                    .EUt(200)
+                    .duration(60)
+                    .buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(NCItems.ground_cocoa_nibs)

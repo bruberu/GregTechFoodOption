@@ -1,7 +1,12 @@
 package com.bruberu.gregtechfoodoption.utils;
 
+import gregicadditions.GAConfig;
+import gregicadditions.recipes.GARecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.type.FluidMaterial;
 import gregtech.api.unification.ore.OrePrefix;
@@ -100,5 +105,9 @@ public class RecipeUtils {
     {
         itemStack.setItemDamage(GTValues.W);
         return itemStack;
+    }
+
+    public static RecipeMap<SimpleRecipeBuilder> clusterMillBuilderProxy() {
+        return GAConfig.GT6.BendingFoilsAutomatic ? GARecipeMaps.CLUSTER_MILL_RECIPES : RecipeMaps.LATHE_RECIPES;
     }
 }
