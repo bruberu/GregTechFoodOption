@@ -345,21 +345,12 @@ public class SmogusChain {
                 .duration(40)
                 .buildAndRegister();
 
-        if (GAConfig.GT6.BendingFoilsAutomatic) {
-            CLUSTER_MILL_RECIPES.recipeBuilder()
+        RecipeUtils.clusterMillBuilderProxy().recipeBuilder()
                     .inputs(CHOCOLATE_LIQUOR.getItemStack())
                     .outputs(CHOCOLATE_LIQUOR_REFINED.getItemStack())
                     .EUt(200)
                     .duration(60)
                     .buildAndRegister();
-        } else {
-            LATHE_RECIPES.recipeBuilder()
-                    .inputs(CHOCOLATE_LIQUOR.getItemStack())
-                    .outputs(CHOCOLATE_LIQUOR_REFINED.getItemStack())
-                    .EUt(200)
-                    .duration(60)
-                    .buildAndRegister();
-        }
 
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(NCItems.ground_cocoa_nibs)
