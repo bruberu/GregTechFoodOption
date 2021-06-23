@@ -24,11 +24,22 @@ public class SeedsChain {
                 .chancedOutput(GTFOMetaItem.LEMON.getStackForm(), 2000, 250)
                 .chancedOutput(GTFOMetaItem.LIME.getStackForm(), 2000, 250)
                 .buildAndRegister();
+        GARecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(6).duration(20)
+                .inputs(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()))
+                .chancedOutput(GTFOMetaItem.TOMATO.getStackForm(), 2000, 250)
+                .chancedOutput(GTFOMetaItem.CUCUMBER.getStackForm(), 2000, 250)
+                .chancedOutput(GTFOMetaItem.ONION.getStackForm(), 2000, 250)
+                .chancedOutput(GTFOMetaItem.OLIVE.getStackForm(), 2000, 250)
+                .buildAndRegister();
 
         if(GTFOConfig.gtfoMiscConfig.centrifugeSeeds) {
             ItemStack[] seeds = new ItemStack[]{
                     GTFOMetaItem.LEMON.getStackForm(),
                     GTFOMetaItem.LIME.getStackForm(),
+                    GTFOMetaItem.TOMATO.getStackForm(),
+                    GTFOMetaItem.CUCUMBER.getStackForm(),
+                    GTFOMetaItem.OLIVE.getStackForm(),
+                    GTFOMetaItem.ONION.getStackForm(),
                     GTFOMaterialHandler.PopcornKernel.getItemStack()
             };
             for (ItemStack seed : seeds) {

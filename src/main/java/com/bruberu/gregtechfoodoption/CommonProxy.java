@@ -9,6 +9,7 @@ import com.bruberu.gregtechfoodoption.item.GTFOMetaItem;
 import com.bruberu.gregtechfoodoption.item.GTFOMetaItems;
 import com.bruberu.gregtechfoodoption.machines.GTFOTileEntities;
 import com.bruberu.gregtechfoodoption.potion.GTFOPotions;
+import com.bruberu.gregtechfoodoption.recipe.GTFOOreDictRegistration;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeAddition;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeRemoval;
@@ -109,6 +110,7 @@ public class CommonProxy {
         GTFOLog.logger.info("Registering ore prefix...");
         GTFOMetaItems.registerOreDict();
         OrePrefix.runMaterialHandlers();
+        GTFOOreDictRegistration.init();
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {

@@ -9,6 +9,7 @@ public class GTFORecipeAddition {
     {
         CoreChain.init();
         SeedsChain.init();
+        CheeseChain.init();
         GTFOMachineRecipes.init();
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
             PopcornChain.init();

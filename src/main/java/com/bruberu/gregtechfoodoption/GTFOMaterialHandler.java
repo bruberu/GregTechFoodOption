@@ -84,7 +84,7 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOFluidMaterial CoagulatingRicottaSolution = new GTFOFluidMaterial("coagulating_ricotta_solution", 0xeff5c9);
 
     public static final GTFOFluidMaterial TomatoSauce = new GTFOFluidMaterial("tomato_sauce", 0xfc2217);
-
+    public static final GTFOFluidMaterial OliveOil = new GTFOFluidMaterial("olive_oil", 0xd1db5a);
 
     public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictItem BarePopcornKernel = new GTFOOredictItem.OreDictItem(1001, "popcorn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);

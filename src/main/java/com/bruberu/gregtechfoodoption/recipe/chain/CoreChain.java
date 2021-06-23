@@ -4,17 +4,24 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import com.bruberu.gregtechfoodoption.block.GTFOBlockCasing;
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
+import com.bruberu.gregtechfoodoption.item.GTFOMetaItem;
 import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
+import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregicadditions.GAMaterials;
+import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
+import javafx.util.Pair;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
@@ -123,6 +130,50 @@ public class CoreChain {
         ModHandler.addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm());
         ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
 
+        Map<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> slicingArray = new HashMap<>();
+        slicingArray.put(CUCUMBER, CUCUMBER_SLICE);
+        slicingArray.put(OLIVE, OLIVE_SLICE);
+        slicingArray.put(TOMATO, TOMATO_SLICE);
+        slicingArray.put(ONION, ONION_SLICE);
+        for(Map.Entry<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> entry : slicingArray.entrySet()) {
+            ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().toString(), entry.getValue().getStackForm(4), 'k', entry.getKey());
+            SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                    .inputs(entry.getKey().getStackForm())
+                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                    .outputs(entry.getValue().getStackForm(8))
+                    .buildAndRegister();
 
+            // Since we already have our crops, we might as well register their green house recipes here
+            RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey());
+        }
+        // Get the mushroom done separately. And don't use red mushrooms.
+        ModHandler.addShapelessRecipe("gtfo_slice_mushroom", MUSHROOM_SLICE.getStackForm(4), 'k', Blocks.BROWN_MUSHROOM);
+        SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                .input(Blocks.BROWN_MUSHROOM)
+                .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                .outputs(MUSHROOM_SLICE.getStackForm(8))
+                .buildAndRegister();
+
+        ModHandler.addShapelessRecipe("gtfo_bacon", UNCOOKED_BACON.getStackForm(3), 'k', Items.PORKCHOP);
+        SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                .input(Items.PORKCHOP)
+                .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                .outputs(UNCOOKED_BACON.getStackForm(6))
+                .buildAndRegister();
+
+        BakingOvenRecipeBuilder.start().duration(500).temperature(435).fuelAmount(200)
+                .input(UNCOOKED_BACON.getStackForm())
+                .output(BACON.getStackForm())
+                .buildAndRegister();
+
+        FLUID_EXTRACTION_RECIPES.recipeBuilder().EUt(2).duration(10)
+                .inputs(TOMATO_SLICE.getStackForm(4))
+                .fluidOutputs(TomatoSauce.getFluid(100))
+                .buildAndRegister();
+
+        FLUID_EXTRACTION_RECIPES.recipeBuilder().EUt(27).duration(60)
+                .inputs(OLIVE.getStackForm())
+                .fluidOutputs(OliveOil.getFluid(100))
+                .buildAndRegister();
     }
 }

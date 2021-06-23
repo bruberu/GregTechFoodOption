@@ -143,6 +143,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem CHEDDAR_SLICE;
     public static MetaItem<?>.MetaValueItem FLAT_DOUGH;
 
+    public static MetaItem<?>.MetaValueItem BACON;
+    public static MetaItem<?>.MetaValueItem UNCOOKED_BACON;
 
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
 
@@ -241,6 +243,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         FLAT_DOUGH = addItem(99, "component.flat_dough");
 
+        UNCOOKED_BACON = addItem(101, "component.bacon");
+
 
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -261,7 +265,10 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
                 new RandomPotionEffect(AddictionPotion.instance, 3200, 2, 75)));
 
-        MetaItems.BOTTLE_PURPLE_DRINK = addItem(22, "bottle.purple.drink").addComponents(new FoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE), new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10), new RandomPotionEffect(AddictionPotion.instance, 50, 1, 50)));
+        MetaItems.BOTTLE_PURPLE_DRINK.addComponents(new FoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE), new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10), new RandomPotionEffect(AddictionPotion.instance, 500, 1, 50)));
+
+        BACON = addItem(22, "food.bacon").addComponents(new FoodStats(2, 0.8f, false, true, ItemStack.EMPTY,
+                new RandomPotionEffect(AddictionPotion.instance, 16000, 1, 75)));
 
         FRENCH_FRIES = addItem(37, "food.french_fries").addComponents(new FoodStats(gtfoFoodConfig.friesHunger, gtfoFoodConfig.friesSaturation, false, false, USED_PAPER_BAG.getStackForm(),
                 new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0),

@@ -43,6 +43,14 @@ public class GTFOMachineRecipes {
                 'L', PLATE_DENSE,
                 'O', CONVEYOR
         );
+        registerMachineRecipe(CUISINE_ASSEMBLER,
+                "AOC", "RHR", "AOC",
+                'C', CIRCUIT,
+                'A', CABLE_SINGLE,
+                'R', ROBOT_ARM,
+                'H', HULL,
+                'O', CONVEYOR
+        );
 
         ModHandler.addShapedRecipe("baking_oven", BAKING_OVEN.getStackForm(),
                 "dSS", "RRA", "fSS",
