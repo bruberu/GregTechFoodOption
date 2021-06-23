@@ -17,6 +17,7 @@ import static gregicadditions.machines.GATileEntities.create;
 public class GTFOTileEntities {
     public static MetaTileEntityBioReactor[] BIOREACTOR = new MetaTileEntityBioReactor[14];
     public static GATileEntities.MTE<?>[] SLICER = new GATileEntities.MTE[14];
+    public static GATileEntities.MTE<?>[] CUISINE_ASSEMBLER = new GATileEntities.MTE[14];
 
     public static MetaTileEntityBakingOven BAKING_OVEN;
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
@@ -43,6 +44,21 @@ public class GTFOTileEntities {
 
         BAKING_OVEN = GregTechAPI.registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
         ELECTRIC_BAKING_OVEN = GregTechAPI.registerMetaTileEntity(8517, new MetaTileEntityElectricBakingOven(location("electric_baking_oven")));
+        
+        CUISINE_ASSEMBLER[0] = create(8518, new SimpleMachineMetaTileEntity(location("cuisine_assembler.lv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 1));
+        CUISINE_ASSEMBLER[1] = create(8519, new SimpleMachineMetaTileEntity(location("cuisine_assembler.mv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 2));
+        CUISINE_ASSEMBLER[2] = create(8520, new SimpleMachineMetaTileEntity(location("cuisine_assembler.hv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 3));
+        CUISINE_ASSEMBLER[3] = create(8521, new SimpleMachineMetaTileEntity(location("cuisine_assembler.ev"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 4));
+        CUISINE_ASSEMBLER[4] = create(8522, new SimpleMachineMetaTileEntity(location("cuisine_assembler.iv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 5));
+        CUISINE_ASSEMBLER[5] = create(8523, new SimpleMachineMetaTileEntity(location("cuisine_assembler.luv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 6));
+        CUISINE_ASSEMBLER[6] = create(8524, new SimpleMachineMetaTileEntity(location("cuisine_assembler.zpm"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 7));
+        CUISINE_ASSEMBLER[7] = create(8525, new SimpleMachineMetaTileEntity(location("cuisine_assembler.uv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 8));
+        CUISINE_ASSEMBLER[8] = create(8526, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.uhv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 9));
+        CUISINE_ASSEMBLER[9] = create(8527, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.uev"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 10));
+        CUISINE_ASSEMBLER[10] = create(8528, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.uiv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 11));
+        CUISINE_ASSEMBLER[11] = create(8529, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.umv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 12));
+        CUISINE_ASSEMBLER[12] = create(8530, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.uxv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 13));
+
     }
 
     public static ResourceLocation location(String name) {

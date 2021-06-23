@@ -28,6 +28,12 @@ public class GTFORecipeMaps {
             .setSlotOverlay(true, false, true, GuiTextures.DUST_OVERLAY)
             .setProgressBar(GTFOGuiTextures.PROGRESS_BAR_SLICER, ProgressWidget.MoveType.HORIZONTAL);
 
+    public static final RecipeMap<SimpleRecipeBuilder> CUISINE_ASSEMBLER_RECIPES = new RecipeMap<>("cuisine_assembler",
+            0, 6, 0, 2, 0, 3, 0, 1, new SimpleRecipeBuilder())
+            .setSlotOverlay(false, false, true, GuiTextures.INT_CIRCUIT_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
+
+
     @ZenProperty
     public static final ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder> ELECTRIC_BAKING_OVEN_RECIPES = (ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder>) new ElectricBakingOvenRecipeMap<>("electric_baking_oven", new ElectricBakingOvenRecipeBuilder())
             .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY)

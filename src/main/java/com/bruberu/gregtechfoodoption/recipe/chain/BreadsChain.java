@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
+import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -145,5 +146,14 @@ public class BreadsChain {
                 'S', new ItemStack(Items.SUGAR),
                 'P', new ItemStack(Blocks.PUMPKIN),
                 'C', PIE_CRUST.getStackForm());
+
+
+        // Get ready for a *lot* of sandwiches!
+
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(60).duration(100)
+                .inputs(FLAT_DOUGH.getStackForm(), OLIVE_SLICE.getStackForm(5), MUSHROOM_SLICE.getStackForm(5), MOZZARELLA_SLICE.getStackForm(4))
+                .outputs(PIZZA_VEGGIE_RAW.getStackForm())
+                .buildAndRegister();
+
     }
 }

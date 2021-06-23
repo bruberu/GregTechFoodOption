@@ -133,8 +133,15 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem BURGER_CHEESE;
     public static MetaItem<?>.MetaValueItem BURGER_MEAT;
 
-
-
+    public static MetaItem<?>.MetaValueItem BEEF_SLICE;
+    public static MetaItem<?>.MetaValueItem CHEDDAR_CURD_MOLD;
+    public static MetaItem<?>.MetaValueItem AGED_CHEDDAR_MOLD;
+    public static MetaItem<?>.MetaValueItem MOZZARELLA_SLICE;
+    public static MetaItem<?>.MetaValueItem MOZZARELLA_BALL;
+    public static MetaItem<?>.MetaValueItem RICOTTA;
+    public static MetaItem<?>.MetaValueItem CHEDDAR_BLOCK;
+    public static MetaItem<?>.MetaValueItem CHEDDAR_SLICE;
+    public static MetaItem<?>.MetaValueItem FLAT_DOUGH;
 
 
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
@@ -148,7 +155,6 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem MORE_SMOGUS;
     public static MetaItem<?>.MetaValueItem FOUR_SMOGUS;
     public static MetaItem<?>.MetaValueItem HEART_SMOGUS;
-
 
     @Override
     public void registerSubItems()
@@ -226,6 +232,16 @@ public class GTFOMetaItem extends MaterialMetaItem {
         PRESLICED_BREAD = addItem(85, "component.breads");
         PRESLICED_BAGUETTE = addItem(86, "component.baguettes");
 
+        BEEF_SLICE = addItem(91, "component.beef_slice");
+        CHEDDAR_CURD_MOLD = addItem(92, "component.cheddar_curd_mold");
+        AGED_CHEDDAR_MOLD = addItem(93, "component.aged_cheddar_mold");
+        MOZZARELLA_SLICE = addItem(94, "component.mozzarella_slice");
+        RICOTTA = addItem(95, "component.ricotta_piece");
+        CHEDDAR_BLOCK = addItem(96, "component.cheddar_block");
+
+        FLAT_DOUGH = addItem(99, "component.flat_dough");
+
+
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new FoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0),
@@ -301,6 +317,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
         BURGER_CHEESE = addItem(89, "food.burger.cheese").addComponents(new FoodStats(4, 0.6f, false, false, ItemStack.EMPTY));
         BURGER_MEAT = addItem(90, "food.burger.meat").addComponents(new FoodStats(4, 0.7f, false, false, ItemStack.EMPTY));
 
+        CHEDDAR_SLICE = addItem(97, "food.cheddar_slice").addComponents(new FoodStats(2, 0.2f, false, false, ItemStack.EMPTY));
+        MOZZARELLA_BALL = addItem(98, "food.mozzarella_ball").addComponents(new FoodStats(3, 0.6f, false, false, ItemStack.EMPTY));
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)
         {

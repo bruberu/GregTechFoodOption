@@ -8,6 +8,7 @@ import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import gregicadditions.GAMaterials;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
 import net.minecraft.init.Blocks;
@@ -19,6 +20,8 @@ import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
 import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
+import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
+import static gregicadditions.recipes.GARecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -50,14 +53,14 @@ public class CoreChain {
 
         ModHandler.addShapedRecipe("slicer_flat", SLICER_BLADE_FLAT.getStackForm(),
                 "hPS", " M ", "fPs",
-                'P', new UnificationEntry(plate, StainlessSteel),
-                'S', new UnificationEntry(screw, StainlessSteel),
+                'P', new UnificationEntry(plate, Iron),
+                'S', new UnificationEntry(screw, Iron),
                 'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
 
         ModHandler.addShapedRecipe("slicer_stripes", SLICER_BLADE_STRIPES.getStackForm(),
                 "hPS", "PMP", "fPs",
-                'P', new UnificationEntry(plate, StainlessSteel),
-                'S', new UnificationEntry(screw, StainlessSteel),
+                'P', new UnificationEntry(plate, Iron),
+                'S', new UnificationEntry(screw, Iron),
                 'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
 
         FLUID_HEATER_RECIPES.recipeBuilder()
@@ -119,5 +122,7 @@ public class CoreChain {
 
         ModHandler.addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm());
         ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
+
+
     }
 }

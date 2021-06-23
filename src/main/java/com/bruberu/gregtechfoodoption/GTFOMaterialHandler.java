@@ -75,6 +75,15 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOFluidMaterial BeetrootSoup = new GTFOFluidMaterial("beetroot_soup", 0xc25132);
 
     public static final GTFOFluidMaterial ItalianBuffaloMilk = new GTFOFluidMaterial("italian_buffalo_milk", 0xfcfbf5);
+    public static final GTFOFluidMaterial CrudeRennetSolution = new GTFOFluidMaterial("crude_rennet_solution", 0xb0631a);
+    public static final GTFOFluidMaterial Whey = new GTFOFluidMaterial("whey", 0xf5ef9a);
+    public static final GTFOFluidMaterial ActivatedBuffaloMilk = new GTFOFluidMaterial("activated_buffalo_milk", 0xfff8cc);
+    public static final GTFOFluidMaterial WheySaltWaterMix = new GTFOFluidMaterial("whey_salt_water_mix", 0xecfc7e);
+    public static final GTFOFluidMaterial HeatedRicottaStarter = new GTFOFluidMaterial("heated_ricotta_starter", 0xdef72f);
+    public static final GTFOFluidMaterial AcidicMilkSolution = new GTFOFluidMaterial("acidic_milk_solution", 0xb2c71c);
+    public static final GTFOFluidMaterial CoagulatingRicottaSolution = new GTFOFluidMaterial("coagulating_ricotta_solution", 0xeff5c9);
+
+    public static final GTFOFluidMaterial TomatoSauce = new GTFOFluidMaterial("tomato_sauce", 0xfc2217);
 
 
     public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
@@ -155,6 +164,14 @@ public class GTFOMaterialHandler implements IMaterialHandler {
 
     public static final GTFOOredictItem.OreDictItem PotatoStarch = new GTFOOredictItem.OreDictItem(1101, "potato_starch", 0xdedcb1, MaterialIconSet.ROUGH, OrePrefix.dust);
 
+    public static final GTFOOredictItem.OreDictItem LargeMozzarellaCurd = new GTFOOredictItem.OreDictItem(1102, "large_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
+    public static final GTFOOredictItem.OreDictItem SmallMozzarellaCurd = new GTFOOredictItem.OreDictItem(1103, "small_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
+    public static final GTFOOredictItem.OreDictItem DriedMozzarellaCurd = new GTFOOredictItem.OreDictItem(1104, "dried_mozzarella_curd", 0xf5f4e4, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
+    public static final GTFOOredictItem.OreDictItem SolidifiedMozzarellaCurd = new GTFOOredictItem.OreDictItem(1105, "solidified_mozzarella_curd", 0xedebca, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
+    public static final GTFOOredictItem.OreDictItem CoagulatedMilkCurd = new GTFOOredictItem.OreDictItem(1106, "coagulated_milk_curd", 0xede3cc, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
+    public static final GTFOOredictItem.OreDictItem CutCurd = new GTFOOredictItem.OreDictItem(1107, "cut_curd", 0xede3cc, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
+    public static final GTFOOredictItem.OreDictItem CookedCurd = new GTFOOredictItem.OreDictItem(1108, "cooked_curd", 0xffe8b3, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
+    public static final GTFOOredictItem.OreDictItem SaltedCurd = new GTFOOredictItem.OreDictItem(1109, "salted_curd", 0xf7d68b, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
 
     @Override
     public void onMaterialsInit() {
