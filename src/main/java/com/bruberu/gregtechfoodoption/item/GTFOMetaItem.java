@@ -243,7 +243,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         FLAT_DOUGH = addItem(99, "component.flat_dough");
 
-        UNCOOKED_BACON = addItem(101, "component.bacon");
+        UNCOOKED_BACON = addItem(108, "component.bacon");
 
 
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
