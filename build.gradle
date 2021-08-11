@@ -10,7 +10,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.10.1"
+version = "1.12.2-0.10.2"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -82,7 +82,7 @@ repositories {
     }
     maven {
         name = "ModMaven"
-        url = "https://modmaven.k-4u.nl"
+        url = "https://modmaven.dev"
     }
     maven {
         name = "Ellpeck's Maven"
@@ -100,8 +100,8 @@ repositories {
 dependencies {
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
     deobfCompile "mezz.jei:jei_1.12.2:+"
-    deobfCompile "gregtechce:gregtech:1.12.2:1.15.1.735"
-    deobfCompile "gregicality:gregicality:1.12.2:0.22.5"
+    deobfCompile "gregtechce:gregtech:1.12.2:1.17.0.764"
+    deobfCompile "gregicality:gregicality:1.12.2:0.22.7"
     deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
     deobfCompile "codechicken:ChickenASM:1.12-1.0.2.9"
     deobfCompile "codechicken-lib-1-8:CodeChickenLib-1.12.2:3.2.3.358:universal"

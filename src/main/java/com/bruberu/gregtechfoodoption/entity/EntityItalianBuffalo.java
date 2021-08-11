@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption.entity;
 
 import com.bruberu.gregtechfoodoption.GTFOMaterialHandler;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,4 +60,10 @@ public class EntityItalianBuffalo extends EntityCow {
         }
         return super.processInteract(player, hand);
     }
+
+    @Override
+    public EntityItalianBuffalo createChild(EntityAgeable ageable) {
+        return new EntityItalianBuffalo(this.world);
+    }
+
 }

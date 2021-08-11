@@ -2,13 +2,9 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import com.bruberu.gregtechfoodoption.GTFOConfig;
 import com.bruberu.gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import com.bruberu.gregtechfoodoption.item.GTFOMetaItem;
-import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
-import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregicadditions.GAMaterials;
 import gregtech.api.items.ToolDictNames;
-import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
@@ -17,11 +13,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.TomatoSauce;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;

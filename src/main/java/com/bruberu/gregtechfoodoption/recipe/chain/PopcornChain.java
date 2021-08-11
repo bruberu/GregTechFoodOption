@@ -1,7 +1,13 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
+import gregicadditions.recipes.helper.HelperMethods;
+import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.ore.OrePrefix;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
@@ -152,6 +158,9 @@ public class PopcornChain {
                 .output(dust, SodiumHydroxide, 3)
                 .outputs(IiAminopyridine.getItemStack(13))
                 .buildAndRegister();
+
+        HelperMethods.removeRecipesByInputs(RecipeMaps.CHEMICAL_RECIPES, Formaldehyde.getFluid(2000), Hydrogen.getFluid(4000), Acetylene.getFluid(1000));
+
 
         CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(840).duration(100)
                 .fluidInputs(IIvButanediol.getFluid(1000))
