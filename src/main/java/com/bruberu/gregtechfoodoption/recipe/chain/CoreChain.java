@@ -69,6 +69,11 @@ public class CoreChain {
                 'P', new UnificationEntry(plate, Iron),
                 'S', new UnificationEntry(screw, Iron),
                 'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
+        ModHandler.addShapedRecipe("slicer_octogonal", SLICER_BLADE_OCTOGONAL.getStackForm(),
+                "PhP", "fMS", "PsP",
+                'P', new UnificationEntry(plate, Iron),
+                'S', new UnificationEntry(screw, Iron),
+                'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
 
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(SeedOil.getFluid(16))
@@ -174,6 +179,17 @@ public class CoreChain {
         FLUID_EXTRACTION_RECIPES.recipeBuilder().EUt(27).duration(60)
                 .inputs(OLIVE.getStackForm())
                 .fluidOutputs(OliveOil.getFluid(100))
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().duration(60).EUt(32)
+                .fluidInputs(Air.getFluid(900))
+                .fluidInputs(Steam.getFluid(10))
+                .fluidOutputs(MoistAir.getFluid(1000))
+                .buildAndRegister();
+
+        VACUUM_RECIPES.recipeBuilder().duration(110).EUt(32)
+                .fluidInputs(MoistAir.getFluid(4000))
+                .fluidOutputs(ColdMoistAir.getFluid(4000))
                 .buildAndRegister();
     }
 }
