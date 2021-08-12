@@ -164,7 +164,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem FULLY_CURED_GORGONZOLA_WHEEL;
     public static MetaItem<?>.MetaValueItem GORGONZOLA_TRIANGULAR_SLICE;
     public static MetaItem<?>.MetaValueItem PENICILINIUM_ROQUEFORTI_CULTURE;
-    public static MetaItem<?>.MetaValueItem SLICER_BLADE_OCTOGONAL;
+    public static MetaItem<?>.MetaValueItem SLICER_BLADE_OCTAGONAL;
 
 
     @Override
@@ -260,7 +260,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
         PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
         FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
         PENICILINIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicilinium");
-        SLICER_BLADE_OCTOGONAL = addItem(116, "config.slicer_blade.octogonal");
+        SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),

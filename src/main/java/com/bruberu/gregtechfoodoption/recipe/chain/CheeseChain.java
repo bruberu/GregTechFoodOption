@@ -177,7 +177,7 @@ public class CheeseChain {
                 .buildAndRegister();
         SLICER_RECIPES.recipeBuilder().duration(160).EUt(28)
                 .inputs(FULLY_CURED_GORGONZOLA_WHEEL.getStackForm())
-                .notConsumable(SLICER_BLADE_OCTOGONAL)
+                .notConsumable(SLICER_BLADE_OCTAGONAL)
                 .outputs(GORGONZOLA_TRIANGULAR_SLICE.getStackForm(16))
                 .buildAndRegister();
     }
