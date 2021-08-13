@@ -8,10 +8,16 @@ import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.RICOTTA;
 import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
+import static gregicadditions.GAMaterials.DepletedGrowthMedium;
+import static gregicadditions.GAMaterials.Yeast;
+import static gregicadditions.item.GAMetaItems.CLEAN_CULTURE;
+import static gregicadditions.item.GAMetaItems.CONTAMINATED_PETRI_DISH;
+import static gregicadditions.recipes.GARecipeMaps.BIO_REACTOR_RECIPES;
 import static gregicadditions.recipes.GARecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
+import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.items.MetaItems.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class CheeseChain {
     public static void init() {
@@ -115,8 +121,64 @@ public class CheeseChain {
                 .outputs(RICOTTA.getStackForm(2))
                 .fluidOutputs(Whey.getFluid(856))
                 .buildAndRegister();
-
-
-
+        BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(360)
+                .inputs(CLEAN_CULTURE.getStackForm())
+                .input(dust, Calcite)
+                .fluidInputs(FungalGrowthMedium.getFluid(1000))
+                .outputs(PENICILINIUM_ROQUEFORTI_CULTURE.getStackForm())
+                .buildAndRegister();
+        BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(200)
+                .inputs(PENICILINIUM_ROQUEFORTI_CULTURE.getStackForm())
+                .fluidInputs(FungalGrowthMedium.getFluid(1000))
+                .outputs(PeniciliniumRoqueforti.getItemStack())
+                .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
+                .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
+                .buildAndRegister();
+        BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(50)
+                .inputs(PeniciliniumRoqueforti.getItemStack())
+                .fluidInputs(FungalGrowthMedium.getFluid(250))
+                .outputs(PeniciliniumRoqueforti.getItemStack(2))
+                .fluidOutputs(DepletedGrowthMedium.getFluid(250))
+                .buildAndRegister();
+        MIXER_RECIPES.recipeBuilder().EUt(110).duration(120)
+                .inputs(Yeast.getItemStack())
+                .inputs(PeniciliniumRoqueforti.getItemStack())
+                .fluidInputs(CrudeRennetSolution.getFluid(250))
+                .fluidOutputs(FungalRennetSolution.getFluid(250))
+                .buildAndRegister();
+        MIXER_RECIPES.recipeBuilder().EUt(16).duration(120)
+                .fluidInputs(ActivatedBuffaloMilk.getFluid(3000), FungalRennetSolution.getFluid(3))
+                .outputs(GorgonzolaCurd.getItemStack(12))
+                .buildAndRegister();
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(75)
+                .inputs(GorgonzolaCurd.getItemStack(20))
+                .notConsumable(SHAPE_MOLD_CYLINDER)
+                .outputs(GORGONZOLA_WHEEL.getStackForm())
+                .buildAndRegister();
+        MIXER_RECIPES.recipeBuilder().EUt(18).duration(65)
+                .inputs(GORGONZOLA_WHEEL.getStackForm())
+                .input(dust, Salt)
+                .outputs(SALTED_GORGONZOLA_WHEEL.getStackForm())
+                .buildAndRegister();
+        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().duration(460).EUt(24)
+                .inputs(SALTED_GORGONZOLA_WHEEL.getStackForm())
+                .outputs(SLIGHTLY_AGED_GORGONZOLA_WHEEL.getStackForm())
+                .fluidOutputs(Whey.getFluid(35))
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().duration(90).EUt(32)
+                .inputs(SLIGHTLY_AGED_GORGONZOLA_WHEEL.getStackForm())
+                .notConsumable(stick, StainlessSteel)
+                .outputs(PUNCTURED_GORGONZOLA_WHEEL.getStackForm())
+                .buildAndRegister();
+        AUTOCLAVE_RECIPES.recipeBuilder().duration(3200).EUt(24)
+                .inputs(PUNCTURED_GORGONZOLA_WHEEL.getStackForm())
+                .outputs(FULLY_CURED_GORGONZOLA_WHEEL.getStackForm())
+                .fluidInputs(ColdMoistAir.getFluid(500))
+                .buildAndRegister();
+        SLICER_RECIPES.recipeBuilder().duration(160).EUt(28)
+                .inputs(FULLY_CURED_GORGONZOLA_WHEEL.getStackForm())
+                .notConsumable(SLICER_BLADE_OCTAGONAL)
+                .outputs(GORGONZOLA_TRIANGULAR_SLICE.getStackForm(16))
+                .buildAndRegister();
     }
 }

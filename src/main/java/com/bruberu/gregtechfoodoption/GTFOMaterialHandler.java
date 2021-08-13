@@ -11,6 +11,9 @@ import gregtech.api.unification.ore.OrePrefix;
 
 import static com.bruberu.gregtechfoodoption.utils.RecipeUtils.average;
 import static gregicadditions.GAMaterials.GENERATE_METAL_CASING;
+import static gregicadditions.GAMaterials.Yeast;
+import static gregtech.api.unification.material.Materials.Air;
+import static gregtech.api.unification.material.Materials.Steam;
 import static gregtech.api.unification.material.type.SolidMaterial.MatFlags.GENERATE_FRAME;
 
 @IMaterialHandler.RegisterMaterialHandler
@@ -81,6 +84,10 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOFluidMaterial HeatedRicottaStarter = new GTFOFluidMaterial("heated_ricotta_starter", 0xdef72f);
     public static final GTFOFluidMaterial AcidicMilkSolution = new GTFOFluidMaterial("acidic_milk_solution", 0xb2c71c);
     public static final GTFOFluidMaterial CoagulatingRicottaSolution = new GTFOFluidMaterial("coagulating_ricotta_solution", 0xeff5c9);
+
+    public static final GTFOFluidMaterial FungalRennetSolution = new GTFOFluidMaterial("fungal_rennet_solution", CrudeRennetSolution.rgb/2 + Yeast.rgb/4 + 0x2a7b5a/4);
+    public static final GTFOFluidMaterial MoistAir = new GTFOFluidMaterial("moist_air", 0x82c8ff);
+    public static final GTFOFluidMaterial ColdMoistAir = new GTFOFluidMaterial("cold_moist_air", 0x72a2ff);
 
     public static final GTFOFluidMaterial TomatoSauce = new GTFOFluidMaterial("tomato_sauce", 0xfc2217);
     public static final GTFOFluidMaterial OliveOil = new GTFOFluidMaterial("olive_oil", 0xd1db5a);
@@ -171,6 +178,8 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem CutCurd = new GTFOOredictItem.OreDictItem(1107, "cut_curd", 0xede3cc, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
     public static final GTFOOredictItem.OreDictItem CookedCurd = new GTFOOredictItem.OreDictItem(1108, "cooked_curd", 0xffe8b3, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
     public static final GTFOOredictItem.OreDictItem SaltedCurd = new GTFOOredictItem.OreDictItem(1109, "salted_curd", 0xf7d68b, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
+    public static final GTFOOredictItem.OreDictItem GorgonzolaCurd = new GTFOOredictItem.OreDictItem(1110 ,"gorgonzola_curd", 0xe5e5f5, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
+    public static final GTFOOredictItem.OreDictItem PeniciliniumRoqueforti = new GTFOOredictItem.OreDictItem(1111, "penicilinium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
 
     @Override
     public void onMaterialsInit() {

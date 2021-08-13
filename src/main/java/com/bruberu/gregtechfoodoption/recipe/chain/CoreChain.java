@@ -2,23 +2,17 @@ package com.bruberu.gregtechfoodoption.recipe.chain;
 
 //Used for cross-chain materials.
 
-import com.bruberu.gregtechfoodoption.block.GTFOBlockCasing;
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
-import com.bruberu.gregtechfoodoption.item.GTFOMetaItem;
 import com.bruberu.gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import com.bruberu.gregtechfoodoption.utils.RecipeUtils;
 import gregicadditions.GAMaterials;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
-import javafx.util.Pair;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,9 +20,7 @@ import java.util.Map;
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
-import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
-import static gregicadditions.recipes.GARecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -66,6 +58,11 @@ public class CoreChain {
 
         ModHandler.addShapedRecipe("slicer_stripes", SLICER_BLADE_STRIPES.getStackForm(),
                 "hPS", "PMP", "fPs",
+                'P', new UnificationEntry(plate, Iron),
+                'S', new UnificationEntry(screw, Iron),
+                'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
+        ModHandler.addShapedRecipe("slicer_octogonal", SLICER_BLADE_OCTAGONAL.getStackForm(),
+                "PhP", "fMS", "PsP",
                 'P', new UnificationEntry(plate, Iron),
                 'S', new UnificationEntry(screw, Iron),
                 'M', MetaItems.SHAPE_EXTRUDER_BLOCK);
@@ -174,6 +171,17 @@ public class CoreChain {
         FLUID_EXTRACTION_RECIPES.recipeBuilder().EUt(27).duration(60)
                 .inputs(OLIVE.getStackForm())
                 .fluidOutputs(OliveOil.getFluid(100))
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().duration(60).EUt(32)
+                .fluidInputs(Air.getFluid(900))
+                .fluidInputs(Steam.getFluid(10))
+                .fluidOutputs(MoistAir.getFluid(1000))
+                .buildAndRegister();
+
+        VACUUM_RECIPES.recipeBuilder().duration(110).EUt(32)
+                .fluidInputs(MoistAir.getFluid(4000))
+                .fluidOutputs(ColdMoistAir.getFluid(4000))
                 .buildAndRegister();
     }
 }

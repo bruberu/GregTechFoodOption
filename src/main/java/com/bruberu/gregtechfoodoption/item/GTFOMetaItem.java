@@ -157,6 +157,16 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem FOUR_SMOGUS;
     public static MetaItem<?>.MetaValueItem HEART_SMOGUS;
 
+    public static MetaItem<?>.MetaValueItem GORGONZOLA_WHEEL;
+    public static MetaItem<?>.MetaValueItem SALTED_GORGONZOLA_WHEEL;
+    public static MetaItem<?>.MetaValueItem SLIGHTLY_AGED_GORGONZOLA_WHEEL;
+    public static MetaItem<?>.MetaValueItem PUNCTURED_GORGONZOLA_WHEEL;
+    public static MetaItem<?>.MetaValueItem FULLY_CURED_GORGONZOLA_WHEEL;
+    public static MetaItem<?>.MetaValueItem GORGONZOLA_TRIANGULAR_SLICE;
+    public static MetaItem<?>.MetaValueItem PENICILINIUM_ROQUEFORTI_CULTURE;
+    public static MetaItem<?>.MetaValueItem SLICER_BLADE_OCTAGONAL;
+
+
     @Override
     public void registerSubItems()
     {
@@ -244,6 +254,13 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         UNCOOKED_BACON = addItem(108, "component.bacon");
 
+        GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
+        SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
+        SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
+        PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
+        FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
+        PENICILINIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicilinium");
+        SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
         if(GTFOConfig.gtfoChainsConfig.popcornChain)
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -325,6 +342,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         CHEDDAR_SLICE = addItem(97, "food.cheddar_slice").addComponents(new GTFOFoodStats(2, 0.2f, false, false, ItemStack.EMPTY));
         MOZZARELLA_BALL = addItem(98, "food.mozzarella_ball").addComponents(new GTFOFoodStats(3, 0.6f, false, false, ItemStack.EMPTY));
+        GORGONZOLA_TRIANGULAR_SLICE = addItem(114,"food.gorgonzola_slice").addComponents(new GTFOFoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
 
         if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)
         {
