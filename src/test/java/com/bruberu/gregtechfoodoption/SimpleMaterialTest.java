@@ -42,7 +42,7 @@ public class SimpleMaterialTest {
 
         // Run Early handlers
         Materials.register();
-        //GAEnums.preInit();
+        GAEnums.onConstruction();
 
         // Bootstrap Gregicality Materials
         GAMaterials gaMaterials = new GAMaterials();
@@ -75,10 +75,6 @@ public class SimpleMaterialTest {
         assertNotNull(
                 "OreDictUnifier failed to gather a GTCE Material ItemStack",
                 Materials.Carbon
-        );
-        assertNotNull(
-                "OreDictUnifier failed to gather a Gregicality Material ItemStack",
-                GAMaterials.Tumbaga
         );
         assertNotNull(
                 "OreDictUnifier failed to gather a GTFO Material ItemStack",

@@ -99,9 +99,9 @@ repositories {
 dependencies {
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
     deobfCompile "mezz.jei:jei_1.12.2:+"
-    deobfCompile "gregtechce:gregtech:1.12.2:1.17.0.764"
-    deobfCompile "gregicality:gregicality:1.12.2:0.23.1"
+    deobfCompile "gregtechce:gregtech:1.12.2:1.17.1.770"
     deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
+    provided files("libs/gregicality-1.12.2-0.23.1.jar")
     deobfCompile "codechicken:ChickenASM:1.12-1.0.2.9"
     deobfCompile "codechicken-lib-1-8:CodeChickenLib-1.12.2:3.2.3.358:universal"
     deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.23-16"
