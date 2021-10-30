@@ -21,15 +21,6 @@ import static gregtech.common.items.MetaItems.*;
 
 public class PopcornChain {
     public static void init() {
-        
-        /*
-        MIXER_RECIPES.recipeBuilder().EUt(600).duration(50)
-                .input(dust, MetastableOganesson, 4)
-                .fluidInputs(Water.getFluid(1500))
-                .outputs(TEST.getItemStack(2))
-                .fluidOutputs(TEST_OXIDE.getFluid(2500))
-                .buildAndRegister();
-         */
         ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(60)
                 .inputs(PAPER_BAG.getStackForm())
                 .inputs(FLAVORED_POPCORN_FLAKE.getStackForm(32))
@@ -175,6 +166,7 @@ public class PopcornChain {
                 .fluidOutputs(IIvButanediol.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(3600).duration(35)
+                .notConsumable(new IntCircuitIngredient(0))
                 .fluidInputs(Formaldehyde.getFluid(2000))
                 .fluidInputs(Acetylene.getFluid(1000))
                 .fluidOutputs(IIvButynediol.getFluid(1000))

@@ -42,7 +42,7 @@ public class SimpleMaterialTest {
 
         // Run Early handlers
         Materials.register();
-        GAEnums.preInit();
+        //GAEnums.preInit();
 
         // Bootstrap Gregicality Materials
         GAMaterials gaMaterials = new GAMaterials();
