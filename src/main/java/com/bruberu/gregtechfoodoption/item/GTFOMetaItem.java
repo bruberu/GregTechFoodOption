@@ -301,7 +301,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0),
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50),
                 new RandomPotionEffect(AddictionPotion.instance, 3200, 2, 50)));
-        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK)));
+        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK)))
+                .setMaxStackSize(1);
 
         BAGUETTE = addItem(51, "food.baguette").addComponents(new GTFOFoodStats(gtfoFoodConfig.baguetteHunger, gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 50)));
