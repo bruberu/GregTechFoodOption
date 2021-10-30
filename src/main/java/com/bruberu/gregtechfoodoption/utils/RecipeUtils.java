@@ -2,6 +2,7 @@ package com.bruberu.gregtechfoodoption.utils;
 
 import gregicadditions.GAConfig;
 import gregicadditions.recipes.GARecipeMaps;
+import gregicadditions.utils.GALog;
 import gregtech.api.GTValues;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.RecipeMap;
@@ -13,6 +14,10 @@ import gregtech.api.unification.ore.OrePrefix;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static gregicadditions.GAMaterials.DepletedGrowthMedium;
 import static gregicadditions.GAMaterials.OrganicFertilizer;
@@ -110,4 +115,24 @@ public class RecipeUtils {
     public static RecipeMap<SimpleRecipeBuilder> clusterMillBuilderProxy() {
         return GAConfig.GT6.BendingFoilsAutomatic ? GARecipeMaps.CLUSTER_MILL_RECIPES : RecipeMaps.LATHE_RECIPES;
     }
+
+    public static boolean removeAllSmelting(ItemStack input) {
+        if (input.isEmpty()) {
+            GTFOLog.logger.error("Cannot remove furnace recipe with empty input.");
+            GTFOLog.logger.error("Stacktrace:", new IllegalArgumentException());
+            RecipeMap.setFoundInvalidRecipe(true);
+            return false;
+        }
+        List<ItemStack> removingItems = new ArrayList<>();
+        for (ItemStack stack : FurnaceRecipes.instance().getSmeltingList().keySet()) {
+            if (ItemStack.areItemStacksEqual(input, stack)) {
+                removingItems.add(stack); // No CMEs today!
+            }
+        }
+        for (ItemStack stack: removingItems) {
+            FurnaceRecipes.instance().getSmeltingList().remove(stack);
+        }
+        return removingItems.isEmpty();
+    }
+
 }

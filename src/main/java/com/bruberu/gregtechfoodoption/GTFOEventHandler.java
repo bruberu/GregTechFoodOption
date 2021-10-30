@@ -39,12 +39,12 @@ public class GTFOEventHandler {
                     addictionAmplifiers.put(entityLivingBase, amplifier);
             }
             if (addictedSet.contains(entityLivingBase) && !event.getEntityLiving().isPotionActive(AddictionPotion.instance) && !entityLivingBase.world.isRemote) {
-                entityLivingBase.addPotionEffect(new PotionEffect(WithdrawalPotion.instance, 600, addictionAmplifiers.get(entityLivingBase)));
+                entityLivingBase.addPotionEffect(new PotionEffect(WithdrawalPotion.instance, 200, addictionAmplifiers.get(entityLivingBase)));
                 addictedSet.remove(entityLivingBase);
                 addictionAmplifiers.remove(entityLivingBase);
             }
             if (WithdrawalPotion.instance != null && entityLivingBase.isPotionActive(WithdrawalPotion.instance)) {
-                entityLivingBase.attackEntityFrom(new DamageSource("withdrawal"), ((float) (entityLivingBase.getActivePotionEffect(WithdrawalPotion.instance).getAmplifier() + 1) / 2));
+                entityLivingBase.attackEntityFrom(new DamageSource("withdrawal"), ((float) (entityLivingBase.getActivePotionEffect(WithdrawalPotion.instance).getAmplifier() + 1) / 5));
             }
         }
         if ((event.getEntityLiving() instanceof EntityPlayer)) {

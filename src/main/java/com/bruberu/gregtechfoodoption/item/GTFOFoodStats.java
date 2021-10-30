@@ -71,7 +71,7 @@ public class GTFOFoodStats implements IFoodBehavior {
             }
 
             if (this.stackSupplier != null) {
-                ItemStack containerItem = stackSupplier.get();
+                ItemStack containerItem = stackSupplier.get().copy();
                 if (player == null || !player.capabilities.isCreativeMode) {
                     if (itemStack.isEmpty()) {
                         return containerItem;

@@ -301,7 +301,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0),
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50),
                 new RandomPotionEffect(AddictionPotion.instance, 3200, 2, 50)));
-        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(2, (float) 0.5, false, false, new ItemStack(Items.STICK)));
+        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK)));
 
         BAGUETTE = addItem(51, "food.baguette").addComponents(new GTFOFoodStats(gtfoFoodConfig.baguetteHunger, gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 50)));
@@ -311,7 +311,7 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(MobEffects.NIGHT_VISION, 3600, 2, 40),
                 new RandomPotionEffect(MobEffects.INSTANT_DAMAGE, 1, 1, 0)));
         CAKE_BOTTOM = addItem(56, "food.cake_bottom").addComponents(new GTFOFoodStats(2, 0.5f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.POISON, 200, 1, 0)));
+                new RandomPotionEffect(MobEffects.POISON, 200, 1, 80)));
         BAKED_CAKE_BOTTOM = addItem(57, "food.cake_bottom_baked").addComponents(new GTFOFoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
 
         PIZZA_CHEESE = addItem(62, "food.pizza.cheese").addComponents(new GTFOFoodStats(5, 0.8f, false, false, ItemStack.EMPTY,

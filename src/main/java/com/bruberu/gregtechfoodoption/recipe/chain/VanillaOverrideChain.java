@@ -29,7 +29,7 @@ import static gregtech.api.unification.material.Materials.*;
 
 public class VanillaOverrideChain {
     public static void init() {
-        HelperMethods.removeFurnaceRecipe(RecipeUtils.wildcardize(new ItemStack(Items.POTATO)));
+        RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.POTATO)));
         GTFOAppleCoreCompat.addToSparedItems(Items.BAKED_POTATO, 2, (float) 0.5);
 
         HashMap<Integer, Integer> potatoTemps = new HashMap<>();
@@ -46,43 +46,43 @@ public class VanillaOverrideChain {
                 .buildAndRegister();
 
         if(GTFOConfig.gtfoVanillaOverridesConfig.useBakingOvenForMeats) {
-            HelperMethods.removeFurnaceRecipe(RecipeUtils.wildcardize(new ItemStack(Items.BEEF)));
+            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.BEEF)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_BEEF, 7, (float) 0.6);
             BakingOvenRecipeBuilder.start().fuelAmount(3200).duration(2000).temperature(500)
                     .input(Items.BEEF)
                     .output(Items.COOKED_BEEF)
                     .buildAndRegister();
 
-            HelperMethods.removeFurnaceRecipe(RecipeUtils.wildcardize(new ItemStack(Items.PORKCHOP)));
+            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.PORKCHOP)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_PORKCHOP, 7, (float) 0.6);
             BakingOvenRecipeBuilder.start().fuelAmount(2600).duration(1800).temperature(490)
                     .input(Items.PORKCHOP)
                     .output(Items.COOKED_PORKCHOP)
                     .buildAndRegister();
 
-            HelperMethods.removeFurnaceRecipe(RecipeUtils.wildcardize(new ItemStack(Items.MUTTON)));
+            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.MUTTON)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_MUTTON, 6, (float) 0.9);
             BakingOvenRecipeBuilder.start().fuelAmount(3200).duration(1600).temperature(500)
                     .input(Items.MUTTON)
                     .output(Items.COOKED_MUTTON)
                     .buildAndRegister();
 
-            HelperMethods.removeFurnaceRecipe(RecipeUtils.wildcardize(new ItemStack(Items.CHICKEN)));
+            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.CHICKEN)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_CHICKEN, 8, (float) 0.75);
             BakingOvenRecipeBuilder.start().fuelAmount(4800).duration(3000).temperature(520)
                     .input(Items.CHICKEN)
                     .output(Items.COOKED_CHICKEN)
                     .buildAndRegister();
 
-            HelperMethods.removeFurnaceRecipe(RecipeUtils.wildcardize(new ItemStack(Items.RABBIT)));
+            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.RABBIT)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_RABBIT, 4, (float) 0.75);
             BakingOvenRecipeBuilder.start().fuelAmount(4800).duration(3000).temperature(520)
                     .input(Items.RABBIT)
                     .output(Items.COOKED_RABBIT)
                     .buildAndRegister();
 
-            HelperMethods.removeFurnaceRecipe(new ItemStack(Items.FISH,1, 0));
-            HelperMethods.removeFurnaceRecipe(new ItemStack(Items.FISH,1, 1));
+            RecipeUtils.removeAllSmelting(new ItemStack(Items.FISH,1, 0));
+            RecipeUtils.removeAllSmelting(new ItemStack(Items.FISH,1, 1));
 
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_FISH, 5, (float) 0.8);
             BakingOvenRecipeBuilder.start().fuelAmount(1600).duration(800).temperature(485)

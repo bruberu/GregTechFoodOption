@@ -35,6 +35,10 @@ public class BreadsChain {
         ModHandler.addShapedRecipe("wooden_form_baguette", WOODEN_FORM_BAGUETTE.getStackForm(),
                 "  k", " M ", "   ",
                 'M', MetaItems.WOODEN_FORM_EMPTY.getStackForm());
+        ModHandler.addShapedRecipe("wooden_form_bun", WOODEN_FORM_BUN.getStackForm(),
+                "   ", "kM ", "   ",
+                'M', MetaItems.WOODEN_FORM_EMPTY.getStackForm());
+
 
         ModHandler.addShapedRecipe("dough_2", DOUGH.getStackForm(2),
                 "FFF", "FBS", "   ",
@@ -65,7 +69,7 @@ public class BreadsChain {
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("bread_dough", UNCOOKED_BREAD.getStackForm(),
-                "DDD", " M ",
+                "D D", " M ",
                 'D', DOUGH,
                 'M', WOODEN_FORM_BREAD);
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(100)
@@ -75,13 +79,28 @@ public class BreadsChain {
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("baguette_dough", UNCOOKED_BAGUETTE.getStackForm(),
-                "D D", " M ",
+                "DDD", " M ",
                 'D', DOUGH,
                 'M', WOODEN_FORM_BAGUETTE);
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(100)
                 .inputs(DOUGH.getStackForm(2))
                 .notConsumable(WOODEN_FORM_BAGUETTE.getStackForm())
                 .outputs(UNCOOKED_BAGUETTE.getStackForm())
+                .buildAndRegister();
+
+        ModHandler.addShapedRecipe("bun_dough", UNCOOKED_BUN.getStackForm(),
+                " D ", " M ",
+                'D', DOUGH,
+                'M', WOODEN_FORM_BUN);
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(100)
+                .inputs(DOUGH.getStackForm(2))
+                .notConsumable(WOODEN_FORM_BUN.getStackForm())
+                .outputs(UNCOOKED_BUN.getStackForm())
+                .buildAndRegister();
+
+        BakingOvenRecipeBuilder.start().fuelAmount(400).duration(150).temperature(490)
+                .input(UNCOOKED_BUN.getStackForm())
+                .output(BUN.getStackForm())
                 .buildAndRegister();
 
         BakingOvenRecipeBuilder.start().fuelAmount(400).duration(150).temperature(490)
