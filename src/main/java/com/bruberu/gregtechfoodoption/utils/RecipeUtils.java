@@ -125,7 +125,7 @@ public class RecipeUtils {
         }
         List<ItemStack> removingItems = new ArrayList<>();
         for (ItemStack stack : FurnaceRecipes.instance().getSmeltingList().keySet()) {
-            if (ItemStack.areItemStacksEqual(input, stack)) {
+            if (ItemStack.areItemsEqualIgnoreDurability(input, stack)) {
                 removingItems.add(stack); // No CMEs today!
             }
         }
@@ -134,5 +134,6 @@ public class RecipeUtils {
         }
         return removingItems.isEmpty();
     }
+
 
 }

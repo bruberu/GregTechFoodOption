@@ -125,10 +125,10 @@ public class CheeseChain {
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .input(dust, Calcite)
                 .fluidInputs(FungalGrowthMedium.getFluid(1000))
-                .outputs(PENICILINIUM_ROQUEFORTI_CULTURE.getStackForm())
+                .outputs(PENICILLIUM_ROQUEFORTI_CULTURE.getStackForm())
                 .buildAndRegister();
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(200)
-                .inputs(PENICILINIUM_ROQUEFORTI_CULTURE.getStackForm())
+                .inputs(PENICILLIUM_ROQUEFORTI_CULTURE.getStackForm())
                 .fluidInputs(FungalGrowthMedium.getFluid(1000))
                 .outputs(PeniciliniumRoqueforti.getItemStack())
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
