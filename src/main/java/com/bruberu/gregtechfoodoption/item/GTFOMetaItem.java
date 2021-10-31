@@ -23,8 +23,7 @@ import static net.minecraft.potion.Potion.getPotionById;
 
 
 public class GTFOMetaItem extends MaterialMetaItem {
-    public GTFOMetaItem()
-    {
+    public GTFOMetaItem() {
         super();
     }
 
@@ -147,7 +146,6 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
 
-
     public static MetaItem<?>.MetaValueItem EIGHT_SMORE;
     public static MetaItem<?>.MetaValueItem SIXTEEN_SMORE;
     public static MetaItem<?>.MetaValueItem THIRTY_TWO_SMORE;
@@ -166,10 +164,15 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem PENICILLIUM_ROQUEFORTI_CULTURE;
     public static MetaItem<?>.MetaValueItem SLICER_BLADE_OCTAGONAL;
 
+    public static MetaItem<?>.MetaValueItem ROTTEN_MEAT;
+    public static MetaItem<?>.MetaValueItem ROTTEN_FISH;
+    public static MetaItem<?>.MetaValueItem CHUM;
+    public static MetaItem<?>.MetaValueItem CHUM_ON_A_STICK;
+    public static MetaItem<?>.MetaValueItem BURGER_CHUM;
+
 
     @Override
-    public void registerSubItems()
-    {
+    public void registerSubItems() {
         IItemContainerItemProvider selfContainerItemProvider = itemStack -> itemStack;
 
 
@@ -259,17 +262,17 @@ public class GTFOMetaItem extends MaterialMetaItem {
         SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
         PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
         FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
-        PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicillium");
+        PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "penicillium.culture");
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
-        if(GTFOConfig.gtfoChainsConfig.popcornChain)
-        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
-                new RandomPotionEffect(getPotionById(10), 300, 1, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 2000, 3, 0)));
-        if(GTFOConfig.gtfoChainsConfig.mineralWaterChain)
-        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(gtfoFoodConfig.mineralWaterHunger, gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
-                new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 4000, 20, 0)));
+        if (GTFOConfig.gtfoChainsConfig.popcornChain)
+            POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
+                    new RandomPotionEffect(getPotionById(10), 300, 1, 0),
+                    new RandomPotionEffect(AddictionPotion.instance, 2000, 3, 0)));
+        if (GTFOConfig.gtfoChainsConfig.mineralWaterChain)
+            MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(gtfoFoodConfig.mineralWaterHunger, gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
+                    new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0),
+                    new RandomPotionEffect(AddictionPotion.instance, 4000, 20, 0)));
         APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(gtfoFoodConfig.hardCandyHunger, gtfoFoodConfig.hardCandySaturation, true, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50),
                 new RandomPotionEffect(AddictionPotion.instance, 9000, 2, 65)));
@@ -343,10 +346,21 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         CHEDDAR_SLICE = addItem(97, "food.cheddar_slice").addComponents(new GTFOFoodStats(2, 0.2f, false, false, ItemStack.EMPTY));
         MOZZARELLA_BALL = addItem(98, "food.mozzarella_ball").addComponents(new GTFOFoodStats(3, 0.6f, false, false, ItemStack.EMPTY));
-        GORGONZOLA_TRIANGULAR_SLICE = addItem(114,"food.gorgonzola_slice").addComponents(new GTFOFoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
+        GORGONZOLA_TRIANGULAR_SLICE = addItem(114, "food.gorgonzola_slice").addComponents(new GTFOFoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
 
-        if(GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus)
-        {
+        ROTTEN_FISH = addItem(117, "food.fish_rotten").addComponents(new GTFOFoodStats(1, 0f, false, true, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.POISON, 500, 1, 0)));
+        ROTTEN_MEAT = addItem(118, "food.meat_rotten").addComponents(new GTFOFoodStats(1, 0f, false, true, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.POISON, 500, 1, 0)));
+        CHUM = addItem(119, "food.chum").addComponents(new GTFOFoodStats(3, 0f, false, true, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
+        CHUM_ON_A_STICK = addItem(120, "food.chum_on_a_stick").addComponents(new GTFOFoodStats(3, 0f, false, true, new ItemStack(Items.STICK),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
+        BURGER_CHUM = addItem(121, "food.burger.chum").addComponents(new GTFOFoodStats(4, 1f, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
+
+
+        if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
             double saturation = 8.6;
             int potionDuration = 1200;
@@ -357,8 +371,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
             for (int i = 0; i < smores.length; i++) {
                 heal = (heal * 2) + 4;
                 saturation = (saturation * 2) + 1;
-                potionDuration = (int)(((float)potionDuration) * 1.25);
-                int potionStrength = (int)((int)(Math.pow(2,(((double)i)+8)))/Math.pow((((double)i)+8), 2));
+                potionDuration = (int) (((float) potionDuration) * 1.25);
+                int potionStrength = (int) ((int) (Math.pow(2, (((double) i) + 8))) / Math.pow((((double) i) + 8), 2));
 
                 smores[i] = addItem(100 + i, smoreStrings[i]).addComponents(new GTFOFoodStats(heal, (float) saturation, false, true, ItemStack.EMPTY,
                         new RandomPotionEffect(getPotionById(1), potionDuration, potionStrength, 2 * i),

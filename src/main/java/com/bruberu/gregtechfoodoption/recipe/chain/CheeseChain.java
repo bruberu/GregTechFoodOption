@@ -130,19 +130,19 @@ public class CheeseChain {
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(200)
                 .inputs(PENICILLIUM_ROQUEFORTI_CULTURE.getStackForm())
                 .fluidInputs(FungalGrowthMedium.getFluid(1000))
-                .outputs(PeniciliniumRoqueforti.getItemStack())
+                .outputs(PenicilliumRoqueforti.getItemStack())
                 .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
                 .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
                 .buildAndRegister();
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(50)
-                .inputs(PeniciliniumRoqueforti.getItemStack())
+                .inputs(PenicilliumRoqueforti.getItemStack())
                 .fluidInputs(FungalGrowthMedium.getFluid(250))
-                .outputs(PeniciliniumRoqueforti.getItemStack(2))
+                .outputs(PenicilliumRoqueforti.getItemStack(2))
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(110).duration(120)
                 .inputs(Yeast.getItemStack())
-                .inputs(PeniciliniumRoqueforti.getItemStack())
+                .inputs(PenicilliumRoqueforti.getItemStack())
                 .fluidInputs(CrudeRennetSolution.getFluid(250))
                 .fluidOutputs(FungalRennetSolution.getFluid(250))
                 .buildAndRegister();

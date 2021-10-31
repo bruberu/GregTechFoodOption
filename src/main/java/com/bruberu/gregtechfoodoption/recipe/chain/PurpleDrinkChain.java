@@ -58,7 +58,7 @@ public class PurpleDrinkChain {
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(LemonLimeSludge.getFluid(500))
                 .input(Items.SUGAR, 9)
-                .fluidOutputs(LemonLimeSludge.getFluid(500))
+                .fluidOutputs(LemonLimeSodaSyrup.getFluid(500))
                 .EUt(60)
                 .duration(40)
                 .buildAndRegister();

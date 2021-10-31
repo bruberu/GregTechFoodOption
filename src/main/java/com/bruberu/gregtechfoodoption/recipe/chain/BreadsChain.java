@@ -198,6 +198,7 @@ public class BreadsChain {
         ModHandler.addShapelessRecipe("gtfo_burger_veggie", BURGER_VEGGIE.getStackForm(), PRESLICED_BUN.getStackForm(), CUCUMBER_SLICE.getStackForm(), CUCUMBER_SLICE.getStackForm(), TOMATO_SLICE.getStackForm(), TOMATO_SLICE.getStackForm(), ONION_SLICE.getStackForm(), ONION_SLICE.getStackForm());
         ModHandler.addShapelessRecipe("gtfo_burger_cheese", BURGER_CHEESE.getStackForm(), PRESLICED_BUN.getStackForm(), CHEDDAR_SLICE.getStackForm(), CHEDDAR_SLICE.getStackForm(), CHEDDAR_SLICE.getStackForm(), CHEDDAR_SLICE.getStackForm());
         ModHandler.addShapelessRecipe("gtfo_burger_meat", BURGER_MEAT.getStackForm(), PRESLICED_BUN.getStackForm(), "cookedMeat");
+        ModHandler.addShapelessRecipe("gtfo_burger_chum", BURGER_CHUM.getStackForm(), PRESLICED_BUN.getStackForm(), CHUM.getStackForm(), CHUM.getStackForm());
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(50)
                 .inputs(PRESLICED_BUN.getStackForm(), ONION_SLICE.getStackForm(), CUCUMBER_SLICE.getStackForm(), TOMATO_SLICE.getStackForm())
                 .outputs(BURGER_VEGGIE.getStackForm())
@@ -211,6 +212,18 @@ public class BreadsChain {
                 .input("cookedMeat", 1)
                 .outputs(BURGER_MEAT.getStackForm(2))
                 .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(50)
+                .inputs(PRESLICED_BUN.getStackForm(1))
+                .input("cookedMeat", 1)
+                .outputs(BURGER_MEAT.getStackForm(1))
+                .circuitMeta(0)
+                .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(50)
+                .inputs(PRESLICED_BUN.getStackForm(1))
+                .inputs(CHUM.getStackForm(2))
+                .outputs(BURGER_CHUM.getStackForm(1))
+                .buildAndRegister();
+
 
         ModHandler.addShapelessRecipe("gtfo_sandwich_veggie", SANDWICH_VEGGIE.getStackForm(), PRESLICED_BREAD, CUCUMBER_SLICE, CUCUMBER_SLICE, TOMATO_SLICE, TOMATO_SLICE, ONION_SLICE, ONION_SLICE);
         ModHandler.addShapelessRecipe("gtfo_sandwich_cheese", SANDWICH_CHEESE.getStackForm(), PRESLICED_BREAD, CHEDDAR_SLICE, CHEDDAR_SLICE, CHEDDAR_SLICE, CHEDDAR_SLICE);

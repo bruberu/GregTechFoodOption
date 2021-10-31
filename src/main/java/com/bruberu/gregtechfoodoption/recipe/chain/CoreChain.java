@@ -13,6 +13,7 @@ import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,7 @@ import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
 import static com.bruberu.gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
 import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
+import static gregicadditions.GAMaterials.PiranhaSolution;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -183,5 +185,78 @@ public class CoreChain {
                 .fluidInputs(MoistAir.getFluid(4000))
                 .fluidOutputs(ColdMoistAir.getFluid(4000))
                 .buildAndRegister();
+
+        // Chum
+
+        MIXER_RECIPES.recipeBuilder().duration(100).EUt(24)
+                .fluidInputs(Sludge.getFluid(100))
+                .inputs(ROTTEN_FISH.getStackForm(1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .outputs(CHUM.getStackForm(3))
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().duration(100).EUt(24)
+                .fluidInputs(Sludge.getFluid(100))
+                .fluidInputs(PurpleDrink.getFluid(100))
+                .inputs(ROTTEN_FISH.getStackForm(1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .outputs(CHUM.getStackForm(6))
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().duration(100).EUt(24)
+                .fluidInputs(Sludge.getFluid(100))
+                .inputs(ROTTEN_MEAT.getStackForm(1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .outputs(CHUM.getStackForm(3))
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().duration(100).EUt(24)
+                .fluidInputs(Sludge.getFluid(100))
+                .fluidInputs(PurpleDrink.getFluid(100))
+                .inputs(ROTTEN_MEAT.getStackForm(1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .outputs(CHUM.getStackForm(6))
+                .buildAndRegister();
+
+        for (ItemStack stack : RecipeUtils.getFish()) {
+            FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
+                    .inputs(stack)
+                    .outputs(ROTTEN_FISH.getStackForm())
+                    .fluidInputs(Water.getFluid(100))
+                    .fluidOutputs(Water.getFluid(100))
+                    .buildAndRegister();
+        }
+        for (ItemStack stack : RecipeUtils.getMeat()) {
+            FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
+                    .inputs(stack)
+                    .outputs(ROTTEN_MEAT.getStackForm())
+                    .fluidInputs(Water.getFluid(100))
+                    .fluidOutputs(Water.getFluid(100))
+                    .buildAndRegister();
+        }
+        for (ItemStack stack : RecipeUtils.getAnimalProducts()) {
+            MIXER_RECIPES.recipeBuilder().duration(500).EUt(16)
+                    .inputs(stack)
+                    .fluidInputs(Water.getFluid(400))
+                    .fluidOutputs(Sludge.getFluid(100))
+                    .buildAndRegister();
+            MIXER_RECIPES.recipeBuilder().duration(250).EUt(16)
+                    .inputs(stack)
+                    .fluidInputs(SulfuricAcid.getFluid(200))
+                    .fluidOutputs(Sludge.getFluid(200))
+                    .buildAndRegister();
+            MIXER_RECIPES.recipeBuilder().duration(125).EUt(16)
+                    .inputs(stack)
+                    .fluidInputs(PiranhaSolution.getFluid(100))
+                    .fluidOutputs(Sludge.getFluid(400))
+                    .buildAndRegister();
+        }
+        ModHandler.addShapelessRecipe("chum_on_a_stick", CHUM_ON_A_STICK.getStackForm(), CHUM.getStackForm(), new ItemStack(Items.STICK));
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(4).duration(5)
+                .input(Items.STICK)
+                .inputs(CHUM.getStackForm())
+                .outputs(CHUM_ON_A_STICK.getStackForm())
+                .buildAndRegister();
+
     }
 }

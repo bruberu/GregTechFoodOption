@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static gregicadditions.GAMaterials.DepletedGrowthMedium;
@@ -135,5 +136,18 @@ public class RecipeUtils {
         return removingItems.isEmpty();
     }
 
+    public static List<ItemStack> getFish() {
+        return Arrays.asList(new ItemStack(Items.FISH), new ItemStack(Items.FISH, 1, 1), new ItemStack(Items.FISH, 1, 2));
+    }
 
+    public static List<ItemStack> getMeat() {
+        return Arrays.asList(new ItemStack(Items.BEEF), new ItemStack(Items.CHICKEN), new ItemStack(Items.MUTTON), new ItemStack(Items.PORKCHOP), new ItemStack(Items.RABBIT));
+    }
+
+    public static List<ItemStack> getAnimalProducts() {
+        List<ItemStack> result = new ArrayList<>();
+        result.addAll(getMeat());
+        result.addAll(getFish());
+        return result;
+    }
 }

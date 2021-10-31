@@ -389,7 +389,7 @@ metaitem.component.punctured_gorgonzola_wheel.name=Punctured Gorgonzola Wheel
 metaitem.component.fully_cured_gorgonzola_wheel.name=Fully Cured Gorgonzola Wheel
 metaitem.food.gorgonzola_slice.name=Gorgonzola Triangular Slice
 metaitem.food.gorgonzola_slice.tooltip=Taste the new fungi overlords.
-metaitem.culture.penicilinium.name=Penicilinium Roqueforti Culture
+metaitem.penicillium.culture.name=Penicillium Roqueforti Culture
 fluid.moist_air=Moist Air
 fluid.cold_moist_air=Cold Moist Air
 
@@ -426,3 +426,19 @@ fluid.tomato_sauce=Tomato Sauce
 fluid.olive_oil=Olive Oil
 
 tile.gtfo_metal_casing.casing_bismuth_bronze.name=Food-Safe Bismuth Bronze Casing
+
+fluid.sludge=Sludge
+metaitem.food.chum.name=Chum
+metaitem.food.chum.tooltip=Chum is Fum!
+metaitem.food.chum_on_a_stick.name=Chum on a Stick
+metaitem.food.chum_on_a_stick.tooltip=Don't forget to try our Chum-balaya
+metaitem.food.burger.chum.name=Chumburger
+metaitem.food.burger.chum.tooltip=Chyummy
+metaitem.food.fish_rotten.name=Rotten Fish
+metaitem.food.fish_rotten.tooltip=You should have added Salt
+metaitem.food.meat_rotten.name=Rotten Meat
+metaitem.food.meat_rotten.tooltip=You should have added Salt
+
+
+
+

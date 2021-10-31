@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 
 import java.util.List;
+import java.util.Random;
 import java.util.function.Supplier;
 
 public class GTFOFoodStats implements IFoodBehavior {
@@ -60,12 +61,8 @@ public class GTFOFoodStats implements IFoodBehavior {
 
     public ItemStack onFoodEaten(ItemStack itemStack, EntityPlayer player) {
         if (!player.world.isRemote) {
-            RandomPotionEffect[] var3 = this.potionEffects;
-            int var4 = var3.length;
-
-            for(int var5 = 0; var5 < var4; ++var5) {
-                RandomPotionEffect potionEffect = var3[var5];
-                if (Math.random() * 100.0D > (double)potionEffect.chance) {
+            for (RandomPotionEffect potionEffect : this.potionEffects) {
+                if (Math.random() * 100.0D > (double) potionEffect.chance) {
                     player.addPotionEffect(GTUtility.copyPotionEffect(potionEffect.effect));
                 }
             }
@@ -92,7 +89,7 @@ public class GTFOFoodStats implements IFoodBehavior {
         if (this.potionEffects.length > 0) {
             PotionEffect[] effects = new PotionEffect[this.potionEffects.length];
 
-            for(int i = 0; i < this.potionEffects.length; ++i) {
+            for (int i = 0; i < this.potionEffects.length; ++i) {
                 effects[i] = this.potionEffects[i].effect;
             }
         }
