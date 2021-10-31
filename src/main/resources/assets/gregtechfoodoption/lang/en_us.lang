@@ -424,3 +424,5 @@ metaitem.food.bacon.name=Bacon
 metaitem.food.bacon.tooltip=Has been Roasted
 fluid.tomato_sauce=Tomato Sauce
 fluid.olive_oil=Olive Oil
+
+tile.gtfo_metal_casing.casing_bismuth_bronze.name=Food-Safe Bismuth Bronze Casing

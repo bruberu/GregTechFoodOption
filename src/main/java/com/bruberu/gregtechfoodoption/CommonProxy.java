@@ -80,6 +80,7 @@ public class CommonProxy {
         GTFOLog.logger.info("Registering blocks...");
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(GTFOMetaBlocks.GTFO_CASING);
+        registry.register(GTFOMetaBlocks.GTFO_METAL_CASING);
 
     }
 
@@ -89,6 +90,7 @@ public class CommonProxy {
         IForgeRegistry<Item> registry = event.getRegistry();
 
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
 
     }
 

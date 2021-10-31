@@ -6,6 +6,7 @@ import codechicken.lib.vec.Matrix4;
 import com.bruberu.gregtechfoodoption.block.GTFOBlockCasing;
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
+import com.bruberu.gregtechfoodoption.client.GTFOGuiTextures;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.BakingOvenRecipe;
 import gregtech.api.capability.impl.ItemHandlerProxy;
@@ -302,12 +303,12 @@ public class MetaTileEntityBakingOven extends MultiblockControllerBase {
     protected ModularUI createUI(EntityPlayer entityPlayer) {
         return ModularUI.builder(GuiTextures.BACKGROUND, 176, 166)
                 .widget(new SlotWidget(importItems, 0, 53, 15, true, true)
-                        .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.INGOT_OVERLAY))
+                        .setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.FOOD_OVERLAY))
                 .widget(new SlotWidget(importItems, 1, 53, 33, true, true)
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.FURNACE_OVERLAY))
                 .progressBar(this::getProgressScaled, 78, 24, 20, 15, GuiTextures.PROGRESS_BAR_MACERATE, ProgressWidget.MoveType.HORIZONTAL)
                 .widget(new SlotWidget(exportItems, 0, 105, 24, true, false)
-                        .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.INGOT_OVERLAY))
+                        .setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.FOOD_OVERLAY))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT)
                 .build(getHolder(), entityPlayer);
     }

@@ -10,4 +10,6 @@ public class GTFOClientHandler {
 
 
     public static SimpleCubeRenderer ADOBE_BRICKS = new SimpleCubeRenderer("casings/solid/adobe_bricks");
+    public static SimpleCubeRenderer BISMUTH_BRONZE_CASING = new SimpleCubeRenderer("casings/solid/bismuth_bronze");
+
 }

@@ -1,5 +1,6 @@
 package com.bruberu.gregtechfoodoption.block;
 
+import gregtech.api.unification.material.type.DustMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -16,16 +17,20 @@ import java.util.stream.Collectors;
 
 public class GTFOMetaBlocks {
     public static GTFOBlockCasing GTFO_CASING;
+    public static GTFOMetalCasing GTFO_METAL_CASING;
 
     public static void init() {
         GTFO_CASING = new GTFOBlockCasing();
         GTFO_CASING.setRegistryName("gtfo_casing");
 
+        GTFO_METAL_CASING = new GTFOMetalCasing();
+        GTFO_METAL_CASING.setRegistryName("gtfo_metal_casing");
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerItemModels() {
         registerItemModel(GTFO_CASING);
+        registerItemModel(GTFO_METAL_CASING);
     }
 
     @SideOnly(Side.CLIENT)

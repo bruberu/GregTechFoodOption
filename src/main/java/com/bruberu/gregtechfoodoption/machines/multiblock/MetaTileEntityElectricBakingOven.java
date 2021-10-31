@@ -3,15 +3,16 @@ package com.bruberu.gregtechfoodoption.machines.multiblock;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.bruberu.gregtechfoodoption.block.GTFOMetalCasing;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import com.bruberu.gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.ElectricBakingOvenRecipeMap;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
+import gregicadditions.capabilities.GregicAdditionsCapabilities;
 import gregicadditions.item.GAMetaBlocks;
 import gregicadditions.item.GATransparentCasing;
 import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
-import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.gui.Widget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
@@ -29,16 +30,12 @@ import gregtech.api.util.GTUtility;
 import gregtech.api.util.InventoryUtils;
 import gregtech.common.blocks.MetaBlocks;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
@@ -46,8 +43,9 @@ import javax.annotation.Nullable;
 import java.util.*;
 import java.util.function.Predicate;
 
+import static com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks.GTFO_METAL_CASING;
+import static com.bruberu.gregtechfoodoption.client.GTFOClientHandler.BISMUTH_BRONZE_CASING;
 import static gregtech.api.gui.widgets.AdvancedTextWidget.withButton;
-import static gregtech.api.unification.material.Materials.BismuthBronze;
 import static gregtech.api.unification.material.Materials.Steel;
 
 public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultiblockController {
@@ -59,7 +57,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
     public int size;
 
     public MetaTileEntityElectricBakingOven(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, 0, 100, 100, 1, false);
+        super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, 0, 100, 100, 1, false, true, false);
         this.recipeMapWorkable = new ElectricBakingOvenLogic(this);
 
         temp = 300;
@@ -68,7 +66,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {
             MultiblockAbility.IMPORT_ITEMS, MultiblockAbility.EXPORT_ITEMS,
-            MultiblockAbility.INPUT_ENERGY
+            MultiblockAbility.INPUT_ENERGY, GregicAdditionsCapabilities.MAINTENANCE_HATCH
     };
 
     @Override
@@ -167,7 +165,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
     }
 
     protected IBlockState getCasingState() {
-        return GAMetaBlocks.getMetalCasingBlockState(BismuthBronze);
+        return GTFO_METAL_CASING.getState(GTFOMetalCasing.CasingType.BISMUTH_BRONZE_CASING);
     }
 
     protected IBlockState getFrameState() {
@@ -176,7 +174,7 @@ public class MetaTileEntityElectricBakingOven extends LargeSimpleRecipeMapMultib
 
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
-        return GAMetaBlocks.METAL_CASING.get(BismuthBronze);
+        return BISMUTH_BRONZE_CASING;
     }
 
     @Override
