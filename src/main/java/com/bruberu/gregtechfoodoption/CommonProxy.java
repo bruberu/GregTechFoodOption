@@ -67,6 +67,10 @@ public class CommonProxy {
 
     }
 
+    public void onPostLoad() {
+
+    }
+
     @SubscribeEvent
     public static void syncConfigValues(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equals(GregTechFoodOption.MODID)) {

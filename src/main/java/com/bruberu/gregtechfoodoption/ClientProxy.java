@@ -6,23 +6,37 @@ import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaHUDOverlay;
 import com.bruberu.gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
 import com.bruberu.gregtechfoodoption.item.GTFOOredictItem;
 import com.bruberu.gregtechfoodoption.utils.GTFOLog;
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import gregtech.api.unification.OreDictUnifier;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Optional;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
+
+    private static final ResourceLocation GTFO_CAPE_TEXTURE = new ResourceLocation(GregTechFoodOption.MODID, "textures/gtfocape.png");
 
 
     @Override
@@ -43,6 +57,13 @@ public class ClientProxy extends CommonProxy {
         }
     }
 
+    @Override
+    public void onPostLoad() {
+        super.onPostLoad();
+        capeHoldersUUIDs.add(UUID.fromString("aaf70ec1-ac70-494f-9966-ea5933712750"));
+    }
+
+
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
@@ -62,6 +83,18 @@ public class ClientProxy extends CommonProxy {
                     event.getToolTip().add(1, TextFormatting.GRAY.toString() + material.getFormula());
                 }
             }
+        }
+    }
+
+    private static final Set<UUID> capeHoldersUUIDs = new HashSet<>();
+
+    @SubscribeEvent
+    public static void onPlayerRender(RenderPlayerEvent.Pre event) {
+        AbstractClientPlayer clientPlayer = (AbstractClientPlayer) event.getEntityPlayer();
+        if (capeHoldersUUIDs.contains(clientPlayer.getUniqueID()) && clientPlayer.hasPlayerInfo() && clientPlayer.getLocationCape() == null) {
+            NetworkPlayerInfo playerInfo = ObfuscationReflectionHelper.getPrivateValue(AbstractClientPlayer.class, clientPlayer, 0);
+            Map<MinecraftProfileTexture.Type, ResourceLocation> playerTextures = ObfuscationReflectionHelper.getPrivateValue(NetworkPlayerInfo.class, playerInfo, 1);
+            playerTextures.put(MinecraftProfileTexture.Type.CAPE, GTFO_CAPE_TEXTURE);
         }
     }
 }

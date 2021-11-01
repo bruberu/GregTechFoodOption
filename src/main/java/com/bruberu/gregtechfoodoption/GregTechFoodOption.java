@@ -59,6 +59,6 @@ public class GregTechFoodOption {
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+        proxy.onPostLoad();
     }
 }
