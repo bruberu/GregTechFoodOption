@@ -225,7 +225,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
         WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").addComponents(selfContainerItemProvider);
         UNCOOKED_BREAD = addItem(47, "component.bread");
         UNCOOKED_BAGUETTE = addItem(48, "component.baguette");
-        DOUGH = addItem(50, "component.dough");
+        DOUGH = addItem(50, "component.dough")
+            .addOreDict("foodDough");
 
         CARROT_STRUCTURAL_MESH = addItem(52, "component.structural_mesh.carrot");
         APPLE_STRUCTURAL_MESH = addItem(53, "component.structural_mesh.apple");
@@ -236,13 +237,17 @@ public class GTFOMetaItem extends MaterialMetaItem {
         PIZZA_VEGGIE_RAW = addItem(60, "component.pizza.veggie");
         PIZZA_MINCE_MEAT_RAW = addItem(61, "component.pizza.mince_meat");
 
-        OLIVE = addItem(73, "crop.olive");
+        OLIVE = addItem(73, "crop.olive")
+                .addOreDict("cropOlive");
         OLIVE_SLICE = addItem(74, "component.olive_slice");
         MUSHROOM_SLICE = addItem(75, "component.mushroom_slice");
 
-        TOMATO = addItem(76, "crop.tomato");
-        ONION = addItem(77, "crop.onion");
-        CUCUMBER = addItem(78, "crop.cucumber");
+        TOMATO = addItem(76, "crop.tomato")
+                .addOreDict("cropTomato");
+        ONION = addItem(77, "crop.onion")
+                .addOreDict("cropOnion");
+        CUCUMBER = addItem(78, "crop.cucumber")
+                .addOreDict("cropCucumber");
         TOMATO_SLICE = addItem(79, "component.tomato_slice");
         ONION_SLICE = addItem(80, "component.onion_slice");
         CUCUMBER_SLICE = addItem(81, "component.cucumber_slice");
@@ -257,8 +262,10 @@ public class GTFOMetaItem extends MaterialMetaItem {
         BEEF_SLICE = addItem(91, "component.beef_slice");
         CHEDDAR_CURD_MOLD = addItem(92, "component.cheddar_curd_mold");
         AGED_CHEDDAR_MOLD = addItem(93, "component.aged_cheddar_mold");
-        MOZZARELLA_SLICE = addItem(94, "component.mozzarella_slice");
-        RICOTTA = addItem(95, "component.ricotta_piece");
+        MOZZARELLA_SLICE = addItem(94, "component.mozzarella_slice")
+                .addOreDict("foodCheese");
+        RICOTTA = addItem(95, "component.ricotta_piece")
+                .addOreDict("foodCheese");
         CHEDDAR_BLOCK = addItem(96, "component.cheddar_block");
 
         FLAT_DOUGH = addItem(99, "component.flat_dough");
@@ -288,8 +295,10 @@ public class GTFOMetaItem extends MaterialMetaItem {
                 new RandomPotionEffect(AddictionPotion.instance, 9000, 2, 65)));
         SPARKLING_WATER = addItem(16, "food.sparkling_water").addComponents(new GTFOFoodStats(gtfoFoodConfig.sparklingWaterHunger, gtfoFoodConfig.sparklingWaterSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 600, 1, 0)));
-        LEMON = addItem(17, "food.lemon").addComponents(new GTFOFoodStats(gtfoFoodConfig.lemonHunger, gtfoFoodConfig.lemonSaturation, false, false, ItemStack.EMPTY));
-        LIME = addItem(18, "food.lime").addComponents(new GTFOFoodStats(gtfoFoodConfig.limeHunger, gtfoFoodConfig.limeSaturation, false, false, ItemStack.EMPTY));
+        LEMON = addItem(17, "food.lemon").addComponents(new GTFOFoodStats(gtfoFoodConfig.lemonHunger, gtfoFoodConfig.lemonSaturation, false, false, ItemStack.EMPTY))
+                .addOreDict("cropLemon").addOreDict("listAllfruit");
+        LIME = addItem(18, "food.lime").addComponents(new GTFOFoodStats(gtfoFoodConfig.limeHunger, gtfoFoodConfig.limeSaturation, false, false, ItemStack.EMPTY))
+                .addOreDict("cropLime").addOreDict("listAllfruit");
         ETIRPS = addItem(19, "food.etirps").addComponents(new GTFOFoodStats(gtfoFoodConfig.etirpsHunger, gtfoFoodConfig.etirpsSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
                 new RandomPotionEffect(AddictionPotion.instance, 3200, 2, 75)));
@@ -301,7 +310,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         FRENCH_FRIES = addItem(37, "food.french_fries").addComponents(new GTFOFoodStats(gtfoFoodConfig.friesHunger, gtfoFoodConfig.friesSaturation, false, false, USED_PAPER_BAG.getStackForm(),
                 new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 3200, 1, 25)));
+                new RandomPotionEffect(AddictionPotion.instance, 3200, 1, 25)))
+                .addOreDict("foodFries");
         SYALS = addItem(38, "food.syals").addComponents(new GTFOFoodStats(gtfoFoodConfig.chipHunger / 2, gtfoFoodConfig.chipSaturation / 2, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Tin),
                 new RandomPotionEffect(MobEffects.LEVITATION, 300, 1, 0)));
         BAG_OF_CHIPS = addItem(39, "food.bag_of_chips").addComponents(new GTFOFoodStats(gtfoFoodConfig.chipHunger, gtfoFoodConfig.chipSaturation, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Steel),
@@ -354,9 +364,12 @@ public class GTFOMetaItem extends MaterialMetaItem {
         BURGER_CHEESE = addItem(89, "food.burger.cheese").addComponents(new GTFOFoodStats(4, 0.6f, false, false, ItemStack.EMPTY));
         BURGER_MEAT = addItem(90, "food.burger.meat").addComponents(new GTFOFoodStats(4, 0.7f, false, false, ItemStack.EMPTY));
 
-        CHEDDAR_SLICE = addItem(97, "food.cheddar_slice").addComponents(new GTFOFoodStats(2, 0.2f, false, false, ItemStack.EMPTY));
-        MOZZARELLA_BALL = addItem(98, "food.mozzarella_ball").addComponents(new GTFOFoodStats(3, 0.6f, false, false, ItemStack.EMPTY));
-        GORGONZOLA_TRIANGULAR_SLICE = addItem(114, "food.gorgonzola_slice").addComponents(new GTFOFoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
+        CHEDDAR_SLICE = addItem(97, "food.cheddar_slice").addComponents(new GTFOFoodStats(2, 0.2f, false, false, ItemStack.EMPTY))
+                .addOreDict("foodCheese");
+        MOZZARELLA_BALL = addItem(98, "food.mozzarella_ball").addComponents(new GTFOFoodStats(3, 0.6f, false, false, ItemStack.EMPTY))
+                .addOreDict("foodCheese");
+        GORGONZOLA_TRIANGULAR_SLICE = addItem(114, "food.gorgonzola_slice").addComponents(new GTFOFoodStats(3, 0.5f, false, false, ItemStack.EMPTY))
+                .addOreDict("foodCheese");
 
         ROTTEN_FISH = addItem(117, "food.fish_rotten").addComponents(new GTFOFoodStats(1, 0f, false, true, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.POISON, 500, 1, 0)));
@@ -369,11 +382,16 @@ public class GTFOMetaItem extends MaterialMetaItem {
         BURGER_CHUM = addItem(121, "food.burger.chum").addComponents(new GTFOFoodStats(4, 1f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
 
-        BANANA = addItem(122, "food.banana").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
-        ORANGE = addItem(123, "food.orange").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
-        GRAPES = addItem(124, "food.grapes").addComponents(new GTFOFoodStats(1, 1f, false, true, ItemStack.EMPTY));
-        MANGO = addItem(125, "food.mango").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
-        APRICOT = addItem(126, "food.apricot").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
+        BANANA = addItem(122, "food.banana").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY))
+                .addOreDict("cropBanana").addOreDict("listAllfruit");
+        ORANGE = addItem(123, "food.orange").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY))
+                .addOreDict("cropOrange").addOreDict("listAllfruit");
+        GRAPES = addItem(124, "food.grapes").addComponents(new GTFOFoodStats(1, 1f, false, true, ItemStack.EMPTY))
+                .addOreDict("cropGrapes").addOreDict("listAllfruit");
+        MANGO = addItem(125, "food.mango").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY))
+                .addOreDict("cropMango").addOreDict("listAllfruit");
+        APRICOT = addItem(126, "food.apricot").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY))
+                .addOreDict("cropApricot").addOreDict("listAllfruit");
 
         PEELED_BANANA = addItem(128, "food.peeled_banana").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY)
                 .setEatingDuration(12));

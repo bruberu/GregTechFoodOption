@@ -201,7 +201,5 @@ public class PopcornChain {
                 .notConsumable(GREEN_HALIDE_LAMP.getStackForm())
                 .outputs(BetaCarotene.getItemStack(96))
                 .buildAndRegister();
-
-        RecipeUtils.addGreenHouseRecipes(PopcornKernel.getItemStack(), POPCORN_EAR);
     }
 }

@@ -88,8 +88,6 @@ public class PurpleDrinkChain {
                 .EUt(5)
                 .duration(100)
                 .buildAndRegister();
-        RecipeUtils.addGreenHouseRecipes(LEMON.getStackForm(), LEMON);
-        RecipeUtils.addGreenHouseRecipes(LIME.getStackForm(), LIME);
         RecipeUtils.addBioReactorRecipes(DistilledWater, LACTOBACILLUS_PENTOSIS_CULTURE, LactobacillusPentosis.getItemStack(), Milk);
         RecipeUtils.addBioReactorRecipes(DistilledWater, BACILLUS_SUBTILIS_CULTURE, BacillusSubtilis.getItemStack(), new ItemStack(Items.WHEAT));
         MIXER_RECIPES.recipeBuilder()
