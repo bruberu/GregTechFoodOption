@@ -439,6 +439,24 @@ metaitem.food.fish_rotten.tooltip=You should have added Salt
 metaitem.food.meat_rotten.name=Rotten Meat
 metaitem.food.meat_rotten.tooltip=You should have added Salt
 
+metaitem.food.banana.name=Banana
+metaitem.food.orange.name=Orange
+metaitem.food.grapes.name=Grapes
+metaitem.food.mango.name=Mango
+metaitem.food.apricot.name=Apricot
+metaitem.food.banana.tooltip=From Antananarivo
+metaitem.food.orange.tooltip=Orange ya mad that I made this repetitive Joke
+metaitem.food.grapes.tooltip=They did surgery on grapes
+metaitem.food.mango.tooltip=Persongo
+metaitem.food.apricot.tooltip=Who even cares about these?
+
+metaitem.food.peeled_banana.name=Peeled Banana
+metaitem.component.banana_peel.name=Banana Peel
+metaitem.potassium_perchlorate_dust.name=Potassium Perchlorate
+metaitem.ammonium_perchlorate_dust.name=Ammonium Perchlorate
+metaitem.burnt_banana_peel_dust.name=Burnt Banana Peel
+fluid.alkaline_extract=Alkaline Extract
+
 
 
 

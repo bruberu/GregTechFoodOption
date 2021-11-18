@@ -8,13 +8,12 @@ import java.util.List;
 
 public class GTFOMetaItems {
     public static List<MetaItem<?>> ITEMS = MetaItem.getMetaItems();
-
+    public static final GTFOMetaItem META_ITEM = new GTFOMetaItem();
 
 
 
     public static void init() {
-        GTFOMetaItem item = new GTFOMetaItem();
-        item.setRegistryName("gtfo_meta_item");
+        META_ITEM.setRegistryName("gtfo_meta_item");
         GTFOOredictItem oreDictItem = new GTFOOredictItem((short) 0);
         oreDictItem.setRegistryName("gtfo_oredict_item");
         GTFOMetaTool tool = new GTFOMetaTool();

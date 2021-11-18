@@ -29,13 +29,13 @@ import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOEventHandler {
-    protected Random rand = new Random();
+    protected static Random rand = new Random();
 
     private static Set<EntityLivingBase> addictedSet = new HashSet<>();
     private static HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
 
     @SubscribeEvent
-    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+    public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         EntityLivingBase entityLivingBase = event.getEntityLiving();
         if (GTFOConfig.gtfoPotionConfig.addictionWithdrawal) {
             if (entityLivingBase.isDead && addictedSet.contains(entityLivingBase)) {
@@ -89,11 +89,8 @@ public class GTFOEventHandler {
     }
 
     @SubscribeEvent
-    public void onLivingUpdate(LivingEntityUseItemEvent.Start event) {
-        if (event.getItem().getItem() instanceof ItemFood) {
-            event.setDuration(GTFOFoodDurationSetter.duration(event.getItem()));
-        } else if (event.getItem().getItem() instanceof MetaItem<?>) {
-            MetaItem.MetaValueItem metaItem = ((MetaItem<?>) event.getItem().getItem()).getItem(event.getItem());
+    public static void onLivingUpdate(LivingEntityUseItemEvent.Start event) {
+        if (event.getItem().getItem() instanceof ItemFood || event.getItem().getItem() instanceof MetaItem<?>) {
             event.setDuration(GTFOFoodDurationSetter.duration(event.getItem()));
         }
     }
@@ -101,7 +98,7 @@ public class GTFOEventHandler {
     // This particular function helps with generating food eating particles when the use count is over 25, because Minecraft is dumb.
 
     @SubscribeEvent
-    public void onLivingUpdate(LivingEntityUseItemEvent.Tick event) {
+    public static void onLivingUpdate(LivingEntityUseItemEvent.Tick event) {
         if (event.getItem().getItem() instanceof ItemFood || event.getItem().getItem() instanceof MetaItem<?>) {
             EntityLivingBase livingBase = event.getEntityLiving();
             ItemStack stack = event.getItem();
@@ -123,7 +120,7 @@ public class GTFOEventHandler {
                         }
                     }
 
-                    livingBase.playSound(SoundEvents.ENTITY_GENERIC_EAT, 0.5F + 0.5F * (float) this.rand.nextInt(2), (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                    livingBase.playSound(SoundEvents.ENTITY_GENERIC_EAT, 0.5F + 0.5F * (float) rand.nextInt(2), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
                 }
             }
         }

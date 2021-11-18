@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.10.4"
+version = "1.12.2-0.10.5"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 

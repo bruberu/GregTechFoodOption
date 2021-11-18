@@ -19,6 +19,7 @@ public class GTFOFoodStats implements IFoodBehavior {
     public final boolean alwaysEdible;
     public final RandomPotionEffect[] potionEffects;
     public final Supplier<ItemStack> stackSupplier;
+    protected int eatingDuration = 32;
 
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, Supplier<ItemStack> itemStackSupplier, RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
@@ -95,4 +96,12 @@ public class GTFOFoodStats implements IFoodBehavior {
         }
     }
 
+    public GTFOFoodStats setEatingDuration(int duration) {
+        this.eatingDuration = duration;
+        return this;
+    }
+
+    public int getEatingDuration() {
+        return eatingDuration;
+    }
 }

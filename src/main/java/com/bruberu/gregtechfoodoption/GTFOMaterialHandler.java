@@ -12,8 +12,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import static com.bruberu.gregtechfoodoption.utils.RecipeUtils.average;
 import static gregicadditions.GAMaterials.GENERATE_METAL_CASING;
 import static gregicadditions.GAMaterials.Yeast;
-import static gregtech.api.unification.material.Materials.Air;
-import static gregtech.api.unification.material.Materials.Steam;
+import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.type.SolidMaterial.MatFlags.GENERATE_FRAME;
 
 @IMaterialHandler.RegisterMaterialHandler
@@ -93,6 +92,9 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOFluidMaterial OliveOil = new GTFOFluidMaterial("olive_oil", 0xd1db5a);
 
     public static final GTFOFluidMaterial Sludge = new GTFOFluidMaterial("sludge", 0x24140b);
+
+    public static final GTFOFluidMaterial AlkalineExtract = new GTFOFluidMaterial("alkaline_extract", 0x121110);
+
 
     public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictItem BarePopcornKernel = new GTFOOredictItem.OreDictItem(1001, "popcorn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
@@ -182,6 +184,11 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem SaltedCurd = new GTFOOredictItem.OreDictItem(1109, "salted_curd", 0xf7d68b, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
     public static final GTFOOredictItem.OreDictItem GorgonzolaCurd = new GTFOOredictItem.OreDictItem(1110 ,"gorgonzola_curd", 0xe5e5f5, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
     public static final GTFOOredictItem.OreDictItem PenicilliumRoqueforti = new GTFOOredictItem.OreDictItem(1111, "penicillium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
+
+    public static final GTFOOredictItem.OreDictItem BurntBananaPeel = new GTFOOredictItem.OreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(Ammonia.materialRGB, Chlorine.materialRGB, Oxygen.materialRGB * 4, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
+    public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(AmmoniumPerchlorate.rgb, Potassium.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
+
 
     @Override
     public void onMaterialsInit() {

@@ -170,6 +170,14 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem CHUM_ON_A_STICK;
     public static MetaItem<?>.MetaValueItem BURGER_CHUM;
 
+    public static MetaItem<?>.MetaValueItem BANANA;
+    public static MetaItem<?>.MetaValueItem ORANGE;
+    public static MetaItem<?>.MetaValueItem GRAPES;
+    public static MetaItem<?>.MetaValueItem MANGO;
+    public static MetaItem<?>.MetaValueItem APRICOT;
+
+    public static MetaItem<?>.MetaValueItem BANANA_PEEL;
+    public static MetaItem<?>.MetaValueItem PEELED_BANANA;
 
     @Override
     public void registerSubItems() {
@@ -265,6 +273,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
         PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "penicillium.culture");
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
+        BANANA_PEEL = addItem(127, "component.banana_peel");
+
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                     new RandomPotionEffect(getPotionById(10), 300, 1, 0),
@@ -359,6 +369,14 @@ public class GTFOMetaItem extends MaterialMetaItem {
         BURGER_CHUM = addItem(121, "food.burger.chum").addComponents(new GTFOFoodStats(4, 1f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
 
+        BANANA = addItem(122, "food.banana").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
+        ORANGE = addItem(123, "food.orange").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
+        GRAPES = addItem(124, "food.grapes").addComponents(new GTFOFoodStats(1, 1f, false, true, ItemStack.EMPTY));
+        MANGO = addItem(125, "food.mango").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
+        APRICOT = addItem(126, "food.apricot").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY));
+
+        PEELED_BANANA = addItem(128, "food.peeled_banana").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY)
+                .setEatingDuration(12));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
