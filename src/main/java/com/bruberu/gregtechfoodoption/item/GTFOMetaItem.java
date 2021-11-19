@@ -179,6 +179,10 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem BANANA_PEEL;
     public static MetaItem<?>.MetaValueItem PEELED_BANANA;
 
+    public static MetaItem<?>.MetaValueItem VODKA;
+    public static MetaItem<?>.MetaValueItem LENINADE;
+
+
     @Override
     public void registerSubItems() {
         IItemContainerItemProvider selfContainerItemProvider = itemStack -> itemStack;
@@ -395,6 +399,13 @@ public class GTFOMetaItem extends MaterialMetaItem {
 
         PEELED_BANANA = addItem(128, "food.peeled_banana").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY)
                 .setEatingDuration(12));
+
+        VODKA = addItem(129, "food.vodka").addComponents(new GTFOFoodStats(2, 0f, true, false, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 1, 60)));
+        LENINADE = addItem(130, "food.leninade").addComponents(new GTFOFoodStats(3, 1f, true, false, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 2, 70),
+                new RandomPotionEffect(MobEffects.SPEED, 500, 2, 0)));
+
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;

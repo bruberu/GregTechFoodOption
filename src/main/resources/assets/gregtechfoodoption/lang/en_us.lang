@@ -457,6 +457,14 @@ metaitem.ammonium_perchlorate_dust.name=Ammonium Perchlorate
 metaitem.burnt_banana_peel_dust.name=Burnt Banana Peel
 fluid.alkaline_extract=Alkaline Extract
 
+metaitem.food.vodka.name=Vodka
+metaitem.food.vodka.tooltip=Distilled Russia
+metaitem.food.leninade.name=Leninade
+metaitem.food.leninade.tooltip=Let the Communism flow through you!
+fluid.potato_juice=Potato Juice
+fluid.vodka=Vodka
+fluid.leninade=Leninade
+
 
 
 

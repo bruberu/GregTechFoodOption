@@ -95,6 +95,10 @@ public class GTFOMaterialHandler implements IMaterialHandler {
 
     public static final GTFOFluidMaterial AlkalineExtract = new GTFOFluidMaterial("alkaline_extract", 0x121110);
 
+    public static final GTFOFluidMaterial PotatoJuice = new GTFOFluidMaterial("potato_juice", 0x786b48);
+    public static final GTFOFluidMaterial Vodka = new GTFOFluidMaterial("vodka", 0x7d6933);
+    public static final GTFOFluidMaterial Leninade = new GTFOFluidMaterial("leninade", 0x82661d);
+
 
     public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictItem BarePopcornKernel = new GTFOOredictItem.OreDictItem(1001, "popcorn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
@@ -188,7 +192,6 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem BurntBananaPeel = new GTFOOredictItem.OreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(Ammonia.materialRGB, Chlorine.materialRGB, Oxygen.materialRGB * 4, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
     public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(AmmoniumPerchlorate.rgb, Potassium.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
-
 
     @Override
     public void onMaterialsInit() {

@@ -20,6 +20,8 @@ public class GTFORecipeAddition {
             PurpleDrinkChain.init();
         if(GTFOConfig.gtfoChainsConfig.potatoProcessingChain)
             PotatoProcessingChain.init();
+        if(GTFOConfig.gtfoChainsConfig.alcoholChain)
+            AlcoholChain.init();
     }
 
     public static void lowInit() {

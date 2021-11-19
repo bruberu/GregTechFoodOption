@@ -54,6 +54,9 @@ public class GTFOConfig {
 
         @Config.Comment("Delete vanilla bread recipe?")
         public boolean deleteBreadRecipe = true;
+
+        @Config.Comment("Add Alcohol Recipes?")
+        public boolean alcoholChain = true;
     }
 
     public static class GTFOVanillaOverridesConfig {

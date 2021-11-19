@@ -37,7 +37,7 @@ public class BananaProcessingChain {
         CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(200)
                 .inputs(AmmoniumPerchlorate.getItemStack(10))
                 .fluidInputs(AlkalineExtract.getFluid(1000))
-                .outputs(PotassiumPerchlorate.getItemStack(6))
+                .outputs(PotassiumPerchlorate.getItemStack(1))
                 .fluidOutputs(Sludge.getFluid(1000))
                 .buildAndRegister();
 
