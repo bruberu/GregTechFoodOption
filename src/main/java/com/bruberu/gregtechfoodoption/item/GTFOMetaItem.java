@@ -182,6 +182,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
     public static MetaItem<?>.MetaValueItem VODKA;
     public static MetaItem<?>.MetaValueItem LENINADE;
 
+    public static MetaItem<?>.MetaValueItem AEROBICALLY_RESPIRING_PETRI_DISH;
+
 
     @Override
     public void registerSubItems() {
@@ -285,6 +287,8 @@ public class GTFOMetaItem extends MaterialMetaItem {
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
         BANANA_PEEL = addItem(127, "component.banana_peel");
+
+        AEROBICALLY_RESPIRING_PETRI_DISH = addItem(131, "component.aerobically_respiring_petri_dish");
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(gtfoFoodConfig.popcornHunger, gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
