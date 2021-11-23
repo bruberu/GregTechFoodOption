@@ -10,8 +10,7 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 
 import static com.bruberu.gregtechfoodoption.utils.RecipeUtils.average;
-import static gregicadditions.GAMaterials.GENERATE_METAL_CASING;
-import static gregicadditions.GAMaterials.Yeast;
+import static gregicadditions.GAMaterials.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.type.SolidMaterial.MatFlags.GENERATE_FRAME;
 
@@ -99,10 +98,14 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOFluidMaterial Vodka = new GTFOFluidMaterial("vodka", 0x7d6933);
     public static final GTFOFluidMaterial Leninade = new GTFOFluidMaterial("leninade", 0x82661d);
     
-    public static final GTFOFluidMaterial Isobutyraldehyde = new GTFOFluidMaterial("isobutyraldehyde", 0xbd9f44);
-    public static final GTFOFluidMaterial Pantolactone = new GTFOFluidMaterial("pantolactone", 0x9ec429);
-    public static final GTFOFluidMaterial PantothenicAcid = new GTFOFluidMaterial("pantothenic_acid", 0x9ccf00);
-    public static final GTFOFluidMaterial ChlorophyllExtractionSolution = new GTFOFluidMaterial("chlorophyll_extraction_solution", average(Magnesia.materialRGB, SodiumSufate.materialRGB, GAMaterials.Kerosene.materialRGB, GAMaterials.DiethylEther.materialRGB, SaltWater.materialRGB));
+    public static final GTFOFluidMaterial Isobutyraldehyde = new GTFOFluidMaterial("isobutyraldehyde", 0xbd9f44, "C4H8O");
+    public static final GTFOFluidMaterial Pantolactone = new GTFOFluidMaterial("pantolactone", 0x9ec429, "C6H10O3");
+    public static final GTFOFluidMaterial PantothenicAcid = new GTFOFluidMaterial("pantothenic_acid", 0x9ccf00, "C9H17NO5");
+    public static final GTFOFluidMaterial ChlorophyllExtractionSolution = new GTFOFluidMaterial("chlorophyll_extraction_solution", average(5, Magnesia.materialRGB, GAMaterials.SodiumSulfate.materialRGB, GAMaterials.Kerosene.materialRGB, GAMaterials.Diethylether.rgb, SaltWater.materialRGB), "(MgO)(Na2SO4)(NaCl)(C4H10O2)(H2O)?");
+    public static final GTFOFluidMaterial Xylidine = new GTFOFluidMaterial("xylidine", average(5, GAMaterials.Aniline.rgb * 3, Methane.materialRGB * 2), "C8H11N");
+    public static final GTFOFluidMaterial MitochondriaIncreasedCells = new GTFOFluidMaterial("mitochondria_increased_cells", average(8, RapidlyReplicatingAnimalCells.rgb * 7, GAMaterials.PEDOT.materialRGB), "???");
+    public static final GTFOFluidMaterial PyruvicAcid = new GTFOFluidMaterial("pyruvic_acid", 0x7d3662, "C3H4O3");
+    public static final GTFOFluidMaterial OxloaceticAcid = new GTFOFluidMaterial("oxloacetic_acid", average(2, AceticAcid.materialRGB, Oxygen.materialRGB), "C4H4O5");
 
     public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictItem BarePopcornKernel = new GTFOOredictItem.OreDictItem(1001, "popcorn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
@@ -160,7 +163,7 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem NonToxicPolymoscoviumPentahalideSheet = new GTFOOredictItem.OreDictItem(1080, "nontoxic_polymoscovium_pentahalide", average(2,Materials.Polytetrafluoroethylene.materialRGB + 10, PolymoscoviumPentahalide.rgb), MaterialIconSet.SHINY, OrePrefix.plate);
     public static final GTFOOredictItem.OreDictItem NonToxicPolymoscoviumPentahalideCurvedSheet = new GTFOOredictItem.OreDictItem(1081, "nontoxic_polymoscovium_pentahalide", NonToxicPolymoscoviumPentahalideSheet.rgb, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.plateCurved);
     public static final GTFOOredictItem.OreDictItem TitaniumDichloride = new GTFOOredictItem.OreDictItem(1082, "titanium_dichloride", average(3, Materials.Chlorine.materialRGB * 2, Materials.Titanium.materialRGB), MaterialIconSet.SAND, OrePrefix.dust, "Na2Ti3Cl8");
-    public static final GTFOOredictItem.OreDictItem LithiumBromide = new GTFOOredictItem.OreDictItem(1083, "lithium_bromide", average(2, Materials.Lithium.materialRGB, GAMaterials.Bromine.materialRGB), MaterialIconSet.SAND, OrePrefix.dust, "Na2Ti3Cl8");
+    public static final GTFOOredictItem.OreDictItem LithiumBromide = new GTFOOredictItem.OreDictItem(1083, "lithium_bromide", average(2, Materials.Lithium.materialRGB, GAMaterials.Bromine.materialRGB), MaterialIconSet.SAND, OrePrefix.dust, "LiBr");
 
     public static final GTFOOredictItem.OreDictItem HotAppleHardCandy = new GTFOOredictItem.OreDictItem(1084, "hot_apple_hard_candy", 0x78e32b, MaterialIconSet.DULL, OrePrefix.plate);
     public static final GTFOOredictItem.OreDictItem BacillusSubtilis = new GTFOOredictItem.OreDictItem(1085, "bacillus_subtilis", 0xe0386b, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
@@ -194,27 +197,45 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem PenicilliumRoqueforti = new GTFOOredictItem.OreDictItem(1111, "penicillium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
 
     public static final GTFOOredictItem.OreDictItem BurntBananaPeel = new GTFOOredictItem.OreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(Ammonia.materialRGB, Chlorine.materialRGB, Oxygen.materialRGB * 4, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
-    public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(AmmoniumPerchlorate.rgb, Potassium.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
+    public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(7, Ammonia.materialRGB, Chlorine.materialRGB, Oxygen.materialRGB * 4, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
+    public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(2, AmmoniumPerchlorate.rgb, Potassium.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
     
     public static final GTFOOredictItem.OreDictItem NicotinamideAdenineDinucleotide = new GTFOOredictItem.OreDictItem(1115, "nicotinamide_adenine_dinucleotide", 0x82a135, MaterialIconSet.DULL, OrePrefix.dust, "C21H27N7O14P2");
-    public static final GTFOOredictItem.OreDictItem ReducedNicotinamideAdenineDinucleotide = new GTFOOredictItem.OreDictItem(1116, "reduced_nicotinamide_adenine_dinucleotide", average(NicotinamideAdenineDinucleotide.rgb, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C21H28N7O14P2");
+    public static final GTFOOredictItem.OreDictItem ReducedNicotinamideAdenineDinucleotide = new GTFOOredictItem.OreDictItem(1116, "reduced_nicotinamide_adenine_dinucleotide", average(8, NicotinamideAdenineDinucleotide.rgb * 7, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C21H28N7O14P2");
     public static final GTFOOredictItem.OreDictItem FlavinAdenineDinucleotide = new GTFOOredictItem.OreDictItem(1117, "flavin_adenine_dinucleotide", 0x598239, MaterialIconSet.DULL, OrePrefix.dust, "C27H33N9O15P2");
-    public static final GTFOOredictItem.OreDictItem ReducedFlavinAdenineDinucleotide = new GTFOOredictItem.OreDictItem(1118, "reduced_flavin_adenine_dinucleotide", average(FlavinAdenineDinucleotide.rgb, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C27H35N9O15P2");
+    public static final GTFOOredictItem.OreDictItem ReducedFlavinAdenineDinucleotide = new GTFOOredictItem.OreDictItem(1118, "reduced_flavin_adenine_dinucleotide", average(8, FlavinAdenineDinucleotide.rgb * 7, Hydrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C27H35N9O15P2");
     public static final GTFOOredictItem.OreDictItem CoenzymeA = new GTFOOredictItem.OreDictItem(1119, "coenzyme_a", 0xd16e1d, MaterialIconSet.DULL, OrePrefix.dust, "C21H36N7O16P3S");
-    public static final GTFOOredictItem.OreDictItem AcetylCoenzymeA = new GTFOOredictItem.OreDictItem(1120, "acetyl_coenzyme_a", average(CoenzymeA.rgb * 5, AceticAcid.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C23H38N7O17P3S");
-    public static final GTFOOredictItem.OreDictItem Cysteine = new GTFOOredictItem.OreDictItem(1121, "cysteine", average(GAMaterials.Glycine.rgb, Sulfur.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C3H7NO2S");
-    public static final GTFOOredictItem.OreDictItem Cysteamine = new GTFOOredictItem.OreDictItem(1122, "cysteamine", average(Cysteine.rgb, Ammonia.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C2H7NS");
-    public static final GTFOOredictItem.OreDictItem SodiumBorohydride = new GTFOOredictItem.OreDictItem(1123, "sodium_borohydride", average(Sodium.materialRGB, Boron.materialRGB, Hydrogen.materialRGB * 4), MaterialIconSet.DULL, OrePrefix.dust, "NaBH4");
-    public static final GTFOOredictItem.OreDictItem CamphorSulfate = new GTFOOredictItem.OreDictItem(1124, "camphor_sulfate", average(GAMaterials.BetaPinene.materialRGB, GAMaterials.Resin.rgb), MaterialIconSet.DULL, OrePrefix.dust, "C10H16O4S");
+    public static final GTFOOredictItem.OreDictItem AcetylCoenzymeA = new GTFOOredictItem.OreDictItem(1120, "acetyl_coenzyme_a", average(8,CoenzymeA.rgb * 7, AceticAcid.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C23H38N7O17P3S");
+    public static final GTFOOredictItem.OreDictItem Cysteine = new GTFOOredictItem.OreDictItem(1121, "cysteine", average(2, GAMaterials.Glycine.rgb, Sulfur.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C3H7NO2S");
+    public static final GTFOOredictItem.OreDictItem Cysteamine = new GTFOOredictItem.OreDictItem(1122, "cysteamine", average(2, Cysteine.rgb, CarbonDioxide.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C2H7NS");
+    public static final GTFOOredictItem.OreDictItem SodiumBorohydride = new GTFOOredictItem.OreDictItem(1123, "sodium_borohydride", average(6, Sodium.materialRGB, Boron.materialRGB, Hydrogen.materialRGB * 4), MaterialIconSet.DULL, OrePrefix.dust, "NaBH4");
+    public static final GTFOOredictItem.OreDictItem CamphorSulfate = new GTFOOredictItem.OreDictItem(1124, "camphor_sulfate", average(2, GAMaterials.BetaPinene.rgb, GAMaterials.Resin.rgb), MaterialIconSet.DULL, OrePrefix.dust, "C10H16O4S");
     public static final GTFOOredictItem.OreDictItem FrozenLeaves = new GTFOOredictItem.OreDictItem(1125, "frozen_leaves", 0x307a31, MaterialIconSet.ROUGH, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictItem PulverizedFrozenLeaves = new GTFOOredictItem.OreDictItem(1126, "pulverized_frozen_leaves", FrozenLeaves.rgb, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictItem PulverizedFrozenLeaves = new GTFOOredictItem.OreDictItem(1127, "pulverized_frozen_leaves", FrozenLeaves.rgb, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictItem ImpureChlorophyll = new GTFOOredictItem.OreDictItem(1128, "impure_chlorophyll", 0x059600, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictItem Chlorophyll = new GTFOOredictItem.OreDictItem(1129, "chlorophyll", 0x1aff00, MaterialIconSet.ROUGH, OrePrefix.dust);
-    
+    public static final GTFOOredictItem.OreDictItem ImpureChlorophyll = new GTFOOredictItem.OreDictItem(1127, "impure_chlorophyll", 0x059600, MaterialIconSet.ROUGH, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem Chlorophyll = new GTFOOredictItem.OreDictItem(1128, "chlorophyll", 0x1aff00, MaterialIconSet.ROUGH, OrePrefix.dust, "C55H72MgN4O5");
+    public static final GTFOOredictItem.OreDictItem TrisodiumPhosphate = new GTFOOredictItem.OreDictItem(1129, "trisodium_phosphate", average(4, Sodium.materialRGB * 3, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "Na3PO4");
+    public static final GTFOOredictItem.OreDictItem Ribose = new GTFOOredictItem.OreDictItem(1130, "ribose", GAMaterials.Glucose.rgb, MaterialIconSet.ROUGH, OrePrefix.dust, "C5H10O5");
+    public static final GTFOOredictItem.OreDictItem RibosePhosphate = new GTFOOredictItem.OreDictItem(1131, "ribose_phosphate", average(8, Ribose.rgb * 7, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "C5H12O8P");
+    public static final GTFOOredictItem.OreDictItem Adenine = new GTFOOredictItem.OreDictItem(1132, "adenine", average(5, GAMaterials.Pyridine.rgb * 4, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "C5H5N5");
+    public static final GTFOOredictItem.OreDictItem AdenosineMonophosphate = new GTFOOredictItem.OreDictItem(1133, "adenosine_monophosphate", average(7, Adenine.rgb * 3, Ribose.rgb * 3, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "C10H14N5O7P");
+    public static final GTFOOredictItem.OreDictItem AdenosineDiphosphate = new GTFOOredictItem.OreDictItem(1134, "adenosine_diphosphate", average(8, AdenosineMonophosphate.rgb * 7, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "C10H15N5O10P2");
+    public static final GTFOOredictItem.OreDictItem AdenosineTriphosphate = new GTFOOredictItem.OreDictItem(1135, "adenosine_triphosphate", average(8, AdenosineDiphosphate.rgb * 7, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "C10H16N5O13P3");
+    public static final GTFOOredictItem.OreDictItem Nicotinonitrile = new GTFOOredictItem.OreDictItem(1136, "nicotinonitrile", average(5, GAMaterials.Pyridine.rgb * 4, GAMaterials.HydrogenCyanide.rgb), MaterialIconSet.DULL, OrePrefix.dust, "C6H4N2");
+    public static final GTFOOredictItem.OreDictItem Niacin = new GTFOOredictItem.OreDictItem(1137, "niacin", average(8, Nicotinonitrile.rgb * 7, GAMaterials.FormicAcid.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C6H5NO2");
+    public static final GTFOOredictItem.OreDictItem Nicotinamide = new GTFOOredictItem.OreDictItem(1138, "nicotinamide", average(8, Niacin.rgb * 7, Ammonia.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C6H6N2O");
+    public static final GTFOOredictItem.OreDictItem NicotinamideMononucleotide = new GTFOOredictItem.OreDictItem(1139, "nicotinamide_mononucleotide", average(7, Nicotinamide.rgb * 3, Ribose.rgb * 3, Phosphate.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C11H15N2O8P");
+    public static final GTFOOredictItem.OreDictItem AzoanilineRibosylxylidine = new GTFOOredictItem.OreDictItem(1140, "azoaniline_ribosylxylidine", average(2, Xylidine.rgb, Nitrogen.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C19H25N3O4");
+    public static final GTFOOredictItem.OreDictItem MalonicAcid = new GTFOOredictItem.OreDictItem(1141, "malonic_acid", 0x339e77, MaterialIconSet.DULL, OrePrefix.dust, "C3H4O4");
+    public static final GTFOOredictItem.OreDictItem Riboflavin = new GTFOOredictItem.OreDictItem(1142, "riboflavin", average(5, 0x536fe0 * 4, Ribose.rgb), MaterialIconSet.DULL, OrePrefix.dust, "C17H20N4O6");
+    public static final GTFOOredictItem.OreDictItem FlavinMononucleotide = new GTFOOredictItem.OreDictItem(1143, "flavin_mononucleotide", average(8, Riboflavin.rgb * 7, Phosphate.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C17H21N4O9P");
+    public static final GTFOOredictItem.OreDictItem NickelNitriloacetate = new GTFOOredictItem.OreDictItem(1144, "nickel_nitriloacetate", average(2, Nickel.materialRGB, GAMaterials.Acetamide.rgb), MaterialIconSet.SHINY, OrePrefix.dust, "C6H6NiNO6");
+    public static final GTFOOredictItem.OreDictItem Mitochondria = new GTFOOredictItem.OreDictItem(1145, "mitochondria", 0x59ff00, MaterialIconSet.ROUGH, OrePrefix.dust, "Powerhouse of the cell.");
+    public static final GTFOOredictItem.OreDictItem CyclicAdenosineMonophosphate = new GTFOOredictItem.OreDictItem(1146, "cyclic_adenosine_monophosphate", average(5, AdenosineMonophosphate.rgb * 4, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "C10H11N5O6P");
+
     @Override
     public void onMaterialsInit() {
         Materials.BismuthBronze.addFlag(GENERATE_FRAME | GENERATE_METAL_CASING);
+        GAMaterials.BismuthRuthenate.addFlag(GENERATE_FRAME);
     }
 }
