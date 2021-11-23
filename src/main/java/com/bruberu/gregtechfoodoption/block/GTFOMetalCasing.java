@@ -34,7 +34,6 @@ public class GTFOMetalCasing extends VariantBlock<GTFOMetalCasing.CasingType> {
 
         BISMUTH_BRONZE_CASING("casing_bismuth_bronze", BismuthBronze);
 
-
         private final String name;
         private final IngotMaterial material;
 

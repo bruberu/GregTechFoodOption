@@ -95,6 +95,7 @@ public class CommonProxy {
 
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTFOMetaBlocks.GTFO_OTHER_CASING, VariantItemBlock::new));
 
     }
 

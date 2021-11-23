@@ -465,6 +465,7 @@ fluid.potato_juice=Potato Juice
 fluid.vodka=Vodka
 fluid.leninade=Leninade
 
+tile.gtfo_other_casing.biochemical.name=Biochemically Steady Casing
 metaitem.component.aerobically_respiring_petri_dish.name=Aerobically Respiring Petri Dish
 metaitem.component.aerobically_respiring_petri_dish.tooltip=The cells in it, not the dish.
 metaitem.nicotinamide_adenine_dinucleotide_dust.name=Nicotinamide Adenine Dinucleotide (NAD)

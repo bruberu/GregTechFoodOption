@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 public class GTFOMetaBlocks {
     public static GTFOBlockCasing GTFO_CASING;
     public static GTFOMetalCasing GTFO_METAL_CASING;
+    public static GTFOOtherCasing GTFO_OTHER_CASING;
 
     public static void init() {
         GTFO_CASING = new GTFOBlockCasing();
@@ -25,12 +26,16 @@ public class GTFOMetaBlocks {
 
         GTFO_METAL_CASING = new GTFOMetalCasing();
         GTFO_METAL_CASING.setRegistryName("gtfo_metal_casing");
+
+        GTFO_OTHER_CASING = new GTFOOtherCasing();
+        GTFO_OTHER_CASING.setRegistryName("gtfo_other_casing");
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerItemModels() {
         registerItemModel(GTFO_CASING);
         registerItemModel(GTFO_METAL_CASING);
+        registerItemModel(GTFO_OTHER_CASING);
     }
 
     @SideOnly(Side.CLIENT)
