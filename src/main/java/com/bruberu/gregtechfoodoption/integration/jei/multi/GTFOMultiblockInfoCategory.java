@@ -24,7 +24,8 @@ public class GTFOMultiblockInfoCategory implements IRecipeCategory<MultiblockInf
     public static void registerRecipes(IModRegistry registry) {
         registry.addRecipes(Lists.newArrayList(
                 new MultiblockInfoRecipeWrapper(new BakingOvenInfo()),
-                new MultiblockInfoRecipeWrapper(new ElectricBakingOvenInfo())
+                new MultiblockInfoRecipeWrapper(new ElectricBakingOvenInfo()),
+                new MultiblockInfoRecipeWrapper(new CulinaryGeneratorInfo())
 
         ), "gregtech:multiblock_info");
     }

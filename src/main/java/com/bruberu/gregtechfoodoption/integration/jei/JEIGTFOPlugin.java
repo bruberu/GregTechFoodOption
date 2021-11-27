@@ -40,5 +40,11 @@ public class JEIGTFOPlugin implements IModPlugin {
                 .map(NoEnergyRecipeWrapper::new)
                 .collect(Collectors.toList()), electricBakingOvenId);
         registry.addRecipeCatalyst(GTFOTileEntities.ELECTRIC_BAKING_OVEN.getStackForm(), electricBakingOvenId);
+
+        String culinaryGeneratorId = GregTechFoodOption.MODID + ":" + "culinary_generator";
+        registry.addRecipes(GTFORecipeMaps.CULINARY_GENERATOR_RECIPES.getRecipeList().stream()
+                .map(NoEnergyRecipeWrapper::new)
+                .collect(Collectors.toList()), culinaryGeneratorId);
+        registry.addRecipeCatalyst(GTFOTileEntities.CULINARY_GENERATOR.getStackForm(), culinaryGeneratorId);
     }
 }

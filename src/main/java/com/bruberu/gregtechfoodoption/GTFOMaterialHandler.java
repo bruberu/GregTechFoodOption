@@ -229,7 +229,7 @@ public class GTFOMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem MalonicAcid = new GTFOOredictItem.OreDictItem(1141, "malonic_acid", 0x339e77, MaterialIconSet.DULL, OrePrefix.dust, "C3H4O4");
     public static final GTFOOredictItem.OreDictItem Riboflavin = new GTFOOredictItem.OreDictItem(1142, "riboflavin", average(5, 0x536fe0 * 4, Ribose.rgb), MaterialIconSet.DULL, OrePrefix.dust, "C17H20N4O6");
     public static final GTFOOredictItem.OreDictItem FlavinMononucleotide = new GTFOOredictItem.OreDictItem(1143, "flavin_mononucleotide", average(8, Riboflavin.rgb * 7, Phosphate.materialRGB), MaterialIconSet.DULL, OrePrefix.dust, "C17H21N4O9P");
-    public static final GTFOOredictItem.OreDictItem NickelNitriloacetate = new GTFOOredictItem.OreDictItem(1144, "nickel_nitriloacetate", average(2, Nickel.materialRGB, GAMaterials.Acetamide.rgb), MaterialIconSet.SHINY, OrePrefix.dust, "C6H6NiNO6");
+    public static final GTFOOredictItem.OreDictItem NickelNitrilotriacetate = new GTFOOredictItem.OreDictItem(1144, "nickel_nitrilotriacetate", average(2, Nickel.materialRGB, GAMaterials.Acetamide.rgb), MaterialIconSet.SHINY, OrePrefix.dust, "C6H6NiNO6");
     public static final GTFOOredictItem.OreDictItem Mitochondria = new GTFOOredictItem.OreDictItem(1145, "mitochondria", 0x59ff00, MaterialIconSet.ROUGH, OrePrefix.dust, "Powerhouse of the cell.");
     public static final GTFOOredictItem.OreDictItem CyclicAdenosineMonophosphate = new GTFOOredictItem.OreDictItem(1146, "cyclic_adenosine_monophosphate", average(5, AdenosineMonophosphate.rgb * 4, Phosphate.materialRGB), MaterialIconSet.ROUGH, OrePrefix.dust, "C10H11N5O6P");
 

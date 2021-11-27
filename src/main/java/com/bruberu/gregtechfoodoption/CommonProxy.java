@@ -85,6 +85,7 @@ public class CommonProxy {
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(GTFOMetaBlocks.GTFO_CASING);
         registry.register(GTFOMetaBlocks.GTFO_METAL_CASING);
+        registry.register(GTFOMetaBlocks.GTFO_OTHER_CASING);
 
     }
 

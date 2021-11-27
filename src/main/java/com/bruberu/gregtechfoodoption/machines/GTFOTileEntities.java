@@ -3,6 +3,7 @@ package com.bruberu.gregtechfoodoption.machines;
 import com.bruberu.gregtechfoodoption.GregTechFoodOption;
 import com.bruberu.gregtechfoodoption.client.GTFOClientHandler;
 import com.bruberu.gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
+import com.bruberu.gregtechfoodoption.machines.multiblock.MetaTileEntityCulinaryGenerator;
 import com.bruberu.gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregicadditions.machines.GATileEntities;
@@ -21,6 +22,7 @@ public class GTFOTileEntities {
 
     public static MetaTileEntityBakingOven BAKING_OVEN;
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
+    public static MetaTileEntityCulinaryGenerator CULINARY_GENERATOR;
 
 
     public static void init() {
@@ -58,6 +60,8 @@ public class GTFOTileEntities {
         CUISINE_ASSEMBLER[10] = create(8528, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.uiv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 11));
         CUISINE_ASSEMBLER[11] = create(8529, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.umv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 12));
         CUISINE_ASSEMBLER[12] = create(8530, new GASimpleMachineMetaTileEntity(location("cuisine_assembler.uxv"), GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, 13));
+
+        CULINARY_GENERATOR = GregTechAPI.registerMetaTileEntity(8531, new MetaTileEntityCulinaryGenerator(location("culinary_generator")));
 
     }
 

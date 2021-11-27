@@ -1,8 +1,12 @@
 package com.bruberu.gregtechfoodoption.recipe.chain;
 
+import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
+import com.bruberu.gregtechfoodoption.block.GTFOMetalCasing;
+import com.bruberu.gregtechfoodoption.block.GTFOOtherCasing;
 import gregicadditions.GAValues;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.MetaItems;
 
 import static gregicadditions.GAValues.*;
 
@@ -14,8 +18,12 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static com.bruberu.gregtechfoodoption.item.GTFOMetaItem.*;
+import static com.bruberu.gregtechfoodoption.machines.GTFOTileEntities.*;
 import static com.bruberu.gregtechfoodoption.GTFOMaterialHandler.*;
+import static com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps.CULINARY_GENERATOR_RECIPES;
 
+import static com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks.GTFO_OTHER_CASING;
+import static com.bruberu.gregtechfoodoption.client.GTFOClientHandler.BIOCHEMICAL;
 
 public class CulinaryGeneratorChain {
     public static void init() {
@@ -30,7 +38,7 @@ public class CulinaryGeneratorChain {
         LARGE_CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Glycine.getFluid(1000), Methanol.getFluid(1000), HydrogenSulfide.getFluid(1000), Bromine.getFluid(2000))
                 .outputs(Cysteine.getItemStack(14))
-                .fluidOutputs(HydrochloricAcid.getFluid(2000), Water.getFluid(1000))
+                .fluidOutputs(HydrobromicAcid.getFluid(2000), Water.getFluid(1000))
                 .EUt(480)
                 .duration(600)
                 .buildAndRegister();
@@ -173,17 +181,21 @@ public class CulinaryGeneratorChain {
                 .buildAndRegister();
         BIO_REACTOR_RECIPES.recipeBuilder()
                 .inputs(AdenosineMonophosphate.getItemStack(1), TrisodiumPhosphate.getItemStack(8))
+                .fluidInputs(HydrochloricAcid.getFluid(3000))
                 .notConsumable(Chlorophyll.getItemStack())
                 .outputs(AdenosineDiphosphate.getItemStack(1))
-                .fluidOutputs(Water.getFluid(1000))
+                .output(dust, Salt, 6)
+                .fluidOutputs(Water.getFluid(2000))
                 .EUt(8192)
                 .duration(100)
                 .buildAndRegister();
         BIO_REACTOR_RECIPES.recipeBuilder()
                 .inputs(AdenosineDiphosphate.getItemStack(1), TrisodiumPhosphate.getItemStack(8))
+                .fluidInputs(HydrochloricAcid.getFluid(3000))
                 .notConsumable(Chlorophyll.getItemStack())
                 .outputs(AdenosineTriphosphate.getItemStack(1))
-                .fluidOutputs(Water.getFluid(1000))
+                .output(dust, Salt, 6)
+                .fluidOutputs(Water.getFluid(2000))
                 .EUt(8192)
                 .duration(100)
                 .buildAndRegister();
@@ -257,8 +269,10 @@ public class CulinaryGeneratorChain {
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder()
                 .inputs(Riboflavin.getItemStack(47), TrisodiumPhosphate.getItemStack(8))
+                .fluidInputs(HydrochloricAcid.getFluid(3000))
                 .outputs(FlavinMononucleotide.getItemStack(1))
-                .fluidOutputs(Water.getFluid(1000))
+                .output(dust, Salt, 6)
+                .fluidOutputs(Water.getFluid(2000))
                 .EUt(480)
                 .duration(600)
                 .buildAndRegister();
@@ -272,14 +286,14 @@ public class CulinaryGeneratorChain {
         CHEMICAL_RECIPES.recipeBuilder()
                 .inputs(NickelOxideHydroxide.getItemStack(4))
                 .fluidInputs(Ammonia.getFluid(1000), Formaldehyde.getFluid(6000))
-                .outputs(NickelNitriloacetate.getItemStack(20))
+                .outputs(NickelNitrilotriacetate.getItemStack(20))
                 .fluidOutputs(Hydrogen.getFluid(6000), Water.getFluid(2000))
                 .EUt(480)
                 .duration(600)
                 .buildAndRegister();
         BIO_REACTOR_RECIPES.recipeBuilder()
-                .fluidInputs(RapidlyReplicatingAnimalCells.getFluid(4000))
-                .notConsumable(NickelNitriloacetate.getItemStack())
+                .fluidInputs(RapidlyReplicatingAnimalCells.getFluid(8000))
+                .notConsumable(NickelNitrilotriacetate.getItemStack())
                 .notConsumable(ULTRASONIC_HOMOGENIZER.getStackForm())
                 .notConsumable(Pyridine.getFluid(1))
                 .outputs(Mitochondria.getItemStack(1))
@@ -325,6 +339,63 @@ public class CulinaryGeneratorChain {
                 .fluidOutputs(CarbonDioxide.getFluid(1000))
                 .EUt(8)
                 .duration(100)
+                .buildAndRegister();
+
+        CULINARY_GENERATOR_RECIPES.recipeBuilder()
+                .inputs(FlavinAdenineDinucleotide.getItemStack(2), NicotinamideAdenineDinucleotide.getItemStack(2), CoenzymeA.getItemStack(23), TrisodiumPhosphate.getItemStack(16))
+                .fluidInputs(HydrochloricAcid.getFluid(3000), Water.getFluid(1000))
+                .notConsumable(CyclicAdenosineMonophosphate.getItemStack())
+                .outputs(ReducedFlavinAdenineDinucleotide.getItemStack(2), ReducedNicotinamideAdenineDinucleotide.getItemStack(2), AcetylCoenzymeA.getItemStack(23))
+                .output(dust, Salt, 6)
+                .fluidOutputs(PyruvicAcid.getFluid(2000), Glycerol.getFluid(1000))
+                .EUt(128)
+                .duration(800)
+                .buildAndRegister();
+        CULINARY_GENERATOR_RECIPES.recipeBuilder()
+                .inputs(FlavinAdenineDinucleotide.getItemStack(1), NicotinamideAdenineDinucleotide.getItemStack(6), AcetylCoenzymeA.getItemStack(1))
+                .fluidInputs(Water.getFluid(2000))
+                .notConsumable(dust, MagnesiumChloride)
+                .notConsumable(OxloaceticAcid.getFluid(1))
+                .outputs(ReducedFlavinAdenineDinucleotide.getItemStack(1), ReducedNicotinamideAdenineDinucleotide.getItemStack(6), CoenzymeA.getItemStack(1))
+                .fluidOutputs(CarbonDioxide.getFluid(2000))
+                .EUt(128)
+                .duration(400)
+                .buildAndRegister();
+        CULINARY_GENERATOR_RECIPES.recipeBuilder()
+                .inputs(ReducedNicotinamideAdenineDinucleotide.getItemStack(1))
+                .fluidInputs(Oxygen.getFluid(500))
+                .outputs(NicotinamideAdenineDinucleotide.getItemStack(1))
+                .fluidOutputs(Water.getFluid(500))
+                .EUt(128)
+                .duration(1000)
+                .buildAndRegister();
+        CULINARY_GENERATOR_RECIPES.recipeBuilder()
+                .inputs(ReducedFlavinAdenineDinucleotide.getItemStack(1))
+                .fluidInputs(Oxygen.getFluid(1000))
+                .outputs(FlavinAdenineDinucleotide.getItemStack(1))
+                .fluidOutputs(Water.getFluid(1000))
+                .EUt(128)
+                .duration(600)
+                .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .inputs(BIOREACTOR[4].getStackForm(1), MetaItems.ELECTRIC_PISTON_IV.getStackForm(2), AdenosineDiphosphate.getItemStack(1), AEROBICALLY_RESPIRING_PETRI_DISH.getStackForm(1))
+                .input(gear, Rhodium, 4)
+                .input(plate, CubicZirconia, 4)
+                .input(plate, LithiumTitanate, 4)
+                .fluidInputs(SolderingAlloy.getFluid(1296))
+                .outputs(CULINARY_GENERATOR.getStackForm(1))
+                .EUt(8192)
+                .duration(1200)
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder()
+                .input(plate, PEDOT, 4)
+                .input(screw, Promethium, 2)
+                .input(frameGt, BismuthRuthenate, 1)
+                .fluidInputs(Polytetrafluoroethylene.getFluid(144))
+                .outputs(GTFOMetaBlocks.GTFO_OTHER_CASING.getItemVariant(GTFOOtherCasing.CasingType.BIOCHEMICAL, 2))
+                .EUt(1000)
+                .duration(150)
                 .buildAndRegister();
 
     }
