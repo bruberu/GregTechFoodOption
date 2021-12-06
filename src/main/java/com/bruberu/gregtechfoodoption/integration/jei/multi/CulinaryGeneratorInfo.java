@@ -33,7 +33,7 @@ public class CulinaryGeneratorInfo extends MultiblockInfoPage {
     public List<MultiblockShapeInfo> getMatchingShapes() {
         MultiblockShapeInfo shapeInfo = MultiblockShapeInfo.builder()
                 .aisle("0XX", "2XX", "2XX", "XXX", "XXX")
-                .aisle("YX5", "RX4", "RXX", "RXX", "mXX")
+                .aisle("YX4", "RXX", "RXX", "RXX", "mXX")
                 .aisle("1XX", "3XX", "3XX", "XXX", "XXX")
                 .where('Y', this.getController(), EnumFacing.WEST)
                 .where('X', GTFO_OTHER_CASING.getState(GTFOOtherCasing.CasingType.BIOCHEMICAL))
@@ -46,8 +46,7 @@ public class CulinaryGeneratorInfo extends MultiblockInfoPage {
                 .where('1', MetaTileEntities.ITEM_EXPORT_BUS[3], EnumFacing.WEST)
                 .where('2', MetaTileEntities.FLUID_IMPORT_HATCH[3], EnumFacing.WEST)
                 .where('3', MetaTileEntities.FLUID_EXPORT_HATCH[3], EnumFacing.WEST)
-                .where('4', MetaTileEntities.ENERGY_INPUT_HATCH[5], EnumFacing.EAST)
-                .where('5', MetaTileEntities.ENERGY_OUTPUT_HATCH[5], EnumFacing.EAST)
+                .where('4', MetaTileEntities.ENERGY_OUTPUT_HATCH[5], EnumFacing.EAST)
                 .build();
         return Lists.newArrayList(shapeInfo);
     }

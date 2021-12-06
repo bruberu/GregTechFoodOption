@@ -2,6 +2,7 @@ package com.bruberu.gregtechfoodoption.machines.multiblock;
 
 import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.block.GTFOOtherCasing;
+import com.bruberu.gregtechfoodoption.integration.jei.multi.culinary.CulinaryGeneratorMultiblockController;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregicadditions.GAConfig;
 import gregicadditions.GAValues;
@@ -12,6 +13,7 @@ import gregicadditions.item.*;
 import gregicadditions.item.components.SensorCasing;
 import gregicadditions.item.components.EmitterCasing;
 import gregicadditions.machines.multi.GAMultiblockWithDisplayBase;
+import gregicadditions.machines.multi.IMaintenance;
 import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
 import gregicadditions.recipes.GARecipeMaps;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -49,7 +51,7 @@ import java.util.function.Predicate;
 import static com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks.GTFO_OTHER_CASING;
 import static com.bruberu.gregtechfoodoption.client.GTFOClientHandler.BIOCHEMICAL;
 
-public class MetaTileEntityCulinaryGenerator extends GARecipeMapMultiblockController {
+public class MetaTileEntityCulinaryGenerator extends CulinaryGeneratorMultiblockController implements IMaintenance {
 
     private long maxVoltage;
     private int unitGlucose;
