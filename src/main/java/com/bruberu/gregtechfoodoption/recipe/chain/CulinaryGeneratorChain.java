@@ -348,7 +348,7 @@ public class CulinaryGeneratorChain {
                 .outputs(ReducedFlavinAdenineDinucleotide.getItemStack(2), ReducedNicotinamideAdenineDinucleotide.getItemStack(2), AcetylCoenzymeA.getItemStack(23))
                 .output(dust, Salt, 6)
                 .fluidOutputs(PyruvicAcid.getFluid(2000), Glycerol.getFluid(1000))
-                .EUt(128)
+                .EUt(-128)
                 .duration(800)
                 .buildAndRegister();
         CULINARY_GENERATOR_RECIPES.recipeBuilder()
@@ -358,7 +358,7 @@ public class CulinaryGeneratorChain {
                 .notConsumable(OxloaceticAcid.getFluid(1))
                 .outputs(ReducedFlavinAdenineDinucleotide.getItemStack(1), ReducedNicotinamideAdenineDinucleotide.getItemStack(6), CoenzymeA.getItemStack(1))
                 .fluidOutputs(CarbonDioxide.getFluid(2000))
-                .EUt(128)
+                .EUt(-128)
                 .duration(400)
                 .buildAndRegister();
         CULINARY_GENERATOR_RECIPES.recipeBuilder()
@@ -366,7 +366,7 @@ public class CulinaryGeneratorChain {
                 .fluidInputs(Oxygen.getFluid(500))
                 .outputs(NicotinamideAdenineDinucleotide.getItemStack(1))
                 .fluidOutputs(Water.getFluid(500))
-                .EUt(128)
+                .EUt(-128)
                 .duration(1000)
                 .buildAndRegister();
         CULINARY_GENERATOR_RECIPES.recipeBuilder()
@@ -374,7 +374,7 @@ public class CulinaryGeneratorChain {
                 .fluidInputs(Oxygen.getFluid(1000))
                 .outputs(FlavinAdenineDinucleotide.getItemStack(1))
                 .fluidOutputs(Water.getFluid(1000))
-                .EUt(128)
+                .EUt(-128)
                 .duration(600)
                 .buildAndRegister();
 
@@ -382,7 +382,6 @@ public class CulinaryGeneratorChain {
                 .inputs(BIOREACTOR[4].getStackForm(1), MetaItems.ELECTRIC_PISTON_IV.getStackForm(2), AdenosineDiphosphate.getItemStack(1), AEROBICALLY_RESPIRING_PETRI_DISH.getStackForm(1))
                 .input(gear, Rhodium, 4)
                 .input(plate, CubicZirconia, 4)
-                .input(plate, LithiumTitanate, 4)
                 .fluidInputs(SolderingAlloy.getFluid(1296))
                 .outputs(CULINARY_GENERATOR.getStackForm(1))
                 .EUt(8192)

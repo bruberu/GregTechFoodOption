@@ -43,7 +43,6 @@ public class JEIGTFOPlugin implements IModPlugin {
 
         String culinaryGeneratorId = GregTechFoodOption.MODID + ":" + "culinary_generator";
         registry.addRecipes(GTFORecipeMaps.CULINARY_GENERATOR_RECIPES.getRecipeList().stream()
-                .map(NoEnergyRecipeWrapper::new)
                 .collect(Collectors.toList()), culinaryGeneratorId);
         registry.addRecipeCatalyst(GTFOTileEntities.CULINARY_GENERATOR.getStackForm(), culinaryGeneratorId);
     }

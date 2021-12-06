@@ -11,6 +11,7 @@ import gregicadditions.capabilities.impl.GARecipeMapMultiblockController;
 import gregicadditions.item.*;
 import gregicadditions.item.components.SensorCasing;
 import gregicadditions.item.components.EmitterCasing;
+import gregicadditions.machines.multi.GAMultiblockWithDisplayBase;
 import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
 import gregicadditions.recipes.GARecipeMaps;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -29,6 +30,7 @@ import gregtech.api.render.Textures;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.metatileentities.multi.electric.generator.FueledMultiblockController;
 import nc.multiblock.Multiblock;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -53,22 +55,22 @@ public class MetaTileEntityCulinaryGenerator extends GARecipeMapMultiblockContro
     private int unitGlucose;
     private int unitTriglyceride;
 
-    public MetaTileEntityCulinaryGenerator(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GTFORecipeMaps.CULINARY_GENERATOR_RECIPES, false, true ,true);
+        public MetaTileEntityCulinaryGenerator(ResourceLocation metaTileEntityId) {
+        super(metaTileEntityId, GTFORecipeMaps.CULINARY_GENERATOR_RECIPES, false, true, true);
     }
 
     private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {
             MultiblockAbility.IMPORT_ITEMS, MultiblockAbility.EXPORT_ITEMS,
             MultiblockAbility.IMPORT_FLUIDS, MultiblockAbility.EXPORT_FLUIDS,
-            MultiblockAbility.OUTPUT_ENERGY, GregicAdditionsCapabilities.MAINTENANCE_HATCH
+            MultiblockAbility.INPUT_ENERGY, MultiblockAbility.OUTPUT_ENERGY, GregicAdditionsCapabilities.MAINTENANCE_HATCH
     };
 
     @Override
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
                 .aisle("XXX", "XXX", "XXX", "XXX", "XXX")
-                .aisle("YXX", "RXX", "RXX", "RXX", "XXX")
                 .aisle("XXX", "XXX", "XXX", "XXX", "XXX")
+                .aisle("XYX", "XRX", "XRX", "XRX", "XXX")
                 .where('Y', selfPredicate())
                 .where('X', statePredicate(getCasingState()).or(abilityPartPredicate(ALLOWED_ABILITIES)))
                 //.where('~', frameworkPredicate().or(frameworkPredicate2()))
@@ -173,17 +175,17 @@ public class MetaTileEntityCulinaryGenerator extends GARecipeMapMultiblockContro
     public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
         return BIOCHEMICAL;
     }
-/*
+
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
-        int tier = context.getOrDefault("casingTier", -1);
-        if (tier < 0)
-            maxVoltage = 0;
-        else
-            maxVoltage = (long) (Math.pow(4, tier) * 8);
+        //int tier = context.getOrDefault("casingTier", -1);
+        //if (tier < 0)
+        //    maxVoltage = 0;
+        //else
+        //    maxVoltage = (long) (Math.pow(4, tier) * 8);
     }
-*/
+
     @Override
     public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder holder) {
         return new MetaTileEntityCulinaryGenerator(metaTileEntityId);
