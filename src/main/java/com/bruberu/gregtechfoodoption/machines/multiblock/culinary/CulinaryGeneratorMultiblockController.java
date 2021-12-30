@@ -1,15 +1,13 @@
-package com.bruberu.gregtechfoodoption.integration.jei.multi.culinary;
+package com.bruberu.gregtechfoodoption.machines.multiblock.culinary;
 
 import gregicadditions.GAConfig;
 import gregicadditions.GAUtility;
 import gregicadditions.GAValues;
 import gregicadditions.capabilities.GregicAdditionsCapabilities;
-import gregicadditions.capabilities.impl.GAMultiblockRecipeLogic;
 import gregicadditions.item.GAHeatingCoil;
 import gregicadditions.machines.multi.IMaintenance;
 import gregicadditions.machines.multi.multiblockpart.MetaTileEntityMaintenanceHatch;
 import gregicadditions.machines.multi.multiblockpart.MetaTileEntityMufflerHatch;
-import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.gui.Widget;
@@ -157,8 +155,7 @@ public abstract class CulinaryGeneratorMultiblockController extends RecipeMapMul
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         this.energyContainer = new EnergyContainerList(
-                Stream.of(MultiblockAbility.INPUT_ENERGY,
-                                MultiblockAbility.OUTPUT_ENERGY)
+                Stream.of(MultiblockAbility.OUTPUT_ENERGY)
                         .map(this::getAbilities)
                         .flatMap(Collection::stream)
                         .collect(Collectors.toList())
@@ -206,7 +203,6 @@ public abstract class CulinaryGeneratorMultiblockController extends RecipeMapMul
         return itemInputsCount >= recipeMap.getMinInputs() &&
                 fluidInputsCount >= recipeMap.getMinFluidInputs() &&
                 hasMaintenance ? maintenanceCount == 1 : maintenanceCount == 0 &&
-                abilities.containsKey(MultiblockAbility.INPUT_ENERGY) ||
                 abilities.containsKey(MultiblockAbility.OUTPUT_ENERGY);
 
     }

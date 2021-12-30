@@ -1,6 +1,7 @@
 package com.bruberu.gregtechfoodoption.recipe;
 
 import com.bruberu.gregtechfoodoption.client.GTFOGuiTextures;
+import com.bruberu.gregtechfoodoption.recipe.builder.CulinaryGeneratorRecipeBuilder;
 import com.bruberu.gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.BakingOvenRecipe;
 import com.bruberu.gregtechfoodoption.recipe.multiblock.ElectricBakingOvenRecipeMap;
@@ -40,8 +41,8 @@ public class GTFORecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> CULINARY_GENERATOR_RECIPES = new RecipeMap<>("culinary_generator",
-            0, 6, 0, 4, 0, 2, 0, 2, new SimpleRecipeBuilder())
+    public static final RecipeMap<CulinaryGeneratorRecipeBuilder> CULINARY_GENERATOR_RECIPES = new RecipeMap<>("culinary_generator",
+            0, 4, 0, 4, 0, 2, 0, 2, new CulinaryGeneratorRecipeBuilder())
             .setProgressBar(GuiTextures.PROGRESS_BAR_BATH, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty

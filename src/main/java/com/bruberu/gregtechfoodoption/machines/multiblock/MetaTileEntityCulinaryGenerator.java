@@ -1,21 +1,16 @@
 package com.bruberu.gregtechfoodoption.machines.multiblock;
 
-import com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks;
 import com.bruberu.gregtechfoodoption.block.GTFOOtherCasing;
-import com.bruberu.gregtechfoodoption.integration.jei.multi.culinary.CulinaryGeneratorMultiblockController;
+import com.bruberu.gregtechfoodoption.machines.multiblock.culinary.CulinaryGeneratorMultiblockController;
 import com.bruberu.gregtechfoodoption.recipe.GTFORecipeMaps;
-import gregicadditions.GAConfig;
 import gregicadditions.GAValues;
-import gregicadditions.capabilities.impl.GAMultiblockRecipeLogic;
 import gregicadditions.capabilities.GregicAdditionsCapabilities;
+import gregicadditions.capabilities.impl.GAMultiblockRecipeLogic;
 import gregicadditions.capabilities.impl.GARecipeMapMultiblockController;
 import gregicadditions.item.*;
 import gregicadditions.item.components.SensorCasing;
 import gregicadditions.item.components.EmitterCasing;
-import gregicadditions.machines.multi.GAMultiblockWithDisplayBase;
 import gregicadditions.machines.multi.IMaintenance;
-import gregicadditions.machines.multi.simple.LargeSimpleRecipeMapMultiblockController;
-import gregicadditions.recipes.GARecipeMaps;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -25,15 +20,11 @@ import gregtech.api.multiblock.BlockPattern;
 import gregtech.api.multiblock.BlockWorldState;
 import gregtech.api.multiblock.FactoryBlockPattern;
 import gregtech.api.multiblock.PatternMatchContext;
-import gregtech.api.recipes.Recipe;
 import gregtech.api.render.ICubeRenderer;
 import gregtech.api.render.OrientedOverlayRenderer;
 import gregtech.api.render.Textures;
 import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.BlockWireCoil;
 import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.multi.electric.generator.FueledMultiblockController;
-import nc.multiblock.Multiblock;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -44,86 +35,54 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+
+import static gregtech.api.unification.material.Materials.StainlessSteel;
 
 import static com.bruberu.gregtechfoodoption.block.GTFOMetaBlocks.GTFO_OTHER_CASING;
 import static com.bruberu.gregtechfoodoption.client.GTFOClientHandler.BIOCHEMICAL;
 
 public class MetaTileEntityCulinaryGenerator extends CulinaryGeneratorMultiblockController implements IMaintenance {
 
+    private int maxTier;
     private long maxVoltage;
-    private int unitGlucose;
-    private int unitTriglyceride;
 
         public MetaTileEntityCulinaryGenerator(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GTFORecipeMaps.CULINARY_GENERATOR_RECIPES, false, true, true);
+        this.recipeMapWorkable = new CulinaryGeneratorRecipeLogic(this);
     }
 
     private static final MultiblockAbility<?>[] ALLOWED_ABILITIES = {
             MultiblockAbility.IMPORT_ITEMS, MultiblockAbility.EXPORT_ITEMS,
             MultiblockAbility.IMPORT_FLUIDS, MultiblockAbility.EXPORT_FLUIDS,
-            MultiblockAbility.INPUT_ENERGY, MultiblockAbility.OUTPUT_ENERGY, GregicAdditionsCapabilities.MAINTENANCE_HATCH
+            MultiblockAbility.OUTPUT_ENERGY, GregicAdditionsCapabilities.MAINTENANCE_HATCH
     };
 
     @Override
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
-                .aisle("XXX", "XXX", "XXX", "XXX", "XXX")
-                .aisle("XXX", "XXX", "XXX", "XXX", "XXX")
-                .aisle("XYX", "XRX", "XRX", "XRX", "XXX")
-                .where('Y', selfPredicate())
+                .aisle("         ", "         ", " PXXXXXP ", " PXXXXXP ", " PXXXXXP ", "         ", "         ")
+                .aisle("         ", " PYYYYYP ", " R~~X~~R ", " R~~s~~R ", " R~~X~~R ", " PYYYYYP ", "         ")
+                .aisle("F       F", "FPYYYYYPF", "FR~~~~~RF", "CR~~~~~RC", " R~~~~~R ", " PYYYYYP ", "         ")
+                .aisle("         ", " PYYYYYP ", " R~~X~~R ", " R~~e~~R ", " R~~X~~R ", " PYYYYYP ", "         ")
+                .aisle("         ", "         ", " PXXXXXP ", " PXX#XXP ", " PXXXXXP ", "         ", "         ")
+                .where(' ', blockWorldState -> true)
+                .where('#', selfPredicate())
+                .where('Y', statePredicate(getCasingState()))
                 .where('X', statePredicate(getCasingState()).or(abilityPartPredicate(ALLOWED_ABILITIES)))
-                //.where('~', frameworkPredicate().or(frameworkPredicate2()))
-                .where('R', statePredicate(GAMetaBlocks.TRANSPARENT_CASING.getState(GATransparentCasing.CasingType.REINFORCED_GLASS)))
-                //.where('s', sensorPredicate())
-                //.where('e', emitterPredicate())
+                .where('~', isAirPredicate())
+                .where('R', statePredicate(GAMetaBlocks.TRANSPARENT_CASING.getState(GATransparentCasing.CasingType.BOROSILICATE_GLASS)))
+                .where('C', statePredicate(MetaBlocks.METAL_CASING.getState(BlockMetalCasing.MetalCasingType.STAINLESS_CLEAN)))
+                .where('P', statePredicate(GAMetaBlocks.MUTLIBLOCK_CASING.getState(GAMultiblockCasing.CasingType.PTFE_PIPE)))
+                .where('F', statePredicate(getFrameState()))
+                .where('s', sensorPredicate())
+                .where('e', emitterPredicate())
                 .build();
     }
-/*
-    public static Predicate<BlockWorldState> frameworkPredicate() {
-        return (blockWorldState) -> {
-            IBlockState blockState = blockWorldState.getBlockState();
-            if (!(blockState.getBlock() instanceof GAMultiblockCasing)) {
-                return false;
-            } else {
-                GAMultiblockCasing framework = (GAMultiblockCasing) blockState.getBlock();
-                GAMultiblockCasing.CasingType tieredCasingType = framework.getState(blockState);
-                if(blockWorldState.getMatchContext().getOrPut("framework", tieredCasingType) == null)
-                    return false;
-                if (!tieredCasingType.getName().contains("tiered_hull"))
-                    return false;
 
-                GAMultiblockCasing.CasingType currentCasing = blockWorldState.getMatchContext().getOrPut("framework", tieredCasingType);
-                int tier = tieredCasingType.getTier();
-                int currentTier = blockWorldState.getMatchContext().getOrPut("casingTier", tier);
-
-                return currentCasing.getName().equals(tieredCasingType.getName()) && tier == currentTier;
-            }
-        };
-    }
-
-    public static Predicate<BlockWorldState> frameworkPredicate2() {
-        return (blockWorldState) -> {
-            IBlockState blockState = blockWorldState.getBlockState();
-            if (!(blockState.getBlock() instanceof GAMultiblockCasing2)) {
-                return false;
-            } else {
-                GAMultiblockCasing2 framework = (GAMultiblockCasing2) blockState.getBlock();
-                GAMultiblockCasing2.CasingType tieredCasingType = framework.getState(blockState);
-                if(blockWorldState.getMatchContext().getOrPut("framework", tieredCasingType) == null)
-                    return false;
-                if (!tieredCasingType.getName().contains("tiered_hull"))
-                    return false;
-
-                GAMultiblockCasing2.CasingType currentCasing = blockWorldState.getMatchContext().getOrPut("framework", tieredCasingType);
-                int tier = tieredCasingType.getTier();
-                int currentTier = blockWorldState.getMatchContext().getOrPut("casingTier", tier);
-
-                return currentCasing.getName().equals(tieredCasingType.getName()) && tier == currentTier;
-            }
-        };
+    public static IBlockState getFrameState() {
+        return MetaBlocks.FRAMES.get(StainlessSteel).getDefaultState();
     }
 
     public static Predicate<BlockWorldState> sensorPredicate() {
@@ -132,8 +91,8 @@ public class MetaTileEntityCulinaryGenerator extends CulinaryGeneratorMultiblock
             if (!(blockState.getBlock() instanceof SensorCasing)) {
                 return false;
             } else {
-                SensorCasing sensorCasing = (SensorCasing) blockState.getBlock();
-                SensorCasing.CasingType tieredCasingType = sensorCasing.getState(blockState);
+                SensorCasing motorCasing = (SensorCasing) blockState.getBlock();
+                SensorCasing.CasingType tieredCasingType = motorCasing.getState(blockState);
                 SensorCasing.CasingType currentCasing = blockWorldState.getMatchContext().getOrPut("Sensor", tieredCasingType);
                 return currentCasing.getName().equals(tieredCasingType.getName());
             }
@@ -146,8 +105,8 @@ public class MetaTileEntityCulinaryGenerator extends CulinaryGeneratorMultiblock
             if (!(blockState.getBlock() instanceof EmitterCasing)) {
                 return false;
             } else {
-                EmitterCasing emitterCasing = (EmitterCasing) blockState.getBlock();
-                EmitterCasing.CasingType tieredCasingType = emitterCasing.getState(blockState);
+                EmitterCasing motorCasing = (EmitterCasing) blockState.getBlock();
+                EmitterCasing.CasingType tieredCasingType = motorCasing.getState(blockState);
                 EmitterCasing.CasingType currentCasing = blockWorldState.getMatchContext().getOrPut("Emitter", tieredCasingType);
                 return currentCasing.getName().equals(tieredCasingType.getName());
             }
@@ -162,13 +121,13 @@ public class MetaTileEntityCulinaryGenerator extends CulinaryGeneratorMultiblock
     @Override
     public void addDisplayText(List<ITextComponent> textList) {
         super.addDisplayText(textList);
-        if (isStructureFormed()) {
-            textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.culinary_generator.unit_glucose", unitGlucose));
-            textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.culinary_generator.unit_triglyceride", unitTriglyceride));
-        }
+        //if (isStructureFormed()) {
+        //    textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.culinary_generator.unit_glucose", unitGlucose));
+        //    textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.culinary_generator.unit_triglyceride", unitTriglyceride));
+        //}
         textList.add(new TextComponentTranslation("gregtech.multiblock.universal.framework", this.maxVoltage));
     }
-*/
+
     public IBlockState getCasingState() {
         return GTFO_OTHER_CASING.getState(GTFOOtherCasing.CasingType.BIOCHEMICAL);
     }
@@ -181,11 +140,14 @@ public class MetaTileEntityCulinaryGenerator extends CulinaryGeneratorMultiblock
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
-        //int tier = context.getOrDefault("casingTier", -1);
-        //if (tier < 0)
-        //    maxVoltage = 0;
-        //else
-        //    maxVoltage = (long) (Math.pow(4, tier) * 8);
+        EmitterCasing.CasingType emitter = context.getOrDefault("Emitter", EmitterCasing.CasingType.EMITTER_LV);
+        SensorCasing.CasingType sensor = context.getOrDefault("Sensor", SensorCasing.CasingType.SENSOR_LV);
+
+        maxTier = Math.min(emitter.getTier(), sensor.getTier());
+        if (maxTier < 0)
+            maxVoltage = 0;
+        else
+            maxVoltage = (long) (Math.pow(4, maxTier) * 8);
     }
 
     @Override
@@ -199,4 +161,47 @@ public class MetaTileEntityCulinaryGenerator extends CulinaryGeneratorMultiblock
         return Textures.CHEMICAL_REACTOR_OVERLAY;
     }
 
+    public class CulinaryGeneratorRecipeLogic extends GAMultiblockRecipeLogic {
+
+        public CulinaryGeneratorRecipeLogic(RecipeMapMultiblockController tileEntity) {
+            super(tileEntity);
+        }
+
+        protected int unitGlucose;
+        protected int unitTriglyceride;
+
+        @Override
+        protected int[] calculateOverclock(int EUt, long voltage, int duration) {
+            int numMaintenanceProblems = (this.metaTileEntity instanceof GARecipeMapMultiblockController) ?
+                    ((GARecipeMapMultiblockController) metaTileEntity).getNumProblems() : 0;
+
+            double maintenanceDurationMultiplier = 1.0 - (0.2 * numMaintenanceProblems);
+            int durationModified = (int) (duration * maintenanceDurationMultiplier);
+
+            if (!allowOverclocking) {
+                return new int[]{EUt, durationModified};
+            }
+            boolean negativeEU = EUt < 0;
+            if (negativeEU)
+                EUt = -EUt;
+            int resultEUt = EUt;
+            double resultDuration = durationModified;
+            //Perfect Overclocking
+            if (EUt <= 16) {
+                int finalEUt = (resultEUt / 4);
+                int finalDuration = (int) (resultDuration * 4);
+                return new int[]{negativeEU ? -finalEUt : finalEUt, finalDuration};
+            } else{
+                while (resultDuration >= 4 && resultEUt <= GAValues.V[maxTier - 1]) {
+                    resultEUt *= 4;
+                    resultDuration /= 4;
+                }
+                //Precise total energy output
+                int finalDuration = (int) Math.ceil(resultDuration);
+                int finalEUt = (int) Math.ceil(resultEUt * (resultDuration / finalDuration));
+                previousRecipeDuration = (int) resultDuration;
+                return new int[]{negativeEU ? -finalEUt : finalEUt, finalDuration};
+            }
+        }
+    }
 }
