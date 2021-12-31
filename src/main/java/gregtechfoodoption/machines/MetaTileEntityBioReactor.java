@@ -1,7 +1,6 @@
+/*
 package gregtechfoodoption.machines;
 
-import gregicadditions.client.ClientHandler;
-import gregicadditions.recipes.GARecipeMaps;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.metatileentity.ITieredMetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -42,3 +41,4 @@ public class MetaTileEntityBioReactor extends SimpleMachineMetaTileEntity implem
         return new FluidTankList(false, new FluidTank(32000), new FluidTank(32000));
     }
 }
+*/

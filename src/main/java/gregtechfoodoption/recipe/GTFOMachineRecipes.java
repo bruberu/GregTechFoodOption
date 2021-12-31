@@ -45,6 +45,7 @@ public class GTFOMachineRecipes {
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
+/*
         registerMachineRecipe(GTFOTileEntities.BIOREACTOR,
                 "RUR", "SHG", "CIP",
                 'R', CIRCUIT,
@@ -56,6 +57,7 @@ public class GTFOMachineRecipes {
                 'G', GLASS,
                 'I', new UnificationEntry(plate, Polytetrafluoroethylene)
         );
+*/
         registerMachineRecipe(GTFOTileEntities.SLICER,
                 "PCA", "SHC", "LOA",
                 'P', PISTON,
