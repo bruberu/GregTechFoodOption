@@ -1,5 +1,7 @@
 package gregtechfoodoption;
 
+import gregtech.api.GregTechAPI;
+import gregtech.api.unification.material.Material;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.machines.GTFOTileEntities;
@@ -31,21 +33,14 @@ public class SimpleMaterialTest {
 
         // Run Early handlers
         Materials.register();
-        GAEnums.onConstruction();
-
-        // Bootstrap Gregicality Materials
-        GAMaterials gaMaterials = new GAMaterials();
-        gaMaterials.onMaterialsInit();
 
         // Bootstrap GTFO Materials
         new GTFOMaterialHandler().onMaterialsInit();
         new GTFOAAMaterialHandler().onMaterialsInit();
         new GTFONCMaterialHandler().onMaterialsInit();
-        Material.freezeRegistry();
 
         // Bootstrap GTCE Blocks
         MetaBlocks.init();
-        GAMetaBlocks.init();
         GTFOMetaBlocks.init();
 
         // Bootstrap MTEs
@@ -89,7 +84,7 @@ public class SimpleMaterialTest {
     public void areMTEsGenerated() {
         assertNotNull(
                 "GTCE MetaTileEntity is still null!",
-                MetaTileEntities.DIESEL_ENGINE
+                MetaTileEntities.COMBUSTION_GENERATOR
         );
         assertNotNull(
                 "GTFO MetaTileEntity is still null!",
