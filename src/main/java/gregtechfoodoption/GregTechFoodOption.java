@@ -38,6 +38,8 @@ public class GregTechFoodOption {
 
         MinecraftForge.EVENT_BUS.register(new GTFOEventHandler());
         MinecraftForge.EVENT_BUS.register(new GTFODropsEventHandler());
+        MinecraftForge.EVENT_BUS.register(new GTFOMaterialHandler());
+
 
         GTFOMetaBlocks.init();
         GTFOTileEntities.init();

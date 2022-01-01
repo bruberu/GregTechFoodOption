@@ -7,7 +7,6 @@ import gregtechfoodoption.GTFOConfig;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
 import de.ellpeck.actuallyadditions.mod.misc.apiimpl.MethodHandler;
-import gregicadditions.GAConfig;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.items.MetaItems;
@@ -19,8 +18,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 
-import static gregicadditions.recipes.GARecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
-import static gregicadditions.recipes.GARecipeMaps.CLUSTER_MILL_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.Paper;
 import static gregtech.api.unification.material.Materials.Water;
@@ -55,7 +52,7 @@ public class CoffeeChain {
 
         GTFOAppleCoreCompat.addToSparedItems(InitItems.itemCoffee, 2, (float) 0.5);
 
-        FLUID_CANNER_RECIPES.recipeBuilder()
+        CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(GTFOAAMaterialHandler.Coffee.getFluid(100))
                 .inputs(emptyCoffeeCup)
                 .outputs(basicCoffee)
@@ -63,7 +60,7 @@ public class CoffeeChain {
                 .duration(20)
                 .buildAndRegister();
 
-        FLUID_CANNER_RECIPES.recipeBuilder()
+        CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(GTFOAAMaterialHandler.EnergizedCoffee.getFluid(100))
                 .inputs(emptyCoffeeCup)
                 .outputs(energizedCoffee)

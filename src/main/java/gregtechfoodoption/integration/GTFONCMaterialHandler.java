@@ -1,13 +1,11 @@
 package gregtechfoodoption.integration;
 
+import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.material.GTFOFluidMaterial;
-import gregtech.api.unification.material.IMaterialHandler;
-import gregtech.api.unification.material.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
 
-@IMaterialHandler.RegisterMaterialHandler
-public class GTFONCMaterialHandler implements IMaterialHandler {
+public class GTFONCMaterialHandler {
 
     public static final GTFOFluidMaterial SweetenedDilutedCaneSyrupMixture = new GTFOFluidMaterial("sweetened_diluted_cane_syrup_mixture", 0xdedcc8);
     public static final GTFOFluidMaterial Albumen = new GTFOFluidMaterial("albumen", 0xfffef7);
@@ -37,8 +35,7 @@ public class GTFONCMaterialHandler implements IMaterialHandler {
     public static final GTFOOredictItem.OreDictItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = new GTFOOredictItem.OreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, MaterialIconSet.DULL, OrePrefix.crushedCentrifuged);
 
 
-    @Override
-    public void onMaterialsInit() {
+    public static void onMaterialsInit() {
 
     }
 }

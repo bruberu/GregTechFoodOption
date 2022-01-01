@@ -35,9 +35,6 @@ public class SimpleMaterialTest {
         Materials.register();
 
         // Bootstrap GTFO Materials
-        new GTFOMaterialHandler().onMaterialsInit();
-        new GTFOAAMaterialHandler().onMaterialsInit();
-        new GTFONCMaterialHandler().onMaterialsInit();
 
         // Bootstrap GTCE Blocks
         MetaBlocks.init();

@@ -1,5 +1,10 @@
 package gregtechfoodoption;
 
+import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
+import gregtechfoodoption.integration.GTFOAAMaterialHandler;
+import gregtechfoodoption.integration.GTFOGAMaterialHandler;
+import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.utils.RecipeUtils;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.material.GTFOFluidMaterial;
@@ -11,6 +16,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
+import static gregtechfoodoption.utils.RecipeUtils.average;
 
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOMaterialHandler {
@@ -28,21 +34,6 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial PeptoneMixture = new GTFOFluidMaterial("peptone_mixture", 0xd1ad30);
     public static final GTFOFluidMaterial IsopropylChloride = new GTFOFluidMaterial("isopropyl_chloride", 0xa8a89d, "(CH3)2CHCl");
 
-    public static final GTFOFluidMaterial Iodomethane = new GTFOFluidMaterial("iodomethane", RecipeUtils.average(2, GAMaterials.Iodine.getMaterialRGB(), Materials.Methane.getMaterialRGB()), "CH3I");
-    public static final GTFOFluidMaterial DimethylSulfoxide = new GTFOFluidMaterial("dimethyl_sulfoxide", RecipeUtils.average(2, Materials.Oxygen.getMaterialRGB(), GAMaterials.Dimethylsulfide.getMaterialRGB()), "C2H6OS");
-    public static final GTFOFluidMaterial IodineCxxixTrichloride = new GTFOFluidMaterial("iodine_129_trichloride", 0xd8d8e6, "ICl3", 600);
-    public static final GTFOFluidMaterial ChlorineFluoride = new GTFOFluidMaterial("chlorine_fluoride", RecipeUtils.average(2, Materials.Fluorine.getMaterialRGB(), Materials.Chlorine.getMaterialRGB()), "ClF");
-    public static final GTFOFluidMaterial ChlorineTrifluoride = new GTFOFluidMaterial("chlorine_trifluoride", RecipeUtils.average(4, Materials.Fluorine.getMaterialRGB() * 3, Materials.Chlorine.getMaterialRGB()), "ClF3");
-    public static final GTFOFluidMaterial XenonTetrachloride = new GTFOFluidMaterial("xenon_tetrachloride", 0xb0b0ff, "XeCl4");
-    public static final GTFOFluidMaterial TribromochloromoscoviumTrichloroxenonComplex = new GTFOFluidMaterial("tribromochloromoscovium_trichloroxenon_complex", 0x4d2d5c, "XeCl3McBr3Cl");
-    public static final GTFOFluidMaterial TetrabromomoscoviumTrichloroxenonComplex = new GTFOFluidMaterial("tetrabromomoscovium_trichloroxenon_complex", 0x5c2051, "XeCl3McBr4");
-    public static final GTFOFluidMaterial HydroastaticAcid = new GTFOFluidMaterial("hydroastatic_acid", RecipeUtils.average(2, Materials.Hydrogen.getMaterialRGB(), GAMaterials.Astatine.getMaterialRGB()), "HAt", 2000);
-    public static final GTFOFluidMaterial EntangledGluons = new GTFOFluidMaterial("entangled_gluons", GAMaterials.Gluons.getMaterialRGB() + 8, 1500);
-    public static final GTFOFluidMaterial HighlyPolymerizedMoscoviumPentahalides = new GTFOFluidMaterial("highly_polymerized_moscovium_pentahalides", 0xa971f0, 6000);
-    public static final GTFOFluidMaterial Trimethylmoscovide = new GTFOFluidMaterial("trimethylmoscovide", RecipeUtils.average(4, Materials.Methane.getMaterialRGB() * 3, GAMaterials.Moscovium.getMaterialRGB()), "(CH3)3Mc");
-    public static final GTFOFluidMaterial Bromomethane = new GTFOFluidMaterial("bromomethane", RecipeUtils.average(2, GAMaterials.Bromine.getMaterialRGB(), Materials.Methane.getMaterialRGB()), "CH3Br");
-    public static final GTFOFluidMaterial BromineMonochloride = new GTFOFluidMaterial("bromine_monochloride", RecipeUtils.average(2, GAMaterials.Bromine.getMaterialRGB(), Materials.Chlorine.getMaterialRGB()), "BrCl");
-
     public static final GTFOFluidMaterial HFCSLv = new GTFOFluidMaterial("hfcs_55", 0xcfa500);
     public static final GTFOFluidMaterial HFCSXlii = new GTFOFluidMaterial("hfcs_42", 0xc4a837);
     public static final GTFOFluidMaterial HFCSXc = new GTFOFluidMaterial("hfcs_90", 0xc9b977);
@@ -54,7 +45,7 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial OligosaccharideSolution = new GTFOFluidMaterial("oligosaccharide_solution", 0xa8a59d);
     public static final GTFOFluidMaterial GlucoseSolution = new GTFOFluidMaterial("glucose_solution", 0xf5f3ed);
     public static final GTFOFluidMaterial HighFructoseCornSyrupSolution = new GTFOFluidMaterial("hfcs_solution", 0xe3bc20);
-    public static final GTFOFluidMaterial XPhenothiazineIiPropylChloride = new GTFOFluidMaterial("10-phenothiazine-2-propyl_chloride", RecipeUtils.average(2, 0x67735c, IsopropylChloride.getMaterialRGB()), "C15H16NSCl");
+    public static final GTFOFluidMaterial XPhenothiazineIiPropylChloride = new GTFOFluidMaterial("10-phenothiazine-2-propyl_chloride", average(2, 0x67735c, IsopropylChloride.rgb), "C15H16NSCl");
     public static final GTFOFluidMaterial AppleSyrup = new GTFOFluidMaterial("apple_syrup", 0xf2e1ac);
     public static final GTFOFluidMaterial AppleCandySyrup = new GTFOFluidMaterial("apple_candy_syrup", 0xe7f5ae);
     public static final GTFOFluidMaterial Etirps = new GTFOFluidMaterial("etirps", 0xb0ff73);
@@ -81,10 +72,6 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial AcidicMilkSolution = new GTFOFluidMaterial("acidic_milk_solution", 0xb2c71c);
     public static final GTFOFluidMaterial CoagulatingRicottaSolution = new GTFOFluidMaterial("coagulating_ricotta_solution", 0xeff5c9);
 
-    public static final GTFOFluidMaterial FungalRennetSolution = new GTFOFluidMaterial("fungal_rennet_solution", CrudeRennetSolution.rgb/2 + Yeast.getMaterialRGB()/4 + 0x2a7b5a/4);
-    public static final GTFOFluidMaterial MoistAir = new GTFOFluidMaterial("moist_air", 0x82c8ff);
-    public static final GTFOFluidMaterial ColdMoistAir = new GTFOFluidMaterial("cold_moist_air", 0x72a2ff);
-
     public static final GTFOFluidMaterial TomatoSauce = new GTFOFluidMaterial("tomato_sauce", 0xfc2217);
     public static final GTFOFluidMaterial OliveOil = new GTFOFluidMaterial("olive_oil", 0xd1db5a);
 
@@ -106,54 +93,6 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictItem IiAminopyridine = new GTFOOredictItem.OreDictItem(1006, "2-aminopyridine", 0xf0ede9, MaterialIconSet.LAPIS, OrePrefix.dust, "C5H6N2");
 
 
-    public static final GTFOOredictItem.OreDictItem MoscoviumPentafluoride = new GTFOOredictItem.OreDictItem(1007, "moscovium_pentafluoride", (GAMaterials.Moscovium.getMaterialRGB() + 5 * Materials.Fluorine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McF5");
-    public static final GTFOOredictItem.OreDictItem MoscoviumPentachloride = new GTFOOredictItem.OreDictItem(1008, "moscovium_pentachloride", (GAMaterials.Moscovium.getMaterialRGB() + 5 * Materials.Chlorine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McCl5");
-    public static final GTFOOredictItem.OreDictItem MoscoviumPentabromide = new GTFOOredictItem.OreDictItem(1009, "moscovium_pentabromide", (GAMaterials.Moscovium.getMaterialRGB() + 5 * GAMaterials.Bromine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McBr5");
-    public static final GTFOOredictItem.OreDictItem MoscoviumPentaiodide = new GTFOOredictItem.OreDictItem(1010, "moscovium_pentaiodide", (GAMaterials.Moscovium.getMaterialRGB() + 5 * GAMaterials.Iodine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McI5");
-    public static final GTFOOredictItem.OreDictItem MoscoviumPentaastatide = new GTFOOredictItem.OreDictItem(1011, "moscovium_pentaastatide", (GAMaterials.Moscovium.getMaterialRGB() + 5 * GAMaterials.Astatine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McAt5");
-    public static final GTFOOredictItem.OreDictItem MoscoviumPentatennesside = new GTFOOredictItem.OreDictItem(1012, "moscovium_pentatennesside", (GAMaterials.Moscovium.getMaterialRGB() + 5 * GAMaterials.Tennessine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McTs5");
-    public static final GTFOOredictItem.OreDictItem HydrotennessiticAcid = new GTFOOredictItem.OreDictItem(1013, "hydrotennessitic_acid", RecipeUtils.average(2, Materials.Hydrogen.getMaterialRGB(), GAMaterials.Tennessine.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "HTs");
-    public static final GTFOOredictItem.OreDictItem SupercooledHydrotennessiticAcid = new GTFOOredictItem.OreDictItem(1014, "supercooled_hydrotennessitic_acid", RecipeUtils.average(2, HydrotennessiticAcid.getMaterialRGB(), GAMaterials.SupercooledCryotheum.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "HTs");
-    public static final GTFOOredictItem.OreDictItem SupercooledTennessine = new GTFOOredictItem.OreDictItem(1015, "supercooled_tennessine", RecipeUtils.average(2, GAMaterials.Tennessine.getMaterialRGB(), GAMaterials.SupercooledCryotheum.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Ts");
-    public static final GTFOOredictItem.OreDictItem MoscoviumIOxide = new GTFOOredictItem.OreDictItem(1016, "moscovium(I)_oxide", GAMaterials.Moscovium.getMaterialRGB() + 10, MaterialIconSet.SAND, OrePrefix.dust, "Mc2O");
-    /* Material IDs 1017 to 1030 reserved for Coffee chain */
-    public static final GTFOOredictItem.OreDictItem MoscoviumTennesside = new GTFOOredictItem.OreDictItem(1031, "moscovium_tennesside", RecipeUtils.average(2, GAMaterials.Moscovium.getMaterialRGB(), GAMaterials.Tennessine.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "McTs");
-    public static final GTFOOredictItem.OreDictItem SupercooledMoscoviumTennesside = new GTFOOredictItem.OreDictItem(1032, "supercooled_moscovium_tennesside", RecipeUtils.average(2, MoscoviumTennesside.getMaterialRGB(), GAMaterials.SupercooledCryotheum.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "McTs");
-    public static final GTFOOredictItem.OreDictItem ThalliumSulfate = new GTFOOredictItem.OreDictItem(1033, "thallium_sulfate", RecipeUtils.average(3, GAMaterials.Thallium.getMaterialRGB() * 2, Materials.SulfuricAcid.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Tl2SO4");
-    public static final GTFOOredictItem.OreDictItem MoscoviumAstatide = new GTFOOredictItem.OreDictItem(1034, "moscovium_astatide", RecipeUtils.average(2, GAMaterials.Moscovium.getMaterialRGB(), GAMaterials.Astatine.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "McAt");
-    /* Material IDs 1035 to 1051 reserved for S'mogus chain */
-    public static final GTFOOredictItem.OreDictItem ThalliumAstatide = new GTFOOredictItem.OreDictItem(1052, "thallium_astatide", RecipeUtils.average(2, GAMaterials.Thallium.getMaterialRGB(), GAMaterials.Astatine.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "TlAt");
-    public static final GTFOOredictItem.OreDictItem DopedThalliumAstatide = new GTFOOredictItem.OreDictItem(1053, "doped_thallium_astatide", RecipeUtils.average(2, ThalliumAstatide.getMaterialRGB(), MoscoviumAstatide.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "TlAtMcAt");
-    public static final GTFOOredictItem.OreDictItem DopedThalliumAstatidePlate = new GTFOOredictItem.OreDictItem(1054, "doped_thallium_astatide", DopedThalliumAstatide.getMaterialRGB(), MaterialIconSet.DULL, OrePrefix.plate, "TlAtMcAt");
-    public static final GTFOOredictItem.OreDictItem HeatedDopedThalliumAstatide = new GTFOOredictItem.OreDictItem(1055, "heated_doped_thallium_astatide", DopedThalliumAstatide.getMaterialRGB() + 20, MaterialIconSet.DULL, OrePrefix.plate, "TlAtMcAt");
-    public static final GTFOOredictItem.OreDictItem ThalliumAstatideConductor = new GTFOOredictItem.OreDictItem(1056, "thallium_astatide_conductor", DopedThalliumAstatide.getMaterialRGB(), MaterialIconSet.SHINY, OrePrefix.plate, "TlAtMcAt");
-    public static final GTFOOredictItem.OreDictItem ShockedThalliumAstatideConductor = new GTFOOredictItem.OreDictItem(1057, "shocked_thallium_astatide", DopedThalliumAstatide.getMaterialRGB() - 50, MaterialIconSet.DULL, OrePrefix.plate, "TlAtMcAt5");
-    public static final GTFOOredictItem.OreDictItem ShockedThalliumAstatideDust = new GTFOOredictItem.OreDictItem(1058, "shocked_thallium_astatide", DopedThalliumAstatide.getMaterialRGB() - 60, MaterialIconSet.SAND, OrePrefix.dust, "TlAtMcAt5");
-    public static final GTFOOredictItem.OreDictItem LithiumMoscovide = new GTFOOredictItem.OreDictItem(1059, "lithium_moscovide", RecipeUtils.average(2, Materials.Lithium.getMaterialRGB(), GAMaterials.Moscovium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "LiMc");
-    public static final GTFOOredictItem.OreDictItem Methyllithium = new GTFOOredictItem.OreDictItem(1060, "methyllithium", RecipeUtils.average(2, Materials.Methane.getMaterialRGB(), Materials.Lithium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "CH3Li");
-    public static final GTFOOredictItem.OreDictItem MethylMoscoviumDiiodide = new GTFOOredictItem.OreDictItem(1061, "methyl_moscovium_diiodide", 0xad6aba, MaterialIconSet.SAND, OrePrefix.dust, "CH3McI2");
-    public static final GTFOOredictItem.OreDictItem MoscoviumIodide = new GTFOOredictItem.OreDictItem(1062, "moscovium_iodide", RecipeUtils.average(2, GAMaterials.Iodine.getMaterialRGB(), GAMaterials.Moscovium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "McI");
-    public static final GTFOOredictItem.OreDictItem FissionedUraniumCcxxxv = new GTFOOredictItem.OreDictItem(1063, "fissioned_uranium_235", Materials.Uranium235.getMaterialRGB() - 100, MaterialIconSet.ROUGH, OrePrefix.dust, "??????");
-    public static final GTFOOredictItem.OreDictItem IodineCxxix = new GTFOOredictItem.OreDictItem(1064, "iodine_129", GAMaterials.Iodine.getMaterialRGB(), MaterialIconSet.SHINY, OrePrefix.dust, "I");
-    public static final GTFOOredictItem.OreDictItem MoscoviumTribromide = new GTFOOredictItem.OreDictItem(1065, "moscovium_tribromide", RecipeUtils.average(4, GAMaterials.Moscovium.getMaterialRGB(), GAMaterials.Bromine.getMaterialRGB() * 3), MaterialIconSet.SAND, OrePrefix.dust, "McBr3");
-    public static final GTFOOredictItem.OreDictItem MoscoviumIiiOxide = new GTFOOredictItem.OreDictItem(1066, "moscovium(III)_oxide", GAMaterials.Moscovium.getMaterialRGB() - 15, MaterialIconSet.SAND, OrePrefix.dust, "Mc2O3");
-    public static final GTFOOredictItem.OreDictItem MoscoviumTrichloride = new GTFOOredictItem.OreDictItem(1067, "moscovium_trichloride", RecipeUtils.average(4, GAMaterials.Moscovium.getMaterialRGB(), Materials.Chlorine.getMaterialRGB() * 3), MaterialIconSet.SAND, OrePrefix.dust, "McCl3");
-    public static final GTFOOredictItem.OreDictItem MoscoviumHafniumOctadecachloride = new GTFOOredictItem.OreDictItem(1068, "moscovium_hafnium_octadecachloride", RecipeUtils.average(2, GAMaterials.Moscovium.getMaterialRGB(), GAMaterials.Hafnium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Mc10Hf3Cl18");
-    public static final GTFOOredictItem.OreDictItem TitaniumCarbide = new GTFOOredictItem.OreDictItem(1069, "titanium_carbide", Materials.Titanium.getMaterialRGB() - 50, MaterialIconSet.SAND, OrePrefix.dust, "TiC");
-    public static final GTFOOredictItem.OreDictItem SaltyTitaniumDichlorideMixture = new GTFOOredictItem.OreDictItem(1070, "salty_titanium_dichloride_mixture", RecipeUtils.average(3, Materials.Salt.getMaterialRGB() * 2, Materials.Titanium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Na2Ti3Cl8");
-    public static final GTFOOredictItem.OreDictItem DecayedMoscovium = new GTFOOredictItem.OreDictItem(1071, "decayed_moscovium", RecipeUtils.average(4, GAMaterials.Moscovium.getMaterialRGB() * 3, GAMaterials.Nihonium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Mc3?");
-    public static final GTFOOredictItem.OreDictItem HighlyIrradiatedHafniumCarbide = new GTFOOredictItem.OreDictItem(1072, "highly_irradiated_hafnium_carbide", RecipeUtils.average(2, GAMaterials.Hafnium.getMaterialRGB(), Materials.Carbon.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "(HfC)?2");
-    public static final GTFOOredictItem.OreDictItem TitaniumIiiOxide = new GTFOOredictItem.OreDictItem(1073, "titanium(III)_oxide", RecipeUtils.average(5, Materials.Titanium.getMaterialRGB() * 2, Materials.Oxygen.getMaterialRGB() * 3), MaterialIconSet.SAND, OrePrefix.dust, "Ti2O3");
-    public static final GTFOOredictItem.OreDictItem TitaniumIiOxide = new GTFOOredictItem.OreDictItem(1074, "titanium(II)_oxide", RecipeUtils.average(3, Materials.Titanium.getMaterialRGB(), Materials.Oxygen.getMaterialRGB() * 2), MaterialIconSet.SAND, OrePrefix.dust, "TiO");
-    public static final GTFOOredictItem.OreDictItem MoscoviumTrifluoride = new GTFOOredictItem.OreDictItem(1075, "moscovium_trifluoride", RecipeUtils.average(4, GAMaterials.Moscovium.getMaterialRGB(), Materials.Fluorine.getMaterialRGB() * 3), MaterialIconSet.SAND, OrePrefix.dust, "McF3");
-    public static final GTFOOredictItem.OreDictItem WellMixedMoscoviumPentahalides = new GTFOOredictItem.OreDictItem(1076, "well_mixed_moscovium_pentahalides", RecipeUtils.average(6, MoscoviumPentaastatide.getMaterialRGB(), MoscoviumPentabromide.getMaterialRGB(), MoscoviumPentachloride.getMaterialRGB(), MoscoviumPentafluoride.getMaterialRGB(), MoscoviumPentaiodide.getMaterialRGB(), MoscoviumPentatennesside.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "(McF5)(McCl5)(McBr5)(McI5)(McAt5)(McTs5)");
-    public static final GTFOOredictItem.OreDictItem OligoPolymerizedMoscoviumPentahalides = new GTFOOredictItem.OreDictItem(1077, "oligopolymerized_moscovium_pentahalides", 0x793ac7, MaterialIconSet.SAND, OrePrefix.dust, "(McF5)(McCl5)(McBr5)(McI5)(McAt5)(McTs5)");
-    public static final GTFOOredictItem.OreDictItem PolymoscoviumPentahalide = new GTFOOredictItem.OreDictItem(1078, "polymoscovium_pentahalide", 0x7300ff, MaterialIconSet.SHINY, OrePrefix.dust, "(McF5)(McCl5)(McBr5)(McI5)(McAt5)(McTs5)");
-    public static final GTFOOredictItem.OreDictItem PolymoscoviumPentahalideSheet = new GTFOOredictItem.OreDictItem(1079, "polymoscovium_pentahalide", PolymoscoviumPentahalide.getMaterialRGB(), MaterialIconSet.SHINY, OrePrefix.plate, "(McF5)(McCl5)(McBr5)(McI5)(McAt5)(McTs5)");
-    public static final GTFOOredictItem.OreDictItem NonToxicPolymoscoviumPentahalideSheet = new GTFOOredictItem.OreDictItem(1080, "nontoxic_polymoscovium_pentahalide", RecipeUtils.average(2,Materials.Polytetrafluoroethylene.getMaterialRGB() + 10, PolymoscoviumPentahalide.getMaterialRGB()), MaterialIconSet.SHINY, OrePrefix.plate);
-    public static final GTFOOredictItem.OreDictItem NonToxicPolymoscoviumPentahalideCurvedSheet = new GTFOOredictItem.OreDictItem(1081, "nontoxic_polymoscovium_pentahalide", NonToxicPolymoscoviumPentahalideSheet.getMaterialRGB(), MaterialIconSet.SHINY, GAEnums.GAOrePrefix.plateCurved);
-    public static final GTFOOredictItem.OreDictItem TitaniumDichloride = new GTFOOredictItem.OreDictItem(1082, "titanium_dichloride", RecipeUtils.average(3, Materials.Chlorine.getMaterialRGB() * 2, Materials.Titanium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Na2Ti3Cl8");
-    public static final GTFOOredictItem.OreDictItem LithiumBromide = new GTFOOredictItem.OreDictItem(1083, "lithium_bromide", RecipeUtils.average(2, Materials.Lithium.getMaterialRGB(), GAMaterials.Bromine.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Na2Ti3Cl8");
 
     public static final GTFOOredictItem.OreDictItem HotAppleHardCandy = new GTFOOredictItem.OreDictItem(1084, "hot_apple_hard_candy", 0x78e32b, MaterialIconSet.DULL, OrePrefix.plate);
     public static final GTFOOredictItem.OreDictItem BacillusSubtilis = new GTFOOredictItem.OreDictItem(1085, "bacillus_subtilis", 0xe0386b, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
@@ -175,23 +114,29 @@ public class GTFOMaterialHandler {
 
     public static final GTFOOredictItem.OreDictItem PotatoStarch = new GTFOOredictItem.OreDictItem(1101, "potato_starch", 0xdedcb1, MaterialIconSet.ROUGH, OrePrefix.dust);
 
-    public static final GTFOOredictItem.OreDictItem LargeMozzarellaCurd = new GTFOOredictItem.OreDictItem(1102, "large_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
-    public static final GTFOOredictItem.OreDictItem SmallMozzarellaCurd = new GTFOOredictItem.OreDictItem(1103, "small_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
-    public static final GTFOOredictItem.OreDictItem DriedMozzarellaCurd = new GTFOOredictItem.OreDictItem(1104, "dried_mozzarella_curd", 0xf5f4e4, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
-    public static final GTFOOredictItem.OreDictItem SolidifiedMozzarellaCurd = new GTFOOredictItem.OreDictItem(1105, "solidified_mozzarella_curd", 0xedebca, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
-    public static final GTFOOredictItem.OreDictItem CoagulatedMilkCurd = new GTFOOredictItem.OreDictItem(1106, "coagulated_milk_curd", 0xede3cc, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
-    public static final GTFOOredictItem.OreDictItem CutCurd = new GTFOOredictItem.OreDictItem(1107, "cut_curd", 0xede3cc, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
-    public static final GTFOOredictItem.OreDictItem CookedCurd = new GTFOOredictItem.OreDictItem(1108, "cooked_curd", 0xffe8b3, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
-    public static final GTFOOredictItem.OreDictItem SaltedCurd = new GTFOOredictItem.OreDictItem(1109, "salted_curd", 0xf7d68b, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.round);
-    public static final GTFOOredictItem.OreDictItem GorgonzolaCurd = new GTFOOredictItem.OreDictItem(1110 ,"gorgonzola_curd", 0xe5e5f5, MaterialIconSet.SHINY, GAEnums.GAOrePrefix.fuelPure);
+    public static final GTFOOredictItem.OreDictItem LargeMozzarellaCurd = new GTFOOredictItem.OreDictItem(1102, "large_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictItem SmallMozzarellaCurd = new GTFOOredictItem.OreDictItem(1103, "small_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictItem DriedMozzarellaCurd = new GTFOOredictItem.OreDictItem(1104, "dried_mozzarella_curd", 0xf5f4e4, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictItem SolidifiedMozzarellaCurd = new GTFOOredictItem.OreDictItem(1105, "solidified_mozzarella_curd", 0xedebca, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictItem CoagulatedMilkCurd = new GTFOOredictItem.OreDictItem(1106, "coagulated_milk_curd", 0xede3cc, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictItem CutCurd = new GTFOOredictItem.OreDictItem(1107, "cut_curd", 0xede3cc, MaterialIconSet.SHINY, OrePrefix.round);
+    public static final GTFOOredictItem.OreDictItem CookedCurd = new GTFOOredictItem.OreDictItem(1108, "cooked_curd", 0xffe8b3, MaterialIconSet.SHINY, OrePrefix.round);
+    public static final GTFOOredictItem.OreDictItem SaltedCurd = new GTFOOredictItem.OreDictItem(1109, "salted_curd", 0xf7d68b, MaterialIconSet.SHINY, OrePrefix.round);
+    public static final GTFOOredictItem.OreDictItem GorgonzolaCurd = new GTFOOredictItem.OreDictItem(1110 ,"gorgonzola_curd", 0xe5e5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
     public static final GTFOOredictItem.OreDictItem PenicilliumRoqueforti = new GTFOOredictItem.OreDictItem(1111, "penicillium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
 
     public static final GTFOOredictItem.OreDictItem BurntBananaPeel = new GTFOOredictItem.OreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", RecipeUtils.average(Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
+    public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
     public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
 
     @SubscribeEvent
-    public void onMaterialsInit() {
+    public void onMaterialsInit(GregTechAPI.MaterialEvent event) {
         Materials.BismuthBronze.addFlags(GENERATE_FRAME);
+        if (GTValues.isModLoaded(GTFOValues.MODID_GCYS))
+            GTFOGAMaterialHandler.onMaterialsInit();
+        if (GTValues.isModLoaded(GTFOValues.MODID_AA))
+            GTFOAAMaterialHandler.onMaterialsInit();
+        if (GTValues.isModLoaded(GTFOValues.MODID_NC))
+            GTFONCMaterialHandler.onMaterialsInit();
     }
 }

@@ -92,6 +92,7 @@ public class GTFOOredictItem extends StandardMetaItem {
             this.materialRGB = materialRGB;
             this.materialIconSet = materialIconSet;
             this.orePrefix = orePrefix;
+            this.chemicalFormula = chemicalFormula;
             ITEMS.put(this.id, this);
         }
 
@@ -130,6 +131,9 @@ public class GTFOOredictItem extends StandardMetaItem {
             return chemicalFormula;
         }
 
+        public int getMaterialRGB() {
+            return materialRGB;
+        }
     }
 }
 

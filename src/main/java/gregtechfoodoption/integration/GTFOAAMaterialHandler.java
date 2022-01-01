@@ -1,14 +1,12 @@
 package gregtechfoodoption.integration;
 
 
+import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.material.GTFOFluidMaterial;
-import gregtech.api.unification.material.IMaterialHandler;
-import gregtech.api.unification.material.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
 
-@IMaterialHandler.RegisterMaterialHandler
-public class GTFOAAMaterialHandler implements IMaterialHandler{
+public class GTFOAAMaterialHandler {
     public static final GTFOFluidMaterial Coffee = new GTFOFluidMaterial("coffee", 0x36312e);
     public static final GTFOFluidMaterial EnergizedCoffee = new GTFOFluidMaterial("energized_coffee", 0x695934);
 
@@ -27,8 +25,7 @@ public class GTFOAAMaterialHandler implements IMaterialHandler{
     public static final GTFOOredictItem.OreDictItem LARGE_BASIC_COFFEE = new GTFOOredictItem.OreDictItem(1029, "basic_coffee_large", 0x3b220d, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictItem UNSORTED_BASIC_COFFEE = new GTFOOredictItem.OreDictItem(1030, "basic_coffee_unsorted", 0x422003, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
 
-    @Override
-    public void onMaterialsInit() {
+    public static void onMaterialsInit() {
 
     }
 }
