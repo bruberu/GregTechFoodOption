@@ -34,27 +34,11 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial PeptoneMixture = new GTFOFluidMaterial("peptone_mixture", 0xd1ad30);
     public static final GTFOFluidMaterial IsopropylChloride = new GTFOFluidMaterial("isopropyl_chloride", 0xa8a89d, "(CH3)2CHCl");
 
-    public static final GTFOFluidMaterial HFCSLv = new GTFOFluidMaterial("hfcs_55", 0xcfa500);
-    public static final GTFOFluidMaterial HFCSXlii = new GTFOFluidMaterial("hfcs_42", 0xc4a837);
-    public static final GTFOFluidMaterial HFCSXc = new GTFOFluidMaterial("hfcs_90", 0xc9b977);
     public static final GTFOFluidMaterial LemonExtract = new GTFOFluidMaterial("lemon_extract", 0xfce80a);
     public static final GTFOFluidMaterial LimeExtract = new GTFOFluidMaterial("lime_extract", 0x85f218);
-    public static final GTFOFluidMaterial LemonLimeSolution = new GTFOFluidMaterial("lemon_lime_solution", 0xbddb5a);
-    public static final GTFOFluidMaterial LemonLimeSludge = new GTFOFluidMaterial("lemon_lime_sludge", 0x779906);
-    public static final GTFOFluidMaterial CornStarchSolution = new GTFOFluidMaterial("corn_starch_solution", 0xd4d3c5);
-    public static final GTFOFluidMaterial OligosaccharideSolution = new GTFOFluidMaterial("oligosaccharide_solution", 0xa8a59d);
-    public static final GTFOFluidMaterial GlucoseSolution = new GTFOFluidMaterial("glucose_solution", 0xf5f3ed);
-    public static final GTFOFluidMaterial HighFructoseCornSyrupSolution = new GTFOFluidMaterial("hfcs_solution", 0xe3bc20);
-    public static final GTFOFluidMaterial XPhenothiazineIiPropylChloride = new GTFOFluidMaterial("10-phenothiazine-2-propyl_chloride", average(2, 0x67735c, IsopropylChloride.rgb), "C15H16NSCl");
-    public static final GTFOFluidMaterial AppleSyrup = new GTFOFluidMaterial("apple_syrup", 0xf2e1ac);
-    public static final GTFOFluidMaterial AppleCandySyrup = new GTFOFluidMaterial("apple_candy_syrup", 0xe7f5ae);
-    public static final GTFOFluidMaterial Etirps = new GTFOFluidMaterial("etirps", 0xb0ff73);
-    public static final GTFOFluidMaterial LemonLimeSodaSyrup = new GTFOFluidMaterial("lemon_lime_soda_syrup", 0x76ff0d);
-    public static final GTFOFluidMaterial PurpleDrink = new GTFOFluidMaterial("purple_drink", 0xb405ff);
-    public static final GTFOFluidMaterial CarbonatedWater = new GTFOFluidMaterial("carbonated_water", 0xf5ffff);
-    public static final GTFOFluidMaterial CoughSyrup = new GTFOFluidMaterial("cough_syrup", 0x5c1b5e);
     public static final GTFOFluidMaterial UnheatedCaneSyrup = new GTFOFluidMaterial("unheated_cane_syrup", 0xf0efe4);
     public static final GTFOFluidMaterial CaneSyrup = new GTFOFluidMaterial("cane_syrup", 0xf2f1dc);
+    public static final GTFOFluidMaterial PurpleDrink = new GTFOFluidMaterial("purple_drink", 0xb405ff);
 
     public static final GTFOFluidMaterial FryingOil = new GTFOFluidMaterial("frying_oil", 0xffe3a1);
     public static final GTFOFluidMaterial HotFryingOil = new GTFOFluidMaterial("hot_frying_oil", 0xffd166);
@@ -84,7 +68,9 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial Leninade = new GTFOFluidMaterial("leninade", 0x82661d);
 
     public static final GTFOFluidMaterial PerchloricAcid = new GTFOFluidMaterial("perchloric_acid", average(6,Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), "HClO4");
-
+    public static final GTFOFluidMaterial ChloroauricAcid = new GTFOFluidMaterial("chloroauric_acid", average(3,Chlorine.getMaterialRGB(), Gold.getMaterialRGB() * 3), "HAuCl4");
+    public static final GTFOFluidMaterial MoistAir = new GTFOFluidMaterial("moist_air", 0x82c8ff);
+    public static final GTFOFluidMaterial ColdMoistAir = new GTFOFluidMaterial("cold_moist_air", 0x72a2ff);
 
     public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictItem BarePopcornKernel = new GTFOOredictItem.OreDictItem(1001, "popcorn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);

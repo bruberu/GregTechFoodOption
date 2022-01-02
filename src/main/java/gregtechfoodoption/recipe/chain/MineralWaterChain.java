@@ -1,15 +1,9 @@
 package gregtechfoodoption.recipe.chain;
 
 import gregtechfoodoption.GTFOMaterialHandler;
-import gregicadditions.GAValues;
 import gregtech.api.unification.OreDictUnifier;
+import gregtechfoodoption.utils.RecipeUtils;
 
-import static gregicadditions.GAValues.*;
-
-import static gregicadditions.GAEnums.GAOrePrefix.*;
-import static gregicadditions.GAMaterials.*;
-import static gregicadditions.item.GAMetaItems.*;
-import static gregicadditions.recipes.GARecipeMaps.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -19,7 +13,7 @@ import static gregtechfoodoption.item.GTFOMetaItem.*;
 public class MineralWaterChain {
     public static void init()
     {
-        FLUID_CANNER_RECIPES.recipeBuilder()
+/*        CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(Water.getFluid(1000))
                 .inputs(THERMOS.getStackForm())
                 .outputs(MINERAL_WATER.getStackForm())
@@ -87,7 +81,7 @@ public class MineralWaterChain {
                 .EUt(V[GAValues.UIV] * 15/16)
                 .duration(1500)
                 .buildAndRegister();
-        FLUID_EXTRACTION_RECIPES.recipeBuilder()
+        EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(GTFOMaterialHandler.OligoPolymerizedMoscoviumPentahalides.getItemStack())
                 .fluidOutputs(GTFOMaterialHandler.HighlyPolymerizedMoscoviumPentahalides.getFluid(144))
                 .EUt(V[GAValues.ZPM] * 15/16)
@@ -146,7 +140,7 @@ public class MineralWaterChain {
                 .duration(460)
                 .buildAndRegister();
 
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
+        LARGE_CHEMICAL_RECIPES.recipeBuilder()
                 .input(dust, Sodium, 2)
                 .inputs(GTFOMaterialHandler.TitaniumCarbide.getItemStack(6), GTFOMaterialHandler.MoscoviumHafniumOctadecachloride.getItemStack(31))
                 .outputs(GTFOMaterialHandler.SaltyTitaniumDichlorideMixture.getItemStack(13), GTFOMaterialHandler.DecayedMoscovium.getItemStack(8), GTFOMaterialHandler.HighlyIrradiatedHafniumCarbide.getItemStack(3), GTFOMaterialHandler.MoscoviumPentachloride.getItemStack(12))
@@ -192,7 +186,7 @@ public class MineralWaterChain {
                 .EUt(V[UV] * 15/16)
                 .duration(4600)
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOMaterialHandler.TitaniumIiiOxide.getItemStack(5))
                 .fluidInputs(Hydrogen.getFluid(2000))
                 .outputs(GTFOMaterialHandler.TitaniumIiOxide.getItemStack(4))
@@ -372,7 +366,7 @@ public class MineralWaterChain {
                 .duration(559)
                 .buildAndRegister();
 
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOMaterialHandler.ShockedThalliumAstatideDust.getItemStack(4))
                 .outputs(GTFOMaterialHandler.MoscoviumPentaastatide.getItemStack(3), GTFOMaterialHandler.ThalliumAstatide.getItemStack())
                 .EUt(V[UV] * 15/16)
@@ -453,7 +447,7 @@ public class MineralWaterChain {
                 .duration(400)
                 .buildAndRegister();
 
-        CHEMICAL_PLANT_RECIPES.recipeBuilder()
+        LARGE_CHEMICAL_RECIPES.recipeBuilder()
                 .inputs(GTFOMaterialHandler.SupercooledMoscoviumTennesside.getItemStack(2), GTFOMaterialHandler.SupercooledTennessine.getItemStack(4))
                 .fluidInputs(GTFOMaterialHandler.EntangledGluons.getFluid(1000))
                 .notConsumable(HIGH_FREQUENCY_LASER.getStackForm())
@@ -502,6 +496,6 @@ public class MineralWaterChain {
                 .outputs(GTFOMaterialHandler.SupercooledHydrotennessiticAcid.getItemStack())
                 .EUt(V[UHV])
                 .duration(68)
-                .buildAndRegister();
+                .buildAndRegister();*/
     }
 }

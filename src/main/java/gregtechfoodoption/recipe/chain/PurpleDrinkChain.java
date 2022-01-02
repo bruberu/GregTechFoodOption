@@ -7,8 +7,6 @@ import net.minecraft.item.ItemStack;
 
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregicadditions.GAMaterials.*;
-import static gregicadditions.recipes.GARecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -16,7 +14,8 @@ import static gregtech.common.items.MetaItems.*;
 
 public class PurpleDrinkChain {
     public static void init() {
-        FLUID_CANNER_RECIPES.recipeBuilder()
+        /*
+        CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(PurpleDrink.getFluid(500))
                 .input(Items.GLASS_BOTTLE, 1)
                 .outputs(BOTTLE_PURPLE_DRINK.getStackForm())
@@ -36,7 +35,7 @@ public class PurpleDrinkChain {
                 .EUt(60)
                 .duration(20)
                 .buildAndRegister();
-        FLUID_CANNER_RECIPES.recipeBuilder()
+        CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(Etirps.getFluid(500))
                 .inputs(PLASTIC_BOTTLE.getStackForm())
                 .outputs(ETIRPS.getStackForm())
@@ -74,14 +73,14 @@ public class PurpleDrinkChain {
                 .EUt(30)
                 .duration(100)
                 .buildAndRegister();
-        FLUID_EXTRACTION_RECIPES.recipeBuilder()
+        EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(LEMON.getStackForm())
                 .outputs(Zest.getItemStack(1))
                 .fluidOutputs(LemonExtract.getFluid(100))
                 .EUt(5)
                 .duration(100)
                 .buildAndRegister();
-        FLUID_EXTRACTION_RECIPES.recipeBuilder()
+        EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(LIME.getStackForm())
                 .outputs(Zest.getItemStack(1))
                 .fluidOutputs(LimeExtract.getFluid(100))
@@ -96,7 +95,7 @@ public class PurpleDrinkChain {
                 .EUt(30)
                 .duration(80)
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
                 .fluidInputs(HighFructoseCornSyrupSolution.getFluid(1000))
                 .fluidOutputs(HFCSXlii.getFluid(1000))
                 .EUt(120)
@@ -115,7 +114,7 @@ public class PurpleDrinkChain {
                 .EUt(240)
                 .duration(125)
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
                 .fluidInputs(GlucoseSolution.getFluid(1000))
                 .outputs(Glucose.getItemStack(24))
                 .EUt(480)
@@ -299,5 +298,6 @@ public class PurpleDrinkChain {
                 .EUt(60)
                 .duration(200)
                 .buildAndRegister();
+         */
     }
 }

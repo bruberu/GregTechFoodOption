@@ -1,21 +1,17 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregicadditions.recipes.helper.HelperMethods;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregicadditions.GAMaterials.*;
-import static gregicadditions.item.GAMetaItems.*;
-import static gregicadditions.recipes.GARecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 
 public class PopcornChain {
-    public static void init() {
+    public static void init() {/*
         ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(60)
                 .inputs(PAPER_BAG.getStackForm())
                 .inputs(FLAVORED_POPCORN_FLAKE.getStackForm(32))
@@ -195,6 +191,6 @@ public class PopcornChain {
                 .inputs(PhycomycesBlakesleeanus.getItemStack())
                 .notConsumable(GREEN_HALIDE_LAMP.getStackForm())
                 .outputs(BetaCarotene.getItemStack(96))
-                .buildAndRegister();
+                .buildAndRegister();*/
     }
 }

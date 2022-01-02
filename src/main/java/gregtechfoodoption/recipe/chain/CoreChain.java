@@ -2,6 +2,8 @@ package gregtechfoodoption.recipe.chain;
 
 //Used for cross-chain materials.
 
+import de.ellpeck.actuallyadditions.mod.util.RecipeUtil;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.utils.RecipeUtils;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -26,8 +28,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 
 public class CoreChain {
-    public static void init()
-    {
+    public static void init() {
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(GTFOMaterialHandler.UnheatedCaneSyrup.getFluid(1000))
                 .circuitMeta(0)
@@ -37,7 +38,7 @@ public class CoreChain {
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder()
-                .inputs(Glucose.getItemStack(24))
+                .input(OrePrefix.dust, Sugar, 24)
                 .fluidInputs(Water.getFluid(2000))
                 .fluidOutputs(GTFOMaterialHandler.UnheatedCaneSyrup.getFluid(2000))
                 .EUt(80)
@@ -100,11 +101,11 @@ public class CoreChain {
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks2", MUD_BRICK.getStackForm(10),
-                "SBS", "SMS", "GKG",
+                "SBS", "SMS", "GTG",
                 'S', Blocks.SAND,
                 'G', Blocks.GRAVEL,
-                'K', OreDictUnifier.get(dust, Kaolinite),
                 'B', OreDictUnifier.get(dust, Bentonite),
+                'T', OreDictUnifier.get(dust, Talc),
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks3", MUD_BRICK.getStackForm(8),
@@ -116,11 +117,11 @@ public class CoreChain {
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks4", MUD_BRICK.getStackForm(16),
-                "SBS", "SMW", "GKG",
+                "SBS", "SMW", "GTG",
                 'S', Blocks.SAND,
                 'G', Blocks.GRAVEL,
                 'B', OreDictUnifier.get(dust, Bentonite),
-                'K', OreDictUnifier.get(dust, Kaolinite),
+                'T', OreDictUnifier.get(dust, Talc),
                 'W', Items.WHEAT,
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
@@ -132,7 +133,7 @@ public class CoreChain {
         slicingArray.put(OLIVE, OLIVE_SLICE);
         slicingArray.put(TOMATO, TOMATO_SLICE);
         slicingArray.put(ONION, ONION_SLICE);
-        for(Map.Entry<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> entry : slicingArray.entrySet()) {
+        for (Map.Entry<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> entry : slicingArray.entrySet()) {
             ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().toString(), entry.getValue().getStackForm(4), 'k', entry.getKey());
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .inputs(entry.getKey().getStackForm())
@@ -141,7 +142,7 @@ public class CoreChain {
                     .buildAndRegister();
 
             // Since we already have our crops, we might as well register their green house recipes here
-            RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey());
+            //RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey()); TODO
         }
         // Get the mushroom done separately. And don't use red mushrooms.
         ModHandler.addShapelessRecipe("gtfo_slice_mushroom", MUSHROOM_SLICE.getStackForm(4), 'k', Blocks.BROWN_MUSHROOM);
@@ -158,17 +159,14 @@ public class CoreChain {
                 .outputs(UNCOOKED_BACON.getStackForm(6))
                 .buildAndRegister();
 
-        BakingOvenRecipeBuilder.start().duration(500).temperature(435).fuelAmount(200)
-                .input(UNCOOKED_BACON.getStackForm())
-                .output(BACON.getStackForm())
-                .buildAndRegister();
+        RecipeUtils.addBakingOvenRecipes(UNCOOKED_BACON.getStackForm(), BACON.getStackForm(), 500, 435, 1);
 
-        FLUID_EXTRACTION_RECIPES.recipeBuilder().EUt(2).duration(10)
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
                 .inputs(TOMATO_SLICE.getStackForm(4))
                 .fluidOutputs(GTFOMaterialHandler.TomatoSauce.getFluid(100))
                 .buildAndRegister();
 
-        FLUID_EXTRACTION_RECIPES.recipeBuilder().EUt(27).duration(60)
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(27).duration(60)
                 .inputs(OLIVE.getStackForm())
                 .fluidOutputs(GTFOMaterialHandler.OliveOil.getFluid(100))
                 .buildAndRegister();
@@ -243,17 +241,23 @@ public class CoreChain {
                     .fluidInputs(SulfuricAcid.getFluid(200))
                     .fluidOutputs(GTFOMaterialHandler.Sludge.getFluid(200))
                     .buildAndRegister();
-            MIXER_RECIPES.recipeBuilder().duration(125).EUt(16)
+            /*MIXER_RECIPES.recipeBuilder().duration(125).EUt(16) TODO
                     .inputs(stack)
                     .fluidInputs(PiranhaSolution.getFluid(100))
                     .fluidOutputs(GTFOMaterialHandler.Sludge.getFluid(400))
-                    .buildAndRegister();
+                    .buildAndRegister();*/
         }
         ModHandler.addShapelessRecipe("chum_on_a_stick", CHUM_ON_A_STICK.getStackForm(), CHUM.getStackForm(), new ItemStack(Items.STICK));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(4).duration(5)
                 .input(Items.STICK)
                 .inputs(CHUM.getStackForm())
                 .outputs(CHUM_ON_A_STICK.getStackForm())
+                .buildAndRegister();
+
+        ELECTROLYZER_RECIPES.recipeBuilder().duration(300).EUt(480)
+                .input(dust, Gold, 2)
+                .fluidInputs(HydrochloricAcid.getFluid(8000))
+                .fluidOutputs(GTFOMaterialHandler.ChloroauricAcid.getFluid(2000), Hydrogen.getFluid(3000))
                 .buildAndRegister();
 
     }

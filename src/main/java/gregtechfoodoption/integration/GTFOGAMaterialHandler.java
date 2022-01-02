@@ -12,11 +12,8 @@ import static gregtechfoodoption.utils.RecipeUtils.average;
 
 public class GTFOGAMaterialHandler {
 
-    /* Will be added back at a later date, when Gregicality: Science comes out.
+    /* Will be added back at a later date, when Gregicality: Science comes out. TODO
         public static final GTFOFluidMaterial FungalRennetSolution = new GTFOFluidMaterial("fungal_rennet_solution", CrudeRennetSolution.rgb/2 + Yeast.getMaterialRGB()/4 + 0x2a7b5a/4);
-        public static final GTFOFluidMaterial MoistAir = new GTFOFluidMaterial("moist_air", 0x82c8ff);
-        public static final GTFOFluidMaterial ColdMoistAir = new GTFOFluidMaterial("cold_moist_air", 0x72a2ff);
-
 
         public static final GTFOFluidMaterial Iodomethane = new GTFOFluidMaterial("iodomethane", average(2, GAMaterials.Iodine.getMaterialRGB(), Materials.Methane.getMaterialRGB()), "CH3I");
         public static final GTFOFluidMaterial DimethylSulfoxide = new GTFOFluidMaterial("dimethyl_sulfoxide", average(2, Materials.Oxygen.getMaterialRGB(), GAMaterials.Dimethylsulfide.getMaterialRGB()), "C2H6OS");
@@ -33,6 +30,22 @@ public class GTFOGAMaterialHandler {
         public static final GTFOFluidMaterial Bromomethane = new GTFOFluidMaterial("bromomethane", average(2, GAMaterials.Bromine.getMaterialRGB(), Materials.Methane.getMaterialRGB()), "CH3Br");
         public static final GTFOFluidMaterial BromineMonochloride = new GTFOFluidMaterial("bromine_monochloride", average(2, GAMaterials.Bromine.getMaterialRGB(), Materials.Chlorine.getMaterialRGB()), "BrCl");
 
+        public static final GTFOFluidMaterial HFCSLv = new GTFOFluidMaterial("hfcs_55", 0xcfa500);
+        public static final GTFOFluidMaterial HFCSXlii = new GTFOFluidMaterial("hfcs_42", 0xc4a837);
+        public static final GTFOFluidMaterial HFCSXc = new GTFOFluidMaterial("hfcs_90", 0xc9b977);
+        public static final GTFOFluidMaterial LemonLimeSolution = new GTFOFluidMaterial("lemon_lime_solution", 0xbddb5a);
+        public static final GTFOFluidMaterial LemonLimeSludge = new GTFOFluidMaterial("lemon_lime_sludge", 0x779906);
+        public static final GTFOFluidMaterial CornStarchSolution = new GTFOFluidMaterial("corn_starch_solution", 0xd4d3c5);
+        public static final GTFOFluidMaterial OligosaccharideSolution = new GTFOFluidMaterial("oligosaccharide_solution", 0xa8a59d);
+        public static final GTFOFluidMaterial GlucoseSolution = new GTFOFluidMaterial("glucose_solution", 0xf5f3ed);
+        public static final GTFOFluidMaterial HighFructoseCornSyrupSolution = new GTFOFluidMaterial("hfcs_solution", 0xe3bc20);
+        public static final GTFOFluidMaterial XPhenothiazineIiPropylChloride = new GTFOFluidMaterial("10-phenothiazine-2-propyl_chloride", average(2, 0x67735c, IsopropylChloride.rgb), "C15H16NSCl");
+        public static final GTFOFluidMaterial AppleSyrup = new GTFOFluidMaterial("apple_syrup", 0xf2e1ac);
+        public static final GTFOFluidMaterial AppleCandySyrup = new GTFOFluidMaterial("apple_candy_syrup", 0xe7f5ae);
+        public static final GTFOFluidMaterial Etirps = new GTFOFluidMaterial("etirps", 0xb0ff73);
+        public static final GTFOFluidMaterial LemonLimeSodaSyrup = new GTFOFluidMaterial("lemon_lime_soda_syrup", 0x76ff0d);
+        public static final GTFOFluidMaterial CarbonatedWater = new GTFOFluidMaterial("carbonated_water", 0xf5ffff);
+        public static final GTFOFluidMaterial CoughSyrup = new GTFOFluidMaterial("cough_syrup", 0x5c1b5e);
 
         public static final GTFOOredictItem.OreDictItem MoscoviumPentafluoride = new GTFOOredictItem.OreDictItem(1007, "moscovium_pentafluoride", (GAMaterials.Moscovium.getMaterialRGB() + 5 * Materials.Fluorine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McF5");
         public static final GTFOOredictItem.OreDictItem MoscoviumPentachloride = new GTFOOredictItem.OreDictItem(1008, "moscovium_pentachloride", (GAMaterials.Moscovium.getMaterialRGB() + 5 * Materials.Chlorine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McCl5");

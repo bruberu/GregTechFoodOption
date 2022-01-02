@@ -2,12 +2,12 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtech.api.recipes.ModHandler;
+import gregtechfoodoption.utils.RecipeUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
-import static gregicadditions.recipes.GARecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -29,7 +29,7 @@ public class PotatoProcessingChain {
                 .outputs(POTATO_SLICE.getStackForm(10))
                 .fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(200))
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(16).duration(20)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(20)
                 .fluidInputs(GTFOMaterialHandler.StarchFilledWater.getFluid(1000))
                 .outputs(GTFOMaterialHandler.PotatoStarch.getItemStack())
                 .fluidOutputs(Water.getFluid(900))
@@ -39,7 +39,7 @@ public class PotatoProcessingChain {
                 .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
                 .outputs(POTATO_STRIP.getStackForm(10))
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(30).duration(400)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(400)
                 .inputs(POTATO_SLICE.getStackForm(40))
                 .fluidInputs(GTFOMaterialHandler.FryingOil.getFluid(500))
                 .outputs(FRIED_POTATO_SLICE.getStackForm(38))
@@ -50,7 +50,7 @@ public class PotatoProcessingChain {
                 .inputs(FRIED_POTATO_SLICE.getStackForm(20))
                 .outputs(PARTIALLY_FILLED_CHIP_BAG.getStackForm())
                 .buildAndRegister();
-        FLUID_CANNER_RECIPES.recipeBuilder().EUt(16).duration(120)
+        CANNER_RECIPES.recipeBuilder().EUt(16).duration(120)
                 .inputs(PARTIALLY_FILLED_CHIP_BAG.getStackForm())
                 .fluidInputs(Nitrogen.getFluid(500))
                 .outputs(SYALS.getStackForm())
@@ -83,7 +83,7 @@ public class PotatoProcessingChain {
                 .inputs(BATCH_FRIED_POTATO_SLICE.getStackForm(5))
                 .outputs(HOT_POTATO_SLICE.getStackForm(5))
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(30).duration(400)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(400)
                 .inputs(HOT_POTATO_SLICE.getStackForm(10))
                 .outputs(REDUCED_FAT_POTATO_SLICE.getStackForm(10))
                 .fluidOutputs(GTFOMaterialHandler.FryingOil.getFluid(60))
@@ -108,7 +108,7 @@ public class PotatoProcessingChain {
                 .inputs(PAPER_BAG.getStackForm())
                 .outputs(FRENCH_FRIES.getStackForm())
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(30).duration(180)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(180)
                 .inputs(USED_PAPER_BAG.getStackForm())
                 .output(dust, Paper, 3)
                 .chancedOutput(GTFOMaterialHandler.PotatoStarch.getItemStack(), 2000, 150)
