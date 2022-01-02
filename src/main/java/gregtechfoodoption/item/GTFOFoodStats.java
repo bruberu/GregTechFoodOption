@@ -42,11 +42,6 @@ public class GTFOFoodStats implements IFoodBehavior {
         return this.isDrink ? EnumAction.DRINK : EnumAction.EAT;
     }
 
-    @Override
-    public void onEaten(ItemStack itemStack, EntityPlayer entityPlayer) {
-        this.onFoodEaten(itemStack, entityPlayer);
-    }
-
     public int getFoodLevel(ItemStack itemStack, EntityPlayer player) {
         return this.foodLevel;
     }

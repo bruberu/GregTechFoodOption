@@ -1,10 +1,10 @@
 package gregtechfoodoption.item;
 
+import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.potion.AddictionPotion;
 import gregtechfoodoption.potion.CreativityPotion;
 
-import gregtech.api.items.materialitem.MaterialMetaItem;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
 import gregtech.api.items.toolitem.ToolMetaItem;
@@ -20,7 +20,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static net.minecraft.potion.Potion.getPotionById;
 
 
-public class GTFOMetaItem extends MaterialMetaItem {
+public class GTFOMetaItem extends StandardMetaItem {
     public GTFOMetaItem() {
         super();
     }

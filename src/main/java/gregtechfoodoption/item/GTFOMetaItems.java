@@ -21,8 +21,8 @@ public class GTFOMetaItems {
 
     public static void registerOreDict() {
         for (MetaItem<?> item : ITEMS) {
-            if (item instanceof GTFOMetaItem) {
-                ((GTFOMetaItem) item).registerOreDict();
+            if (item instanceof GTFOOredictItem) {
+                ((GTFOOredictItem) item).registerOreDict();
             }
 
             if (item instanceof GTFOMetaTool) {

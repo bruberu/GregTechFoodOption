@@ -65,10 +65,8 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
 
         if (temp > 300)
             hasEnoughEnergy = drainEnergy();
-        else {
+        else
             hasEnoughEnergy = true;
-
-        }
 
         if (getOffsetTimer() % 20 == 0 && targetTemp != temp && !recipeMapWorkable.isActive())
             stepTowardsTargetTemp();
@@ -298,7 +296,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
 
         @Override
         public int getParallelLimit() {
-             return ((MetaTileEntityElectricBakingOven) this.getMetaTileEntity()).size;
+            return ((MetaTileEntityElectricBakingOven) this.getMetaTileEntity()).size;
         }
     }
 

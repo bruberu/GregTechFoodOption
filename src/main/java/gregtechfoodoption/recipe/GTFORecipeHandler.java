@@ -1,20 +1,21 @@
 package gregtechfoodoption.recipe;
 
+import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.properties.PropertyKey;
+import gregtech.api.unification.material.properties.ToolProperty;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.material.type.IngotMaterial;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 
 public class GTFORecipeHandler {
 
     public static void register() {
-        OrePrefix.ingot.addProcessingHandler(IngotMaterial.class, GTFORecipeHandler::processIngot);
-
+        OrePrefix.ingot.addProcessingHandler(PropertyKey.TOOL, GTFORecipeHandler::processIngot);
     }
 
-    private static void processIngot(OrePrefix ingotPrefix, IngotMaterial material) {
-        if (material.toolDurability > 0) {
+    private static void processIngot(OrePrefix ingotPrefix, Material material, ToolProperty property) {
+        if (property.getToolDurability() > 0) {
             ModHandler.addShapedRecipe(String.format("rolling_pin_%s", material.toString()),
                     GTFOMetaItem.ROLLING_PIN.getStackForm(material),
                     "  R", " I ", "R f",

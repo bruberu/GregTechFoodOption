@@ -16,7 +16,7 @@ public class GTFOMetaFluids {
 
     public static void init() {
         for (GTFOFluidMaterial fluidMat : GTFOFluidMaterial.GTFO_FLUIDS.values()) {
-            Fluid fluid = new Fluid(fluidMat.name, MetaFluids.AUTO_GENERATED_FLUID_TEXTURE, MetaFluids.AUTO_GENERATED_FLUID_TEXTURE, GTUtility.convertRGBtoOpaqueRGBA_MC(fluidMat.rgb));
+            Fluid fluid = new Fluid(fluidMat.name, MetaFluids.FLUID_NONE_TEXTURE, MetaFluids.FLUID_NONE_TEXTURE, GTUtility.convertRGBtoOpaqueRGBA_MC(fluidMat.rgb));
             fluid.setTemperature(fluidMat.temperature);
             if (!FluidRegistry.isFluidRegistered(fluid.getName())) {
                 FluidRegistry.registerFluid(fluid);

@@ -3,6 +3,7 @@ package gregtechfoodoption.recipe.builder;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.recipeproperties.PrimitiveProperty;
 import gregtech.api.recipes.recipeproperties.RecipeProperty;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
@@ -41,7 +42,7 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
     public ValidationResult<Recipe> build() {
         Recipe recipe = new Recipe(inputs, outputs, chancedOutputs, fluidInputs, fluidOutputs,
                 duration, EUt, hidden);
-        if (!recipe.getRecipePropertyStorage().store(TemperatureProperty.getInstance(), temp)) {
+        if (!recipe.getRecipePropertyStorage().store(TemperatureProperty.getInstance(), temp) || !recipe.getRecipePropertyStorage().store(PrimitiveProperty.getInstance(), true)) {
             return ValidationResult.newResult(EnumValidationResult.INVALID, recipe);
         }
 

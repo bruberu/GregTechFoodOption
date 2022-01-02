@@ -3,8 +3,10 @@ package gregtechfoodoption.item;
 import com.google.common.base.CaseFormat;
 import com.google.common.collect.ImmutableList;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.info.MaterialIconType;
 import gregtech.api.unification.ore.OrePrefix;
@@ -15,12 +17,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.logging.impl.WeakHashtable;
 
 import java.util.*;
 
 //It would be a shame if someone mercilessly copied someone else's code...
 public class GTFOOredictItem extends StandardMetaItem {
 
+    public static final Map<String, OreDictItem> NAME_TO_OREDICTITEM = new HashMap<>();
     private static final Map<Short, OreDictItem> ITEMS = new HashMap<>();
     private static final List<MaterialIconType> DISALLOWED_TYPES = ImmutableList.of(
             MaterialIconType.block, MaterialIconType.foilBlock, MaterialIconType.wire,
@@ -94,6 +98,7 @@ public class GTFOOredictItem extends StandardMetaItem {
             this.orePrefix = orePrefix;
             this.chemicalFormula = chemicalFormula;
             ITEMS.put(this.id, this);
+            NAME_TO_OREDICTITEM.put(calculateChemicalFormula(chemicalFormula), this);
         }
 
         public String getOre() {
@@ -135,5 +140,14 @@ public class GTFOOredictItem extends StandardMetaItem {
             return materialRGB;
         }
     }
+
+    public void registerOreDict() {
+        for (Map.Entry<Short, OreDictItem> metaItem : ITEMS.entrySet()) {
+            Material material = GregTechAPI.MATERIAL_REGISTRY.getObjectById(metaItem.getKey());
+            ItemStack item = new ItemStack(this, 1, metaItem.getKey());
+            OreDictUnifier.registerOre(item, metaItem.getValue().orePrefix, material);
+        }
+    }
+
 }
 
