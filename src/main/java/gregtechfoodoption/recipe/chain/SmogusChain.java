@@ -4,8 +4,6 @@ import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.utils.RecipeUtils;
-import gregicadditions.GAMaterials;
-import gregicadditions.GAConfig;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -23,13 +21,12 @@ import net.minecraft.util.ResourceLocation;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
 import static gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregicadditions.recipes.GARecipeMaps.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static nc.recipe.AbstractRecipeHandler.fluidStack;
-import static gregicadditions.recipes.helper.HelperMethods.removeRecipesByInputs;
 
 
 public class SmogusChain {
@@ -95,7 +92,7 @@ public class SmogusChain {
                         .buildAndRegister();
 
             } else {
-                STELLAR_FORGE_RECIPES.recipeBuilder()
+                RecipeUtils.stellarForgeProxy().recipeBuilder()
                         .inputs(new ItemStack(NCItems.marshmallow))
                         .inputs(GTFONCMaterialHandler.HOT_MILK_CHOCOLATE.getItemStack())
                         .inputs(smoresin[i])
@@ -196,7 +193,7 @@ public class SmogusChain {
                 .duration(200)
                 .buildAndRegister();
 
-        FLUID_EXTRACTION_RECIPES.recipeBuilder()
+        EXTRACTOR_RECIPES.recipeBuilder()
                 .input(OrePrefix.dust, Materials.Cocoa)
             	.fluidOutputs(fluidStack("unsweetened_chocolate", 144).getStack())
             	.EUt(180)
@@ -251,7 +248,7 @@ public class SmogusChain {
                 .duration(60)
                 .buildAndRegister();
 
-        FLUID_EXTRACTION_RECIPES.recipeBuilder()
+        EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(GTFONCMaterialHandler.CHOCOLATE_LIQUOR_PRESSED.getItemStack(2))
             	.outputs(GTFONCMaterialHandler.PRESS_CAKE.getItemStack())
             	.fluidOutputs(fluidStack("cocoa_butter", 144).getStack())
@@ -259,7 +256,7 @@ public class SmogusChain {
                 .duration(100)
                 .buildAndRegister();
 
-        FLUID_EXTRACTION_RECIPES.recipeBuilder()
+        EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(GTFONCMaterialHandler.CHOCOLATE_LIQUOR_DUTCHED_PRESSED.getItemStack(2))
 	            .outputs(GTFONCMaterialHandler.PRESS_CAKE_DUTCHED.getItemStack())
 	            .fluidOutputs(fluidStack("cocoa_butter", 144).getStack())
@@ -281,7 +278,7 @@ public class SmogusChain {
         }
 
            FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .fluidInputs(GAMaterials.FishOil.getFluid(500))
+                .fluidInputs(FishOil.getFluid(500))
 	            .notConsumable(MetaItems.SHAPE_MOLD_PLATE)
 	            .output(NCItems.gelatin)
 	            .EUt(60)
@@ -291,7 +288,7 @@ public class SmogusChain {
         MIXER_RECIPES.recipeBuilder()
                 .input(Items.SUGAR)
 	            .input(OrePrefix.dust, Wheat, 3)
-    	        .inputs(GAMaterials.SodiumBicarbonate.getItemStack(6))
+    	        .input(OrePrefix.dust, SodiumBicarbonate)
 	            .fluidInputs(GTFONCMaterialHandler.Butter.getFluid(2000))
 	            .fluidInputs(Milk.getFluid(500))
 	            .outputs(GTFONCMaterialHandler.MATTER_GRAHAM.getItemStack(10))
@@ -330,7 +327,7 @@ public class SmogusChain {
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder()
-                .notConsumable(GTFONCMaterialHandler.PotassiumCarbonateSolution.getFluid(1000))
+                .notConsumable(GTFONCMaterialHandler.SodiumCarbonateSolution.getFluid(1000))
 	            .inputs(GTFONCMaterialHandler.CHOCOLATE_LIQUOR_REFINED.getItemStack())
 	            .outputs(GTFONCMaterialHandler.CHOCOLATE_LIQUOR_DUTCHED.getItemStack())
 	            .EUt(540)
@@ -339,13 +336,13 @@ public class SmogusChain {
 
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(Water.getFluid(1000))
-	            .inputs(GAMaterials.PotassiumCarbonate.getItemStack(6))
-                .fluidOutputs(GTFONCMaterialHandler.PotassiumCarbonateSolution.getFluid(1000))
+	            .input(OrePrefix.dust, SodaAsh, 4)
+                .fluidOutputs(GTFONCMaterialHandler.SodiumCarbonateSolution.getFluid(1000))
             	.EUt(30)
                 .duration(40)
                 .buildAndRegister();
 
-        RecipeUtils.clusterMillBuilderProxy().recipeBuilder()
+        LATHE_RECIPES.recipeBuilder()
                     .inputs(GTFONCMaterialHandler.CHOCOLATE_LIQUOR.getItemStack())
                     .outputs(GTFONCMaterialHandler.CHOCOLATE_LIQUOR_REFINED.getItemStack())
                     .EUt(200)

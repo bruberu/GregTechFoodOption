@@ -83,6 +83,8 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial Vodka = new GTFOFluidMaterial("vodka", 0x7d6933);
     public static final GTFOFluidMaterial Leninade = new GTFOFluidMaterial("leninade", 0x82661d);
 
+    public static final GTFOFluidMaterial PerchloricAcid = new GTFOFluidMaterial("perchloric_acid", average(6,Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), "HClO4");
+
 
     public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictItem BarePopcornKernel = new GTFOOredictItem.OreDictItem(1001, "popcorn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
@@ -126,8 +128,8 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictItem PenicilliumRoqueforti = new GTFOOredictItem.OreDictItem(1111, "penicillium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
 
     public static final GTFOOredictItem.OreDictItem BurntBananaPeel = new GTFOOredictItem.OreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
-    public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
+    public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(7, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
+    public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
 
     @SubscribeEvent
     public void onMaterialsInit(GregTechAPI.MaterialEvent event) {

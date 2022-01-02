@@ -2,18 +2,13 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.utils.RecipeUtils;
 import net.minecraft.init.Items;
 
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.item.GTFOMetaItem.RICOTTA;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
-import static gregicadditions.GAMaterials.DepletedGrowthMedium;
-import static gregicadditions.GAMaterials.Yeast;
-import static gregicadditions.item.GAMetaItems.CLEAN_CULTURE;
-import static gregicadditions.item.GAMetaItems.CONTAMINATED_PETRI_DISH;
-import static gregicadditions.recipes.GARecipeMaps.BIO_REACTOR_RECIPES;
-import static gregicadditions.recipes.GARecipeMaps.CHEMICAL_DEHYDRATOR_RECIPES;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -26,12 +21,12 @@ public class CheeseChain {
                 .outputs(BEEF_SLICE.getStackForm(9))
                 .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(8).duration(300)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(8).duration(300)
                 .inputs(BEEF_SLICE.getStackForm(4))
                 .fluidInputs(SaltWater.getFluid(1000), AceticAcid.getFluid(100))
                 .fluidOutputs(CrudeRennetSolution.getFluid(500))
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(30).duration(200)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(200)
                 .fluidInputs(CrudeRennetSolution.getFluid(1), Milk.getFluid(3000))
                 .outputs(CoagulatedMilkCurd.getItemStack())
                 .fluidOutputs(Whey.getFluid(600))
@@ -84,7 +79,7 @@ public class CheeseChain {
                 .inputs(SmallMozzarellaCurd.getItemStack())
                 .outputs(DriedMozzarellaCurd.getItemStack())
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().EUt(16).duration(200)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(200)
                 .inputs(DriedMozzarellaCurd.getItemStack())
                 .outputs(SolidifiedMozzarellaCurd.getItemStack())
                 .fluidOutputs(Whey.getFluid(30))
@@ -121,6 +116,7 @@ public class CheeseChain {
                 .outputs(RICOTTA.getStackForm(2))
                 .fluidOutputs(Whey.getFluid(856))
                 .buildAndRegister();
+        /*
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(360)
                 .inputs(CLEAN_CULTURE.getStackForm())
                 .input(dust, Calcite)
@@ -160,7 +156,7 @@ public class CheeseChain {
                 .input(dust, Salt)
                 .outputs(SALTED_GORGONZOLA_WHEEL.getStackForm())
                 .buildAndRegister();
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder().duration(460).EUt(24)
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().duration(460).EUt(24)
                 .inputs(SALTED_GORGONZOLA_WHEEL.getStackForm())
                 .outputs(SLIGHTLY_AGED_GORGONZOLA_WHEEL.getStackForm())
                 .fluidOutputs(Whey.getFluid(35))
@@ -180,5 +176,6 @@ public class CheeseChain {
                 .notConsumable(SLICER_BLADE_OCTAGONAL)
                 .outputs(GORGONZOLA_TRIANGULAR_SLICE.getStackForm(16))
                 .buildAndRegister();
+         */
     }
 }

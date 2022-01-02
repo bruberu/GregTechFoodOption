@@ -6,7 +6,6 @@ import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.utils.RecipeUtils;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
-import gregicadditions.GAMaterials;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
@@ -22,7 +21,6 @@ import java.util.Map;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
-import static gregicadditions.GAMaterials.PiranhaSolution;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -39,7 +37,7 @@ public class CoreChain {
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder()
-                .inputs(GAMaterials.Glucose.getItemStack(24))
+                .inputs(Glucose.getItemStack(24))
                 .fluidInputs(Water.getFluid(2000))
                 .fluidOutputs(GTFOMaterialHandler.UnheatedCaneSyrup.getFluid(2000))
                 .EUt(80)

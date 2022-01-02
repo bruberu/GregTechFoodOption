@@ -26,13 +26,13 @@ public class AlcoholChain {
                 .fluidOutputs(Leninade.getFluid(1100))
                 .buildAndRegister();
 
-        FLUID_CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
+        CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
                 .input(Items.GLASS_BOTTLE)
                 .fluidInputs(Vodka.getFluid(100))
                 .outputs(VODKA.getStackForm())
                 .buildAndRegister();
 
-        FLUID_CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
+        CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
                 .input(Items.GLASS_BOTTLE)
                 .fluidInputs(Leninade.getFluid(100))
                 .outputs(LENINADE.getStackForm())

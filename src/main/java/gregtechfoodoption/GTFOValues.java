@@ -6,4 +6,5 @@ public class GTFOValues {
         MODID_AA = "actuallyadditions",
         MODID_NC = "nuclearcraft";
 
+    public static final String craftingToolRollingPin = "craftingToolRollingPin";
 }

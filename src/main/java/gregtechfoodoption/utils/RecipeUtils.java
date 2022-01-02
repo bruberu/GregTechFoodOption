@@ -1,18 +1,9 @@
 package gregtechfoodoption.utils;
 
-import gregicadditions.GAConfig;
-import gregicadditions.recipes.GARecipeMaps;
-import gregicadditions.utils.GALog;
 import gregtech.api.GTValues;
-import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.builders.SimpleRecipeBuilder;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.unification.material.type.FluidMaterial;
-import gregtech.api.unification.ore.OrePrefix;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
@@ -20,17 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static gregicadditions.GAMaterials.DepletedGrowthMedium;
-import static gregicadditions.GAMaterials.OrganicFertilizer;
-import static gregicadditions.item.GAMetaItems.CLEAN_CULTURE;
-import static gregicadditions.item.GAMetaItems.CONTAMINATED_PETRI_DISH;
-import static gregicadditions.recipes.GARecipeMaps.BIO_REACTOR_RECIPES;
-import static gregicadditions.recipes.GARecipeMaps.GREEN_HOUSE_RECIPES;
-import static gregtech.api.unification.material.Materials.Water;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.gem;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 
 //A not small amount of code from here was yoinked from other places. I'll give credit wherever I can!
 
 public class RecipeUtils {
+    /*
     public static void addGreenHouseRecipes(ItemStack seed, Item crop) {
         GREEN_HOUSE_RECIPES.recipeBuilder().duration(1000).notConsumable(new IntCircuitIngredient(0)).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(new ItemStack(crop)).buildAndRegister();
         GREEN_HOUSE_RECIPES.recipeBuilder().duration(900).notConsumable(new IntCircuitIngredient(1)).inputs(new ItemStack(Items.DYE, 1, 15)).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(new ItemStack(crop, 2)).chancedOutput(seed, 100, 50).buildAndRegister();
@@ -43,8 +31,7 @@ public class RecipeUtils {
         GREEN_HOUSE_RECIPES.recipeBuilder().duration(600).notConsumable(new IntCircuitIngredient(2)).input(OrePrefix.dust, OrganicFertilizer).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(crop.getStackForm(3)).chancedOutput(seed, 100, 50).buildAndRegister();
     }
 
-    public static void addBioReactorRecipes(FluidMaterial growthMedium, MetaItem<?>.MetaValueItem culture, ItemStack organism, ItemStack organismSource)
-    {
+    public static void addBioReactorRecipes(Material growthMedium, MetaItem<?>.MetaValueItem culture, ItemStack organism, ItemStack organismSource) {
         ItemStack twoOrganism = organism.copy();
         twoOrganism.setCount(2);
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(480).duration(2400)
@@ -67,8 +54,8 @@ public class RecipeUtils {
                 .fluidOutputs(DepletedGrowthMedium.getFluid(250))
                 .buildAndRegister();
     }
-    public static void addBioReactorRecipes(FluidMaterial growthMedium, MetaItem<?>.MetaValueItem culture, ItemStack organism, FluidMaterial organismSource)
-    {
+
+    public static void addBioReactorRecipes(Material growthMedium, MetaItem<?>.MetaValueItem culture, ItemStack organism, Material organismSource) {
         ItemStack twoOrganism = organism.copy();
         twoOrganism.setCount(2);
         BIO_REACTOR_RECIPES.recipeBuilder().EUt(480).duration(2400)
@@ -92,29 +79,23 @@ public class RecipeUtils {
                 .buildAndRegister();
     }
 
-    public static int boolToInt(boolean boole)
-    {
+     */
+
+    public static int boolToInt(boolean boole) {
         return boole ? 1 : 0;
     }
 
-    public static int average(float divisor, int... inputs)
-    {
+    public static int average(float divisor, int... inputs) {
         int result = 0;
-        for(int i : inputs)
-        {
+        for (int i : inputs) {
             result += i;
         }
-        return result /= divisor;
+        return (int) (result / divisor);
     }
 
-    public static ItemStack wildcardize(ItemStack itemStack)
-    {
+    public static ItemStack wildcardize(ItemStack itemStack) {
         itemStack.setItemDamage(GTValues.W);
         return itemStack;
-    }
-
-    public static RecipeMap<SimpleRecipeBuilder> clusterMillBuilderProxy() {
-        return GAConfig.GT6.BendingFoilsAutomatic ? GARecipeMaps.CLUSTER_MILL_RECIPES : RecipeMaps.LATHE_RECIPES;
     }
 
     public static boolean removeAllSmelting(ItemStack input) {
@@ -130,7 +111,7 @@ public class RecipeUtils {
                 removingItems.add(stack); // No CMEs today!
             }
         }
-        for (ItemStack stack: removingItems) {
+        for (ItemStack stack : removingItems) {
             FurnaceRecipes.instance().getSmeltingList().remove(stack);
         }
         return removingItems.isEmpty();
@@ -150,4 +131,32 @@ public class RecipeUtils {
         result.addAll(getFish());
         return result;
     }
+
+    public static RecipeMap<?> chemicalDehydratorProxy() {
+        return RecipeMaps.CHEMICAL_BATH_RECIPES;
+    }
+
+    public static RecipeMap<?> stellarForgeProxy() {
+        return RecipeMaps.FORMING_PRESS_RECIPES;
+    }
+
+
+    public static void addBakingOvenRecipes(ItemStack input, ItemStack output, int duration, int temperature, int fuelAmount) {
+        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
+                .input(gem, Charcoal, fuelAmount)
+                .inputs(input)
+                .outputs(output)
+                .buildAndRegister();
+        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
+                .input(gem, Coal, fuelAmount)
+                .inputs(input)
+                .outputs(output)
+                .buildAndRegister();
+        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
+                .input(gem, Coke, Math.max(fuelAmount / 2, 1))
+                .inputs(input)
+                .outputs(output)
+                .buildAndRegister();
+    }
+
 }

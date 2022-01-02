@@ -37,7 +37,7 @@ public class GTFORecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
-    public static final RecipeMap<PrimitiveRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 1, 1, 0, 1, 0, 0, 0, 1, new BakingOvenRecipeBuilder(), false)
+    public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 1, 1, 0, 1, 0, 0, 0, 1, new BakingOvenRecipeBuilder(), false)
             .onRecipeBuild(recipeBuilder -> {
                 if (((BakingOvenRecipeBuilder) recipeBuilder).getTemperature() != -1)
                     ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().setTemp(((BakingOvenRecipeBuilder) recipeBuilder).getTemperature())

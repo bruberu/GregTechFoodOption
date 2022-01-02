@@ -1,8 +1,6 @@
 package gregtechfoodoption.recipe;
 
 import gregtechfoodoption.GTFOConfig;
-import bruberu.gregtechfoodoption.recipe.chain.*;
-import com.bruberu.gregtechfoodoption.recipe.chain.*;
 import gregtechfoodoption.recipe.chain.*;
 
 

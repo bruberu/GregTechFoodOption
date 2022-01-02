@@ -1,9 +1,9 @@
 package gregtechfoodoption.recipe.chain;
 
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
-import gregicadditions.GAMaterials;
 import gregtech.api.items.ToolDictNames;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -11,22 +11,23 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.utils.RecipeUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import static gregtech.api.unification.ore.OrePrefix.gem;
 import static gregtechfoodoption.GTFOMaterialHandler.TomatoSauce;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.*;
 
 public class BreadsChain {
     public static void init() {
         if (GTFOConfig.gtfoChainsConfig.deleteBreadRecipe) {
-            ModHandler.removeRecipes(Items.BREAD);
+            ModHandler.removeRecipes(new ItemStack(Items.BREAD));
             GTFOAppleCoreCompat.addToSparedItems(Items.BREAD, (int) ((float) GTFOConfig.gtfoFoodConfig.baguetteHunger * 3) / 2, GTFOConfig.gtfoFoodConfig.baguetteSaturation);
         }
         ModHandler.addShapedRecipe("wooden_form_bread", WOODEN_FORM_BREAD.getStackForm(),
@@ -98,22 +99,31 @@ public class BreadsChain {
                 .outputs(UNCOOKED_BUN.getStackForm())
                 .buildAndRegister();
 
-        BakingOvenRecipeBuilder.start().fuelAmount(400).duration(150).temperature(490)
-                .input(UNCOOKED_BUN.getStackForm())
-                .output(BUN.getStackForm())
-                .buildAndRegister();
+        RecipeUtils.addBakingOvenRecipes(
+                UNCOOKED_BUN.getStackForm(),
+                BUN.getStackForm(),
+                150,
+                490,
+                2
+                );
 
-        BakingOvenRecipeBuilder.start().fuelAmount(400).duration(150).temperature(490)
-                .input(UNCOOKED_BAGUETTE.getStackForm())
-                .output(BAGUETTE.getStackForm())
-                .buildAndRegister();
+        RecipeUtils.addBakingOvenRecipes(
+                UNCOOKED_BAGUETTE.getStackForm(),
+                BAGUETTE.getStackForm(),
+                150,
+                490,
+                2
+        );
 
-        BakingOvenRecipeBuilder.start().fuelAmount(400).duration(300).temperature(445)
-                .input(UNCOOKED_BREAD.getStackForm())
-                .output(new ItemStack(Items.BREAD))
-                .buildAndRegister();
+        RecipeUtils.addBakingOvenRecipes(
+                UNCOOKED_BREAD.getStackForm(),
+                new ItemStack(Items.BREAD),
+                150,
+                490,
+                2
+        );
 
-        ModHandler.removeRecipes(Items.CAKE);
+        ModHandler.removeRecipes(new ItemStack(Items.CAKE));
         ModHandler.addShapelessRecipe("sugary_dough", SUGARY_DOUGH.getStackForm(2), OreDictUnifier.get(dust, Sugar), DOUGH.getStackForm());
         MIXER_RECIPES.recipeBuilder().EUt(7).duration(32)
                 .input(dust, Sugar)
@@ -129,10 +139,15 @@ public class BreadsChain {
                 .inputs(MetaItems.SHAPE_MOLD_CYLINDER.getStackForm())
                 .outputs(CAKE_BOTTOM.getStackForm())
                 .buildAndRegister();
-        BakingOvenRecipeBuilder.start().fuelAmount(800).duration(500).temperature(445)
-                .input(CAKE_BOTTOM.getStackForm())
-                .output(BAKED_CAKE_BOTTOM.getStackForm())
-                .buildAndRegister();
+
+        RecipeUtils.addBakingOvenRecipes(
+                CAKE_BOTTOM.getStackForm(),
+                BAKED_CAKE_BOTTOM.getStackForm(),
+                500,
+                445,
+                3
+        );
+
         ModHandler.addShapedRecipe("gtfo_cake", new ItemStack(Items.CAKE),
                 "SES", "EBE", "MMM",
                 'S', OreDictUnifier.get(dust, Sugar),
@@ -148,14 +163,14 @@ public class BreadsChain {
                 .buildAndRegister();
 
         GTFOAppleCoreCompat.addToSparedItems(Items.COOKIE, 3, 0.2f);
-        ModHandler.removeRecipes(Items.COOKIE);
+        ModHandler.removeRecipes(new ItemStack(Items.COOKIE));
         ModHandler.addShapelessRecipe("gtfo_cookie", new ItemStack(Items.COOKIE), SUGARY_DOUGH, SUGARY_DOUGH, OreDictUnifier.get(dust, Cocoa));
 
-        ModHandler.removeRecipes(Items.PUMPKIN_PIE);
+        ModHandler.removeRecipes(new ItemStack(Items.PUMPKIN_PIE));
         GTFOAppleCoreCompat.addToSparedItems(Items.PUMPKIN_PIE);
         ModHandler.addShapedRecipe("gtfo_pie_crust", PIE_CRUST.getStackForm(),
                 "RD",
-                'R', OreDictUnifier.get(String.valueOf(ToolDictNames.craftingToolRollingPin)),
+                'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
                 'D', SUGARY_DOUGH.getStackForm());
         ModHandler.addShapedRecipe("gtfo_pumpkin_pie", new ItemStack(Items.PUMPKIN_PIE),
                 "SSS",
@@ -167,7 +182,7 @@ public class BreadsChain {
 
         ModHandler.addShapedRecipe("gtfo_flat_dough", FLAT_DOUGH.getStackForm(),
                 "RD ",
-                'R', OreDictUnifier.get(String.valueOf(ToolDictNames.craftingToolRollingPin)),
+                'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
                 'D', DOUGH.getStackForm());
         FORGE_HAMMER_RECIPES.recipeBuilder().EUt(60).duration(40)
                 .inputs(DOUGH.getStackForm())
@@ -279,21 +294,30 @@ public class BreadsChain {
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(180).duration(400)
                 .inputs(FLAT_DOUGH.getStackForm(), MOZZARELLA_SLICE.getStackForm(4))
-                .input(dust, GAMaterials.Meat, 10)
+                .input(dust, Meat, 10)
                 .fluidInputs(TomatoSauce.getFluid(450))
                 .outputs(PIZZA_MINCE_MEAT_RAW.getStackForm())
                 .buildAndRegister();
-        BakingOvenRecipeBuilder.start().temperature(495).fuelAmount(3200).duration(1200)
-                .input(PIZZA_VEGGIE_RAW.getStackForm())
-                .output(PIZZA_VEGGIE.getStackForm())
-                .buildAndRegister();
-        BakingOvenRecipeBuilder.start().temperature(495).fuelAmount(4000).duration(1400)
-                .input(PIZZA_CHEESE_RAW.getStackForm())
-                .output(PIZZA_CHEESE.getStackForm())
-                .buildAndRegister();
-        BakingOvenRecipeBuilder.start().temperature(495).fuelAmount(4800).duration(1600)
-                .input(PIZZA_MINCE_MEAT_RAW.getStackForm())
-                .output(PIZZA_MINCE_MEAT.getStackForm())
-                .buildAndRegister();
+        RecipeUtils.addBakingOvenRecipes(
+                PIZZA_VEGGIE_RAW.getStackForm(),
+                PIZZA_VEGGIE.getStackForm(),
+                1200,
+                495,
+                10
+        );
+        RecipeUtils.addBakingOvenRecipes(
+                PIZZA_CHEESE_RAW.getStackForm(),
+                PIZZA_CHEESE.getStackForm(),
+                1400,
+                495,
+                12
+        );
+        RecipeUtils.addBakingOvenRecipes(
+                PIZZA_MINCE_MEAT_RAW.getStackForm(),
+                PIZZA_MINCE_MEAT.getStackForm(),
+                1600,
+                495,
+                16
+        );
     }
 }

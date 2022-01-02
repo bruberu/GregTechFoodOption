@@ -24,16 +24,8 @@ import static gregtech.api.unification.material.Materials.Water;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class CoffeeChain {
-    public static NBTTagCompound getCoffeeNBT(int duration, int id, int amplifier) {
-        NBTTagCompound resultNBT = new NBTTagCompound();
-        resultNBT.setTag("Duration", new NBTTagInt(duration));
-        resultNBT.setTag("ID", new NBTTagInt(id));
-        resultNBT.setTag("Amplifier", new NBTTagInt(amplifier));
-        return resultNBT;
-    }
-
     public static void init() {
-        if(GTFOConfig.gtfoaaConfig.disableCoffeeMaker)
+        if (GTFOConfig.gtfoaaConfig.disableCoffeeMaker)
             ModHandler.removeRecipeByName(new ResourceLocation("actuallyadditions:recipes125"));
 
         ItemStack basicCoffee = new ItemStack(InitItems.itemCoffee, 1);
@@ -76,7 +68,7 @@ public class CoffeeChain {
                 .duration(100)
                 .buildAndRegister();
 
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.COFFEE_GROUNDS.getItemStack())
                 .inputs(coffeeFilter) // This is a paper cone, or a coffee filter, if you like.
                 .fluidInputs(Materials.Steam.getFluid(1000))
@@ -141,21 +133,21 @@ public class CoffeeChain {
                 .EUt(60)
                 .duration(10)
                 .buildAndRegister();
-        RecipeUtils.clusterMillBuilderProxy().recipeBuilder()
+        LATHE_RECIPES.recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.SMALL_DRIED_COFFEE.getItemStack())
                 .outputs(GTFOAAMaterialHandler.SMALL_HULLED_COFFEE.getItemStack())
                 .EUt(30)
                 .duration(10)
                 .buildAndRegister();
-        RecipeUtils.clusterMillBuilderProxy().recipeBuilder()
-                    .inputs(GTFOAAMaterialHandler.LARGE_DRIED_COFFEE.getItemStack())
-                    .outputs(GTFOAAMaterialHandler.LARGE_HULLED_COFFEE.getItemStack())
-                    .EUt(30)
-                    .duration(10)
-                    .buildAndRegister();
+        LATHE_RECIPES.recipeBuilder()
+                .inputs(GTFOAAMaterialHandler.LARGE_DRIED_COFFEE.getItemStack())
+                .outputs(GTFOAAMaterialHandler.LARGE_HULLED_COFFEE.getItemStack())
+                .EUt(30)
+                .duration(10)
+                .buildAndRegister();
 
 
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.LARGE_WET_COFFEE.getItemStack(32))
                 .outputs(GTFOAAMaterialHandler.LARGE_DRIED_COFFEE.getItemStack(32))
                 .fluidOutputs(Water.getFluid(24000))
@@ -163,7 +155,7 @@ public class CoffeeChain {
                 .duration(3600)
                 .buildAndRegister();
 
-        CHEMICAL_DEHYDRATOR_RECIPES.recipeBuilder()
+        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.SMALL_WET_COFFEE.getItemStack(64))
                 .outputs(GTFOAAMaterialHandler.SMALL_DRIED_COFFEE.getItemStack(64))
                 .fluidOutputs(Water.getFluid(24000))
@@ -205,6 +197,6 @@ public class CoffeeChain {
                 .duration(20)
                 .buildAndRegister();
 
-        RecipeUtils.addGreenHouseRecipes(new ItemStack(InitItems.itemCoffeeSeed), InitItems.itemCoffeeBean);
+        //RecipeUtils.addGreenHouseRecipes(new ItemStack(InitItems.itemCoffeeSeed), InitItems.itemCoffeeBean);
     }
 }
