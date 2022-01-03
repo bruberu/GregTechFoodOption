@@ -99,6 +99,38 @@ public class GTFOGAMaterialHandler {
     public static final GTFOOredictItem.OreDictItem NonToxicPolymoscoviumPentahalideCurvedSheet = new GTFOOredictItem.OreDictItem(1081, "nontoxic_polymoscovium_pentahalide", NonToxicPolymoscoviumPentahalideSheet.getMaterialRGB(), MaterialIconSet.SHINY, GAEnums.GAOrePrefix.plateCurved);
     public static final GTFOOredictItem.OreDictItem TitaniumDichloride = new GTFOOredictItem.OreDictItem(1082, "titanium_dichloride", RecipeUtils.average(3, Materials.Chlorine.getMaterialRGB() * 2, Materials.Titanium.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Na2Ti3Cl8");
     public static final GTFOOredictItem.OreDictItem LithiumBromide = new GTFOOredictItem.OreDictItem(1083, "lithium_bromide", RecipeUtils.average(2, Materials.Lithium.getMaterialRGB(), GAMaterials.Bromine.getMaterialRGB()), MaterialIconSet.SAND, OrePrefix.dust, "Na2Ti3Cl8");
+
+        public static final GTFOFluidMaterial PopcornFlavoringMixture = new GTFOFluidMaterial("popcorn_flavoring_mixture", 0xffcb21, 350);
+    public static final GTFOFluidMaterial Diacetyl = new GTFOFluidMaterial("diacetyl", 0xf5fcae, "C4H6O2");
+    public static final GTFOFluidMaterial IiAcetylpyridine = new GTFOFluidMaterial("2-acetylpyridine", 0xe0d5c3, "C7H7NO");
+    public static final GTFOFluidMaterial Acetoin = new GTFOFluidMaterial("acetoin", 0xfcffdb, "C4H8O2");
+    public static final GTFOFluidMaterial AcetylChloride = new GTFOFluidMaterial("acetyl_chloride", 0xe0e0da, "CH3COCl");
+    public static final GTFOFluidMaterial IiBromopyridine = new GTFOFluidMaterial("2-bromopyridine", 0xc0c0ca, "C5H4NBr");
+    public static final GTFOFluidMaterial IiIiiButanediol = new GTFOFluidMaterial("2,3-butanediol", 0xedf5e1, "C4H8O");
+    public static final GTFOFluidMaterial IIvButanediol = new GTFOFluidMaterial("1,4-butanediol", 0xedf5e1, "C4H10O2");
+    public static final GTFOFluidMaterial IIvButynediol = new GTFOFluidMaterial("1,4-butynediol", 0xedf5e1, "C4H6O2");
+    public static final GTFOFluidMaterial FungalGrowthMedium = new GTFOFluidMaterial("fungal_growth_medium", 0xd9cfad);
+    public static final GTFOFluidMaterial PeptoneMixture = new GTFOFluidMaterial("peptone_mixture", 0xd1ad30);
+
+
+    public static final GTFOOredictItem.OreDictItem HotAppleHardCandy = new GTFOOredictItem.OreDictItem(1084, "hot_apple_hard_candy", 0x78e32b, MaterialIconSet.DULL, OrePrefix.plate);
+    public static final GTFOOredictItem.OreDictItem BacillusSubtilis = new GTFOOredictItem.OreDictItem(1085, "bacillus_subtilis", 0xe0386b, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
+    public static final GTFOOredictItem.OreDictItem LactobacillusPentosis = new GTFOOredictItem.OreDictItem(1086, "lactobacillus_pentosis", 0x87316f, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
+    public static final GTFOOredictItem.OreDictItem FructoseConversionPlate = new GTFOOredictItem.OreDictItem(1087, "fructose_conversion_plate", 0xe0e0dc, MaterialIconSet.SHINY, OrePrefix.plate);
+    public static final GTFOOredictItem.OreDictItem XyloseIsomerase = new GTFOOredictItem.OreDictItem(1088, "xylose_isomerase", 0x9718ea, MaterialIconSet.SAND, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem AlphaAmylase = new GTFOOredictItem.OreDictItem(1089, "alpha_amylase", 0x69D992, MaterialIconSet.SAND, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem GammaAmylase = new GTFOOredictItem.OreDictItem(1090, "gamma_amylase", 0x4FCE67, MaterialIconSet.SAND, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem CornStarch = new GTFOOredictItem.OreDictItem(1091, "corn_starch", 0xfff5f5, MaterialIconSet.ROUGH, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem Zest = new GTFOOredictItem.OreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem CrushedHardCandy = new GTFOOredictItem.OreDictItem(1093, "crushed_hard_candy", 0x52a302, MaterialIconSet.DULL, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictItem Promethazine = new GTFOOredictItem.OreDictItem(1094, "promethazine", 0xf8fade, MaterialIconSet.SAND, OrePrefix.dust, "C17H20N2S");
+    public static final GTFOOredictItem.OreDictItem Codeine = new GTFOOredictItem.OreDictItem(1095, "codeine", 0xfadef2, MaterialIconSet.SAND, OrePrefix.dust, "C18H21NO3");
+    public static final GTFOOredictItem.OreDictItem Phenothiazine = new GTFOOredictItem.OreDictItem(1096, "phenothiazine", 0x67735c, MaterialIconSet.SAND, OrePrefix.dust, "C12H9NS");
+    public static final GTFOOredictItem.OreDictItem Diphenylamine = new GTFOOredictItem.OreDictItem(1097, "diphenylamine", 0xe3932b, MaterialIconSet.SAND, OrePrefix.dust, "C12H11N");
+    public static final GTFOOredictItem.OreDictItem CrushedPoppy = new GTFOOredictItem.OreDictItem(1098, "crushed_poppy", 0x940801, MaterialIconSet.ROUGH, OrePrefix.dust, "You monster.");
+    public static final GTFOOredictItem.OreDictItem HardCandyPlate = new GTFOOredictItem.OreDictItem(1099, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plate);
+    public static final GTFOOredictItem.OreDictItem HardCandyResin = new GTFOOredictItem.OreDictItem(1100, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plateDense);
+
 */
     public static void onMaterialsInit() {
 

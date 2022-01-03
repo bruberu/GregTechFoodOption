@@ -1,6 +1,10 @@
 package gregtechfoodoption;
 
+import gregtech.api.GTValues;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.RecipeMaps;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
+import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -27,6 +31,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -38,24 +44,31 @@ public class CommonProxy {
     public void preLoad() {
 
         GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
+
+        if (GTValues.isModLoaded(GTFOValues.MODID_GCYS)) {
+            GTFOGAMaterialHandler gtfogaMaterials = new GTFOGAMaterialHandler();
+        }
+        if (GTFOConfig.gtfoncConfig.nuclearCompat) {
+            GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();
+        }
+        if (GTFOConfig.gtfoaaConfig.actuallyCompat) {
+            GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
+        }
+
         GTFOPotions.initPotionInstances();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();
 
         GTFORecipeHandler.register();
+        try {
+            addSlotsToMaps(RecipeMaps.FERMENTING_RECIPES, "maxInputs", 1);
+            addSlotsToMaps(RecipeMaps.FERMENTING_RECIPES, "maxOutputs", 1);
+        } catch (Exception e) {
 
-        if(GTFOConfig.gtfoncConfig.nuclearCompat)
-        {
-            GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();
-        }
-        if(GTFOConfig.gtfoaaConfig.actuallyCompat)
-        {
-            GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
         }
     }
 
-    public void onLoad() throws IOException {
-
+    public void onLoad() {
     }
 
     public void onPostLoad() {
@@ -122,6 +135,26 @@ public class CommonProxy {
         GTFORecipeRemoval.init();
         GTFORecipeAddition.compatInit();
     }
+
+    public static void addSlotsToMaps(
+            final RecipeMap<?> map,
+            final String slotType,
+            final int value)
+            throws Exception {
+
+        // set public
+        Field field = RecipeMap.class.getDeclaredField(slotType);
+        field.setAccessible(true);
+
+        // set non-final
+        Field modifiersField = Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+
+        // set the value of the parameter
+        field.setInt(map, value);
+    }
+
 
     // These recipes are generated at the beginning of the init() phase with the proper config set.
     // This is not great practice, but ensures that they are run AFTER CraftTweaker,

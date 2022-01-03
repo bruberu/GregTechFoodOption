@@ -133,7 +133,7 @@ public class RecipeUtils {
     }
 
     public static RecipeMap<?> chemicalDehydratorProxy() {
-        return RecipeMaps.CHEMICAL_BATH_RECIPES;
+        return RecipeMaps.CHEMICAL_RECIPES;
     }
 
     public static RecipeMap<?> stellarForgeProxy() {

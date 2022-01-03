@@ -17,7 +17,7 @@ public class SeedsChain {
                 .inputs(MetaItems.PLANT_BALL.getStackForm())
                 .chancedOutput(GTFOMaterialHandler.PopcornKernel.getItemStack(), 2000, 250)
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(6).duration(20)
+        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata()))
                 .chancedOutput(GTFOMetaItem.LEMON.getStackForm(), 2000, 250)
                 .chancedOutput(GTFOMetaItem.LIME.getStackForm(), 2000, 250)
@@ -25,7 +25,7 @@ public class SeedsChain {
                 .chancedOutput(GTFOMetaItem.BANANA.getStackForm(), 2000, 250)
                 .chancedOutput(GTFOMetaItem.MANGO.getStackForm(), 2000, 250)
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(6).duration(20)
+        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()))
                 .chancedOutput(GTFOMetaItem.TOMATO.getStackForm(), 2000, 250)
                 .chancedOutput(GTFOMetaItem.CUCUMBER.getStackForm(), 2000, 250)
@@ -33,7 +33,7 @@ public class SeedsChain {
                 .chancedOutput(GTFOMetaItem.OLIVE.getStackForm(), 2000, 250)
                 .chancedOutput(GTFOMetaItem.GRAPES.getStackForm(), 2000, 250)
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(6).duration(20)
+        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(new ItemStack(Blocks.LEAVES2, 1, 0))
                 .chancedOutput(GTFOMetaItem.APRICOT.getStackForm(), 2000, 250)
                 .buildAndRegister();

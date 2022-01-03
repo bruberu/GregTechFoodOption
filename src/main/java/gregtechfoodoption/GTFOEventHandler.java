@@ -1,5 +1,11 @@
 package gregtechfoodoption;
 
+import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
+import gregtech.api.unification.material.Materials;
+import gregtechfoodoption.integration.GTFOAAMaterialHandler;
+import gregtechfoodoption.integration.GTFOGAMaterialHandler;
+import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.item.GTFOFoodDurationSetter;
 import gregtechfoodoption.potion.AddictionPotion;
 import gregtechfoodoption.potion.CreativityPotion;
@@ -27,12 +33,28 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
+
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOEventHandler {
     protected static Random rand = new Random();
 
     private static Set<EntityLivingBase> addictedSet = new HashSet<>();
     private static HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
+
+    @SubscribeEvent
+    public void onMaterialsInit(GregTechAPI.MaterialEvent event) {
+        GTFOMaterialHandler.onMaterialsInit();
+        if (GTValues.isModLoaded(GTFOValues.MODID_GCYS)) {
+            GTFOGAMaterialHandler.onMaterialsInit();
+        }
+        if (GTFOConfig.gtfoncConfig.nuclearCompat) {
+            GTFONCMaterialHandler.onMaterialsInit();
+        }
+        if (GTFOConfig.gtfoaaConfig.actuallyCompat) {
+            GTFOAAMaterialHandler.onMaterialsInit();
+        }
+    }
 
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {

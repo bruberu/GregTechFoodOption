@@ -18,7 +18,6 @@ public class GTFOFluidMaterial extends GTFOMaterial {
 
     public GTFOFluidMaterial(String name, int rgb, String formula) {
         this(name, rgb, 300);
-        chemicalFormula = calculateChemicalFormula(formula);
     }
 
     public GTFOFluidMaterial(String name, int rgb, String formula, int temperature) {
