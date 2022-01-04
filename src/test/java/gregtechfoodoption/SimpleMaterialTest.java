@@ -28,9 +28,6 @@ public class SimpleMaterialTest {
         // Bootstrap basic Forge registries
         Bootstrap.register();
 
-        // Bootstrap Loggers
-        GTFOLog.init(LogManager.getLogger(GregTechFoodOption.MODID));
-
         // Run Early handlers
         Materials.register();
 

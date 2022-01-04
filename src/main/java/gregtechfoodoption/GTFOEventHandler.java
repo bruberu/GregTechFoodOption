@@ -43,18 +43,23 @@ public class GTFOEventHandler {
     private static HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
 
     @SubscribeEvent
-    public void onMaterialsInit(GregTechAPI.MaterialEvent event) {
+    public static void onMaterialsInit(GregTechAPI.MaterialEvent event) { // Must be called during construction to be registered in time for MaterialEvents.
+        GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
         GTFOMaterialHandler.onMaterialsInit();
         if (GTValues.isModLoaded(GTFOValues.MODID_GCYS)) {
+            GTFOGAMaterialHandler gtfogaMaterials = new GTFOGAMaterialHandler();
             GTFOGAMaterialHandler.onMaterialsInit();
         }
         if (GTFOConfig.gtfoncConfig.nuclearCompat) {
+            GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();
             GTFONCMaterialHandler.onMaterialsInit();
         }
         if (GTFOConfig.gtfoaaConfig.actuallyCompat) {
+            GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
             GTFOAAMaterialHandler.onMaterialsInit();
         }
     }
+
 
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {

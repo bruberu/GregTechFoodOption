@@ -62,13 +62,19 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
     }
 
     protected IBlockState getFrameState() {
-        return MetaBlocks.FRAMES.get(Iron).getDefaultState();
+        return MetaBlocks.FRAMES.get(Iron).getBlock(Iron);
     }
 
     @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart sourcePart) {
         return GTFOClientHandler.ADOBE_BRICKS;
     }
+
+    @Override
+    protected ICubeRenderer getFrontOverlay() {
+        return GTFOClientHandler.BAKING_OVEN_OVERLAY;
+    }
+
 
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
@@ -113,27 +119,5 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
                         .setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.FOOD_OVERLAY))
                 .bindPlayerInventory(entityPlayer.inventory)
                 .build(getHolder(), entityPlayer);
-    }
-
-    public static List<ItemStack> getDisplayFuelsForRecipe(int recipeFuelTicks) {
-        ArrayList<ItemStack> resultStacks = new ArrayList<>();
-
-        List<ItemStack> displayedFuels = Arrays.asList(new ItemStack(Items.STICK),
-                OreDictUnifier.get(OrePrefix.plank, Materials.Wood),
-                OreDictUnifier.get(OrePrefix.gem, Materials.Coal),
-                OreDictUnifier.get(OrePrefix.gem, Materials.Coke),
-                OreDictUnifier.get(OrePrefix.block, Materials.Coal),
-                OreDictUnifier.get(OrePrefix.block, Materials.Coke));
-
-        for (ItemStack fuelStack : displayedFuels) {
-            ItemStack modifiedFuelStack = fuelStack.copy();
-            int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
-            if (fuelBurnTime != 0) {
-                modifiedFuelStack.setCount((int) Math.ceil((double) recipeFuelTicks / fuelBurnTime));
-                resultStacks.add(modifiedFuelStack);
-            }
-        }
-
-        return resultStacks;
     }
 }

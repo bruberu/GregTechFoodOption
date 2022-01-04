@@ -47,6 +47,14 @@ public class GTFOGAMaterialHandler {
         public static final GTFOFluidMaterial CarbonatedWater = new GTFOFluidMaterial("carbonated_water", 0xf5ffff);
         public static final GTFOFluidMaterial CoughSyrup = new GTFOFluidMaterial("cough_syrup", 0x5c1b5e);
 
+    public static final GTFOOredictItem.OreDictItem GradedPopcornKernel = new GTFOOredictItem.OreDictItem(1000, "popcorn_kernel_graded", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictItem BarePopcornKernel = new GTFOOredictItem.OreDictItem(1001, "popcorn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+
+    public static final GTFOOredictItem.OreDictItem PhycomycesBlakesleeanus = new GTFOOredictItem.OreDictItem(1003, "phycomyces_blakesleeanus", 0x454442, MaterialIconSet.ROUGH, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictItem BetaCarotene = new GTFOOredictItem.OreDictItem(1004, "beta_carotene", 0xab341f, MaterialIconSet.SAND, OrePrefix.dust, "C40H56");
+    public static final GTFOOredictItem.OreDictItem IsopropylmagnesiumChloride = new GTFOOredictItem.OreDictItem(1005, "isopropylmagnesium_chloride", 0x211210, MaterialIconSet.SHINY, OrePrefix.dust, "C3H7ClMg");
+    public static final GTFOOredictItem.OreDictItem IiAminopyridine = new GTFOOredictItem.OreDictItem(1006, "2-aminopyridine", 0xf0ede9, MaterialIconSet.LAPIS, OrePrefix.dust, "C5H6N2");
+
         public static final GTFOOredictItem.OreDictItem MoscoviumPentafluoride = new GTFOOredictItem.OreDictItem(1007, "moscovium_pentafluoride", (GAMaterials.Moscovium.getMaterialRGB() + 5 * Materials.Fluorine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McF5");
         public static final GTFOOredictItem.OreDictItem MoscoviumPentachloride = new GTFOOredictItem.OreDictItem(1008, "moscovium_pentachloride", (GAMaterials.Moscovium.getMaterialRGB() + 5 * Materials.Chlorine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McCl5");
         public static final GTFOOredictItem.OreDictItem MoscoviumPentabromide = new GTFOOredictItem.OreDictItem(1009, "moscovium_pentabromide", (GAMaterials.Moscovium.getMaterialRGB() + 5 * GAMaterials.Bromine.getMaterialRGB())/6, MaterialIconSet.SAND, OrePrefix.dust, "McBr5");
@@ -121,7 +129,6 @@ public class GTFOGAMaterialHandler {
     public static final GTFOOredictItem.OreDictItem AlphaAmylase = new GTFOOredictItem.OreDictItem(1089, "alpha_amylase", 0x69D992, MaterialIconSet.SAND, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictItem GammaAmylase = new GTFOOredictItem.OreDictItem(1090, "gamma_amylase", 0x4FCE67, MaterialIconSet.SAND, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictItem CornStarch = new GTFOOredictItem.OreDictItem(1091, "corn_starch", 0xfff5f5, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictItem Zest = new GTFOOredictItem.OreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictItem CrushedHardCandy = new GTFOOredictItem.OreDictItem(1093, "crushed_hard_candy", 0x52a302, MaterialIconSet.DULL, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictItem Promethazine = new GTFOOredictItem.OreDictItem(1094, "promethazine", 0xf8fade, MaterialIconSet.SAND, OrePrefix.dust, "C17H20N2S");
     public static final GTFOOredictItem.OreDictItem Codeine = new GTFOOredictItem.OreDictItem(1095, "codeine", 0xfadef2, MaterialIconSet.SAND, OrePrefix.dust, "C18H21NO3");

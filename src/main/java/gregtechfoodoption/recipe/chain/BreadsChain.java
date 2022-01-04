@@ -164,7 +164,8 @@ public class BreadsChain {
 
         GTFOAppleCoreCompat.addToSparedItems(Items.COOKIE, 3, 0.2f);
         ModHandler.removeRecipes(new ItemStack(Items.COOKIE));
-        ModHandler.addShapelessRecipe("gtfo_cookie", new ItemStack(Items.COOKIE), SUGARY_DOUGH, SUGARY_DOUGH, OreDictUnifier.get(dust, Cocoa));
+        ModHandler.removeRecipes(new ItemStack(Items.COOKIE, 8));
+        ModHandler.addShapelessRecipe("gtfo_cookie", new ItemStack(Items.COOKIE, 4), SUGARY_DOUGH, SUGARY_DOUGH, OreDictUnifier.get(dust, Cocoa));
 
         ModHandler.removeRecipes(new ItemStack(Items.PUMPKIN_PIE));
         GTFOAppleCoreCompat.addToSparedItems(Items.PUMPKIN_PIE);

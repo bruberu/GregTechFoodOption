@@ -76,7 +76,7 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
                 .toString();
     }
 
-    private static class TemperatureProperty extends RecipeProperty<Integer> {
+    public static class TemperatureProperty extends RecipeProperty<Integer> {
 
         private static final String KEY = "temperature";
 

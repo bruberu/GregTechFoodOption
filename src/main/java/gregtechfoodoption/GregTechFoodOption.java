@@ -33,13 +33,11 @@ public class GregTechFoodOption {
 
     @Mod.EventHandler
     public void onStartup(FMLConstructionEvent event) {
-        MinecraftForge.EVENT_BUS.register(new GTFOEventHandler());
+        GTFOConfigOverrider.init();
     }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        GTFOLog.init(event.getModLog());
-        GTFOConfigOverrider.init();
         proxy.preLoad();
 
         MinecraftForge.EVENT_BUS.register(new GTFODropsEventHandler());

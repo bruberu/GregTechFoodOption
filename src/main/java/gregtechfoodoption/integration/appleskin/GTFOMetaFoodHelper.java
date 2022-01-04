@@ -15,8 +15,8 @@ public class GTFOMetaFoodHelper extends FoodHelper {
     public static boolean isFood(ItemStack stackInHand) {
         if (stackInHand.getItem() instanceof MetaItem) {
             MetaItem<?>.MetaValueItem metaValueItem = ((MetaItem) stackInHand.getItem()).getItem(stackInHand);
-            IItemUseManager useManager = metaValueItem.getUseManager();
-            if (useManager != null) {
+            if (metaValueItem != null) {
+                IItemUseManager useManager = metaValueItem.getUseManager();
                 return useManager instanceof FoodUseManager;
             }
         }

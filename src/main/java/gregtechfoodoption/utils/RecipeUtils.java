@@ -143,18 +143,18 @@ public class RecipeUtils {
 
     public static void addBakingOvenRecipes(ItemStack input, ItemStack output, int duration, int temperature, int fuelAmount) {
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
+                .inputs(input)
                 .input(gem, Charcoal, fuelAmount)
-                .inputs(input)
                 .outputs(output)
                 .buildAndRegister();
-        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
+        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
+                .inputs(input)
                 .input(gem, Coal, fuelAmount)
-                .inputs(input)
                 .outputs(output)
                 .buildAndRegister();
-        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
-                .input(gem, Coke, Math.max(fuelAmount / 2, 1))
+        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
                 .inputs(input)
+                .input(gem, Coke, Math.max(fuelAmount / 2, 1))
                 .outputs(output)
                 .buildAndRegister();
     }

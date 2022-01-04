@@ -73,20 +73,6 @@ public class PurpleDrinkChain {
                 .EUt(30)
                 .duration(100)
                 .buildAndRegister();
-        EXTRACTOR_RECIPES.recipeBuilder()
-                .inputs(LEMON.getStackForm())
-                .outputs(Zest.getItemStack(1))
-                .fluidOutputs(LemonExtract.getFluid(100))
-                .EUt(5)
-                .duration(100)
-                .buildAndRegister();
-        EXTRACTOR_RECIPES.recipeBuilder()
-                .inputs(LIME.getStackForm())
-                .outputs(Zest.getItemStack(1))
-                .fluidOutputs(LimeExtract.getFluid(100))
-                .EUt(5)
-                .duration(100)
-                .buildAndRegister();
         RecipeUtils.addBioReactorRecipes(DistilledWater, LACTOBACILLUS_PENTOSIS_CULTURE, LactobacillusPentosis.getItemStack(), Milk);
         RecipeUtils.addBioReactorRecipes(DistilledWater, BACILLUS_SUBTILIS_CULTURE, BacillusSubtilis.getItemStack(), new ItemStack(Items.WHEAT));
         MIXER_RECIPES.recipeBuilder()

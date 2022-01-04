@@ -1,5 +1,9 @@
 package gregtechfoodoption.machines.multiblock;
 
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Matrix4;
+import gregtech.common.blocks.BlockGlassCasing;
 import gregtechfoodoption.block.GTFOMetalCasing;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
@@ -16,6 +20,7 @@ import gregtech.api.recipes.recipeproperties.RecipeProperty;
 import gregtech.api.util.RelativeDirection;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.MetaBlocks;
+import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -68,23 +73,23 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         else
             hasEnoughEnergy = true;
 
-        if (getOffsetTimer() % 20 == 0 && targetTemp != temp && !recipeMapWorkable.isActive())
+        if (getOffsetTimer() % 20 == 0 && !recipeMapWorkable.isActive())
             stepTowardsTargetTemp();
         else if (targetTemp == temp) {
             canAchieveTargetTemp = true;
-
         }
 
     }
 
     private void stepTowardsTargetTemp() {
         canAchieveTargetTemp = true;
-        if (targetTemp < temp) {
+        if (temp > 300 && (!this.recipeMapWorkable.isWorkingEnabled() || targetTemp < temp)) {
             setTemp(temp - 5);
             if (temp == 300)
                 markDirty();
             return;
         }
+        if(temp == targetTemp) return;
         if (temperatureEnergyCost(this.temp + 5) <= this.getEnergyContainer().getInputVoltage() * this.getEnergyContainer().getInputAmperage() && hasEnoughEnergy) {
             setTemp(temp + 5);
             if (temp == 305)
@@ -138,7 +143,6 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         }
     }
 
-
     @Override
     protected void handleDisplayClick(String componentData, Widget.ClickData clickData) {
         super.handleDisplayClick(componentData, clickData);
@@ -153,7 +157,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
     }
 
     protected IBlockState getFrameState() {
-        return MetaBlocks.FRAMES.get(Steel).getDefaultState();
+        return MetaBlocks.FRAMES.get(Steel).getBlock(Steel);
     }
 
     @Override
@@ -172,9 +176,9 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
                 .aisle("XXXX", "YXXX", "XXXX", "####")
                 .aisle("XXXX", "GFFX", "GIOX", "XXXX").setRepeatable(2, 14)
                 .aisle("XXXX", "XXXX", "XXXX", "####")
-                .where('X', states(getCasingState()).or(abilities(ALLOWED_ABILITIES)))
+                .where('X', states(getCasingState()).setMinGlobalLimited(10).or(autoAbilities()))
                 .where('F', states(getFrameState()))
-                .where('G', states(Blocks.GLASS.getDefaultState()))
+                .where('G', states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.TEMPERED_GLASS)))
                 .where('#', any())
                 .where('O', air())
                 .where('I', isIndicatorPredicate())
@@ -193,7 +197,6 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
                 return false;
         });
     }
-
 
     @Override
     public void invalidateStructure() {
@@ -281,7 +284,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
 
     @Override
     public boolean checkRecipe(Recipe recipe, boolean consumeIfSuccess) {
-        return recipe.getProperty(BakingTemperatureProperty.getInstance(), 0) == temp;
+        return recipe.getProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), 0) == temp;
     }
 
     @Override
@@ -300,28 +303,13 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         }
     }
 
-    public static class BakingTemperatureProperty extends RecipeProperty<Integer> {
-        public static final String KEY = "temperature";
-
-        private static BakingTemperatureProperty INSTANCE;
-
-        private BakingTemperatureProperty() {
-            super(KEY, Integer.class);
-        }
-
-        public static BakingTemperatureProperty getInstance() {
-            if (INSTANCE == null) {
-                INSTANCE = new BakingTemperatureProperty();
-            }
-            return INSTANCE;
-        }
-
-
-        @Override
-        public void drawInfo(Minecraft minecraft, int x, int y, int color, Object value) {
-            minecraft.fontRenderer.drawString(I18n.format("gregtechfoodoption.recipe.baking_oven_temperature",
-                    value), x, y, color);
-        }
+    @Override
+    public boolean canCreateSound() {
+        return temp > 300 && this.recipeMapWorkable.isWorkingEnabled();
     }
 
+    public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
+        super.renderMetaTileEntity(renderState, translation, pipeline);
+        this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, this.getFrontFacing(), temp > 300, this.recipeMapWorkable.isWorkingEnabled());
+    }
 }

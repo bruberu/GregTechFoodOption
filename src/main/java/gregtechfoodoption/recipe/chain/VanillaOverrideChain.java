@@ -1,25 +1,20 @@
 package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.recipes.GTRecipeHandler;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.utils.RecipeUtils;
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.item.GTFOMetaItem;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
-import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
-import gregtech.api.items.ToolDictNames;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import gregtechfoodoption.item.GTFOMetaItem;
+import gregtechfoodoption.utils.RecipeUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-
-import java.util.HashMap;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.GTFOMaterialHandler.ChloroauricAcid;

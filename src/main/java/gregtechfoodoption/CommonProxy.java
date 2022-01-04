@@ -1,6 +1,7 @@
 package gregtechfoodoption;
 
 import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
@@ -30,7 +31,6 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -40,21 +40,7 @@ import java.util.function.Function;
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class CommonProxy {
 
-
     public void preLoad() {
-
-        GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
-
-        if (GTValues.isModLoaded(GTFOValues.MODID_GCYS)) {
-            GTFOGAMaterialHandler gtfogaMaterials = new GTFOGAMaterialHandler();
-        }
-        if (GTFOConfig.gtfoncConfig.nuclearCompat) {
-            GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();
-        }
-        if (GTFOConfig.gtfoaaConfig.actuallyCompat) {
-            GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
-        }
-
         GTFOPotions.initPotionInstances();
         GTFOMetaFluids.init();
         GTFOMetaItems.init();

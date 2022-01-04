@@ -359,7 +359,7 @@ public class SmogusChain {
         MACERATOR_RECIPES.recipeBuilder()
                 .inputs(GTFONCMaterialHandler.COCOA_NIB.getItemStack())
 	            .output(NCItems.ground_cocoa_nibs)
-	            .EUt(120)
+	            .EUt(30)
                 .duration(40)
                 .buildAndRegister();
 

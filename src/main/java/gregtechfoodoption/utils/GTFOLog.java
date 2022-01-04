@@ -1,5 +1,6 @@
 package gregtechfoodoption.utils;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
@@ -8,9 +9,8 @@ import org.apache.logging.log4j.Logger;
  */
 public class GTFOLog {
 
-    public static Logger logger;
+    public static Logger logger = LogManager.getLogger("GregTechFoodOption");
 
-    public static void init(Logger modLogger) {
-        logger = modLogger;
+    private GTFOLog() {
     }
 }
