@@ -40,6 +40,7 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
 
     @Override
     public ValidationResult<Recipe> build() {
+        this.EUt(1); // Allow parallelization to not / by zero
         Recipe recipe = new Recipe(inputs, outputs, chancedOutputs, fluidInputs, fluidOutputs,
                 duration, EUt, hidden);
         if (!recipe.getRecipePropertyStorage().store(TemperatureProperty.getInstance(), temp) || !recipe.getRecipePropertyStorage().store(PrimitiveProperty.getInstance(), true)) {

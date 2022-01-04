@@ -3,6 +3,7 @@ package gregtechfoodoption.machines.multiblock;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtechfoodoption.block.GTFOMetalCasing;
 import gregtechfoodoption.client.GTFOClientHandler;
@@ -30,6 +31,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.*;
+import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -89,7 +91,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
                 markDirty();
             return;
         }
-        if(temp == targetTemp) return;
+        if (temp == targetTemp) return;
         if (temperatureEnergyCost(this.temp + 5) <= this.getEnergyContainer().getInputVoltage() * this.getEnergyContainer().getInputAmperage() && hasEnoughEnergy) {
             setTemp(temp + 5);
             if (temp == 305)
@@ -113,13 +115,39 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
 
-
+        tooltip.add(I18n.format("gregtechfoodoption.machine.electric_baking_oven.tooltip.1"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.electric_baking_oven.tooltip.2"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.electric_baking_oven.tooltip.3"));
     }
 
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
-        super.addDisplayText(textList);
-        if (this.isStructureFormed()) {
+        if (!this.isStructureFormed()) {
+            ITextComponent tooltip = new TextComponentTranslation("gregtech.multiblock.invalid_structure.tooltip");
+            tooltip.setStyle((new Style()).setColor(TextFormatting.GRAY));
+            textList.add((new TextComponentTranslation("gregtech.multiblock.invalid_structure")).setStyle((new Style()).setColor(TextFormatting.RED).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip))));
+        } else {
+            if (this.hasMaintenanceMechanics() && ConfigHolder.machines.enableMaintenance) {
+                this.addMaintenanceText(textList);
+            }
+            if (!this.recipeMapWorkable.isWorkingEnabled()) {
+                textList.add(new TextComponentTranslation("gregtech.multiblock.work_paused"));
+            } else if (this.recipeMapWorkable.isActive()) {
+                textList.add(new TextComponentTranslation("gregtech.multiblock.running"));
+                int currentProgress = (int) (this.recipeMapWorkable.getProgressPercent() * 100.0D);
+                if (this.recipeMapWorkable.getParallelLimit() != 1) {
+                    textList.add(new TextComponentTranslation("gregtech.multiblock.parallel", this.recipeMapWorkable.getParallelLimit()));
+                }
+
+                textList.add(new TextComponentTranslation("gregtech.multiblock.progress", currentProgress));
+            } else {
+                textList.add(new TextComponentTranslation("gregtech.multiblock.idling"));
+            }
+
+            if (this.recipeMapWorkable.isHasNotEnoughEnergy()) {
+                textList.add((new TextComponentTranslation("gregtech.multiblock.not_enough_energy")).setStyle((new Style()).setColor(TextFormatting.RED)));
+            }
+
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1", temp));
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4", temperatureEnergyCost(temp)));
 
@@ -207,7 +235,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
     @Override
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
-        this.size = context.getOrDefault("bakingOvenLength", 1) - 2;
+        this.size = context.getOrDefault("bakingOvenLength", 1) - 1;
         System.out.println(size);
     }
 
@@ -300,6 +328,11 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         @Override
         public int getParallelLimit() {
             return ((MetaTileEntityElectricBakingOven) this.getMetaTileEntity()).size;
+        }
+
+        @Override
+        protected int[] calculateOverclock(Recipe recipe) {
+            return new int[]{0, recipe.getDuration()};
         }
     }
 

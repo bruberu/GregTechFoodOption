@@ -1,5 +1,6 @@
 package gregtechfoodoption.machines.multiblock;
 
+import gregtech.api.gui.widgets.LabelWidget;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
@@ -109,15 +110,16 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
 
     @Override
     protected ModularUI createUI(EntityPlayer entityPlayer) {
-        return ModularUI.builder(GuiTextures.BACKGROUND, 176, 166)
-                .widget(new SlotWidget(importItems, 0, 53, 15, true, true)
-                        .setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.FOOD_OVERLAY))
-                .widget(new SlotWidget(importItems, 1, 53, 33, true, true)
-                        .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.FURNACE_OVERLAY_1))
-                .progressBar(recipeMapWorkable::getProgressPercent, 78, 24, 20, 15, GuiTextures.PROGRESS_BAR_MACERATE, ProgressWidget.MoveType.HORIZONTAL)
-                .widget(new SlotWidget(exportItems, 0, 105, 24, true, false)
-                        .setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.FOOD_OVERLAY))
-                .bindPlayerInventory(entityPlayer.inventory)
+        return ModularUI.builder(GuiTextures.PRIMITIVE_BACKGROUND, 176, 166)
+                .widget(new LabelWidget(5, 5, getMetaFullName()))
+                .widget(new SlotWidget(importItems, 0, 53, 20, true, true)
+                        .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTFOGuiTextures.PRIMITIVE_FOOD_OVERLAY))
+                .widget(new SlotWidget(importItems, 1, 53, 38, true, true)
+                        .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_FURNACE_OVERLAY))
+                .progressBar(recipeMapWorkable::getProgressPercent, 78, 31, 20, 15, GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR, ProgressWidget.MoveType.HORIZONTAL)
+                .widget(new SlotWidget(exportItems, 0, 105, 29, true, false)
+                        .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTFOGuiTextures.PRIMITIVE_FOOD_OVERLAY))
+                .bindPlayerInventory(entityPlayer.inventory, GuiTextures.PRIMITIVE_SLOT, 0)
                 .build(getHolder(), entityPlayer);
     }
 }
