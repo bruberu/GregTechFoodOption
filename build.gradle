@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.10.6"
+version = "1.12.2-1.0.0"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -85,7 +85,7 @@ repositories {
     }
     maven {
         name = "Ellpeck's Maven"
-        url = "https://maven.chaosfield.at"
+        url = "https://maven.ellpeck.de"
     }
     maven {
         url = "https://www.cursemaven.com"
@@ -99,9 +99,9 @@ repositories {
 dependencies {
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
     deobfCompile "mezz.jei:jei_1.12.2:+"
-    deobfCompile "gregtechce:gregtech:1.12.2:1.17.1.770"
+    deobfCompile "curse.maven:gregtechceu-557242:3587174"
     deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
-    provided files("libs/gregicality-1.12.2-0.23.1.jar")
+    //provided files("libs/gregicality-1.12.2-0.23.1.jar")
     deobfCompile "codechicken:ChickenASM:1.12-1.0.2.9"
     deobfCompile "codechicken-lib-1-8:CodeChickenLib-1.12.2:3.2.3.358:universal"
     deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.23-16"
@@ -109,7 +109,6 @@ dependencies {
     deobfCompile "nuclearcraft-overhauled:NuclearCraft:2o.5.0:1.12.2"
     compileOnly "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
-    compileOnly "net.sengir.forestry:forestry_1.12.2:5.8.2.387"
     deobfCompile "applecore:AppleCore:1.12.2-3.1.5:deobf"
     //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
     //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")

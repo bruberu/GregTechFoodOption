@@ -3,7 +3,7 @@
   "modid": "gregtechfoodoption",
   "name": "GregTech Food Option",
   "description": "Adds stupid chains for food that you might like.",
-  "version": "0.10.6",
+  "version": "1.0.0",
   "mcversion": "1.12",
   "url": "",
   "updateUrl": "",
@@ -12,7 +12,7 @@
   "logoFile": "",
   "screenshots": [],
   "dependencies": [
-    "gtadditions"
+    "gregtech"
   ]
 }
 ]
