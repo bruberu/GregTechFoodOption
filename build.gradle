@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-0.10.6"
+version = "1.12.2-1.0.0"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -85,7 +85,7 @@ repositories {
     }
     maven {
         name = "Ellpeck's Maven"
-        url = "https://maven.chaosfield.at"
+        url = "https://maven.ellpeck.de"
     }
     maven {
         url = "https://www.cursemaven.com"

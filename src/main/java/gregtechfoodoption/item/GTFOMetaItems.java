@@ -21,10 +21,6 @@ public class GTFOMetaItems {
 
     public static void registerOreDict() {
         for (MetaItem<?> item : ITEMS) {
-            if (item instanceof GTFOOredictItem) {
-                ((GTFOOredictItem) item).registerOreDict();
-            }
-
             if (item instanceof GTFOMetaTool) {
                 ((GTFOMetaTool) item).registerRecipes();
             }

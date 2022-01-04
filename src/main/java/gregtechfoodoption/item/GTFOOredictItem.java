@@ -43,6 +43,7 @@ public class GTFOOredictItem extends StandardMetaItem {
         for (OreDictItem item : ITEMS.values()) {
             addItem(item.id, item.getName());
             OreDictUnifier.registerOre(new ItemStack(this, 1, item.id), item.getOre());
+
         }
     }
 
@@ -151,14 +152,6 @@ public class GTFOOredictItem extends StandardMetaItem {
 
         public int getMaterialRGB() {
             return materialRGB;
-        }
-    }
-
-    public void registerOreDict() {
-        for (Map.Entry<Short, OreDictItem> metaItem : ITEMS.entrySet()) {
-            Material material = GregTechAPI.MATERIAL_REGISTRY.getObjectById(metaItem.getKey());
-            ItemStack item = new ItemStack(this, 1, metaItem.getKey());
-            OreDictUnifier.registerOre(item, metaItem.getValue().orePrefix, material);
         }
     }
 
