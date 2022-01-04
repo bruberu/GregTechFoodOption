@@ -1,7 +1,12 @@
 package gregtechfoodoption;
 
+import gregtech.GregTechMod;
 import gregtech.api.GregTechAPI;
 import gregtech.api.unification.material.Material;
+import gregtech.api.util.GTLog;
+import gregtech.common.CommonProxy;
+import gregtech.common.MetaFluids;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.machines.GTFOTileEntities;
@@ -11,10 +16,16 @@ import gregtech.api.unification.material.Materials;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.metatileentities.MetaTileEntities;
 import net.minecraft.init.Bootstrap;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import org.apache.logging.log4j.LogManager;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static gregtech.api.GregTechAPI.MATERIAL_REGISTRY;
 import static org.junit.Assert.assertNotNull;
 
 public class SimpleMaterialTest {
@@ -29,12 +40,26 @@ public class SimpleMaterialTest {
         Bootstrap.register();
 
         // Run Early handlers
+        ObfuscationReflectionHelper.setPrivateValue(FMLCommonHandler.class, FMLCommonHandler.instance(), new FMLClientHandler(), "sidedDelegate");
+        new GregTechMod();
+        GregTechMod.proxy = new CommonProxy();
+
+        MATERIAL_REGISTRY.unfreeze();
+        GTLog.logger.info("Registering GTCEu Materials");
         Materials.register();
 
-        // Bootstrap GTFO Materials
+        // Then, register addon Materials
+        GTLog.logger.info("Registering addon Materials");
+        MinecraftForge.EVENT_BUS.post(new GregTechAPI.MaterialEvent());
 
         // Bootstrap GTCE Blocks
-        MetaBlocks.init();
+        try {
+            MetaBlocks.init();
+            MetaItems.init();
+            MetaFluids.init();
+        } catch (Exception ignored) {
+
+        }
         GTFOMetaBlocks.init();
 
         // Bootstrap MTEs
@@ -56,7 +81,7 @@ public class SimpleMaterialTest {
         );
         assertNotNull(
                 "OreDictUnifier failed to gather a GTFO Material ItemStack",
-                GTFOMaterialHandler.AppleCandySyrup
+                GTFOMaterialHandler.CookedCurd
         );
         assertNotNull(
                 "OreDictUnifier failed to gather a GTFO AA Compat Material ItemStack",
@@ -82,7 +107,7 @@ public class SimpleMaterialTest {
         );
         assertNotNull(
                 "GTFO MetaTileEntity is still null!",
-                GTFOTileEntities.BIOREACTOR
+                GTFOTileEntities.SLICER
         );
     }
 }
