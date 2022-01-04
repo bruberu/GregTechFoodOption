@@ -116,7 +116,7 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
                         .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTFOGuiTextures.PRIMITIVE_FOOD_OVERLAY))
                 .widget(new SlotWidget(importItems, 1, 53, 38, true, true)
                         .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_FURNACE_OVERLAY))
-                .progressBar(recipeMapWorkable::getProgressPercent, 78, 31, 20, 15, GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR, ProgressWidget.MoveType.HORIZONTAL)
+                .progressBar(recipeMapWorkable::getProgressPercent, 78, 31, 20, 15, GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR, ProgressWidget.MoveType.HORIZONTAL, this.getRecipeMap())
                 .widget(new SlotWidget(exportItems, 0, 105, 29, true, false)
                         .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTFOGuiTextures.PRIMITIVE_FOOD_OVERLAY))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.PRIMITIVE_SLOT, 0)
