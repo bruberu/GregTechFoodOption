@@ -1,5 +1,6 @@
 package gregtechfoodoption;
 
+import gregtech.api.GTValues;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.utils.GTFOConfigOverrider;
@@ -17,7 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import java.io.IOException;
 
 @Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
-        dependencies = "required-after:gregtech@[2.0.2-beta,);after:gcy_science")
+        dependencies = GTValues.MOD_VERSION_DEP + "after:gcy_science")
 public class GregTechFoodOption {
     public static final String MODID = "gregtechfoodoption";
     public static final String NAME = "GregTech Food Option";

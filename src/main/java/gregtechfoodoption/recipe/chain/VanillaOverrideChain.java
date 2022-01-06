@@ -72,8 +72,8 @@ public class VanillaOverrideChain {
             ModHandler.addShapedRecipe("gtfo_sticky_piston", new ItemStack(Blocks.STICKY_PISTON, 1),
                     "R", "S", "P",
                     'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
-                    'S', MetaItem1.getItemById(438),
-                    'P', Blocks.PISTON); // TODO: fix this past 2.0.3
+                    'S', MetaItems.STICKY_RESIN,
+                    'P', Blocks.PISTON);
             ModHandler.addShapedRecipe("gtfo_sticky_piston", new ItemStack(Blocks.STICKY_PISTON, 1),
                     "R", "S", "P",
                     'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
