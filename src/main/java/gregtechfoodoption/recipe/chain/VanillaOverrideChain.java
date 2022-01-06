@@ -6,6 +6,8 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.MetaItem1;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.GTFOValues;
@@ -66,6 +68,17 @@ public class VanillaOverrideChain {
                     " R ", "CCC",
                     'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
                     'C', OreDictUnifier.get(OrePrefix.dust, Materials.Paper));
+            ModHandler.removeRecipes(new ItemStack(Blocks.STICKY_PISTON, 1));
+            ModHandler.addShapedRecipe("gtfo_sticky_piston", new ItemStack(Blocks.STICKY_PISTON, 1),
+                    "R", "S", "P",
+                    'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
+                    'S', MetaItem1.getItemById(438),
+                    'P', Blocks.PISTON); // TODO: fix this past 2.0.3
+            ModHandler.addShapedRecipe("gtfo_sticky_piston", new ItemStack(Blocks.STICKY_PISTON, 1),
+                    "R", "S", "P",
+                    'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
+                    'S', Items.SLIME_BALL,
+                    'P', Blocks.PISTON);
         }
 
         GTFOAppleCoreCompat.addToSparedItems(Items.RABBIT_STEW, 11, (float) 1.2);
