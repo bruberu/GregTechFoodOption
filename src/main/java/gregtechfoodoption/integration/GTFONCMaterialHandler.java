@@ -38,9 +38,6 @@ public class GTFONCMaterialHandler {
     public static final GTFOOredictItem.OreDictItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = new GTFOOredictItem.OreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, MaterialIconSet.DULL, OrePrefix.crushedCentrifuged);
 
 
-    public static void onMaterialsInit() { // To prevent errors during dust -> ingot smelting.
-        Polonium.setHidden(false);
-        Radium.setHidden(false);
-        Zirconium.setHidden(false);
+    public static void onMaterialsInit() {
     }
 }
