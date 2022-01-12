@@ -180,6 +180,10 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem VODKA;
     public static MetaItem<?>.MetaValueItem LENINADE;
 
+    public static MetaItem<?>.MetaValueItem HOT_MUSHROOM_STEW;
+    public static MetaItem<?>.MetaValueItem HOT_BEETROOT_SOUP;
+    public static MetaItem<?>.MetaValueItem HOT_RABBIT_STEW;
+
 
     @Override
     public void registerSubItems() {
@@ -274,11 +278,11 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         UNCOOKED_BACON = addItem(108, "component.bacon");
 
-        GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
-        SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
-        SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
-        PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
-        FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
+        //GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
+        //SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
+        //SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
+        //PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
+        //FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
         //PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "penicillium.culture");
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
@@ -430,6 +434,12 @@ public class GTFOMetaItem extends StandardMetaItem {
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 2, 70),
                 new RandomPotionEffect(MobEffects.SPEED, 500, 2, 0)));
 
+        HOT_MUSHROOM_STEW = addItem(131, "food.mushroom_stew.hot").addComponents(new GTFOFoodStats(8, 1f, false, false, new ItemStack(Items.BOWL))
+                .setEatingDuration(60));
+        HOT_BEETROOT_SOUP = addItem(132, "food.beetroot_soup.hot").addComponents(new GTFOFoodStats(7, 1f, false, false, new ItemStack(Items.BOWL))
+                .setEatingDuration(60));
+        HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
+                .setEatingDuration(60));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;

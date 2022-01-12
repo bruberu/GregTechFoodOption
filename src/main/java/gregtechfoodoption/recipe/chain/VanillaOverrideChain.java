@@ -102,7 +102,7 @@ public class VanillaOverrideChain {
                 .buildAndRegister();
 
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(8).duration(100)
-                .input(Items.BEETROOT, 4)
+                .input(Items.BEETROOT, 2)
                 .input(OrePrefix.dust, Wheat)
                 .fluidInputs(Water.getFluid(100))
                 .fluidOutputs(GTFOMaterialHandler.BeetrootSoup.getFluid(125))

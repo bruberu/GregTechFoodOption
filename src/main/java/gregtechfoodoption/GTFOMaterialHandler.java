@@ -52,6 +52,10 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial MoistAir = new GTFOFluidMaterial("moist_air", 0x82c8ff);
     public static final GTFOFluidMaterial ColdMoistAir = new GTFOFluidMaterial("cold_moist_air", 0x72a2ff);
 
+    public static final GTFOFluidMaterial Albumen = new GTFOFluidMaterial("albumen", 0xfffef7);
+    public static final GTFOFluidMaterial Yolk = new GTFOFluidMaterial("yolk", 0xffdf00);
+    public static final GTFOFluidMaterial Butter = new GTFOFluidMaterial("butter", 0xffef82);
+
     public static final GTFOOredictItem.OreDictItem PopcornKernel = new GTFOOredictItem.OreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
     public static final GTFOOredictItem.OreDictItem Zest = new GTFOOredictItem.OreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, OrePrefix.dust);
@@ -71,7 +75,6 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictItem BurntBananaPeel = new GTFOOredictItem.OreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictItem AmmoniumPerchlorate = new GTFOOredictItem.OreDictItem(1113, "ammonium_perchlorate", average(7, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
     public static final GTFOOredictItem.OreDictItem PotassiumPerchlorate = new GTFOOredictItem.OreDictItem(1114, "potassium_perchlorate", average(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
-
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);

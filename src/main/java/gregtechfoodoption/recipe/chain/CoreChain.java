@@ -290,5 +290,20 @@ public class CoreChain {
                 .EUt(30)
                 .duration(20)
                 .buildAndRegister();
+
+        FERMENTING_RECIPES.recipeBuilder()
+                .fluidInputs(Milk.getFluid(10000))
+                .fluidOutputs(GTFOMaterialHandler.Butter.getFluid(9000))
+                .EUt(15)
+                .duration(1200)
+                .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder()
+                .input(Items.EGG)
+                .fluidOutputs(GTFOMaterialHandler.Albumen.getFluid(100))
+                .fluidOutputs(GTFOMaterialHandler.Yolk.getFluid(100))
+                .EUt(45)
+                .duration(60)
+                .buildAndRegister();
     }
 }

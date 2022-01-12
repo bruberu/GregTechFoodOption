@@ -28,8 +28,7 @@ import static gregtech.loaders.recipe.CraftingComponent.*;
 import static gregtech.loaders.recipe.MetaTileEntityLoader.registerMachineRecipe;
 
 public class GTFOMachineRecipes {
-    public static void init()
-    {
+    public static void init() {
         Component DENSE_PLATE = new Component(Stream.of(new Object[][]{
 
                 {0, new UnificationEntry(OrePrefix.plate, Materials.WroughtIron)},
@@ -76,6 +75,16 @@ public class GTFOMachineRecipes {
                 'H', HULL,
                 'O', CONVEYOR
         );
+        registerMachineRecipe(GTFOTileEntities.MICROWAVE,
+                "LAC", "LHE", "LMC",
+                'H', HULL,
+                'M', MOTOR,
+                'E', EMITTER,
+                'C', CIRCUIT,
+                'A', CABLE,
+                'L', new UnificationEntry(OrePrefix.plate, Materials.Lead)
+        );
+
 
         ModHandler.addShapedRecipe("baking_oven", GTFOTileEntities.BAKING_OVEN.getStackForm(),
                 "dSS", "RRA", "fSS",

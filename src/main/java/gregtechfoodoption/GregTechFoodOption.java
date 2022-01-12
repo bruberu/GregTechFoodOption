@@ -1,6 +1,7 @@
 package gregtechfoodoption;
 
 import gregtech.api.GTValues;
+import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.utils.GTFOConfigOverrider;
@@ -51,6 +52,7 @@ public class GregTechFoodOption {
         if(GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
             MinecraftForge.EVENT_BUS.register(new GTFOAppleCoreCompat());
 
+        GTFOClientHandler.registerSounds();
 
         MinecraftForge.EVENT_BUS.register(this);
     }

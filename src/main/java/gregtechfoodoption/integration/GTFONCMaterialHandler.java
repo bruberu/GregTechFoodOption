@@ -11,11 +11,8 @@ import static gregtechfoodoption.utils.RecipeUtils.average;
 public class GTFONCMaterialHandler {
 
     public static final GTFOFluidMaterial SweetenedDilutedCaneSyrupMixture = new GTFOFluidMaterial("sweetened_diluted_cane_syrup_mixture", 0xdedcc8);
-    public static final GTFOFluidMaterial Albumen = new GTFOFluidMaterial("albumen", 0xfffef7);
-    public static final GTFOFluidMaterial Yolk = new GTFOFluidMaterial("yolk", 0xffdf00);
     public static final GTFOFluidMaterial MarshmallowSyrupMixture = new GTFOFluidMaterial("marshmallow_syrup_mixture", 0xe6e0dc);
     public static final GTFOFluidMaterial MarshmallowFoam = new GTFOFluidMaterial("marshmallow_foam", 0xe6e0dc);
-    public static final GTFOFluidMaterial Butter = new GTFOFluidMaterial("butter", 0xffef82);
     public static final GTFOFluidMaterial SodiumCarbonateSolution = new GTFOFluidMaterial("sodium_carbonate_solution", average(2, 0xaaaaaa, SodaAsh.getMaterialRGB()));
 
 

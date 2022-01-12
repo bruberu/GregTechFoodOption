@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
@@ -209,7 +210,7 @@ public class SmogusChain {
 
         MIXER_RECIPES.recipeBuilder()
                 .input(NCItems.gelatin, 2)
-            	.fluidInputs(GTFONCMaterialHandler.Albumen.getFluid(500))
+            	.fluidInputs(GTFOMaterialHandler.Albumen.getFluid(500))
           	    .fluidInputs(GTFONCMaterialHandler.SweetenedDilutedCaneSyrupMixture.getFluid(5000))
             	.fluidOutputs(GTFONCMaterialHandler.MarshmallowSyrupMixture.getFluid(5500))
             	.EUt(120)
@@ -238,14 +239,6 @@ public class SmogusChain {
                 .outputs(GTFONCMaterialHandler.CHUNK_GRAHAM_HOT.getItemStack())
 	            .EUt(45)
                 .duration(80)
-                .buildAndRegister();
-
-        CENTRIFUGE_RECIPES.recipeBuilder()
-                .input(Items.EGG)
-	            .fluidOutputs(GTFONCMaterialHandler.Albumen.getFluid(100))
-            	.fluidOutputs(GTFONCMaterialHandler.Yolk.getFluid(100))
-            	.EUt(45)
-                .duration(60)
                 .buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder()
@@ -289,7 +282,7 @@ public class SmogusChain {
                 .input(Items.SUGAR)
 	            .input(OrePrefix.dust, Wheat, 3)
     	        .input(OrePrefix.dust, SodiumBicarbonate)
-	            .fluidInputs(GTFONCMaterialHandler.Butter.getFluid(2000))
+	            .fluidInputs(GTFOMaterialHandler.Butter.getFluid(2000))
 	            .fluidInputs(Milk.getFluid(500))
 	            .outputs(GTFONCMaterialHandler.MATTER_GRAHAM.getItemStack(10))
 	            .EUt(80)
@@ -317,13 +310,6 @@ public class SmogusChain {
             	.fluidOutputs(GTFONCMaterialHandler.SweetenedDilutedCaneSyrupMixture.getFluid(10000))
             	.EUt(120)
                 .duration(260)
-                .buildAndRegister();
-
-        FERMENTING_RECIPES.recipeBuilder()
-                .fluidInputs(Milk.getFluid(10000))
-	            .fluidOutputs(GTFONCMaterialHandler.Butter.getFluid(9000))
-	            .EUt(15)
-                .duration(1200)
                 .buildAndRegister();
 
         CHEMICAL_BATH_RECIPES.recipeBuilder()

@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
+import de.ellpeck.actuallyadditions.mod.blocks.InitBlocks;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.utils.RecipeUtils;
@@ -26,7 +27,7 @@ import static gregtech.api.unification.ore.OrePrefix.dust;
 public class CoffeeChain {
     public static void init() {
         if (GTFOConfig.gtfoaaConfig.disableCoffeeMaker)
-            ModHandler.removeRecipeByName(new ResourceLocation("actuallyadditions:recipes125"));
+            ModHandler.removeRecipes(new ItemStack(InitBlocks.blockCoffeeMachine));
 
         ItemStack basicCoffee = new ItemStack(InitItems.itemCoffee, 1);
         ItemStack energizedCoffee = new ItemStack(InitItems.itemCoffee, 1);
