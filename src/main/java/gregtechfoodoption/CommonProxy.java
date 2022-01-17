@@ -1,13 +1,9 @@
 package gregtechfoodoption;
 
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
-import gregtechfoodoption.integration.GTFOAAMaterialHandler;
-import gregtechfoodoption.integration.GTFOGAMaterialHandler;
-import gregtechfoodoption.integration.GTFONCMaterialHandler;
-import gregtechfoodoption.utils.GTFOLog;
+import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.blocks.VariantItemBlock;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.fluid.GTFOMetaFluids;
 import gregtechfoodoption.item.GTFOMetaItems;
@@ -16,8 +12,7 @@ import gregtechfoodoption.recipe.GTFOOreDictRegistration;
 import gregtechfoodoption.recipe.GTFORecipeAddition;
 import gregtechfoodoption.recipe.GTFORecipeHandler;
 import gregtechfoodoption.recipe.GTFORecipeRemoval;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.common.blocks.VariantItemBlock;
+import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -35,7 +30,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.function.Function;
-
 
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class CommonProxy {

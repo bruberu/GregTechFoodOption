@@ -64,21 +64,6 @@ public class ClientProxy extends CommonProxy {
         GTFOMetaBlocks.registerItemModels();
     }
 
-    @SubscribeEvent
-    public static void addFormulaHandler(ItemTooltipEvent event) {
-        ItemStack itemStack = event.getItemStack();
-        Optional<String> oreDictName = OreDictUnifier.getOreDictionaryNames(itemStack).stream().findFirst();
-        if (oreDictName.isPresent() && GTFOOredictItem.NAME_TO_OREDICTITEM.containsKey(oreDictName.get())) {
-            GTFOOredictItem.OreDictItem material = GTFOOredictItem.NAME_TO_OREDICTITEM.get(oreDictName.get());
-            if (material != null) {
-                String formula = material.getFormula();
-                if (formula != null && !formula.isEmpty()/* && event.getToolTip().size() == 0 */) {
-                    event.getToolTip().add(1, TextFormatting.GRAY.toString() + material.getFormula());
-                }
-            }
-        }
-    }
-
     private static final Set<UUID> capeHoldersUUIDs = new HashSet<>();
 
     @SubscribeEvent

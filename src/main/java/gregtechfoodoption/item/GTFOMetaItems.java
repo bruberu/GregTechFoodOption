@@ -7,14 +7,14 @@ import java.util.List;
 
 public class GTFOMetaItems {
     public static List<MetaItem<?>> ITEMS = MetaItem.getMetaItems();
-    public static final GTFOMetaItem META_ITEM = new GTFOMetaItem();
-
+    public static GTFOMetaItem META_ITEM;
+    public static GTFOOredictItem SHAPED_ITEM = new GTFOOredictItem((short) 0);
 
 
     public static void init() {
+        META_ITEM = new GTFOMetaItem();
         META_ITEM.setRegistryName("gtfo_meta_item");
-        GTFOOredictItem oreDictItem = new GTFOOredictItem((short) 0);
-        oreDictItem.setRegistryName("gtfo_oredict_item");
+        SHAPED_ITEM.setRegistryName("gtfo_oredict_item");
         GTFOMetaTool tool = new GTFOMetaTool();
         tool.setRegistryName("gtfo_meta_tool");
     }
