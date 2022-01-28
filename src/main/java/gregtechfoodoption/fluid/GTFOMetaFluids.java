@@ -7,7 +7,9 @@ import gregtech.common.MetaFluids;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class GTFOMetaFluids {
@@ -20,6 +22,13 @@ public class GTFOMetaFluids {
             fluid.setTemperature(fluidMat.temperature);
             if (!FluidRegistry.isFluidRegistered(fluid.getName())) {
                 FluidRegistry.registerFluid(fluid);
+
+                // Fluid Tooltips
+                List<String> tooltip = new ArrayList<>();
+                tooltip.add(fluidMat.getFormula());
+                tooltip.add(String.valueOf(fluidMat.temperature));
+                tooltip.add(String.valueOf(fluid.isGaseous()));
+                FluidTooltipUtil.registerTooltip(fluid, tooltip);
                 FluidTooltipUtil.registerTooltip(fluid, fluidMat.getFormula());
                 FluidRegistry.addBucketForFluid(fluid);
                 fluidMat.fluid = fluid;

@@ -31,6 +31,8 @@ public class GTFOFluidMaterial extends GTFOMaterial {
         this.rgb = rgb;
         this.temperature = temperature;
         GTFO_FLUIDS.put(name, this);
+        if (chemicalFormula == null)
+            chemicalFormula = ""; // To prevent NPEs
     }
 
     public FluidStack getFluid(int amount) {
