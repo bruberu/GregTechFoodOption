@@ -237,11 +237,6 @@ public class CoreChain {
                     .fluidInputs(Water.getFluid(100))
                     .fluidOutputs(Water.getFluid(100))
                     .buildAndRegister();
-            MACERATOR_RECIPES.recipeBuilder().duration(100).EUt(8)
-                    .inputs(stack)
-                    .output(dust, Meat)
-                    .buildAndRegister();
-
         }
         for (ItemStack stack : RecipeUtils.getMeat()) {
             FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
