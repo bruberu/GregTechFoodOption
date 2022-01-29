@@ -32,6 +32,6 @@ public class ToolRollingPin extends ToolBase {
 
     @Override
     public void addInformation(ItemStack stack, List<String> lines, boolean isAdvanced) {
-        lines.add(I18n.format("metaitem.tool.tooltip.rolling_pin.slime", new Object[0]));
+        lines.add(I18n.format("metaitem.tool.tooltip.rolling_pin.slime"));
     }
 }

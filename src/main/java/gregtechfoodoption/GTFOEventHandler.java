@@ -2,7 +2,7 @@ package gregtechfoodoption;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
-import gregtech.api.unification.material.Materials;
+import gregtech.api.items.metaitem.MetaItem;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
@@ -10,7 +10,6 @@ import gregtechfoodoption.item.GTFOFoodDurationSetter;
 import gregtechfoodoption.potion.AddictionPotion;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.WithdrawalPotion;
-import gregtech.api.items.metaitem.MetaItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -33,14 +32,12 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
-
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOEventHandler {
     protected static Random rand = new Random();
 
-    private static Set<EntityLivingBase> addictedSet = new HashSet<>();
-    private static HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
+    private static final Set<EntityLivingBase> addictedSet = new HashSet<>();
+    private static final HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
 
     @SubscribeEvent
     public static void onMaterialsInit(GregTechAPI.MaterialEvent event) { // Must be called during construction to be registered in time for MaterialEvents.
@@ -141,9 +138,9 @@ public class GTFOEventHandler {
                         vec3d1 = vec3d1.rotateYaw(-livingBase.rotationYaw * 0.017453292F);
                         vec3d1 = vec3d1.add(livingBase.posX, livingBase.posY + (double) livingBase.getEyeHeight(), livingBase.posZ);
                         if (stack.getHasSubtypes()) {
-                            livingBase.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec3d1.x, vec3d1.y, vec3d1.z, vec3d.x, vec3d.y + 0.05D, vec3d.z, new int[]{Item.getIdFromItem(stack.getItem()), stack.getMetadata()});
+                            livingBase.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec3d1.x, vec3d1.y, vec3d1.z, vec3d.x, vec3d.y + 0.05D, vec3d.z, Item.getIdFromItem(stack.getItem()), stack.getMetadata());
                         } else {
-                            livingBase.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec3d1.x, vec3d1.y, vec3d1.z, vec3d.x, vec3d.y + 0.05D, vec3d.z, new int[]{Item.getIdFromItem(stack.getItem())});
+                            livingBase.world.spawnParticle(EnumParticleTypes.ITEM_CRACK, vec3d1.x, vec3d1.y, vec3d1.z, vec3d.x, vec3d.y + 0.05D, vec3d.z, Item.getIdFromItem(stack.getItem()));
                         }
                     }
 

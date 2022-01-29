@@ -1,21 +1,20 @@
 package gregtechfoodoption.integration;
 
 import gregtech.api.unification.material.info.MaterialIconSet;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.material.GTFOFluidMaterial;
-import gregtech.api.unification.ore.OrePrefix;
 
-import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.material.Materials.SodaAsh;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
-import static gregtechfoodoption.utils.RecipeUtils.average;
+import static gregtechfoodoption.utils.RecipeUtils.averageRGB;
 
 public class GTFONCMaterialHandler {
 
     public static final GTFOFluidMaterial SweetenedDilutedCaneSyrupMixture = new GTFOFluidMaterial("sweetened_diluted_cane_syrup_mixture", 0xdedcc8);
     public static final GTFOFluidMaterial MarshmallowSyrupMixture = new GTFOFluidMaterial("marshmallow_syrup_mixture", 0xe6e0dc);
     public static final GTFOFluidMaterial MarshmallowFoam = new GTFOFluidMaterial("marshmallow_foam", 0xe6e0dc);
-    public static final GTFOFluidMaterial SodiumCarbonateSolution = new GTFOFluidMaterial("sodium_carbonate_solution", average(2, 0xaaaaaa, SodaAsh.getMaterialRGB()));
-
+    public static final GTFOFluidMaterial SodiumCarbonateSolution = new GTFOFluidMaterial("sodium_carbonate_solution", averageRGB(2, 0xaaaaaa, SodaAsh.getMaterialRGB()), "Na2CO3");
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem( 1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem COCOA_NIB = SHAPED_ITEM.addOreDictItem(1036, "cocoa_nib", 0x635943, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);

@@ -236,10 +236,9 @@ public class CoreChain {
                     .fluidInputs(Water.getFluid(100))
                     .fluidOutputs(Water.getFluid(100))
                     .buildAndRegister();
-            EXTRACTOR_RECIPES.recipeBuilder().duration(100).EUt(8)
+            MACERATOR_RECIPES.recipeBuilder().duration(100).EUt(8)
                     .inputs(stack)
                     .output(dust, Meat)
-                    .fluidOutputs(FishOil.getFluid(3000))
                     .buildAndRegister();
 
         }

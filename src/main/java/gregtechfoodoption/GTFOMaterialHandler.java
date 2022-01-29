@@ -10,6 +10,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 import static gregtechfoodoption.utils.RecipeUtils.average;
+import static gregtechfoodoption.utils.RecipeUtils.averageRGB;
 
 public class GTFOMaterialHandler {
 
@@ -48,8 +49,8 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial Vodka = new GTFOFluidMaterial("vodka", 0x7d6933);
     public static final GTFOFluidMaterial Leninade = new GTFOFluidMaterial("leninade", 0x82661d);
 
-    public static final GTFOFluidMaterial PerchloricAcid = new GTFOFluidMaterial("perchloric_acid", average(6, Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), "HClO4");
-    public static final GTFOFluidMaterial ChloroauricAcid = new GTFOFluidMaterial("chloroauric_acid", average(3, Chlorine.getMaterialRGB(), Gold.getMaterialRGB() * 3), "HAuCl4");
+    public static final GTFOFluidMaterial PerchloricAcid = new GTFOFluidMaterial("perchloric_acid", averageRGB(3, Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB(), Hydrogen.getMaterialRGB()), "HClO4");
+    public static final GTFOFluidMaterial ChloroauricAcid = new GTFOFluidMaterial("chloroauric_acid", averageRGB(3, Chlorine.getMaterialRGB(), Gold.getMaterialRGB()), "HAuCl4");
     public static final GTFOFluidMaterial MoistAir = new GTFOFluidMaterial("moist_air", 0x82c8ff);
     public static final GTFOFluidMaterial ColdMoistAir = new GTFOFluidMaterial("cold_moist_air", 0x72a2ff);
 
@@ -74,8 +75,8 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem PenicilliumRoqueforti = SHAPED_ITEM.addOreDictItem(1111, "penicillium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
 
     public static final GTFOOredictItem.OreDictValueItem BurntBananaPeel = SHAPED_ITEM.addOreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictValueItem AmmoniumPerchlorate = SHAPED_ITEM.addOreDictItem(1113, "ammonium_perchlorate", average(7, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB() * 4, Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
-    public static final GTFOOredictItem.OreDictValueItem PotassiumPerchlorate = SHAPED_ITEM.addOreDictItem(1114, "potassium_perchlorate", average(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
+    public static final GTFOOredictItem.OreDictValueItem AmmoniumPerchlorate = SHAPED_ITEM.addOreDictItem(1113, "ammonium_perchlorate", averageRGB(4, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB(), Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
+    public static final GTFOOredictItem.OreDictValueItem PotassiumPerchlorate = SHAPED_ITEM.addOreDictItem(1114, "potassium_perchlorate", averageRGB(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);

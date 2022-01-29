@@ -1,20 +1,16 @@
 package gregtechfoodoption.fluid;
 
-import gregtechfoodoption.material.GTFOFluidMaterial;
 import gregtech.api.util.FluidTooltipUtil;
 import gregtech.api.util.GTUtility;
 import gregtech.common.MetaFluids;
+import gregtechfoodoption.material.GTFOFluidMaterial;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class GTFOMetaFluids {
-
-    private static final Map<String, GTFOFluidMaterial> fluidToMaterialMappings = new HashMap<>();
 
     public static void init() {
         for (GTFOFluidMaterial fluidMat : GTFOFluidMaterial.GTFO_FLUIDS.values()) {
@@ -38,7 +34,6 @@ public class GTFOMetaFluids {
                 }
                 fluidMat.fluid = FluidRegistry.getFluid(fluid.getName());
             }
-            fluidToMaterialMappings.put(fluidMat.fluid.getName(), fluidMat);
         }
     }
 }

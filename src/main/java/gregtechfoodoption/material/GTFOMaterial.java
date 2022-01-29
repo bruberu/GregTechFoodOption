@@ -9,16 +9,6 @@ public class GTFOMaterial {
     public int rgb;
     protected String chemicalFormula;
 
-    protected String calculateChemicalFormula(ImmutableList<MaterialStack> materialComponents) {
-        if (!materialComponents.isEmpty()) {
-            StringBuilder components = new StringBuilder();
-            for (MaterialStack component : materialComponents)
-                components.append(component.toString());
-            return components.toString();
-        }
-        return "";
-    }
-
     protected String calculateChemicalFormula(String unformattedFormula) {
         StringBuilder sb = new StringBuilder();
         if (unformattedFormula != null && !unformattedFormula.isEmpty()) {

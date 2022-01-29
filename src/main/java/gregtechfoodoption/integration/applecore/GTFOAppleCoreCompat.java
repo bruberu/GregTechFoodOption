@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GTFOAppleCoreCompat {
-    private static ArrayList<Item> sparedItems = new ArrayList<>();
-    private static HashMap<Item, FoodValues> sparedItemsFoodValues = new HashMap<>();
+    private static final ArrayList<Item> sparedItems = new ArrayList<>();
+    private static final HashMap<Item, FoodValues> sparedItemsFoodValues = new HashMap<>();
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void setFoodValuesForEvent(FoodEvent.GetPlayerFoodValues event) {

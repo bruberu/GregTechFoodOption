@@ -17,22 +17,19 @@ public class GTFOFluidMaterial extends GTFOMaterial {
 
 
     public GTFOFluidMaterial(String name, int rgb, String formula) {
-        this(name, rgb, 300);
+        this(name, rgb, formula, 300);
+    }
+
+    public GTFOFluidMaterial(String name, int rgb, int temperature) {
+        this(name, rgb, "", temperature);
     }
 
     public GTFOFluidMaterial(String name, int rgb, String formula, int temperature) {
-        this(name, rgb, temperature);
-        chemicalFormula = calculateChemicalFormula(formula);
-    }
-
-
-    public GTFOFluidMaterial(String name, int rgb, int temperature) {
         this.name = name;
         this.rgb = rgb;
         this.temperature = temperature;
         GTFO_FLUIDS.put(name, this);
-        if (chemicalFormula == null)
-            chemicalFormula = ""; // To prevent NPEs
+        chemicalFormula = calculateChemicalFormula(formula);
     }
 
     public FluidStack getFluid(int amount) {

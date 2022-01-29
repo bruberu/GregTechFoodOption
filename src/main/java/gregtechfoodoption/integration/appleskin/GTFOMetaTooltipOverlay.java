@@ -24,7 +24,7 @@ import squeek.appleskin.helpers.KeyHelper;
 //Also yoinked from @idcppl from Greg's HarvestCraft, since I technically have no idea how to code complex classes.
 
 public class GTFOMetaTooltipOverlay {
-    private static ResourceLocation modIcons = new ResourceLocation(ModInfo.MODID_LOWER, "textures/icons.png");
+    private static final ResourceLocation modIcons = new ResourceLocation(ModInfo.MODID_LOWER, "textures/icons.png");
     public static final int TOOLTIP_REAL_HEIGHT_OFFSET_BOTTOM = 3;
     public static final int TOOLTIP_REAL_HEIGHT_OFFSET_TOP = -3;
     public static final int TOOLTIP_REAL_WIDTH_OFFSET_RIGHT = 3;
