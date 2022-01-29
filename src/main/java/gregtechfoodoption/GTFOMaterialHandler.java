@@ -1,5 +1,6 @@
 package gregtechfoodoption;
 
+import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
@@ -9,7 +10,6 @@ import gregtechfoodoption.material.GTFOFluidMaterial;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
-import static gregtechfoodoption.utils.RecipeUtils.average;
 import static gregtechfoodoption.utils.RecipeUtils.averageRGB;
 
 public class GTFOMaterialHandler {
@@ -58,6 +58,8 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial Yolk = new GTFOFluidMaterial("yolk", 0xffdf00);
     public static final GTFOFluidMaterial Butter = new GTFOFluidMaterial("butter", 0xffef82);
 
+    public static final GTFOFluidMaterial RabbitStew = new GTFOFluidMaterial("rabbit_stew", 0xe0c0a0);
+
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
     public static final GTFOOredictItem.OreDictValueItem Zest = SHAPED_ITEM.addOreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, OrePrefix.dust);
@@ -77,6 +79,8 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem BurntBananaPeel = SHAPED_ITEM.addOreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem AmmoniumPerchlorate = SHAPED_ITEM.addOreDictItem(1113, "ammonium_perchlorate", averageRGB(4, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB(), Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NH4ClO4");
     public static final GTFOOredictItem.OreDictValueItem PotassiumPerchlorate = SHAPED_ITEM.addOreDictItem(1114, "potassium_perchlorate", averageRGB(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "KClO4");
+
+    public static final MetaOreDictItem.OreDictValueItem MashedPotato = SHAPED_ITEM.addOreDictItem(1115, "mashed_potato", 0xf5d89f, MaterialIconSet.FINE, OrePrefix.dust);
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);

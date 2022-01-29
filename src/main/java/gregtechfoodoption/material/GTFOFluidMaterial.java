@@ -15,7 +15,6 @@ public class GTFOFluidMaterial extends GTFOMaterial {
         this(name, rgb, 300);
     }
 
-
     public GTFOFluidMaterial(String name, int rgb, String formula) {
         this(name, rgb, formula, 300);
     }

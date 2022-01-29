@@ -6,7 +6,6 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtech.common.items.MetaItem1;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
@@ -20,6 +19,7 @@ import net.minecraft.item.ItemStack;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.GTFOMaterialHandler.ChloroauricAcid;
+import static gregtechfoodoption.GTFOMaterialHandler.MashedPotato;
 
 public class VanillaOverrideChain {
     public static void init() {
@@ -81,7 +81,8 @@ public class VanillaOverrideChain {
                     'P', Blocks.PISTON);
         }
 
-        GTFOAppleCoreCompat.addToSparedItems(Items.RABBIT_STEW, 11, (float) 1.2);
+        ModHandler.removeRecipes(new ItemStack(Items.RABBIT_STEW));
+        GTFOAppleCoreCompat.addToSparedItems(Items.RABBIT_STEW, 7, (float) 1.2);
         ModHandler.removeRecipes(new ItemStack(Items.MUSHROOM_STEW));
         GTFOAppleCoreCompat.addToSparedItems(Items.MUSHROOM_STEW, 5, (float) 0.9);
         ModHandler.removeRecipes(new ItemStack(Items.BEETROOT_SOUP));
@@ -114,12 +115,32 @@ public class VanillaOverrideChain {
                 .output(Items.BEETROOT_SOUP)
                 .buildAndRegister();
 
+        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(8).duration(100)
+                .input(Blocks.BROWN_MUSHROOM)
+                .input(Items.CARROT)
+                .input(Items.COOKED_RABBIT)
+                .inputs(MashedPotato.getItemStack())
+                .input(OrePrefix.dust, Wheat)
+                .fluidInputs(Water.getFluid(50))
+                .fluidOutputs(GTFOMaterialHandler.RabbitStew.getFluid(125))
+                .buildAndRegister();
+
+        RecipeMaps.CANNER_RECIPES.recipeBuilder().EUt(8).duration(10)
+                .fluidInputs(GTFOMaterialHandler.RabbitStew.getFluid(250))
+                .input(Items.BOWL)
+                .output(Items.RABBIT_STEW)
+                .buildAndRegister();
+
         ModHandler.removeRecipes(new ItemStack(Items.GOLDEN_CARROT));
         ModHandler.removeRecipes(new ItemStack(Items.GOLDEN_APPLE));
 
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.nugget, Gold, 8), new ItemStack(Items.CARROT));
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.ingot, Gold, 8), new ItemStack(Items.APPLE));
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.block, Gold, 8), new ItemStack(Items.APPLE));
+        GTRecipeHandler.removeRecipesByInputs(RecipeMaps.LARGE_CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.nugget, Gold, 8), new ItemStack(Items.CARROT));
+        GTRecipeHandler.removeRecipesByInputs(RecipeMaps.LARGE_CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.ingot, Gold, 8), new ItemStack(Items.APPLE));
+        GTRecipeHandler.removeRecipesByInputs(RecipeMaps.LARGE_CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.block, Gold, 8), new ItemStack(Items.APPLE));
+
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(1920).duration(200)
                 .input(Items.CARROT)

@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK;
+import static gregtechfoodoption.GTFOMaterialHandler.MashedPotato;
 import static gregtechfoodoption.GTFOMaterialHandler.PurpleDrink;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
@@ -304,5 +305,11 @@ public class CoreChain {
                 .EUt(45)
                 .duration(60)
                 .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder().EUt(4).duration(40)
+                .input(Items.POTATO)
+                .outputs(MashedPotato.getItemStack())
+                .buildAndRegister();
+
     }
 }

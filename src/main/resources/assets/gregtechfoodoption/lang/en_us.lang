@@ -477,6 +477,11 @@ metaitem.food.mushroom_stew.hot.tooltip=Yaaaa, that's hot
 metaitem.food.beetroot_soup.hot.name=Hot Beetroot Soup
 metaitem.food.beetroot_soup.hot.tooltip=Soup time
 metaitem.food.rabbit_stew.hot.name=Hot Rabbit Stew
-metaitem.food.rabbit_stew.hot.tooltip=You just ate a Rabbit :D
+metaitem.food.rabbit_stew.hot.tooltip=You just ate a Rabbit, feel proud of your moral Achievement
+
 fluid.perchloric_acid=Perchloric Acid
 fluid.chloroauric_acid=Chloroauric Acid
+
+metaitem.mashed_potato_dust.name=Mashed Potato
+metaitem.mashed_potato_dust.tooltip=A great Material for Tool-making
+fluid.rabbit_stew=Rabbit Stew
