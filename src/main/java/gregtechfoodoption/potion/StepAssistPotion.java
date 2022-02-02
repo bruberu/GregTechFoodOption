@@ -32,7 +32,7 @@ public class StepAssistPotion extends GTFOPotion {
 
     @Override
     protected boolean canRender() {
-        return GTFOConfig.gtfoPotionConfig.creativity;
+        return GTFOConfig.gtfoPotionConfig.stepAssist;
     }
 
 }

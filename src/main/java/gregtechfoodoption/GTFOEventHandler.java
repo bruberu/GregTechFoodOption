@@ -109,15 +109,17 @@ public class GTFOEventHandler {
                     }
                 }
             }
-            if (StepAssistPotion.instance != null && player.isPotionActive(StepAssistPotion.instance)) {
-                if (!persisted.getBoolean(StepAssistPotion.TAG_NAME)) {
-                    persisted.setBoolean(StepAssistPotion.TAG_NAME, true);
-                }
-            } else {
-                if (persisted.getBoolean(StepAssistPotion.TAG_NAME)) {
-                    persisted.setBoolean(StepAssistPotion.TAG_NAME, false);
+            if (GTFOConfig.gtfoPotionConfig.stepAssist) {
+                if (StepAssistPotion.instance != null && player.isPotionActive(StepAssistPotion.instance)) {
+                    if (!persisted.getBoolean(StepAssistPotion.TAG_NAME)) {
+                        persisted.setBoolean(StepAssistPotion.TAG_NAME, true);
+                    }
+                } else {
+                    if (persisted.getBoolean(StepAssistPotion.TAG_NAME)) {
+                        persisted.setBoolean(StepAssistPotion.TAG_NAME, false);
 
-                    player.stepHeight = 0.6F;
+                        player.stepHeight = 0.6F;
+                    }
                 }
             }
         }

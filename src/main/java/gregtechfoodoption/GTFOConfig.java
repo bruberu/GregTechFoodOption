@@ -204,8 +204,8 @@ public class GTFOConfig {
         @Config.Comment("Apply effects of Creativity?")
         public boolean creativity = true;
 
-        @Config.Comment("Apply Addiction-Withdrawal system?")
-        public boolean addictionWithdrawal = true;
+        @Config.Comment("Apply effects of Step Assist?")
+        public boolean stepAssist = true;
     }
 
     public static class GTFOMiscConfig {
