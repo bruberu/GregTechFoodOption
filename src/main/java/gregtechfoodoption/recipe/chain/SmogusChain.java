@@ -4,7 +4,7 @@ import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.utils.RecipeUtils;
+import gregtechfoodoption.utils.GTFOUtils;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -81,7 +81,7 @@ public class SmogusChain {
                 FOUR_SMOGUS.getStackForm(2)};
         int euPerTick = 1920;
         int ticks = 25;
-        for (int i = 0; i < 3 + 8 * RecipeUtils.boolToInt(GTFOConfig.gtfoncConfig.addSmogus); i++) {
+        for (int i = 0; i < 3 + 8 * GTFOUtils.boolToInt(GTFOConfig.gtfoncConfig.addSmogus); i++) {
             if (i < 7) {
                 FORMING_PRESS_RECIPES.recipeBuilder()
                         .inputs(new ItemStack(NCItems.marshmallow))
@@ -93,7 +93,7 @@ public class SmogusChain {
                         .buildAndRegister();
 
             } else {
-                RecipeUtils.stellarForgeProxy().recipeBuilder()
+                GTFOUtils.stellarForgeProxy().recipeBuilder()
                         .inputs(new ItemStack(NCItems.marshmallow))
                         .inputs(GTFONCMaterialHandler.HOT_MILK_CHOCOLATE.getItemStack())
                         .inputs(smoresin[i])

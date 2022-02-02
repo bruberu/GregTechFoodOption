@@ -9,7 +9,7 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
-import gregtechfoodoption.utils.RecipeUtils;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -96,7 +96,7 @@ public class BreadsChain {
                 .outputs(UNCOOKED_BUN.getStackForm())
                 .buildAndRegister();
 
-        RecipeUtils.addBakingOvenRecipes(
+        GTFOUtils.addBakingOvenRecipes(
                 UNCOOKED_BUN.getStackForm(),
                 BUN.getStackForm(),
                 150,
@@ -104,7 +104,7 @@ public class BreadsChain {
                 2
                 );
 
-        RecipeUtils.addBakingOvenRecipes(
+        GTFOUtils.addBakingOvenRecipes(
                 UNCOOKED_BAGUETTE.getStackForm(),
                 BAGUETTE.getStackForm(),
                 150,
@@ -112,7 +112,7 @@ public class BreadsChain {
                 2
         );
 
-        RecipeUtils.addBakingOvenRecipes(
+        GTFOUtils.addBakingOvenRecipes(
                 UNCOOKED_BREAD.getStackForm(),
                 new ItemStack(Items.BREAD),
                 150,
@@ -137,7 +137,7 @@ public class BreadsChain {
                 .outputs(CAKE_BOTTOM.getStackForm())
                 .buildAndRegister();
 
-        RecipeUtils.addBakingOvenRecipes(
+        GTFOUtils.addBakingOvenRecipes(
                 CAKE_BOTTOM.getStackForm(),
                 BAKED_CAKE_BOTTOM.getStackForm(),
                 500,
@@ -296,21 +296,21 @@ public class BreadsChain {
                 .fluidInputs(TomatoSauce.getFluid(450))
                 .outputs(PIZZA_MINCE_MEAT_RAW.getStackForm())
                 .buildAndRegister();
-        RecipeUtils.addBakingOvenRecipes(
+        GTFOUtils.addBakingOvenRecipes(
                 PIZZA_VEGGIE_RAW.getStackForm(),
                 PIZZA_VEGGIE.getStackForm(),
                 1200,
                 495,
                 10
         );
-        RecipeUtils.addBakingOvenRecipes(
+        GTFOUtils.addBakingOvenRecipes(
                 PIZZA_CHEESE_RAW.getStackForm(),
                 PIZZA_CHEESE.getStackForm(),
                 1400,
                 495,
                 12
         );
-        RecipeUtils.addBakingOvenRecipes(
+        GTFOUtils.addBakingOvenRecipes(
                 PIZZA_MINCE_MEAT_RAW.getStackForm(),
                 PIZZA_MINCE_MEAT.getStackForm(),
                 1600,

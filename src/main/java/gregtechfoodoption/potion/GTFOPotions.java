@@ -11,8 +11,9 @@ public class GTFOPotions {
     public static void initPotionInstances()
     {
         CreativityPotion CREATIVITY = new CreativityPotion();
-        AddictionPotion ADDICTION = new AddictionPotion();
-        WithdrawalPotion WITHDRAWAL = new WithdrawalPotion();
+        //AddictionPotion ADDICTION = new AddictionPotion();
+        //WithdrawalPotion WITHDRAWAL = new WithdrawalPotion();
+        StepAssistPotion STEPASSIST = new StepAssistPotion();
     }
 
 
@@ -20,7 +21,8 @@ public class GTFOPotions {
     public static void registerPotionEffects(RegistryEvent.Register<Potion> event)
     {
         event.getRegistry().registerAll(CreativityPotion.instance);
-        event.getRegistry().registerAll(AddictionPotion.instance);
-        event.getRegistry().registerAll(WithdrawalPotion.instance);
+        //event.getRegistry().registerAll(AddictionPotion.instance);
+        //event.getRegistry().registerAll(WithdrawalPotion.instance);
+        event.getRegistry().registerAll(StepAssistPotion.instance);
     }
 }

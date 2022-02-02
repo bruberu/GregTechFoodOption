@@ -3,9 +3,13 @@ package gregtechfoodoption.utils;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.util.RandomPotionEffect;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,7 +21,7 @@ import static gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 
 //A not small amount of code from here was yoinked from other places. I'll give credit wherever I can!
 
-public class RecipeUtils {
+public class GTFOUtils {
     /*
     public static void addGreenHouseRecipes(ItemStack seed, Item crop) {
         GREEN_HOUSE_RECIPES.recipeBuilder().duration(1000).notConsumable(new IntCircuitIngredient(0)).fluidInputs(Water.getFluid(2000)).notConsumable(seed).outputs(new ItemStack(crop)).buildAndRegister();
@@ -177,4 +181,13 @@ public class RecipeUtils {
                 .buildAndRegister();
     }
 
+    @SideOnly(Side.CLIENT)
+    public static void addPotionTooltip(List<RandomPotionEffect> effects, List<String> list) {
+        list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.potion.header").getFormattedText());
+        effects.forEach((effect) -> list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.potion.each",
+                new TextComponentTranslation(effect.effect.getEffectName()).getFormattedText(),
+                new TextComponentTranslation("enchantment.level." + effect.effect.getAmplifier()),
+                effect.effect.getDuration(),
+                100 - effect.chance).getFormattedText()));
+    }
 }

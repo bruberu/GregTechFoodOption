@@ -1,17 +1,19 @@
 package gregtechfoodoption.item;
 
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
+import gregtech.api.items.metaitem.stats.IItemBehaviour;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.RandomPotionEffect;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class GTFOFoodStats implements IFoodBehavior {
+public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These names suck
     public final int foodLevel;
     public final float saturation;
     public final boolean isDrink;
@@ -82,11 +84,7 @@ public class GTFOFoodStats implements IFoodBehavior {
     @Override
     public void addInformation(ItemStack itemStack, List<String> list) {
         if (this.potionEffects.length > 0) {
-            PotionEffect[] effects = new PotionEffect[this.potionEffects.length];
-
-            for (int i = 0; i < this.potionEffects.length; ++i) {
-                effects[i] = this.potionEffects[i].effect;
-            }
+            GTFOUtils.addPotionTooltip(Arrays.asList(potionEffects), list);
         }
     }
 

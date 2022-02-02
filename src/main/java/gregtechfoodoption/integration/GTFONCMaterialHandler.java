@@ -7,7 +7,7 @@ import gregtechfoodoption.material.GTFOFluidMaterial;
 
 import static gregtech.api.unification.material.Materials.SodaAsh;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
-import static gregtechfoodoption.utils.RecipeUtils.averageRGB;
+import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 
 public class GTFONCMaterialHandler {
 

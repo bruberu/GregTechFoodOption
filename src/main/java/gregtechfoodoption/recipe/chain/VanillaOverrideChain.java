@@ -12,7 +12,7 @@ import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.GTFOMetaItem;
-import gregtechfoodoption.utils.RecipeUtils;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -23,42 +23,42 @@ import static gregtechfoodoption.GTFOMaterialHandler.MashedPotato;
 
 public class VanillaOverrideChain {
     public static void init() {
-        RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.POTATO)));
+        GTFOUtils.removeAllSmelting(GTFOUtils.wildcardize(new ItemStack(Items.POTATO)));
         GTFOAppleCoreCompat.addToSparedItems(Items.BAKED_POTATO, 2, (float) 0.5);
 
-        RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.POTATO), new ItemStack(Items.BAKED_POTATO), 900, 435, 1);
+        GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.POTATO), new ItemStack(Items.BAKED_POTATO), 900, 435, 1);
 
         if(GTFOConfig.gtfoVanillaOverridesConfig.useBakingOvenForMeats) {
-            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.BEEF)));
+            GTFOUtils.removeAllSmelting(GTFOUtils.wildcardize(new ItemStack(Items.BEEF)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_BEEF, 7, (float) 0.6);
-            RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF), 2000, 500, 4);
+            GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF), 2000, 500, 4);
 
 
-            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.PORKCHOP)));
+            GTFOUtils.removeAllSmelting(GTFOUtils.wildcardize(new ItemStack(Items.PORKCHOP)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_PORKCHOP, 7, (float) 0.6);
-            RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.PORKCHOP), new ItemStack(Items.COOKED_PORKCHOP), 1800, 490, 3);
+            GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.PORKCHOP), new ItemStack(Items.COOKED_PORKCHOP), 1800, 490, 3);
 
-            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.MUTTON)));
+            GTFOUtils.removeAllSmelting(GTFOUtils.wildcardize(new ItemStack(Items.MUTTON)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_MUTTON, 6, (float) 0.9);
-            RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.MUTTON), new ItemStack(Items.COOKED_MUTTON), 1600, 500, 4);
+            GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.MUTTON), new ItemStack(Items.COOKED_MUTTON), 1600, 500, 4);
 
 
-            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.CHICKEN)));
+            GTFOUtils.removeAllSmelting(GTFOUtils.wildcardize(new ItemStack(Items.CHICKEN)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_CHICKEN, 8, (float) 0.75);
-            RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.CHICKEN), new ItemStack(Items.COOKED_CHICKEN), 3000, 520, 6);
+            GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.CHICKEN), new ItemStack(Items.COOKED_CHICKEN), 3000, 520, 6);
 
-            RecipeUtils.removeAllSmelting(RecipeUtils.wildcardize(new ItemStack(Items.RABBIT)));
+            GTFOUtils.removeAllSmelting(GTFOUtils.wildcardize(new ItemStack(Items.RABBIT)));
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_RABBIT, 8, (float) 0.75);
-            RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.RABBIT), new ItemStack(Items.COOKED_RABBIT), 2000, 500, 5);
+            GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.RABBIT), new ItemStack(Items.COOKED_RABBIT), 2000, 500, 5);
 
-            RecipeUtils.removeAllSmelting(new ItemStack(Items.FISH,1, 0));
-            RecipeUtils.removeAllSmelting(new ItemStack(Items.FISH,1, 1));
+            GTFOUtils.removeAllSmelting(new ItemStack(Items.FISH,1, 0));
+            GTFOUtils.removeAllSmelting(new ItemStack(Items.FISH,1, 1));
 
             GTFOAppleCoreCompat.addToSparedItems(Items.COOKED_FISH, 5, (float) 0.8);
-            RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.FISH), new ItemStack(Items.COOKED_FISH), 800, 485, 2);
+            GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.FISH), new ItemStack(Items.COOKED_FISH), 800, 485, 2);
 
             GTFOAppleCoreCompat.addToSparedItems(new ItemStack(Items.COOKED_FISH, 1, 1).getItem(), 5, (float) 0.8);
-            RecipeUtils.addBakingOvenRecipes(new ItemStack(Items.FISH, 1, 1), new ItemStack(Items.COOKED_FISH, 1, 1), 800, 475, 2);
+            GTFOUtils.addBakingOvenRecipes(new ItemStack(Items.FISH, 1, 1), new ItemStack(Items.COOKED_FISH, 1, 1), 800, 475, 2);
 
         }
 

@@ -2,7 +2,7 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.common.items.MetaItems;
-import gregtechfoodoption.utils.RecipeUtils;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 
 import static gregtechfoodoption.GTFOMaterialHandler.*;
@@ -19,12 +19,12 @@ public class CheeseChain {
                 .outputs(BEEF_SLICE.getStackForm(9))
                 .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(8).duration(300)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(8).duration(300)
                 .inputs(BEEF_SLICE.getStackForm(4))
                 .fluidInputs(SaltWater.getFluid(1000), AceticAcid.getFluid(100))
                 .fluidOutputs(CrudeRennetSolution.getFluid(500))
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(200)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(200)
                 .fluidInputs(CrudeRennetSolution.getFluid(1), Milk.getFluid(3000))
                 .outputs(CoagulatedMilkCurd.getItemStack())
                 .fluidOutputs(Whey.getFluid(600))
@@ -77,7 +77,7 @@ public class CheeseChain {
                 .inputs(SmallMozzarellaCurd.getItemStack())
                 .outputs(DriedMozzarellaCurd.getItemStack())
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(200)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(200)
                 .inputs(DriedMozzarellaCurd.getItemStack())
                 .outputs(SolidifiedMozzarellaCurd.getItemStack())
                 .fluidOutputs(Whey.getFluid(30))

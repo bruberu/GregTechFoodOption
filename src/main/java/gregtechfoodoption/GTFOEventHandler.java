@@ -7,9 +7,8 @@ import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.item.GTFOFoodDurationSetter;
-import gregtechfoodoption.potion.AddictionPotion;
 import gregtechfoodoption.potion.CreativityPotion;
-import gregtechfoodoption.potion.WithdrawalPotion;
+import gregtechfoodoption.potion.StepAssistPotion;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -18,8 +17,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -38,6 +35,8 @@ public class GTFOEventHandler {
 
     private static final Set<EntityLivingBase> addictedSet = new HashSet<>();
     private static final HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
+
+    private static final Set<EntityLivingBase> jumpBoostSet = new HashSet<>();
 
     @SubscribeEvent
     public static void onMaterialsInit(GregTechAPI.MaterialEvent event) { // Must be called during construction to be registered in time for MaterialEvents.
@@ -60,6 +59,7 @@ public class GTFOEventHandler {
 
     @SubscribeEvent
     public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+/*
         EntityLivingBase entityLivingBase = event.getEntityLiving();
         if (GTFOConfig.gtfoPotionConfig.addictionWithdrawal) {
             if (entityLivingBase.isDead && addictedSet.contains(entityLivingBase)) {
@@ -83,6 +83,8 @@ public class GTFOEventHandler {
                 entityLivingBase.attackEntityFrom(new DamageSource("withdrawal"), ((float) (entityLivingBase.getActivePotionEffect(WithdrawalPotion.instance).getAmplifier() + 1) / 5));
             }
         }
+*/
+
         if ((event.getEntityLiving() instanceof EntityPlayer)) {
             EntityPlayer player = (EntityPlayer) event.getEntityLiving();
             NBTTagCompound persisted = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
@@ -95,7 +97,6 @@ public class GTFOEventHandler {
                         persisted.setBoolean(CreativityPotion.TAG_NAME, true);
                     }
                     player.capabilities.allowFlying = true;
-                    //player.fallDistance = 0;
                 } else {
                     if (persisted.getBoolean(CreativityPotion.TAG_NAME)) {
                         persisted.setBoolean(CreativityPotion.TAG_NAME, false);
@@ -108,7 +109,17 @@ public class GTFOEventHandler {
                     }
                 }
             }
+            if (StepAssistPotion.instance != null && player.isPotionActive(StepAssistPotion.instance)) {
+                if (!persisted.getBoolean(StepAssistPotion.TAG_NAME)) {
+                    persisted.setBoolean(StepAssistPotion.TAG_NAME, true);
+                }
+            } else {
+                if (persisted.getBoolean(StepAssistPotion.TAG_NAME)) {
+                    persisted.setBoolean(StepAssistPotion.TAG_NAME, false);
 
+                    player.stepHeight = 0.6F;
+                }
+            }
         }
     }
 

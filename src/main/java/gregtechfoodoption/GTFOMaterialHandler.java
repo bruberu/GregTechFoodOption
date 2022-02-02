@@ -10,7 +10,7 @@ import gregtechfoodoption.material.GTFOFluidMaterial;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
-import static gregtechfoodoption.utils.RecipeUtils.averageRGB;
+import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 
 public class GTFOMaterialHandler {
 

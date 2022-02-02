@@ -3,7 +3,7 @@ package gregtechfoodoption.recipe.chain;
 import de.ellpeck.actuallyadditions.mod.blocks.InitBlocks;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.utils.RecipeUtils;
+import gregtechfoodoption.utils.GTFOUtils;
 import gregtechfoodoption.GTFOConfig;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
@@ -66,7 +66,7 @@ public class CoffeeChain {
                 .duration(100)
                 .buildAndRegister();
 
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.COFFEE_GROUNDS.getItemStack())
                 .inputs(coffeeFilter) // This is a paper cone, or a coffee filter, if you like.
                 .fluidInputs(Materials.Steam.getFluid(1000))
@@ -145,7 +145,7 @@ public class CoffeeChain {
                 .buildAndRegister();
 
 
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.LARGE_WET_COFFEE.getItemStack(32))
                 .outputs(GTFOAAMaterialHandler.LARGE_DRIED_COFFEE.getItemStack(32))
                 .fluidOutputs(Water.getFluid(24000))
@@ -153,7 +153,7 @@ public class CoffeeChain {
                 .duration(3600)
                 .buildAndRegister();
 
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.SMALL_WET_COFFEE.getItemStack(64))
                 .outputs(GTFOAAMaterialHandler.SMALL_DRIED_COFFEE.getItemStack(64))
                 .fluidOutputs(Water.getFluid(24000))

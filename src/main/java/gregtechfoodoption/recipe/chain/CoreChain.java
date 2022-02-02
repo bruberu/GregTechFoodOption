@@ -4,7 +4,7 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.utils.RecipeUtils;
+import gregtechfoodoption.utils.GTFOUtils;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
@@ -175,7 +175,7 @@ public class CoreChain {
                 .outputs(UNCOOKED_BACON.getStackForm(6))
                 .buildAndRegister();
 
-        RecipeUtils.addBakingOvenRecipes(UNCOOKED_BACON.getStackForm(), BACON.getStackForm(), 500, 435, 1);
+        GTFOUtils.addBakingOvenRecipes(UNCOOKED_BACON.getStackForm(), BACON.getStackForm(), 500, 435, 1);
 
         EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
                 .inputs(TOMATO_SLICE.getStackForm(4))
@@ -230,7 +230,7 @@ public class CoreChain {
                 .outputs(CHUM.getStackForm(6))
                 .buildAndRegister();
 
-        for (ItemStack stack : RecipeUtils.getFish()) {
+        for (ItemStack stack : GTFOUtils.getFish()) {
             FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
                     .inputs(stack)
                     .outputs(ROTTEN_FISH.getStackForm())
@@ -238,7 +238,7 @@ public class CoreChain {
                     .fluidOutputs(Water.getFluid(100))
                     .buildAndRegister();
         }
-        for (ItemStack stack : RecipeUtils.getMeat()) {
+        for (ItemStack stack : GTFOUtils.getMeat()) {
             FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
                     .inputs(stack)
                     .outputs(ROTTEN_MEAT.getStackForm())
@@ -246,7 +246,7 @@ public class CoreChain {
                     .fluidOutputs(Water.getFluid(100))
                     .buildAndRegister();
         }
-        for (ItemStack stack : RecipeUtils.getAnimalProducts()) {
+        for (ItemStack stack : GTFOUtils.getAnimalProducts()) {
             MIXER_RECIPES.recipeBuilder().duration(500).EUt(16)
                     .inputs(stack)
                     .fluidInputs(Water.getFluid(400))

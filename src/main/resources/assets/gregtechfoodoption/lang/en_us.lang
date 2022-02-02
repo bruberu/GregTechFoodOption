@@ -151,6 +151,7 @@ fluid.chlorine_fluoride=Chlorine Fluoride
 fluid.tribromochloromoscovium_trichloroxenon_complex=Tribromochloromoscovium Trichloroxenon Complex
 death.attack.withdrawal=%1$s died from withdrawal.
 gregtechfoodoption.potion.creativity=Creativity
+gregtechfoodoption.potion.stepassist=Step Assist
 gregtechfoodoption.potion.addiction=Addiction
 gregtechfoodoption.potion.withdrawal=Withdrawal
 
@@ -485,3 +486,6 @@ fluid.chloroauric_acid=Chloroauric Acid
 metaitem.mashed_potato_dust.name=Mashed Potato
 metaitem.mashed_potato_dust.tooltip=A great Material for Tool-making
 fluid.rabbit_stew=Rabbit Stew
+
+gregtechfoodoption.tooltip.potion.each=   §e%s %s§r for §c%s§r ticks with a §a%s%%§r chance of happening
+gregtechfoodoption.tooltip.potion.header=§6Contains effects:

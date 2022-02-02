@@ -1,17 +1,16 @@
 package gregtechfoodoption.item;
 
-import gregtech.api.items.metaitem.StandardMetaItem;
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.potion.AddictionPotion;
-import gregtechfoodoption.potion.CreativityPotion;
-
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
 import gregtech.api.items.toolitem.ToolMetaItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.potion.CreativityPotion;
+import gregtechfoodoption.potion.StepAssistPotion;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -290,15 +289,12 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
-                    new RandomPotionEffect(getPotionById(10), 300, 1, 0),
-                    new RandomPotionEffect(AddictionPotion.instance, 2000, 3, 0)));
+                    new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
         if (GTFOConfig.gtfoChainsConfig.mineralWaterChain)
             MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
-                    new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0),
-                    new RandomPotionEffect(AddictionPotion.instance, 4000, 20, 0)));
+                    new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0)));
         APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger, GTFOConfig.gtfoFoodConfig.hardCandySaturation, true, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50),
-                new RandomPotionEffect(AddictionPotion.instance, 9000, 2, 65))
+                new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50))
                 .setEatingDuration(24));
         SPARKLING_WATER = addItem(16, "food.sparkling_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.sparklingWaterHunger, GTFOConfig.gtfoFoodConfig.sparklingWaterSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 600, 1, 0)));
@@ -307,32 +303,28 @@ public class GTFOMetaItem extends StandardMetaItem {
         LIME = addItem(18, "food.lime").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.limeHunger, GTFOConfig.gtfoFoodConfig.limeSaturation, false, false, ItemStack.EMPTY))
                 .addOreDict("cropLime").addOreDict("listAllfruit");
         ETIRPS = addItem(19, "food.etirps").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger, GTFOConfig.gtfoFoodConfig.etirpsSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
-                new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 3200, 2, 75)));
+                new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0)));
 
-        MetaItems.BOTTLE_PURPLE_DRINK.addComponents(new GTFOFoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE), new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10), new RandomPotionEffect(AddictionPotion.instance, 500, 1, 50)));
+        MetaItems.BOTTLE_PURPLE_DRINK.addComponents(new GTFOFoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10),
+                new RandomPotionEffect(MobEffects.WITHER, 800, 5, 10)));
 
-        BACON = addItem(22, "food.bacon").addComponents(new GTFOFoodStats(2, 0.8f, false, true, ItemStack.EMPTY,
-                new RandomPotionEffect(AddictionPotion.instance, 16000, 1, 75))
+        BACON = addItem(22, "food.bacon").addComponents(new GTFOFoodStats(2, 0.8f, false, true, ItemStack.EMPTY)
                 .setEatingDuration(24));
 
         FRENCH_FRIES = addItem(37, "food.french_fries").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.friesHunger, GTFOConfig.gtfoFoodConfig.friesSaturation, false, false, USED_PAPER_BAG.getStackForm(),
-                new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 3200, 1, 25))
+                new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0))
                 .setEatingDuration(20))
                 .addOreDict("foodFries");
         SYALS = addItem(38, "food.syals").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger / 2, GTFOConfig.gtfoFoodConfig.chipSaturation / 2, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Tin),
                 new RandomPotionEffect(MobEffects.LEVITATION, 300, 1, 0)));
         BAG_OF_CHIPS = addItem(39, "food.bag_of_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Steel),
-                new RandomPotionEffect(MobEffects.HASTE, 600, 1, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 3200, 1, 60)));
+                new RandomPotionEffect(MobEffects.HASTE, 600, 1, 0)));
         KETTLE_FRIED_CHIPS = addItem(40, "food.kettle_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger + 1, GTFOConfig.gtfoFoodConfig.chipSaturation, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Aluminium),
-                new RandomPotionEffect(MobEffects.HASTE, 900, 1, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 3200, 1, 55)));
+                new RandomPotionEffect(MobEffects.HASTE, 900, 1, 0)));
         REDUCED_FAT_CHIPS = addItem(41, "food.reduced_fat_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation + 1, false, false, () -> OreDictUnifier.get(OrePrefix.foil, StainlessSteel),
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0),
-                new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50),
-                new RandomPotionEffect(AddictionPotion.instance, 3200, 2, 50))
+                new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50))
                 .setEatingDuration(20));
         POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK))
                 .setEatingDuration(12))
@@ -353,16 +345,13 @@ public class GTFOMetaItem extends StandardMetaItem {
         BAKED_CAKE_BOTTOM = addItem(57, "food.cake_bottom_baked").addComponents(new GTFOFoodStats(3, 0.5f, false, false, ItemStack.EMPTY));
 
         PIZZA_CHEESE = addItem(62, "food.pizza.cheese").addComponents(new GTFOFoodStats(5, 0.8f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 2000, 2, 75))
+                new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0))
                 .setEatingDuration(50));
         PIZZA_VEGGIE = addItem(63, "food.pizza.veggie").addComponents(new GTFOFoodStats(5, 0.7f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.JUMP_BOOST, 2000, 1, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 2000, 2, 75))
+                new RandomPotionEffect(StepAssistPotion.instance, 2000, 1, 0))
                 .setEatingDuration(50));
         PIZZA_MINCE_MEAT = addItem(64, "food.pizza.mince_meat").addComponents(new GTFOFoodStats(6, 0.8f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.STRENGTH, 2000, 2, 0),
-                new RandomPotionEffect(AddictionPotion.instance, 2000, 2, 75))
+                new RandomPotionEffect(MobEffects.STRENGTH, 2000, 2, 0))
                 .setEatingDuration(50));
 
         SANDWICH_VEGGIE = addItem(65, "food.sandwich.veggie").addComponents(new GTFOFoodStats(4, 0.6f, false, false, ItemStack.EMPTY)
@@ -378,7 +367,8 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .setEatingDuration(60));
         SANDWICH_LARGE_CHEESE = addItem(70, "food.sandwich.cheese.large").addComponents(new GTFOFoodStats(11, 0.6f, false, false, ItemStack.EMPTY)
                 .setEatingDuration(60));
-        SANDWICH_LARGE_BACON = addItem(71, "food.sandwich.bacon.large").addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY)
+        SANDWICH_LARGE_BACON = addItem(71, "food.sandwich.bacon.large").addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY,
+                new RandomPotionEffect(StepAssistPotion.instance, 600, 0, 0))
                 .setEatingDuration(60));
         SANDWICH_LARGE_STEAK = addItem(72, "food.sandwich.steak.large").addComponents(new GTFOFoodStats(13, 0.7f, false, false, ItemStack.EMPTY)
                 .setEatingDuration(60));
@@ -460,8 +450,7 @@ public class GTFOMetaItem extends StandardMetaItem {
                         new RandomPotionEffect(getPotionById(22), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(3), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(23), potionDuration, potionStrength, 2 * i),
-                        new RandomPotionEffect(getPotionById(21), potionDuration, potionStrength, 2 * i),
-                        new RandomPotionEffect(AddictionPotion.instance, 3000, potionStrength, 100 - 2 * i))
+                        new RandomPotionEffect(getPotionById(21), potionDuration, potionStrength, 2 * i))
                         .setEatingDuration(32 + 10 * i));
             }
 

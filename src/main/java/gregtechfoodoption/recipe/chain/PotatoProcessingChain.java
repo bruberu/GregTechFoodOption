@@ -2,7 +2,7 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtech.api.recipes.ModHandler;
-import gregtechfoodoption.utils.RecipeUtils;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -29,7 +29,7 @@ public class PotatoProcessingChain {
                 .outputs(POTATO_SLICE.getStackForm(10))
                 .fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(200))
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(20)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(20)
                 .fluidInputs(GTFOMaterialHandler.StarchFilledWater.getFluid(1000))
                 .outputs(GTFOMaterialHandler.PotatoStarch.getItemStack())
                 .fluidOutputs(Water.getFluid(900))
@@ -39,7 +39,7 @@ public class PotatoProcessingChain {
                 .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
                 .outputs(POTATO_STRIP.getStackForm(10))
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(400)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(400)
                 .inputs(POTATO_SLICE.getStackForm(40))
                 .fluidInputs(GTFOMaterialHandler.FryingOil.getFluid(500))
                 .outputs(FRIED_POTATO_SLICE.getStackForm(38))
@@ -83,7 +83,7 @@ public class PotatoProcessingChain {
                 .inputs(BATCH_FRIED_POTATO_SLICE.getStackForm(5))
                 .outputs(HOT_POTATO_SLICE.getStackForm(5))
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(400)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(400)
                 .inputs(HOT_POTATO_SLICE.getStackForm(10))
                 .outputs(REDUCED_FAT_POTATO_SLICE.getStackForm(10))
                 .fluidOutputs(GTFOMaterialHandler.FryingOil.getFluid(60))
@@ -108,7 +108,7 @@ public class PotatoProcessingChain {
                 .inputs(PAPER_BAG.getStackForm())
                 .outputs(FRENCH_FRIES.getStackForm())
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(180)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(180)
                 .inputs(USED_PAPER_BAG.getStackForm())
                 .output(dust, Paper, 3)
                 .chancedOutput(GTFOMaterialHandler.PotatoStarch.getItemStack(), 2000, 150)
