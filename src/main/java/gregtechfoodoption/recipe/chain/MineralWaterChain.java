@@ -1,14 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtech.api.unification.OreDictUnifier;
-import gregtechfoodoption.utils.RecipeUtils;
-
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-
 
 public class MineralWaterChain {
     public static void init()

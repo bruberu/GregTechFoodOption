@@ -1,9 +1,6 @@
 package gregtechfoodoption.machines;
 
 import gregtech.api.GTValues;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.client.renderer.texture.Textures;
-import gregtech.common.metatileentities.electric.MetaTileEntityMacerator;
 import gregtechfoodoption.GregTechFoodOption;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.recipe.GTFORecipeMaps;

@@ -3,7 +3,6 @@ package gregtechfoodoption.integration.appleskin;
 
 import gregtech.api.items.metaitem.FoodUseManager;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemUseManager;
 import net.minecraft.entity.player.EntityPlayer;

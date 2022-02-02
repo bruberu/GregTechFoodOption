@@ -2,7 +2,6 @@ package gregtechfoodoption.recipe.builder;
 
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.builders.PrimitiveRecipeBuilder;
 import gregtech.api.recipes.recipeproperties.PrimitiveProperty;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.ValidationResult;

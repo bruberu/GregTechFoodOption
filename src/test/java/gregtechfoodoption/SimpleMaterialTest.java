@@ -1,32 +1,7 @@
 package gregtechfoodoption;
 
-import gregtech.GregTechMod;
-import gregtech.api.GregTechAPI;
-import gregtech.api.unification.material.Material;
-import gregtech.api.util.GTLog;
-import gregtech.common.CommonProxy;
-import gregtech.common.MetaFluids;
-import gregtech.common.items.MetaItems;
-import gregtechfoodoption.integration.GTFOAAMaterialHandler;
-import gregtechfoodoption.integration.GTFONCMaterialHandler;
-import gregtechfoodoption.machines.GTFOTileEntities;
-import gregtechfoodoption.utils.GTFOLog;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtech.api.unification.material.Materials;
-import gregtech.common.blocks.MetaBlocks;
-import gregtech.common.metatileentities.MetaTileEntities;
-import net.minecraft.init.Bootstrap;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
-import org.apache.logging.log4j.LogManager;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static gregtech.api.GregTechAPI.MATERIAL_REGISTRY;
-import static org.junit.Assert.assertNotNull;
 
 public class SimpleMaterialTest {
 

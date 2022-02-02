@@ -1,17 +1,12 @@
 package gregtechfoodoption.machines.multiblock;
 
-import gregtech.api.gui.widgets.LabelWidget;
-import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.client.GTFOGuiTextures;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtechfoodoption.block.GTFOBlockCasing;
-import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtech.api.capability.impl.ItemHandlerProxy;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.gui.widgets.LabelWidget;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -20,32 +15,19 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapPrimitiveMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.MetaBlocks;
+import gregtechfoodoption.block.GTFOBlockCasing;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.client.GTFOGuiTextures;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static gregtech.api.unification.material.Materials.Iron;
-import static gregtech.api.util.InventoryUtils.simulateItemStackMerge;
 
 public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockController {
 
@@ -121,5 +103,9 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
                         .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTFOGuiTextures.PRIMITIVE_FOOD_OVERLAY))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.PRIMITIVE_SLOT, 0)
                 .build(getHolder(), entityPlayer);
+    }
+
+    public boolean hasMaintenanceMechanics() {
+        return false;
     }
 }

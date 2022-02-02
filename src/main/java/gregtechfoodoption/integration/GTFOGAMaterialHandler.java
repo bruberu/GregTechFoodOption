@@ -1,15 +1,5 @@
 package gregtechfoodoption.integration;
 
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.material.info.MaterialIconSet;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtechfoodoption.item.GTFOOredictItem;
-import gregtechfoodoption.material.GTFOFluidMaterial;
-import gregtechfoodoption.utils.RecipeUtils;
-
-import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtechfoodoption.utils.RecipeUtils.averageRGB;
-
 public class GTFOGAMaterialHandler {
 
     /* Will be added back at a later date, when Gregicality: Science comes out. TODO

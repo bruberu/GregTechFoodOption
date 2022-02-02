@@ -1,17 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtechfoodoption.utils.RecipeUtils;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.common.items.MetaItems.*;
-
 public class PurpleDrinkChain {
     public static void init() {
         /*

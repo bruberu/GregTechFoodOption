@@ -1,7 +1,5 @@
 package gregtechfoodoption.material;
 
-import com.google.common.collect.ImmutableList;
-import gregtech.api.unification.stack.MaterialStack;
 import gregtech.api.util.SmallDigits;
 
 public class GTFOMaterial {

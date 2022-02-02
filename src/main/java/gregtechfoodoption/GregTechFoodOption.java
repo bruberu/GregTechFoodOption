@@ -5,7 +5,6 @@ import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.utils.GTFOConfigOverrider;
-import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.machines.GTFOTileEntities;
 import net.minecraftforge.common.MinecraftForge;
@@ -15,8 +14,6 @@ import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import java.io.IOException;
 
 @Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
         dependencies = GTValues.MOD_VERSION_DEP + "after:gcy_science")

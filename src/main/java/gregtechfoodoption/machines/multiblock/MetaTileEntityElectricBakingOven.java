@@ -3,11 +3,6 @@ package gregtechfoodoption.machines.multiblock;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import gregtech.common.ConfigHolder;
-import gregtech.common.blocks.BlockGlassCasing;
-import gregtechfoodoption.block.GTFOMetalCasing;
-import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
 import gregtech.api.gui.Widget;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -15,17 +10,22 @@ import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
-import gregtech.api.pattern.*;
+import gregtech.api.pattern.BlockPattern;
+import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.PatternMatchContext;
+import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.recipeproperties.RecipeProperty;
 import gregtech.api.util.RelativeDirection;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtech.common.ConfigHolder;
+import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtechfoodoption.block.GTFOMetalCasing;
+import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -35,11 +35,11 @@ import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.List;
 
-import static gregtechfoodoption.block.GTFOMetaBlocks.GTFO_METAL_CASING;
 import static gregtech.api.gui.widgets.AdvancedTextWidget.withButton;
 import static gregtech.api.unification.material.Materials.Steel;
+import static gregtechfoodoption.block.GTFOMetaBlocks.GTFO_METAL_CASING;
 
 public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockController {
 
@@ -236,7 +236,6 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
     protected void formStructure(PatternMatchContext context) {
         super.formStructure(context);
         this.size = context.getOrDefault("bakingOvenLength", 1) - 1;
-        System.out.println(size);
     }
 
     @Override

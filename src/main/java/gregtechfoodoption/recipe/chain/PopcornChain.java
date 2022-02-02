@@ -1,15 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-
-import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.common.items.MetaItems.*;
-
 public class PopcornChain {
     public static void init() {/*
         ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(60)

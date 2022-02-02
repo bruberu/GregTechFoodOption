@@ -1,6 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtechfoodoption.utils.RecipeUtils;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
