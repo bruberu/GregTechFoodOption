@@ -495,3 +495,10 @@ item.meat.ingot=Meat Ingot
 item.meat.nugget=Meat Nugget
 metaitem.component.scrap_meat.name=Scrap Meat
 metaitem.component.scrap_meat.tooltip=The Parts that People don't usually eat, although I won't judge
+
+enchantment.level.0=I
+enchantment.level.16=XVI
+enchantment.level.28=XXVIII
+enchantment.level.48=XLVIII
+enchantment.level.83=LXXXIII
+enchantment.level.145=CXLV
