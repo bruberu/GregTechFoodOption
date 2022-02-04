@@ -306,5 +306,19 @@ public class CoreChain {
                 .outputs(MashedPotato.getItemStack())
                 .buildAndRegister();
 
+        MIXER_RECIPES.recipeBuilder().EUt(16).duration(90)
+                .input(dust, Wheat)
+                .input(dust, Meat)
+                .fluidInputs(Water.getFluid(500))
+                .outputs(GTFOMaterialHandler.ToughMeat.getItemStack(2))
+                .buildAndRegister();
+
+        ModHandler.addSmeltingRecipe(GTFOMaterialHandler.ToughMeat.getItemStack(), OreDictUnifier.get(ingot, Meat));
+
+        EXTRUDER_RECIPES.recipeBuilder().EUt(28).duration(20)
+                .input(dust, Meat)
+                .notConsumable(MetaItems.SHAPE_EXTRUDER_INGOT)
+                .output(ingot, Meat)
+                .buildAndRegister();
     }
 }

@@ -304,15 +304,15 @@ metaitem.food.pizza.mince_meat.tooltip=No, GregoriusT! Don't fall down the inesc
 metaitem.food.sandwich.veggie.name=Veggie Sandwich
 metaitem.food.sandwich.cheese.name=Cheese Sandwich
 metaitem.food.sandwich.bacon.name=Bacon Sandwich
-metaitem.food.sandwich.steak.name=Steak Sandwich
+metaitem.food.sandwich.steak.name=Meat Sandwich
 metaitem.food.sandwich.veggie.large.name=Large Veggie Sandwich
 metaitem.food.sandwich.cheese.large.name=Large Cheese Sandwich
 metaitem.food.sandwich.bacon.large.name=Large Bacon Sandwich
-metaitem.food.sandwich.steak.large.name=Large Steak Sandwich
+metaitem.food.sandwich.steak.large.name=Large Meat Sandwich
 metaitem.food.sandwich.veggie.tooltip=Also Boneless
 metaitem.food.sandwich.cheese.tooltip=Who cut the cheese?
 metaitem.food.sandwich.bacon.tooltip=The ULTIMATE Sandwich (requires 3 infinity slices).
-metaitem.food.sandwich.steak.tooltip=Steamed Steak
+metaitem.food.sandwich.steak.tooltip=Steamed Meat
 metaitem.food.sandwich.veggie.large.tooltip=Just not worth it.
 metaitem.food.sandwich.cheese.large.tooltip=Set your mind at cheese.
 metaitem.food.sandwich.bacon.large.tooltip=For Women! (and feminine Men)
@@ -489,3 +489,9 @@ fluid.rabbit_stew=Rabbit Stew
 
 gregtechfoodoption.tooltip.potion.each=   §e%s %s§r for §c%s§r ticks with a §a%s%%§r chance of happening
 gregtechfoodoption.tooltip.potion.header=§6Contains effects:
+
+metaitem.tough_meat_dust.name=Toughened Meat
+item.meat.ingot=Meat Ingot
+item.meat.nugget=Meat Nugget
+
+
