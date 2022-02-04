@@ -320,5 +320,10 @@ public class CoreChain {
                 .notConsumable(MetaItems.SHAPE_EXTRUDER_INGOT)
                 .output(ingot, Meat)
                 .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder().EUt(4).duration(40)
+                .inputs(SCRAP_MEAT.getStackForm())
+                .output(dust, Meat)
+                .buildAndRegister();
     }
 }

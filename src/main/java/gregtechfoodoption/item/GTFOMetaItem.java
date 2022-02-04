@@ -183,6 +183,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem HOT_BEETROOT_SOUP;
     public static MetaItem<?>.MetaValueItem HOT_RABBIT_STEW;
 
+    public static MetaItem<?>.MetaValueItem SCRAP_MEAT;
 
     @Override
     public void registerSubItems() {
@@ -286,6 +287,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
         BANANA_PEEL = addItem(127, "component.banana_peel");
+
+        SCRAP_MEAT = addItem(134, "component.scrap_meat");
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
