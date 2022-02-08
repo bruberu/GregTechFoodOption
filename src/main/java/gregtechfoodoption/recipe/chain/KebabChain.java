@@ -49,6 +49,6 @@ public class KebabChain {
                 .outputs(KubideMeat.getItemStack(5))
                 .buildAndRegister();
 
-        GTFOUtils.addBakingOvenRecipes(KEBAB_KUBIDEH.getStackForm(),KEBAB_KUBIDEH_COOKED.getStackForm(),1000,275,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_KUBIDEH.getStackForm(),KEBAB_KUBIDEH_COOKED.getStackForm(),1000,350,4);
     }
 }
