@@ -2,15 +2,15 @@ package gregtechfoodoption.recipe.chain;
 
 //Used for cross-chain materials.
 
-import gregtech.api.unification.ore.OrePrefix;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -18,15 +18,14 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-import static gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK;
-import static gregtechfoodoption.GTFOMaterialHandler.MashedPotato;
-import static gregtechfoodoption.GTFOMaterialHandler.PurpleDrink;
-import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 
 public class CoreChain {
     public static void init() {
@@ -325,5 +324,45 @@ public class CoreChain {
                 .inputs(SCRAP_MEAT.getStackForm())
                 .output(dust, Meat)
                 .buildAndRegister();
+
+        GTFOUtils.getMeat().stream().filter(p-> p.isItemEqual(new ItemStack(Items.RABBIT)) || p.isItemEqual(new ItemStack(Items.CHICKEN))).forEach(itemStack -> {
+            itemStack.setCount(16);
+            CENTRIFUGE_RECIPES.recipeBuilder().EUt(64).duration(100)
+                    .inputs(itemStack)
+                    .chancedOutput(Fat.getItemStack(4),50,20 )
+                    .chancedOutput(Fat.getItemStack(4),50,20 )
+                    .buildAndRegister();
+        });
+
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(58).duration(80)
+                .input(SCRAP_MEAT,8)
+                .chancedOutput(Fat.getItemStack(2),70,20 )
+                .chancedOutput(Fat.getItemStack(2),60,20 )
+                .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(16).duration(10)
+                .inputs(Fat.getItemStack())
+                .fluidOutputs(Stearin.getFluid(100)) // TODO: is it too much? is it too little?
+                .buildAndRegister();
+
+        CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(Stearin.getFluid(1000),Water.getFluid(2000))
+                .input(dust,SodiumHydroxide,1)
+                .fluidOutputs(StearicAcidSoap.getFluid(3000));
+
+        //"Stearic acid is used along with simple sugar or corn syrup as a hardener in candies. In fireworks, stearic acid is often used to coat metal powders such as aluminium and iron. This prevents oxidation, allowing compositions to be stored for a longer period of time"
+        DISTILLERY_RECIPES.recipeBuilder().EUt(32).duration(10)
+                .fluidInputs(StearicAcidSoap.getFluid(100))
+                .fluidOutputs(StearicAcid.getFluid(100))
+                .output(dustTiny,SodiumHydroxide,1)
+                .circuitMeta(0)
+                .buildAndRegister();
+
+        /*FLUID_SOLIDFICATION_RECIPES.recipeBuilder().EUt(32).duration(100)
+                .fluidInputs(StearicAcidSoap.getFluid(1000))
+                .output(soap)
+                .buildAndRegister();
+                //TODO: Maybe do soaps with this :p
+                */
     }
 }
