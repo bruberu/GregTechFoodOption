@@ -19,7 +19,6 @@ public class BananaProcessingChain {
         CHEMICAL_RECIPES.recipeBuilder().EUt(64).duration(300)
                 .fluidInputs(PerchloricAcid.getFluid(1000), Ammonia.getFluid(1000))
                 .outputs(AmmoniumPerchlorate.getItemStack(10))
-                .output(dust, Salt, 2)
                 .buildAndRegister();
 
         CANNER_RECIPES.recipeBuilder().EUt(32).duration(60)
