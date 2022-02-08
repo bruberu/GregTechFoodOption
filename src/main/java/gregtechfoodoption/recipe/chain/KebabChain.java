@@ -33,12 +33,12 @@ public class KebabChain {
                 .outputs(SKEWER.getStackForm(3))
                 .buildAndRegister();
 
-        LATHE_RECIPES.recipeBuilder().EUt(200).duration(6)
+        LATHE_RECIPES.recipeBuilder().EUt(200).duration(200)
                 .input(stickLong,Titanium,3)
                 .outputs(SKEWER.getStackForm(24))
                 .buildAndRegister();
 
-        LATHE_RECIPES.recipeBuilder().EUt(200).duration(25)
+        LATHE_RECIPES.recipeBuilder().EUt(200).duration(100)
                 .input(stick,Titanium,3)
                 .outputs(SKEWER.getStackForm(12))
                 .buildAndRegister();
