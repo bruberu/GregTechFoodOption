@@ -185,6 +185,24 @@ public class GTFOMetaItem extends StandardMetaItem {
 
     public static MetaItem<?>.MetaValueItem SCRAP_MEAT;
 
+    public static MetaItem<?>.MetaValueItem SKEWER;
+    public static MetaItem<?>.MetaValueItem KEBAB_KUBIDEH;
+    public static MetaItem<?>.MetaValueItem KEBAB_KUBIDEH_COOKED;
+//    public static MetaItem<?>.MetaValueItem KEBAB_BARG;
+//    public static MetaItem<?>.MetaValueItem KEBAB_DANDE;
+//    public static MetaItem<?>.MetaValueItem KEBAB_LIVER;
+//    public static MetaItem<?>.MetaValueItem KEBAB_ONION;
+//    public static MetaItem<?>.MetaValueItem KEBAB_TOMATO;
+//    public static MetaItem<?>.MetaValueItem KEBAB_PEPPER;
+//    public static MetaItem<?>.MetaValueItem KEBAB_MUSHROOM;
+//    public static MetaItem<?>.MetaValueItem KEBAB_MIX;
+//    public static MetaItem<?>.MetaValueItem KEBAB_BEEF;
+//    public static MetaItem<?>.MetaValueItem KEBAB_LAMB;
+//    public static MetaItem<?>.MetaValueItem KEBAB_CHICKEN;
+//    public static MetaItem<?>.MetaValueItem KEBAB_FAT;
+//    public static MetaItem<?>.MetaValueItem KEBAB_FISH;
+//    public static MetaItem<?>.MetaValueItem KEBAB_CHUM;
+
     @Override
     public void registerSubItems() {
         IItemContainerItemProvider selfContainerItemProvider = itemStack -> itemStack;
