@@ -434,6 +434,12 @@ public class GTFOMetaItem extends StandardMetaItem {
         HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
                 .setEatingDuration(60));
 
+        SKEWER = addItem(135, "component.skewer");
+        KEBAB_KUBIDEH = addItem(136, "food.kebab.kubide").addComponents(new GTFOFoodStats(3, 0.2f, false, false, SKEWER.getStackForm(1))
+                .setEatingDuration(12));
+        KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide.cooked").addComponents(new GTFOFoodStats(8, 0.8f, false, false, SKEWER.getStackForm(1))
+                .setEatingDuration(12));
+
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
             double saturation = 8.6;

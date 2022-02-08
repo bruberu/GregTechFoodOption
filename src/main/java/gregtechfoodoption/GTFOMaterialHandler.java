@@ -85,6 +85,9 @@ public class GTFOMaterialHandler {
 
     public static final GTFOOredictItem.OreDictValueItem ToughMeat = SHAPED_ITEM.addOreDictItem(1116, "tough_meat", 0xa63028, MaterialIconSet.ROUGH, OrePrefix.dust);
 
+    public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117,"kubide_meat",0x804000,MaterialIconSet.FINE,OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1118,"fat",0xf5f5f5,MaterialIconSet.SHINY,OrePrefix.ingot,"C57H110O6"); // yea Fat is much more complicated but i just stick to this formula...
+
     public static void onMaterialsInit() {
         Materials.Meat.setProperty(PropertyKey.INGOT, new IngotProperty());
         Materials.Meat.addFlags(NO_SMELTING, FLAMMABLE, NO_WORKING);

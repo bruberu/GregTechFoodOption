@@ -15,6 +15,7 @@ public class GTFORecipeAddition {
         BananaProcessingChain.init();
         MicrowaveChain.init();
         GTFOMachineRecipes.init();
+        KebabChain.init();
         if(GTFOConfig.gtfoChainsConfig.potatoProcessingChain)
             PotatoProcessingChain.init();
         if(GTFOConfig.gtfoChainsConfig.alcoholChain)

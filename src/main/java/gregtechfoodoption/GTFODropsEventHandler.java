@@ -43,6 +43,16 @@ public class GTFODropsEventHandler {
                                 SCRAP_MEAT.getStackForm(event.getLootingLevel() == 0 ? 1 : rand.nextInt(event.getLootingLevel()) + 1)));
             }
         }
+        if(entity instanceof EntitySheep){
+            if (rand.nextInt(2) == 0) {
+                event.getDrops().add(
+                        new EntityItem(entity.getEntityWorld(),
+                                entity.getPosition().getX(),
+                                entity.getPosition().getY() + 1,
+                                entity.getPosition().getZ(),
+                                GTFOMaterialHandler.Fat.getItemStack(event.getLootingLevel() == 0 ? 1 : rand.nextInt(event.getLootingLevel()) + 1)));
+            }
+        }
     }
 
 }
