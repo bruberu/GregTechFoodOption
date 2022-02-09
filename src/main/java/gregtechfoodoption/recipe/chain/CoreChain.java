@@ -325,19 +325,23 @@ public class CoreChain {
                 .output(dust, Meat)
                 .buildAndRegister();
 
-        GTFOUtils.getMeat().stream().filter(p-> p.isItemEqual(new ItemStack(Items.RABBIT)) || p.isItemEqual(new ItemStack(Items.CHICKEN))).forEach(itemStack -> {
+        GTFOUtils.getMeat().stream().filter(p-> !p.isItemEqual(new ItemStack(Items.RABBIT)) || !p.isItemEqual(new ItemStack(Items.CHICKEN))).forEach(itemStack -> {
             itemStack.setCount(16);
             CENTRIFUGE_RECIPES.recipeBuilder().EUt(64).duration(100)
                     .inputs(itemStack)
-                    .chancedOutput(Fat.getItemStack(4),50,20 )
-                    .chancedOutput(Fat.getItemStack(4),50,20 )
+                    .output(dust,Meat,8)
+                    .output(dustSmall,Bone,8)
+                    .chancedOutput(Fat.getItemStack(4),5000,2000 )
+                    .chancedOutput(Fat.getItemStack(4),5000,2000 )
                     .buildAndRegister();
         });
 
-        CENTRIFUGE_RECIPES.recipeBuilder().EUt(58).duration(80)
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(64).duration(80)
                 .input(SCRAP_MEAT,8)
-                .chancedOutput(Fat.getItemStack(2),70,20 )
-                .chancedOutput(Fat.getItemStack(2),60,20 )
+                .output(dust,Meat,4)
+                .output(dustSmall,Bone,8)
+                .chancedOutput(Fat.getItemStack(2),7000,2000 )
+                .chancedOutput(Fat.getItemStack(2),6000,2000 )
                 .buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder().EUt(16).duration(10)
@@ -363,7 +367,7 @@ public class CoreChain {
                 .fluidInputs(StearicAcidSoap.getFluid(1000))
                 .output(soap)
                 .buildAndRegister();
-                //TODO: Maybe do soaps with this :p (this works as a food addtive soap? with stearin atleast)
+                //TODO: Maybe do soaps with this :p (this works as a food addtive soap? with stearin atleast idk)
                 */
     }
 }

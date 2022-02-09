@@ -188,7 +188,9 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem SKEWER;
     public static MetaItem<?>.MetaValueItem KEBAB_KUBIDEH;
     public static MetaItem<?>.MetaValueItem KEBAB_KUBIDEH_COOKED;
-//    public static MetaItem<?>.MetaValueItem KEBAB_BARG;
+    public static MetaItem<?>.MetaValueItem KEBAB_BARG;
+    public static MetaItem<?>.MetaValueItem KEBAB_BARG_COOKED;
+    public static MetaItem<?>.MetaValueItem KEBAB_SOLTANI;
 //    public static MetaItem<?>.MetaValueItem KEBAB_DANDE;
 //    public static MetaItem<?>.MetaValueItem KEBAB_LIVER;
 //    public static MetaItem<?>.MetaValueItem KEBAB_ONION;
@@ -456,6 +458,12 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_KUBIDEH = addItem(136, "food.kebab.kubide").addComponents(new GTFOFoodStats(3, 0.2f, false, false, SKEWER.getStackForm(1))
                 .setEatingDuration(12));
         KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide.cooked").addComponents(new GTFOFoodStats(8, 0.8f, false, false, SKEWER.getStackForm(1))
+                .setEatingDuration(12));
+        KEBAB_BARG= addItem(138, "food.kebab.barg").addComponents(new GTFOFoodStats(2, 0.1f, false, false, SKEWER.getStackForm(1))
+                .setEatingDuration(12));
+        KEBAB_BARG_COOKED = addItem(139, "food.kebab.barg.cooked").addComponents(new GTFOFoodStats(6, 0.5f, false, false, SKEWER.getStackForm(1))
+                .setEatingDuration(12));
+        KEBAB_SOLTANI = addItem(140, "food.kebab.soltani.cooked").addComponents(new GTFOFoodStats(16, 1f, false, false, SKEWER.getStackForm(1))
                 .setEatingDuration(12));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
