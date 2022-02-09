@@ -347,8 +347,9 @@ public class CoreChain {
 
         CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(40)
                 .fluidInputs(Stearin.getFluid(1000),Water.getFluid(2000))
-                .input(dust,SodiumHydroxide,1)
-                .fluidOutputs(SodiumStearate.getFluid(3000));
+                .input(dust,SodiumHydroxide,3)
+                .fluidOutputs(SodiumStearate.getFluid(3000),Glycerol.getFluid(1000))
+                .buildAndRegister();
 
         //"Stearic acid is used along with simple sugar or corn syrup as a hardener in candies. In fireworks, stearic acid is often used to coat metal powders such as aluminium and iron. This prevents oxidation, allowing compositions to be stored for a longer period of time"
         DISTILLERY_RECIPES.recipeBuilder().EUt(32).duration(10)
@@ -362,7 +363,7 @@ public class CoreChain {
                 .fluidInputs(StearicAcidSoap.getFluid(1000))
                 .output(soap)
                 .buildAndRegister();
-                //TODO: Maybe do soaps with this :p
+                //TODO: Maybe do soaps with this :p (this works as a food addtive soap? with stearin atleast)
                 */
     }
 }
