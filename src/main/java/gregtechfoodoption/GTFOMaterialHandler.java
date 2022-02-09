@@ -63,7 +63,7 @@ public class GTFOMaterialHandler {
 
     public static final GTFOFluidMaterial Stearin = new GTFOFluidMaterial("stearin", 0xffcc66,"C57H110O6",100);
     public static final GTFOFluidMaterial StearicAcid = new GTFOFluidMaterial("stearic_acid", 0xfff7e6,"C17H35CO2H",100); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
-    public static final GTFOFluidMaterial StearicAcidSoap = new GTFOFluidMaterial("stearic_acid_soap", averageRGB(2,0xfff7e6,SodiumHydroxide.getMaterialRGB()),"C17H35COO−Na+",100);
+    public static final GTFOFluidMaterial SodiumStearate = new GTFOFluidMaterial("sodium_stearate", averageRGB(2,0xfff7e6,SodiumHydroxide.getMaterialRGB()),"C17H35COO−Na+",100);
 
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 

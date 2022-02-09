@@ -505,6 +505,10 @@ metaitem.food.kebab.kubide.tooltip=needs some carbon!
 metaitem.food.kebab.kubide.cooked.name=Kabab Koobideh
 metaitem.food.kebab.kubide.cooked.tooltip=Goes with Ayran!
 
+fluid.stearin=Stearin
+fluid.stearic_acic=Stearic Acid
+fluid.sodium_stearate=Sodium Sterate (Soap)
+
 enchantment.level.0=I
 enchantment.level.16=XVI
 enchantment.level.28=XXVIII
