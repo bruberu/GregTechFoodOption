@@ -25,6 +25,7 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK;
+import static gregtech.common.items.MetaItems.CARBON_MESH;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
@@ -329,19 +330,34 @@ public class CoreChain {
                 .buildAndRegister();
 
         //TODO: temp they overlap with methane
-        GTFOUtils.getMeat().stream().filter(p-> !p.isItemEqual(new ItemStack(Items.RABBIT)) || !p.isItemEqual(new ItemStack(Items.CHICKEN))).forEach(itemStack -> {
+        GTFOUtils.getMeat().forEach(itemStack -> {
             itemStack.setCount(16);
-            CENTRIFUGE_RECIPES.recipeBuilder().EUt(64).duration(100)
+            CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(100)
                     .inputs(itemStack)
                     .output(dust,Meat,8)
                     .output(dustSmall,Bone,8)
                     .chancedOutput(Fat.getItemStack(4),5000,2000 )
                     .chancedOutput(Fat.getItemStack(4),5000,2000 )
+                    .notConsumable(new IntCircuitIngredient(0))
+                    .buildAndRegister();
+            LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
+                    .input(itemStack.getItem(),32)
+                    .fluidInputs(Methanol.getFluid(8000),Chloroform.getFluid(8000))
+                    .output(dust,Meat,20)
+                    .output(dustSmall,Bone,20)
+                    .fluidOutputs(Stearin.getFluid(4000),Sludge.getFluid(4000))
                     .buildAndRegister();
         });
 
-        //TODO: temp they overlap with methane
-        CENTRIFUGE_RECIPES.recipeBuilder().EUt(64).duration(80)
+        LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
+                .input(SCRAP_MEAT,32)
+                .fluidInputs(Methanol.getFluid(8000),Chloroform.getFluid(8000))
+                .output(dust,Meat,25)
+                .output(dustSmall,Bone,20)
+                .fluidOutputs(Stearin.getFluid(6000),Sludge.getFluid(8000))
+                .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(80)
                 .input(SCRAP_MEAT,8)
                 .output(dust,Meat,4)
                 .output(dustSmall,Bone,8)
@@ -349,12 +365,9 @@ public class CoreChain {
                 .chancedOutput(Fat.getItemStack(2),6000,2000 )
                 .buildAndRegister();
 
-        LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
-                .input(SCRAP_MEAT,32)
-                .fluidInputs(Methanol.getFluid(8000),Chloroform.getFluid(8000))
-                .output(dust,Meat,20)
-                .output(dustSmall,Bone,20)
-                .fluidOutputs(Stearin.getFluid(4000),Sludge.getFluid(4000))
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(30).duration(300)
+                .input(dust,Meat,3)
+                .fluidOutputs(Biomass.getFluid(200),Stearin.getFluid(100))
                 .buildAndRegister();
 
         FERMENTING_RECIPES.recipeBuilder().EUt(32).duration(1200)
@@ -366,23 +379,24 @@ public class CoreChain {
 
         GTFOUtils.getOrganicOils().forEach(f->{
             // turning Plant Oil into Animal Oil?! Magik!
-            CHEMICAL_RECIPES.recipeBuilder().EUt(32).duration(300)
+            CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(300)
                     .input(dustTiny,SodaAsh)
                     .fluidInputs(new FluidStack(f,1000),Hydrogen.getFluid(1000))
                     .fluidOutputs(Stearin.getFluid(1000))
                     .notConsumable(new IntCircuitIngredient(0))
                     .buildAndRegister();
         });
+
         Arrays.asList(Methanol,Ethanol).forEach(f->{
-            CHEMICAL_RECIPES.recipeBuilder().EUt(32).duration(600)
+            CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(600)
                     .input(dustTiny,SodiumHydroxide)
                     .fluidInputs(Stearin.getFluid(6000),f.getFluid(1000))
-                    .fluidOutputs(BioDiesel.getFluid(6000),Glycerol.getFluid(1000))
+                    .fluidOutputs(Glycerol.getFluid(1000),BioDiesel.getFluid(6000))
                     .buildAndRegister();
-            LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(32).duration(5400)
+            LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(5400)
                     .input(dust,SodiumHydroxide)
-                    .fluidInputs(Stearin.getFluid(54000),f.getFluid(90000))
-                    .fluidOutputs(BioDiesel.getFluid(54000),Glycerol.getFluid(9000))
+                    .fluidInputs(Stearin.getFluid(54000),f.getFluid(9000))
+                    .fluidOutputs(Glycerol.getFluid(9000),BioDiesel.getFluid(54000))
                     .buildAndRegister();
         });
 
@@ -417,5 +431,18 @@ public class CoreChain {
                 .buildAndRegister();
                 //TODO: Maybe do soaps with this :p (this works as a food addtive soap? with stearin atleast idk)
                 */
+
+        //TODO: make it refine to Fertilizer Later! & Biosolids
+        LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(800)
+                .fluidInputs(Sludge.getFluid(24000))
+                .fluidInputs(Bacteria.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(10000))
+                .fluidOutputs(Water.getFluid(14000))
+                .fluidOutputs(BacterialSludge.getFluid(1000))
+                .fluidOutputs(SulfurDioxide.getFluid(8000))
+                .input(dust,Calcite,3)
+                .notConsumable(CARBON_MESH)
+                .notConsumable(new IntCircuitIngredient(1))
+                .buildAndRegister();
     }
 }

@@ -4,6 +4,7 @@ import gregtech.api.GTValues;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.util.RandomPotionEffect;
+import gregtechfoodoption.item.GTFOFoodStats;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -20,6 +21,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.gem;
 import static gregtechfoodoption.GTFOMaterialHandler.FryingOil;
 import static gregtechfoodoption.GTFOMaterialHandler.OliveOil;
+import static gregtechfoodoption.item.GTFOMetaItem.SKEWER;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 
 //A not small amount of code from here was yoinked from other places. I'll give credit wherever I can!
@@ -186,6 +188,10 @@ public class GTFOUtils {
                 .input(gem, Coke, Math.max(fuelAmount / 2, 1))
                 .outputs(output)
                 .buildAndRegister();
+    }
+
+    public static GTFOFoodStats getKebabFood(int hunger, float sat){
+        return new GTFOFoodStats( hunger,sat,false,false,SKEWER.getStackForm(1));
     }
 
     @SideOnly(Side.CLIENT)

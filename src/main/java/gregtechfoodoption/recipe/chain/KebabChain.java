@@ -3,6 +3,7 @@ package gregtechfoodoption.recipe.chain;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.utils.GTFOUtils;
+import net.minecraft.init.Items;
 
 import static gregtech.api.recipes.RecipeMaps.LATHE_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.MIXER_RECIPES;
@@ -113,7 +114,41 @@ public class KebabChain {
                 .outputs(KEBAB_SOLTANI.getStackForm(2),SKEWER.getStackForm())
                 .buildAndRegister();
 
-        GTFOUtils.addBakingOvenRecipes(KEBAB_KUBIDEH.getStackForm(),KEBAB_KUBIDEH_COOKED.getStackForm(),1000,350,4);
-        GTFOUtils.addBakingOvenRecipes(KEBAB_BARG.getStackForm(),KEBAB_BARG_COOKED.getStackForm(),1000,350,4);
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(100)
+                .inputs(ONION.getStackForm(3))
+                .input(dustTiny,Salt)
+                .inputs(SKEWER.getStackForm())
+                .outputs(KEBAB_ONION.getStackForm())
+                .buildAndRegister();
+
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(100)
+                .inputs(TOMATO.getStackForm(2))
+                .input(dustTiny,Salt)
+                .inputs(SKEWER.getStackForm())
+                .outputs(KEBAB_TOMATO.getStackForm())
+                .buildAndRegister();
+
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
+                .inputs(CHUM.getStackForm(8),BANANA_PEEL.getStackForm(2),ONION.getStackForm(),MashedPotato.getItemStack(4),SKEWER.getStackForm(4))
+                .fluidInputs(Yolk.getFluid(200),Stearin.getFluid(400))
+                .outputs(KEBAB_CHUM.getStackForm(4))
+                .buildAndRegister();
+
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(100).duration(1000)
+                .inputs(KEBAB_CHUM_COOKED.getStackForm(2))
+                .inputs(KEBAB_KUBIDEH_COOKED.getStackForm(5))
+                .inputs(BURGER_CHUM.getStackForm(14))
+                .input(Items.BUCKET)
+                .fluidInputs(RabbitStew.getFluid(250))
+                .fluidInputs(HotFryingOil.getFluid(250))
+                .fluidInputs(PotatoJuice.getFluid(4000))
+                .outputs(KEBAB_CHUM_BUCKET.getStackForm(),SKEWER.getStackForm(7))
+                .buildAndRegister();
+
+        GTFOUtils.addBakingOvenRecipes(KEBAB_KUBIDEH.getStackForm(),KEBAB_KUBIDEH_COOKED.getStackForm(),1000,800,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_BARG.getStackForm(),KEBAB_BARG_COOKED.getStackForm(),1000,800,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_TOMATO.getStackForm(),KEBAB_TOMATO_COOKED.getStackForm(),500,800,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_ONION.getStackForm(),KEBAB_ONION_COOKED.getStackForm(),500,800,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_CHUM.getStackForm(),KEBAB_CHUM_COOKED.getStackForm(),500,800,4);
     }
 }

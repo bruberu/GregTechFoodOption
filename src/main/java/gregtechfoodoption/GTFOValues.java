@@ -11,5 +11,6 @@ public class GTFOValues {
     public static final String craftingToolRollingPin = "craftingToolRollingPin";
 
     public static final MaterialIconSet GTFO = new MaterialIconSet("GTFO");
+    public static final MaterialIconSet Organic = new MaterialIconSet("organic");
 
 }

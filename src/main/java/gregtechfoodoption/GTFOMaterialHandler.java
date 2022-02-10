@@ -10,6 +10,7 @@ import gregtechfoodoption.material.GTFOFluidMaterial;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
+import static gregtechfoodoption.GTFOValues.Organic;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 
@@ -61,9 +62,9 @@ public class GTFOMaterialHandler {
 
     public static final GTFOFluidMaterial RabbitStew = new GTFOFluidMaterial("rabbit_stew", 0xe0c0a0);
 
-    public static final GTFOFluidMaterial Stearin = new GTFOFluidMaterial("stearin", 0xffcc66,"C57H110O6",100);
-    public static final GTFOFluidMaterial StearicAcid = new GTFOFluidMaterial("stearic_acid", 0xfff7e6,"C17H35CO2H",100); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
-    public static final GTFOFluidMaterial SodiumStearate = new GTFOFluidMaterial("sodium_stearate", averageRGB(2,0xfff7e6,SodiumHydroxide.getMaterialRGB()),"C17H35COO−Na+",100);
+    public static final GTFOFluidMaterial Stearin = new GTFOFluidMaterial("stearin", 0xffcc66,"C57H110O6",373);
+    public static final GTFOFluidMaterial StearicAcid = new GTFOFluidMaterial("stearic_acid", 0xfff7e6,"C17H35CO2H"); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
+    public static final GTFOFluidMaterial SodiumStearate = new GTFOFluidMaterial("sodium_stearate", averageRGB(2,0xfff7e6,SodiumHydroxide.getMaterialRGB()),"C17H35COO−Na+",373);
 
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
@@ -89,9 +90,9 @@ public class GTFOMaterialHandler {
 
     public static final GTFOOredictItem.OreDictValueItem ToughMeat = SHAPED_ITEM.addOreDictItem(1116, "tough_meat", 0xa63028, MaterialIconSet.ROUGH, OrePrefix.dust);
 
-    public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117,"kubide_meat",0x804000,MaterialIconSet.FINE,OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1118,"fat",averageRGB(2,DyeOrange.getMaterialRGB(),DyeYellow.getMaterialRGB()),MaterialIconSet.FLINT,OrePrefix.ingot,"C57H110O6"); // yea Fat is much more complicated but i just stick to this formula...
-    public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addOreDictItem(1119,"barg_meat",0x7F0000,MaterialIconSet.ROUGH,OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117,"kubide_meat",0x804000,Organic,OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1118,"fat",averageRGB(2,DyeOrange.getMaterialRGB(),DyeYellow.getMaterialRGB()), Organic,OrePrefix.ingot,"C57H110O6"); // yea Fat is much more complicated but i just stick to this formula...
+    public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addOreDictItem(1119,"barg_meat",0x7F0000,Organic,OrePrefix.dust);
 
     public static void onMaterialsInit() {
         Materials.Meat.setProperty(PropertyKey.INGOT, new IngotProperty());

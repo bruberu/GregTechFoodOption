@@ -515,6 +515,24 @@ metaitem.food.kebab.barg.tooltip=Barg bargi Bargiun Bargi
 metaitem.food.kebab.barg.cooked.name=Kabab e Barg
 metaitem.food.kebab.barg.cooked.tooltip=Isn't it just Kubide with... less Steps?!
 
+metaitem.food.kebab.onion.name=Nailed Onions
+metaitem.food.kebab.onion.tooltip=Nail Your Cries!
+metaitem.food.kebab.onion.cooked.name=Onion Kabab
+metaitem.food.kebab.onion.cooked.tooltip=Look Who is Crying Now?!
+
+metaitem.food.kebab.tomato.name=Nailed Tomatos
+metaitem.food.kebab.tomato.tooltip=No Not the Mr Tomato!!
+metaitem.food.kebab.tomato.cooked.name=Kababed Tomato
+metaitem.food.kebab.tomato.cooked.tooltip=He's the New Messaiah
+
+metaitem.food.kebab.chum.name=Chum on Skewel
+metaitem.food.kebab.chum.tooltip=It's not Great...
+metaitem.food.kebab.chum.cooked.name=Chumkabab
+metaitem.food.kebab.chum.tooltip=ChumChewChumChumKabab!!!
+
+metaitem.food.kebab.chum.bucket.name=Chum Bucket
+metaitem.food.kebab.chum.bucket.tooltip=This isn't Chum Bucket...
+
 metaitem.food.kebab.soltani.cooked.name=Kabab e Soltani!
 metaitem.food.kebab.soltani.cooked.tooltip=EV Kebab (Voltage In: Delicious!)
 

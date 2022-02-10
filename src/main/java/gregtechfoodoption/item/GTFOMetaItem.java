@@ -11,6 +11,7 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -193,8 +194,10 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem KEBAB_SOLTANI;
 //    public static MetaItem<?>.MetaValueItem KEBAB_DANDE;
 //    public static MetaItem<?>.MetaValueItem KEBAB_LIVER;
-//    public static MetaItem<?>.MetaValueItem KEBAB_ONION;
-//    public static MetaItem<?>.MetaValueItem KEBAB_TOMATO;
+    public static MetaItem<?>.MetaValueItem KEBAB_ONION;
+    public static MetaItem<?>.MetaValueItem KEBAB_ONION_COOKED;
+    public static MetaItem<?>.MetaValueItem KEBAB_TOMATO;
+    public static MetaItem<?>.MetaValueItem KEBAB_TOMATO_COOKED;
 //    public static MetaItem<?>.MetaValueItem KEBAB_PEPPER;
 //    public static MetaItem<?>.MetaValueItem KEBAB_MUSHROOM;
 //    public static MetaItem<?>.MetaValueItem KEBAB_MIX;
@@ -203,7 +206,9 @@ public class GTFOMetaItem extends StandardMetaItem {
 //    public static MetaItem<?>.MetaValueItem KEBAB_CHICKEN;
 //    public static MetaItem<?>.MetaValueItem KEBAB_FAT;
 //    public static MetaItem<?>.MetaValueItem KEBAB_FISH;
-//    public static MetaItem<?>.MetaValueItem KEBAB_CHUM;
+    public static MetaItem<?>.MetaValueItem KEBAB_CHUM;
+    public static MetaItem<?>.MetaValueItem KEBAB_CHUM_COOKED;
+    public static MetaItem<?>.MetaValueItem KEBAB_CHUM_BUCKET;
 
     @Override
     public void registerSubItems() {
@@ -465,6 +470,31 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .setEatingDuration(12));
         KEBAB_SOLTANI = addItem(140, "food.kebab.soltani.cooked").addComponents(new GTFOFoodStats(16, 1f, false, false, SKEWER.getStackForm(1))
                 .setEatingDuration(12));
+        KEBAB_CHUM = addItem(145, "food.kebab.chum").addComponents(new GTFOFoodStats(3, 0f, false, true, SKEWER.getStackForm(1),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
+                .setEatingDuration(12));
+        KEBAB_CHUM_COOKED = addItem(146, "food.kebab.chum.cooked").addComponents(new GTFOFoodStats(6, 0.3f, false, true, SKEWER.getStackForm(1),
+                new RandomPotionEffect(MobEffects.NAUSEA, 100, 10, 99))
+                .setEatingDuration(12));
+        KEBAB_CHUM_BUCKET = addItem(147, "food.kebab.chum.bucket").addComponents(new GTFOFoodStats(16, 2f, false, true, new ItemStack(Items.BUCKET),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 5000),
+                new RandomPotionEffect(MobEffects.UNLUCK, 500, 11, 5000),
+                new RandomPotionEffect(MobEffects.SPEED, 500, 3, 7000),
+                new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 6500))
+                .setEatingDuration(12));
+
+
+        //Small Kebabs
+        KEBAB_ONION = addItem(141,"food.kebab.onion");
+        KEBAB_ONION_COOKED = addItem(142,"food.kebab.onion.cooked");
+        KEBAB_TOMATO = addItem(143,"food.kebab.tomato");
+        KEBAB_TOMATO_COOKED = addItem(144,"food.kebab.tomato.cooked");
+        GTFOFoodStats smallKebab = GTFOUtils.getKebabFood(1,0.1f);
+        GTFOFoodStats smallKebabCooked = GTFOUtils.getKebabFood(2,0.1f);
+        KEBAB_ONION.addComponents(smallKebab);
+        KEBAB_TOMATO.addComponents(smallKebab);
+        KEBAB_ONION_COOKED.addComponents(smallKebabCooked);
+        KEBAB_TOMATO_COOKED.addComponents(smallKebabCooked);
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
