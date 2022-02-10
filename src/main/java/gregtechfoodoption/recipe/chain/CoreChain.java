@@ -329,7 +329,6 @@ public class CoreChain {
                 .output(dust, Meat)
                 .buildAndRegister();
 
-        //TODO: temp they overlap with methane
         GTFOUtils.getMeat().forEach(itemStack -> {
             itemStack.setCount(16);
             CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(100)

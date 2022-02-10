@@ -145,10 +145,10 @@ public class KebabChain {
                 .outputs(KEBAB_CHUM_BUCKET.getStackForm(),SKEWER.getStackForm(7))
                 .buildAndRegister();
 
-        GTFOUtils.addBakingOvenRecipes(KEBAB_KUBIDEH.getStackForm(),KEBAB_KUBIDEH_COOKED.getStackForm(),1000,800,4);
-        GTFOUtils.addBakingOvenRecipes(KEBAB_BARG.getStackForm(),KEBAB_BARG_COOKED.getStackForm(),1000,800,4);
-        GTFOUtils.addBakingOvenRecipes(KEBAB_TOMATO.getStackForm(),KEBAB_TOMATO_COOKED.getStackForm(),500,800,4);
-        GTFOUtils.addBakingOvenRecipes(KEBAB_ONION.getStackForm(),KEBAB_ONION_COOKED.getStackForm(),500,800,4);
-        GTFOUtils.addBakingOvenRecipes(KEBAB_CHUM.getStackForm(),KEBAB_CHUM_COOKED.getStackForm(),500,800,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_KUBIDEH.getStackForm(),KEBAB_KUBIDEH_COOKED.getStackForm(),1000,360,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_BARG.getStackForm(),KEBAB_BARG_COOKED.getStackForm(),1000,375,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_TOMATO.getStackForm(),KEBAB_TOMATO_COOKED.getStackForm(),500,350,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_ONION.getStackForm(),KEBAB_ONION_COOKED.getStackForm(),500,350,4);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_CHUM.getStackForm(),KEBAB_CHUM_COOKED.getStackForm(),500,350,4);
     }
 }

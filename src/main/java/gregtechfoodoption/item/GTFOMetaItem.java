@@ -460,16 +460,11 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .setEatingDuration(60));
 
         SKEWER = addItem(135, "component.skewer");
-        KEBAB_KUBIDEH = addItem(136, "food.kebab.kubide").addComponents(new GTFOFoodStats(3, 0.2f, false, false, SKEWER.getStackForm(1))
-                .setEatingDuration(12));
-        KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide.cooked").addComponents(new GTFOFoodStats(8, 0.8f, false, false, SKEWER.getStackForm(1))
-                .setEatingDuration(12));
-        KEBAB_BARG= addItem(138, "food.kebab.barg").addComponents(new GTFOFoodStats(2, 0.1f, false, false, SKEWER.getStackForm(1))
-                .setEatingDuration(12));
-        KEBAB_BARG_COOKED = addItem(139, "food.kebab.barg.cooked").addComponents(new GTFOFoodStats(6, 0.5f, false, false, SKEWER.getStackForm(1))
-                .setEatingDuration(12));
-        KEBAB_SOLTANI = addItem(140, "food.kebab.soltani.cooked").addComponents(new GTFOFoodStats(16, 1f, false, false, SKEWER.getStackForm(1))
-                .setEatingDuration(12));
+        KEBAB_KUBIDEH = addItem(136, "food.kebab.kubide").addComponents(GTFOUtils.getKebabFood(3,0.1f));
+        KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide.cooked").addComponents(GTFOUtils.getKebabFood(8,0.8f));
+        KEBAB_BARG= addItem(138, "food.kebab.barg").addComponents(GTFOUtils.getKebabFood(2,0.2f));
+        KEBAB_BARG_COOKED = addItem(139, "food.kebab.barg.cooked").addComponents(GTFOUtils.getKebabFood(6,0.5f));
+        KEBAB_SOLTANI = addItem(140, "food.kebab.soltani.cooked").addComponents(GTFOUtils.getKebabFood(16,1.1f));
         KEBAB_CHUM = addItem(145, "food.kebab.chum").addComponents(new GTFOFoodStats(3, 0f, false, true, SKEWER.getStackForm(1),
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
                 .setEatingDuration(12));

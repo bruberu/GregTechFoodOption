@@ -191,7 +191,7 @@ public class GTFOUtils {
     }
 
     public static GTFOFoodStats getKebabFood(int hunger, float sat){
-        return new GTFOFoodStats( hunger,sat,false,false,SKEWER.getStackForm(1));
+        return new GTFOFoodStats( hunger,sat,false,false,SKEWER.getStackForm(1)).setEatingDuration(12);
     }
 
     @SideOnly(Side.CLIENT)
