@@ -179,6 +179,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM_COOKED;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM_BUCKET;
+
     public GTFOMetaItem() {
         super();
     }
@@ -275,6 +276,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         FLAT_DOUGH = addItem(99, "component.flat_dough");
 
         UNCOOKED_BACON = addItem(108, "component.bacon");
+
+        SKEWER = addItem(135, "component.skewer");
 
         //GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
         //SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
@@ -432,12 +435,16 @@ public class GTFOMetaItem extends StandardMetaItem {
         HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
                 .setEatingDuration(60));
 
-        SKEWER = addItem(135, "component.skewer");
-        KEBAB_KUBIDEH = addItem(136, "food.kebab.kubide").addComponents(GTFOUtils.getKebabFood(3, 0.1f));
+        KEBAB_KUBIDEH = addItem(136, "food.kebab.kubide");
+        KEBAB_BARG = addItem(138, "food.kebab.barg");
+        KEBAB_ONION = addItem(141, "food.kebab.onion");
+        KEBAB_TOMATO = addItem(143, "food.kebab.tomato");
+
         KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide.cooked").addComponents(GTFOUtils.getKebabFood(8, 0.8f));
-        KEBAB_BARG = addItem(138, "food.kebab.barg").addComponents(GTFOUtils.getKebabFood(2, 0.2f));
         KEBAB_BARG_COOKED = addItem(139, "food.kebab.barg.cooked").addComponents(GTFOUtils.getKebabFood(6, 0.5f));
         KEBAB_SOLTANI = addItem(140, "food.kebab.soltani.cooked").addComponents(GTFOUtils.getKebabFood(16, 1.1f));
+        KEBAB_ONION_COOKED = addItem(142, "food.kebab.onion.cooked").addComponents(GTFOUtils.getKebabFood(2, 0.1f));
+        KEBAB_TOMATO_COOKED = addItem(144, "food.kebab.tomato.cooked").addComponents(GTFOUtils.getKebabFood(2, 0.1f));
         KEBAB_CHUM = addItem(145, "food.kebab.chum").addComponents(new GTFOFoodStats(3, 0f, false, true, SKEWER.getStackForm(1),
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
                 .setEatingDuration(12));
@@ -450,19 +457,6 @@ public class GTFOMetaItem extends StandardMetaItem {
                 new RandomPotionEffect(MobEffects.SPEED, 500, 3, 100),
                 new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 100))
                 .setEatingDuration(12));
-
-
-        //Small Kebabs
-        KEBAB_ONION = addItem(141, "food.kebab.onion");
-        KEBAB_ONION_COOKED = addItem(142, "food.kebab.onion.cooked");
-        KEBAB_TOMATO = addItem(143, "food.kebab.tomato");
-        KEBAB_TOMATO_COOKED = addItem(144, "food.kebab.tomato.cooked");
-        GTFOFoodStats smallKebab = GTFOUtils.getKebabFood(1, 0.1f);
-        GTFOFoodStats smallKebabCooked = GTFOUtils.getKebabFood(2, 0.1f);
-        KEBAB_ONION.addComponents(smallKebab);
-        KEBAB_TOMATO.addComponents(smallKebab);
-        KEBAB_ONION_COOKED.addComponents(smallKebabCooked);
-        KEBAB_TOMATO_COOKED.addComponents(smallKebabCooked);
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
