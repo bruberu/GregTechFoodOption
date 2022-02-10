@@ -8,6 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -17,6 +18,8 @@ import java.util.List;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.gem;
+import static gregtechfoodoption.GTFOMaterialHandler.FryingOil;
+import static gregtechfoodoption.GTFOMaterialHandler.OliveOil;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 
 //A not small amount of code from here was yoinked from other places. I'll give credit wherever I can!
@@ -152,6 +155,10 @@ public class GTFOUtils {
         result.addAll(getMeat());
         result.addAll(getFish());
         return result;
+    }
+
+    public static List<Fluid> getOrganicOils() {
+        return Arrays.asList(FishOil.getFluid(), SeedOil.getFluid(), OliveOil.getFluid(1000).getFluid(), FryingOil.getFluid(1000).getFluid());
     }
 
     public static RecipeMap<?> chemicalDehydratorProxy() {

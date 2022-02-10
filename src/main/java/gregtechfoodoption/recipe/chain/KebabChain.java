@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.utils.GTFOUtils;
 
@@ -51,6 +52,7 @@ public class KebabChain {
                 .inputs(ONION_SLICE.getStackForm(4),MUSHROOM_SLICE.getStackForm(3),GTFOMaterialHandler.Fat.getItemStack(1))
                 .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(400))
                 .outputs(KubideMeat.getItemStack(5))
+                .notConsumable(new IntCircuitIngredient(0))
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().EUt(48).duration(90)
@@ -58,12 +60,14 @@ public class KebabChain {
                 .inputs(ONION_SLICE.getStackForm(4),MUSHROOM_SLICE.getStackForm(4),Zest.getItemStack(4),GTFOMaterialHandler.Fat.getItemStack(1))
                 .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(400))
                 .outputs(KubideMeat.getItemStack(7))
+                .notConsumable(new IntCircuitIngredient(1))
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().EUt(48).duration(120)
                 .inputs(CHUM.getStackForm(8),ONION_SLICE.getStackForm(4),Zest.getItemStack(4),GTFOMaterialHandler.Fat.getItemStack(2))
                 .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(400))
                 .outputs(KubideMeat.getItemStack(10))
+                .notConsumable(new IntCircuitIngredient(2))
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(20)
@@ -80,6 +84,7 @@ public class KebabChain {
                 .inputs(ONION_SLICE.getStackForm(8))
                 .fluidInputs(OliveOil.getFluid(500))
                 .outputs(BargMeat.getItemStack(4))
+                .notConsumable(new IntCircuitIngredient(0))
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().EUt(200).duration(100)
@@ -88,10 +93,17 @@ public class KebabChain {
                 .inputs(ONION_SLICE.getStackForm(8),Zest.getItemStack(2))
                 .fluidInputs(OliveOil.getFluid(1000))
                 .outputs(BargMeat.getItemStack(20))
+                .notConsumable(new IntCircuitIngredient(1))
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(80)
-                .inputs(BargMeat.getItemStack(5),Zest.getItemStack(4),TOMATO.getStackForm(4))
+                .inputs(BargMeat.getItemStack(5),Zest.getItemStack(4),TOMATO_SLICE.getStackForm(4))
+                .output(KEBAB_BARG)
+                .buildAndRegister();
+
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(80)
+                .inputs(BargMeat.getItemStack(5),Zest.getItemStack(4))
+                .fluidInputs(TomatoSauce.getFluid(100))
                 .output(KEBAB_BARG)
                 .buildAndRegister();
 
