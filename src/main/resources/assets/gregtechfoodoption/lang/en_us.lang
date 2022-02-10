@@ -541,6 +541,7 @@ fluid.stearic_acid=Stearic Acid
 fluid.sodium_stearate=Sodium Stearate (Soap)
 
 enchantment.level.0=I
+enchantment.level.11=XI
 enchantment.level.16=XVI
 enchantment.level.28=XXVIII
 enchantment.level.48=XLVIII

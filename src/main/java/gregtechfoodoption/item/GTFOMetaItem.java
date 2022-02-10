@@ -477,10 +477,10 @@ public class GTFOMetaItem extends StandardMetaItem {
                 new RandomPotionEffect(MobEffects.NAUSEA, 100, 10, 99))
                 .setEatingDuration(12));
         KEBAB_CHUM_BUCKET = addItem(147, "food.kebab.chum.bucket").addComponents(new GTFOFoodStats(16, 2f, false, true, new ItemStack(Items.BUCKET),
-                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 5000),
-                new RandomPotionEffect(MobEffects.UNLUCK, 500, 11, 5000),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 3, 7000),
-                new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 6500))
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 100),
+                new RandomPotionEffect(MobEffects.UNLUCK, 500, 11, 100),
+                new RandomPotionEffect(MobEffects.SPEED, 500, 3, 100),
+                new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 100))
                 .setEatingDuration(12));
 
 
