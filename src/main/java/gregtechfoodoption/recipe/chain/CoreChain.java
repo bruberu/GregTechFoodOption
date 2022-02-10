@@ -333,69 +333,69 @@ public class CoreChain {
             itemStack.setCount(16);
             CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(100)
                     .inputs(itemStack)
-                    .output(dust,Meat,8)
-                    .output(dustSmall,Bone,8)
-                    .chancedOutput(Fat.getItemStack(4),5000,2000 )
-                    .chancedOutput(Fat.getItemStack(4),5000,2000 )
+                    .output(dust, Meat, 8)
+                    .output(dustSmall, Bone, 8)
+                    .chancedOutput(Fat.getItemStack(4), 5000, 2000)
+                    .chancedOutput(Fat.getItemStack(4), 5000, 2000)
                     .notConsumable(new IntCircuitIngredient(0))
                     .buildAndRegister();
             LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
-                    .input(itemStack.getItem(),32)
-                    .fluidInputs(Methanol.getFluid(8000),Chloroform.getFluid(8000))
-                    .output(dust,Meat,20)
-                    .output(dustSmall,Bone,20)
-                    .fluidOutputs(Stearin.getFluid(4000),Sludge.getFluid(4000))
+                    .input(itemStack.getItem(), 32)
+                    .fluidInputs(Methanol.getFluid(8000), Chloroform.getFluid(8000))
+                    .output(dust, Meat, 20)
+                    .output(dustSmall, Bone, 20)
+                    .fluidOutputs(Stearin.getFluid(4000), Sludge.getFluid(4000))
                     .buildAndRegister();
         });
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
-                .input(SCRAP_MEAT,32)
-                .fluidInputs(Methanol.getFluid(8000),Chloroform.getFluid(8000))
-                .output(dust,Meat,25)
-                .output(dustSmall,Bone,20)
-                .fluidOutputs(Stearin.getFluid(6000),Sludge.getFluid(8000))
+                .input(SCRAP_MEAT, 32)
+                .fluidInputs(Methanol.getFluid(8000), Chloroform.getFluid(8000))
+                .output(dust, Meat, 25)
+                .output(dustSmall, Bone, 20)
+                .fluidOutputs(Stearin.getFluid(6000), Sludge.getFluid(8000))
                 .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(80)
-                .input(SCRAP_MEAT,8)
-                .output(dust,Meat,4)
-                .output(dustSmall,Bone,8)
-                .chancedOutput(Fat.getItemStack(2),7000,2000 )
-                .chancedOutput(Fat.getItemStack(2),6000,2000 )
+                .input(SCRAP_MEAT, 8)
+                .output(dust, Meat, 4)
+                .output(dustSmall, Bone, 8)
+                .chancedOutput(Fat.getItemStack(2), 7000, 2000)
+                .chancedOutput(Fat.getItemStack(2), 6000, 2000)
                 .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(30).duration(300)
-                .input(dust,Meat,3)
-                .fluidOutputs(Biomass.getFluid(200),Stearin.getFluid(100))
+                .input(dust, Meat, 3)
+                .fluidOutputs(Biomass.getFluid(200), Stearin.getFluid(100))
                 .buildAndRegister();
 
         FERMENTING_RECIPES.recipeBuilder().EUt(32).duration(1200)
-                .input(SCRAP_MEAT,1)
+                .input(SCRAP_MEAT, 1)
                 .fluidInputs(Chloroform.getFluid(100))
-                .chancedOutput(dust,Meat,1,2000,10)
+                .chancedOutput(dust, Meat, 1, 2000, 10)
                 .fluidOutputs(Stearin.getFluid(100))
                 .buildAndRegister();
 
-        GTFOUtils.getOrganicOils().forEach(f->{
+        GTFOUtils.getOrganicOils().forEach(f -> {
             // turning Plant Oil into Animal Oil?! Magik!
             CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(300)
-                    .input(dustTiny,SodaAsh)
-                    .fluidInputs(new FluidStack(f,1000),Hydrogen.getFluid(1000))
+                    .input(dustTiny, SodaAsh)
+                    .fluidInputs(new FluidStack(f, 1000), Hydrogen.getFluid(1000))
                     .fluidOutputs(Stearin.getFluid(1000))
                     .notConsumable(new IntCircuitIngredient(0))
                     .buildAndRegister();
         });
 
-        Arrays.asList(Methanol,Ethanol).forEach(f->{
+        Arrays.asList(Methanol, Ethanol).forEach(f -> {
             CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(600)
-                    .input(dustTiny,SodiumHydroxide)
-                    .fluidInputs(Stearin.getFluid(6000),f.getFluid(1000))
-                    .fluidOutputs(Glycerol.getFluid(1000),BioDiesel.getFluid(6000))
+                    .input(dustTiny, SodiumHydroxide)
+                    .fluidInputs(Stearin.getFluid(6000), f.getFluid(1000))
+                    .fluidOutputs(Glycerol.getFluid(1000), BioDiesel.getFluid(6000))
                     .buildAndRegister();
             LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(5400)
-                    .input(dust,SodiumHydroxide)
-                    .fluidInputs(Stearin.getFluid(54000),f.getFluid(9000))
-                    .fluidOutputs(Glycerol.getFluid(9000),BioDiesel.getFluid(54000))
+                    .input(dust, SodiumHydroxide)
+                    .fluidInputs(Stearin.getFluid(54000), f.getFluid(9000))
+                    .fluidOutputs(Glycerol.getFluid(9000), BioDiesel.getFluid(54000))
                     .buildAndRegister();
         });
 
@@ -411,16 +411,16 @@ public class CoreChain {
                 .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(40)
-                .fluidInputs(Stearin.getFluid(1000),Water.getFluid(2000))
-                .input(dust,SodiumHydroxide,3)
-                .fluidOutputs(SodiumStearate.getFluid(3000),Glycerol.getFluid(1000))
+                .fluidInputs(Stearin.getFluid(1000), Water.getFluid(2000))
+                .input(dust, SodiumHydroxide, 3)
+                .fluidOutputs(SodiumStearate.getFluid(3000), Glycerol.getFluid(1000))
                 .buildAndRegister();
 
         //"Stearic acid is used along with simple sugar or corn syrup as a hardener in candies. In fireworks, stearic acid is often used to coat metal powders such as aluminium and iron. This prevents oxidation, allowing compositions to be stored for a longer period of time"
         DISTILLERY_RECIPES.recipeBuilder().EUt(32).duration(10)
                 .fluidInputs(SodiumStearate.getFluid(100))
                 .fluidOutputs(StearicAcid.getFluid(100))
-                .output(dustTiny,SodiumHydroxide,1)
+                .output(dustTiny, SodiumHydroxide, 1)
                 .circuitMeta(0)
                 .buildAndRegister();
 
@@ -439,7 +439,7 @@ public class CoreChain {
                 .fluidOutputs(Water.getFluid(14000))
                 .fluidOutputs(BacterialSludge.getFluid(1000))
                 .fluidOutputs(SulfurDioxide.getFluid(8000))
-                .input(dust,Calcite,3)
+                .input(dust, Calcite, 3)
                 .notConsumable(CARBON_MESH)
                 .notConsumable(new IntCircuitIngredient(1))
                 .buildAndRegister();
