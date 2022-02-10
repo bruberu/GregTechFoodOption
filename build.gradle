@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-1.1.4"
+version = "1.12.2-1.2.0"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -112,6 +112,8 @@ dependencies {
     deobfCompile "applecore:AppleCore:1.12.2-3.1.5:deobf"
     //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
     //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
+
+    compileOnly files("etc/Pam's+HarvestCraft+1.12.2zg.jar")
 
     //compile "curse.maven:spiceoflife-220811:2571951"
 
