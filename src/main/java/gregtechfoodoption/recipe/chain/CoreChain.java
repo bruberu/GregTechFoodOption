@@ -367,22 +367,22 @@ public class CoreChain {
         GTFOUtils.getOrganicOils().forEach(f->{
             // turning Plant Oil into Animal Oil?! Magik!
             CHEMICAL_RECIPES.recipeBuilder().EUt(32).duration(300)
-                    .input(dustSmall,SodaAsh)
-                    .fluidInputs(new FluidStack(f,1000))
-                    .fluidOutputs(Stearin.getFluid(100))
+                    .input(dustTiny,SodaAsh)
+                    .fluidInputs(new FluidStack(f,1000),Hydrogen.getFluid(1000))
+                    .fluidOutputs(Stearin.getFluid(1000))
                     .notConsumable(new IntCircuitIngredient(0))
                     .buildAndRegister();
         });
         Arrays.asList(Methanol,Ethanol).forEach(f->{
             CHEMICAL_RECIPES.recipeBuilder().EUt(32).duration(600)
-                    .input(dustSmall,SodiumHydroxide)
-                    .fluidInputs(f.getFluid(1000),Stearin.getFluid(6000))
+                    .input(dustTiny,SodiumHydroxide)
+                    .fluidInputs(Stearin.getFluid(6000),f.getFluid(1000))
                     .fluidOutputs(BioDiesel.getFluid(6000),Glycerol.getFluid(1000))
                     .buildAndRegister();
             LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(32).duration(5400)
                     .input(dust,SodiumHydroxide)
-                    .fluidInputs(f.getFluid(90000),Stearin.getFluid(54000))
-                    .fluidOutputs(f.getFluid(54000),Glycerol.getFluid(9000))
+                    .fluidInputs(Stearin.getFluid(54000),f.getFluid(90000))
+                    .fluidOutputs(BioDiesel.getFluid(54000),Glycerol.getFluid(9000))
                     .buildAndRegister();
         });
 
