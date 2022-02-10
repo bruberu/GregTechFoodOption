@@ -496,7 +496,52 @@ item.meat.nugget=Meat Nugget
 metaitem.component.scrap_meat.name=Scrap Meat
 metaitem.component.scrap_meat.tooltip=The Parts that People don't usually eat, although I won't judge
 
+metaitem.component.skewer.name=Skewer
+metaitem.component.skewer.tooltip=Yes, you would most diffidently Eat it!
+metaitem.fat_ingot.name=Animal Fat
+metaitem.fat_ingot.tooltip=Maybe should hit the Gym?!
+
+metaitem.kubide_meat_dust.name=Koobideh Ingredients
+metaitem.kubide_meat_dust.tooltip=Precisely Delicious!!
+metaitem.food.kebab.kubide.name=Raw Koobideh
+metaitem.food.kebab.kubide.tooltip=needs some carbon!
+metaitem.food.kebab.kubide.cooked.name=Kabab Koobideh
+metaitem.food.kebab.kubide.cooked.tooltip=Goes with Ayran!
+
+metaitem.barg_meat_dust.name=Barg Ingredients
+metaitem.barg_meat_dust.tooltip=You know this means leaf Meat... Right?
+metaitem.food.kebab.barg.name=Raw Barg
+metaitem.food.kebab.barg.tooltip=Barg bargi Bargiun Bargi
+metaitem.food.kebab.barg.cooked.name=Kabab e Barg
+metaitem.food.kebab.barg.cooked.tooltip=Isn't it just Kubide with... less Steps?!
+
+metaitem.food.kebab.onion.name=Nailed Onions
+metaitem.food.kebab.onion.tooltip=Nail Your Cries!
+metaitem.food.kebab.onion.cooked.name=Onion Kabab
+metaitem.food.kebab.onion.cooked.tooltip=Look Who is Crying Now?!
+
+metaitem.food.kebab.tomato.name=Nailed Tomatos
+metaitem.food.kebab.tomato.tooltip=No Not the Mr Tomato!!
+metaitem.food.kebab.tomato.cooked.name=Kababed Tomato
+metaitem.food.kebab.tomato.cooked.tooltip=He's the New Messaiah
+
+metaitem.food.kebab.chum.name=Chum on Skewel
+metaitem.food.kebab.chum.tooltip=It's not Great...
+metaitem.food.kebab.chum.cooked.name=Chumkabab
+metaitem.food.kebab.chum.tooltip=ChumChewChumChumKabab!!!
+
+metaitem.food.kebab.chum.bucket.name=Chum Bucket
+metaitem.food.kebab.chum.bucket.tooltip=This isn't Chum Bucket...
+
+metaitem.food.kebab.soltani.cooked.name=Kabab e Soltani!
+metaitem.food.kebab.soltani.cooked.tooltip=EV Kebab (Voltage In: Delicious!)
+
+fluid.stearin=Liquid Fat (Stearin)
+fluid.stearic_acid=Stearic Acid
+fluid.sodium_stearate=Sodium Stearate (Soap)
+
 enchantment.level.0=I
+enchantment.level.11=XI
 enchantment.level.16=XVI
 enchantment.level.28=XXVIII
 enchantment.level.48=XLVIII

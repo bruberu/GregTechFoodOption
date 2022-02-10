@@ -11,6 +11,7 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -20,10 +21,6 @@ import static net.minecraft.potion.Potion.getPotionById;
 
 
 public class GTFOMetaItem extends StandardMetaItem {
-    public GTFOMetaItem() {
-        super();
-    }
-
     public static MetaItem<?>.MetaValueItem POPCORN_BAG;
     public static MetaItem<?>.MetaValueItem PAPER_BAG;
     public static MetaItem<?>.MetaValueItem FLAVORED_POPCORN_FLAKE;
@@ -31,14 +28,12 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem DRIED_POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem POPCORN_EAR;
     public static MetaItem<?>.MetaValueItem PHYCOMYCES_BLAKESLEEANUS_CULTURE;
-
     public static MetaItem<?>.MetaValueItem THERMOS;
     public static MetaItem<?>.MetaValueItem THERMOS_CASING;
     public static MetaItem<?>.MetaValueItem THERMOS_CAP;
     public static MetaItem<?>.MetaValueItem LEACHED_THERMOS_CASING;
     public static MetaItem<?>.MetaValueItem USED_THERMOS;
     public static MetaItem<?>.MetaValueItem MINERAL_WATER;
-
     public static MetaItem<?>.MetaValueItem CORED_APPLE;
     public static MetaItem<?>.MetaValueItem APPLE_HARD_CANDY;
     public static MetaItem<?>.MetaValueItem PLASTIC_BOTTLE;
@@ -48,10 +43,8 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem ETIRPS;
     public static MetaItem<?>.MetaValueItem LACTOBACILLUS_PENTOSIS_CULTURE;
     public static MetaItem<?>.MetaValueItem BACILLUS_SUBTILIS_CULTURE;
-
     public static MetaItem<?>.MetaValueItem SLICER_BLADE_FLAT;
     public static MetaItem<?>.MetaValueItem SLICER_BLADE_STRIPES;
-
     public static MetaItem<?>.MetaValueItem PEELED_POTATO;
     public static MetaItem<?>.MetaValueItem POTATO_STRIP;
     public static MetaItem<?>.MetaValueItem POTATO_SLICE;
@@ -70,17 +63,14 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem KETTLE_FRIED_CHIPS;
     public static MetaItem<?>.MetaValueItem REDUCED_FAT_CHIPS;
     public static MetaItem<?>.MetaValueItem POTATO_ON_A_STICK;
-
     public static MetaItem<?>.MetaValueItem MUD_BRICK;
     public static MetaItem<?>.MetaValueItem ADOBE_BRICK;
-
     public static MetaItem<?>.MetaValueItem WOODEN_FORM_BREAD;
     public static MetaItem<?>.MetaValueItem WOODEN_FORM_BAGUETTE;
     public static MetaItem<?>.MetaValueItem UNCOOKED_BREAD;
     public static MetaItem<?>.MetaValueItem UNCOOKED_BAGUETTE;
     public static MetaItem<?>.MetaValueItem BAGUETTE;
     public static MetaItem<?>.MetaValueItem DOUGH;
-
     public static MetaItem<?>.MetaValueItem CARROT_STRUCTURAL_MESH;
     public static MetaItem<?>.MetaValueItem APPLE_STRUCTURAL_MESH;
     public static MetaItem<?>.MetaValueItem TUNGSTENSTEEL_APPLE;
@@ -88,7 +78,6 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem CAKE_BOTTOM;
     public static MetaItem<?>.MetaValueItem BAKED_CAKE_BOTTOM;
     public static MetaItem<?>.MetaValueItem PIE_CRUST;
-
     public static MetaItem<?>.MetaValueItem SANDWICH_VEGGIE;
     public static MetaItem<?>.MetaValueItem SANDWICH_CHEESE;
     public static MetaItem<?>.MetaValueItem SANDWICH_BACON;
@@ -97,37 +86,30 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem SANDWICH_LARGE_CHEESE;
     public static MetaItem<?>.MetaValueItem SANDWICH_LARGE_BACON;
     public static MetaItem<?>.MetaValueItem SANDWICH_LARGE_STEAK;
-
     public static MetaItem<?>.MetaValueItem PIZZA_VEGGIE_RAW;
     public static MetaItem<?>.MetaValueItem PIZZA_CHEESE_RAW;
     public static MetaItem<?>.MetaValueItem PIZZA_MINCE_MEAT_RAW;
     public static MetaItem<?>.MetaValueItem PIZZA_VEGGIE;
     public static MetaItem<?>.MetaValueItem PIZZA_CHEESE;
     public static MetaItem<?>.MetaValueItem PIZZA_MINCE_MEAT;
-
     public static MetaItem<?>.MetaValueItem OLIVE;
     public static MetaItem<?>.MetaValueItem OLIVE_SLICE;
     public static MetaItem<?>.MetaValueItem MUSHROOM_SLICE;
-
     public static MetaItem<?>.MetaValueItem TOMATO;
     public static MetaItem<?>.MetaValueItem ONION;
     public static MetaItem<?>.MetaValueItem CUCUMBER;
     public static MetaItem<?>.MetaValueItem TOMATO_SLICE;
     public static MetaItem<?>.MetaValueItem ONION_SLICE;
     public static MetaItem<?>.MetaValueItem CUCUMBER_SLICE;
-
     public static MetaItem<?>.MetaValueItem WOODEN_FORM_BUN;
     public static MetaItem<?>.MetaValueItem UNCOOKED_BUN;
     public static MetaItem<?>.MetaValueItem BUN;
-
     public static MetaItem<?>.MetaValueItem PRESLICED_BUN;
     public static MetaItem<?>.MetaValueItem PRESLICED_BREAD;
     public static MetaItem<?>.MetaValueItem PRESLICED_BAGUETTE;
-
     public static MetaItem<?>.MetaValueItem BURGER_VEGGIE;
     public static MetaItem<?>.MetaValueItem BURGER_CHEESE;
     public static MetaItem<?>.MetaValueItem BURGER_MEAT;
-
     public static MetaItem<?>.MetaValueItem BEEF_SLICE;
     public static MetaItem<?>.MetaValueItem CHEDDAR_CURD_MOLD;
     public static MetaItem<?>.MetaValueItem AGED_CHEDDAR_MOLD;
@@ -137,12 +119,9 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem CHEDDAR_BLOCK;
     public static MetaItem<?>.MetaValueItem CHEDDAR_SLICE;
     public static MetaItem<?>.MetaValueItem FLAT_DOUGH;
-
     public static MetaItem<?>.MetaValueItem BACON;
     public static MetaItem<?>.MetaValueItem UNCOOKED_BACON;
-
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
-
     public static MetaItem<?>.MetaValueItem EIGHT_SMORE;
     public static MetaItem<?>.MetaValueItem SIXTEEN_SMORE;
     public static MetaItem<?>.MetaValueItem THIRTY_TWO_SMORE;
@@ -151,7 +130,6 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem MORE_SMOGUS;
     public static MetaItem<?>.MetaValueItem FOUR_SMOGUS;
     public static MetaItem<?>.MetaValueItem HEART_SMOGUS;
-
     public static MetaItem<?>.MetaValueItem GORGONZOLA_WHEEL;
     public static MetaItem<?>.MetaValueItem SALTED_GORGONZOLA_WHEEL;
     public static MetaItem<?>.MetaValueItem SLIGHTLY_AGED_GORGONZOLA_WHEEL;
@@ -160,30 +138,51 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem GORGONZOLA_TRIANGULAR_SLICE;
     public static MetaItem<?>.MetaValueItem PENICILLIUM_ROQUEFORTI_CULTURE;
     public static MetaItem<?>.MetaValueItem SLICER_BLADE_OCTAGONAL;
-
     public static MetaItem<?>.MetaValueItem ROTTEN_MEAT;
     public static MetaItem<?>.MetaValueItem ROTTEN_FISH;
     public static MetaItem<?>.MetaValueItem CHUM;
     public static MetaItem<?>.MetaValueItem CHUM_ON_A_STICK;
     public static MetaItem<?>.MetaValueItem BURGER_CHUM;
-
     public static MetaItem<?>.MetaValueItem BANANA;
     public static MetaItem<?>.MetaValueItem ORANGE;
     public static MetaItem<?>.MetaValueItem GRAPES;
     public static MetaItem<?>.MetaValueItem MANGO;
     public static MetaItem<?>.MetaValueItem APRICOT;
-
     public static MetaItem<?>.MetaValueItem BANANA_PEEL;
     public static MetaItem<?>.MetaValueItem PEELED_BANANA;
-
     public static MetaItem<?>.MetaValueItem VODKA;
     public static MetaItem<?>.MetaValueItem LENINADE;
-
     public static MetaItem<?>.MetaValueItem HOT_MUSHROOM_STEW;
     public static MetaItem<?>.MetaValueItem HOT_BEETROOT_SOUP;
     public static MetaItem<?>.MetaValueItem HOT_RABBIT_STEW;
-
     public static MetaItem<?>.MetaValueItem SCRAP_MEAT;
+    public static MetaItem<?>.MetaValueItem SKEWER;
+    public static MetaItem<?>.MetaValueItem KEBAB_KUBIDEH;
+    public static MetaItem<?>.MetaValueItem KEBAB_KUBIDEH_COOKED;
+    public static MetaItem<?>.MetaValueItem KEBAB_BARG;
+    public static MetaItem<?>.MetaValueItem KEBAB_BARG_COOKED;
+    public static MetaItem<?>.MetaValueItem KEBAB_SOLTANI;
+    //    public static MetaItem<?>.MetaValueItem KEBAB_DANDE;
+//    public static MetaItem<?>.MetaValueItem KEBAB_LIVER;
+    public static MetaItem<?>.MetaValueItem KEBAB_ONION;
+    public static MetaItem<?>.MetaValueItem KEBAB_ONION_COOKED;
+    public static MetaItem<?>.MetaValueItem KEBAB_TOMATO;
+    public static MetaItem<?>.MetaValueItem KEBAB_TOMATO_COOKED;
+    //    public static MetaItem<?>.MetaValueItem KEBAB_PEPPER;
+//    public static MetaItem<?>.MetaValueItem KEBAB_MUSHROOM;
+//    public static MetaItem<?>.MetaValueItem KEBAB_MIX;
+//    public static MetaItem<?>.MetaValueItem KEBAB_BEEF;
+//    public static MetaItem<?>.MetaValueItem KEBAB_LAMB;
+//    public static MetaItem<?>.MetaValueItem KEBAB_CHICKEN;
+//    public static MetaItem<?>.MetaValueItem KEBAB_FAT;
+//    public static MetaItem<?>.MetaValueItem KEBAB_FISH;
+    public static MetaItem<?>.MetaValueItem KEBAB_CHUM;
+    public static MetaItem<?>.MetaValueItem KEBAB_CHUM_COOKED;
+    public static MetaItem<?>.MetaValueItem KEBAB_CHUM_BUCKET;
+
+    public GTFOMetaItem() {
+        super();
+    }
 
     @Override
     public void registerSubItems() {
@@ -277,6 +276,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         FLAT_DOUGH = addItem(99, "component.flat_dough");
 
         UNCOOKED_BACON = addItem(108, "component.bacon");
+
+        SKEWER = addItem(135, "component.skewer");
 
         //GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
         //SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
@@ -433,6 +434,29 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .setEatingDuration(60));
         HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
                 .setEatingDuration(60));
+
+        KEBAB_KUBIDEH = addItem(136, "food.kebab.kubide");
+        KEBAB_BARG = addItem(138, "food.kebab.barg");
+        KEBAB_ONION = addItem(141, "food.kebab.onion");
+        KEBAB_TOMATO = addItem(143, "food.kebab.tomato");
+
+        KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide.cooked").addComponents(GTFOUtils.getKebabFood(8, 0.8f));
+        KEBAB_BARG_COOKED = addItem(139, "food.kebab.barg.cooked").addComponents(GTFOUtils.getKebabFood(6, 0.5f));
+        KEBAB_SOLTANI = addItem(140, "food.kebab.soltani.cooked").addComponents(GTFOUtils.getKebabFood(16, 1.1f));
+        KEBAB_ONION_COOKED = addItem(142, "food.kebab.onion.cooked").addComponents(GTFOUtils.getKebabFood(2, 0.1f));
+        KEBAB_TOMATO_COOKED = addItem(144, "food.kebab.tomato.cooked").addComponents(GTFOUtils.getKebabFood(2, 0.1f));
+        KEBAB_CHUM = addItem(145, "food.kebab.chum").addComponents(new GTFOFoodStats(3, 0f, false, true, SKEWER.getStackForm(1),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
+                .setEatingDuration(12));
+        KEBAB_CHUM_COOKED = addItem(146, "food.kebab.chum.cooked").addComponents(new GTFOFoodStats(6, 0.3f, false, true, SKEWER.getStackForm(1),
+                new RandomPotionEffect(MobEffects.NAUSEA, 100, 10, 99))
+                .setEatingDuration(12));
+        KEBAB_CHUM_BUCKET = addItem(147, "food.kebab.chum.bucket").addComponents(new GTFOFoodStats(16, 2f, false, true, new ItemStack(Items.BUCKET),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 100),
+                new RandomPotionEffect(MobEffects.UNLUCK, 500, 11, 100),
+                new RandomPotionEffect(MobEffects.SPEED, 500, 3, 100),
+                new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 100))
+                .setEatingDuration(12));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
