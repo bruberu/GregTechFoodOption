@@ -24,7 +24,7 @@ public class GTFOFluidMaterial extends GTFOMaterial {
     }
 
     public GTFOFluidMaterial(String name, int rgb, String formula, int temperature) {
-        this.name = name;
+        this.name = "gtfo_" + name; // To prevent conflicts
         this.rgb = rgb;
         this.temperature = temperature;
         GTFO_FLUIDS.put(name, this);
