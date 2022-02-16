@@ -75,7 +75,7 @@ public class BreadsChain {
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(100)
                 .inputs(DOUGH.getStackForm(3))
                 .notConsumable(WOODEN_FORM_BREAD.getStackForm())
-                .outputs(UNCOOKED_BREAD.getStackForm())
+                .outputs(UNCOOKED_BREAD.getStackForm(3))
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("baguette_dough", UNCOOKED_BAGUETTE.getStackForm(),
@@ -95,7 +95,7 @@ public class BreadsChain {
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(20).duration(100)
                 .inputs(DOUGH.getStackForm(2))
                 .notConsumable(WOODEN_FORM_BUN.getStackForm())
-                .outputs(UNCOOKED_BUN.getStackForm())
+                .outputs(UNCOOKED_BUN.getStackForm(3))
                 .buildAndRegister();
 
         GTFOUtils.addBakingOvenRecipes(
@@ -104,7 +104,7 @@ public class BreadsChain {
                 150,
                 490,
                 2
-                );
+        );
 
         GTFOUtils.addBakingOvenRecipes(
                 UNCOOKED_BAGUETTE.getStackForm(),
