@@ -69,9 +69,9 @@ public class CoreChain {
                 .duration(100)
                 .buildAndRegister();
         //Hand recipe for early game (veeeery ineficient) P.S: i don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
-        ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON.getStackForm(4), OreDictUnifier.get("craftingToolMortar"));
-        ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME.getStackForm(4), OreDictUnifier.get("craftingToolMortar"));
-        ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE.getStackForm(4), OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON, LEMON, LEMON, LEMON, OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME, LIME, LIME, LIME, OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE , ORANGE, ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
     }
 
     public static void caneSyrup() {
