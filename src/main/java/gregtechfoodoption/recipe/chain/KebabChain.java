@@ -84,7 +84,7 @@ public class KebabChain {
                 .input(dust, Salt, 2)
                 .inputs(ONION_SLICE.getStackForm(8))
                 .fluidInputs(OliveOil.getFluid(500))
-                .outputs(BargMeat.getItemStack(4))
+                .outputs(BargMeat.getItemStack(5))
                 .notConsumable(new IntCircuitIngredient(0))
                 .buildAndRegister();
 
@@ -98,14 +98,14 @@ public class KebabChain {
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(80)
-                .inputs(BargMeat.getItemStack(5), Zest.getItemStack(4), TOMATO_SLICE.getStackForm(4))
-                .output(KEBAB_BARG)
+                .inputs(BargMeat.getItemStack(5), Zest.getItemStack(4), TOMATO_SLICE.getStackForm(4), SKEWER.getStackForm(3))
+                .output(KEBAB_BARG, 3)
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(80)
-                .inputs(BargMeat.getItemStack(5), Zest.getItemStack(4))
+                .inputs(BargMeat.getItemStack(5), Zest.getItemStack(4), SKEWER.getStackForm(3))
                 .fluidInputs(TomatoSauce.getFluid(100))
-                .output(KEBAB_BARG)
+                .output(KEBAB_BARG, 3)
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(600).duration(200)
