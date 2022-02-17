@@ -261,9 +261,11 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .addOreDict("cropOnion");
         CUCUMBER = addItem(78, "crop.cucumber")
                 .addOreDict("cropCucumber");
-        TOMATO_SLICE = addItem(79, "component.tomato_slice");
-        ONION_SLICE = addItem(80, "component.onion_slice");
-        CUCUMBER_SLICE = addItem(81, "component.cucumber_slice");
+        TOMATO_SLICE = addItem(79, "component.tomato_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
+        ONION_SLICE = addItem(80, "component.onion_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
+        CUCUMBER_SLICE = addItem(81, "component.cucumber_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
+        CARROT_SLICE = addItem(148, "component.carrot_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
+        APPLE_SLICE = addItem(152, "component.apple_slice").addComponents(GTFOUtils.getKebabFood(1, 0.1f));
 
         WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").addComponents(selfContainerItemProvider);
         UNCOOKED_BUN = addItem(83, "component.bun");
