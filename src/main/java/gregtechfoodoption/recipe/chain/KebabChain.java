@@ -90,7 +90,7 @@ public class KebabChain {
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(20)
-                .inputs(KubideMeat.getItemStack(5), SKEWER.getStackForm(2))
+                .inputs(KubideMeat.getItemStack(5), TOMATO_SLICE.getStackForm(4), SKEWER.getStackForm(2))
                 .input(dustSmall, Salt)
                 .output(KEBAB_KUBIDEH, 2)
                 .buildAndRegister();
