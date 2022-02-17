@@ -43,11 +43,11 @@ public class KebabChain {
                 'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin));
 
         ModHandler.addShapelessRecipe("gtfo_hand_tomato_kebab", KEBAB_TOMATO.getStackForm(2),
-                OreDictUnifier.get(GTFOValues.craftingToolRollingPin), OreDictUnifier.get(dust, Salt), TOMATO, TOMATO, SKEWER, SKEWER);
+                'k', OreDictUnifier.get(dust, Salt), TOMATO, TOMATO, SKEWER, SKEWER);
         ModHandler.addShapelessRecipe("gtfo_hand_carrot_kebab", KEBAB_CARROT.getStackForm(2),
-                OreDictUnifier.get(GTFOValues.craftingToolRollingPin), OreDictUnifier.get(dust, Salt), Items.CARROT, Items.CARROT, SKEWER, SKEWER);
+                'k', OreDictUnifier.get(dust, Salt), Items.CARROT, Items.CARROT, SKEWER, SKEWER);
         ModHandler.addShapelessRecipe("gtfo_hand_onion_kebab", KEBAB_ONION.getStackForm(2),
-                OreDictUnifier.get(GTFOValues.craftingToolRollingPin), OreDictUnifier.get(dust, Salt), ONION, ONION, SKEWER, SKEWER);
+                'k', OreDictUnifier.get(dust, Salt), ONION, ONION, SKEWER, SKEWER);
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(20)
                 .inputs(KubideMeat.getItemStack(5), TOMATO_SLICE.getStackForm(4), SKEWER.getStackForm(2))
@@ -220,5 +220,6 @@ public class KebabChain {
         GTFOUtils.addBakingOvenRecipes(KEBAB_TOMATO.getStackForm(4), KEBAB_TOMATO_COOKED.getStackForm(4), baseDuration, baseTemp, baseFuelKebab);
         GTFOUtils.addBakingOvenRecipes(KEBAB_ONION.getStackForm(4), KEBAB_ONION_COOKED.getStackForm(4), baseDuration, baseTemp, baseFuelKebab);
         GTFOUtils.addBakingOvenRecipes(KEBAB_CHUM.getStackForm(4), KEBAB_CHUM_COOKED.getStackForm(4), baseDuration, baseTemp, baseFuelKebab);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_CARROT.getStackForm(4), KEBAB_CARROT_COOKED.getStackForm(4), baseDuration, baseTemp, baseFuelKebab);
     }
 }
