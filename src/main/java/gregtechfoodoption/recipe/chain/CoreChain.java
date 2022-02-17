@@ -71,7 +71,7 @@ public class CoreChain {
         //Hand recipe for early game (veeeery ineficient) P.S: i don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
         ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON, LEMON, LEMON, LEMON, OreDictUnifier.get("craftingToolMortar"));
         ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME, LIME, LIME, LIME, OreDictUnifier.get("craftingToolMortar"));
-        ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE , ORANGE, ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE, ORANGE, ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
     }
 
     public static void caneSyrup() {
@@ -215,8 +215,23 @@ public class CoreChain {
                     .outputs(entry.getValue().getStackForm(8))
                     .buildAndRegister();
 
-            // Since we already have our crops, we might as well register their green house recipes here
-            //RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey()); TODO
+            // TODO: Since we already have our crops, we might as well register their green house recipes here
+            //RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey());
+        }
+        // Do The Minecraft fruit slicing
+        {
+            ModHandler.addShapelessRecipe("gtfo_slice_carrot", CARROT_SLICE.getStackForm(4), 'k', Items.CARROT);
+            ModHandler.addShapelessRecipe("gtfo_slice_apple", APPLE_SLICE.getStackForm(4), 'k', Items.APPLE);
+            SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                    .input(Items.CARROT)
+                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                    .outputs(CARROT_SLICE.getStackForm(8))
+                    .buildAndRegister();
+            SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                    .input(Items.APPLE)
+                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                    .outputs(APPLE_SLICE.getStackForm(8))
+                    .buildAndRegister();
         }
         // Get the mushroom done separately. And don't use red mushrooms.
         ModHandler.addShapelessRecipe("gtfo_slice_mushroom", MUSHROOM_SLICE.getStackForm(4), 'k', Blocks.BROWN_MUSHROOM);
