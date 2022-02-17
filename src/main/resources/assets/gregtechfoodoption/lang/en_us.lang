@@ -506,36 +506,51 @@ metaitem.kubide_meat_dust.name=Koobideh Ingredients
 metaitem.kubide_meat_dust.tooltip=Precisely Delicious!!
 metaitem.component.kebab.kubide.name=Raw Koobideh
 metaitem.component.kebab.kubide.tooltip=needs some carbon!
-metaitem.food.kebab.kubide.cooked.name=Kabab Koobideh
-metaitem.food.kebab.kubide.cooked.tooltip=Goes with Ayran!
+metaitem.food.kebab.kubide.name=Kabab Koobideh
+metaitem.food.kebab.kubide.tooltip=Goes with Ayran!
 
 metaitem.barg_meat_dust.name=Barg Ingredients
 metaitem.barg_meat_dust.tooltip=You know this means leaf Meat... Right?
 metaitem.component.kebab.barg.name=Raw Barg
 metaitem.component.kebab.barg.tooltip=Barg bargi Bargiun Bargi
-metaitem.food.kebab.barg.cooked.name=Kabab e Barg
-metaitem.food.kebab.barg.cooked.tooltip=Isn't it just Kubide with... less Steps?!
+metaitem.food.kebab.barg.name=Kabab e Barg
+metaitem.food.kebab.barg.tooltip=Isn't it just Kubide with... less Steps?!
 
 metaitem.component.kebab.onion.name=Nailed Onions
 metaitem.component.kebab.onion.tooltip=Nail Your Cries!
-metaitem.food.kebab.onion.cooked.name=Onion Kabab
-metaitem.food.kebab.onion.cooked.tooltip=Look Who is Crying Now?!
+metaitem.food.kebab.onion.name=Onion Kabab
+metaitem.food.kebab.onion.tooltip=Look Who is Crying Now?!
 
 metaitem.component.kebab.tomato.name=Nailed Tomatos
 metaitem.component.kebab.tomato.tooltip=No Not the Mr Tomato!!
-metaitem.food.kebab.tomato.cooked.name=Kababed Tomato
-metaitem.food.kebab.tomato.cooked.tooltip=He's the New Messaiah
+metaitem.food.kebab.tomato.name=Kababed Tomato
+metaitem.food.kebab.tomato.tooltip=He's the New Messaiah
+
+metaitem.component.kebab.carrot.name=Carrots on a Skewel
+metaitem.food.kebab.carrot.name=Grilled Carrots
+metaitem.food.kebab.carrot.tooltip=BigChungus
+
+metaitem.component.kebab.fat.name=TailFat
+metaitem.component.kebab.fat.tootip=Cook it to make it Juicy!
+metaitem.food.kebab.fat.name=Donbe Kabab
+metaitem.food.kebab.fat.tooltip=It's Actually Healthy!
 
 metaitem.food.kebab.chum.name=Chum on Skewel
 metaitem.food.kebab.chum.tooltip=It's not Great...
-metaitem.food.kebab.chum.cooked.name=Chumkabab
-metaitem.food.kebab.chum.cooked.tooltip=ChumChewChumChumKabab!!!
+metaitem.food.kebab.chum.name=Chumkabab
+metaitem.food.kebab.chum.tooltip=ChumChewChumChumKabab!!!
 
 metaitem.food.kebab.chum.bucket.name=Chum Bucket
 metaitem.food.kebab.chum.bucket.tooltip=This isn't Chum Bucket...
 
-metaitem.food.kebab.soltani.cooked.name=Kabab e Soltani!
-metaitem.food.kebab.soltani.cooked.tooltip=EV Kebab (Voltage In: Delicious!)
+metaitem.food.kebab.soltani.name=Kabab e Soltani!
+metaitem.food.kebab.soltani.tooltip=EV Kebab (Voltage In: Delicious!)
+
+metaitem.food.juice.apple.name=Apple Juice
+metaitem.food.juice.orange.name=Orange Juice
+metaitem.food.juice.apple.tooltip=cause Minecraft apples are yellow
+metaitem.food.juice.orange.tooltip=WaterPortuguese
+
 
 fluid.gtfo_stearin=Liquid Fat (Stearin)
 fluid.gtfo_stearic_acid=Stearic Acid
