@@ -261,11 +261,11 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .addOreDict("cropOnion");
         CUCUMBER = addItem(78, "crop.cucumber")
                 .addOreDict("cropCucumber");
-        TOMATO_SLICE = addItem(79, "component.tomato_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
-        ONION_SLICE = addItem(80, "component.onion_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
-        CUCUMBER_SLICE = addItem(81, "component.cucumber_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
-        CARROT_SLICE = addItem(148, "component.carrot_slice").addComponents(GTFOUtils.getKebabFood(1, 0f));
-        APPLE_SLICE = addItem(152, "component.apple_slice").addComponents(GTFOUtils.getKebabFood(1, 0.1f));
+        TOMATO_SLICE = addItem(79, "component.tomato_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
+        ONION_SLICE = addItem(80, "component.onion_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
+        CUCUMBER_SLICE = addItem(81, "component.cucumber_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
+        CARROT_SLICE = addItem(148, "component.carrot_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
+        APPLE_SLICE = addItem(152, "component.apple_slice").addComponents(new GTFOFoodStats(1, 0.1f, false, false, ItemStack.EMPTY));
 
         WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").addComponents(selfContainerItemProvider);
         UNCOOKED_BUN = addItem(83, "component.bun");
@@ -472,7 +472,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         //152 is for AppleSlice
         APPLE_JUICE = addItem(153,"food.juice.apple").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.SPEED, 500, 1, 60)));
-        ORANGE_JUICE = addItem(154,"food.juice.orange").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+        ORANGE_JUICE = addItem(155,"food.juice.orange").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.SPEED, 500, 1, 60)));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
