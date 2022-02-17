@@ -176,7 +176,7 @@ public class GTFOMetaItem extends StandardMetaItem {
 //    public static MetaItem<?>.MetaValueItem KEBAB_CHICKEN;
     public static MetaItem<?>.MetaValueItem KEBAB_FAT;
     public static MetaItem<?>.MetaValueItem KEBAB_FAT_COOKED;
-//    public static MetaItem<?>.MetaValueItem KEBAB_FISH;
+    //    public static MetaItem<?>.MetaValueItem KEBAB_FISH;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM_COOKED;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM_BUCKET;
@@ -305,8 +305,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_BARG = addItem(138, "component.kebab.barg");
         KEBAB_ONION = addItem(141, "component.kebab.onion");
         KEBAB_TOMATO = addItem(143, "component.kebab.tomato");
-        KEBAB_CARROT = addItem(149,"component.kebab.carrot");
-        KEBAB_FAT = addItem(150,"component.kebab.fat");
+        KEBAB_CARROT = addItem(149, "component.kebab.carrot");
+        KEBAB_FAT = addItem(150, "component.kebab.fat");
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -452,7 +452,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
                 .setEatingDuration(60));
 
-        KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide").addComponents(GTFOUtils.getKebabFood(8, 0.8f));
+        KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide").addComponents(GTFOUtils.getKebabFood(6, 0.8f));
         KEBAB_BARG_COOKED = addItem(139, "food.kebab.barg").addComponents(GTFOUtils.getKebabFood(6, 0.5f));
         KEBAB_SOLTANI = addItem(140, "food.kebab.soltani").addComponents(GTFOUtils.getKebabFood(16, 1.1f));
         KEBAB_ONION_COOKED = addItem(142, "food.kebab.onion").addComponents(GTFOUtils.getKebabFood(2, 0.1f));
@@ -467,12 +467,12 @@ public class GTFOMetaItem extends StandardMetaItem {
                 new RandomPotionEffect(MobEffects.SPEED, 500, 3, 100),
                 new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 100))
                 .setEatingDuration(12));
-        KEBAB_CARROT_COOKED = addItem(154,"food.kebab.carrot").addComponents(GTFOUtils.getKebabFood(2, 0.2f));
-        KEBAB_FAT_COOKED = addItem(151,"food.kebab.fat").addComponents(GTFOUtils.getKebabFood(3, 0.3f));
+        KEBAB_CARROT_COOKED = addItem(154, "food.kebab.carrot").addComponents(GTFOUtils.getKebabFood(2, 0.2f));
+        KEBAB_FAT_COOKED = addItem(151, "food.kebab.fat").addComponents(GTFOUtils.getKebabFood(3, 0.3f));
         //152 is for AppleSlice
-        APPLE_JUICE = addItem(153,"food.juice.apple").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+        APPLE_JUICE = addItem(153, "food.juice.apple").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.SPEED, 500, 1, 60)));
-        ORANGE_JUICE = addItem(155,"food.juice.orange").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+        ORANGE_JUICE = addItem(155, "food.juice.orange").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.SPEED, 500, 1, 60)));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {

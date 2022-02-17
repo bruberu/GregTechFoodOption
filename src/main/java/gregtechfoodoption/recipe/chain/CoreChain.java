@@ -24,8 +24,7 @@ import java.util.Map;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK;
-import static gregtech.common.items.MetaItems.CARBON_MESH;
+import static gregtech.common.items.MetaItems.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
@@ -160,6 +159,75 @@ public class CoreChain {
         EXTRACTOR_RECIPES.recipeBuilder().EUt(27).duration(60)
                 .inputs(OLIVE.getStackForm())
                 .fluidOutputs(GTFOMaterialHandler.OliveOil.getFluid(100))
+                .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
+                .inputs(APPLE_SLICE.getStackForm(4))
+                .fluidOutputs(AppleExtract.getFluid(100))
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .inputs(APPLE_JUICE.getStackForm())
+                .fluidOutputs(AppleExtract.getFluid(100))
+                .output(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .inputs(ORANGE_JUICE.getStackForm())
+                .fluidOutputs(OrangeExtract.getFluid(100))
+                .output(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .outputs(APPLE_JUICE.getStackForm())
+                .fluidInputs(AppleExtract.getFluid(100))
+                .input(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .outputs(ORANGE_JUICE.getStackForm())
+                .fluidInputs(OrangeExtract.getFluid(100))
+                .input(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        // the distillation are temporary
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(AppleExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(200))
+                .fluidOutputs(AceticAcid.getFluid(800))
+                .output(dust, Sugar)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(OrangeExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(300))
+                .fluidOutputs(CitricAcid.getFluid(30))
+                .fluidOutputs(Water.getFluid(700))
+                .output(PLANT_BALL)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(LimeExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(300))
+                .fluidOutputs(CitricAcid.getFluid(100))
+                .fluidOutputs(Water.getFluid(600))
+                .output(PLANT_BALL)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(LemonExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(300))
+                .fluidOutputs(CitricAcid.getFluid(100))
+                .fluidOutputs(Water.getFluid(600))
+                .output(PLANT_BALL)
                 .buildAndRegister();
     }
 

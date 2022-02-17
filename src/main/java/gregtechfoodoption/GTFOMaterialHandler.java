@@ -21,6 +21,7 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial LemonExtract = new GTFOFluidMaterial("lemon_extract", 0xfce80a);
     public static final GTFOFluidMaterial LimeExtract = new GTFOFluidMaterial("lime_extract", 0x85f218);
     public static final GTFOFluidMaterial OrangeExtract = new GTFOFluidMaterial("orange_extract", 0xFF6100);
+    public static final GTFOFluidMaterial AppleExtract = new GTFOFluidMaterial("apple_extract", 0xE9BA58);
     public static final GTFOFluidMaterial UnheatedCaneSyrup = new GTFOFluidMaterial("unheated_cane_syrup", 0xf0efe4);
     public static final GTFOFluidMaterial CaneSyrup = new GTFOFluidMaterial("cane_syrup", 0xf2f1dc);
     public static final GTFOFluidMaterial PurpleDrink = new GTFOFluidMaterial("purple_drink", 0xb405ff);
@@ -66,6 +67,7 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial Stearin = new GTFOFluidMaterial("stearin", 0xffcc66, "C57H110O6", 373);
     public static final GTFOFluidMaterial StearicAcid = new GTFOFluidMaterial("stearic_acid", 0xfff7e6, "C17H35CO2H"); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
     public static final GTFOFluidMaterial SodiumStearate = new GTFOFluidMaterial("sodium_stearate", averageRGB(2, 0xfff7e6, SodiumHydroxide.getMaterialRGB()), "C17H35COO−Na+", 373);
+    public static final GTFOFluidMaterial CitricAcid = new GTFOFluidMaterial("citric_acid", 0xCCBD61, "HOC(CH2CO2H)2"); //good for processing food
 
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
@@ -91,7 +93,7 @@ public class GTFOMaterialHandler {
 
     public static final GTFOOredictItem.OreDictValueItem ToughMeat = SHAPED_ITEM.addOreDictItem(1116, "tough_meat", 0xa63028, MaterialIconSet.ROUGH, OrePrefix.dust);
 
-    public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117, "kubide_meat", 0x810200, Organic, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117, "kubide_meat", 0x9B0600, Organic, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addOreDictItem(1118, "barg_meat", 0x7F0000, Organic, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1119, "fat", 0xFFF200, Organic, OrePrefix.ingot, "C57H110O6"); // yea Fat is much more complicated but i just stick to this formula...
     //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
