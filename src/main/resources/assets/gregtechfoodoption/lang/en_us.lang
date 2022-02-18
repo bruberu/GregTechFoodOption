@@ -560,7 +560,12 @@ fluid.gtfo_stearic_acid=Stearic Acid
 fluid.gtfo_sodium_stearate=Sodium Stearate (Soap)
 fluid.gtfo_citric_acid=Citric Acid
 
+metaitem.tool.butchery_knife.hv.name=%s Electric Butchering Knife (HV)
+metaitem.tool.butchery_knife.hv.tooltip=§9Mob Delivinizer §c4000
+
 enchantment.level.0=I
+enchantment.level.6=VI
+enchantment.level.7=VII
 enchantment.level.11=XI
 enchantment.level.16=XVI
 enchantment.level.28=XXVIII

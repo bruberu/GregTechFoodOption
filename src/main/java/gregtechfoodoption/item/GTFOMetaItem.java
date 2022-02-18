@@ -122,6 +122,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem BACON;
     public static MetaItem<?>.MetaValueItem UNCOOKED_BACON;
     public static ToolMetaItem<?>.MetaToolValueItem ROLLING_PIN;
+    public static ToolMetaItem<?>.MetaToolValueItem BUTCHERY_KNIFE_HV;
     public static MetaItem<?>.MetaValueItem EIGHT_SMORE;
     public static MetaItem<?>.MetaValueItem SIXTEEN_SMORE;
     public static MetaItem<?>.MetaValueItem THIRTY_TWO_SMORE;
