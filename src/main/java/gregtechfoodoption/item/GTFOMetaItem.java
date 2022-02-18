@@ -460,21 +460,21 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_TOMATO_COOKED = addItem(144, "food.kebab.tomato").addComponents(GTFOUtils.getKebabFood(2, 0.1f));
         KEBAB_CHUM = addItem(145, "component.kebab.chum");
         KEBAB_CHUM_COOKED = addItem(146, "food.kebab.chum").addComponents(new GTFOFoodStats(6, 0.3f, false, true, SKEWER.getStackForm(1),
-                new RandomPotionEffect(MobEffects.NAUSEA, 100, 10, 144))
+                new RandomPotionEffect(MobEffects.NAUSEA, 100, 10, 100 - 10))
                 .setEatingDuration(12));
         KEBAB_CHUM_BUCKET = addItem(147, "food.kebab.chum.bucket").addComponents(new GTFOFoodStats(16, 2f, false, true, new ItemStack(Items.BUCKET),
-                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 150),
-                new RandomPotionEffect(MobEffects.UNLUCK, 500, 11, 150),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 3, 150),
-                new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 150))
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 100 - 50),
+                new RandomPotionEffect(MobEffects.UNLUCK, 500, 11, 100 - 50),
+                new RandomPotionEffect(MobEffects.SPEED, 500, 3, 100 - 50),
+                new RandomPotionEffect(MobEffects.HEALTH_BOOST, 500, 3, 100 - 50))
                 .setEatingDuration(12));
         KEBAB_CARROT_COOKED = addItem(154, "food.kebab.carrot").addComponents(GTFOUtils.getKebabFood(2, 0.2f));
         KEBAB_FAT_COOKED = addItem(151, "food.kebab.fat").addComponents(GTFOUtils.getKebabFood(3, 0.3f));
         //152 is for AppleSlice
         APPLE_JUICE = addItem(153, "food.juice.apple").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 200)));
+                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 0)));
         ORANGE_JUICE = addItem(155, "food.juice.orange").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 200)));
+                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 0)));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;

@@ -271,6 +271,7 @@ public class CoreChain {
 
     public static void slicingRecipes() {
         Map<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> slicingArray = new HashMap<>();
+        slicingArray.put(CUCUMBER, CUCUMBER_SLICE);
         slicingArray.put(OLIVE, OLIVE_SLICE);
         slicingArray.put(TOMATO, TOMATO_SLICE);
         slicingArray.put(ONION, ONION_SLICE);
@@ -278,7 +279,7 @@ public class CoreChain {
             ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().toString(), entry.getValue().getStackForm(4), 'k', entry.getKey());
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .inputs(entry.getKey().getStackForm())
-                    .notConsumable(SLICER_BLADE_OCTAGONAL.getStackForm())
+                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                     .outputs(entry.getValue().getStackForm(8))
                     .buildAndRegister();
 
@@ -288,17 +289,11 @@ public class CoreChain {
         // Do The Minecraft fruit slicing
         {
             ModHandler.addShapelessRecipe("gtfo_slice_carrot", CARROT_SLICE.getStackForm(4), 'k', Items.CARROT);
-            ModHandler.addShapelessRecipe("gtfo_slice_cucumber", CUCUMBER_SLICE.getStackForm(4), 'k', CUCUMBER);
             ModHandler.addShapelessRecipe("gtfo_slice_apple", APPLE_SLICE.getStackForm(4), 'k', Items.APPLE);
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .input(Items.CARROT)
                     .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                     .outputs(CARROT_SLICE.getStackForm(8))
-                    .buildAndRegister();
-            SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
-                    .input(CUCUMBER)
-                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
-                    .outputs(CUCUMBER_SLICE.getStackForm(8))
                     .buildAndRegister();
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .input(Items.APPLE)
