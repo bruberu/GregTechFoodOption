@@ -279,7 +279,7 @@ public class CoreChain {
             ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().toString(), entry.getValue().getStackForm(4), 'k', entry.getKey());
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .inputs(entry.getKey().getStackForm())
-                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                    .notConsumable(SLICER_BLADE_OCTAGONAL.getStackForm())
                     .outputs(entry.getValue().getStackForm(8))
                     .buildAndRegister();
 
@@ -292,12 +292,12 @@ public class CoreChain {
             ModHandler.addShapelessRecipe("gtfo_slice_apple", APPLE_SLICE.getStackForm(4), 'k', Items.APPLE);
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .input(Items.CARROT)
-                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                    .notConsumable(SLICER_BLADE_OCTAGONAL.getStackForm())
                     .outputs(CARROT_SLICE.getStackForm(8))
                     .buildAndRegister();
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .input(Items.APPLE)
-                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                    .notConsumable(SLICER_BLADE_OCTAGONAL.getStackForm())
                     .outputs(APPLE_SLICE.getStackForm(8))
                     .buildAndRegister();
         }
