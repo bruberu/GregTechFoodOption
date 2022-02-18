@@ -288,7 +288,7 @@ public class CoreChain {
         // Do The Minecraft fruit slicing
         {
             ModHandler.addShapelessRecipe("gtfo_slice_carrot", CARROT_SLICE.getStackForm(4), 'k', Items.CARROT);
-            ModHandler.addShapelessRecipe("gtfo_slice_carrot", CUCUMBER_SLICE.getStackForm(4), 'k', CUCUMBER);
+            ModHandler.addShapelessRecipe("gtfo_slice_cucumber", CUCUMBER_SLICE.getStackForm(4), 'k', CUCUMBER);
             ModHandler.addShapelessRecipe("gtfo_slice_apple", APPLE_SLICE.getStackForm(4), 'k', Items.APPLE);
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .input(Items.CARROT)
