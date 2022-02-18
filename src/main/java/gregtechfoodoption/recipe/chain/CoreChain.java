@@ -24,8 +24,7 @@ import java.util.Map;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.common.items.MetaItems.BOTTLE_PURPLE_DRINK;
-import static gregtech.common.items.MetaItems.CARBON_MESH;
+import static gregtech.common.items.MetaItems.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
@@ -61,6 +60,17 @@ public class CoreChain {
                 .EUt(5)
                 .duration(100)
                 .buildAndRegister();
+        EXTRACTOR_RECIPES.recipeBuilder()
+                .inputs(ORANGE.getStackForm())
+                .outputs(GTFOMaterialHandler.Zest.getItemStack(1))
+                .fluidOutputs(GTFOMaterialHandler.OrangeExtract.getFluid(100))
+                .EUt(5)
+                .duration(100)
+                .buildAndRegister();
+        //Hand recipe for early game (veeeery ineficient) P.S: i don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
+        ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON, LEMON, LEMON, LEMON, OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME, LIME, LIME, LIME, OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE, ORANGE, ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
     }
 
     public static void caneSyrup() {
@@ -150,6 +160,75 @@ public class CoreChain {
                 .inputs(OLIVE.getStackForm())
                 .fluidOutputs(GTFOMaterialHandler.OliveOil.getFluid(100))
                 .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
+                .inputs(APPLE_SLICE.getStackForm(4))
+                .fluidOutputs(AppleExtract.getFluid(100))
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .inputs(APPLE_JUICE.getStackForm())
+                .fluidOutputs(AppleExtract.getFluid(100))
+                .output(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .inputs(ORANGE_JUICE.getStackForm())
+                .fluidOutputs(OrangeExtract.getFluid(100))
+                .output(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .outputs(APPLE_JUICE.getStackForm())
+                .fluidInputs(AppleExtract.getFluid(100))
+                .input(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
+                .outputs(ORANGE_JUICE.getStackForm())
+                .fluidInputs(OrangeExtract.getFluid(100))
+                .input(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        // the distillation are temporary
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(AppleExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(200))
+                .fluidOutputs(AceticAcid.getFluid(800))
+                .output(dust, Sugar)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(OrangeExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(300))
+                .fluidOutputs(CitricAcid.getFluid(30))
+                .fluidOutputs(Water.getFluid(700))
+                .output(PLANT_BALL)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(LimeExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(300))
+                .fluidOutputs(CitricAcid.getFluid(100))
+                .fluidOutputs(Water.getFluid(600))
+                .output(PLANT_BALL)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(LemonExtract.getFluid(1000))
+                .fluidOutputs(Biomass.getFluid(300))
+                .fluidOutputs(CitricAcid.getFluid(100))
+                .fluidOutputs(Water.getFluid(600))
+                .output(PLANT_BALL)
+                .buildAndRegister();
     }
 
     public static void bakingOvenRecipes() {
@@ -204,8 +283,23 @@ public class CoreChain {
                     .outputs(entry.getValue().getStackForm(8))
                     .buildAndRegister();
 
-            // Since we already have our crops, we might as well register their green house recipes here
-            //RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey()); TODO
+            // TODO: Since we already have our crops, we might as well register their green house recipes here
+            //RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey());
+        }
+        // Do The Minecraft fruit slicing
+        {
+            ModHandler.addShapelessRecipe("gtfo_slice_carrot", CARROT_SLICE.getStackForm(4), 'k', Items.CARROT);
+            ModHandler.addShapelessRecipe("gtfo_slice_apple", APPLE_SLICE.getStackForm(4), 'k', Items.APPLE);
+            SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                    .input(Items.CARROT)
+                    .notConsumable(SLICER_BLADE_FLAT.getStackForm())
+                    .outputs(CARROT_SLICE.getStackForm(8))
+                    .buildAndRegister();
+            SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                    .input(Items.APPLE)
+                    .notConsumable(SLICER_BLADE_OCTAGONAL.getStackForm())
+                    .outputs(APPLE_SLICE.getStackForm(8))
+                    .buildAndRegister();
         }
         // Get the mushroom done separately. And don't use red mushrooms.
         ModHandler.addShapelessRecipe("gtfo_slice_mushroom", MUSHROOM_SLICE.getStackForm(4), 'k', Blocks.BROWN_MUSHROOM);
@@ -423,8 +517,8 @@ public class CoreChain {
                 .fluidInputs(Bacteria.getFluid(1000))
                 .fluidOutputs(Biomass.getFluid(10000))
                 .fluidOutputs(Water.getFluid(14000))
-                .fluidOutputs(BacterialSludge.getFluid(1000))
                 .fluidOutputs(SulfurDioxide.getFluid(8000))
+                .fluidOutputs(Methane.getFluid(8000))
                 .input(dust, Calcite, 3)
                 .notConsumable(CARBON_MESH)
                 .notConsumable(new IntCircuitIngredient(1))

@@ -1,12 +1,14 @@
 package gregtechfoodoption.tools;
 
-import gregtechfoodoption.item.GTFOMetaItem;
+import gregtech.api.items.metaitem.ElectricStats;
 import gregtech.api.items.toolitem.ToolMetaItem;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.sound.GTSounds;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
+import gregtechfoodoption.item.GTFOMetaItem;
 import net.minecraft.item.ItemStack;
 
 public class GTFOMetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem> {
@@ -16,6 +18,11 @@ public class GTFOMetaTool extends ToolMetaItem<ToolMetaItem<?>.MetaToolValueItem
         GTFOMetaItem.ROLLING_PIN = (MetaToolValueItem) addItem(0, "tool.rolling_pin").setToolStats(new ToolRollingPin())
                 .setFullRepairCost(2)
                 .addOreDict("craftingToolRollingPin");
+        GTFOMetaItem.BUTCHERY_KNIFE_HV = (MetaToolValueItem) addItem(1, "tool.butchery_knife.hv").setToolStats(new ToolButcheryKnifeHV())
+                .setFullRepairCost(4.0D)
+                .addComponents(ElectricStats.createElectricItem(1600000L, 3L))
+                .setSound(GTSounds.CUT) // TODO: add Knife sound
+                .addOreDict("craftingToolKnife");
     }
 
     public void registerRecipes() {
