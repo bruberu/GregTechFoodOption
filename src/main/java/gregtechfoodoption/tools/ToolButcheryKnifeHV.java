@@ -7,12 +7,16 @@ import gregtech.api.capability.IElectricItem;
 import gregtech.api.enchants.EnchantmentData;
 import gregtech.common.items.MetaItems;
 import gregtech.common.tools.ToolButcheryKnife;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Enchantments;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
 public class ToolButcheryKnifeHV extends ToolButcheryKnife {
+
+    private static final long use = GTValues.V[GTValues.HV * 4];
 
     @Override
     public float getBaseDamage(ItemStack stack) {
@@ -21,7 +25,7 @@ public class ToolButcheryKnifeHV extends ToolButcheryKnife {
 
     @Override
     public float getAttackSpeed(ItemStack stack) {
-        if (stack.getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null).canUse(GTValues.V[GTValues.HV]))
+        if (stack.getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null).canUse(use))
             return super.getAttackSpeed(stack) + 3;
         else
             return 0;
@@ -34,7 +38,7 @@ public class ToolButcheryKnifeHV extends ToolButcheryKnife {
 
     @Override
     public boolean canPerformSweepAttack(ItemStack stack) {
-        return stack.getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null).canUse(GTValues.V[GTValues.HV]);
+        return stack.getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null).canUse(use);
     }
 
     public ItemStack getBrokenStack(ItemStack stack) {
@@ -45,5 +49,10 @@ public class ToolButcheryKnifeHV extends ToolButcheryKnife {
     @Override
     public float getMaxDurabilityMultiplier(ItemStack stack) {
         return 4;
+    }
+
+    @Override
+    public boolean canMineBlock(IBlockState block, ItemStack stack) {
+        return (block.getMaterial() == Material.LEAVES) || (block.getMaterial() == Material.WEB);
     }
 }
