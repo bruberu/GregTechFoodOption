@@ -335,7 +335,6 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         }
     }
 
-    @Override
     public boolean canCreateSound() {
         return temp > 300 && this.recipeMapWorkable.isWorkingEnabled();
     }

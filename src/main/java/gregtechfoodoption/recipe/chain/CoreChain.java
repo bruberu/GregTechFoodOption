@@ -15,6 +15,7 @@ import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Arrays;
@@ -265,7 +266,7 @@ public class CoreChain {
                 'W', Items.WHEAT,
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
-        ModHandler.addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm());
+        FurnaceRecipes.instance().addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm(), 0);
         ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
     }
 
@@ -561,7 +562,7 @@ public class CoreChain {
                 .outputs(GTFOMaterialHandler.ToughMeat.getItemStack(2))
                 .buildAndRegister();
 
-        ModHandler.addSmeltingRecipe(GTFOMaterialHandler.ToughMeat.getItemStack(), OreDictUnifier.get(ingot, Meat));
+        GTFOUtils.addBakingOvenRecipes(GTFOMaterialHandler.ToughMeat.getItemStack(), OreDictUnifier.get(ingot, Meat), 200, 400, 1);
 
         EXTRUDER_RECIPES.recipeBuilder().EUt(28).duration(20)
                 .input(dust, Meat)

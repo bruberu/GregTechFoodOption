@@ -1,14 +1,14 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.integration.GTFONCMaterialHandler;
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.utils.GTFOUtils;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.integration.GTFONCMaterialHandler;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import gregtechfoodoption.utils.GTFOUtils;
 import nc.init.NCItems;
 import nc.recipe.BasicRecipeHandler;
 import nc.recipe.NCRecipes;
@@ -23,10 +23,10 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
-import static gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
+import static gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static nc.recipe.AbstractRecipeHandler.fluidStack;
 
 
@@ -257,7 +257,7 @@ public class SmogusChain {
                 .duration(100)
                 .buildAndRegister();
 
-        ModHandler.addSmeltingRecipe(GTFONCMaterialHandler.MATTER_GRAHAM.getItemStack(), GTFONCMaterialHandler.MATTER_GRAHAM_HOT.getItemStack());
+        GTFOUtils.addBakingOvenRecipes(GTFONCMaterialHandler.MATTER_GRAHAM.getItemStack(), GTFONCMaterialHandler.MATTER_GRAHAM_HOT.getItemStack(), 400, 450, 3);
 
         Item[] gelatins = {Items.BONE, Items.LEATHER, Items.PORKCHOP, Items.BEEF, Items.CHICKEN, Items.RABBIT, Items.MUTTON};
 
