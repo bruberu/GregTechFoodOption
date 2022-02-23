@@ -3,10 +3,13 @@ package gregtechfoodoption;
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.net.NetworkHandler;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.GTFONCMaterialHandler;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.GTFOFoodDurationSetter;
+import gregtechfoodoption.network.SPacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,10 +22,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,6 +43,7 @@ public class GTFOEventHandler {
     private static final HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
 
     private static final Set<EntityLivingBase> jumpBoostSet = new HashSet<>();
+
 
     @SubscribeEvent
     public static void onMaterialsInit(GregTechAPI.MaterialEvent event) { // Must be called during construction to be registered in time for MaterialEvents.
@@ -161,5 +168,27 @@ public class GTFOEventHandler {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onAdvancement(AdvancementEvent event) {
+        if (GTFOConfig.gtfoAppleCoreConfig.reduceForeignFoodStats) {
+            float divisorObtained = GTFOAppleCoreCompat.getDivisorOnAdvancement(event.getAdvancement());
+            if (divisorObtained > 1 && GTFOAppleCoreCompat.advancementLookup(event.getEntityPlayer()) == divisorObtained) {
+                NetworkHandler.channel.sendToAll(new SPacketAppleCoreFoodDivisorUpdate(
+                        event.getEntityPlayer().getUniqueID(), divisorObtained).toFMLPacket());
+                event.getEntityPlayer().sendMessage(new TextComponentTranslation("gregtechfoodoption.chat.food_buff"));
+            }
+        }
+    }
+
+
+    @SubscribeEvent
+    public static void onPlayerLoginEvent(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!event.player.getEntityWorld().isRemote) {
+            NetworkHandler.channel.sendToAll(new SPacketAppleCoreFoodDivisorUpdate(
+                    event.player.getUniqueID(), GTFOAppleCoreCompat.advancementLookup(event.player)).toFMLPacket());
+        }
+
     }
 }

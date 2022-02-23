@@ -1,12 +1,13 @@
 package gregtechfoodoption;
 
 import gregtech.api.GTValues;
+import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.utils.GTFOConfigOverrider;
-import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.machines.GTFOTileEntities;
+import gregtechfoodoption.network.GTFONetworkHandler;
+import gregtechfoodoption.utils.GTFOConfigOverrider;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -37,6 +38,7 @@ public class GregTechFoodOption {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        GTFONetworkHandler.init();
         proxy.preLoad();
 
         MinecraftForge.EVENT_BUS.register(new GTFODropsEventHandler());

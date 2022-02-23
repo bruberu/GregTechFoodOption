@@ -1,24 +1,35 @@
 package gregtechfoodoption.integration.applecore;
 
+import gregtech.api.GTValues;
 import gregtechfoodoption.GTFOConfig;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.food.FoodValues;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public class GTFOAppleCoreCompat {
     private static final ArrayList<Item> sparedItems = new ArrayList<>();
     private static final HashMap<Item, FoodValues> sparedItemsFoodValues = new HashMap<>();
+    private static final TreeMap<Float, ResourceLocation> foodReductionMap = new TreeMap() {{
+        put(1.25f, new ResourceLocation(GTValues.MODID, "low_voltage/lv_root"));
+        put(1.5f, new ResourceLocation(GTValues.MODID, "low_voltage/23_lv_assembler"));
+        put(2f, new ResourceLocation(GTValues.MODID, "high_voltage/41_vacuum_freezer"));
+        put(3f, new ResourceLocation(GTValues.MODID, "extreme_voltage/47_nichrome_coil"));
+        put(5f, new ResourceLocation(GTValues.MODID, "insane_voltage/57_tungstensteel_coil"));
+    }};
+    public static final Map<UUID, Float> clientDivisorsMap = new HashMap<>();
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void setFoodValuesForEvent(FoodEvent.GetPlayerFoodValues event) {
@@ -28,7 +39,7 @@ public class GTFOAppleCoreCompat {
     public FoodValues getGTFOFoodValues(FoodValues originalValues, ItemStack food, EntityPlayer player) {
         Item sparedFood = food.getItem();
         if (sparedItems.contains(sparedFood)) {
-            if(sparedItemsFoodValues.containsKey(sparedFood))
+            if (sparedItemsFoodValues.containsKey(sparedFood))
                 return sparedItemsFoodValues.get(sparedFood);
             return originalValues;
         }
@@ -46,34 +57,50 @@ public class GTFOAppleCoreCompat {
     }
 
     private float getFoodModifier(EntityPlayer player, ItemStack actualFood) {
-        int timePlayed = 0;
-        if(player instanceof EntityPlayerMP)
-            timePlayed = ((EntityPlayerMP) player).getStatFile().readStat(StatList.PLAY_ONE_MINUTE) / 1200;
-        else if (player instanceof EntityPlayerSP)
-            timePlayed = ((EntityPlayerSP) player).getStatFileWriter().readStat(StatList.PLAY_ONE_MINUTE) / 1200;
-
-        return actualFood.getItem().getRegistryName().getNamespace().equals("gregtechfoodoption") ? 1 : getForeignFoodDivisor(timePlayed);
+        return actualFood.getItem().getRegistryName().getNamespace().equals("gregtechfoodoption") ? 1 : getForeignFoodDivisor(player);
     }
 
-    private float getForeignFoodDivisor(int playTimeStat) {
-        if(GTFOConfig.gtfoAppleCoreConfig.useDefaultForeignFoodStatsReduction) {
-            float logistic = (float) (1 + ((GTFOConfig.gtfoAppleCoreConfig.foodStatsReductionMaximum - 1) /
-                                (1 + Math.exp(((float) 5 / GTFOConfig.gtfoAppleCoreConfig.foodStatsReductionMinuteMidpoint) *
-                                        (GTFOConfig.gtfoAppleCoreConfig.foodStatsReductionMinuteMidpoint - playTimeStat)))));
-            return logistic < 1.05 ? 1 : logistic;
-        }
-        else
+    private float getForeignFoodDivisor(EntityPlayer player) {
+        if (GTFOConfig.gtfoAppleCoreConfig.useDefaultForeignFoodStatsReduction) {
+            return clientDivisorsMap.get(player.getUniqueID());
+        } else
             return GTFOConfig.gtfoAppleCoreConfig.constantFoodStatsDivisor;
+    }
+
+    public static float advancementLookup(EntityPlayer player) {
+        Map.Entry<Float, ResourceLocation> highestAdvancement = foodReductionMap.lastEntry();
+        EntityPlayerMP serverPlayer = (EntityPlayerMP) player;
+        while (true) {
+            if (resourceLocationToAdvancement(highestAdvancement.getValue(), serverPlayer.getEntityWorld()) != null && serverPlayer.getAdvancements().getProgress(resourceLocationToAdvancement(highestAdvancement.getValue(), serverPlayer.world)).isDone())
+                return highestAdvancement.getKey();
+            highestAdvancement = foodReductionMap.lowerEntry(highestAdvancement.getKey());
+            if (highestAdvancement == null) // When the map runs out
+                return 1f;
+        }
+    }
+
+    public static float getDivisorOnAdvancement(Advancement advancement) {
+        for (Map.Entry<Float, ResourceLocation> entry : foodReductionMap.entrySet()) {
+            if (entry.getValue().equals(advancement.getId()))
+                return entry.getKey();
+        }
+        return 1;
+    }
+
+    private static Advancement resourceLocationToAdvancement(ResourceLocation location, World world) {
+        AdvancementManager advManager = ObfuscationReflectionHelper.getPrivateValue(World.class, world, "field_191951_C");
+        return advManager.getAdvancement(location);
     }
 
     @ZenMethod
     public static void addToSparedItems(Item item) {
         sparedItems.add(item);
     }
+
     @ZenMethod
     public static void addToSparedItems(Item item, int hunger, float saturation) {
         sparedItems.add(item);
-        if(GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
+        if (GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
             sparedItemsFoodValues.put(item, new FoodValues(hunger, saturation));
     }
 }

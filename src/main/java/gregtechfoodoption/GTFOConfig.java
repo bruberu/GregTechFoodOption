@@ -60,10 +60,10 @@ public class GTFOConfig {
     }
 
     public static class GTFOVanillaOverridesConfig {
-        @Config.Comment("Enable GTFO Vanilla Overrides features?")
+        @Config.Comment("Enable most GTFO Vanilla Overrides features, usually adding small chains to food items while removing normal recipes?")
         public boolean vanillaOverrideChain = true;
 
-        @Config.Comment("Make Baking Oven Recipes for Meats in the Vanilla Overrides chain?")
+        @Config.Comment("Make Baking Oven Recipes for Meats in the Vanilla Overrides chain (and delete normal furnace recipes for them), if the chain itself is enabled?")
         public boolean useBakingOvenForMeats = true;
 
         @Config.Comment("Replace manual paper recipe with one with a Rolling Pin?")
@@ -82,12 +82,6 @@ public class GTFOConfig {
 
         @Config.Comment("If the above is false, you can set this to divide all vanilla food items by some value.")
         public int constantFoodStatsDivisor = 1;
-
-        @Config.Comment("If the above is true, this setting details how many minutes it should take before the midpoint of the logistic curve is reached.")
-        public int foodStatsReductionMinuteMidpoint = 360;
-
-        @Config.Comment("If the above is true, this setting details the maximum divisor that will be reached.")
-        public int foodStatsReductionMaximum = 4;
 
         public void setAllToFalse() {
             appleCoreCompat = false;
