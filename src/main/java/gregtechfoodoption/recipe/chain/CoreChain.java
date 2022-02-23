@@ -562,12 +562,12 @@ public class CoreChain {
                 .outputs(GTFOMaterialHandler.ToughMeat.getItemStack(2))
                 .buildAndRegister();
 
-        GTFOUtils.addBakingOvenRecipes(GTFOMaterialHandler.ToughMeat.getItemStack(), OreDictUnifier.get(ingot, Meat), 200, 400, 1);
+        GTFOUtils.addBakingOvenRecipes(GTFOMaterialHandler.ToughMeat.getItemStack(), GTFOMaterialHandler.MeatIngot.getItemStack(), 200, 400, 1);
 
         EXTRUDER_RECIPES.recipeBuilder().EUt(28).duration(20)
                 .input(dust, Meat)
                 .notConsumable(MetaItems.SHAPE_EXTRUDER_INGOT)
-                .output(ingot, Meat)
+                .outputs(GTFOMaterialHandler.MeatIngot.getItemStack())
                 .buildAndRegister();
 
         MACERATOR_RECIPES.recipeBuilder().EUt(4).duration(40)

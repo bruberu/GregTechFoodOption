@@ -495,8 +495,7 @@ gregtechfoodoption.tooltip.potion.each=   §e%s %s§r for §c%s§r ticks with a 
 gregtechfoodoption.tooltip.potion.header=§6Contains effects:
 
 metaitem.tough_meat_dust.name=Toughened Meat
-item.meat.ingot=Meat Ingot
-item.meat.nugget=Meat Nugget
+metaitem.cooked_meat_ingot.name=Meat Ingot
 metaitem.component.scrap_meat.name=Scrap Meat
 metaitem.component.scrap_meat.tooltip=The Parts that People don't usually eat, although I won't judge
 
