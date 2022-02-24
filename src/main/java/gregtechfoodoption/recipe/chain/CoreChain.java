@@ -204,8 +204,25 @@ public class CoreChain {
         DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
                 .fluidInputs(AppleExtract.getFluid(1000))
                 .fluidOutputs(Biomass.getFluid(200))
-                .fluidOutputs(AceticAcid.getFluid(800))
+                .fluidOutputs(AceticAcid.getFluid(10))
+                .fluidOutputs(Water.getFluid(1000))
                 .output(dust, Sugar)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(AppleCider.getFluid(1000))
+                .fluidOutputs(AceticAcid.getFluid(80))
+                .fluidOutputs(Ethanol.getFluid(210))
+                .fluidOutputs(Water.getFluid(400))
+                .fluidOutputs(Methanol.getFluid(100))
+                .fluidOutputs(CarbonDioxide.getFluid(400))
+                .fluidOutputs(Methane.getFluid(500))
+                .output(PLANT_BALL)
+                .buildAndRegister();
+
+        FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(150)
+                .fluidOutputs(AppleExtract.getFluid(100))
+                .fluidOutputs(AppleCider.getFluid(100))//TODO make apple cidar
                 .buildAndRegister();
 
         DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
