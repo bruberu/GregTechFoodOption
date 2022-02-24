@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -374,7 +375,10 @@ public class CoreChain {
                     .fluidOutputs(Water.getFluid(100))
                     .buildAndRegister();
         }
-        for (ItemStack stack : GTFOUtils.getMeat()) {
+        ArrayList<ItemStack> allMeaty = new ArrayList<>();
+        allMeaty.addAll(GTFOUtils.getMeat());
+        allMeaty.addAll(Arrays.asList(new ItemStack(Items.ROTTEN_FLESH),new ItemStack(Items.SPIDER_EYE)));
+        for (ItemStack stack : allMeaty) {
             FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
                     .inputs(stack)
                     .outputs(ROTTEN_MEAT.getStackForm())
@@ -411,38 +415,38 @@ public class CoreChain {
 
     public static void meatAndFat() {
         GTFOUtils.getMeat().forEach(itemStack -> {
-            itemStack.setCount(16);
-            CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(100)
+            itemStack.setCount(8);
+            CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
                     .inputs(itemStack)
-                    .output(dust, Meat, 8)
+                    .output(dust, Meat, 13)
                     .output(dustSmall, Bone, 8)
-                    .chancedOutput(Fat.getItemStack(4), 5000, 2000)
+                    .outputs(Fat.getItemStack(8))
                     .chancedOutput(Fat.getItemStack(4), 5000, 2000)
                     .notConsumable(new IntCircuitIngredient(0))
                     .buildAndRegister();
             LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
                     .input(itemStack.getItem(), 32)
-                    .fluidInputs(Methanol.getFluid(8000), Chloroform.getFluid(8000))
-                    .output(dust, Meat, 20)
-                    .output(dustSmall, Bone, 20)
-                    .fluidOutputs(Stearin.getFluid(4000), Sludge.getFluid(4000))
+                    .fluidInputs(Methanol.getFluid(4000), Chloroform.getFluid(4000))
+                    .output(dust, Meat, 40)
+                    .output(dust, Bone, 16)
+                    .fluidOutputs(Stearin.getFluid(32000), Sludge.getFluid(12000), HydrochloricAcid.getFluid(12000))
                     .buildAndRegister();
         });
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
                 .input(SCRAP_MEAT, 32)
-                .fluidInputs(Methanol.getFluid(8000), Chloroform.getFluid(8000))
-                .output(dust, Meat, 25)
-                .output(dustSmall, Bone, 20)
-                .fluidOutputs(Stearin.getFluid(6000), Sludge.getFluid(8000))
+                .fluidInputs(Methanol.getFluid(4000), Chloroform.getFluid(4000))
+                .output(dust, Meat, 32)
+                .output(dust, Bone, 20)
+                .fluidOutputs(Stearin.getFluid(35000), Sludge.getFluid(16000), HydrochloricAcid.getFluid(12000))
                 .buildAndRegister();
 
-        CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(80)
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
                 .input(SCRAP_MEAT, 8)
-                .output(dust, Meat, 4)
-                .output(dustSmall, Bone, 8)
-                .chancedOutput(Fat.getItemStack(2), 7000, 2000)
-                .chancedOutput(Fat.getItemStack(2), 6000, 2000)
+                .output(dust, Meat, 10)
+                .output(dustSmall, Bone, 16)
+                .outputs(Fat.getItemStack(10))
+                .chancedOutput(Fat.getItemStack(4), 5000, 2000)
                 .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(30).duration(300)
@@ -453,8 +457,8 @@ public class CoreChain {
         FERMENTING_RECIPES.recipeBuilder().EUt(32).duration(1200)
                 .input(SCRAP_MEAT, 1)
                 .fluidInputs(Chloroform.getFluid(100))
-                .chancedOutput(dust, Meat, 1, 2000, 10)
-                .fluidOutputs(Stearin.getFluid(100))
+                .output(dust, Meat,1)
+                .fluidOutputs(Stearin.getFluid(400))
                 .buildAndRegister();
 
         GTFOUtils.getOrganicOils().forEach(f -> {
