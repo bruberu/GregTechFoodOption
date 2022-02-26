@@ -446,7 +446,7 @@ public class CoreChain {
                     .fluidInputs(Methanol.getFluid(4000), Chloroform.getFluid(4000))
                     .output(dust, Meat, 40)
                     .output(dust, Bone, 16)
-                    .fluidOutputs(Stearin.getFluid(32000), Sludge.getFluid(12000), HydrochloricAcid.getFluid(12000))
+                    .fluidOutputs(Stearin.getFluid(32000), Sludge.getFluid(12000), Chlorine.getFluid(12000))
                     .buildAndRegister();
         });
 
@@ -455,7 +455,7 @@ public class CoreChain {
                 .fluidInputs(Methanol.getFluid(4000), Chloroform.getFluid(4000))
                 .output(dust, Meat, 32)
                 .output(dust, Bone, 20)
-                .fluidOutputs(Stearin.getFluid(35000), Sludge.getFluid(16000), HydrochloricAcid.getFluid(12000))
+                .fluidOutputs(Stearin.getFluid(35000), Sludge.getFluid(16000), Chlorine.getFluid(12000))
                 .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
