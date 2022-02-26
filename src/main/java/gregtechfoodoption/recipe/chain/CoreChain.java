@@ -221,8 +221,8 @@ public class CoreChain {
                 .buildAndRegister();
 
         FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(150)
-                .fluidOutputs(AppleExtract.getFluid(100))
-                .fluidOutputs(AppleCider.getFluid(100))//TODO make apple cidar
+                .fluidInputs(AppleExtract.getFluid(100))
+                .fluidOutputs(AppleCider.getFluid(100))
                 .buildAndRegister();
 
         DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
