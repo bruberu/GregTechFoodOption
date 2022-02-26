@@ -297,6 +297,10 @@ public class CoreChain {
                 " h ", "BBB", "CCC",
                 'B', OreDictUnifier.get(plate, Bronze),
                 'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
+        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks3", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3),
+                " h ", " B ", "CCC",
+                'B', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS),
+                'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(20)
                 .input(plate, Bronze, 1)
                 .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1))
@@ -304,6 +308,11 @@ public class CoreChain {
                 .buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(80)
                 .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS))
+                .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 3))
+                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3))
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(100)
+                .input(plate, Bronze, 3)
                 .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 3))
                 .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3))
                 .buildAndRegister();
