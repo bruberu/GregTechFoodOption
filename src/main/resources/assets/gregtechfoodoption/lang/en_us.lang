@@ -516,6 +516,10 @@ metaitem.component.kebab.kubide.tooltip=needs some carbon!
 metaitem.food.kebab.kubide.name=Kebab Kubide
 metaitem.food.kebab.kubide.tooltip=Goes with Ayran!
 
+metaitem.component.kebab.meat.name=Kebab Meat Raw
+metaitem.food.kebab.meat.name=Kebab Meat
+metaitem.food.kebab.meat.tooltip=Also known as Chenge
+
 metaitem.barg_meat_dust.name=Barg Ingredients
 metaitem.barg_meat_dust.tooltip=You know this means leaf Meat... Right?
 metaitem.component.kebab.barg.name=Raw Barg Kebab

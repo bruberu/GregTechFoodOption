@@ -291,14 +291,14 @@ public class CoreChain {
         ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
         ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks1", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
                 " h ", " B ", " C ",
-                'B', OreDictUnifier.get(plate,Bronze),
-                'C',  GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
+                'B', OreDictUnifier.get(plate, Bronze),
+                'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
         ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks2", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3),
                 " h ", "BBB", "CCC",
-                'B', OreDictUnifier.get(plate,Bronze),
-                'C',  GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
+                'B', OreDictUnifier.get(plate, Bronze),
+                'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(20)
-                .input(plate,Bronze,1)
+                .input(plate, Bronze, 1)
                 .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1))
                 .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1))
                 .buildAndRegister();
@@ -415,7 +415,7 @@ public class CoreChain {
         }
         ArrayList<ItemStack> allMeaty = new ArrayList<>();
         allMeaty.addAll(GTFOUtils.getMeat());
-        allMeaty.addAll(Arrays.asList(new ItemStack(Items.ROTTEN_FLESH),new ItemStack(Items.SPIDER_EYE)));
+        allMeaty.addAll(Arrays.asList(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.SPIDER_EYE)));
         for (ItemStack stack : allMeaty) {
             FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
                     .inputs(stack)
@@ -452,6 +452,7 @@ public class CoreChain {
     }
 
     public static void meatAndFat() {
+        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), OreDictUnifier.get(dust, Meat), OreDictUnifier.get(dust, Meat), Items.WATER_BUCKET);
         GTFOUtils.getMeat().forEach(itemStack -> {
             itemStack.setCount(8);
             CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
@@ -495,7 +496,7 @@ public class CoreChain {
         FERMENTING_RECIPES.recipeBuilder().EUt(32).duration(1200)
                 .input(SCRAP_MEAT, 1)
                 .fluidInputs(Chloroform.getFluid(100))
-                .output(dust, Meat,1)
+                .output(dust, Meat, 1)
                 .fluidOutputs(Stearin.getFluid(400))
                 .buildAndRegister();
 
