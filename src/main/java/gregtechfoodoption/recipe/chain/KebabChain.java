@@ -203,39 +203,39 @@ public class KebabChain {
     }
 
     private static void skewers() {
-        ModHandler.addShapedRecipe("gtfo_hand_skewer", SKEWER.getStackForm(2),
+        ModHandler.addShapedRecipe("gtfo_hand_skewer", SKEWER.getStackForm(8),
                 "BSd", "fB ",
                 'S', OreDictUnifier.get(stickLong, Steel),
                 'B', OreDictUnifier.get(screw, Steel));
 
         LATHE_RECIPES.recipeBuilder().EUt(20).duration(25)
                 .input(stickLong, Steel, 1)
-                .outputs(SKEWER.getStackForm(2))
+                .outputs(SKEWER.getStackForm(8))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(30).duration(120)
                 .input(stick, Steel, 1)
-                .outputs(SKEWER.getStackForm(1))
+                .outputs(SKEWER.getStackForm(4))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(40).duration(25)
                 .input(stickLong, StainlessSteel, 1)
-                .outputs(SKEWER.getStackForm(4))
+                .outputs(SKEWER.getStackForm(16))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(40).duration(120)
                 .input(stick, StainlessSteel, 1)
-                .outputs(SKEWER.getStackForm(2))
+                .outputs(SKEWER.getStackForm(8))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(200).duration(200)
                 .input(stickLong, Titanium, 1)
-                .outputs(SKEWER.getStackForm(8))
+                .outputs(SKEWER.getStackForm(32))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(200).duration(100)
                 .input(stick, Titanium, 1)
-                .outputs(SKEWER.getStackForm(3))
+                .outputs(SKEWER.getStackForm(16))
                 .buildAndRegister();
     }
 
