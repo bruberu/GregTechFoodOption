@@ -1,9 +1,5 @@
 package gregtechfoodoption.recipe;
 
-import gregtechfoodoption.block.GTFOMetalCasing;
-import gregtechfoodoption.machines.GTFOTileEntities;
-import gregtechfoodoption.block.GTFOBlockCasing;
-import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -13,6 +9,10 @@ import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.blocks.VariantBlock;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.block.GTFOBlockCasing;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.block.GTFOMetalCasing;
+import gregtechfoodoption.machines.GTFOTileEntities;
 import net.minecraft.util.IStringSerializable;
 
 import java.util.Arrays;
@@ -91,6 +91,14 @@ public class GTFOMachineRecipes {
                 'S', OreDictUnifier.get(screw, WroughtIron),
                 'R', OreDictUnifier.get(stick, WroughtIron),
                 'A', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.ADOBE_BRICKS));
+
+        ModHandler.addShapedRecipe("steam_baking_oven", GTFOTileEntities.STEAM_BAKING_OVEN.getStackForm(),
+                "dSG", "PAR", "fSG",
+                'S', OreDictUnifier.get(screw, Steel),
+                'P', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.REINFORCED_ADOBE_BRICKS),
+                'R', OreDictUnifier.get(pipeSmallFluid, WroughtIron),
+                'G', OreDictUnifier.get(gear,Invar),
+                'A', GTFOTileEntities.BAKING_OVEN.getStackForm());
 
         ModHandler.addShapedRecipe("electric_baking_oven", GTFOTileEntities.ELECTRIC_BAKING_OVEN.getStackForm(),
                 "CPC", "IWI", "CAC",

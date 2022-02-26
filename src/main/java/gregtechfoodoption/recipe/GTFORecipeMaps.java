@@ -1,15 +1,15 @@
 package gregtechfoodoption.recipe;
 
-import gregtech.api.sound.GTSounds;
-import gregtechfoodoption.client.GTFOGuiTextures;
-import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
-import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
-import gregtechfoodoption.recipe.maps.ElectricBakingOvenRecipeMap;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.IntCircuitRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
+import gregtech.api.sound.GTSounds;
+import gregtechfoodoption.client.GTFOGuiTextures;
+import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
+import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
+import gregtechfoodoption.recipe.maps.ElectricBakingOvenRecipeMap;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenProperty;
 
@@ -45,16 +45,28 @@ public class GTFORecipeMaps {
             .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY_1)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
 
+    @ZenProperty
+    public static final RecipeMap<ElectricBakingOvenRecipeBuilder> STEAM_BAKING_OVEN_RECIPE = new ElectricBakingOvenRecipeMap<>("steam_baking_oven", new ElectricBakingOvenRecipeBuilder())
+            .setSound(GTSounds.FURNACE)
+            .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY_1)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
+
 
     @ZenProperty
     public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 1, 2, 0, 1, 0, 0, 0, 0, new BakingOvenRecipeBuilder(), false)
             .setSound(GTSounds.FURNACE)
             .onRecipeBuild(recipeBuilder -> {
-                if (((BakingOvenRecipeBuilder) recipeBuilder).getTemperature() != -1)
+                if (((BakingOvenRecipeBuilder) recipeBuilder).getTemperature() != -1){
                     ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().setTemp(((BakingOvenRecipeBuilder) recipeBuilder).getTemperature())
-                            .duration(recipeBuilder.getDuration())
+                            .duration(recipeBuilder.getDuration()/4)
                             .inputs(recipeBuilder.getInputs().get(0)) // We don't need charcoal.
                             .outputs(recipeBuilder.getOutputs())
                             .buildAndRegister();
+                    STEAM_BAKING_OVEN_RECIPE.recipeBuilder().setTemp(((BakingOvenRecipeBuilder) recipeBuilder).getTemperature())
+                            .duration(recipeBuilder.getDuration()/2)
+                            .inputs(recipeBuilder.getInputs().get(0))
+                            .outputs(recipeBuilder.getOutputs())
+                            .buildAndRegister();
+                }
             });
 }

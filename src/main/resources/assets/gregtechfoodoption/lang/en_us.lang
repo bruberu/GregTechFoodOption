@@ -255,8 +255,11 @@ fluid.gtfo_starch_filled_water=Starch-Filled Water
 fluid.gtfo_hot_frying_oil=Hot Frying Oil
 
 gregtechfoodoption.machine.baking_oven.name=Primitive Baking Oven
+gregtechfoodoption.machine.steam_baking_oven.name=Steam Baking Oven
+gregtechfoodoption.machine.steam_baking_oven.tooltip=The Inner Casings can be either Tempted Glass or Casings but not IO parts! works double as fast as normal cooking oven and half the speed of electric version.
 gregtechfoodoption.machine.electric_baking_oven.name=Electric Baking Oven
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
+tile.gtfo_casing.reinforced_adobe_bricks.name=Reinforced Adobe Bricks
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1=Temperature: §a%dK§7.
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=Not enough energy can be inputted to reach the target!
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=Set target temperature:
@@ -265,6 +268,7 @@ gregtechfoodoption.multiblock.electric_baking_oven.tooltip.5=Target temperature:
 gregtechfoodoption.recipe.baking_oven_temperature=Temperature: %dK
 recipemap.baking_oven.name=Primitive Baking Oven
 recipemap.electric_baking_oven.name=Electric Baking Oven
+recipemap.steam_baking_oven.name=Steam Baking Oven
 metaitem.brick.adobe.name=Mud Brick
 metaitem.brick.adobe_fired.name=Adobe Brick
 
@@ -507,46 +511,46 @@ metaitem.fat_ingot.tooltip=Maybe should hit the Gym?!
 
 metaitem.kubide_meat_dust.name=Koobideh Ingredients
 metaitem.kubide_meat_dust.tooltip=Precisely Delicious!!
-metaitem.component.kebab.kubide.name=Raw Koobideh
+metaitem.component.kebab.kubide.name=Raw Koobideh Kebab
 metaitem.component.kebab.kubide.tooltip=needs some carbon!
-metaitem.food.kebab.kubide.name=Kabab Koobideh
+metaitem.food.kebab.kubide.name=Kebab Kubide
 metaitem.food.kebab.kubide.tooltip=Goes with Ayran!
 
 metaitem.barg_meat_dust.name=Barg Ingredients
 metaitem.barg_meat_dust.tooltip=You know this means leaf Meat... Right?
-metaitem.component.kebab.barg.name=Raw Barg
+metaitem.component.kebab.barg.name=Raw Barg Kebab
 metaitem.component.kebab.barg.tooltip=Barg bargi Bargiun Bargi
-metaitem.food.kebab.barg.name=Kabab e Barg
+metaitem.food.kebab.barg.name=Barg Kebab
 metaitem.food.kebab.barg.tooltip=Isn't it just Kubide with... less Steps?!
 
-metaitem.component.kebab.onion.name=Nailed Onions
+metaitem.component.kebab.onion.name=Nailed Onions Kebab
 metaitem.component.kebab.onion.tooltip=Nail Your Cries!
-metaitem.food.kebab.onion.name=Onion Kabab
+metaitem.food.kebab.onion.name=Onion Kebab
 metaitem.food.kebab.onion.tooltip=Look Who is Crying Now?!
 
-metaitem.component.kebab.tomato.name=Nailed Tomatos
+metaitem.component.kebab.tomato.name=Nailed Tomatos Kebab
 metaitem.component.kebab.tomato.tooltip=No Not the Mr Tomato!!
-metaitem.food.kebab.tomato.name=Kababed Tomato
+metaitem.food.kebab.tomato.name=Kebabed Tomato
 metaitem.food.kebab.tomato.tooltip=He's the New Messaiah
 
-metaitem.component.kebab.carrot.name=Carrots on a Skewel
-metaitem.food.kebab.carrot.name=Grilled Carrots
+metaitem.component.kebab.carrot.name=Carrots on a Skewel Kebab
+metaitem.food.kebab.carrot.name=Grilled Carrots Kebab
 metaitem.food.kebab.carrot.tooltip=BigChungus
 
-metaitem.component.kebab.fat.name=TailFat
+metaitem.component.kebab.fat.name=TailFat Kebab Raw
 metaitem.component.kebab.fat.tootip=Cook it to make it Juicy!
-metaitem.food.kebab.fat.name=Donbe Kabab
-metaitem.food.kebab.fat.tooltip=It's Actually Healthy!
+metaitem.food.kebab.fat.name=TailFat Kebab
+metaitem.food.kebab.fat.tooltip=Donbe's Actually Healthy!
 
-metaitem.component.kebab.chum.name=Chum on Skewel
+metaitem.component.kebab.chum.name=Chum on Skewel Kebab
 metaitem.component.kebab.chum.tooltip=It's not Great...
-metaitem.food.kebab.chum.name=Chum kabab
+metaitem.food.kebab.chum.name=Chum kebab
 metaitem.food.kebab.chum.tooltip=Yes It's Chummy
 
-metaitem.food.kebab.chum.bucket.name=Chum Bucket
+metaitem.food.kebab.chum.bucket.name=Chum Bucket Kebab Mix
 metaitem.food.kebab.chum.bucket.tooltip=This isn't Chum Bucket...
 
-metaitem.food.kebab.soltani.name=Kabab e Soltani!
+metaitem.food.kebab.soltani.name=Kebab e Soltani!
 metaitem.food.kebab.soltani.tooltip=EV Kebab (Voltage In: Delicious!)
 
 metaitem.food.juice.apple.name=Apple Juice

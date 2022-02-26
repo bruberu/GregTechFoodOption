@@ -8,6 +8,8 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.blocks.BlockMetalCasing;
+import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -29,6 +31,7 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
+import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.REINFORCED_ADOBE_BRICKS;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 
@@ -286,6 +289,24 @@ public class CoreChain {
 
         FurnaceRecipes.instance().addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm(), 0);
         ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
+        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks1", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
+                " h ", " B ", " C ",
+                'B', OreDictUnifier.get(plate,Bronze),
+                'C',  GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
+        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks2", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3),
+                " h ", "BBB", "CCC",
+                'B', OreDictUnifier.get(plate,Bronze),
+                'C',  GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(20)
+                .input(plate,Bronze,1)
+                .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1))
+                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1))
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(80)
+                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS))
+                .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 3))
+                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3))
+                .buildAndRegister();
     }
 
     public static void slicingRecipes() {

@@ -9,6 +9,11 @@
         "textures": {
           "all": "gregtech:blocks/casings/solid/adobe_bricks"
         }
+      },
+      "reinforced_adobe_bricks": {
+        "textures": {
+          "all": "gregtech:blocks/casings/solid/reinforced_adobe_bricks"
+        }
       }
     }
   }

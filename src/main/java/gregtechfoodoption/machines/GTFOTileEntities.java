@@ -1,14 +1,15 @@
 package gregtechfoodoption.machines;
 
 import gregtech.api.GTValues;
-import gregtechfoodoption.GregTechFoodOption;
-import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
-import gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
-import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.util.GTUtility;
 import gregtech.common.metatileentities.MetaTileEntities;
+import gregtechfoodoption.GregTechFoodOption;
+import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
+import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
+import gregtechfoodoption.machines.multiblock.MetaTileEntitySteamBakingOven;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.util.ResourceLocation;
 
 import static gregtech.common.metatileentities.MetaTileEntities.*;
@@ -23,6 +24,7 @@ public class GTFOTileEntities {
 
     public static MetaTileEntityBakingOven BAKING_OVEN;
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
+    public static MetaTileEntitySteamBakingOven STEAM_BAKING_OVEN;
 
 
     public static void init() {
@@ -53,6 +55,7 @@ public class GTFOTileEntities {
         }
         BAKING_OVEN = registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
         ELECTRIC_BAKING_OVEN = registerMetaTileEntity(8517, new MetaTileEntityElectricBakingOven(location("electric_baking_oven")));
+        STEAM_BAKING_OVEN = registerMetaTileEntity(8544,new MetaTileEntitySteamBakingOven(location("steam_baking_oven"),GTFORecipeMaps.STEAM_BAKING_OVEN_RECIPE,10));
     }
 
     public static ResourceLocation location(String name) {
