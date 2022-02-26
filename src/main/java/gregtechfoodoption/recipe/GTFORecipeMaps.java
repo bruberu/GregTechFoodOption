@@ -56,14 +56,14 @@ public class GTFORecipeMaps {
     public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 1, 2, 0, 1, 0, 0, 0, 0, new BakingOvenRecipeBuilder(), false)
             .setSound(GTSounds.FURNACE)
             .onRecipeBuild(recipeBuilder -> {
-                if (((BakingOvenRecipeBuilder) recipeBuilder).getTemperature() != -1){
+                if (((BakingOvenRecipeBuilder) recipeBuilder).getTemperature() != -1) {
                     ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().setTemp(((BakingOvenRecipeBuilder) recipeBuilder).getTemperature())
-                            .duration(recipeBuilder.getDuration()/4)
+                            .duration(recipeBuilder.getDuration() / 4)
                             .inputs(recipeBuilder.getInputs().get(0)) // We don't need charcoal.
                             .outputs(recipeBuilder.getOutputs())
                             .buildAndRegister();
                     STEAM_BAKING_OVEN_RECIPE.recipeBuilder().setTemp(((BakingOvenRecipeBuilder) recipeBuilder).getTemperature())
-                            .duration(recipeBuilder.getDuration()/2)
+                            .duration(recipeBuilder.getDuration() / 2)
                             .inputs(recipeBuilder.getInputs().get(0))
                             .outputs(recipeBuilder.getOutputs())
                             .buildAndRegister();

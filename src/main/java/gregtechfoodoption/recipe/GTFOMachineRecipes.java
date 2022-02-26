@@ -97,7 +97,7 @@ public class GTFOMachineRecipes {
                 'S', OreDictUnifier.get(screw, Steel),
                 'P', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.REINFORCED_ADOBE_BRICKS),
                 'R', OreDictUnifier.get(pipeSmallFluid, WroughtIron),
-                'G', OreDictUnifier.get(gear,Invar),
+                'G', OreDictUnifier.get(gear, Invar),
                 'A', GTFOTileEntities.BAKING_OVEN.getStackForm());
 
         ModHandler.addShapedRecipe("electric_baking_oven", GTFOTileEntities.ELECTRIC_BAKING_OVEN.getStackForm(),

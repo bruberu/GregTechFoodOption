@@ -20,7 +20,7 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial LimeExtract = new GTFOFluidMaterial("lime_extract", 0x85f218);
     public static final GTFOFluidMaterial OrangeExtract = new GTFOFluidMaterial("orange_extract", 0xFF6100);
     public static final GTFOFluidMaterial AppleExtract = new GTFOFluidMaterial("apple_extract", 0xE9BA58);
-    public static final GTFOFluidMaterial AppleCider = new GTFOFluidMaterial("apple_cider", averageRGB(2,0xE9BA58,FermentedBiomass.getMaterialRGB()));
+    public static final GTFOFluidMaterial AppleCider = new GTFOFluidMaterial("apple_cider", averageRGB(2, 0xE9BA58, FermentedBiomass.getMaterialRGB()));
     public static final GTFOFluidMaterial UnheatedCaneSyrup = new GTFOFluidMaterial("unheated_cane_syrup", 0xf0efe4);
     public static final GTFOFluidMaterial CaneSyrup = new GTFOFluidMaterial("cane_syrup", 0xf2f1dc);
     public static final GTFOFluidMaterial PurpleDrink = new GTFOFluidMaterial("purple_drink", 0xb405ff);

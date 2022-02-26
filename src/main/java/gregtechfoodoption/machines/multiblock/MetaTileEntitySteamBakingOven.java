@@ -77,6 +77,6 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
 
     @Override
     public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder metaTileEntityHolder) {
-        return new MetaTileEntitySteamBakingOven(metaTileEntityId,getRecipeMap(),CONVERSION_RATE);
+        return new MetaTileEntitySteamBakingOven(metaTileEntityId, getRecipeMap(), CONVERSION_RATE);
     }
 }
