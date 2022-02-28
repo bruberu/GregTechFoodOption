@@ -238,9 +238,7 @@ public class BreadsChain {
         ModHandler.addShapelessRecipe("gtfo_sandwich_cheese", SANDWICH_CHEESE.getStackForm(), PRESLICED_BREAD, CHEDDAR_SLICE, CHEDDAR_SLICE, CHEDDAR_SLICE, CHEDDAR_SLICE);
         ModHandler.addShapelessRecipe("gtfo_sandwich_bacon", SANDWICH_BACON.getStackForm(), PRESLICED_BREAD, BACON, BACON, BACON, BACON, BACON, BACON, BACON, BACON);
         ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_meat", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, GTFOMaterialHandler.MeatIngot.getItemStack());
-        ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_steak", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, new ItemStack(Items.COOKED_BEEF));
-        ModHandler.addShapelessRecipe("gtfo_large_sandwich_steak_from_steak", SANDWICH_LARGE_STEAK.getStackForm(), PRESLICED_BAGUETTE, new ItemStack(Items.COOKED_BEEF), new ItemStack(Items.COOKED_BEEF), new ItemStack(Items.COOKED_BEEF));
-        ModHandler.addShapelessRecipe("gtfo_large_sandwich_steak_from_meat", SANDWICH_LARGE_STEAK.getStackForm(), PRESLICED_BAGUETTE, GTFOMaterialHandler.MeatIngot.getItemStack(), GTFOMaterialHandler.MeatIngot.getItemStack(), GTFOMaterialHandler.MeatIngot.getItemStack());
+        ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_oredict", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, OreDictUnifier.get("cookedMeat"));
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(), TOMATO_SLICE.getStackForm(), CUCUMBER_SLICE.getStackForm(), ONION_SLICE.getStackForm())
                 .outputs(SANDWICH_VEGGIE.getStackForm())
@@ -261,7 +259,7 @@ public class BreadsChain {
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))
-                .input(Items.COOKED_BEEF)
+                .input("cookedMeat", 1)
                 .outputs(SANDWICH_STEAK.getStackForm(3))
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)
@@ -284,7 +282,7 @@ public class BreadsChain {
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)
                 .inputs(PRESLICED_BAGUETTE.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))
-                .input(Items.COOKED_BEEF, 3)
+                .input("cookedMeat", 3)
                 .outputs(SANDWICH_LARGE_STEAK.getStackForm(3))
                 .buildAndRegister();
 
