@@ -46,12 +46,6 @@ public class GTFORecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
-    public static final RecipeMap<BakingOvenRecipeBuilder> STEAM_BAKING_OVEN_RECIPE = new RecipeMap<>("steam_baking_oven", 1, 1, 0, 1, 0, 0, 0, 0, new BakingOvenRecipeBuilder(), false)
-            .setSound(GTSounds.FURNACE)
-            .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY_1)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
-
-    @ZenProperty
     public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 1, 2, 0, 1, 0, 0, 0, 0, new BakingOvenRecipeBuilder(), false)
             .setSound(GTSounds.FURNACE)
             .onRecipeBuild(recipeBuilder -> {
@@ -59,12 +53,6 @@ public class GTFORecipeMaps {
                     ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().setTemp(((BakingOvenRecipeBuilder) recipeBuilder).getTemperature())
                             .duration(recipeBuilder.getDuration() / 4)
                             .inputs(recipeBuilder.getInputs().get(0)) // We don't need charcoal.
-                            .outputs(recipeBuilder.getOutputs())
-                            .buildAndRegister();
-                    STEAM_BAKING_OVEN_RECIPE.recipeBuilder()
-                            .duration(recipeBuilder.getDuration() / 2)
-                            .EUt(recipeBuilder.getEUt())
-                            .inputs(recipeBuilder.getInputs().get(0))
                             .outputs(recipeBuilder.getOutputs())
                             .buildAndRegister();
                 }
