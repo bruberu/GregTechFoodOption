@@ -7,6 +7,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.BlockGlassCasing;
@@ -24,8 +25,8 @@ import static gregtech.api.unification.material.Materials.Steel;
 
 public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockController {
     public MetaTileEntitySteamBakingOven(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, double conversionRate) {
-        super(metaTileEntityId, GTFORecipeMaps.STEAM_BAKING_OVEN_RECIPE, CONVERSION_RATE);
-        this.recipeMapWorkable = new SteamMultiWorkable(this, CONVERSION_RATE);
+        super(metaTileEntityId, GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, CONVERSION_RATE);
+        this.recipeMapWorkable = new SteamBakingOvenWorkable(this, CONVERSION_RATE);
         this.recipeMapWorkable.setParallelLimit(1);
     }
 
@@ -78,5 +79,17 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
     @Override
     public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder metaTileEntityHolder) {
         return new MetaTileEntitySteamBakingOven(metaTileEntityId, getRecipeMap(), CONVERSION_RATE);
+    }
+
+    public static class SteamBakingOvenWorkable extends SteamMultiWorkable {
+
+        public SteamBakingOvenWorkable(RecipeMapSteamMultiblockController tileEntity, double conversionRate) {
+            super(tileEntity, conversionRate);
+        }
+
+        @Override
+        protected int[] calculateOverclock(Recipe recipe) {
+            return new int[]{recipe.getEUt(), recipe.getDuration() * 2};
+        }
     }
 }
