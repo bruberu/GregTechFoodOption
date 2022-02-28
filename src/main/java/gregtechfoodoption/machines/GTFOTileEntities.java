@@ -55,7 +55,7 @@ public class GTFOTileEntities {
         }
         BAKING_OVEN = registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
         ELECTRIC_BAKING_OVEN = registerMetaTileEntity(8517, new MetaTileEntityElectricBakingOven(location("electric_baking_oven")));
-        STEAM_BAKING_OVEN = registerMetaTileEntity(8544,new MetaTileEntitySteamBakingOven(location("steam_baking_oven"),GTFORecipeMaps.STEAM_BAKING_OVEN_RECIPE,10));
+        STEAM_BAKING_OVEN = registerMetaTileEntity(8544, new MetaTileEntitySteamBakingOven(location("steam_baking_oven"), GTFORecipeMaps.STEAM_BAKING_OVEN_RECIPE, 10));
     }
 
     public static ResourceLocation location(String name) {
