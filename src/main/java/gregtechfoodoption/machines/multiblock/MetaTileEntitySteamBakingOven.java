@@ -14,7 +14,6 @@ import gregtech.common.blocks.MetaBlocks;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
@@ -24,8 +23,8 @@ import static gregtech.api.unification.material.Materials.Steel;
 
 public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockController {
     public MetaTileEntitySteamBakingOven(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, double conversionRate) {
-        super(metaTileEntityId, GTFORecipeMaps.STEAM_BAKING_OVEN_RECIPE, CONVERSION_RATE);
-        this.recipeMapWorkable = new SteamMultiWorkable(this, CONVERSION_RATE);
+        super(metaTileEntityId, recipeMap, conversionRate);
+        this.recipeMapWorkable = new SteamMultiWorkable(this, conversionRate);
         this.recipeMapWorkable.setParallelLimit(1);
     }
 
