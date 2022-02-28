@@ -8,8 +8,6 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.blocks.BlockMetalCasing;
-import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -257,64 +255,66 @@ public class CoreChain {
         // Adobe Bricks for the Baking Oven
         ModHandler.addShapedRecipe("mud_bricks1", MUD_BRICK.getStackForm(5),
                 "SCS", "SMS", "GCG",
-                'C', Items.CLAY_BALL,
-                'S', Blocks.SAND,
-                'G', Blocks.GRAVEL,
+                'C', OreDictUnifier.get("ingotClay"),
+                'S', OreDictUnifier.get("sand"),
+                'G', OreDictUnifier.get("gravel"),
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks2", MUD_BRICK.getStackForm(10),
                 "SBS", "SMS", "GTG",
-                'S', Blocks.SAND,
-                'G', Blocks.GRAVEL,
+                'S', OreDictUnifier.get("sand"),
+                'G', OreDictUnifier.get("gravel"),
                 'B', OreDictUnifier.get(dust, Bentonite),
                 'T', OreDictUnifier.get(dust, Talc),
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks3", MUD_BRICK.getStackForm(8),
                 "SCS", "SMW", "GCG",
-                'C', Items.CLAY_BALL,
-                'S', Blocks.SAND,
-                'G', Blocks.GRAVEL,
+                'C', OreDictUnifier.get("ingotClay"),
+                'S', OreDictUnifier.get("sand"),
+                'G', OreDictUnifier.get("gravel"),
                 'W', Items.WHEAT,
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks4", MUD_BRICK.getStackForm(16),
                 "SBS", "SMW", "GTG",
-                'S', Blocks.SAND,
+                'S', OreDictUnifier.get("sand"),
                 'G', Blocks.GRAVEL,
                 'B', OreDictUnifier.get(dust, Bentonite),
                 'T', OreDictUnifier.get(dust, Talc),
                 'W', Items.WHEAT,
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(100)
+                .input("sand", 3)
+                .input("gravel", 2)
+                .input(dust, Bentonite)
+                .input(dust, Talc)
+                .input("cropWheat", 1)
+                .notConsumable(MetaItems.WOODEN_FORM_BRICK)
+                .outputs(MUD_BRICK.getStackForm(16))
+                .buildAndRegister();
+
         FurnaceRecipes.instance().addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm(), 0);
         ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
-        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks1", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
-                " h ", " B ", " C ",
+        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
+                " h ", "ABA", " C ",
+                'A', ADOBE_BRICK,
                 'B', OreDictUnifier.get(plate, Bronze),
-                'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
-        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks2", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3),
-                " h ", "BBB", "CCC",
-                'B', OreDictUnifier.get(plate, Bronze),
-                'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
-        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks3", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3),
-                " h ", " B ", "CCC",
-                'B', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS),
                 'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(20)
                 .input(plate, Bronze, 1)
+                .input(ADOBE_BRICK, 2)
                 .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1))
                 .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1))
+                .circuitMeta(1)
                 .buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(80)
-                .inputs(MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.BRONZE_BRICKS))
                 .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 3))
-                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3))
-                .buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(100)
                 .input(plate, Bronze, 3)
-                .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 3))
+                .input(ADOBE_BRICK, 6)
                 .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3))
+                .circuitMeta(3)
                 .buildAndRegister();
     }
 
