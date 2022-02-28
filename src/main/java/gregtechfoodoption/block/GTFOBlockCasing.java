@@ -26,9 +26,15 @@ public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
         return false;
     }
 
+    @Override
+    public IBlockState getState(CasingType variant) {
+        return super.getState(variant);
+    }
+
     public enum CasingType implements IStringSerializable {
 
-        ADOBE_BRICKS("adobe_bricks");
+        ADOBE_BRICKS("adobe_bricks"),
+        REINFORCED_ADOBE_BRICKS("reinforced_adobe_bricks");
 
 
         private final String name;

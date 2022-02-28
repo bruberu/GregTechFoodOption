@@ -20,6 +20,7 @@ public class GTFOMaterialHandler {
     public static final GTFOFluidMaterial LimeExtract = new GTFOFluidMaterial("lime_extract", 0x85f218);
     public static final GTFOFluidMaterial OrangeExtract = new GTFOFluidMaterial("orange_extract", 0xFF6100);
     public static final GTFOFluidMaterial AppleExtract = new GTFOFluidMaterial("apple_extract", 0xE9BA58);
+    public static final GTFOFluidMaterial AppleCider = new GTFOFluidMaterial("apple_cider", averageRGB(2, 0xE9BA58, FermentedBiomass.getMaterialRGB()));
     public static final GTFOFluidMaterial UnheatedCaneSyrup = new GTFOFluidMaterial("unheated_cane_syrup", 0xf0efe4);
     public static final GTFOFluidMaterial CaneSyrup = new GTFOFluidMaterial("cane_syrup", 0xf2f1dc);
     public static final GTFOFluidMaterial PurpleDrink = new GTFOFluidMaterial("purple_drink", 0xb405ff);
@@ -95,7 +96,7 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addOreDictItem(1118, "barg_meat", 0x7F0000, Organic, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1119, "fat", 0xFFF200, Organic, OrePrefix.ingot, "C57H110O6"); // yea Fat is much more complicated but i just stick to this formula...
 
-    public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addOreDictItem(1120, "cooked_meat", 0xC14C4C, Organic, OrePrefix.ingot); // yea Fat is much more complicated but i just stick to this formula...
+    public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addOreDictItem(1120, "cooked_meat", 0xa63028, MaterialIconSet.ROUGH, OrePrefix.ingot); // yea Fat is much more complicated but i just stick to this formula...
     //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
 
     public static void onMaterialsInit() {

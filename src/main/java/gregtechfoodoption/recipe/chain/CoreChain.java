@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,7 @@ import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.items.MetaItems.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
+import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.REINFORCED_ADOBE_BRICKS;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 
@@ -203,8 +205,25 @@ public class CoreChain {
         DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
                 .fluidInputs(AppleExtract.getFluid(1000))
                 .fluidOutputs(Biomass.getFluid(200))
-                .fluidOutputs(AceticAcid.getFluid(800))
+                .fluidOutputs(AceticAcid.getFluid(10))
+                .fluidOutputs(Water.getFluid(1000))
                 .output(dust, Sugar)
+                .buildAndRegister();
+
+        DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
+                .fluidInputs(AppleCider.getFluid(1000))
+                .fluidOutputs(AceticAcid.getFluid(80))
+                .fluidOutputs(Ethanol.getFluid(210))
+                .fluidOutputs(Water.getFluid(400))
+                .fluidOutputs(Methanol.getFluid(100))
+                .fluidOutputs(CarbonDioxide.getFluid(400))
+                .fluidOutputs(Methane.getFluid(500))
+                .output(PLANT_BALL)
+                .buildAndRegister();
+
+        FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(150)
+                .fluidInputs(AppleExtract.getFluid(100))
+                .fluidOutputs(AppleCider.getFluid(100))
                 .buildAndRegister();
 
         DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
@@ -236,38 +255,67 @@ public class CoreChain {
         // Adobe Bricks for the Baking Oven
         ModHandler.addShapedRecipe("mud_bricks1", MUD_BRICK.getStackForm(5),
                 "SCS", "SMS", "GCG",
-                'C', Items.CLAY_BALL,
-                'S', Blocks.SAND,
-                'G', Blocks.GRAVEL,
+                'C', OreDictUnifier.get("ingotClay"),
+                'S', OreDictUnifier.get("sand"),
+                'G', OreDictUnifier.get("gravel"),
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks2", MUD_BRICK.getStackForm(10),
                 "SBS", "SMS", "GTG",
-                'S', Blocks.SAND,
-                'G', Blocks.GRAVEL,
+                'S', OreDictUnifier.get("sand"),
+                'G', OreDictUnifier.get("gravel"),
                 'B', OreDictUnifier.get(dust, Bentonite),
                 'T', OreDictUnifier.get(dust, Talc),
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks3", MUD_BRICK.getStackForm(8),
                 "SCS", "SMW", "GCG",
-                'C', Items.CLAY_BALL,
-                'S', Blocks.SAND,
-                'G', Blocks.GRAVEL,
+                'C', OreDictUnifier.get("ingotClay"),
+                'S', OreDictUnifier.get("sand"),
+                'G', OreDictUnifier.get("gravel"),
                 'W', Items.WHEAT,
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks4", MUD_BRICK.getStackForm(16),
                 "SBS", "SMW", "GTG",
-                'S', Blocks.SAND,
+                'S', OreDictUnifier.get("sand"),
                 'G', Blocks.GRAVEL,
                 'B', OreDictUnifier.get(dust, Bentonite),
                 'T', OreDictUnifier.get(dust, Talc),
                 'W', Items.WHEAT,
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(100)
+                .input("sand", 3)
+                .input("gravel", 2)
+                .input(dust, Bentonite)
+                .input(dust, Talc)
+                .input("cropWheat", 1)
+                .notConsumable(MetaItems.WOODEN_FORM_BRICK)
+                .outputs(MUD_BRICK.getStackForm(16))
+                .buildAndRegister();
+
         FurnaceRecipes.instance().addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm(), 0);
         ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
+        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
+                " h ", "ABA", " C ",
+                'A', ADOBE_BRICK,
+                'B', OreDictUnifier.get(plate, Bronze),
+                'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(20)
+                .input(plate, Bronze, 1)
+                .input(ADOBE_BRICK, 2)
+                .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1))
+                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1))
+                .circuitMeta(1)
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(80)
+                .inputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 3))
+                .input(plate, Bronze, 3)
+                .input(ADOBE_BRICK, 6)
+                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 3))
+                .circuitMeta(3)
+                .buildAndRegister();
     }
 
     public static void slicingRecipes() {
@@ -374,7 +422,10 @@ public class CoreChain {
                     .fluidOutputs(Water.getFluid(100))
                     .buildAndRegister();
         }
-        for (ItemStack stack : GTFOUtils.getMeat()) {
+        ArrayList<ItemStack> allMeaty = new ArrayList<>();
+        allMeaty.addAll(GTFOUtils.getMeat());
+        allMeaty.addAll(Arrays.asList(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(Items.SPIDER_EYE)));
+        for (ItemStack stack : allMeaty) {
             FERMENTING_RECIPES.recipeBuilder().duration(100).EUt(8)
                     .inputs(stack)
                     .outputs(ROTTEN_MEAT.getStackForm())
@@ -410,39 +461,40 @@ public class CoreChain {
     }
 
     public static void meatAndFat() {
+        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), OreDictUnifier.get(dust, Meat), OreDictUnifier.get(dust, Meat), Items.WATER_BUCKET);
         GTFOUtils.getMeat().forEach(itemStack -> {
-            itemStack.setCount(16);
-            CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(100)
+            itemStack.setCount(8);
+            CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
                     .inputs(itemStack)
-                    .output(dust, Meat, 8)
+                    .output(dust, Meat, 13)
                     .output(dustSmall, Bone, 8)
-                    .chancedOutput(Fat.getItemStack(4), 5000, 2000)
+                    .outputs(Fat.getItemStack(8))
                     .chancedOutput(Fat.getItemStack(4), 5000, 2000)
                     .notConsumable(new IntCircuitIngredient(0))
                     .buildAndRegister();
             LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
                     .input(itemStack.getItem(), 32)
-                    .fluidInputs(Methanol.getFluid(8000), Chloroform.getFluid(8000))
-                    .output(dust, Meat, 20)
-                    .output(dustSmall, Bone, 20)
-                    .fluidOutputs(Stearin.getFluid(4000), Sludge.getFluid(4000))
+                    .fluidInputs(Methanol.getFluid(4000), Chloroform.getFluid(4000))
+                    .output(dust, Meat, 40)
+                    .output(dust, Bone, 16)
+                    .fluidOutputs(Stearin.getFluid(32000), Sludge.getFluid(12000), Chlorine.getFluid(12000))
                     .buildAndRegister();
         });
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
                 .input(SCRAP_MEAT, 32)
-                .fluidInputs(Methanol.getFluid(8000), Chloroform.getFluid(8000))
-                .output(dust, Meat, 25)
-                .output(dustSmall, Bone, 20)
-                .fluidOutputs(Stearin.getFluid(6000), Sludge.getFluid(8000))
+                .fluidInputs(Methanol.getFluid(4000), Chloroform.getFluid(4000))
+                .output(dust, Meat, 32)
+                .output(dust, Bone, 20)
+                .fluidOutputs(Stearin.getFluid(35000), Sludge.getFluid(16000), Chlorine.getFluid(12000))
                 .buildAndRegister();
 
-        CENTRIFUGE_RECIPES.recipeBuilder().EUt(60).duration(80)
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
                 .input(SCRAP_MEAT, 8)
-                .output(dust, Meat, 4)
-                .output(dustSmall, Bone, 8)
-                .chancedOutput(Fat.getItemStack(2), 7000, 2000)
-                .chancedOutput(Fat.getItemStack(2), 6000, 2000)
+                .output(dust, Meat, 10)
+                .output(dustSmall, Bone, 16)
+                .outputs(Fat.getItemStack(10))
+                .chancedOutput(Fat.getItemStack(4), 5000, 2000)
                 .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(30).duration(300)
@@ -453,8 +505,8 @@ public class CoreChain {
         FERMENTING_RECIPES.recipeBuilder().EUt(32).duration(1200)
                 .input(SCRAP_MEAT, 1)
                 .fluidInputs(Chloroform.getFluid(100))
-                .chancedOutput(dust, Meat, 1, 2000, 10)
-                .fluidOutputs(Stearin.getFluid(100))
+                .output(dust, Meat, 1)
+                .fluidOutputs(Stearin.getFluid(400))
                 .buildAndRegister();
 
         GTFOUtils.getOrganicOils().forEach(f -> {

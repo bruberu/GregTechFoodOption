@@ -7,6 +7,7 @@ import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import static gregtech.api.recipes.RecipeMaps.LATHE_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.MIXER_RECIPES;
@@ -41,6 +42,25 @@ public class KebabChain {
                 'S', OreDictUnifier.get(dustSmall, Salt),
                 'T', TOMATO,
                 'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin));
+
+        for (int i = 0; i < GTFOUtils.getMeat().toArray().length; i++) {
+            ItemStack meat = GTFOUtils.getMeat().get(i);
+            ModHandler.addShapelessRecipe("gtfo_hand_meat_kebab_" + i, KEBAB_MEAT.getStackForm(2),
+                    OreDictUnifier.get(GTFOValues.craftingToolRollingPin), SKEWER.getStackForm(), SKEWER.getStackForm(), meat, meat, meat, meat, OreDictUnifier.get(dustSmall, Salt), OreDictUnifier.get(dustSmall, Salt));
+            CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50)
+                    .input(meat.getItem(), 4)
+                    .input(dustTiny, Salt, 4)
+                    .inputs(SKEWER.getStackForm(4))
+                    .outputs(KEBAB_MEAT.getStackForm(4))
+                    .buildAndRegister();
+        }
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50)
+                .inputs(MeatIngot.getItemStack(4))
+                .input(dustTiny, Salt, 4)
+                .inputs(SKEWER.getStackForm(4))
+                .outputs(KEBAB_MEAT.getStackForm(4))
+                .buildAndRegister();
+
 
         ModHandler.addShapelessRecipe("gtfo_hand_tomato_kebab", KEBAB_TOMATO.getStackForm(2),
                 'k', OreDictUnifier.get(dust, Salt), TOMATO, TOMATO, SKEWER, SKEWER);
@@ -183,39 +203,39 @@ public class KebabChain {
     }
 
     private static void skewers() {
-        ModHandler.addShapedRecipe("gtfo_hand_skewer", SKEWER.getStackForm(2),
+        ModHandler.addShapedRecipe("gtfo_hand_skewer", SKEWER.getStackForm(8),
                 "BSd", "fB ",
                 'S', OreDictUnifier.get(stickLong, Steel),
                 'B', OreDictUnifier.get(screw, Steel));
 
         LATHE_RECIPES.recipeBuilder().EUt(20).duration(25)
                 .input(stickLong, Steel, 1)
-                .outputs(SKEWER.getStackForm(2))
+                .outputs(SKEWER.getStackForm(8))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(30).duration(120)
                 .input(stick, Steel, 1)
-                .outputs(SKEWER.getStackForm(1))
+                .outputs(SKEWER.getStackForm(4))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(40).duration(25)
                 .input(stickLong, StainlessSteel, 1)
-                .outputs(SKEWER.getStackForm(4))
+                .outputs(SKEWER.getStackForm(16))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(40).duration(120)
                 .input(stick, StainlessSteel, 1)
-                .outputs(SKEWER.getStackForm(2))
+                .outputs(SKEWER.getStackForm(8))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(200).duration(200)
                 .input(stickLong, Titanium, 1)
-                .outputs(SKEWER.getStackForm(8))
+                .outputs(SKEWER.getStackForm(32))
                 .buildAndRegister();
 
         LATHE_RECIPES.recipeBuilder().EUt(200).duration(100)
                 .input(stick, Titanium, 1)
-                .outputs(SKEWER.getStackForm(3))
+                .outputs(SKEWER.getStackForm(16))
                 .buildAndRegister();
     }
 
@@ -230,5 +250,6 @@ public class KebabChain {
         GTFOUtils.addBakingOvenRecipes(KEBAB_CHUM.getStackForm(4), KEBAB_CHUM_COOKED.getStackForm(4), baseDuration, baseTemp, baseFuelKebab);
         GTFOUtils.addBakingOvenRecipes(KEBAB_CARROT.getStackForm(4), KEBAB_CARROT_COOKED.getStackForm(4), baseDuration, baseTemp, baseFuelKebab);
         GTFOUtils.addBakingOvenRecipes(KEBAB_FAT.getStackForm(4), KEBAB_FAT_COOKED.getStackForm(4), baseDuration, baseTemp, baseFuelKebab);
+        GTFOUtils.addBakingOvenRecipes(KEBAB_MEAT.getStackForm(4), KEBAB_MEAT_COOKED.getStackForm(4), baseDuration + 50, baseTemp + 10, baseFuelKebab);
     }
 }

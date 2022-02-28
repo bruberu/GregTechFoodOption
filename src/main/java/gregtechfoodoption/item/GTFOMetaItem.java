@@ -172,8 +172,9 @@ public class GTFOMetaItem extends StandardMetaItem {
     //    public static MetaItem<?>.MetaValueItem KEBAB_PEPPER;
 //    public static MetaItem<?>.MetaValueItem KEBAB_MUSHROOM;
 //    public static MetaItem<?>.MetaValueItem KEBAB_MIX;
-//    public static MetaItem<?>.MetaValueItem KEBAB_BEEF;
-//    public static MetaItem<?>.MetaValueItem KEBAB_LAMB;
+    public static MetaItem<?>.MetaValueItem KEBAB_MEAT;
+    public static MetaItem<?>.MetaValueItem KEBAB_MEAT_COOKED;
+    //    public static MetaItem<?>.MetaValueItem KEBAB_LAMB;
 //    public static MetaItem<?>.MetaValueItem KEBAB_CHICKEN;
     public static MetaItem<?>.MetaValueItem KEBAB_FAT;
     public static MetaItem<?>.MetaValueItem KEBAB_FAT_COOKED;
@@ -472,9 +473,12 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_FAT_COOKED = addItem(151, "food.kebab.fat").addComponents(GTFOUtils.getKebabFood(3, 0.3f));
         //152 is for AppleSlice
         APPLE_JUICE = addItem(153, "food.juice.apple").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 0)));
+                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45)));
         ORANGE_JUICE = addItem(155, "food.juice.orange").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 0)));
+                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45)));
+        KEBAB_MEAT = addItem(156, "component.kebab.meat");
+        KEBAB_MEAT_COOKED = addItem(157, "food.kebab.meat").addComponents(GTFOUtils.getKebabFood(3, 0.6f));
+
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
