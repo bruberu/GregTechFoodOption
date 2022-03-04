@@ -1,10 +1,10 @@
 package gregtechfoodoption;
 
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.item.GTFOOredictItem;
-import gregtechfoodoption.material.GTFOFluidMaterial;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
@@ -14,59 +14,146 @@ import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 
 public class GTFOMaterialHandler {
 
-    public static final GTFOFluidMaterial IsopropylChloride = new GTFOFluidMaterial("isopropyl_chloride", 0xa8a89d, "(CH3)2CHCl");
+    // 21500 - 21969
 
-    public static final GTFOFluidMaterial LemonExtract = new GTFOFluidMaterial("lemon_extract", 0xfce80a);
-    public static final GTFOFluidMaterial LimeExtract = new GTFOFluidMaterial("lime_extract", 0x85f218);
-    public static final GTFOFluidMaterial OrangeExtract = new GTFOFluidMaterial("orange_extract", 0xFF6100);
-    public static final GTFOFluidMaterial AppleExtract = new GTFOFluidMaterial("apple_extract", 0xE9BA58);
-    public static final GTFOFluidMaterial AppleCider = new GTFOFluidMaterial("apple_cider", averageRGB(2, 0xE9BA58, FermentedBiomass.getMaterialRGB()));
-    public static final GTFOFluidMaterial UnheatedCaneSyrup = new GTFOFluidMaterial("unheated_cane_syrup", 0xf0efe4);
-    public static final GTFOFluidMaterial CaneSyrup = new GTFOFluidMaterial("cane_syrup", 0xf2f1dc);
-    public static final GTFOFluidMaterial PurpleDrink = new GTFOFluidMaterial("purple_drink", 0xb405ff);
+    public static final Material IsopropylChloride = fluidBuilder(21500, "isopropyl_chloride")
+            .components(Carbon, 3, Hydrogen, 7, Chlorine, 1)
+            .build()
+            .setFormula("(CH3)2CHCl", true);
+    public static final Material LemonExtract = fluidBuilder(21501, "lemon_extract")
+            .color(0xfce80a)
+            .build();
+    public static final Material LimeExtract = fluidBuilder(21502, "lime_extract")
+            .color(0x85f218)
+            .build();
+    public static final Material OrangeExtract = fluidBuilder(21503, "orange_extract")
+            .color(0xff6100)
+            .build();
+    public static final Material AppleExtract = fluidBuilder(21504, "apple_extract")
+            .color(0xe9ba58)
+            .build();
 
-    public static final GTFOFluidMaterial FryingOil = new GTFOFluidMaterial("frying_oil", 0xffe3a1);
-    public static final GTFOFluidMaterial HotFryingOil = new GTFOFluidMaterial("hot_frying_oil", 0xffd166);
-    public static final GTFOFluidMaterial StarchFilledWater = new GTFOFluidMaterial("starch_filled_water", 0xd1cbbe);
+    public static final Material AppleCider = fluidBuilder(21505, "apple_cider")
+            .color(averageRGB(2, 0xE9BA58, FermentedBiomass.getMaterialRGB()))
+            .build();
+    public static final Material UnheatedCaneSyrup = fluidBuilder(21506, "unheated_cane_syrup")
+            .color(0xf0efe4)
+            .build();
+    public static final Material CaneSyrup = fluidBuilder(21507, "cane_syrup")
+            .color(0xf2f1dc)
+            .build();
+    public static final Material PurpleDrink = fluidBuilder(21508, "purple_drink")
+            .color(0xb405ff)
+            .build();
 
-    public static final GTFOFluidMaterial MushroomSoup = new GTFOFluidMaterial("mushroom_soup", 0xedcaaf);
-    public static final GTFOFluidMaterial BeetrootSoup = new GTFOFluidMaterial("beetroot_soup", 0xc25132);
+    public static final Material FryingOil = fluidBuilder(21509, "frying_oil")
+            .color(0xffe3a1)
+            .build();
+    public static final Material HotFryingOil = fluidBuilder(21510, "hot_frying_oil")
+            .color(0xffd166)
+            .build();
+    public static final Material StarchFilledWater = fluidBuilder(21511, "starch_filled_water")
+            .color(0xd1cbbe)
+            .build();
 
-    public static final GTFOFluidMaterial ItalianBuffaloMilk = new GTFOFluidMaterial("italian_buffalo_milk", 0xfcfbf5);
-    public static final GTFOFluidMaterial CrudeRennetSolution = new GTFOFluidMaterial("crude_rennet_solution", 0xb0631a);
-    public static final GTFOFluidMaterial Whey = new GTFOFluidMaterial("whey", 0xf5ef9a);
-    public static final GTFOFluidMaterial ActivatedBuffaloMilk = new GTFOFluidMaterial("activated_buffalo_milk", 0xfff8cc);
-    public static final GTFOFluidMaterial WheySaltWaterMix = new GTFOFluidMaterial("whey_salt_water_mix", 0xecfc7e);
-    public static final GTFOFluidMaterial HeatedRicottaStarter = new GTFOFluidMaterial("heated_ricotta_starter", 0xdef72f);
-    public static final GTFOFluidMaterial AcidicMilkSolution = new GTFOFluidMaterial("acidic_milk_solution", 0xb2c71c);
-    public static final GTFOFluidMaterial CoagulatingRicottaSolution = new GTFOFluidMaterial("coagulating_ricotta_solution", 0xeff5c9);
+    public static final Material MushroomSoup = fluidBuilder(21512, "mushroom_soup")
+            .color(0xedcaaf)
+            .build();
+    public static final Material BeetrootSoup = fluidBuilder(21513, "beetroot_soup")
+            .color(0xc25132)
+            .build();
 
-    public static final GTFOFluidMaterial TomatoSauce = new GTFOFluidMaterial("tomato_sauce", 0xfc2217);
-    public static final GTFOFluidMaterial OliveOil = new GTFOFluidMaterial("olive_oil", 0xd1db5a);
+    public static final Material ItalianBuffaloMilk = fluidBuilder(21514, "italian_buffalo_milk")
+            .color(0xfcfbf5)
+            .build();
+    public static final Material CrudeRennetSolution = fluidBuilder(21515, "crude_rennet_solution")
+            .color(0xb0631a)
+            .build();
+    public static final Material Whey = fluidBuilder(21516, "whey")
+            .color(0xf5ef9a)
+            .build();
+    public static final Material ActivatedBuffaloMilk = fluidBuilder(21517, "activated_buffalo_milk")
+            .color(0xfff8cc)
+            .build();
+    public static final Material WheySaltWaterMix = fluidBuilder(21518, "whey_salt_water_mix")
+            .color(0xecfc7e)
+            .build();
+    public static final Material HeatedRicottaStarter = fluidBuilder(21519, "heated_ricotta_starter")
+            .color(0xdef72f)
+            .build();
+    public static final Material AcidicMilkSolution = fluidBuilder(21520, "acidic_milk_solution")
+            .color(0xb2c71c)
+            .build();
+    public static final Material CoagulatingRicottaSolution = fluidBuilder(21521, "coagulating_ricotta_solution")
+            .color(0xeff5c9)
+            .build();
 
-    public static final GTFOFluidMaterial Sludge = new GTFOFluidMaterial("sludge", 0x24140b);
+    public static final Material TomatoSauce = fluidBuilder(21522, "tomato_sauce")
+            .color(0xfc2217)
+            .build();
+    public static final Material OliveOil = fluidBuilder(21523, "olive_oil")
+            .color(0xd1db5a)
+            .build();
 
-    public static final GTFOFluidMaterial AlkalineExtract = new GTFOFluidMaterial("alkaline_extract", 0x121110);
+    public static final Material Sludge = fluidBuilder(21524, "sludge")
+            .color(0x24140b)
+            .build();
 
-    public static final GTFOFluidMaterial PotatoJuice = new GTFOFluidMaterial("potato_juice", 0x786b48);
-    public static final GTFOFluidMaterial Vodka = new GTFOFluidMaterial("vodka", 0x7d6933);
-    public static final GTFOFluidMaterial Leninade = new GTFOFluidMaterial("leninade", 0x82661d);
+    public static final Material AlkalineExtract = fluidBuilder(21525, "alkaline_extract")
+            .color(0x121110)
+            .build();
 
-    public static final GTFOFluidMaterial PerchloricAcid = new GTFOFluidMaterial("perchloric_acid", averageRGB(3, Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB(), Hydrogen.getMaterialRGB()), "HClO4");
-    public static final GTFOFluidMaterial ChloroauricAcid = new GTFOFluidMaterial("chloroauric_acid", averageRGB(3, Chlorine.getMaterialRGB(), Gold.getMaterialRGB()), "HAuCl4");
-    public static final GTFOFluidMaterial MoistAir = new GTFOFluidMaterial("moist_air", 0x82c8ff);
-    public static final GTFOFluidMaterial ColdMoistAir = new GTFOFluidMaterial("cold_moist_air", 0x72a2ff);
+    public static final Material PotatoJuice = fluidBuilder(21526, "potato_juice")
+            .color(0x786b48)
+            .build();
+    public static final Material Vodka = fluidBuilder(21527, "vodka")
+            .color(0x7d6933)
+            .build();
+    public static final Material Leninade = fluidBuilder(21528, "leninade")
+            .color(0x82661d)
+            .build();
 
-    public static final GTFOFluidMaterial Albumen = new GTFOFluidMaterial("albumen", 0xfffef7);
-    public static final GTFOFluidMaterial Yolk = new GTFOFluidMaterial("yolk", 0xffdf00);
-    public static final GTFOFluidMaterial Butter = new GTFOFluidMaterial("butter", 0xffef82);
+    public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid")
+            .components(Hydrogen, 1, Chlorine, 1, Oxygen, 4)
+            .build();
+    public static final Material ChloroauricAcid = fluidBuilder(21530, "chloroauric_acid")
+            .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
+            .build();
 
-    public static final GTFOFluidMaterial RabbitStew = new GTFOFluidMaterial("rabbit_stew", 0xe0c0a0);
+    public static final Material MoistAir = fluidBuilder(21531, "moist_air")
+            .color(0x82c8ff)
+            .build();
+    public static final Material ColdMoistAir = fluidBuilder(21532, "cold_moist_air")
+            .color(0x72a2ff)
+            .build();
 
-    public static final GTFOFluidMaterial Stearin = new GTFOFluidMaterial("stearin", 0xffcc66, "C57H110O6", 373);
-    public static final GTFOFluidMaterial StearicAcid = new GTFOFluidMaterial("stearic_acid", 0xfff7e6, "C17H35CO2H"); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
-    public static final GTFOFluidMaterial SodiumStearate = new GTFOFluidMaterial("sodium_stearate", averageRGB(2, 0xfff7e6, SodiumHydroxide.getMaterialRGB()), "C17H35COO−Na+", 373);
-    public static final GTFOFluidMaterial CitricAcid = new GTFOFluidMaterial("citric_acid", 0xCCBD61, "HOC(CH2CO2H)2"); //good for processing food
+    public static final Material Albumen = fluidBuilder(21533, "albumen")
+            .color(0xfffef7)
+            .build();
+    public static final Material Yolk = fluidBuilder(21534, "yolk")
+            .color(0xffdf00)
+            .build();
+    public static final Material Butter = fluidBuilder(21535, "butter")
+            .color(0xffef82)
+            .build();
+
+    public static final Material RabbitStew = fluidBuilder(21536, "rabbit_stew")
+            .color(0xe0c0a0)
+            .build();
+
+    public static final Material Stearin = fluidBuilder(21537, "stearin")
+            .color(0xffcc66)
+            .components(Carbon, 57, Hydrogen, 110, Oxygen, 6)
+            .build();
+    public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid").color(0xfff7e6).
+            components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+            .build()
+            .setFormula("C17H35CO2H"); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
+    public static final Material SodiumStearate = fluidBuilder(21539, "sodium_stearate")
+            .components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
+            .build()
+            .setFormula("C17H35COO−Na+");
+    public static final Material CitricAcid = fluidBuilder(21540, "citric_acid").color(0xccbd61).components(Carbon, 5, Hydrogen, 7, Oxygen, 5).build().setFormula("HOC(CH2CO2H)2"); //good for processing food
 
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
@@ -102,5 +189,9 @@ public class GTFOMaterialHandler {
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
         Materials.BismuthBronze.addFlags(GENERATE_FRAME);
+    }
+
+    public static Material.Builder fluidBuilder(int id, String name) {
+        return new Material.Builder(id, "gtfo_" + name).fluid();
     }
 }

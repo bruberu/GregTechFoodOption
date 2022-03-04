@@ -1,15 +1,23 @@
 package gregtechfoodoption.integration;
 
+import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.info.MaterialIconSet;
-import gregtechfoodoption.item.GTFOOredictItem;
-import gregtechfoodoption.material.GTFOFluidMaterial;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtechfoodoption.item.GTFOOredictItem;
 
+import static gregtechfoodoption.GTFOMaterialHandler.fluidBuilder;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 
 public class GTFOAAMaterialHandler {
-    public static final GTFOFluidMaterial Coffee = new GTFOFluidMaterial("coffee", 0x36312e);
-    public static final GTFOFluidMaterial EnergizedCoffee = new GTFOFluidMaterial("energized_coffee", 0x695934);
+
+    // 21990 - 21999
+
+    public static final Material Coffee = fluidBuilder(21990, "coffee")
+            .color(0x36312e)
+            .build();
+    public static final Material EnergizedCoffee = fluidBuilder(21991, "energized_coffee")
+            .color(0x695934)
+            .build();
 
     public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds",  0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem SMALL_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1018, "roasted_coffee_small", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);

@@ -5,7 +5,6 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.VariantItemBlock;
 import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtechfoodoption.fluid.GTFOMetaFluids;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.potion.GTFOPotions;
 import gregtechfoodoption.recipe.GTFOOreDictRegistration;
@@ -36,7 +35,6 @@ public class CommonProxy {
 
     public void preLoad() {
         GTFOPotions.initPotionInstances();
-        GTFOMetaFluids.init();
         GTFOMetaItems.init();
 
         GTFORecipeHandler.register();
