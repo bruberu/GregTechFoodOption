@@ -153,7 +153,15 @@ public class GTFOMaterialHandler {
             .components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
             .build()
             .setFormula("C17H35COO−Na+");
-    public static final Material CitricAcid = fluidBuilder(21540, "citric_acid").color(0xccbd61).components(Carbon, 5, Hydrogen, 7, Oxygen, 5).build().setFormula("HOC(CH2CO2H)2"); //good for processing food
+    public static final Material CitricAcid = fluidBuilder(21540, "citric_acid")
+            .color(0xccbd61)
+            .components(Carbon, 5, Hydrogen, 7, Oxygen, 5)
+            .build()
+            .setFormula("HOC(CH2CO2H)2"); //good for processing food
+    public static final Material HydrogenCyanide = fluidBuilder(21541, "hydrogen_cyanide")
+            .color(0x6e6a5e)
+            .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
+            .build();
 
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
