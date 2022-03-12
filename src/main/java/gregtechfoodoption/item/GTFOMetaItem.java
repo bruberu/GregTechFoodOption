@@ -351,7 +351,7 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .setEatingDuration(20));
         POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK))
                 .setEatingDuration(12))
-                .setMaxStackSize(1);
+                .setMaxStackSize(16);
 
         BAGUETTE = addItem(51, "food.baguette").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger, GTFOConfig.gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 50))
@@ -420,7 +420,8 @@ public class GTFOMetaItem extends StandardMetaItem {
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
         CHUM_ON_A_STICK = addItem(120, "food.chum_on_a_stick").addComponents(new GTFOFoodStats(3, 0f, false, true, new ItemStack(Items.STICK),
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
-                .setEatingDuration(16));
+                .setEatingDuration(16))
+                .setMaxStackSize(16);
         BURGER_CHUM = addItem(121, "food.burger.chum").addComponents(new GTFOFoodStats(4, 1f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
 
