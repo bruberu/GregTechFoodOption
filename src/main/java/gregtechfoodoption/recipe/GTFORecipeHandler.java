@@ -42,7 +42,7 @@ public class GTFORecipeHandler {
                         .input(prefix, material)
                         .input(OrePrefix.stick, material, 2)
                         .input(OrePrefix.plate, material)
-                        .input(OrePrefix.circuit, MarkerMaterials.Tier.Extreme, 2)
+                        .input(OrePrefix.circuit, MarkerMaterials.Tier.EV, 2)
                         .inputs(power_unit)
                         .input(OrePrefix.wireGtDouble, Materials.MercuryBariumCalciumCuprate, 4)
                         .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 10))

@@ -2,6 +2,7 @@ package gregtechfoodoption.recipe;
 
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -20,7 +21,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
-import static gregtech.api.unification.material.MarkerMaterials.Tier.Good;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtech.common.blocks.BlockWireCoil.CoilType.CUPRONICKEL;
@@ -104,7 +104,7 @@ public class GTFOMachineRecipes {
                 "CPC", "IWI", "CAC",
                 'C', GTFOMetaBlocks.GTFO_METAL_CASING.getItemVariant(GTFOMetalCasing.CasingType.BISMUTH_BRONZE_CASING),
                 'P', MetaItems.ELECTRIC_PUMP_MV,
-                'I', new UnificationEntry(circuit, Good),
+                'I', new UnificationEntry(circuit, MarkerMaterials.Tier.MV),
                 'W', new UnificationEntry(wireGtQuadruple, Cupronickel),
                 'A', MetaBlocks.WIRE_COIL.getItemVariant(CUPRONICKEL));
 
