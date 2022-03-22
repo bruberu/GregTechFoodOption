@@ -1,6 +1,5 @@
 package gregtechfoodoption;
 
-import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.net.NetworkHandler;
@@ -26,6 +25,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
@@ -49,7 +49,7 @@ public class GTFOEventHandler {
     public static void onMaterialsInit(GregTechAPI.MaterialEvent event) { // Must be called during construction to be registered in time for MaterialEvents.
         GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
         GTFOMaterialHandler.onMaterialsInit();
-        if (GTValues.isModLoaded(GTFOValues.MODID_GCYS)) {
+        if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             GTFOGAMaterialHandler gtfogaMaterials = new GTFOGAMaterialHandler();
             GTFOGAMaterialHandler.onMaterialsInit();
         }

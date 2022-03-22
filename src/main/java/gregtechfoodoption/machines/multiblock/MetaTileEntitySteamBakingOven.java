@@ -2,7 +2,7 @@ package gregtechfoodoption.machines.multiblock;
 
 import gregtech.api.capability.impl.SteamMultiWorkable;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.MetaTileEntityHolder;
+import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapSteamMultiblockController;
 import gregtech.api.pattern.BlockPattern;
@@ -76,7 +76,7 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
     }
 
     @Override
-    public MetaTileEntity createMetaTileEntity(MetaTileEntityHolder metaTileEntityHolder) {
+    public MetaTileEntity createMetaTileEntity(IGregTechTileEntity tileEntity) {
         return new MetaTileEntitySteamBakingOven(metaTileEntityId, getRecipeMap(), CONVERSION_RATE);
     }
 

@@ -1,10 +1,9 @@
 package gregtechfoodoption.recipe;
 
-import gregtech.api.GTValues;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.recipe.chain.*;
-
+import net.minecraftforge.fml.common.Loader;
 
 public class GTFORecipeAddition {
     public static void init()
@@ -20,7 +19,7 @@ public class GTFORecipeAddition {
             PotatoProcessingChain.init();
         if(GTFOConfig.gtfoChainsConfig.alcoholChain)
             AlcoholChain.init();
-        if (GTValues.isModLoaded(GTFOValues.MODID_GCYS)) {
+        if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             if(GTFOConfig.gtfoChainsConfig.popcornChain)
                 PopcornChain.init();
             if(GTFOConfig.gtfoChainsConfig.mineralWaterChain)
