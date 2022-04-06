@@ -31,7 +31,7 @@ public class BakingOvenRecipeBuilder extends RecipeBuilder<BakingOvenRecipeBuild
     @Override
     public ValidationResult<Recipe> build() {
         this.EUt(1);
-        Recipe recipe = new Recipe(this.inputs, this.outputs, this.chancedOutputs, this.fluidInputs, this.fluidOutputs, this.duration, this.EUt, this.hidden);
+        Recipe recipe = new Recipe(this.inputs, this.outputs, this.chancedOutputs, this.fluidInputs, this.fluidOutputs, this.duration, this.EUt, this.hidden, false);
         return !recipe.setProperty(PrimitiveProperty.getInstance(), true) ? ValidationResult.newResult(EnumValidationResult.INVALID, recipe) : ValidationResult.newResult(this.finalizeAndValidate(), recipe);
     }
 
