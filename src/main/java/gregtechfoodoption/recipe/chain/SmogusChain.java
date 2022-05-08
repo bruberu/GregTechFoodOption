@@ -10,7 +10,7 @@ import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.utils.GTFOUtils;
 import nc.init.NCItems;
-import nc.recipe.BasicRecipeHandler;
+import nc.recipe.AbstractRecipeHandler;
 import nc.recipe.NCRecipes;
 import nc.recipe.ingredient.FluidIngredient;
 import nc.recipe.ingredient.ItemIngredient;
@@ -375,15 +375,15 @@ public class SmogusChain {
                 .buildAndRegister();
     }
 
-    public static void removeRecipeByMapAndProducts(BasicRecipeHandler handler, ItemIngredient... items) {
+    public static void removeRecipeByMapAndProducts(AbstractRecipeHandler handler, ItemIngredient... items) {
         handler.removeRecipe(handler.getRecipeFromProducts(Arrays.asList(items), Collections.emptyList()));
     }
 
-    public static void removeRecipeByMapAndProducts(BasicRecipeHandler handler, FluidIngredient... fluids) {
+    public static void removeRecipeByMapAndProducts(AbstractRecipeHandler handler, FluidIngredient... fluids) {
         handler.removeRecipe(handler.getRecipeFromProducts(Collections.emptyList(), Arrays.asList(fluids)));
     }
 
-    public static void removeRecipeByMapAndProducts(BasicRecipeHandler handler, ItemIngredient[] items, FluidIngredient[] fluids) {
+    public static void removeRecipeByMapAndProducts(AbstractRecipeHandler handler, ItemIngredient[] items, FluidIngredient[] fluids) {
         handler.removeRecipe(handler.getRecipeFromProducts(Arrays.asList(items), Arrays.asList(fluids)));
     }
 

@@ -13,6 +13,7 @@ public class GTFOClientHandler {
     public static OrientedOverlayRenderer CUISINE_ASSEMBLER_OVERLAY = new OrientedOverlayRenderer("machines/cuisine_assembler", OrientedOverlayRenderer.OverlayFace.FRONT, OrientedOverlayRenderer.OverlayFace.TOP);
     public static OrientedOverlayRenderer MICROWAVE_OVERLAY = new OrientedOverlayRenderer("machines/microwave", OrientedOverlayRenderer.OverlayFace.FRONT);
 
+
     public static SimpleOverlayRenderer ADOBE_BRICKS = new SimpleOverlayRenderer("casings/solid/adobe_bricks");
     public static SimpleOverlayRenderer REINFORCED_ADOBE_BRICKS = new SimpleOverlayRenderer("casings/solid/reinforced_adobe_bricks");
     public static SimpleOverlayRenderer BISMUTH_BRONZE_CASING = new SimpleOverlayRenderer("casings/solid/bismuth_bronze");

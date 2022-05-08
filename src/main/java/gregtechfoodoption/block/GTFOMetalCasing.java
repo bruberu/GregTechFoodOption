@@ -1,8 +1,8 @@
 package gregtechfoodoption.block;
 
+import gregtech.api.block.VariantBlock;
 import gregtech.api.unification.material.Material;
 import gregtech.client.renderer.ICubeRenderer;
-import gregtech.common.blocks.VariantBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
