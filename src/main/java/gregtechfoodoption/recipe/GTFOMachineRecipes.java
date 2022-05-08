@@ -2,7 +2,6 @@ package gregtechfoodoption.recipe;
 
 import gregtech.api.block.VariantBlock;
 import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
@@ -88,16 +87,16 @@ public class GTFOMachineRecipes {
 
         ModHandler.addShapedRecipe("baking_oven", GTFOTileEntities.BAKING_OVEN.getStackForm(),
                 "dSS", "RRA", "fSS",
-                'S', OreDictUnifier.get(screw, WroughtIron),
-                'R', OreDictUnifier.get(stick, WroughtIron),
+                'S', new UnificationEntry(screw, WroughtIron),
+                'R', new UnificationEntry(stick, WroughtIron),
                 'A', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.ADOBE_BRICKS));
 
         ModHandler.addShapedRecipe("steam_baking_oven", GTFOTileEntities.STEAM_BAKING_OVEN.getStackForm(),
                 "dSG", "PAR", "fSG",
-                'S', OreDictUnifier.get(screw, Steel),
+                'S', new UnificationEntry(screw, Steel),
                 'P', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.REINFORCED_ADOBE_BRICKS),
-                'R', OreDictUnifier.get(pipeSmallFluid, Bronze),
-                'G', OreDictUnifier.get(gear, Invar),
+                'R', new UnificationEntry(pipeSmallFluid, Bronze),
+                'G', new UnificationEntry(gear, Invar),
                 'A', GTFOTileEntities.BAKING_OVEN.getStackForm());
 
         ModHandler.addShapedRecipe("electric_baking_oven", GTFOTileEntities.ELECTRIC_BAKING_OVEN.getStackForm(),
@@ -117,8 +116,8 @@ public class GTFOMachineRecipes {
 
         ModHandler.addShapedRecipe(String.format("metal_casing_%s", inputMaterial), outputCasingType.getItemVariant(outputCasing, 3),
                 "PhP", "PFP", "PwP",
-                'P', OreDictUnifier.get(plate, inputMaterial),
-                'F', OreDictUnifier.get(frameGt, inputMaterial));
+                'P', new UnificationEntry(plate, inputMaterial),
+                'F', new UnificationEntry(frameGt, inputMaterial));
 
         ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(16)
                 .input(plate, inputMaterial, 6)

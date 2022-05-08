@@ -264,8 +264,8 @@ public class CoreChain {
                 "SBS", "SMS", "GTG",
                 'S', OreDictUnifier.get("sand"),
                 'G', OreDictUnifier.get("gravel"),
-                'B', OreDictUnifier.get(dust, Bentonite),
-                'T', OreDictUnifier.get(dust, Talc),
+                'B', new UnificationEntry(dust, Bentonite),
+                'T', new UnificationEntry(dust, Talc),
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
         ModHandler.addShapedRecipe("mud_bricks3", MUD_BRICK.getStackForm(8),
@@ -280,8 +280,8 @@ public class CoreChain {
                 "SBS", "SMW", "GTG",
                 'S', OreDictUnifier.get("sand"),
                 'G', Blocks.GRAVEL,
-                'B', OreDictUnifier.get(dust, Bentonite),
-                'T', OreDictUnifier.get(dust, Talc),
+                'B', new UnificationEntry(dust, Bentonite),
+                'T', new UnificationEntry(dust, Talc),
                 'W', Items.WHEAT,
                 'M', MetaItems.WOODEN_FORM_BRICK);
 
@@ -300,7 +300,7 @@ public class CoreChain {
         ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
                 " h ", "ABA", " C ",
                 'A', ADOBE_BRICK,
-                'B', OreDictUnifier.get(plate, Bronze),
+                'B', new UnificationEntry(plate, Bronze),
                 'C', GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(28).duration(20)
                 .input(plate, Bronze, 1)
@@ -461,7 +461,7 @@ public class CoreChain {
     }
 
     public static void meatAndFat() {
-        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), OreDictUnifier.get(dust, Meat), OreDictUnifier.get(dust, Meat), Items.WATER_BUCKET);
+        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), new UnificationEntry(dust, Meat), new UnificationEntry(dust, Meat), Items.WATER_BUCKET);
         GTFOUtils.getMeat().forEach(itemStack -> {
             itemStack.setCount(8);
             CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)

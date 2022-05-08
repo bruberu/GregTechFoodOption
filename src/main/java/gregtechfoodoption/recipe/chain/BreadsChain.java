@@ -5,6 +5,7 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
@@ -42,8 +43,8 @@ public class BreadsChain {
 
         ModHandler.addShapedRecipe("dough_2", DOUGH.getStackForm(2),
                 "FFF", "FBS", "   ",
-                'F', OreDictUnifier.get(dust, Materials.Wheat),
-                'S', OreDictUnifier.get(OrePrefix.dustTiny, Materials.Salt),
+                'F', new UnificationEntry(dust, Materials.Wheat),
+                'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
                 'B', Items.WATER_BUCKET);
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)
@@ -55,10 +56,10 @@ public class BreadsChain {
 
         ModHandler.addShapedRecipe("dough_4", DOUGH.getStackForm(4),
                 "FFF", "FBS", "O  ",
-                'F', OreDictUnifier.get(dust, Materials.Wheat),
-                'S', OreDictUnifier.get(OrePrefix.dustTiny, Materials.Salt),
+                'F', new UnificationEntry(dust, Materials.Wheat),
+                'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
                 'B', Items.WATER_BUCKET,
-                'O', OreDictUnifier.get(OrePrefix.dustTiny, Materials.SodaAsh));
+                'O', new UnificationEntry(OrePrefix.dustTiny, Materials.SodaAsh));
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)
                 .input(OrePrefix.dustTiny, Materials.Salt)
@@ -123,7 +124,7 @@ public class BreadsChain {
         );
 
         ModHandler.removeRecipes(new ItemStack(Items.CAKE));
-        ModHandler.addShapelessRecipe("sugary_dough", SUGARY_DOUGH.getStackForm(2), OreDictUnifier.get(dust, Sugar), DOUGH.getStackForm());
+        ModHandler.addShapelessRecipe("sugary_dough", SUGARY_DOUGH.getStackForm(2), new UnificationEntry(dust, Sugar), DOUGH.getStackForm());
         MIXER_RECIPES.recipeBuilder().EUt(7).duration(32)
                 .input(dust, Sugar)
                 .inputs(DOUGH.getStackForm())
@@ -149,7 +150,7 @@ public class BreadsChain {
 
         ModHandler.addShapedRecipe("gtfo_cake", new ItemStack(Items.CAKE),
                 "SES", "EBE", "MMM",
-                'S', OreDictUnifier.get(dust, Sugar),
+                'S', new UnificationEntry(dust, Sugar),
                 'E', new ItemStack(Items.EGG),
                 'B', BAKED_CAKE_BOTTOM.getStackForm(),
                 'M', new ItemStack(Items.MILK_BUCKET));
@@ -164,7 +165,7 @@ public class BreadsChain {
         GTFOAppleCoreCompat.addToSparedItems(Items.COOKIE, 3, 0.2f);
         ModHandler.removeRecipes(new ItemStack(Items.COOKIE));
         ModHandler.removeRecipes(new ItemStack(Items.COOKIE, 8));
-        ModHandler.addShapelessRecipe("gtfo_cookie", new ItemStack(Items.COOKIE, 4), SUGARY_DOUGH, SUGARY_DOUGH, OreDictUnifier.get(dust, Cocoa));
+        ModHandler.addShapelessRecipe("gtfo_cookie", new ItemStack(Items.COOKIE, 4), SUGARY_DOUGH, SUGARY_DOUGH, new UnificationEntry(dust, Cocoa));
 
         ModHandler.removeRecipes(new ItemStack(Items.PUMPKIN_PIE));
         GTFOAppleCoreCompat.addToSparedItems(Items.PUMPKIN_PIE);

@@ -1,16 +1,15 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
 
 public class CheeseChain {
     public static void init() {
@@ -40,7 +39,8 @@ public class CheeseChain {
                 .outputs(CookedCurd.getItemStack(60))
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(20).duration(100)
-                .inputs(CookedCurd.getItemStack(64), OreDictUnifier.get(dust, Salt))
+                .input(dust, Salt)
+                .inputs(CookedCurd.getItemStack(64))
                 .outputs(SaltedCurd.getItemStack(64))
                 .buildAndRegister();
         CANNER_RECIPES.recipeBuilder().EUt(4).duration(200)

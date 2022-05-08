@@ -3,6 +3,7 @@ package gregtechfoodoption.recipe.chain;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.utils.GTFOUtils;
@@ -31,7 +32,7 @@ public class KebabChain {
                 "RMM", "SMM", "KTS",
                 'K', SKEWER,
                 'M', KubideMeat.getItemStack(),
-                'S', OreDictUnifier.get(dustSmall, Salt),
+                'S', new UnificationEntry(dustSmall, Salt),
                 'T', TOMATO,
                 'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin));
 
@@ -39,14 +40,14 @@ public class KebabChain {
                 "RMM", "SMM", "KTS",
                 'M', BargMeat.getItemStack(),
                 'K', SKEWER,
-                'S', OreDictUnifier.get(dustSmall, Salt),
+                'S', new UnificationEntry(dustSmall, Salt),
                 'T', TOMATO,
                 'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin));
 
         for (int i = 0; i < GTFOUtils.getMeat().toArray().length; i++) {
             ItemStack meat = GTFOUtils.getMeat().get(i);
             ModHandler.addShapelessRecipe("gtfo_hand_meat_kebab_" + i, KEBAB_MEAT.getStackForm(2),
-                    OreDictUnifier.get(GTFOValues.craftingToolRollingPin), SKEWER.getStackForm(), SKEWER.getStackForm(), meat, meat, meat, meat, OreDictUnifier.get(dustSmall, Salt), OreDictUnifier.get(dustSmall, Salt));
+                    OreDictUnifier.get(GTFOValues.craftingToolRollingPin), SKEWER.getStackForm(), SKEWER.getStackForm(), meat, meat, meat, meat, new UnificationEntry(dustSmall, Salt), new UnificationEntry(dustSmall, Salt));
             CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(50)
                     .input(meat.getItem(), 4)
                     .input(dustTiny, Salt, 4)
@@ -63,13 +64,13 @@ public class KebabChain {
 
 
         ModHandler.addShapelessRecipe("gtfo_hand_tomato_kebab", KEBAB_TOMATO.getStackForm(2),
-                'k', OreDictUnifier.get(dust, Salt), TOMATO, TOMATO, SKEWER, SKEWER);
+                'k', new UnificationEntry(dust, Salt), TOMATO, TOMATO, SKEWER, SKEWER);
         ModHandler.addShapelessRecipe("gtfo_hand_carrot_kebab", KEBAB_CARROT.getStackForm(2),
-                'k', OreDictUnifier.get(dust, Salt), Items.CARROT, Items.CARROT, SKEWER, SKEWER);
+                'k', new UnificationEntry(dust, Salt), Items.CARROT, Items.CARROT, SKEWER, SKEWER);
         ModHandler.addShapelessRecipe("gtfo_hand_onion_kebab", KEBAB_ONION.getStackForm(2),
-                'k', OreDictUnifier.get(dust, Salt), ONION, ONION, SKEWER, SKEWER);
+                'k', new UnificationEntry(dust, Salt), ONION, ONION, SKEWER, SKEWER);
         ModHandler.addShapelessRecipe("gtfo_hand_fat_kebab", KEBAB_FAT.getStackForm(),
-                'k', OreDictUnifier.get(dust, Salt), Fat.getItemStack(), Fat.getItemStack(), SKEWER);
+                'k', new UnificationEntry(dust, Salt), Fat.getItemStack(), Fat.getItemStack(), SKEWER);
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(27).duration(20)
                 .inputs(KubideMeat.getItemStack(5), TOMATO_SLICE.getStackForm(4), SKEWER.getStackForm(2))
@@ -146,8 +147,8 @@ public class KebabChain {
         ModHandler.addShapedRecipe("gtfo_hand_kubide_kebab_meat", KubideMeat.getItemStack(4),
                 "STO", "MMM", "FMF",
                 'F', Fat.getItemStack(),
-                'M', OreDictUnifier.get(dust, Meat),
-                'S', OreDictUnifier.get(dust, Salt),
+                'M', new UnificationEntry(dust, Meat),
+                'S', new UnificationEntry(dust, Salt),
                 'O', ONION,
                 'T', TOMATO);
 
@@ -177,8 +178,8 @@ public class KebabChain {
         //Barg Line
         ModHandler.addShapedRecipe("gtfo_hand_barg_kebab_meat", BargMeat.getItemStack(4),
                 "SML", "MOM", "ZMZ",
-                'S', OreDictUnifier.get(dust, Salt),
-                'M', OreDictUnifier.get(dust, Meat),
+                'S', new UnificationEntry(dust, Salt),
+                'M', new UnificationEntry(dust, Meat),
                 'O', ONION,
                 'L', OLIVE,
                 'Z', Zest.getItemStack());
@@ -205,8 +206,8 @@ public class KebabChain {
     private static void skewers() {
         ModHandler.addShapedRecipe("gtfo_hand_skewer", SKEWER.getStackForm(8),
                 "BSd", "fB ",
-                'S', OreDictUnifier.get(stickLong, Steel),
-                'B', OreDictUnifier.get(screw, Steel));
+                'S', new UnificationEntry(stickLong, Steel),
+                'B', new UnificationEntry(screw, Steel));
 
         LATHE_RECIPES.recipeBuilder().EUt(20).duration(25)
                 .input(stickLong, Steel, 1)
