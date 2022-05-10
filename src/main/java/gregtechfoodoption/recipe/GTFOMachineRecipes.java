@@ -56,33 +56,12 @@ public class GTFOMachineRecipes {
                 'I', new UnificationEntry(plate, Polytetrafluoroethylene)
         );
 */
-        registerMachineRecipe(GTFOTileEntities.SLICER,
-                "PCA", "SHC", "LOA",
-                'P', PISTON,
-                'C', CIRCUIT,
-                'A', CABLE,
-                'S', SAWBLADE,
-                'H', HULL,
-                'L', DENSE_PLATE,
-                'O', CONVEYOR
-        );
-        registerMachineRecipe(GTFOTileEntities.CUISINE_ASSEMBLER,
-                "AOC", "RHR", "AOC",
-                'C', CIRCUIT,
-                'A', CABLE,
-                'R', ROBOT_ARM,
-                'H', HULL,
-                'O', CONVEYOR
-        );
-        registerMachineRecipe(GTFOTileEntities.MICROWAVE,
-                "LAC", "LHE", "LMC",
-                'H', HULL,
-                'M', MOTOR,
-                'E', EMITTER,
-                'C', CIRCUIT,
-                'A', CABLE,
-                'L', new UnificationEntry(OrePrefix.plate, Materials.Lead)
-        );
+        registerMachineRecipe(GTFOTileEntities.SLICER, "PCA", "SHC", "LOA", 'P', PISTON, 'C', CIRCUIT, 'A', CABLE, 'S', SAWBLADE, 'H', HULL, 'L', DENSE_PLATE, 'O', CONVEYOR);
+        registerMachineRecipe(GTFOTileEntities.CUISINE_ASSEMBLER, "AOC", "RHR", "AOC", 'C', CIRCUIT, 'A', CABLE, 'R', ROBOT_ARM, 'H', HULL, 'O', CONVEYOR);
+        registerMachineRecipe(GTFOTileEntities.MICROWAVE, "LAC", "LHE", "LMC", 'H', HULL, 'M', MOTOR, 'E', EMITTER, 'C', CIRCUIT, 'A', CABLE, 'L', new UnificationEntry(OrePrefix.plate, Materials.Lead));
+        registerMachineRecipe(GTFOTileEntities.MOB_AGE_SORTER, "OWS", "OHW", "OCW", 'O', CONVEYOR, 'W', CABLE, 'H', HULL, 'C', CIRCUIT, 'S', SENSOR);
+        registerMachineRecipe(GTFOTileEntities.MOB_EXTERMINATOR, "EIE", "WHW", "CSC", 'E', EMITTER, 'W', CABLE, 'I', WIRE_QUAD, 'H', HULL, 'C', CIRCUIT, 'S', SENSOR);
+        registerMachineRecipe(GTFOTileEntities.MOB_EXTRACTOR, "BCE", "PME", "WCW", 'M', HULL, 'E', PISTON, 'P', PUMP, 'C', CIRCUIT, 'W', CABLE, 'B', SAWBLADE);
 
 
         ModHandler.addShapedRecipe("baking_oven", GTFOTileEntities.BAKING_OVEN.getStackForm(),

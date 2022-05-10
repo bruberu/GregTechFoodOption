@@ -6,6 +6,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
@@ -67,7 +68,7 @@ public class VanillaOverrideChain {
             ModHandler.addShapedRecipe("gtfo_paper", new ItemStack(Items.PAPER, 2),
                     " R ", "CCC",
                     'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
-                    'C', OreDictUnifier.get(OrePrefix.dust, Materials.Paper));
+                    'C', new UnificationEntry(OrePrefix.dust, Materials.Paper));
             ModHandler.removeRecipes(new ItemStack(Blocks.STICKY_PISTON, 1));
             ModHandler.addShapedRecipe("gtfo_sticky_piston", new ItemStack(Blocks.STICKY_PISTON, 1),
                     "R", "S", "P",

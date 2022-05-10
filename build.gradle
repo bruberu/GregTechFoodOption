@@ -35,9 +35,6 @@ jar {
 
 repositories {
     maven {
-        url = "https://maven.teamacronymcoders.com/"
-    }
-    maven {
         url "http://maven.shadowfacts.net/"
     }
     maven {

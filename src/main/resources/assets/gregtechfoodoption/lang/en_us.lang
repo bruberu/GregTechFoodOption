@@ -582,3 +582,45 @@ enchantment.level.83=LXXXIII
 enchantment.level.145=CXLV
 
 gregtechfoodoption.chat.food_buff=Upon viewing your progress, you begin to crave new types of foods.
+
+# Mob Age Sorter
+gregtechfoodoption.machine.mob_age_sorter.lv.name=Basic Mob Age Sorter
+gregtechfoodoption.machine.mob_age_sorter.mv.name=Advanced Mob Age Sorter
+gregtechfoodoption.machine.mob_age_sorter.hv.name=Advanced Mob Age Sorter II
+gregtechfoodoption.machine.mob_age_sorter.ev.name=Advanced Mob Age Sorter III
+
+gregtechfoodoption.machine.mob_age_sorter.range=Moves animals in a %sx%s square in front
+
+# Mob Exterminator
+gregtechfoodoption.machine.mob_exterminator.lv.name=Basic Mob Exterminator
+gregtechfoodoption.machine.mob_exterminator.mv.name=Advanced Mob Exterminator
+gregtechfoodoption.machine.mob_exterminator.hv.name=Advanced Mob Exterminator II
+gregtechfoodoption.machine.mob_exterminator.ev.name=Advanced Mob Exterminator III
+
+gregtechfoodoption.machine.mob_exterminator.tooltip=Kills 4 mobs each second in a 9x9 square in front per tick with looting %s
+gregtechfoodoption.machine.mob_exterminator.tooltip.consumption=Consumes %s EU for each kill
+gregtechfoodoption.machine.mob_exterminator.tooltip.nitrous=Can kill up to 12 more mobs each second when boosted with Nitrous Oxide
+
+# Mob Extractor
+gregtechfoodoption.machine.mob_extractor.lv.name=Basic Mob Extractor
+gregtechfoodoption.machine.mob_extractor.mv.name=Advanced Mob Extractor
+gregtechfoodoption.machine.mob_extractor.hv.name=Advanced Mob Extractor II
+gregtechfoodoption.machine.mob_extractor.ev.name=Advanced Mob Extractor III
+gregtechfoodoption.machine.mob_extractor.iv.name=Elite Mob Extractor
+gregtechfoodoption.machine.mob_extractor.luv.name=Elite Mob Extractor II
+gregtechfoodoption.machine.mob_extractor.zpm.name=Elite Mob Extractor III
+gregtechfoodoption.machine.mob_extractor.uv.name=Elite Mob Extractor IV
+gregtechfoodoption.machine.mob_extractor.uhv.name=High-Tech Mob Extractor
+gregtechfoodoption.machine.mob_extractor.uev.name=High-Tech Mob Extractor II
+gregtechfoodoption.machine.mob_extractor.uiv.name=High-Tech Mob Extractor III
+gregtechfoodoption.machine.mob_extractor.umv.name=High-Tech Mob Extractor IV
+gregtechfoodoption.machine.mob_extractor.uxv.name=Ultimate Mob Extractor
+
+gregtechfoodoption.machine.mob_extractor.tooltip=Entity Essence Extraction Enters Electric Era
+
+recipemap.mob_extractor.name=Mob Extractor
+mob_extractor.player_name=Player
+
+gregtechfoodoption.gui.mob_age_sorter_mode.enabled=Only moves adults: Click to only move children instead.
+gregtechfoodoption.gui.mob_age_sorter_mode.disabled=Only moves children: Click to only move adults instead.
+gregtechfoodoption.recipe.accepted_mobs_on_top=Requires a %s to be on top

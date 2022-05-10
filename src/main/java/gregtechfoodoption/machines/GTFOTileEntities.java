@@ -21,6 +21,9 @@ public class GTFOTileEntities {
     public static SimpleMachineMetaTileEntity[] CUISINE_ASSEMBLER = new SimpleMachineMetaTileEntity[GTValues.V.length];
     public static MetaTileEntityMicrowave[] MICROWAVE = new MetaTileEntityMicrowave[GTValues.V.length];
 
+    public static final MetaTileEntityMobAgeSorter[] MOB_AGE_SORTER = new MetaTileEntityMobAgeSorter[4];
+    public static final MetaTileEntityMobExterminator[] MOB_EXTERMINATOR = new MetaTileEntityMobExterminator[4];
+    public static final MetaTileEntityMobExtractor[] MOB_EXTRACTOR = new MetaTileEntityMobExtractor[GTValues.UV];
 
     public static MetaTileEntityBakingOven BAKING_OVEN;
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
@@ -56,9 +59,31 @@ public class GTFOTileEntities {
         BAKING_OVEN = registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
         ELECTRIC_BAKING_OVEN = registerMetaTileEntity(8517, new MetaTileEntityElectricBakingOven(location("electric_baking_oven")));
         STEAM_BAKING_OVEN = registerMetaTileEntity(8544, new MetaTileEntitySteamBakingOven(location("steam_baking_oven"), GTFORecipeMaps.BAKING_OVEN_RECIPES, 10));
+
+        // Mob Age Sorters, IDs 8545-8548
+        MOB_AGE_SORTER[0] = registerMetaTileEntity(8545, new MetaTileEntityMobAgeSorter(location("mob_age_sorter.lv"), 1, 1));
+        MOB_AGE_SORTER[1] = registerMetaTileEntity(8546, new MetaTileEntityMobAgeSorter(location("mob_age_sorter.mv"), 2, 3));
+        MOB_AGE_SORTER[2] = registerMetaTileEntity(8547, new MetaTileEntityMobAgeSorter(location("mob_age_sorter.hv"), 3, 5));
+        MOB_AGE_SORTER[3] = registerMetaTileEntity(8548, new MetaTileEntityMobAgeSorter(location("mob_age_sorter.ev"), 4, 9));
+
+        // Mob Exterminators, IDs 8549-8552
+        MOB_EXTERMINATOR[0] = registerMetaTileEntity(8549, new MetaTileEntityMobExterminator(location("mob_exterminator.lv"), 1));
+        MOB_EXTERMINATOR[1] = registerMetaTileEntity(8550, new MetaTileEntityMobExterminator(location("mob_exterminator.mv"), 2));
+        MOB_EXTERMINATOR[2] = registerMetaTileEntity(8551, new MetaTileEntityMobExterminator(location("mob_exterminator.hv"), 3));
+        MOB_EXTERMINATOR[3] = registerMetaTileEntity(8552, new MetaTileEntityMobExterminator(location("mob_exterminator.ev"), 4));
+
+        // Mob Extractor, IDs 8553-8560
+        for (int i = 0; i < MOB_EXTRACTOR.length - 1; i++) {
+            if (i > 4 && !getMidTier("mob_extractor")) continue;
+            if (i > 7 && !getHighTier("mob_extractor")) break;
+
+            String voltageName = GTValues.VN[i + 1].toLowerCase();
+            MOB_EXTRACTOR[i] = registerMetaTileEntity(8553 + i,
+                    new MetaTileEntityMobExtractor(location(String.format("%s.%s", "mob_extractor", voltageName)), GTFORecipeMaps.MOB_EXTRACTOR_RECIPES, GTFOClientHandler.MOB_EXTRACTOR_OVERLAY, i + 1, false, GTUtility.largeTankSizeFunction));
+        }
     }
 
-    public static ResourceLocation location(String name) {
+    private static ResourceLocation location(String name) {
         return new ResourceLocation(GregTechFoodOption.MODID, name);
     }
 }

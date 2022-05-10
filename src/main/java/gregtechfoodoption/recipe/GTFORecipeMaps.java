@@ -9,6 +9,7 @@ import gregtech.api.sound.GTSounds;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
+import gregtechfoodoption.recipe.builder.MobProximityRecipeBuilder;
 import gregtechfoodoption.recipe.maps.ElectricBakingOvenRecipeMap;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenProperty;
@@ -57,4 +58,11 @@ public class GTFORecipeMaps {
                             .buildAndRegister();
                 }
             });
+
+    @ZenProperty
+    public static final RecipeMap<MobProximityRecipeBuilder> MOB_EXTRACTOR_RECIPES = new RecipeMap<>("mob_extractor", 1, 1, 0, 1, 0, 0, 0, 1, new MobProximityRecipeBuilder(), false)
+            .setSlotOverlay(false, false, GuiTextures.INT_CIRCUIT_OVERLAY)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressWidget.MoveType.HORIZONTAL)
+            .setSound(GTSounds.COMPRESSOR);
+
 }
