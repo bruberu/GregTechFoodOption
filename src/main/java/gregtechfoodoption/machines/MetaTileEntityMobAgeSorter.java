@@ -37,7 +37,7 @@ public class MetaTileEntityMobAgeSorter extends TieredMetaTileEntity {
     private boolean isWorking;
     private AxisAlignedBB areaBoundingBox;
     private final int suckingRange;
-    private boolean movesChildren;
+    private boolean movesAdults;
     private BlockPos areaCenterPos;
 
     public MetaTileEntityMobAgeSorter(ResourceLocation metaTileEntityId, int tier, int suckingRange) {
@@ -67,7 +67,7 @@ public class MetaTileEntityMobAgeSorter extends TieredMetaTileEntity {
                 this.areaBoundingBox = new AxisAlignedBB(areaCenterPos).grow(suckingRange - 1, 1.0, suckingRange - 1);
             }
             List<EntityLivingBase> animals = this.getWorld().getEntitiesWithinAABB(EntityLivingBase.class, areaBoundingBox);
-            animals.removeIf(animal -> animal.isChild() != movesChildren);
+            animals.removeIf(animal -> animal.isChild() != movesAdults);
 
             if (!animals.isEmpty()) {
                 BlockPos pos = this.getPos().offset(this.getFrontFacing().getOpposite());
@@ -89,14 +89,14 @@ public class MetaTileEntityMobAgeSorter extends TieredMetaTileEntity {
     public void writeInitialSyncData(PacketBuffer buf) {
         super.writeInitialSyncData(buf);
         buf.writeBoolean(isWorking);
-        buf.writeBoolean(movesChildren);
+        buf.writeBoolean(movesAdults);
     }
 
     @Override
     public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
         this.isWorking = buf.readBoolean();
-        this.movesChildren = buf.readBoolean();
+        this.movesAdults = buf.readBoolean();
     }
 
     @Override
@@ -111,14 +111,14 @@ public class MetaTileEntityMobAgeSorter extends TieredMetaTileEntity {
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
-        data.setBoolean("MovesChildren", movesChildren);
+        data.setBoolean("MovesChildren", movesAdults);
         return data;
     }
 
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
-        movesChildren = data.getBoolean("MovesChildren");
+        movesAdults = data.getBoolean("MovesChildren");
     }
 
     @Override
@@ -138,11 +138,11 @@ public class MetaTileEntityMobAgeSorter extends TieredMetaTileEntity {
     }
 
     private void invertFilter() {
-        movesChildren = !movesChildren;
+        movesAdults = !movesAdults;
     }
 
     private boolean getAgeFilter() {
-        return movesChildren;
+        return movesAdults;
     }
 
     @Override
