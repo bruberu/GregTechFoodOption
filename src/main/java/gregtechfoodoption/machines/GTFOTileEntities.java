@@ -73,7 +73,7 @@ public class GTFOTileEntities {
         MOB_EXTERMINATOR[3] = registerMetaTileEntity(8552, new MetaTileEntityMobExterminator(location("mob_exterminator.ev"), 4));
 
         // Mob Extractor, IDs 8553-8560
-        for (int i = 0; i < MOB_EXTRACTOR.length - 1; i++) {
+        for (int i = 0; i < MOB_EXTRACTOR.length; i++) {
             if (i > 4 && !getMidTier("mob_extractor")) continue;
             if (i > 7 && !getHighTier("mob_extractor")) break;
 

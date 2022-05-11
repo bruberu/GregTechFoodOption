@@ -5,6 +5,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
     public static final String KEY = "mob_on_top";
@@ -26,7 +28,8 @@ public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
                 getTranslationName(castValue(value))), x, y, color);
     }
 
+    @SideOnly(Side.CLIENT)
     private String getTranslationName(ResourceLocation location) {
-        return location.equals(EntityList.PLAYER) ? I18n.format("mob_extractor.player_name") : EntityList.getTranslationName(location);
+        return location.equals(EntityList.PLAYER) ? I18n.format("mob_extractor.player_name") : I18n.format("entity." + EntityList.getTranslationName(location) + ".name");
     }
 }

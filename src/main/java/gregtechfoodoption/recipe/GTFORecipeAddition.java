@@ -9,6 +9,7 @@ public class GTFORecipeAddition {
     public static void init()
     {
         CoreChain.init();
+        MobExtractionChain.init();
         SeedsChain.init();
         CheeseChain.init();
         BananaProcessingChain.init();

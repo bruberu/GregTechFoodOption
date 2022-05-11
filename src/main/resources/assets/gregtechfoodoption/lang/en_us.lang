@@ -623,4 +623,4 @@ mob_extractor.player_name=Player
 
 gregtechfoodoption.gui.mob_age_sorter_mode.disabled=Only moves adults: Click to only move children instead.
 gregtechfoodoption.gui.mob_age_sorter_mode.enabled=Only moves children: Click to only move adults instead.
-gregtechfoodoption.recipe.accepted_mobs_on_top=Requires a %s to be on top
+gregtechfoodoption.recipe.accepted_mobs_on_top=Requires a %s on top
