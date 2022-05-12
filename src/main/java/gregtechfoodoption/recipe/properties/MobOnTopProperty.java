@@ -9,6 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
+    public static final ResourceLocation PLAYER = new ResourceLocation("player");
     public static final String KEY = "mob_on_top";
     private static MobOnTopProperty INSTANCE;
 
@@ -30,6 +31,6 @@ public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
 
     @SideOnly(Side.CLIENT)
     private String getTranslationName(ResourceLocation location) {
-        return location.equals(EntityList.PLAYER) ? I18n.format("mob_extractor.player_name") : I18n.format("entity." + EntityList.getTranslationName(location) + ".name");
+        return location.equals(PLAYER) ? I18n.format("mob_extractor.player_name") : I18n.format("entity." + EntityList.getTranslationName(location) + ".name");
     }
 }
