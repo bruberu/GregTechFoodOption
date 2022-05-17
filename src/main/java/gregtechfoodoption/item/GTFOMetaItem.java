@@ -9,6 +9,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
 import gregtechfoodoption.utils.GTFOUtils;
@@ -259,6 +260,7 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         TOMATO = addItem(76, "crop.tomato")
                 .addOreDict("cropTomato");
+        TOMATO.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO.getStackForm(), TOMATO.getStackForm()));
         ONION = addItem(77, "crop.onion")
                 .addOreDict("cropOnion");
         CUCUMBER = addItem(78, "crop.cucumber")

@@ -30,6 +30,8 @@ import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.function.Function;
 
+import static gregtechfoodoption.block.GTFOCrop.CROP_BLOCKS;
+
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class CommonProxy {
 
@@ -62,12 +64,12 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-
         GTFOLog.logger.info("Registering blocks...");
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(GTFOMetaBlocks.GTFO_CASING);
         registry.register(GTFOMetaBlocks.GTFO_METAL_CASING);
 
+        CROP_BLOCKS.forEach(registry::register);
     }
 
     @SubscribeEvent
