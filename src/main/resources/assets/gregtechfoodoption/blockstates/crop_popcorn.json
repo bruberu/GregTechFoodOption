@@ -1,10 +1,40 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
   "variants": {
-    "age=0": { "model": "gregtechfoodoption:crop/crop_popcorn/stage0" },
-    "age=1": { "model": "gregtechfoodoption:crop/crop_popcorn/stage1" },
-    "age=2": { "model": "gregtechfoodoption:crop/crop_popcorn/stage2" },
-    "age=3": { "model": "gregtechfoodoption:crop/crop_popcorn/stage3" },
-    "age=4": { "model": "gregtechfoodoption:crop/crop_popcorn/stage4" },
-    "age=5": { "model": "gregtechfoodoption:crop/crop_popcorn/stage5" }
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage5"
+        }
+      }
+    }
   }
 }

@@ -19,8 +19,8 @@ import java.util.Random;
 public class GTFOCrop extends BlockCrops {
 
     private static final AxisAlignedBB CROPS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
-    private ItemStack seed;
-    private ItemStack crop;
+    protected ItemStack seed;
+    protected ItemStack crop;
     public static List<GTFOCrop> CROP_BLOCKS = new ArrayList<>();
 
     public GTFOCrop(String name) {

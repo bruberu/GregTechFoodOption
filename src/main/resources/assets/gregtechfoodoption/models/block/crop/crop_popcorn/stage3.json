@@ -1,6 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "crop": "gregtechfoodoption:crop/crop_popcorn/stage3"
-  }
-}
