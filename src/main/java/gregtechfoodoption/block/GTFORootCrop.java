@@ -41,7 +41,7 @@ public class GTFORootCrop extends GTFOCrop {
     }
 
     public int getMaxAge() {
-        return 8;
+        return 7;
     }
 
     @Override
@@ -49,7 +49,9 @@ public class GTFORootCrop extends GTFOCrop {
         if (this.getAge(state) >= this.getMaxAge()) {
             Random rand = world instanceof World ? ((World) world).rand : new Random();
             spawnAsEntity(world, pos, GTUtility.copyAmount(rand.nextInt(2) + 1, this.seed));
+            world.setBlockState(pos, this.withAge(this.getAge(state) - 1), 2);
         }
+
         return super.onBlockActivated(world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
     }
 }

@@ -263,6 +263,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         TOMATO.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO.getStackForm(), TOMATO.getStackForm()));
         ONION = addItem(77, "crop.onion")
                 .addOreDict("cropOnion");
+        ONION.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION.getStackForm(), ONION.getStackForm()));
         CUCUMBER = addItem(78, "crop.cucumber")
                 .addOreDict("cropCucumber");
         TOMATO_SLICE = addItem(79, "component.tomato_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));

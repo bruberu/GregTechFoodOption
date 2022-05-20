@@ -44,11 +44,6 @@
         "textures": {
           "cross": "gregtechfoodoption:crop/crop_onion/stage7"
         }
-      },
-      "8": {
-        "textures": {
-          "cross": "gregtechfoodoption:crop/crop_onion/stage8"
-        }
       }
     }
   }
