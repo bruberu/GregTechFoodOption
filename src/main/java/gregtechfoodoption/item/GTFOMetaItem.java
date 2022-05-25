@@ -191,6 +191,8 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem ORANGE_JUICE;
     public static MetaItem<?>.MetaValueItem APPLE_JUICE;
 
+    public static MetaItem<?>.MetaValueItem ONION_SEED;
+
     public GTFOMetaItem() {
         super();
     }
@@ -263,7 +265,6 @@ public class GTFOMetaItem extends StandardMetaItem {
         TOMATO.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO.getStackForm(), TOMATO.getStackForm()));
         ONION = addItem(77, "crop.onion")
                 .addOreDict("cropOnion");
-        ONION.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION.getStackForm(), ONION.getStackForm()));
         CUCUMBER = addItem(78, "crop.cucumber")
                 .addOreDict("cropCucumber");
         TOMATO_SLICE = addItem(79, "component.tomato_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
@@ -312,6 +313,9 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_TOMATO = addItem(143, "component.kebab.tomato");
         KEBAB_CARROT = addItem(149, "component.kebab.carrot");
         KEBAB_FAT = addItem(150, "component.kebab.fat");
+
+        ONION_SEED = addItem(158, "seed.onion");
+        ONION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),

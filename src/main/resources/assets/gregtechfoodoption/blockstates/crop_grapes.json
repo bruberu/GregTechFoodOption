@@ -1,0 +1,40 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "crop"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "crop": "gregtechfoodoption:crop/crop_grapes/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "crop": "gregtechfoodoption:crop/crop_grapes/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "crop": "gregtechfoodoption:crop/crop_grapes/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "crop": "gregtechfoodoption:crop/crop_grapes/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "crop": "gregtechfoodoption:crop/crop_grapes/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "crop": "gregtechfoodoption:crop/crop_grapes/stage5"
+        }
+      }
+    }
+  }
+}
