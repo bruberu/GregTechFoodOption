@@ -192,6 +192,11 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem APPLE_JUICE;
 
     public static MetaItem<?>.MetaValueItem ONION_SEED;
+    public static MetaItem<?>.MetaValueItem SOYBEAN;
+    public static MetaItem<?>.MetaValueItem SOYBEAN_SEED;
+    public static MetaItem<?>.MetaValueItem TOMATO_SEED;
+    public static MetaItem<?>.MetaValueItem GRAPE_SEED;
+    public static MetaItem<?>.MetaValueItem CUCUMBER_SEED;
 
     public GTFOMetaItem() {
         super();
@@ -262,11 +267,11 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         TOMATO = addItem(76, "crop.tomato")
                 .addOreDict("cropTomato");
-        TOMATO.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO.getStackForm(), TOMATO.getStackForm()));
         ONION = addItem(77, "crop.onion")
                 .addOreDict("cropOnion");
         CUCUMBER = addItem(78, "crop.cucumber")
                 .addOreDict("cropCucumber");
+        CUCUMBER.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
         TOMATO_SLICE = addItem(79, "component.tomato_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
         ONION_SLICE = addItem(80, "component.onion_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
         CUCUMBER_SLICE = addItem(81, "component.cucumber_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
@@ -316,6 +321,16 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         ONION_SEED = addItem(158, "seed.onion");
         ONION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
+        SOYBEAN = addItem(159, "component.soybean");
+        SOYBEAN_SEED = addItem(160, "seed.soy");
+        SOYBEAN_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_SOY, SOYBEAN_SEED.getStackForm(), SOYBEAN.getStackForm()));
+        TOMATO_SEED = addItem(161, "seed.tomato");
+        TOMATO_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO_SEED.getStackForm(), TOMATO.getStackForm()));
+        GRAPE_SEED = addItem(162, "seed.grape");
+        GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GRAPE, GRAPE_SEED.getStackForm(), GRAPES.getStackForm()));
+        CUCUMBER_SEED = addItem(163, "seed.cucumber");
+        CUCUMBER_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER_SEED.getStackForm(), CUCUMBER.getStackForm()));
+
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
