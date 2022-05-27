@@ -29,10 +29,17 @@ public class EntityItalianBuffalo extends EntityCow {
 
     @Override
     public boolean getCanSpawnHere() {
+        out:
+        for(byte biomeByte : new Chunk(this.world, this.chunkCoordX, this.chunkCoordZ).getBiomeArray()) {
+            for (Biome currentBiome : POSSIBLE_BIOME_SPAWNS) {
+                if (currentBiome.equals(Biome.getBiome(biomeByte)))
+                    break out;
+            }
+        }
         Set<Biome> nearbyBiomes = new HashSet<>();
         for(int i = -1; i < 2; i++) { // We loop in a 3x3 around the spawn position.
             for (int j = -1; j < 2; j++) {
-                for(byte biomeByte : new Chunk(this.world, this.chunkCoordX + i, this.chunkCoordZ + i).getBiomeArray()) {
+                for(byte biomeByte : new Chunk(this.world, this.chunkCoordX + i, this.chunkCoordZ + j).getBiomeArray()) {
                     nearbyBiomes.add(Biome.getBiome(biomeByte));
                 }
             }
