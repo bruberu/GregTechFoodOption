@@ -40,9 +40,7 @@ public class MetaTileEntityMobExtractor extends SimpleMachineMetaTileEntity {
     }
 
     protected RecipeLogicEnergy createWorkable(RecipeMap<?> recipeMap) {
-        final RecipeLogicEnergy result = new MobExtractorRecipeLogic(this, recipeMap, () -> energyContainer);
-        result.enableOverclockVoltage();
-        return result;
+        return new MobExtractorRecipeLogic(this, recipeMap, () -> energyContainer);
     }
 
     protected boolean checkRecipe(@Nonnull Recipe recipe) {
