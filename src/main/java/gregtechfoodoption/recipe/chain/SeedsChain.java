@@ -1,14 +1,19 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.material.Materials;
-import gregtech.common.items.MetaItems;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+
+import static gregtech.api.unification.material.Materials.SeedOil;
+import static gregtech.api.unification.material.Materials.Wood;
 
 public class SeedsChain {
     public static void init() {
@@ -59,6 +64,43 @@ public class SeedsChain {
                         .buildAndRegister();
             }
         }
+
+        ModHandler.addShapedRecipe("gtfo_seed_soy_ungenerify", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
+                "S  ", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_tomato_ungenerify", GTFOMetaItem.TOMATO_SEED.getStackForm(),
+                " S ", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_cucumber_ungenerify", GTFOMetaItem.CUCUMBER_SEED.getStackForm(),
+                "   ", "S  ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_onion_ungenerify", GTFOMetaItem.ONION_SEED.getStackForm(),
+                "  S", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_grapes_ungenerify", GTFOMetaItem.GRAPE_SEED.getStackForm(),
+                "   ", " S ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+
+        ModHandler.addShapelessRecipe("gtfo_seed_soy_extraction", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
+                GTFOMetaItem.SOYBEAN);
+        ModHandler.addShapelessRecipe("gtfo_seed_tomato_extraction", GTFOMetaItem.TOMATO_SEED.getStackForm(),
+                GTFOMetaItem.TOMATO);
+        ModHandler.addShapelessRecipe("gtfo_seed_cucumber_extraction", GTFOMetaItem.CUCUMBER_SEED.getStackForm(),
+                GTFOMetaItem.CUCUMBER);
+        ModHandler.addShapelessRecipe("gtfo_seed_grapes_extraction", GTFOMetaItem.GRAPE_SEED.getStackForm(),
+                GTFOMetaItem.GRAPES);
+
+        RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
+                .input(GTFOMetaItem.SOYBEAN)
+                .fluidOutputs(SeedOil.getFluid(15))
+                .buildAndRegister();
+
+        RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(64).duration(64)
+                .input(GTFOMetaItem.SOYBEAN)
+                .output(OrePrefix.dustSmall, Wood)
+                .fluidOutputs(SeedOil.getFluid(28))
+                .buildAndRegister();
+
 
 /*
         RecipeUtils.addGreenHouseRecipes(LEMON.getStackForm(), LEMON);

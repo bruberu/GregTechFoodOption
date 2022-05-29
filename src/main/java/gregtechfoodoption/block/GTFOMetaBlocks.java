@@ -24,6 +24,8 @@ public class GTFOMetaBlocks {
 
         GTFO_METAL_CASING = new GTFOMetalCasing();
         GTFO_METAL_CASING.setRegistryName("gtfo_metal_casing");
+
+        GTFOCrops.init();
     }
 
     @SideOnly(Side.CLIENT)

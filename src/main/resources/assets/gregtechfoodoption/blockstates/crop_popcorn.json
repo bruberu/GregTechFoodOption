@@ -1,0 +1,40 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_popcorn/stage5"
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
 import gregtechfoodoption.utils.GTFOUtils;
@@ -190,6 +191,14 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem ORANGE_JUICE;
     public static MetaItem<?>.MetaValueItem APPLE_JUICE;
 
+    public static MetaItem<?>.MetaValueItem UNKNOWN_SEED;
+    public static MetaItem<?>.MetaValueItem ONION_SEED;
+    public static MetaItem<?>.MetaValueItem SOYBEAN;
+    public static MetaItem<?>.MetaValueItem SOYBEAN_SEED;
+    public static MetaItem<?>.MetaValueItem TOMATO_SEED;
+    public static MetaItem<?>.MetaValueItem GRAPE_SEED;
+    public static MetaItem<?>.MetaValueItem CUCUMBER_SEED;
+
     public GTFOMetaItem() {
         super();
     }
@@ -263,6 +272,7 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .addOreDict("cropOnion");
         CUCUMBER = addItem(78, "crop.cucumber")
                 .addOreDict("cropCucumber");
+        CUCUMBER.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
         TOMATO_SLICE = addItem(79, "component.tomato_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
         ONION_SLICE = addItem(80, "component.onion_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
         CUCUMBER_SLICE = addItem(81, "component.cucumber_slice").addComponents(new GTFOFoodStats(1, 0.0f, false, false, ItemStack.EMPTY));
@@ -480,6 +490,18 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_MEAT = addItem(156, "component.kebab.meat");
         KEBAB_MEAT_COOKED = addItem(157, "food.kebab.meat").addComponents(GTFOUtils.getKebabFood(3, 0.6f));
 
+        UNKNOWN_SEED = addItem(158, "seed.unknown");
+        ONION_SEED = addItem(159, "seed.onion");
+        ONION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
+        SOYBEAN = addItem(160, "component.soybean");
+        SOYBEAN_SEED = addItem(161, "seed.soy");
+        SOYBEAN_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_SOY, SOYBEAN_SEED.getStackForm(), SOYBEAN.getStackForm()));
+        TOMATO_SEED = addItem(162, "seed.tomato");
+        TOMATO_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO_SEED.getStackForm(), TOMATO.getStackForm()));
+        GRAPE_SEED = addItem(163, "seed.grape");
+        GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GRAPE, GRAPE_SEED.getStackForm(), GRAPES.getStackForm()));
+        CUCUMBER_SEED = addItem(164, "seed.cucumber");
+        CUCUMBER_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER_SEED.getStackForm(), CUCUMBER.getStackForm()));
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;

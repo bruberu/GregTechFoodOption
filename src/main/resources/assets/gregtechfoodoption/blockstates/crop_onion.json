@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage5"
+        }
+      },
+      "6": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage6"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_onion/stage7"
+        }
+      }
+    }
+  }
+}
