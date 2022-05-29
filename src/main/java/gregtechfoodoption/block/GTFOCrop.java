@@ -49,11 +49,14 @@ public class GTFOCrop extends BlockCrops {
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         int age = this.getAge(state);
         Random rand = world instanceof World ? ((World)world).rand : new Random();
-        if (!seed.isEmpty()) {
-            drops.add(seed.copy());
-        }
 
         if (age >= this.getMaxAge()) {
+            if (!seed.isEmpty()) {
+                drops.add(seed.copy());
+                if (rand.nextInt(9) == 0) {
+                    drops.add(seed.copy());
+                }
+            }
             int k = 3 + fortune;
 
             for(int i = 0; i < 3 + fortune; ++i) {

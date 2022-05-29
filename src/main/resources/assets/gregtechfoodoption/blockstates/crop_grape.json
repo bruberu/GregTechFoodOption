@@ -34,7 +34,9 @@
         "textures": {
           "crop": "gregtechfoodoption:crop/crop_grape/stage5"
         }
-      }
+      },
+      "6": {},
+      "7": {}
     }
   }
 }
