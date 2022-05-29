@@ -44,6 +44,14 @@ public class GTFORootCrop extends GTFOCrop {
         return 7;
     }
 
+    public boolean seedHarvestable(IBlockState state) {
+        return this.getAge(state) == getMaxAge();
+    }
+
+    public boolean cropHarvestable(IBlockState state) {
+        return this.getAge(state) < getMaxHarvestingAge() && this.getAge(state) > getMinHarvestingAge();
+    }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (this.getAge(state) >= this.getMaxAge()) {

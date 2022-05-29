@@ -3,6 +3,7 @@ package gregtechfoodoption.recipe.chain;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
@@ -12,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import static gregtech.api.unification.material.Materials.SeedOil;
+import static gregtech.api.unification.material.Materials.Wood;
 
 public class SeedsChain {
     public static void init() {
@@ -95,6 +97,7 @@ public class SeedsChain {
 
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(64).duration(64)
                 .input(GTFOMetaItem.SOYBEAN)
+                .output(OrePrefix.dustSmall, Wood)
                 .fluidOutputs(SeedOil.getFluid(28))
                 .buildAndRegister();
 
