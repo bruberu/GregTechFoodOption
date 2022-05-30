@@ -17,7 +17,7 @@ public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
         setHardness(5.0f);
         setResistance(10.0f);
         setSoundType(SoundType.STONE);
-        setHarvestLevel("pickaxe", 2);
+        setHarvestLevel("wrench", 2);
         setDefaultState(getState(CasingType.ADOBE_BRICKS));
     }
 
