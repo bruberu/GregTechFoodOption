@@ -1,5 +1,5 @@
 # Japanese translate by MrKo_no
-# 翻訳 : MrKo_no
+# 翻訳担当 : MrKo_no
 # Corresponding Version: 1.5.2
 # 対応バージョン: 1.5.2
 
@@ -640,3 +640,13 @@ gregtechfoodoption.recipe.accepted_mobs_on_top=上面に%sが必要
 
 death.attack.extermination=%sは安全確認を怠った
 death.attack.extraction=%sは内臓を摘出された
+
+# seeds
+metaitem.seed.onion.name=タマネギの種
+metaitem.component.soybean.name=大豆
+metaitem.seed.unknown.name=未解析のGTFOの種
+metaitem.seed.unknown.tooltip=クラフトで種を得られる/nクラフトした種は§c根こそぎ収穫できない (ロジックのせい)
+metaitem.seed.soy.name=大豆の種
+metaitem.seed.tomato.name=トマトの種
+metaitem.seed.grape.name=ブドウの種
+metaitem.seed.cucumber.name=キュウリの種
