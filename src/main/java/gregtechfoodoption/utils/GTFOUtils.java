@@ -12,6 +12,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -202,5 +203,13 @@ public class GTFOUtils {
                 new TextComponentTranslation("enchantment.level." + effect.effect.getAmplifier()),
                 effect.effect.getDuration(),
                 100 - effect.chance).getFormattedText()));
+    }
+
+    public static int getFirstUnemptyItemSlot(IItemHandler handler) {
+        for (int i = 0; i < handler.getSlots(); i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        return 0;
     }
 }
