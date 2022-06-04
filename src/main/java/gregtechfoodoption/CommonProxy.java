@@ -1,10 +1,14 @@
 package gregtechfoodoption;
 
+import crazypants.enderio.api.farm.IFarmerJoe;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
+import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.potion.GTFOPotions;
 import gregtechfoodoption.recipe.GTFOOreDictRegistration;
@@ -25,6 +29,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
+import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Objects;
@@ -115,6 +120,12 @@ public class CommonProxy {
         GTFOLog.logger.info("Registering recipe very low...");
         GTFORecipeRemoval.init();
         GTFORecipeAddition.compatInit();
+    }
+
+    @SubscribeEvent
+    public static void registerEIOFarmerJoes(@Nonnull RegistryEvent.Register<IFarmerJoe> event) {
+        event.getRegistry().register(new GTFORootCropFarmer(GTFOCrops.CROP_ONION, GTFOMetaItem.ONION_SEED.getStackForm())
+                .setRegistryName(GregTechFoodOption.MODID, "root_onion"));
     }
 
     public static void addSlotsToMaps(

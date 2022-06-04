@@ -633,3 +633,8 @@ metaitem.seed.soy.name=Soybean Seeds
 metaitem.seed.tomato.name=Tomato Seeds
 metaitem.seed.grape.name=Grape Seeds
 metaitem.seed.cucumber.name=Cucumber Seeds
+
+metaitem.seed.onion.tooltip=For growing YoungOnions
+
+death.attack.extermination=%s was exterminated
+death.attack.extraction=%s's internal organs were harvested

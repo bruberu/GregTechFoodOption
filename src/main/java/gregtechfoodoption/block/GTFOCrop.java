@@ -89,7 +89,7 @@ public class GTFOCrop extends BlockCrops {
         return seed.getItemDamage();
     }
 
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        return this.seed;
+    public ItemStack getSeedStack() {
+        return this.seed.copy();
     }
 }

@@ -49,7 +49,7 @@ public class GTFORootCrop extends GTFOCrop {
     }
 
     public boolean cropHarvestable(IBlockState state) {
-        return this.getAge(state) < getMaxHarvestingAge() && this.getAge(state) > getMinHarvestingAge();
+        return this.getAge(state) <= getMaxHarvestingAge() && this.getAge(state) >= getMinHarvestingAge();
     }
 
     @Override

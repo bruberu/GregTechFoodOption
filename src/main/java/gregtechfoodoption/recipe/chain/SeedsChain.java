@@ -91,12 +91,12 @@ public class SeedsChain {
                 GTFOMetaItem.GRAPES);
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
-                .input(GTFOMetaItem.SOYBEAN)
+                .input(GTFOMetaItem.SOYBEAN_SEED)
                 .fluidOutputs(SeedOil.getFluid(15))
                 .buildAndRegister();
 
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(64).duration(64)
-                .input(GTFOMetaItem.SOYBEAN)
+                .input(GTFOMetaItem.SOYBEAN_SEED)
                 .output(OrePrefix.dustSmall, Wood)
                 .fluidOutputs(SeedOil.getFluid(28))
                 .buildAndRegister();
