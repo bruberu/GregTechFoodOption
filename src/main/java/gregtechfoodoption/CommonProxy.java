@@ -1,12 +1,15 @@
 package gregtechfoodoption;
 
 import crazypants.enderio.api.farm.IFarmerJoe;
+import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.block.GTFORootCrop;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
@@ -126,6 +129,11 @@ public class CommonProxy {
     public static void registerEIOFarmerJoes(@Nonnull RegistryEvent.Register<IFarmerJoe> event) {
         event.getRegistry().register(new GTFORootCropFarmer(GTFOCrops.CROP_ONION, GTFOMetaItem.ONION_SEED.getStackForm())
                 .setRegistryName(GregTechFoodOption.MODID, "root_onion"));
+        for (GTFOCrop crop : CROP_BLOCKS) {
+            if (crop instanceof GTFORootCrop) continue;
+            event.getRegistry().register(new CustomSeedFarmer(crop, crop.getSeedStack())
+                    .setRegistryName(crop.getRegistryName()));
+        }
     }
 
     public static void addSlotsToMaps(
