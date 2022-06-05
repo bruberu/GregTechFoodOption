@@ -95,7 +95,7 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
                     LOOTING_USED = this.getTier() - 1;
                     // When the following function is called, ForgeHooks.getLootingLevel, by activating EventHandlers.onLootingLevel, will get LOOTING_USED.
                     // Race conditions probably won't happen, fortunately.
-                    mobs.get(i).attackEntityFrom(GTFODamageSources.getExterminationDamage(this.getWorld()), mobs.get(i).getHealth());
+                    mobs.get(i).attackEntityFrom(GTFODamageSources.getExterminationDamage(this.getWorld()), 40);
                     if (i > 3) {
                         fluidTank.drain(1, true);
                     }
@@ -163,6 +163,8 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
         tooltip.add(I18n.format("gregtech.machine.item_controller.tooltip.redstone"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.consumption", getEnergyConsumedPerKill()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.nitrous"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.warning"));
+
     }
 
     @Override

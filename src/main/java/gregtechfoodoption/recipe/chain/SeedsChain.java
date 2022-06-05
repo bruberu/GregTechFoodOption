@@ -31,11 +31,7 @@ public class SeedsChain {
                 .buildAndRegister();
         RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()))
-                .chancedOutput(GTFOMetaItem.TOMATO.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.CUCUMBER.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.ONION.getStackForm(), 2000, 250)
                 .chancedOutput(GTFOMetaItem.OLIVE.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.GRAPES.getStackForm(), 2000, 250)
                 .buildAndRegister();
         RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(new ItemStack(Blocks.LEAVES2, 1, 0))

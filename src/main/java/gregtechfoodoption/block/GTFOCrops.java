@@ -1,11 +1,11 @@
 package gregtechfoodoption.block;
 
 public class GTFOCrops {
-    public static GTFOCrop CROP_TOMATO = new GTFOCrop("tomato");
-    public static GTFOCrop CROP_ONION = new GTFORootCrop("onion");
-    public static GTFOCrop CROP_CUCUMBER = new GTFOCrop("cucumber");
-    public static GTFOCrop CROP_GRAPE = new GTFOCrop("grape");
-    public static GTFOCrop CROP_SOY = new GTFOCrop("soy");
+    public static GTFOCrop CROP_TOMATO = GTFOCrop.create("tomato");
+    public static GTFOCrop CROP_ONION = GTFORootCrop.create("onion");
+    public static GTFOCrop CROP_CUCUMBER = GTFOCrop.create("cucumber");
+    public static GTFOCrop CROP_GRAPE = GTFOCrop.create("grape");
+    public static GTFOCrop CROP_SOY = GTFOCrop.create("soy");
 
     public static void init() {
 

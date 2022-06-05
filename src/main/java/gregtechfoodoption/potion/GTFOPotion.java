@@ -29,8 +29,9 @@ public abstract class GTFOPotion extends Potion {
         setRegistryName(new ResourceLocation(GregTechFoodOption.MODID, name));
         try {
             setPotionName(GregTechFoodOption.MODID + ".potion." + name);
-        } finally {
+        } catch (Exception e) {
             GTFOLog.logger.error("You are currently using the wrong type of jar of GTFO. This usually means that I, bruberu, accidentally released the wrong version. Report this immediately!");
+            throw e;
         }
         this.iconIndex = iconIndex;
     }
