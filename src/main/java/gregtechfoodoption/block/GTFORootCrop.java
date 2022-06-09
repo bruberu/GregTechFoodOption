@@ -1,6 +1,7 @@
 package gregtechfoodoption.block;
 
 import gregtech.api.util.GTUtility;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,13 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class GTFORootCrop extends GTFOCrop {
-    public GTFORootCrop(String name) {
-        super(name);
+    protected GTFORootCrop(String name) {
+        super(name, 7);
+    }
+
+    public static GTFORootCrop create(String name) {
+        AGE_TEMP = PropertyInteger.create("age", 0, 7);
+        return new GTFORootCrop(name);
     }
 
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -49,7 +55,7 @@ public class GTFORootCrop extends GTFOCrop {
     }
 
     public boolean cropHarvestable(IBlockState state) {
-        return this.getAge(state) < getMaxHarvestingAge() && this.getAge(state) > getMinHarvestingAge();
+        return this.getAge(state) <= getMaxHarvestingAge() && this.getAge(state) >= getMinHarvestingAge();
     }
 
     @Override

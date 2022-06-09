@@ -31,11 +31,7 @@ public class SeedsChain {
                 .buildAndRegister();
         RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()))
-                .chancedOutput(GTFOMetaItem.TOMATO.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.CUCUMBER.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.ONION.getStackForm(), 2000, 250)
                 .chancedOutput(GTFOMetaItem.OLIVE.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.GRAPES.getStackForm(), 2000, 250)
                 .buildAndRegister();
         RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(new ItemStack(Blocks.LEAVES2, 1, 0))
@@ -91,12 +87,12 @@ public class SeedsChain {
                 GTFOMetaItem.GRAPES);
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
-                .input(GTFOMetaItem.SOYBEAN)
+                .input(GTFOMetaItem.SOYBEAN_SEED)
                 .fluidOutputs(SeedOil.getFluid(15))
                 .buildAndRegister();
 
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(64).duration(64)
-                .input(GTFOMetaItem.SOYBEAN)
+                .input(GTFOMetaItem.SOYBEAN_SEED)
                 .output(OrePrefix.dustSmall, Wood)
                 .fluidOutputs(SeedOil.getFluid(28))
                 .buildAndRegister();

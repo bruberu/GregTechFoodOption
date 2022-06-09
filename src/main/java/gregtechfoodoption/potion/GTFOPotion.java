@@ -1,6 +1,7 @@
 package gregtechfoodoption.potion;
 
 import gregtechfoodoption.GregTechFoodOption;
+import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,7 +27,12 @@ public abstract class GTFOPotion extends Potion {
     public GTFOPotion(String name, boolean badEffect, int color, int iconIndex) {
         super(badEffect, color);
         setRegistryName(new ResourceLocation(GregTechFoodOption.MODID, name));
-        setPotionName(GregTechFoodOption.MODID + ".potion." + name);
+        try {
+            setPotionName(GregTechFoodOption.MODID + ".potion." + name);
+        } catch (Exception e) {
+            GTFOLog.logger.error("You are currently using the wrong type of jar of GTFO. This usually means that I, bruberu, accidentally released the wrong version. Report this immediately!");
+            throw e;
+        }
         this.iconIndex = iconIndex;
     }
 

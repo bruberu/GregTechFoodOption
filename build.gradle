@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-1.6.0"
+version = "1.12.2-1.6.1"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -91,22 +91,34 @@ repositories {
         url "http://www.ryanliptak.com/maven/"
     }
 
+
 }
 
 dependencies {
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
     deobfCompile "mezz.jei:jei_1.12.2:+"
     //deobfCompile "curse.maven:gregtechceu-557242:3612824"
-    deobfCompile "team.chisel.ctm:CTM:MC1.12.2-1.0.2.31"
+    deobfCompile "team.chisel.ctm:CTM:MC${mc_version}-1.0.2.31"
     //provided files("libs/gregicality-1.12.2-0.23.1.jar")
     deobfCompile "codechicken:ChickenASM:1.12-1.0.2.9"
-    deobfCompile "codechicken-lib-1-8:CodeChickenLib-1.12.2:3.2.3.358:universal"
-    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.23-16"
+    deobfCompile "codechicken-lib-1-8:CodeChickenLib-${mc_version}:3.2.3.358:universal"
+    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
 
     //deobfCompile "nuclearcraft-overhauled:NuclearCraft:2o.6.0:1.12.2"
-    deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:1.12.2-r144"
+    deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:${mc_version}-r144"
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
-    deobfCompile "applecore:AppleCore:1.12.2-3.1.5:deobf"
+    deobfCompile "applecore:AppleCore:${mc_version}-3.1.5:deobf"
+
+    // One day...
+    //compile "com.enderio.core:EnderCore:${mc_version}-0.5.76:dev"
+    //compile "com.enderio:EnderIO:${mc_version}-5.3.70"
+
+    compile "curse.maven:enderio-64578:3328811"
+    compile "curse.maven:endercore-231868:2972849"
+    compile "info.loenwind.autoconfig:AutoConfig:${mc_version}-1.0.2"
+    compile "info.loenwind.autosave:AutoSave:${mc_version}-1.0.11"
+
+
     //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
     //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
 

@@ -441,7 +441,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         ORANGE = addItem(123, "food.orange").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY)
                 .setEatingDuration(50))
                 .addOreDict("cropOrange").addOreDict("listAllfruit");
-        GRAPES = addItem(124, "food.grapes").addComponents(new GTFOFoodStats(1, 1f, false, true, ItemStack.EMPTY)
+        GRAPES = addItem(124, "food.grapes").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY)
                 .setEatingDuration(20))
                 .addOreDict("cropGrapes").addOreDict("listAllfruit");
         MANGO = addItem(125, "food.mango").addComponents(new GTFOFoodStats(2, 1f, false, false, ItemStack.EMPTY))

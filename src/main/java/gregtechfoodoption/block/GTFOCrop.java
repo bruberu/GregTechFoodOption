@@ -1,7 +1,8 @@
 package gregtechfoodoption.block;
 
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,20 +18,28 @@ import java.util.List;
 import java.util.Random;
 
 public class GTFOCrop extends BlockCrops {
+    public final PropertyInteger AGE_GTFO;
 
+    public static PropertyInteger AGE_TEMP;
     private static final AxisAlignedBB CROPS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
     protected ItemStack seed;
     protected ItemStack crop;
     public static List<GTFOCrop> CROP_BLOCKS = new ArrayList<>();
 
-    public GTFOCrop(String name) {
-        super();
+    protected GTFOCrop(String name, int age) {
+        AGE_GTFO = PropertyInteger.create("age", 0, age);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
         this.setRegistryName("gregtechfoodoption", "crop_" + name);
-        //this.setCreativeTab((CreativeTabs)null);
-        this.setHardness(0.0F);
-        this.setSoundType(SoundType.PLANT);
-        this.disableStats();
         CROP_BLOCKS.add(this);
+    }
+
+    protected GTFOCrop(String name) {
+        this(name, 5);
+    }
+
+    public static GTFOCrop create(String name) {
+        AGE_TEMP = PropertyInteger.create("age", 0, 5);
+        return new GTFOCrop(name);
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos){
@@ -89,7 +98,20 @@ public class GTFOCrop extends BlockCrops {
         return seed.getItemDamage();
     }
 
+    // The One Probe needs this!
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return this.seed;
+    }
+
+    public ItemStack getSeedStack() {
+        return this.seed.copy();
+    }
+
+    @Override
+    protected PropertyInteger getAgeProperty() {
+        return AGE_GTFO == null ? AGE_TEMP : AGE_GTFO;
+    }
+    protected BlockStateContainer createBlockState() {
+        return AGE_GTFO == null ? new BlockStateContainer(this, AGE_TEMP) : new BlockStateContainer(this, AGE_GTFO);
     }
 }
