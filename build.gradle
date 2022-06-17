@@ -29,7 +29,7 @@ minecraft {
 
 jar {
     manifest {
-        attributes 'FMLAT': 'gtfo_at.cfg'
+        // attributes 'FMLAT': 'gtfo_at.cfg'
     }
 }
 
@@ -144,7 +144,7 @@ processResources {
         exclude 'mcmod.info'
     }
 
-    rename("(.+_at.cfg)", "META-INF/1")
+    //rename("(.+_at.cfg)", "META-INF/1")
 }
 
 runClient {
