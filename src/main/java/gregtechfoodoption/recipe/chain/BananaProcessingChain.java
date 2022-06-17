@@ -21,7 +21,8 @@ public class BananaProcessingChain {
                 .inputs(SodiumChlorate.getItemStack(5))
                 .fluidInputs(Water.getFluid(1000))
                 .outputs(SodiumPerchlorate.getItemStack(6))
-                .fluidOutputs(Hydrogen.getFluid(2000));
+                .fluidOutputs(Hydrogen.getFluid(2000))
+                .buildAndRegister();
 
         CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(100) // NaClO4 + HCl -> NaCl + HClO4
                 .inputs(SodiumPerchlorate.getItemStack(6))
