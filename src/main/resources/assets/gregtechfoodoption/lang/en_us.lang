@@ -639,3 +639,6 @@ metaitem.seed.onion.tooltip=For growing YoungOnions
 death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
+
+metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
+metaitem.sodium_chlorate_dust.name=Sodium Chlorate

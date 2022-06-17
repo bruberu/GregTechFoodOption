@@ -194,6 +194,9 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addOreDictItem(1120, "cooked_meat", 0xa63028, MaterialIconSet.ROUGH, OrePrefix.ingot);
     //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
 
+    public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121, "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF), MaterialIconSet.ROUGH, OrePrefix.dust, "NaClO4");
+    public static final GTFOOredictItem.OreDictValueItem SodiumChlorate = SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, OrePrefix.dust, "NaClO3");
+
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
         Materials.BismuthBronze.addFlags(GENERATE_FRAME);
