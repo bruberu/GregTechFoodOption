@@ -325,7 +325,7 @@ public class CoreChain {
         slicingArray.put(TOMATO, TOMATO_SLICE);
         slicingArray.put(ONION, ONION_SLICE);
         for (Map.Entry<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> entry : slicingArray.entrySet()) {
-            ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().toString(), entry.getValue().getStackForm(4), 'k', entry.getKey());
+            ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().unlocalizedName, entry.getValue().getStackForm(4), 'k', entry.getKey());
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .inputs(entry.getKey().getStackForm())
                     .notConsumable(SLICER_BLADE_FLAT.getStackForm())
