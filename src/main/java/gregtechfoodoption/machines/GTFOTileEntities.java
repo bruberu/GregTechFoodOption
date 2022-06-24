@@ -6,6 +6,7 @@ import gregtech.api.util.GTUtility;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtechfoodoption.GregTechFoodOption;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.machines.farmer.MetaTileEntityFarmer;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntitySteamBakingOven;

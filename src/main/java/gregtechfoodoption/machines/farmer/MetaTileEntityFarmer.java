@@ -1,4 +1,4 @@
-package gregtechfoodoption.machines;
+package gregtechfoodoption.machines.farmer;
 
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
@@ -12,13 +12,16 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
+import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GregFakePlayer;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.item.GTFOCropSeedBehaviour;
 import gregtechfoodoption.utils.GTFOUtils;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.EnumActionResult;
@@ -33,6 +36,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
 import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
 import static gregtech.api.capability.GregtechDataCodes.UPDATE_FRONT_FACING;
@@ -44,13 +48,16 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     private BlockPos operationPosition;
     private static final int LENGTH = 9;
     private boolean isWorking;
+    private FarmerMode cachedMode;
 
     private static final int BASE_EU_CONSUMPTION = 8;
+
 
     public MetaTileEntityFarmer(ResourceLocation metaTileEntityId, int tier, int actionsPerSecond) {
         super(metaTileEntityId, tier);
         this.actionsPerSecond = actionsPerSecond;
         this.initializeInventory();
+        cachedMode = FarmerModeRegistry.getAnyMode();
     }
 
     @Override
@@ -68,6 +75,25 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
             energyContainer.removeEnergy(getEnergyConsumedPerTick());
             for (int i = 0; i < actionsPerSecond; i++) {
                 // Phase 1: move crop pointer and collect crops if there exists enough inventory
+                IBlockState blockState = getWorld().getBlockState(operationPosition);
+                if (blockState.getBlock() != Blocks.AIR) {
+                    boolean canHarvestBlock = true;
+                    if (!cachedMode.canOperate(blockState, this)) {
+                        FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this);
+                        if (mode != null) {
+                            cachedMode = mode;
+                        } else {
+                            canHarvestBlock = false;
+                        }
+                    }
+                    if (canHarvestBlock) {
+                        List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), operationPosition, this);
+                        if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
+                            GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
+                            cachedMode.harvest(blockState, getWorld(), operationPosition, this);
+                        }
+                    }
+                }
 
                 // Phase 2: place down seed if possible
                 if (InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
@@ -91,6 +117,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     protected int getEnergyConsumedPerTick() {
         return BASE_EU_CONSUMPTION * (1 << (getTier() - 1));
     }
+
     private void updateOperationPosition() {
         operationPosition = operationPosition.offset(this.getFrontFacing().rotateYCCW());
         if (!workingArea.contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()))) {
@@ -141,13 +168,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     }
 
     protected IItemHandlerModifiable createExportItemHandler() {
-        return new ItemStackHandler(9) {
-            @Nonnull
-            @Override
-            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-                return stack;
-            }
-        };
+        return new ItemStackHandler(9);
     }
 
     @Override

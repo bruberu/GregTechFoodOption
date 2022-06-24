@@ -7,6 +7,7 @@ import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.integration.top.GTFOTOPCompatibility;
 import gregtechfoodoption.machines.GTFOTileEntities;
+import gregtechfoodoption.machines.farmer.FarmerModeRegistry;
 import gregtechfoodoption.network.GTFONetworkHandler;
 import gregtechfoodoption.utils.GTFOConfigOverrider;
 import net.minecraftforge.common.MinecraftForge;
@@ -60,6 +61,7 @@ public class GregTechFoodOption {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+        FarmerModeRegistry.registerDefaultModes();
         try {
             proxy.onLoad();
         } catch (Exception e) {
