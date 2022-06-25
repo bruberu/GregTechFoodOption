@@ -8,16 +8,13 @@ import codechicken.lib.vec.Matrix4;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.SlotWidget;
-import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.util.GTTransferUtils;
-import gregtech.api.util.GregFakePlayer;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.item.GTFOCropSeedBehaviour;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -31,11 +28,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
+import java.util.Collections;
 import java.util.List;
 
 import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
@@ -99,11 +95,26 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                 if (InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
                     int unemptySlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems());
                     ItemStack seedItem = getImportItems().extractItem(unemptySlot, 1, true);
-                    GregFakePlayer placer = new GregFakePlayer(getWorld());
-                    placer.setHeldItem(EnumHand.MAIN_HAND, seedItem);
-                    EnumActionResult result = seedItem.onItemUse(placer, getWorld(), operationPosition.down(), EnumHand.MAIN_HAND, EnumFacing.UP, 0, 0, 0);
-                    if (result == EnumActionResult.SUCCESS)
-                        getImportItems().extractItem(unemptySlot, 1, false);
+                    boolean canPlaceSeed = true;
+                    if (!cachedMode.canPlaceItem(seedItem)) {
+                        FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem);
+                        if (mode != null) {
+                            cachedMode = mode;
+                        } else {
+                            canPlaceSeed = false;
+                            // Move this unusable stack to the output
+                            ItemStack junkStack = getImportItems().extractItem(unemptySlot, getImportItems().getStackInSlot(unemptySlot).getCount(), true);
+                            if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
+                                GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
+                                        Collections.singletonList(getImportItems().extractItem(unemptySlot, getImportItems().getStackInSlot(unemptySlot).getCount(), false)));
+                            }
+                        }
+                    }
+                    if (canPlaceSeed && cachedMode.canPlaceAt(operationPosition, this.getPos())) {
+                        EnumActionResult result = cachedMode.place(seedItem, getWorld(), operationPosition, this);
+                        if (result == EnumActionResult.SUCCESS)
+                            getImportItems().extractItem(unemptySlot, 1, false);
+                    }
                 }
                 updateOperationPosition();
             }
@@ -153,18 +164,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     }
 
     protected IItemHandlerModifiable createImportItemHandler() {
-        return new ItemStackHandler(9) {
-            @Override
-            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                if ((stack.getItem() instanceof IPlantable))
-                    return true;
-                if (stack.getItem() instanceof MetaItem &&
-                        ((MetaItem<?>) stack.getItem()).getBehaviours(stack)
-                                .stream().anyMatch(behavior -> behavior instanceof GTFOCropSeedBehaviour))
-                    return true;
-                return false;
-            }
-        };
+        return new ItemStackHandler(9);
     }
 
     protected IItemHandlerModifiable createExportItemHandler() {

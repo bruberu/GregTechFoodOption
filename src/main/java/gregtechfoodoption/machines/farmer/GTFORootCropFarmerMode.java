@@ -5,8 +5,7 @@ import gregtechfoodoption.block.GTFORootCrop;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 
-public class GTFORootCropFarmerMode extends DefaultCropFarmerMode {
-
+public class GTFORootCropFarmerMode extends GTFOCropFarmerMode {
     @Override
     public boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer) {
         return state.getBlock() instanceof GTFORootCrop &&

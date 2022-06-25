@@ -2,6 +2,8 @@ package gregtechfoodoption.machines.farmer;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,15 @@ public class FarmerModeRegistry {
         return null;
     }
 
+    public static FarmerMode findSuitableFarmerMode(ItemStack stack) {
+        for (FarmerMode mode : farmerModes) {
+            if (mode.canPlaceItem(stack)) {
+                return mode;
+            }
+        }
+        return null;
+    }
+
     public static void registerFarmerMode(FarmerMode mode) {
         farmerModes.add(mode);
     }
@@ -28,9 +39,11 @@ public class FarmerModeRegistry {
     }
 
     public static void registerDefaultModes() {
-        registerFarmerMode(new CustomCropFarmerMode(Blocks.WHEAT));
-        registerFarmerMode(new CustomCropFarmerMode(Blocks.POTATOES));
-        registerFarmerMode(new CustomCropFarmerMode(Blocks.CARROTS));
+        registerFarmerMode(new CustomCropFarmerMode(Blocks.WHEAT, Items.WHEAT_SEEDS));
+        registerFarmerMode(new CustomCropFarmerMode(Blocks.POTATOES, Items.POTATO));
+        registerFarmerMode(new CustomCropFarmerMode(Blocks.CARROTS, Items.CARROT));
+        registerFarmerMode(new CustomCropFarmerMode(Blocks.BEETROOTS, Items.BEETROOT_SEEDS));
+        registerFarmerMode(new NetherWartFarmerMode());
         registerFarmerMode(new GTFOCropFarmerMode());
         registerFarmerMode(new GTFORootCropFarmerMode());
     }
