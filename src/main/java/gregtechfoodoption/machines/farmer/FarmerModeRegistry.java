@@ -39,11 +39,13 @@ public class FarmerModeRegistry {
     }
 
     public static void registerDefaultModes() {
-        registerFarmerMode(new CustomCropFarmerMode(Blocks.WHEAT, Items.WHEAT_SEEDS));
-        registerFarmerMode(new CustomCropFarmerMode(Blocks.POTATOES, Items.POTATO));
-        registerFarmerMode(new CustomCropFarmerMode(Blocks.CARROTS, Items.CARROT));
-        registerFarmerMode(new CustomCropFarmerMode(Blocks.BEETROOTS, Items.BEETROOT_SEEDS));
+        registerFarmerMode(new BlockCropsFarmerMode(Blocks.WHEAT, Items.WHEAT_SEEDS));
+        registerFarmerMode(new BlockCropsFarmerMode(Blocks.POTATOES, Items.POTATO));
+        registerFarmerMode(new BlockCropsFarmerMode(Blocks.CARROTS, Items.CARROT));
+        registerFarmerMode(new BlockCropsFarmerMode(Blocks.BEETROOTS, Items.BEETROOT_SEEDS));
         registerFarmerMode(new NetherWartFarmerMode());
+        registerFarmerMode(new StemFarmerMode(Blocks.MELON_BLOCK, Items.MELON_SEEDS));
+        registerFarmerMode(new StemFarmerMode(Blocks.PUMPKIN, Items.PUMPKIN_SEEDS));
         registerFarmerMode(new GTFOCropFarmerMode());
         registerFarmerMode(new GTFORootCropFarmerMode());
     }

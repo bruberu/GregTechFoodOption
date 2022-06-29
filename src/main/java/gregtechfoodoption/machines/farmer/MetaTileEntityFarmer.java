@@ -42,7 +42,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     private final int actionsPerSecond;
     private AxisAlignedBB workingArea;
     private BlockPos operationPosition;
-    private static final int LENGTH = 9;
+    public static final int LENGTH = 9;
     private boolean isWorking;
     private FarmerMode cachedMode;
 
@@ -64,11 +64,17 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     @Override
     public void update() {
         super.update();
-        if (this.getOffsetTimer() % 20 != 0 || this.getWorld().isRemote)
-            return;
         boolean isWorkingNow = energyContainer.getEnergyStored() >= getEnergyConsumedPerTick();
+        energyContainer.removeEnergy(getEnergyConsumedPerTick());
+        if (this.getWorld().isRemote)
+            return;
+        if (isWorkingNow != isWorking) {
+            this.isWorking = isWorkingNow;
+            writeCustomData(IS_WORKING, buffer -> buffer.writeBoolean(isWorkingNow));
+        }
+        if (this.getOffsetTimer() % 20 != 0)
+            return;
         if (isWorkingNow) {
-            energyContainer.removeEnergy(getEnergyConsumedPerTick());
             for (int i = 0; i < actionsPerSecond; i++) {
                 // Phase 1: move crop pointer and collect crops if there exists enough inventory
                 IBlockState blockState = getWorld().getBlockState(operationPosition);
@@ -92,7 +98,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                 }
 
                 // Phase 2: place down seed if possible
-                if (InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
+                if (getWorld().isAirBlock(operationPosition) && InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
                     int unemptySlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems());
                     ItemStack seedItem = getImportItems().extractItem(unemptySlot, 1, true);
                     boolean canPlaceSeed = true;
@@ -110,7 +116,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                             }
                         }
                     }
-                    if (canPlaceSeed && cachedMode.canPlaceAt(operationPosition, this.getPos())) {
+                    if (canPlaceSeed && cachedMode.canPlaceAt(operationPosition, this.getPos(), this.getFrontFacing())) {
                         EnumActionResult result = cachedMode.place(seedItem, getWorld(), operationPosition, this);
                         if (result == EnumActionResult.SUCCESS)
                             getImportItems().extractItem(unemptySlot, 1, false);
@@ -119,14 +125,11 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                 updateOperationPosition();
             }
         }
-        if (isWorkingNow != isWorking) {
-            this.isWorking = isWorkingNow;
-            writeCustomData(IS_WORKING, buffer -> buffer.writeBoolean(isWorkingNow));
-        }
+
     }
 
     protected int getEnergyConsumedPerTick() {
-        return BASE_EU_CONSUMPTION * (1 << (getTier() - 1));
+        return BASE_EU_CONSUMPTION * (1 << ((getTier() - 1) * 2));
     }
 
     private void updateOperationPosition() {
@@ -140,8 +143,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     }
 
     private void setupWorkingArea() {
-        workingArea = new AxisAlignedBB(this.getPos().offset(this.getFrontFacing().getOpposite()).offset(this.getFrontFacing().rotateY(), LENGTH / 2),
-                this.getPos().offset(this.getFrontFacing().getOpposite(), LENGTH).offset(this.getFrontFacing().rotateYCCW(), LENGTH / 2))
+        workingArea = new AxisAlignedBB(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2),
+                this.getPos().offset(this.getFrontFacing(), LENGTH).offset(this.getFrontFacing().rotateYCCW(), LENGTH / 2))
                 .grow(.1);
         operationPosition = this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2);
     }
@@ -188,14 +191,21 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     }
 
     @Override
-    public void onAttached(Object... data) {
-        this.setupWorkingArea();
-    }
-
-    @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
         OrientedOverlayRenderer renderer = GTFOClientHandler.MOB_AGE_SORTER_OVERLAY;
         renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking, true);
+    }
+
+    @Override
+    public void receiveInitialSyncData(PacketBuffer buf) {
+        super.receiveInitialSyncData(buf);
+        setupWorkingArea();
+    }
+
+    @Override
+    public void writeInitialSyncData(PacketBuffer buf) {
+        super.writeInitialSyncData(buf);
+        setupWorkingArea();
     }
 }
