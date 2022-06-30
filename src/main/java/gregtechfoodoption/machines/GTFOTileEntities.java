@@ -83,10 +83,10 @@ public class GTFOTileEntities {
         }
 
         // Farmer, IDs 8561-8564
-        FARMER[0] = registerMetaTileEntity(8561, new MetaTileEntityFarmer(location("farmer.lv"), 1, 3));
-        FARMER[1] = registerMetaTileEntity(8562, new MetaTileEntityFarmer(location("farmer.mv"), 2, 9));
-        FARMER[2] = registerMetaTileEntity(8563, new MetaTileEntityFarmer(location("farmer.hv"), 3, 27));
-        FARMER[3] = registerMetaTileEntity(8564, new MetaTileEntityFarmer(location("farmer.ev"), 4, 81));
+        FARMER[0] = registerMetaTileEntity(8561, new MetaTileEntityFarmer(location("farmer.lv"), 1, 20));
+        FARMER[1] = registerMetaTileEntity(8562, new MetaTileEntityFarmer(location("farmer.mv"), 2, 10));
+        FARMER[2] = registerMetaTileEntity(8563, new MetaTileEntityFarmer(location("farmer.hv"), 3, 5));
+        FARMER[3] = registerMetaTileEntity(8564, new MetaTileEntityFarmer(location("farmer.ev"), 4, 2));
 
 
     }

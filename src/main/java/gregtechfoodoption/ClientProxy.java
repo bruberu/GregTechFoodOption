@@ -1,10 +1,10 @@
 package gregtechfoodoption;
 
+import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.appleskin.GTFOMetaHUDOverlay;
 import gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
@@ -18,7 +18,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(Side.CLIENT)
@@ -43,6 +46,9 @@ public class ClientProxy extends CommonProxy {
             GTFOMetaTooltipOverlay.init();
             GTFOMetaHUDOverlay.init();
         }
+        //ResourceHelper.bindTexture(new ResourceLocation("gregtech", "fx/laser/laser"));
+        //ResourceHelper.bindTexture(new ResourceLocation("gregtech", "fx/laser/laser_head"));
+
     }
 
     @Override
