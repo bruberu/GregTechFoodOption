@@ -80,8 +80,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                 IBlockState blockState = getWorld().getBlockState(operationPosition);
                 if (blockState.getBlock() != Blocks.AIR) {
                     boolean canHarvestBlock = true;
-                    if (!cachedMode.canOperate(blockState, this)) {
-                        FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this);
+                    if (!cachedMode.canOperate(blockState, this, operationPosition, getWorld())) {
+                        FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, operationPosition, getWorld());
                         if (mode != null) {
                             cachedMode = mode;
                         } else {

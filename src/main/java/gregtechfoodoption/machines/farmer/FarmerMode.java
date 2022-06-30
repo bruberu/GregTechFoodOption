@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public interface FarmerMode {
-    boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer);
+    boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer, BlockPos pos, World world);
 
     default void harvest(IBlockState state, World world, BlockPos pos, MetaTileEntityFarmer farmer) {
         world.playEvent(2001, pos, Block.getStateId(state));

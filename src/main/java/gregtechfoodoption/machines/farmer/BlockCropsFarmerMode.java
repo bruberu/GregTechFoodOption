@@ -5,6 +5,8 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class BlockCropsFarmerMode extends CustomCropFarmerMode {
 
@@ -21,7 +23,7 @@ public class BlockCropsFarmerMode extends CustomCropFarmerMode {
     }
 
     @Override
-    public boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer) {
+    public boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer, BlockPos pos, World world) {
         return state.getBlock().isAssociatedBlock(crop) && ((BlockCrops) crop).isMaxAge(state);
     }
 
