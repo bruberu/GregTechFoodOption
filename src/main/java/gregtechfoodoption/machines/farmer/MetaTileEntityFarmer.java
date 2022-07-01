@@ -23,11 +23,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -70,12 +68,15 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         super.update();
         boolean isWorkingNow = energyContainer.getEnergyStored() >= getEnergyConsumedPerTick();
         energyContainer.removeEnergy(getEnergyConsumedPerTick());
-        if (operationPosition == null)
-            return;
+        if (operationPosition == null || workingArea == null)
+            setupWorkingArea();
         if (this.getWorld().isRemote) {
             if (isWorking) {
                 if (getOffsetTimer() % ticksPerAction == 0) {
-                    GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(getWorld(), new Vector3(new Vec3d(getPos()).add(.5, .7, .5)), new Vector3(new Vec3d(operationPosition)).add(.5, .2, .5)));
+                    GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(getWorld(),
+                            new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
+                            new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
+                            ticksPerAction * 3));
                     updateOperationPosition();
                 }
             }
@@ -88,6 +89,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         if (this.getOffsetTimer() % ticksPerAction != 0)
             return;
         if (isWorkingNow) {
+            boolean didSomething = false;
             // Phase 1: move crop pointer and collect crops if there exists enough inventory
             IBlockState blockState = getWorld().getBlockState(operationPosition);
             if (blockState.getBlock() != Blocks.AIR) {
@@ -105,6 +107,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                     if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
                         GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
                         cachedMode.harvest(blockState, getWorld(), operationPosition, this);
+                        didSomething = true;
                     }
                 }
             }
@@ -130,10 +133,15 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                 }
                 if (canPlaceSeed && cachedMode.canPlaceAt(operationPosition, this.getPos(), this.getFrontFacing())) {
                     EnumActionResult result = cachedMode.place(seedItem, getWorld(), operationPosition, this);
-                    if (result == EnumActionResult.SUCCESS)
+                    if (result == EnumActionResult.SUCCESS) {
                         getImportItems().extractItem(unemptySlot, 1, false);
+                        didSomething = true;
+                    }
                 }
             }
+            if (didSomething)
+                getWorld().playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5,
+                        GTFOClientHandler.FARMER_LASER, SoundCategory.BLOCKS, 1.0f, 1.0f);
             updateOperationPosition();
         }
     }
@@ -144,10 +152,13 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
 
     private void updateOperationPosition() {
         operationPosition = operationPosition.offset(this.getFrontFacing().rotateYCCW());
-        if (!workingArea.contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()))) {
+        if (!isOperationPositionInsideWorkingArea()) {
             operationPosition = operationPosition.offset(this.getFrontFacing().rotateY(), LENGTH).offset(this.getFrontFacing());
-            if (!workingArea.contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()))) {
+            if (!isOperationPositionInsideWorkingArea()) {
                 operationPosition = this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2);
+                if (!isOperationPositionInsideWorkingArea() && !getWorld().isRemote) { // This is needed for persistent working areas
+                    setupWorkingArea();
+                }
             }
         }
         writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
@@ -157,8 +168,10 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         workingArea = new AxisAlignedBB(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2),
                 this.getPos().offset(this.getFrontFacing(), LENGTH).offset(this.getFrontFacing().rotateYCCW(), LENGTH / 2))
                 .grow(.1);
-        if (operationPosition == null)
+        if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to weirdness in how the facing is set.
             operationPosition = this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2);
+            writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
+        }
     }
 
     @Override
@@ -209,7 +222,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        OrientedOverlayRenderer renderer = GTFOClientHandler.MOB_AGE_SORTER_OVERLAY;
+        OrientedOverlayRenderer renderer = GTFOClientHandler.FARMER_OVERLAY;
         renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking, true);
 
     }
@@ -230,4 +243,19 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         buf.writeBlockPos(operationPosition);
     }
 
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound data) {
+        super.writeToNBT(data);
+        data.setLong("operationPosition", operationPosition.toLong());
+        return data;
+    }
+    @Override
+    public void readFromNBT(NBTTagCompound data) {
+        super.readFromNBT(data);
+        operationPosition = BlockPos.fromLong(data.getLong("operationPosition"));
+    }
+
+    private boolean isOperationPositionInsideWorkingArea() {
+        return workingArea.contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()));
+    }
 }

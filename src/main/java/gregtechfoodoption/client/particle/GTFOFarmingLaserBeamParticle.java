@@ -9,10 +9,10 @@ import net.minecraft.world.World;
 
 public class GTFOFarmingLaserBeamParticle extends GTLaserBeamParticle {
 
-    public GTFOFarmingLaserBeamParticle(World worldIn, Vector3 startPos, Vector3 endPos) {
+    public GTFOFarmingLaserBeamParticle(World worldIn, Vector3 startPos, Vector3 endPos, int maxAge) {
         super(worldIn, startPos, endPos);
-        this.setMaxAge(5);
         this.particleAge = 0;
+        this.particleMaxAge = maxAge;
         this.setBody(new ResourceLocation("gregtech", "textures/fx/laser/laser.png"));
         this.setHead(new ResourceLocation("gregtech", "textures/fx/laser/laser_start.png"));
     }
