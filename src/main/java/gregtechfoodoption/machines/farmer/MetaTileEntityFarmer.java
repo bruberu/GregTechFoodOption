@@ -6,6 +6,7 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
 import codechicken.lib.vec.Vector3;
+import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.SlotWidget;
@@ -51,6 +52,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     private boolean isWorking;
     private FarmerMode cachedMode;
     public FakePlayer fakePlayer;
+    private boolean isFull = false;
+    private boolean hasResponded = false;
 
     private static final int BASE_EU_CONSUMPTION = 8;
 
@@ -100,7 +103,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
 
             // Phase 1: move crop pointer and collect crops if there exists enough inventory
             IBlockState blockState = getWorld().getBlockState(operationPosition);
-            if (!getWorld().isAirBlock(operationPosition)) {
+            if (!getWorld().isAirBlock(operationPosition) && !isFull) {
                 boolean canHarvestBlock = true;
                 if (!cachedMode.canOperate(blockState, this, GTFOUtils.copy(operationPosition), getWorld())) {
                     FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, GTFOUtils.copy(operationPosition), getWorld());
@@ -116,7 +119,15 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                         GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
                         cachedMode.harvest(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
                         didSomething = true;
+                        hasResponded = true;
+                    } else if (GTFOUtils.isFull(getExportItems())) {
+                        isFull = true;
+                        notifiedItemOutputList.clear();
                     }
+                }
+            } else if (isFull) {
+                if (notifiedItemOutputList.contains(getExportItems()) && !GTFOUtils.isFull(getExportItems())) {
+                    isFull = false;
                 }
             }
 
@@ -163,6 +174,11 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         if (!isOperationPositionInsideWorkingArea()) {
             operationPosition.move(this.getFrontFacing().rotateY(), LENGTH).move(this.getFrontFacing());
             if (!isOperationPositionInsideWorkingArea()) {
+                if (!hasResponded) {
+                    isFull = true; // If it has gone through the entire field and not harvested anything, it's likely that it's full.
+                    notifiedItemOutputList.clear();
+                }
+                hasResponded = false;
                 operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
                 if (!isOperationPositionInsideWorkingArea() && !getWorld().isRemote) { // This is needed for persistent working areas
                     setupWorkingArea();
@@ -208,7 +224,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     }
 
     protected IItemHandlerModifiable createExportItemHandler() {
-        return new ItemStackHandler(9);
+        return new NotifiableItemStackHandler(9, this, true);
     }
 
     @Override

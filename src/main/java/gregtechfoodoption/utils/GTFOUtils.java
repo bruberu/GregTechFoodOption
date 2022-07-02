@@ -225,4 +225,12 @@ public class GTFOUtils {
     public static BlockPos.MutableBlockPos copy(BlockPos pos) {
         return new BlockPos.MutableBlockPos(pos.toImmutable());
     }
+
+    public static boolean isFull(IItemHandler handler) {
+        for (int i = 0; i < handler.getSlots(); i++) {
+            if (handler.getStackInSlot(i).getCount() != handler.getStackInSlot(i).getMaxStackSize())
+                return false;
+        }
+        return true;
+    }
 }
