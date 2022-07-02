@@ -13,6 +13,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.util.GTTransferUtils;
+import gregtech.api.util.GregFakePlayer;
 import gregtech.api.util.InventoryUtils;
 import gregtech.client.particle.GTParticleManager;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
@@ -21,14 +22,16 @@ import gregtechfoodoption.client.particle.GTFOFarmingLaserBeamParticle;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -43,10 +46,11 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
 
     private final int ticksPerAction;
     private AxisAlignedBB workingArea;
-    private BlockPos operationPosition;
+    private MutableBlockPos operationPosition;
     public static final int LENGTH = 9;
     private boolean isWorking;
     private FarmerMode cachedMode;
+    public FakePlayer fakePlayer;
 
     private static final int BASE_EU_CONSUMPTION = 8;
 
@@ -90,12 +94,16 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
             return;
         if (isWorkingNow) {
             boolean didSomething = false;
+
+            if (this.fakePlayer == null)
+                this.fakePlayer = GregFakePlayer.get((WorldServer)this.getWorld());
+
             // Phase 1: move crop pointer and collect crops if there exists enough inventory
             IBlockState blockState = getWorld().getBlockState(operationPosition);
-            if (blockState.getBlock() != Blocks.AIR) {
+            if (!getWorld().isAirBlock(operationPosition)) {
                 boolean canHarvestBlock = true;
-                if (!cachedMode.canOperate(blockState, this, operationPosition, getWorld())) {
-                    FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, operationPosition, getWorld());
+                if (!cachedMode.canOperate(blockState, this, GTFOUtils.copy(operationPosition), getWorld())) {
+                    FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, GTFOUtils.copy(operationPosition), getWorld());
                     if (mode != null) {
                         cachedMode = mode;
                     } else {
@@ -103,10 +111,10 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                     }
                 }
                 if (canHarvestBlock) {
-                    List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), operationPosition, this);
+                    List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
                     if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
                         GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
-                        cachedMode.harvest(blockState, getWorld(), operationPosition, this);
+                        cachedMode.harvest(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
                         didSomething = true;
                     }
                 }
@@ -131,8 +139,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                         }
                     }
                 }
-                if (canPlaceSeed && cachedMode.canPlaceAt(operationPosition, this.getPos(), this.getFrontFacing())) {
-                    EnumActionResult result = cachedMode.place(seedItem, getWorld(), operationPosition, this);
+                if (canPlaceSeed && cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing())) {
+                    EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
                     if (result == EnumActionResult.SUCCESS) {
                         getImportItems().extractItem(unemptySlot, 1, false);
                         didSomething = true;
@@ -151,11 +159,11 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     }
 
     private void updateOperationPosition() {
-        operationPosition = operationPosition.offset(this.getFrontFacing().rotateYCCW());
+        operationPosition.move(this.getFrontFacing().rotateYCCW());
         if (!isOperationPositionInsideWorkingArea()) {
-            operationPosition = operationPosition.offset(this.getFrontFacing().rotateY(), LENGTH).offset(this.getFrontFacing());
+            operationPosition.move(this.getFrontFacing().rotateY(), LENGTH).move(this.getFrontFacing());
             if (!isOperationPositionInsideWorkingArea()) {
-                operationPosition = this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2);
+                operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
                 if (!isOperationPositionInsideWorkingArea() && !getWorld().isRemote) { // This is needed for persistent working areas
                     setupWorkingArea();
                 }
@@ -169,7 +177,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                 this.getPos().offset(this.getFrontFacing(), LENGTH).offset(this.getFrontFacing().rotateYCCW(), LENGTH / 2))
                 .grow(.1);
         if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to weirdness in how the facing is set.
-            operationPosition = this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2);
+            operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
             writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
         }
     }
@@ -185,7 +193,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
             getHolder().scheduleRenderUpdate();
         }
         if (dataId == UPDATE_LASER_POS) {
-            this.operationPosition = buf.readBlockPos();
+            this.operationPosition = new MutableBlockPos(buf.readBlockPos());
             getHolder().scheduleRenderUpdate();
         }
     }
@@ -231,7 +239,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     public void receiveInitialSyncData(PacketBuffer buf) {
         super.receiveInitialSyncData(buf);
         this.isWorking = buf.readBoolean();
-        this.operationPosition = buf.readBlockPos();
+        this.operationPosition = new MutableBlockPos(buf.readBlockPos());
         setupWorkingArea();
     }
 
@@ -252,7 +260,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
-        operationPosition = BlockPos.fromLong(data.getLong("operationPosition"));
+        operationPosition = new MutableBlockPos(BlockPos.fromLong(data.getLong("operationPosition")));
     }
 
     private boolean isOperationPositionInsideWorkingArea() {

@@ -9,6 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -219,5 +220,9 @@ public class GTFOUtils {
     public static Vec3d getScaledFacingVec(EnumFacing facing, double scale) {
         Vec3i facingOrdinaryVec = facing.getDirectionVec();
         return new Vec3d(facingOrdinaryVec.getX(), facingOrdinaryVec.getY(), facingOrdinaryVec.getZ()).scale(scale);
+    }
+
+    public static BlockPos.MutableBlockPos copy(BlockPos pos) {
+        return new BlockPos.MutableBlockPos(pos.toImmutable());
     }
 }

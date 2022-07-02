@@ -5,7 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import java.util.List;
 public class FarmerModeRegistry {
     private static final List<FarmerMode> farmerModes = new ArrayList<>();
 
-    public static FarmerMode findSuitableFarmerMode(IBlockState state, MetaTileEntityFarmer farmer, BlockPos pos, World world) {
+    public static FarmerMode findSuitableFarmerMode(IBlockState state, MetaTileEntityFarmer farmer, MutableBlockPos pos, World world) {
         for (FarmerMode mode : farmerModes) {
             if (mode.canOperate(state, farmer, pos, world)) {
                 return mode;

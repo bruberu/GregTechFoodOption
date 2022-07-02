@@ -640,8 +640,8 @@ death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
 
-# Crop Manager
-gregtechfoodoption.machine.farmer.lv.name=Basic Crop Manager
-gregtechfoodoption.machine.farmer.mv.name=Advanced Crop Manager
-gregtechfoodoption.machine.farmer.hv.name=Advanced Crop Manager II
-gregtechfoodoption.machine.farmer.ev.name=Advanced Crop Manager III
+# Farmer
+gregtechfoodoption.machine.farmer.lv.name=Basic Farmer
+gregtechfoodoption.machine.farmer.mv.name=Advanced Farmer
+gregtechfoodoption.machine.farmer.hv.name=Advanced Farmer II
+gregtechfoodoption.machine.farmer.ev.name=Advanced Farmer III

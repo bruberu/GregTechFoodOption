@@ -3,7 +3,7 @@ package gregtechfoodoption.machines.farmer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 
 public class StemFarmerMode extends CustomCropFarmerMode {
     public StemFarmerMode(Block crop, Item seed) {
@@ -11,8 +11,8 @@ public class StemFarmerMode extends CustomCropFarmerMode {
     }
 
     @Override
-    public boolean canPlaceAt(BlockPos operationPos, BlockPos farmerPos, EnumFacing facing) {
+    public boolean canPlaceAt(MutableBlockPos operationPos, MutableBlockPos farmerPos, EnumFacing facing) {
         return (((operationPos.getX() - farmerPos.getX()) + (operationPos.getZ() - farmerPos.getZ())) % 2 == 0)
-                && Math.abs(operationPos.getX() - farmerPos.offset(facing, MetaTileEntityFarmer.LENGTH / 2 + 1).getX()) != 4 && Math.abs(operationPos.getZ() - farmerPos.offset(facing, MetaTileEntityFarmer.LENGTH / 2 + 1).getZ()) != 4;
+                && Math.abs(operationPos.getX() - farmerPos.move(facing, MetaTileEntityFarmer.LENGTH / 2 + 1).getX()) != 4 && Math.abs(operationPos.getZ() - farmerPos.move(facing, MetaTileEntityFarmer.LENGTH / 2 + 1).getZ()) != 4;
     }
 }
