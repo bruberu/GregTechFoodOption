@@ -42,6 +42,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void onLoad() {
+        super.onLoad();
         if(Loader.isModLoaded("appleskin")) {
             GTFOMetaTooltipOverlay.init();
             GTFOMetaHUDOverlay.init();

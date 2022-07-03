@@ -23,6 +23,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
@@ -61,7 +62,7 @@ public class CommonProxy {
     }
 
     public void onPostLoad() {
-
+        MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
     }
 
     @SubscribeEvent

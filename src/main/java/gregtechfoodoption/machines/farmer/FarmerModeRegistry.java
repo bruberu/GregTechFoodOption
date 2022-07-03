@@ -46,11 +46,20 @@ public class FarmerModeRegistry {
         registerFarmerMode(new BlockCropsFarmerMode(Blocks.POTATOES, Items.POTATO));
         registerFarmerMode(new BlockCropsFarmerMode(Blocks.CARROTS, Items.CARROT));
         registerFarmerMode(new BlockCropsFarmerMode(Blocks.BEETROOTS, Items.BEETROOT_SEEDS));
+        registerFarmerMode(new CocoaFarmerMode());
         registerFarmerMode(new NetherWartFarmerMode());
         registerFarmerMode(new StemFarmerMode(Blocks.MELON_BLOCK, Items.MELON_SEEDS));
         registerFarmerMode(new StemFarmerMode(Blocks.PUMPKIN, Items.PUMPKIN_SEEDS));
         registerFarmerMode(new HeightCropFarmerMode(Blocks.REEDS, Items.REEDS));
         registerFarmerMode(new HeightCropFarmerMode(Blocks.CACTUS, Item.getItemFromBlock(Blocks.CACTUS)));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.DEADBUSH));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.TALLGRASS));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.RED_FLOWER));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.YELLOW_FLOWER));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.RED_MUSHROOM));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.BROWN_MUSHROOM));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.SNOW_LAYER));
+        registerFarmerMode(new GroundClearingFarmerMode(Blocks.DOUBLE_PLANT));
         registerFarmerMode(new GTFOCropFarmerMode());
         registerFarmerMode(new GTFORootCropFarmerMode());
     }

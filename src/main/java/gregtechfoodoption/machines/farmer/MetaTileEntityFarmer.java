@@ -54,6 +54,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     public FakePlayer fakePlayer;
     private boolean isFull = false;
     private boolean hasResponded = false;
+    private boolean hasFailedToInsertCrop = false;
 
     private static final int BASE_EU_CONSUMPTION = 8;
 
@@ -122,7 +123,10 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                         hasResponded = true;
                     } else if (GTFOUtils.isFull(getExportItems())) {
                         isFull = true;
+                        hasFailedToInsertCrop = true;
                         notifiedItemOutputList.clear();
+                    } else {
+                        hasFailedToInsertCrop = true;
                     }
                 }
             } else if (isFull) {
@@ -174,11 +178,12 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         if (!isOperationPositionInsideWorkingArea()) {
             operationPosition.move(this.getFrontFacing().rotateY(), LENGTH).move(this.getFrontFacing());
             if (!isOperationPositionInsideWorkingArea()) {
-                if (!hasResponded) {
+                if (!hasResponded && hasFailedToInsertCrop) {
                     isFull = true; // If it has gone through the entire field and not harvested anything, it's likely that it's full.
                     notifiedItemOutputList.clear();
                 }
                 hasResponded = false;
+                hasFailedToInsertCrop = false;
                 operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
                 if (!isOperationPositionInsideWorkingArea() && !getWorld().isRemote) { // This is needed for persistent working areas
                     setupWorkingArea();
