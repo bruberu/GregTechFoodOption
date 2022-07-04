@@ -19,6 +19,7 @@ import gregtech.api.util.InventoryUtils;
 import gregtech.client.particle.GTParticleManager;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.client.particle.GTFOFarmingLaserBeamParticle;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
@@ -237,8 +238,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int index = i * 3 + j;
-                builder.widget(new SlotWidget(this.importItems, index, 28 + j * 18, 18 + i * 18, true, true).setBackgroundTexture(GuiTextures.SLOT));
-                builder.widget(new SlotWidget(this.exportItems, index, 94 + j * 18, 18 + i * 18, true, false).setBackgroundTexture(GuiTextures.SLOT));
+                builder.widget(new SlotWidget(this.importItems, index, 28 + j * 18, 18 + i * 18, true, true).setBackgroundTexture(GTFOGuiTextures.SEED_OVERLAY));
+                builder.widget(new SlotWidget(this.exportItems, index, 94 + j * 18, 18 + i * 18, true, false).setBackgroundTexture(GTFOGuiTextures.CROP_OVERLAY));
             }
         }
 
