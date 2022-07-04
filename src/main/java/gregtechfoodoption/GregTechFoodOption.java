@@ -5,6 +5,7 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import gregtechfoodoption.integration.tfc.GTFOTFCCompatibility;
 import gregtechfoodoption.integration.top.GTFOTOPCompatibility;
 import gregtechfoodoption.machines.GTFOTileEntities;
 import gregtechfoodoption.network.GTFONetworkHandler;
@@ -13,10 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLConstructionEvent;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 
 @Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
         dependencies = GTValues.MOD_VERSION_DEP + "after:gcy_science")
@@ -66,6 +64,9 @@ public class GregTechFoodOption {
         }
         if (Loader.isModLoaded(GTValues.MODID_TOP)) {
             GTFOTOPCompatibility.registerCompatibility();
+        }
+        if (Loader.isModLoaded(GTFOValues.MODID_GF) && Loader.isModLoaded(GTFOValues.MODID_TFC)) {
+            GTFOTFCCompatibility.init();
         }
     }
 
