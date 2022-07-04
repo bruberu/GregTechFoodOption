@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "1.12.2-1.6.1"
+version = "1.12.2-1.6.2"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
@@ -29,7 +29,7 @@ minecraft {
 
 jar {
     manifest {
-        attributes 'FMLAT': 'gtfo_at.cfg'
+        // attributes 'FMLAT': 'gtfo_at.cfg'
     }
 }
 
@@ -144,7 +144,7 @@ processResources {
         exclude 'mcmod.info'
     }
 
-    rename("(.+_at.cfg)", "META-INF/1")
+    //rename("(.+_at.cfg)", "META-INF/1")
 }
 
 runClient {

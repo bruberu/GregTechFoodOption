@@ -648,3 +648,7 @@ gregtechfoodoption.machine.farmer.ev.name=Advanced Farmer III
 gregtechfoodoption.machine.farmer.tooltip.flavor=Applies laser Technology to Farming
 gregtechfoodoption.machine.farmer.tooltip.consumption=While working, constantly consumes %,d EU/t
 gregtechfoodoption.machine.farmer.tooltip.working=Works on a 9x9 Farm in front
+
+metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
+metaitem.sodium_chlorate_dust.name=Sodium Chlorate
+
