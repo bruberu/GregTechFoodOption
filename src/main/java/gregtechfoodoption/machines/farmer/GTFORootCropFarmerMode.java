@@ -17,6 +17,6 @@ public class GTFORootCropFarmerMode extends GTFOCropFarmerMode {
 
     private boolean hasNoSeeds(MetaTileEntityFarmer farmer, GTFORootCrop crop) {
         ItemStack seed = crop.getSeedStack();
-        return StreamUtils.streamFrom(farmer.getImportItems()).anyMatch(stack -> stack.isItemEqual(seed));
+        return StreamUtils.streamFrom(farmer.getImportItems()).noneMatch(stack -> stack.isItemEqual(seed));
     }
 }

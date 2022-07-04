@@ -39,6 +39,6 @@ public interface FarmerMode {
     default EnumActionResult place(ItemStack stack, World world, MutableBlockPos pos, MetaTileEntityFarmer farmer) {
         FakePlayer placer = farmer.fakePlayer;
         placer.setHeldItem(EnumHand.MAIN_HAND, stack);
-        return stack.onItemUse(placer, world, pos.down(), EnumHand.MAIN_HAND, EnumFacing.UP, 0, 0, 0);
+        return stack.getItem().onItemUse(placer, world, pos.down(), EnumHand.MAIN_HAND, EnumFacing.UP, 0, 0, 0);
     }
 }

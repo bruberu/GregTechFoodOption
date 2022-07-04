@@ -1,11 +1,11 @@
 package gregtechfoodoption.machines.farmer;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
 import codechicken.lib.vec.Vector3;
+import gregtech.api.GTValues;
 import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
@@ -22,20 +22,27 @@ import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.client.particle.GTFOFarmingLaserBeamParticle;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,11 +59,10 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     private boolean isWorking;
     private FarmerMode cachedMode;
     public FakePlayer fakePlayer;
-    private boolean isFull = false;
-    private boolean hasResponded = false;
-    private boolean hasFailedToInsertCrop = false;
+    private final List<FarmerMode> unusableHarvestingModes = new ArrayList<>();
+    protected int seedSlot;
 
-    private static final int BASE_EU_CONSUMPTION = 8;
+    private static final int BASE_EU_CONSUMPTION = 16;
 
 
     public MetaTileEntityFarmer(ResourceLocation metaTileEntityId, int tier, int ticksPerAction) {
@@ -78,33 +84,31 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         energyContainer.removeEnergy(getEnergyConsumedPerTick());
         if (operationPosition == null || workingArea == null)
             setupWorkingArea();
-        if (this.getWorld().isRemote) {
-            if (isWorking) {
-                if (getOffsetTimer() % ticksPerAction == 0) {
-                    GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(getWorld(),
-                            new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
-                            new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
-                            ticksPerAction * 3));
-                    updateOperationPosition();
-                }
-            }
-            return;
-        }
-        if (isWorkingNow != isWorking) {
+        if (!getWorld().isRemote && isWorkingNow != isWorking) {
             writeCustomData(IS_WORKING, buffer -> buffer.writeBoolean(isWorkingNow));
             this.isWorking = isWorkingNow;
         }
         if (this.getOffsetTimer() % ticksPerAction != 0)
             return;
+        if (this.getWorld().isRemote) {
+            if (isWorking) {
+                GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(getWorld(),
+                        new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
+                        new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
+                        ticksPerAction * 3));
+                updateOperationPosition();
+            }
+            return;
+        }
         if (isWorkingNow) {
             boolean didSomething = false;
 
             if (this.fakePlayer == null)
-                this.fakePlayer = GregFakePlayer.get((WorldServer)this.getWorld());
+                this.fakePlayer = GregFakePlayer.get((WorldServer) this.getWorld());
 
             // Phase 1: move crop pointer and collect crops if there exists enough inventory
             IBlockState blockState = getWorld().getBlockState(operationPosition);
-            if (!getWorld().isAirBlock(operationPosition) && !isFull) {
+            if (!getWorld().isAirBlock(operationPosition)) {
                 boolean canHarvestBlock = true;
                 if (!cachedMode.canOperate(blockState, this, GTFOUtils.copy(operationPosition), getWorld())) {
                     FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, GTFOUtils.copy(operationPosition), getWorld());
@@ -114,31 +118,28 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                         canHarvestBlock = false;
                     }
                 }
-                if (canHarvestBlock) {
+                if (canHarvestBlock && !unusableHarvestingModes.contains(cachedMode) && !GTFOUtils.isFull(getExportItems())) {
                     List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
                     if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
                         GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
                         cachedMode.harvest(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
                         didSomething = true;
-                        hasResponded = true;
-                    } else if (GTFOUtils.isFull(getExportItems())) {
-                        isFull = true;
-                        hasFailedToInsertCrop = true;
-                        notifiedItemOutputList.clear();
                     } else {
-                        hasFailedToInsertCrop = true;
+                        unusableHarvestingModes.add(cachedMode);
+                        notifiedItemOutputList.clear();
                     }
                 }
-            } else if (isFull) {
+            }
+            if (!unusableHarvestingModes.isEmpty()) {
                 if (notifiedItemOutputList.contains(getExportItems()) && !GTFOUtils.isFull(getExportItems())) {
-                    isFull = false;
+                    unusableHarvestingModes.clear();
                 }
             }
 
             // Phase 2: place down seed if possible
             if (getWorld().isAirBlock(operationPosition) && InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
-                int unemptySlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems());
-                ItemStack seedItem = getImportItems().extractItem(unemptySlot, 1, true);
+                seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1);
+                ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
                 boolean canPlaceSeed = true;
                 if (!cachedMode.canPlaceItem(seedItem)) {
                     FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem);
@@ -147,17 +148,17 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                     } else {
                         canPlaceSeed = false;
                         // Move this unusable stack to the output
-                        ItemStack junkStack = getImportItems().extractItem(unemptySlot, getImportItems().getStackInSlot(unemptySlot).getCount(), true);
+                        ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
                         if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
                             GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
-                                    Collections.singletonList(getImportItems().extractItem(unemptySlot, getImportItems().getStackInSlot(unemptySlot).getCount(), false)));
+                                    Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
                         }
                     }
                 }
                 if (canPlaceSeed && cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing())) {
                     EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
                     if (result == EnumActionResult.SUCCESS) {
-                        getImportItems().extractItem(unemptySlot, 1, false);
+                        getImportItems().extractItem(seedSlot, 1, false);
                         didSomething = true;
                     }
                 }
@@ -178,19 +179,13 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         if (!isOperationPositionInsideWorkingArea()) {
             operationPosition.move(this.getFrontFacing().rotateY(), LENGTH).move(this.getFrontFacing());
             if (!isOperationPositionInsideWorkingArea()) {
-                if (!hasResponded && hasFailedToInsertCrop) {
-                    isFull = true; // If it has gone through the entire field and not harvested anything, it's likely that it's full.
-                    notifiedItemOutputList.clear();
-                }
-                hasResponded = false;
-                hasFailedToInsertCrop = false;
-                operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
+                setDefaultOperationPosition();
+                unusableHarvestingModes.clear(); // Try again in case some other random thing changed
                 if (!isOperationPositionInsideWorkingArea() && !getWorld().isRemote) { // This is needed for persistent working areas
                     setupWorkingArea();
                 }
             }
         }
-        writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
     }
 
     private void setupWorkingArea() {
@@ -198,7 +193,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
                 this.getPos().offset(this.getFrontFacing(), LENGTH).offset(this.getFrontFacing().rotateYCCW(), LENGTH / 2))
                 .grow(.1);
         if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to weirdness in how the facing is set.
-            operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
+            setDefaultOperationPosition();
             writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
         }
     }
@@ -208,6 +203,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         super.receiveCustomData(dataId, buf);
         if (dataId == UPDATE_FRONT_FACING) {
             setupWorkingArea();
+            setDefaultOperationPosition();
         }
         if (dataId == IS_WORKING) {
             this.isWorking = buf.readBoolean();
@@ -220,8 +216,10 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     }
 
     @Override
-    public boolean onWrenchClick(EntityPlayer playerIn, EnumHand hand, EnumFacing wrenchSide, CuboidRayTraceResult hitResult) {
-        return super.onWrenchClick(playerIn, hand, wrenchSide, hitResult);
+    public void setFrontFacing(EnumFacing frontFacing) {
+        super.setFrontFacing(frontFacing);
+        setupWorkingArea();
+        setDefaultOperationPosition();
     }
 
     protected IItemHandlerModifiable createImportItemHandler() {
@@ -240,7 +238,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
             for (int j = 0; j < 3; j++) {
                 int index = i * 3 + j;
                 builder.widget(new SlotWidget(this.importItems, index, 28 + j * 18, 18 + i * 18, true, true).setBackgroundTexture(GuiTextures.SLOT));
-                builder.widget(new SlotWidget(this.exportItems, index, 94 + j * 18, 18 + i * 18, true, true).setBackgroundTexture(GuiTextures.SLOT));
+                builder.widget(new SlotWidget(this.exportItems, index, 94 + j * 18, 18 + i * 18, true, false).setBackgroundTexture(GuiTextures.SLOT));
             }
         }
 
@@ -253,7 +251,6 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         super.renderMetaTileEntity(renderState, translation, pipeline);
         OrientedOverlayRenderer renderer = GTFOClientHandler.FARMER_OVERLAY;
         renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking, true);
-
     }
 
     @Override
@@ -278,6 +275,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         data.setLong("operationPosition", operationPosition.toLong());
         return data;
     }
+
     @Override
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
@@ -286,5 +284,20 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
 
     private boolean isOperationPositionInsideWorkingArea() {
         return workingArea.contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()));
+    }
+
+    private void setDefaultOperationPosition() {
+        operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
+        writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, player, tooltip, advanced);
+        tooltip.add(I18n.format("gregtech.universal.tooltip.voltage_in", energyContainer.getInputVoltage(), GTValues.VNF[getTier()]));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.getEnergyCapacity(), GTValues.VNF[getTier()]));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.flavor"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.consumption", getEnergyConsumedPerTick()));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.working"));
     }
 }

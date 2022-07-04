@@ -209,8 +209,12 @@ public class GTFOUtils {
                 100 - effect.chance).getFormattedText()));
     }
 
-    public static int getFirstUnemptyItemSlot(IItemHandler handler) {
-        for (int i = 0; i < handler.getSlots(); i++) {
+    public static int getFirstUnemptyItemSlot(IItemHandler handler, int startSlot) {
+        for (int i = startSlot; i < handler.getSlots(); i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        for (int i = 0; i < startSlot; i++) {
             if (!handler.getStackInSlot(i).isEmpty())
                 return i;
         }
