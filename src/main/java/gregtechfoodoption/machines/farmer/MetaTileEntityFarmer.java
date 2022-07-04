@@ -6,6 +6,8 @@ import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
 import codechicken.lib.vec.Vector3;
 import gregtech.api.GTValues;
+import gregtech.api.capability.GregtechTileCapabilities;
+import gregtech.api.capability.IControllable;
 import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
@@ -38,6 +40,7 @@ import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
@@ -47,17 +50,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
-import static gregtech.api.capability.GregtechDataCodes.UPDATE_FRONT_FACING;
+import static gregtech.api.capability.GregtechDataCodes.*;
 import static gregtechfoodoption.GTFOValues.UPDATE_LASER_POS;
 
-public class MetaTileEntityFarmer extends TieredMetaTileEntity {
+public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IControllable {
 
     private final int ticksPerAction;
     private AxisAlignedBB workingArea;
     private MutableBlockPos operationPosition;
     public static final int LENGTH = 9;
     private boolean isWorking;
+    private boolean isWorkingEnabled = true;
     private FarmerMode cachedMode;
     public FakePlayer fakePlayer;
     private final List<FarmerMode> unusableHarvestingModes = new ArrayList<>();
@@ -82,93 +85,97 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     public void update() {
         super.update();
         boolean isWorkingNow = energyContainer.getEnergyStored() >= getEnergyConsumedPerTick();
-        energyContainer.removeEnergy(getEnergyConsumedPerTick());
-        if (operationPosition == null || workingArea == null)
-            setupWorkingArea();
         if (!getWorld().isRemote && isWorkingNow != isWorking) {
             writeCustomData(IS_WORKING, buffer -> buffer.writeBoolean(isWorkingNow));
             this.isWorking = isWorkingNow;
         }
-        if (this.getOffsetTimer() % ticksPerAction != 0)
+        if (this.getOffsetTimer() % ticksPerAction != 0 || !isWorking || !isWorkingEnabled)
             return;
         if (this.getWorld().isRemote) {
-            if (isWorking) {
-                GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(getWorld(),
-                        new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
-                        new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
-                        ticksPerAction * 3));
-                updateOperationPosition();
-            }
+            GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(getWorld(),
+                    new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
+                    new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
+                    ticksPerAction * 3));
+            updateOperationPosition();
             return;
         }
-        if (isWorkingNow) {
-            boolean didSomething = false;
+        if (!isWorkingNow)
+            return;
+        energyContainer.removeEnergy(getEnergyConsumedPerTick());
+        if (operationPosition == null || workingArea == null)
+            setupWorkingArea();
+        operateServer();
+    }
 
-            if (this.fakePlayer == null)
-                this.fakePlayer = GregFakePlayer.get((WorldServer) this.getWorld());
+    public void operateServer() {
+        boolean didSomething = false;
 
-            // Phase 1: move crop pointer and collect crops if there exists enough inventory
-            IBlockState blockState = getWorld().getBlockState(operationPosition);
-            if (!getWorld().isAirBlock(operationPosition)) {
-                boolean canHarvestBlock = true;
-                if (!cachedMode.canOperate(blockState, this, GTFOUtils.copy(operationPosition), getWorld())) {
-                    FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, GTFOUtils.copy(operationPosition), getWorld());
-                    if (mode != null) {
-                        cachedMode = mode;
-                    } else {
-                        canHarvestBlock = false;
-                    }
-                }
-                if (canHarvestBlock && !unusableHarvestingModes.contains(cachedMode) && !GTFOUtils.isFull(getExportItems())) {
-                    List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
-                    if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
-                        GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
-                        cachedMode.harvest(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
-                        didSomething = true;
-                    } else {
-                        unusableHarvestingModes.add(cachedMode);
-                        notifiedItemOutputList.clear();
-                    }
+        if (this.fakePlayer == null)
+            this.fakePlayer = GregFakePlayer.get((WorldServer) this.getWorld());
+
+        // Phase 1: move crop pointer and collect crops if there exists enough inventory
+        IBlockState blockState = getWorld().getBlockState(operationPosition);
+        if (!getWorld().isAirBlock(operationPosition)) {
+            boolean canHarvestBlock = true;
+            if (!cachedMode.canOperate(blockState, this, GTFOUtils.copy(operationPosition), getWorld())) {
+                FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, GTFOUtils.copy(operationPosition), getWorld());
+                if (mode != null) {
+                    cachedMode = mode;
+                } else {
+                    canHarvestBlock = false;
                 }
             }
-            if (!unusableHarvestingModes.isEmpty()) {
-                if (notifiedItemOutputList.contains(getExportItems()) && !GTFOUtils.isFull(getExportItems())) {
-                    unusableHarvestingModes.clear();
+            if (canHarvestBlock && !unusableHarvestingModes.contains(cachedMode) && !GTFOUtils.isFull(getExportItems())) {
+                List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
+                if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
+                    GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
+                    cachedMode.harvest(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
+                    didSomething = true;
+                } else {
+                    unusableHarvestingModes.add(cachedMode);
+                    notifiedItemOutputList.clear();
                 }
             }
-
-            // Phase 2: place down seed if possible
-            if (getWorld().isAirBlock(operationPosition) && InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
-                seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1);
-                ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
-                boolean canPlaceSeed = true;
-                if (!cachedMode.canPlaceItem(seedItem)) {
-                    FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem);
-                    if (mode != null) {
-                        cachedMode = mode;
-                    } else {
-                        canPlaceSeed = false;
-                        // Move this unusable stack to the output
-                        ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
-                        if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
-                            GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
-                                    Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
-                        }
-                    }
-                }
-                if (canPlaceSeed && cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing())) {
-                    EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
-                    if (result == EnumActionResult.SUCCESS) {
-                        getImportItems().extractItem(seedSlot, 1, false);
-                        didSomething = true;
-                    }
-                }
-            }
-            if (didSomething)
-                getWorld().playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5,
-                        GTFOClientHandler.FARMER_LASER, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            updateOperationPosition();
         }
+
+        // If the output inventory has updated and isn't full, use all modes
+        if (!unusableHarvestingModes.isEmpty()) {
+            if (notifiedItemOutputList.contains(getExportItems()) && !GTFOUtils.isFull(getExportItems())) {
+                unusableHarvestingModes.clear();
+            }
+        }
+
+        // Phase 2: place down seed if possible
+        if (getWorld().isAirBlock(operationPosition) && InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
+            seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1);
+            ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
+            boolean canPlaceSeed = true;
+            if (!cachedMode.canPlaceItem(seedItem)) {
+                FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem);
+                if (mode != null) {
+                    cachedMode = mode;
+                } else {
+                    canPlaceSeed = false;
+                    // Move this unusable stack to the output
+                    ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
+                    if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
+                        GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
+                                Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
+                    }
+                }
+            }
+            if (canPlaceSeed && cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing())) {
+                EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
+                if (result == EnumActionResult.SUCCESS) {
+                    getImportItems().extractItem(seedSlot, 1, false);
+                    didSomething = true;
+                }
+            }
+        }
+        if (didSomething)
+            getWorld().playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5,
+                    GTFOClientHandler.FARMER_LASER, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        updateOperationPosition();
     }
 
     protected int getEnergyConsumedPerTick() {
@@ -210,6 +217,10 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
             this.isWorking = buf.readBoolean();
             getHolder().scheduleRenderUpdate();
         }
+        if (dataId == WORKING_ENABLED) {
+            this.isWorkingEnabled = buf.readBoolean();
+            getHolder().scheduleRenderUpdate();
+        }
         if (dataId == UPDATE_LASER_POS) {
             this.operationPosition = new MutableBlockPos(buf.readBlockPos());
             getHolder().scheduleRenderUpdate();
@@ -222,6 +233,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         setupWorkingArea();
         setDefaultOperationPosition();
     }
+
 
     protected IItemHandlerModifiable createImportItemHandler() {
         return new ItemStackHandler(9);
@@ -251,7 +263,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
         OrientedOverlayRenderer renderer = GTFOClientHandler.FARMER_OVERLAY;
-        renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking, true);
+        renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking, isWorkingEnabled);
     }
 
     @Override
@@ -259,6 +271,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         super.receiveInitialSyncData(buf);
         this.isWorking = buf.readBoolean();
         this.operationPosition = new MutableBlockPos(buf.readBlockPos());
+        this.isWorkingEnabled = buf.readBoolean();
         setupWorkingArea();
     }
 
@@ -268,6 +281,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         setupWorkingArea();
         buf.writeBoolean(isWorking);
         buf.writeBlockPos(operationPosition);
+        buf.writeBoolean(isWorkingEnabled);
     }
 
     @Override
@@ -300,5 +314,23 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity {
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.flavor"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.consumption", getEnergyConsumedPerTick()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.working"));
+    }
+
+    @Override
+    public boolean isWorkingEnabled() {
+        return isWorkingEnabled;
+    }
+
+    @Override
+    public void setWorkingEnabled(boolean b) {
+        this.isWorkingEnabled = b;
+        this.writeCustomData(WORKING_ENABLED, buf -> buf.writeBoolean(b));
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing side) {
+        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE)
+            return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
+        return super.getCapability(capability, side);
     }
 }
