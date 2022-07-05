@@ -628,7 +628,7 @@ gregtechfoodoption.recipe.accepted_mobs_on_top=Requires a %s on top
 metaitem.seed.onion.name=Onion Seeds
 metaitem.component.soybean.name=Soybean
 metaitem.seed.unknown.name=Undetermined GTFO Seeds
-metaitem.seed.unknown.tooltip=Craft to get a Seed/nCrafted Seeds §ccannot be uprooted after They are planted (because Logic)
+metaitem.seed.unknown.tooltip=Craft to get a Seed/n§cCrafted Seeds cannot be uprooted after They are planted (because Logic)
 metaitem.seed.soy.name=Soybean Seeds
 metaitem.seed.tomato.name=Tomato Seeds
 metaitem.seed.grape.name=Grape Seeds
@@ -640,5 +640,15 @@ death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
 
+# Farmer
+gregtechfoodoption.machine.farmer.lv.name=Basic Farmer
+gregtechfoodoption.machine.farmer.mv.name=Advanced Farmer
+gregtechfoodoption.machine.farmer.hv.name=Advanced Farmer II
+gregtechfoodoption.machine.farmer.ev.name=Advanced Farmer III
+gregtechfoodoption.machine.farmer.tooltip.flavor=Applies laser Technology to Farming
+gregtechfoodoption.machine.farmer.tooltip.consumption=While working, constantly consumes %,d EU/t
+gregtechfoodoption.machine.farmer.tooltip.working=Works on a 9x9 Farm in front
+
 metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
 metaitem.sodium_chlorate_dust.name=Sodium Chlorate
+

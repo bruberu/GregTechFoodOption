@@ -1,6 +1,5 @@
 package gregtechfoodoption.item;
 
-import codechicken.lib.raytracer.RayTracer;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
 import gregtechfoodoption.block.GTFOCrop;
 import net.minecraft.block.Block;
@@ -9,8 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 // bri'ish class
@@ -32,16 +32,13 @@ public class GTFOCropSeedBehaviour implements IItemBehaviour {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
-        RayTraceResult result = RayTracer.retrace(player);
-
-        if (result != null && world.isAirBlock(result.getBlockPos().up()) && this.placeState.getBlock().canPlaceBlockAt(world, result.getBlockPos().up())) {
-            world.setBlockState(result.getBlockPos().up(), this.placeState);
+    public ActionResult<ItemStack> onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (world.isAirBlock(pos.up()) && this.placeState.getBlock().canPlaceBlockAt(world, pos.up())) {
+            world.setBlockState(pos.up(), this.placeState);
             ItemStack heldItem = player.getHeldItem(hand);
             heldItem.shrink(1);
             return new ActionResult<>(EnumActionResult.SUCCESS, heldItem);
         }
-
         return new ActionResult<>(EnumActionResult.FAIL, player.getHeldItem(hand));
     }
 

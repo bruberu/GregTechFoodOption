@@ -62,6 +62,7 @@ public class GTFOMachineRecipes {
         registerMachineRecipe(GTFOTileEntities.MOB_AGE_SORTER, "OWS", "OHW", "OCW", 'O', CONVEYOR, 'W', CABLE, 'H', HULL, 'C', CIRCUIT, 'S', SENSOR);
         registerMachineRecipe(GTFOTileEntities.MOB_EXTERMINATOR, "EIE", "WHW", "CSC", 'E', EMITTER, 'W', CABLE, 'I', WIRE_QUAD, 'H', HULL, 'C', CIRCUIT, 'S', SENSOR);
         registerMachineRecipe(GTFOTileEntities.MOB_EXTRACTOR, "BCE", "PME", "WCW", 'M', HULL, 'E', PISTON, 'P', PUMP, 'C', CIRCUIT, 'W', CABLE, 'B', SAWBLADE);
+        registerMachineRecipe(GTFOTileEntities.FARMER, "BEP", "WMW", "CWC", 'M', HULL, 'E', EMITTER, 'P', PISTON, 'C', CIRCUIT, 'W', CABLE_QUAD, 'B', SENSOR);
 
 
         ModHandler.addShapedRecipe("baking_oven", GTFOTileEntities.BAKING_OVEN.getStackForm(),

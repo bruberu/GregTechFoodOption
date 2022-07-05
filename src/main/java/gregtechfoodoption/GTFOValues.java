@@ -14,4 +14,6 @@ public class GTFOValues {
 
     public static final MaterialIconSet Organic = new MaterialIconSet("organic");
 
+    public static final int UPDATE_LASER_POS = 97800;
+
 }
