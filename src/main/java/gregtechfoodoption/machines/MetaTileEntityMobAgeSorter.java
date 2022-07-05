@@ -82,7 +82,7 @@ public class MetaTileEntityMobAgeSorter extends TieredMetaTileEntity {
     }
 
     protected int getEnergyConsumedPerTick() {
-        return BASE_EU_CONSUMPTION * (1 << (getTier() - 1));
+        return BASE_EU_CONSUMPTION * (1 << ((getTier() - 1) * 2));
     }
 
     @Override

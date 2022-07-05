@@ -8,10 +8,15 @@ import gregtechfoodoption.item.GTFOFoodStats;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -202,5 +207,34 @@ public class GTFOUtils {
                 new TextComponentTranslation("enchantment.level." + effect.effect.getAmplifier()),
                 effect.effect.getDuration(),
                 100 - effect.chance).getFormattedText()));
+    }
+
+    public static int getFirstUnemptyItemSlot(IItemHandler handler, int startSlot) {
+        for (int i = startSlot; i < handler.getSlots(); i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        for (int i = 0; i < startSlot; i++) {
+            if (!handler.getStackInSlot(i).isEmpty())
+                return i;
+        }
+        return 0;
+    }
+
+    public static Vec3d getScaledFacingVec(EnumFacing facing, double scale) {
+        Vec3i facingOrdinaryVec = facing.getDirectionVec();
+        return new Vec3d(facingOrdinaryVec.getX(), facingOrdinaryVec.getY(), facingOrdinaryVec.getZ()).scale(scale);
+    }
+
+    public static BlockPos.MutableBlockPos copy(BlockPos pos) {
+        return new BlockPos.MutableBlockPos(pos.toImmutable());
+    }
+
+    public static boolean isFull(IItemHandler handler) {
+        for (int i = 0; i < handler.getSlots(); i++) {
+            if (handler.getStackInSlot(i).getCount() != handler.getStackInSlot(i).getMaxStackSize())
+                return false;
+        }
+        return true;
     }
 }
