@@ -314,6 +314,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.flavor"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.consumption", getEnergyConsumedPerTick()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.working"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.speed", ticksPerAction));
     }
 
     @Override
