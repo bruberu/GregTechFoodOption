@@ -24,10 +24,6 @@ public class GTFODropsEventHandler {
             if (rand.nextInt(200 / (event.getFortuneLevel() + 1)) == 0)
                 event.getDrops().add(LIME.getStackForm());
         }
-        if (event.getState().getBlock() == Blocks.GRASS || event.getState().getBlock() == Blocks.TALLGRASS) {
-            if (rand.nextInt(30 / (event.getFortuneLevel() + 1)) == 0)
-                event.getDrops().add(UNKNOWN_SEED.getStackForm());
-        }
     }
 
     @SubscribeEvent

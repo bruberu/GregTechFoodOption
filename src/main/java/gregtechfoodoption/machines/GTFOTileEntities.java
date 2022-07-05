@@ -6,6 +6,7 @@ import gregtech.api.util.GTUtility;
 import gregtech.common.metatileentities.MetaTileEntities;
 import gregtechfoodoption.GregTechFoodOption;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.machines.farmer.MetaTileEntityFarmer;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntitySteamBakingOven;
@@ -24,7 +25,7 @@ public class GTFOTileEntities {
     public static final MetaTileEntityMobAgeSorter[] MOB_AGE_SORTER = new MetaTileEntityMobAgeSorter[4];
     public static final MetaTileEntityMobExterminator[] MOB_EXTERMINATOR = new MetaTileEntityMobExterminator[4];
     public static final MetaTileEntityMobExtractor[] MOB_EXTRACTOR = new MetaTileEntityMobExtractor[GTValues.UV];
-
+    public static final MetaTileEntityFarmer[] FARMER = new MetaTileEntityFarmer[4];
     public static MetaTileEntityBakingOven BAKING_OVEN;
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
     public static MetaTileEntitySteamBakingOven STEAM_BAKING_OVEN;
@@ -75,12 +76,19 @@ public class GTFOTileEntities {
         // Mob Extractor, IDs 8553-8560
         for (int i = 0; i < MOB_EXTRACTOR.length; i++) {
             if (i > 4 && !getMidTier("mob_extractor")) continue;
-            if (i > 7 && !getHighTier("mob_extractor")) break;
 
             String voltageName = GTValues.VN[i + 1].toLowerCase();
             MOB_EXTRACTOR[i] = registerMetaTileEntity(8553 + i,
                     new MetaTileEntityMobExtractor(location(String.format("%s.%s", "mob_extractor", voltageName)), GTFORecipeMaps.MOB_EXTRACTOR_RECIPES, GTFOClientHandler.MOB_EXTRACTOR_OVERLAY, i + 1, false, GTUtility.largeTankSizeFunction));
         }
+
+        // Farmer, IDs 8561-8564
+        FARMER[0] = registerMetaTileEntity(8561, new MetaTileEntityFarmer(location("farmer.lv"), 1, 20));
+        FARMER[1] = registerMetaTileEntity(8562, new MetaTileEntityFarmer(location("farmer.mv"), 2, 10));
+        FARMER[2] = registerMetaTileEntity(8563, new MetaTileEntityFarmer(location("farmer.hv"), 3, 5));
+        FARMER[3] = registerMetaTileEntity(8564, new MetaTileEntityFarmer(location("farmer.ev"), 4, 2));
+
+
     }
 
     private static ResourceLocation location(String name) {

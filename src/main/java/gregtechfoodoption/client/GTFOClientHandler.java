@@ -17,6 +17,7 @@ public class GTFOClientHandler {
     public static final OrientedOverlayRenderer MOB_AGE_SORTER_OVERLAY = new OrientedOverlayRenderer("machines/mob_age_sorter", FRONT, BACK);
     public static final OrientedOverlayRenderer MOB_EXTERMINATOR_OVERLAY = new OrientedOverlayRenderer("machines/mob_exterminator", FRONT, TOP);
     public static final OrientedOverlayRenderer MOB_EXTRACTOR_OVERLAY = new OrientedOverlayRenderer("machines/mob_extractor", FRONT, TOP);
+    public static final OrientedOverlayRenderer FARMER_OVERLAY = new OrientedOverlayRenderer("machines/farmer", FRONT);
 
 
     public static SimpleOverlayRenderer ADOBE_BRICKS = new SimpleOverlayRenderer("casings/solid/adobe_bricks");
@@ -24,9 +25,11 @@ public class GTFOClientHandler {
     public static SimpleOverlayRenderer BISMUTH_BRONZE_CASING = new SimpleOverlayRenderer("casings/solid/bismuth_bronze");
 
     public static SoundEvent MICROWAVE_FINISH;
+    public static SoundEvent FARMER_LASER;
 
     public static void registerSounds() {
         MICROWAVE_FINISH = registerSound("microwave.finish");
+        FARMER_LASER = registerSound("farmer.laser");
     }
 
     private static SoundEvent registerSound(String soundNameIn) {
