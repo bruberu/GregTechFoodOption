@@ -13,7 +13,7 @@ public class CustomCropFarmerMode implements FarmerMode {
     protected final ItemStack seed;
 
     public CustomCropFarmerMode(Block crop, Item seed) {
-        this(crop, seed.getDefaultInstance());
+        this(crop, new ItemStack(seed));
     }
 
     public CustomCropFarmerMode(Block crop, ItemStack seed) {
