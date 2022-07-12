@@ -11,11 +11,16 @@ import gregtechfoodoption.machines.GTFOTileEntities;
 import gregtechfoodoption.machines.farmer.FarmerModeRegistry;
 import gregtechfoodoption.network.GTFONetworkHandler;
 import gregtechfoodoption.utils.GTFOConfigOverrider;
+import gregtechfoodoption.worldgen.GTFOWorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
         dependencies = GTValues.MOD_VERSION_DEP + "after:gcy_science")
@@ -70,6 +75,7 @@ public class GregTechFoodOption {
         if (Loader.isModLoaded(GTFOValues.MODID_GF) && Loader.isModLoaded(GTFOValues.MODID_TFC)) {
             GTFOTFCCompatibility.init();
         }
+        GameRegistry.registerWorldGenerator(GTFOWorldGenerator.INSTANCE, 1);
     }
 
     @Mod.EventHandler

@@ -3,14 +3,17 @@ package gregtechfoodoption;
 import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
+import gregtech.api.items.materialitem.MetaPrefixItem;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFORootCrop;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
+import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.potion.GTFOPotions;
@@ -22,6 +25,7 @@ import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
@@ -174,7 +178,9 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void onSave(WorldEvent.Save event) {
-
+        MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
+        ((MetaPrefixItem)OreDictUnifier.get("plateIron").getItem()).getItem(OreDictUnifier.get("plateIron"))
+                .addComponents(new GTFOFoodStats(0, 0, false, false, ItemStack.EMPTY));
     }
 
     @SubscribeEvent
