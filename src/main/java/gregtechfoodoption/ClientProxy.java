@@ -47,9 +47,7 @@ public class ClientProxy extends CommonProxy {
             GTFOMetaTooltipOverlay.init();
             GTFOMetaHUDOverlay.init();
         }
-        //ResourceHelper.bindTexture(new ResourceLocation("gregtech", "fx/laser/laser"));
-        //ResourceHelper.bindTexture(new ResourceLocation("gregtech", "fx/laser/laser_head"));
-
+        GTFOMetaBlocks.registerColors();
     }
 
     @Override
@@ -57,8 +55,6 @@ public class ClientProxy extends CommonProxy {
         super.onPostLoad();
         capeHoldersUUIDs.add(UUID.fromString("aaf70ec1-ac70-494f-9966-ea5933712750"));
     }
-
-
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {

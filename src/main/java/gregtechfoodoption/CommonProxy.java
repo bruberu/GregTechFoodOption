@@ -3,19 +3,14 @@ package gregtechfoodoption;
 import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
-import gregtech.api.items.materialitem.MetaPrefixItem;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtechfoodoption.block.GTFOCrop;
-import gregtechfoodoption.block.GTFOCrops;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtechfoodoption.block.GTFORootCrop;
+import gregtechfoodoption.block.*;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
-import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
+import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
 import gregtechfoodoption.potion.GTFOPotions;
 import gregtechfoodoption.recipe.GTFOOreDictRegistration;
 import gregtechfoodoption.recipe.GTFORecipeAddition;
@@ -25,7 +20,6 @@ import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
@@ -85,6 +79,11 @@ public class CommonProxy {
         registry.register(GTFOMetaBlocks.GTFO_METAL_CASING);
 
         CROP_BLOCKS.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_LEAVES.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_LOGS.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_PLANKS.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_SAPLINGS.forEach(registry::register);
+
     }
 
     @SubscribeEvent
@@ -94,7 +93,7 @@ public class CommonProxy {
 
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
-
+        GTFOMetaBlocks.GTFO_LEAVES.forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)

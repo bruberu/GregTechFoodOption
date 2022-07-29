@@ -1,7 +1,12 @@
-package gregtechfoodoption.worldgen.trees;
+package gregtechfoodoption.block;
 
-import net.minecraft.block.state.BlockStateBase;
+import gregtechfoodoption.block.tree.GTFOBlockLeaves;
+import gregtechfoodoption.worldgen.trees.BiomeCondition;
+import gregtechfoodoption.worldgen.trees.GTFOTreeGen;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.NoiseGeneratorSimplex;
 
@@ -10,20 +15,20 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class GTFOTree {
+    public final String name;
     protected GTFOTreeGen TREE_GROW_INSTANCE;
     protected GTFOTreeGen WORLD_GEN_INSTANCE;
 
-    public final BlockStateBase logState;
-    public final BlockStateBase leavesState;
+    public IBlockState logState;
+    public IBlockState leavesState;
 
     private NoiseGeneratorSimplex generatorSimplex;
     private int seed;
     public final List<BiomeCondition> biomeConditions = new ArrayList<>();
     public static final List<GTFOTree> TREES = new ArrayList<>();
 
-    public GTFOTree(BlockStateBase logState, BlockStateBase leavesState, int seed) {
-        this.logState = logState;
-        this.leavesState = leavesState;
+    public GTFOTree(String name, int seed) {
+        this.name = name;
         this.seed = seed;
         TREES.add(this);
     }
@@ -50,4 +55,13 @@ public abstract class GTFOTree {
         biomeConditions.add(condition);
         return this;
     }
+
+    public void setupBlocks() {
+        GTFOBlockLeaves leaves = GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4);
+        this.leavesState = leaves.getStateFromMeta(seed % 4 << 2);
+    }
+
+    public abstract int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex);
+    public abstract int getItemColor(ItemStack stack, int tintIndex);
+
 }

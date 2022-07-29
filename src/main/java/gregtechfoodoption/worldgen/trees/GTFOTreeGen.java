@@ -1,5 +1,6 @@
 package gregtechfoodoption.worldgen.trees;
 
+import gregtechfoodoption.block.GTFOTree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;

@@ -1,5 +1,9 @@
 package gregtechfoodoption.block;
 
+import gregtechfoodoption.block.tree.GTFOBlockLeaves;
+import gregtechfoodoption.block.tree.GTFOBlockLog;
+import gregtechfoodoption.block.tree.GTFOBlockPlanks;
+import gregtechfoodoption.block.tree.GTFOBlockSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
@@ -9,6 +13,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +23,11 @@ public class GTFOMetaBlocks {
     public static GTFOBlockCasing GTFO_CASING;
     public static GTFOMetalCasing GTFO_METAL_CASING;
 
+    public static List<GTFOBlockLeaves> GTFO_LEAVES = new ArrayList<>();
+    public static List<GTFOBlockLog> GTFO_LOGS = new ArrayList<>();
+    public static List<GTFOBlockPlanks> GTFO_PLANKS = new ArrayList<>();
+    public static List<GTFOBlockSapling> GTFO_SAPLINGS = new ArrayList<>();
+
     public static void init() {
         GTFO_CASING = new GTFOBlockCasing();
         GTFO_CASING.setRegistryName("gtfo_casing");
@@ -25,13 +35,22 @@ public class GTFOMetaBlocks {
         GTFO_METAL_CASING = new GTFOMetalCasing();
         GTFO_METAL_CASING.setRegistryName("gtfo_metal_casing");
 
+        for (int i = 0; i <= GTFOTree.TREES.size() / 4; i++) {
+            GTFOBlockLeaves leaves = new GTFOBlockLeaves(i);
+            leaves.setRegistryName("gtfo_leaves_" + i);
+        }
+
         GTFOCrops.init();
+        GTFOTrees.init();
     }
 
     @SideOnly(Side.CLIENT)
     public static void registerItemModels() {
         registerItemModel(GTFO_CASING);
         registerItemModel(GTFO_METAL_CASING);
+        for (GTFOBlockLeaves leaves : GTFO_LEAVES) {
+            registerItemModel(leaves);
+        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -77,5 +96,10 @@ public class GTFOMetaBlocks {
 
     @SideOnly(Side.CLIENT)
     public static void registerStateMappers() {
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void registerColors() {
+        GTFO_LEAVES.forEach(GTFOBlockLeaves::registerColors);
     }
 }
