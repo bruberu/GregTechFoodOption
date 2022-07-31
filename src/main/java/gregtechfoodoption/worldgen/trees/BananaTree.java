@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class BananaTree extends GTFOTree {
 
-    public static int LEAVES_COLOR = 0x51993c;
+    public static int LEAVES_COLOR = 0x396A2E;
     public BananaTree() {
         super("banana", 0);
     }

@@ -40,7 +40,8 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
         this.setLightOpacity(1);
         setDefaultState(this.blockState.getBaseState()
                 .withProperty(CHECK_DECAY, true)
-                .withProperty(DECAYABLE, true));
+                .withProperty(DECAYABLE, true)
+                .withProperty(VARIANT, 0));
         GTFOMetaBlocks.GTFO_LEAVES.add(this);
         this.setCreativeTab(GTFOValues.TAB_GTFO);
         Blocks.FIRE.setFireInfo(this, 30, 60);
@@ -113,7 +114,7 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
     @Override
     public String getVariantTranslationKey(IBlockState state) {
-        return "gregtechfoodoption.leaves." + this.getTreeFromState(state).name ;
+        return "gregtechfoodoption.leaves." + this.getTreeFromState(state).name;
     }
 
     // The following code mostly taken from GregTechCEu's BlockRubberLeaves.java

@@ -4,6 +4,7 @@ import gregtech.api.block.VariantBlock;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IStringSerializable;
 
 import javax.annotation.Nonnull;
@@ -21,6 +22,7 @@ public class GTFOBlockPlanks extends VariantBlock<GTFOBlockPlanks.BlockType> {
         setSoundType(SoundType.WOOD);
         setHarvestLevel("axe", 0);
         setDefaultState(getState(GTFOBlockPlanks.BlockType.BANANA_PLANK));
+        Blocks.FIRE.setFireInfo(this, 5, 20);
         GTFOMetaBlocks.GTFO_PLANKS.add(this);
     }
 

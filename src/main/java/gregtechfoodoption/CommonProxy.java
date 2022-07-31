@@ -5,8 +5,11 @@ import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtechfoodoption.block.*;
+import gregtech.common.blocks.MetaBlocks;
+import gregtechfoodoption.block.GTFOCrop;
+import gregtechfoodoption.block.GTFOCrops;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.block.GTFORootCrop;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
@@ -94,6 +97,8 @@ public class CommonProxy {
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
         GTFOMetaBlocks.GTFO_LEAVES.forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_LOGS.forEach(log -> registry.register(createItemBlock(log, GTFOSpecialVariantItemBlock::new)));
+
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
@@ -112,9 +117,12 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering ore prefix...");
-        GTFOMetaItems.registerOreDict();
-        OrePrefix.runMaterialHandlers();
         GTFOOreDictRegistration.init();
+
+        GTFOMetaItems.registerOreDict();
+        MetaBlocks.registerOreDict();
+
+        //OrePrefix.runMaterialHandlers();
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {

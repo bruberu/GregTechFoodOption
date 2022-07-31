@@ -1,6 +1,7 @@
 package gregtechfoodoption.block;
 
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
+import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.worldgen.trees.BiomeCondition;
 import gregtechfoodoption.worldgen.trees.GTFOTreeGen;
 import net.minecraft.block.state.IBlockState;
@@ -59,6 +60,9 @@ public abstract class GTFOTree {
     public void setupBlocks() {
         GTFOBlockLeaves leaves = GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4);
         this.leavesState = leaves.getStateFromMeta(seed % 4 << 2);
+        GTFOBlockLog log = GTFOMetaBlocks.GTFO_LOGS.get(seed / 4);
+        this.logState = leaves.getStateFromMeta(seed % 4 << 2);
+
     }
 
     public abstract int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex);

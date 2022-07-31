@@ -1,22 +1,28 @@
 package gregtechfoodoption.block;
 
+import com.google.common.collect.ImmutableMap;
+import gregtech.api.GTValues;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockPlanks;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GTFOMetaBlocks {
@@ -39,6 +45,10 @@ public class GTFOMetaBlocks {
             GTFOBlockLeaves leaves = new GTFOBlockLeaves(i);
             leaves.setRegistryName("gtfo_leaves_" + i);
         }
+        for (int i = 0; i <= GTFOTree.TREES.size() / 4; i++) {
+            GTFOBlockLog log = new GTFOBlockLog(i);
+            log.setRegistryName("gtfo_log_" + i);
+        }
 
         GTFOCrops.init();
         GTFOTrees.init();
@@ -51,6 +61,9 @@ public class GTFOMetaBlocks {
         for (GTFOBlockLeaves leaves : GTFO_LEAVES) {
             registerItemModel(leaves);
         }
+        for (GTFOBlockLog log : GTFO_LOGS) {
+            registerItemModelWithOverride(log, ImmutableMap.of(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y));
+        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -62,6 +75,29 @@ public class GTFOMetaBlocks {
                     new ModelResourceLocation(block.getRegistryName(),
                             statePropertiesToString(state.getProperties())));
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private static void registerItemModelWithOverride(Block block, Map<IProperty<?>, Comparable<?>> stateOverrides) {
+        for (IBlockState state : block.getBlockState().getValidStates()) {
+            HashMap<IProperty<?>, Comparable<?>> stringProperties = new HashMap<>(state.getProperties());
+            stringProperties.putAll(stateOverrides);
+            //noinspection ConstantConditions
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
+                    block.getMetaFromState(state),
+                    new ModelResourceLocation(block.getRegistryName(),
+                            statePropertiesToString(stringProperties)));
+        }
+    }
+
+    public static void registerOreDict() {
+        GTFO_LOGS.forEach(log -> {
+            OreDictUnifier.registerOre(new ItemStack(log, 1, GTValues.W), OrePrefix.log, Materials.Wood);
+            GameRegistry.addSmelting(new ItemStack(log, 1, GTValues.W), new ItemStack(Items.COAL, 1, 1), 0.15F);
+        });
+        GTFO_PLANKS.forEach(planks -> {
+            OreDictUnifier.registerOre(new ItemStack(planks, 1, GTValues.W), OrePrefix.plank, Materials.Wood);
+        });
     }
 
     private static String statePropertiesToString(Map<IProperty<?>, Comparable<?>> properties) {
