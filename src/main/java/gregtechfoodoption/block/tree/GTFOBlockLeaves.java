@@ -35,7 +35,7 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
     public GTFOBlockLeaves(int offset) {
         this.offset = offset;
-        setTranslationKey("gtfo_leaves_" + (offset + 1));
+        setTranslationKey("gtfo_leaves_" + offset);
         setHardness(0.2F);
         this.setLightOpacity(1);
         setDefaultState(this.blockState.getBaseState()

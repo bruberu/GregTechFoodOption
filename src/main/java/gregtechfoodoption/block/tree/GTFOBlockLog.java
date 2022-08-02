@@ -18,7 +18,7 @@ public class GTFOBlockLog extends BlockLog implements IVariantNamed {
 
     public GTFOBlockLog(int offset) {
         this.offset = offset;
-        setTranslationKey("gtfo_log_" + (offset + 1));
+        setTranslationKey("gtfo_log_" + offset);
         setHarvestLevel("axe", 0);
         setDefaultState(this.blockState.getBaseState()
                 .withProperty(LOG_AXIS, EnumAxis.Y));

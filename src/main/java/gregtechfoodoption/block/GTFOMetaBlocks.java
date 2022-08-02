@@ -49,6 +49,10 @@ public class GTFOMetaBlocks {
             GTFOBlockLog log = new GTFOBlockLog(i);
             log.setRegistryName("gtfo_log_" + i);
         }
+        for (int i = 0; i <= GTFOTree.TREES.size() / 8; i++) {
+            GTFOBlockSapling sapling = new GTFOBlockSapling(i);
+            sapling.setRegistryName("gtfo_sapling_" + i);
+        }
 
         GTFOCrops.init();
         GTFOTrees.init();
@@ -58,9 +62,8 @@ public class GTFOMetaBlocks {
     public static void registerItemModels() {
         registerItemModel(GTFO_CASING);
         registerItemModel(GTFO_METAL_CASING);
-        for (GTFOBlockLeaves leaves : GTFO_LEAVES) {
-            registerItemModel(leaves);
-        }
+        GTFO_LEAVES.forEach(GTFOMetaBlocks::registerItemModel);
+        GTFO_SAPLINGS.forEach(GTFOMetaBlocks::registerItemModel);
         for (GTFOBlockLog log : GTFO_LOGS) {
             registerItemModelWithOverride(log, ImmutableMap.of(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y));
         }
@@ -91,6 +94,12 @@ public class GTFOMetaBlocks {
     }
 
     public static void registerOreDict() {
+        GTFO_LEAVES.forEach(leaves -> {
+            OreDictUnifier.registerOre(new ItemStack(leaves, 1, GTValues.W), "treeLeaves");
+        });
+        GTFO_SAPLINGS.forEach(sapling -> {
+            OreDictUnifier.registerOre(new ItemStack(sapling, 1, GTValues.W), "treeSapling");
+        });
         GTFO_LOGS.forEach(log -> {
             OreDictUnifier.registerOre(new ItemStack(log, 1, GTValues.W), OrePrefix.log, Materials.Wood);
             GameRegistry.addSmelting(new ItemStack(log, 1, GTValues.W), new ItemStack(Items.COAL, 1, 1), 0.15F);

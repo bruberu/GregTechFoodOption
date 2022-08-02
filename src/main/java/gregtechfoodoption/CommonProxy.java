@@ -98,6 +98,7 @@ public class CommonProxy {
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
         GTFOMetaBlocks.GTFO_LEAVES.forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
         GTFOMetaBlocks.GTFO_LOGS.forEach(log -> registry.register(createItemBlock(log, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_SAPLINGS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
 
     }
 
