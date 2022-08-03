@@ -1,6 +1,5 @@
 package gregtechfoodoption.block.tree;
 
-import gregtech.common.worldgen.WorldGenRubberTree;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFOTree;
@@ -96,7 +95,7 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
 
     @Override
     public void grow(@Nonnull World worldIn, @Nonnull Random rand, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
-        WorldGenRubberTree.TREE_GROW_INSTANCE.grow(worldIn, pos, rand);
+        this.getTreeFromState(state).getTreeGrowInstance().generate(worldIn, rand, pos);
     }
 
     @Override

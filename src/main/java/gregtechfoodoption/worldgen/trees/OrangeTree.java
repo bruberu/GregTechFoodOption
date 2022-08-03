@@ -1,5 +1,6 @@
 package gregtechfoodoption.worldgen.trees;
 
+import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.block.GTFOTree;
 import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
@@ -18,7 +19,7 @@ public class OrangeTree extends GTFOTree {
     }
 
     @Override
-    public boolean grow(World world, BlockPos pos, Random random) {
+    public boolean grow(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
 
         return false;
     }
@@ -31,5 +32,10 @@ public class OrangeTree extends GTFOTree {
     @Override
     public int getItemColor(ItemStack stack, int tintIndex) {
         return LEAVES_COLOR;
+    }
+
+    @Override
+    protected int getMooreRadiusAtHeight(int height, int totalHeight) {
+        return 0;
     }
 }

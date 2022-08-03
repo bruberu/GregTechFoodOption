@@ -18,7 +18,7 @@ import java.util.Random;
 public class GTFOTreeGen extends WorldGenerator {
     public final GTFOTree tree;
 
-    protected GTFOTreeGen(boolean notify, GTFOTree tree) {
+    public GTFOTreeGen(boolean notify, GTFOTree tree) {
         super(notify);
         this.tree = tree;
     }
@@ -29,7 +29,12 @@ public class GTFOTreeGen extends WorldGenerator {
     }
 
     public boolean generateImpl(@Nonnull World world, @Nonnull Random random, BlockPos.MutableBlockPos pos) {
-        return tree.grow(world, pos, random);//grow(world, pos, random);
+        SaplingGrowTreeEvent event = new SaplingGrowTreeEvent(world, random, pos);
+        MinecraftForge.TERRAIN_GEN_BUS.post(event);
+        if (event.getResult() == Event.Result.DENY) {
+            return false;
+        }
+        return tree.grow(world, pos, random, this::setBlockAndNotifyAdequately);//grow(world, pos, random);
     }
 
     public boolean generateInChunk(@Nonnull World world, @Nonnull Random random, int chunkX, int chunkZ) {
@@ -39,8 +44,8 @@ public class GTFOTreeGen extends WorldGenerator {
         int treeCount = getAmountInChunk(tree.biomeConditions, chunkX, chunkZ, world, pos);
         if (treeCount > 0) {
             for (int j = 0; j < treeCount; j++) {
-                // Set up position for tree spawn
-                pos.setPos(chunk.x * 16 + random.nextInt(16), 255, chunk.z * 16 + random.nextInt(16));
+                // Set up position for tree spawn, offset by 8 to prevent cascading
+                pos.setPos(chunk.x * 16 + random.nextInt(16) + 8, 255, chunk.z * 16 + random.nextInt(16) + 8);
                 while (world.isAirBlock(pos) && pos.getY() != 0) {
                     pos.setY(pos.getY() - 1);
                 }
@@ -60,6 +65,7 @@ public class GTFOTreeGen extends WorldGenerator {
         Biome biome = world.getBiome(pos);
         Optional<BiomeCondition> relevantCondition = conditions.stream().filter(biomeCondition -> biomeCondition.getBiome().equals(biome)).findFirst();
         double treeStrength = tree.getRandomStrength(chunkX, chunkZ);
+        System.out.println("The strength in [" + chunkX + ", " + chunkZ +"] was " + treeStrength);
         if (relevantCondition.isPresent() && relevantCondition.get().getPerlinCutoff() < treeStrength) {
             return (int) Math.ceil((relevantCondition.get().getMaxTrees() - relevantCondition.get().getPerlinCutoff()) / (1 - relevantCondition.get().getPerlinCutoff()));
         }
