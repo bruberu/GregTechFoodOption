@@ -1,52 +1,61 @@
 package gregtechfoodoption.block.tree;
 
-import gregtech.api.block.VariantBlock;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOMetaBlocks;
-import net.minecraft.block.SoundType;
+import gregtechfoodoption.block.GTFOTree;
+import gregtechfoodoption.block.IVariantNamed;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
-import javax.annotation.Nonnull;
+public class GTFOBlockPlanks extends Block implements IVariantNamed {
+    public static final PropertyInteger VARIANT = PropertyInteger.create("variant", 0, 15);
 
-public class GTFOBlockPlanks extends VariantBlock<GTFOBlockPlanks.BlockType> {
-    public GTFOBlockPlanks(Material materialIn) {
-        super(materialIn);
-    }
+    private final int offset;
 
-    public GTFOBlockPlanks() {
-        super(net.minecraft.block.material.Material.IRON);
-        setTranslationKey("planks");
+    public GTFOBlockPlanks(int offset) {
+        super(Material.WOOD);
+        this.offset = offset;
+        setTranslationKey("gtfo_planks_" + offset);
         setHardness(2.0F);
         setResistance(5.0F);
-        setSoundType(SoundType.WOOD);
         setHarvestLevel("axe", 0);
-        setDefaultState(getState(GTFOBlockPlanks.BlockType.BANANA_PLANK));
         Blocks.FIRE.setFireInfo(this, 5, 20);
         GTFOMetaBlocks.GTFO_PLANKS.add(this);
+        this.setCreativeTab(GTFOValues.TAB_GTFO);
     }
 
-    public enum BlockType implements IStringSerializable {
-
-        BANANA_PLANK("banana"),
-        ORANGE_PLANK("orange"),
-        MANGO_PLANK("mango"),
-        APRICOT_PLANK("apricot"),
-        LEMON_PLANK("lemon"),
-        LIME_PLANK("lime"),
-        OLIVE_PLANK("olive");
-
-        private final String name;
-
-        BlockType(String name) {
-            this.name = name;
-        }
-
-        @Nonnull
-        @Override
-        public String getName() {
-            return this.name;
-        }
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, VARIANT);
     }
 
+    @Override
+    public String getVariantTranslationKey(IBlockState state) {
+        return "gregtechfoodoption.planks." + this.getTreeFromState(state).name;
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(VARIANT);
+    }
+
+    public GTFOTree getTreeFromState(IBlockState state) {
+        return GTFOTree.TREES.get(state.getValue(VARIANT));
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+        for (int i = 0; i < 4; i++) {
+            if (GTFOTree.TREES.size() <= i + offset * 16)
+                break;
+            items.add(new ItemStack(this, 1, i << 2));
+        }
+    }
 }

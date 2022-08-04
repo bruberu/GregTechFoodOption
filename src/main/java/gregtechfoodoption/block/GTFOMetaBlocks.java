@@ -53,6 +53,10 @@ public class GTFOMetaBlocks {
             GTFOBlockSapling sapling = new GTFOBlockSapling(i);
             sapling.setRegistryName("gtfo_sapling_" + i);
         }
+        for (int i = 0; i <= GTFOTree.TREES.size() / 16; i++) {
+            GTFOBlockPlanks planks = new GTFOBlockPlanks(i);
+            planks.setRegistryName("gtfo_planks_" + i);
+        }
 
         GTFOCrops.init();
         GTFOTrees.init();
@@ -67,6 +71,7 @@ public class GTFOMetaBlocks {
         for (GTFOBlockLog log : GTFO_LOGS) {
             registerItemModelWithOverride(log, ImmutableMap.of(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y));
         }
+        GTFO_PLANKS.forEach(GTFOMetaBlocks::registerItemModel);
     }
 
     @SideOnly(Side.CLIENT)

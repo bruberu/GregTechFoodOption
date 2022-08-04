@@ -27,8 +27,8 @@
     "variant": {
       "0": {
         "textures": {
-          "end": "gregtechfoodoption:blocks/log/banana_top",
-          "side": "gregtechfoodoption:blocks/log/banana_side"
+          "end": "gregtechfoodoption:blocks/logs/banana_top",
+          "side": "gregtechfoodoption:blocks/logs/banana_side"
         }
       },
       "1": {},

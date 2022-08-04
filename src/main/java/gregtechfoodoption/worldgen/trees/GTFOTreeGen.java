@@ -65,7 +65,6 @@ public class GTFOTreeGen extends WorldGenerator {
         Biome biome = world.getBiome(pos);
         Optional<BiomeCondition> relevantCondition = conditions.stream().filter(biomeCondition -> biomeCondition.getBiome().equals(biome)).findFirst();
         double treeStrength = tree.getRandomStrength(chunkX, chunkZ);
-        System.out.println("The strength in [" + chunkX + ", " + chunkZ +"] was " + treeStrength);
         if (relevantCondition.isPresent() && relevantCondition.get().getPerlinCutoff() < treeStrength) {
             return (int) Math.ceil((relevantCondition.get().getMaxTrees() - relevantCondition.get().getPerlinCutoff()) / (1 - relevantCondition.get().getPerlinCutoff()));
         }

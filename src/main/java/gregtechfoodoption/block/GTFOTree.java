@@ -1,5 +1,6 @@
 package gregtechfoodoption.block;
 
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
@@ -161,4 +162,11 @@ public abstract class GTFOTree {
      * @return The maximum radius outside the center block that the tree can take up at this height value.
      */
     protected abstract int getMooreRadiusAtHeight(int height, int totalHeight);
+
+    public void initRecipes() {
+        ModHandler.addShapelessRecipe(this.name + "_wood_planks",
+                new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 1, seed % 16),
+                new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, seed % 4));
+
+    }
 }

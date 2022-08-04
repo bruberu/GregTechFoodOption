@@ -5,7 +5,6 @@ import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
-import gregtech.common.blocks.MetaBlocks;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -99,6 +98,7 @@ public class CommonProxy {
         GTFOMetaBlocks.GTFO_LEAVES.forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
         GTFOMetaBlocks.GTFO_LOGS.forEach(log -> registry.register(createItemBlock(log, GTFOSpecialVariantItemBlock::new)));
         GTFOMetaBlocks.GTFO_SAPLINGS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_PLANKS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
 
     }
 
@@ -121,7 +121,7 @@ public class CommonProxy {
         GTFOOreDictRegistration.init();
 
         GTFOMetaItems.registerOreDict();
-        MetaBlocks.registerOreDict();
+        GTFOMetaBlocks.registerOreDict();
 
         //OrePrefix.runMaterialHandlers();
     }
