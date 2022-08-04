@@ -59,7 +59,7 @@ public class GTFOTileEntities {
         }
         BAKING_OVEN = registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
         ELECTRIC_BAKING_OVEN = registerMetaTileEntity(8517, new MetaTileEntityElectricBakingOven(location("electric_baking_oven")));
-        STEAM_BAKING_OVEN = registerMetaTileEntity(8544, new MetaTileEntitySteamBakingOven(location("steam_baking_oven"), GTFORecipeMaps.BAKING_OVEN_RECIPES, 10));
+        STEAM_BAKING_OVEN = registerMetaTileEntity(8544, new MetaTileEntitySteamBakingOven(location("steam_baking_oven"), GTFORecipeMaps.ELECTRIC_BAKING_OVEN_RECIPES, 10));
 
         // Mob Age Sorters, IDs 8545-8548
         MOB_AGE_SORTER[0] = registerMetaTileEntity(8545, new MetaTileEntityMobAgeSorter(location("mob_age_sorter.lv"), 1, 1));

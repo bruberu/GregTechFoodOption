@@ -256,7 +256,7 @@ material.gtfo_hot_frying_oil=Hot Frying Oil
 
 gregtechfoodoption.machine.baking_oven.name=Primitive Baking Oven
 gregtechfoodoption.machine.steam_baking_oven.name=Steam Baking Oven
-gregtechfoodoption.machine.steam_baking_oven.tooltip=The Inner Casings can be either Tempted Glass or Casings but not IO parts! Works twice as fast as normal cooking oven and half the speed of electric version.
+gregtechfoodoption.machine.steam_baking_oven.tooltip=Works twice as slowly as a normal baking oven, but does not require coal.
 gregtechfoodoption.machine.electric_baking_oven.name=Electric Baking Oven
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
 tile.gtfo_casing.reinforced_adobe_bricks.name=Reinforced Adobe Bricks
@@ -548,7 +548,7 @@ metaitem.food.kebab.fat.tooltip=Donbe's Actually Healthy!
 
 metaitem.component.kebab.chum.name=Chum on Skewel Kebab
 metaitem.component.kebab.chum.tooltip=It's not Great...
-metaitem.food.kebab.chum.name=Chum kebab
+metaitem.food.kebab.chum.name=Chum Kebab
 metaitem.food.kebab.chum.tooltip=Yes It's Chummy
 
 metaitem.food.kebab.chum.bucket.name=Chum Bucket Kebab Mix
@@ -648,6 +648,7 @@ gregtechfoodoption.machine.farmer.ev.name=Advanced Farmer III
 gregtechfoodoption.machine.farmer.tooltip.flavor=Applies laser Technology to Farming
 gregtechfoodoption.machine.farmer.tooltip.consumption=While working, constantly consumes %,d EU/t
 gregtechfoodoption.machine.farmer.tooltip.working=Works on a 9x9 Farm in front
+gregtechfoodoption.machine.farmer.tooltip.speed=Works on one Block every %d Ticks
 
 metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
 metaitem.sodium_chlorate_dust.name=Sodium Chlorate
