@@ -26,7 +26,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MetaTileEntityMobExtractor extends SimpleMachineMetaTileEntity {
-    EntityLivingBase attackableTarget;
+    private EntityLivingBase attackableTarget;
 
     public MetaTileEntityMobExtractor(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier, boolean hasFrontFacing,
                                       Function<Integer, Integer> tankScalingFunction) {

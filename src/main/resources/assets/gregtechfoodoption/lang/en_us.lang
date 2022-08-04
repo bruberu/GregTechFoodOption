@@ -256,7 +256,7 @@ material.gtfo_hot_frying_oil=Hot Frying Oil
 
 gregtechfoodoption.machine.baking_oven.name=Primitive Baking Oven
 gregtechfoodoption.machine.steam_baking_oven.name=Steam Baking Oven
-gregtechfoodoption.machine.steam_baking_oven.tooltip=The Inner Casings can be either Tempted Glass or Casings but not IO parts! Works twice as fast as normal cooking oven and half the speed of electric version.
+gregtechfoodoption.machine.steam_baking_oven.tooltip=Works twice as slowly as a normal cooking oven, but does not require coal.
 gregtechfoodoption.machine.electric_baking_oven.name=Electric Baking Oven
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
 tile.gtfo_casing.reinforced_adobe_bricks.name=Reinforced Adobe Bricks
