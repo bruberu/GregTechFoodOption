@@ -92,7 +92,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
             return;
         }
         if (temp == targetTemp) return;
-        if (temperatureEnergyCost(this.temp + 5) <= this.getEnergyContainer().getInputVoltage() * this.getEnergyContainer().getInputAmperage() && hasEnoughEnergy) {
+        if (temperatureEnergyCost(this.temp + 5, this.size) <= this.getEnergyContainer().getInputVoltage() * this.getEnergyContainer().getInputAmperage() && hasEnoughEnergy) {
             setTemp(temp + 5);
             if (temp == 305)
                 markDirty();
@@ -102,8 +102,8 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
     }
 
     private boolean drainEnergy() {
-        if (energyContainer.getEnergyStored() >= temperatureEnergyCost(this.temp)) {
-            energyContainer.removeEnergy(temperatureEnergyCost(this.temp));
+        if (energyContainer.getEnergyStored() >= temperatureEnergyCost(this.temp, this.size)) {
+            energyContainer.removeEnergy(temperatureEnergyCost(this.temp, this.size));
             return true;
         }
         setTemp(temp - 5);
@@ -149,7 +149,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
             }
 
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1", temp));
-            textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4", temperatureEnergyCost(temp)));
+            textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4", temperatureEnergyCost(temp, size)));
 
             ITextComponent buttonText = new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3");
             buttonText.appendText(" ");
@@ -243,8 +243,8 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         return new MetaTileEntityElectricBakingOven(metaTileEntityId);
     }
 
-    public int temperatureEnergyCost(int temp) {
-        return temp <= 300 ? 0 : (int) Math.exp(((double) temp - 100 + (size * 5)) / 100);
+    public static int temperatureEnergyCost(int temp, int multiSize) {
+        return temp <= 300 ? 0 : (int) Math.exp(((double) temp - 100 + (multiSize * 5)) / 100);
     }
 
     // Is the inverse of the previous function.
@@ -258,6 +258,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
         data.setInteger("temp", this.temp);
+        data.setInteger("size", this.size);
         data.setInteger("targetTemp", this.targetTemp);
         data.setBoolean("canAchieveTargetTemp", this.canAchieveTargetTemp);
         data.setBoolean("hasEnoughEnergy", this.hasEnoughEnergy);
@@ -286,6 +287,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         super.readFromNBT(data);
         this.temp = data.getInteger("temp");
         this.targetTemp = data.getInteger("targetTemp");
+        this.size = data.getInteger("size");
         this.canAchieveTargetTemp = data.getBoolean("canAchieveTargetTemp");
         this.hasEnoughEnergy = data.getBoolean("hasEnoughEnergy");
     }
@@ -295,6 +297,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         super.writeInitialSyncData(buf);
         buf.writeInt(this.temp);
         buf.writeInt(this.targetTemp);
+        buf.writeInt(this.size);
         buf.writeBoolean(this.canAchieveTargetTemp);
         buf.writeBoolean(this.hasEnoughEnergy);
     }
@@ -304,6 +307,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         super.receiveInitialSyncData(buf);
         this.temp = buf.readInt();
         this.targetTemp = buf.readInt();
+        this.size = buf.readInt();
         this.canAchieveTargetTemp = buf.readBoolean();
         this.hasEnoughEnergy = buf.readBoolean();
     }

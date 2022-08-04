@@ -15,6 +15,7 @@ import gregtech.common.blocks.MetaBlocks;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.ResourceLocation;
 
@@ -88,7 +89,8 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
 
         @Override
         protected int[] calculateOverclock(Recipe recipe) {
-            return new int[]{recipe.getEUt(), recipe.getDuration() * 2};
+            return new int[]{MetaTileEntityElectricBakingOven.temperatureEnergyCost(recipe.getProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), 0), 1), recipe.getDuration() * 4};
         }
+
     }
 }
