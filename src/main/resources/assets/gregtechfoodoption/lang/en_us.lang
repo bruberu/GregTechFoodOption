@@ -256,7 +256,7 @@ material.gtfo_hot_frying_oil=Hot Frying Oil
 
 gregtechfoodoption.machine.baking_oven.name=Primitive Baking Oven
 gregtechfoodoption.machine.steam_baking_oven.name=Steam Baking Oven
-gregtechfoodoption.machine.steam_baking_oven.tooltip=Works twice as slowly as a normal cooking oven, but does not require coal.
+gregtechfoodoption.machine.steam_baking_oven.tooltip=Works twice as slowly as a normal baking oven, but does not require coal.
 gregtechfoodoption.machine.electric_baking_oven.name=Electric Baking Oven
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
 tile.gtfo_casing.reinforced_adobe_bricks.name=Reinforced Adobe Bricks
