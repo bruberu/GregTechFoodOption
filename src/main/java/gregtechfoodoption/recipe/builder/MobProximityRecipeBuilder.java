@@ -3,33 +3,20 @@ package gregtechfoodoption.recipe.builder;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.util.EnumValidationResult;
-import gregtech.api.util.GTLog;
-import gregtech.api.util.ValidationResult;
 import gregtechfoodoption.recipe.properties.CauseDamageProperty;
 import gregtechfoodoption.recipe.properties.MobOnTopProperty;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.Collections;
-
-import static gregtech.api.GTValues.MAX;
-import static gregtech.api.GTValues.V;
-
 public class MobProximityRecipeBuilder extends RecipeBuilder<MobProximityRecipeBuilder> {
-
-    private ResourceLocation entityID;
-    private float damage;
 
     public MobProximityRecipeBuilder() {
     }
 
     public MobProximityRecipeBuilder(Recipe recipe, RecipeMap<MobProximityRecipeBuilder> recipeMap) {
         super(recipe, recipeMap);
-        this.entityID = recipe.getProperty(MobOnTopProperty.getInstance(), EntityList.LIGHTNING_BOLT);
     }
 
     public MobProximityRecipeBuilder(RecipeBuilder<MobProximityRecipeBuilder> recipeBuilder) {
@@ -47,53 +34,44 @@ public class MobProximityRecipeBuilder extends RecipeBuilder<MobProximityRecipeB
             this.mob((ResourceLocation) value);
             return true;
         }
+        if (key.equals(CauseDamageProperty.KEY)) {
+            this.causeDamage(((Number) value).floatValue());
+            return true;
+        }
         return true;
     }
 
     public MobProximityRecipeBuilder mob(ResourceLocation entityID) {
-        this.entityID = entityID;
+        this.applyProperty(MobOnTopProperty.getInstance(), entityID);
         return this;
     }
 
     public MobProximityRecipeBuilder mob(Class<? extends Entity> clazz) {
-        this.entityID = EntityList.getKey(clazz);
+        this.applyProperty(MobOnTopProperty.getInstance(), EntityList.getKey(clazz));
         return this;
     }
 
     public MobProximityRecipeBuilder causeDamage(float damage) {
-        this.damage = damage;
+        this.applyProperty(CauseDamageProperty.getInstance(), damage);
         return this;
-    }
-
-    public ValidationResult<Recipe> build() {
-        Recipe recipe = new Recipe(inputs, outputs, chancedOutputs, fluidInputs, fluidOutputs,
-                duration, EUt, hidden, this.isCTRecipe);
-        for (ItemStack stack : this.getInputs().get(0).getIngredient().getMatchingStacks()){
-            if (this.recipeMap.findRecipe(V[MAX], Collections.singletonList(stack),
-                    Collections.EMPTY_LIST, Integer.MAX_VALUE) != null) {
-                GTLog.logger.error("Input items of Mob Extractor recipes must not conflict", new IllegalArgumentException());
-                return ValidationResult.newResult(EnumValidationResult.INVALID, recipe);
-            }
-        }
-
-        if (!recipe.setProperty(MobOnTopProperty.getInstance(), entityID)) {
-            return ValidationResult.newResult(EnumValidationResult.INVALID, recipe);
-        }
-        if (this.damage != 0) {
-            if (!recipe.setProperty(CauseDamageProperty.getInstance(), damage)) {
-                return ValidationResult.newResult(EnumValidationResult.INVALID, recipe);
-            }
-        }
-
-        return ValidationResult.newResult(finalizeAndValidate(), recipe);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .appendSuper(super.toString())
-                .append(MobOnTopProperty.getInstance().getKey(), entityID.toString())
-                .append(CauseDamageProperty.getInstance().getKey(), damage)
+                .append(MobOnTopProperty.getInstance().getKey(), getEntityID())
+                .append(CauseDamageProperty.getInstance().getKey(), getDamage())
                 .toString();
+    }
+
+    public ResourceLocation getEntityID() {
+        return this.recipePropertyStorage == null ? new ResourceLocation("lightning_bolt") :
+                this.recipePropertyStorage.getRecipePropertyValue(MobOnTopProperty.getInstance(), new ResourceLocation("lightning_bolt"));
+    }
+
+    public float getDamage() {
+        return this.recipePropertyStorage == null ? 0 :
+                this.recipePropertyStorage.getRecipePropertyValue(CauseDamageProperty.getInstance(), 0f);
     }
 }
