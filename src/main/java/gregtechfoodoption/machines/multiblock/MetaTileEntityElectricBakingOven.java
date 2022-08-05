@@ -337,6 +337,16 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         protected int[] calculateOverclock(Recipe recipe) {
             return new int[]{0, recipe.getDuration()};
         }
+
+        @Override
+        public int getRecipeEUt() {
+            return temperatureEnergyCost(temp, size);
+        }
+
+        @Override
+        public boolean isWorking() {
+            return temp > 300 && !this.hasNotEnoughEnergy && this.workingEnabled;
+        }
     }
 
     public boolean canCreateSound() {
