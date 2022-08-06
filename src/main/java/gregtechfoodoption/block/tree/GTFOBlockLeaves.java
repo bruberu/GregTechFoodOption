@@ -21,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -59,7 +60,7 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
     @Nonnull
     @Override
     public Item getItemDropped(@Nonnull IBlockState state, @Nonnull Random rand, int fortune) {
-        return Item.getItemFromBlock(getTreeFromState(state).leavesState.getBlock());
+        return Item.getItemFromBlock(getTreeFromState(state).saplingState.getBlock());
     }
 
     @Nonnull
@@ -150,7 +151,12 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
         return GregTechMod.proxy.isFancyGraphics();
     }
 
-/*
+    @Override
+    protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
+        spawnAsEntity(worldIn, pos, ((GTFOBlockLeaves)state.getBlock()).getTreeFromState(state).getApple());
+    }
+
+    /*
 
     public enum BlockType implements IStringSerializable {
 

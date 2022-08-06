@@ -4,6 +4,8 @@ import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.util.BaseCreativeTab;
 import gregtechfoodoption.item.GTFOMetaItem;
 
+import java.util.Random;
+
 public class GTFOValues {
     public static final String MODID = "gregtechfoodoption",
             MODID_GCYS = "gcy_science",
@@ -20,4 +22,5 @@ public class GTFOValues {
 
     public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.BANANA.getStackForm(), true);
 
+    public static final Random rand = new Random();
 }

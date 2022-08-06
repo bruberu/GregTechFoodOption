@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
+import static net.minecraft.block.BlockLeaves.DECAYABLE;
+
 public abstract class GTFOTree {
     public final String name;
     protected GTFOTreeGen TREE_GROW_INSTANCE;
@@ -59,7 +62,7 @@ public abstract class GTFOTree {
     public abstract boolean grow(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier);
 
     public int getMinTrunkHeight(Random random) {
-        return random.nextInt(3) + 4;
+        return random.nextInt(3) + 5;
     }
 
     public GTFOTreeGen getTreeGrowInstance() {
@@ -165,8 +168,14 @@ public abstract class GTFOTree {
 
     public void initRecipes() {
         ModHandler.addShapelessRecipe(this.name + "_wood_planks",
-                new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 1, seed % 16),
+                new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 4, seed % 16),
                 new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, seed % 4));
 
+    }
+
+    public abstract ItemStack getApple();
+
+    protected IBlockState getNaturalLeavesState() {
+        return this.leavesState.withProperty(DECAYABLE, true).withProperty(CHECK_DECAY, true);
     }
 }

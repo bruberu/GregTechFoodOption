@@ -1,9 +1,9 @@
 package gregtechfoodoption.worldgen.trees;
 
 import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -12,10 +12,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.Nonnull;
 import java.util.Random;
+
+import static gregtechfoodoption.item.GTFOMetaItem.BANANA;
 
 public class BananaTree extends GTFOTree {
 
@@ -51,9 +52,17 @@ public class BananaTree extends GTFOTree {
 
     protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
         // Generate top
-        notifier.accept(world, pos.up(height - 2), this.leavesState);
-        notifier.accept(world, pos.up(height - 1), this.leavesState);
-        notifier.accept(world, pos.up(height).offset(EnumFacing.byHorizontalIndex(random.nextInt(4))), this.leavesState);
+        {
+            BlockPos.MutableBlockPos posCopy = GTFOUtils.copy(pos.up(height - 3));
+            for (int i = 0; i < 3; i++) {
+                posCopy.move(EnumFacing.UP);
+                notifier.accept(world, posCopy, getNaturalLeavesState());
+                if (i == 1) {
+                    posCopy.move(EnumFacing.byHorizontalIndex(random.nextInt(4)));
+                    notifier.accept(world, posCopy, getNaturalLeavesState());
+                }
+            }
+        }
 
         // Generate sideways leaves
         for (int i = 0; i < 4; i++) {
@@ -62,16 +71,18 @@ public class BananaTree extends GTFOTree {
 
             for (int j = 0; j < 3; j++) {
                 posCopy.move(EnumFacing.byHorizontalIndex(i));
-                notifier.accept(world, posCopy, this.leavesState);
-                if (j == 0)
+                notifier.accept(world, posCopy, getNaturalLeavesState());
+                if (j == 0) {
                     posCopy.move(EnumFacing.UP);
+                    notifier.accept(world, posCopy, getNaturalLeavesState());
+                }
             }
         }
 
         // Generate ring at height - 3 for extra fullness
         for (int i = 0; i < 4; i++) {
-            notifier.accept(world, pos.up(height - 3).offset(EnumFacing.byHorizontalIndex(i)), this.leavesState);
-            notifier.accept(world, pos.up(height - 3).offset(EnumFacing.byHorizontalIndex(i)).offset(EnumFacing.byHorizontalIndex(i).rotateY()), this.leavesState);
+            notifier.accept(world, pos.up(height - 3).offset(EnumFacing.byHorizontalIndex(i)), getNaturalLeavesState());
+            notifier.accept(world, pos.up(height - 3).offset(EnumFacing.byHorizontalIndex(i)).offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
         }
     }
 
@@ -101,6 +112,14 @@ public class BananaTree extends GTFOTree {
     }
 
     @Override
+    public ItemStack getApple() {
+        if (GTFOValues.rand.nextInt(20) == 0) {
+            return BANANA.getStackForm(GTFOValues.rand.nextInt(4) + 3);
+        }
+        return ItemStack.EMPTY;
+    }
+
+    @Override
     public int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
         return LEAVES_COLOR;
     }
@@ -110,18 +129,4 @@ public class BananaTree extends GTFOTree {
         return LEAVES_COLOR;
     }
 
-    public int getGrowHeight(World world, BlockPos pos) {
-        BlockPos below = pos.down();
-        IBlockState baseState = world.getBlockState(below);
-        Block baseBlock = baseState.getBlock();
-        if (baseBlock.isAir(baseState, world, below) || !baseBlock.canSustainPlant(baseState, world, below, EnumFacing.UP, (IPlantable) saplingState.getBlock()) || (!world.isAirBlock(pos.up()) && world.getBlockState(pos.up()).getBlock() != saplingState.getBlock()))
-            return 0;
-        int height = 1;
-        pos = pos.up();
-        while (world.isAirBlock(pos) && height < 7) {
-            pos = pos.up();
-            height++;
-        }
-        return height;
-    }
 }
