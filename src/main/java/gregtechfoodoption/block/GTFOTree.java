@@ -5,6 +5,7 @@ import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
+import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
 import gregtechfoodoption.worldgen.trees.BiomeCondition;
 import gregtechfoodoption.worldgen.trees.GTFOTreeGen;
@@ -33,6 +34,9 @@ public abstract class GTFOTree {
     protected GTFOTreeGen TREE_GROW_INSTANCE;
     protected GTFOTreeGen WORLD_GEN_INSTANCE;
 
+    private int totalChunksChecked;
+    private int totalChunksPlaced;
+
     public IBlockState logState;
     public IBlockState leavesState;
     public IBlockState saplingState;
@@ -59,7 +63,34 @@ public abstract class GTFOTree {
         return generatorSimplex.getValue(chunkX * 0.05, chunkZ * 0.05);
     }
 
-    public abstract boolean grow(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier);
+    // For testing purposes only.
+    public void updatePlacePercentage(boolean didSucceed) {
+        totalChunksChecked++;
+        if (didSucceed) {
+            totalChunksPlaced++;
+        }
+        if (totalChunksChecked % 1000 == 0) {
+            GTFOLog.logger.info("Tree " + this.name + " has been placed successfully in chunks " + ((double) totalChunksPlaced / (totalChunksChecked / 100)) + " percent of the time out of " + totalChunksChecked + " chunks checked");
+        }
+    }
+
+    public boolean grow(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+        int minHeight = getMinTrunkHeight(random);
+
+        // Check if tree fits in world
+        if (pos.getY() >= 1 && pos.getY() + minHeight + 1 <= world.getHeight()) {
+            if (isSuitableLocation(world, pos, minHeight)) {
+                IBlockState state = world.getBlockState(pos.down());
+                if (state.getBlock().canSustainPlant(state, world, pos.down(), EnumFacing.UP, this.getPlantableSapling()) && pos.getY() < world.getHeight() - minHeight - 1) {
+                    state.getBlock().onPlantGrow(state, world, pos.down(), pos);
+                    generateLeaves(world, pos, minHeight, random, notifier);
+                    generateTrunk(world, pos, minHeight, notifier);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public int getMinTrunkHeight(Random random) {
         return random.nextInt(3) + 5;
@@ -161,15 +192,15 @@ public abstract class GTFOTree {
 
     /**
      * @param height An integer representing the block height at which this radius is being taken (starting from 0).
-     * @param totalHeight An integer representing the overall height of the tree.
+     * @param trunkHeight An integer representing the height of the trunk.
      * @return The maximum radius outside the center block that the tree can take up at this height value.
      */
-    protected abstract int getMooreRadiusAtHeight(int height, int totalHeight);
+    protected abstract int getMooreRadiusAtHeight(int height, int trunkHeight);
 
     public void initRecipes() {
         ModHandler.addShapelessRecipe(this.name + "_wood_planks",
                 new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 4, seed % 16),
-                new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, seed % 4));
+                new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, (seed % 4) << 2));
     }
 
     public ItemStack getApple() {

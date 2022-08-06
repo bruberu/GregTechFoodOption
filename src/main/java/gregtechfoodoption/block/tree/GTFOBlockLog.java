@@ -71,31 +71,8 @@ public class GTFOBlockLog extends BlockLog implements IVariantNamed {
         }
     }
 
-    /*
-
-    public enum BlockType implements IStringSerializable {
-
-        BANANA_LOG("banana"),
-        ORANGE_LOG("orange"),
-        MANGO_LOG("mango"),
-        APRICOT_LOG("apricot"),
-        LEMON_LOG("lemon"),
-        LIME_LOG("lime"),
-        OLIVE_LOG("olive");
-
-        private final String name;
-
-        BlockType(String name) {
-            this.name = name;
-        }
-
-        @Nonnull
-        @Override
-        public String getName() {
-            return this.name;
-        }
+    @Override
+    public int damageDropped(IBlockState state) {
+        return state.getValue(VARIANT) << 2;
     }
-
-     */
-
 }

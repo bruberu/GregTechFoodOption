@@ -64,4 +64,9 @@ public class GTFOBlockPlanks extends Block implements IVariantNamed {
             items.add(new ItemStack(this, 1, i));
         }
     }
+
+    @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state);
+    }
 }

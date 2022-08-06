@@ -14,13 +14,41 @@
           "cross": "gregtechfoodoption:blocks/saplings/banana"
         }
       },
-      "1": {},
-      "2": {},
-      "3": {},
-      "4": {},
-      "5": {},
-      "6": {},
-      "7": {}
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:blocks/saplings/orange"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:blocks/saplings/mango"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:blocks/saplings/apricot"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:blocks/saplings/lemon"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:blocks/saplings/lime"
+        }
+      },
+      "6": {
+        "textures": {
+          "cross": "gregtechfoodoption:blocks/saplings/olive"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "gregtechfoodoption:blocks/saplings/rainbowwood"
+        }
+      }
     }
   }
 }

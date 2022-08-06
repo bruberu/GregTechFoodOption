@@ -38,12 +38,16 @@
         }
       },
       "2": {
-        "end": "gregtechfoodoption:blocks/logs/olive_top",
-        "side": "gregtechfoodoption:blocks/logs/olive_side"
+        "textures": {
+          "end": "gregtechfoodoption:blocks/logs/olive_top",
+          "side": "gregtechfoodoption:blocks/logs/olive_side"
+        }
       },
       "3": {
-        "end": "gregtechfoodoption:blocks/logs/rainbowwood_top",
-        "side": "gregtechfoodoption:blocks/logs/rainbowwood_side"
+        "textures": {
+          "end": "gregtechfoodoption:blocks/logs/rainbowwood_top",
+          "side": "gregtechfoodoption:blocks/logs/rainbowwood_side"
+        }
       }
     },
     "inventory": [

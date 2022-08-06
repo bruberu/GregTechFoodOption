@@ -116,29 +116,8 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
         }
     }
 
-
-    /*
-    public enum BlockType implements IStringSerializable {
-
-        BANANA_SAPLING("banana"),
-        ORANGE_SAPLING("orange"),
-        MANGO_SAPLING("mango"),
-        APRICOT_SAPLING("apricot"),
-        LEMON_SAPLING("lemon"),
-        LIME_SAPLING("lime"),
-        OLIVE_SAPLING("olive");
-
-        private final String name;
-
-        BlockType(String name) {
-            this.name = name;
-        }
-
-        @Nonnull
-        @Override
-        public String getName() {
-            return this.name;
-        }
+    @Override
+    public int damageDropped(IBlockState state) {
+        return state.getValue(VARIANT) << 1;
     }
-*/
 }

@@ -26,6 +26,9 @@
       "6": {
       },
       "7": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/rainbowwood"
+        }
       },
       "8": {
       },

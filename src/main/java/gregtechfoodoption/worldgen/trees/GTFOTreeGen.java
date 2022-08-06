@@ -1,5 +1,6 @@
 package gregtechfoodoption.worldgen.trees;
 
+import gregtech.common.ConfigHolder;
 import gregtechfoodoption.block.GTFOTree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -65,8 +66,19 @@ public class GTFOTreeGen extends WorldGenerator {
         Biome biome = world.getBiome(pos);
         Optional<BiomeCondition> relevantCondition = conditions.stream().filter(biomeCondition -> biomeCondition.getBiome().equals(biome)).findFirst();
         double treeStrength = tree.getRandomStrength(chunkX, chunkZ);
-        if (relevantCondition.isPresent() && relevantCondition.get().getPerlinCutoff() < treeStrength) {
-            return (int) Math.ceil((relevantCondition.get().getMaxTrees() - relevantCondition.get().getPerlinCutoff()) / (1 - relevantCondition.get().getPerlinCutoff()));
+        if (!ConfigHolder.misc.debug) {
+            if (relevantCondition.isPresent() && relevantCondition.get().getPerlinCutoff() < treeStrength) {
+                return (int) Math.ceil((relevantCondition.get().getMaxTrees() - relevantCondition.get().getPerlinCutoff()) / (1 - relevantCondition.get().getPerlinCutoff()));
+            }
+        } else {
+            if (relevantCondition.isPresent()) {
+                if (relevantCondition.get().getPerlinCutoff() < treeStrength) {
+                    tree.updatePlacePercentage(true);
+                    return (int) Math.ceil((relevantCondition.get().getMaxTrees() - relevantCondition.get().getPerlinCutoff()) / (1 - relevantCondition.get().getPerlinCutoff()));
+                } else {
+                    tree.updatePlacePercentage(false);
+                }
+            }
         }
         return 0;
     }

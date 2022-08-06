@@ -156,30 +156,20 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
         spawnAsEntity(worldIn, pos, ((GTFOBlockLeaves)state.getBlock()).getTreeFromState(state).getApple());
     }
 
-    /*
-
-    public enum BlockType implements IStringSerializable {
-
-        BANANA_LEAVES("banana"),
-        ORANGE_LEAVES("orange"),
-        MANGO_LEAVES("mango"),
-        APRICOT_LEAVES("apricot"),
-        LEMON_LEAVES("lemon"),
-        LIME_LEAVES("lime"),
-        OLIVE_LEAVES("olive");
-
-        private final String name;
-
-        BlockType(String name) {
-            this.name = name;
-        }
-
-        @Nonnull
-        @Override
-        public String getName() {
-            return this.name;
-        }
+    // Primarily for getting the correct sapling type.
+    @Override
+    public int damageDropped(IBlockState state) {
+        return (state.getValue(VARIANT) << 1) + ((offset % 2) * 8);
     }
-*/
 
+    @Override
+    @SuppressWarnings("deprecation")
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+        return new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(VARIANT) << 2);
+    }
+
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        LeafDecayHelper.leafDecay(this, worldIn, pos);
+    }
 }

@@ -34,7 +34,7 @@ public class OliveTree extends GTFOTree {
     }
 
     @Override
-    protected int getMooreRadiusAtHeight(int height, int totalHeight) {
+    protected int getMooreRadiusAtHeight(int height, int trunkHeight) {
         return 0;
     }
 

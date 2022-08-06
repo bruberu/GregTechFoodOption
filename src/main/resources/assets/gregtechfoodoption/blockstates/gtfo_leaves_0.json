@@ -16,9 +16,14 @@
       "0": {
       	"model": "gregtechfoodoption:leaves_banana"
       },
-      "1": {},
-      "2": {},
-      "3": {}
+      "1": {
+        "model": "spruce_leaves"
+      },
+      "2": {
+        "model": "gregtechfoodoption:leaves_banana"
+      },
+      "3": {
+      }
     }
   }
 }

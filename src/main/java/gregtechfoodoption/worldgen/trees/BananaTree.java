@@ -13,13 +13,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import java.util.Random;
 
 import static gregtechfoodoption.item.GTFOMetaItem.BANANA;
 
 public class BananaTree extends GTFOTree {
 
+    //TODO: make the generation here use the actual trunk height rather than the overall height`
     public static int LEAVES_COLOR = 0x396A2E;
 
     public BananaTree() {
@@ -29,25 +29,6 @@ public class BananaTree extends GTFOTree {
         this.addCondition(new BiomeCondition(Biomes.JUNGLE_HILLS, 5, 0.25));
         this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE, 5, 0.2));
         this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE_EDGE, 5, 0.15));
-    }
-
-    @Override
-    public boolean grow(@Nonnull World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
-        int minHeight = getMinTrunkHeight(random);
-
-        // Check if tree fits in world
-        if (pos.getY() >= 1 && pos.getY() + minHeight + 1 <= world.getHeight()) {
-            if (isSuitableLocation(world, pos, minHeight)) {
-                IBlockState state = world.getBlockState(pos.down());
-                if (state.getBlock().canSustainPlant(state, world, pos.down(), EnumFacing.UP, this.getPlantableSapling()) && pos.getY() < world.getHeight() - minHeight - 1) {
-                    state.getBlock().onPlantGrow(state, world, pos.down(), pos);
-                    generateTrunk(world, pos, minHeight, notifier);
-                    generateLeaves(world, pos, minHeight, random, notifier);
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
@@ -99,14 +80,14 @@ public class BananaTree extends GTFOTree {
     }
 
     @Override
-    protected int getMooreRadiusAtHeight(int height, int totalHeight) {
-        if (height < totalHeight - 4)
+    protected int getMooreRadiusAtHeight(int height, int trunkHeight) {
+        if (height < trunkHeight - 4)
             return 0;
-        if (height == totalHeight - 4)
+        if (height == trunkHeight - 4)
             return 1;
-        if (height < totalHeight - 1)
+        if (height < trunkHeight - 1)
             return 3;
-        if (height < totalHeight)
+        if (height < trunkHeight)
             return 0;
         return 1;
     }
