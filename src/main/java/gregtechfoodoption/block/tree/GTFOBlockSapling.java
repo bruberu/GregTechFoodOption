@@ -11,6 +11,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -102,6 +105,15 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
     @Nonnull
     public EnumPlantType getPlantType(@Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
         return EnumPlantType.Plains;
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+        for (int i = 0; i < 8; i++) {
+            if (GTFOTree.TREES.size() <= i + offset * 8)
+                break;
+            items.add(new ItemStack(this, 1, i * 2));
+        }
     }
 
 

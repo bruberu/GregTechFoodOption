@@ -8,7 +8,10 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 import javax.annotation.Nonnull;
 
@@ -59,6 +62,14 @@ public class GTFOBlockLog extends BlockLog implements IVariantNamed {
         return new BlockStateContainer(this, LOG_AXIS, VARIANT);
     }
 
+    @Override
+    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
+        for (int i = 0; i < 4; i++) {
+            if (GTFOTree.TREES.size() <= i + offset * 4)
+                break;
+            items.add(new ItemStack(this, 1, i << 2));
+        }
+    }
 
     /*
 

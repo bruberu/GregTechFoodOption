@@ -1,7 +1,6 @@
 package gregtechfoodoption.worldgen.trees;
 
 import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -11,11 +10,9 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static gregtechfoodoption.item.GTFOMetaItem.APRICOT;
-
-public class ApricotTree extends GTFOTree {
-    public ApricotTree() {
-        super("apricot", 3);
+public class RainbowwoodTree extends GTFOTree {
+    public RainbowwoodTree() {
+        super("rainbowwood", 7);
     }
 
     @Override
@@ -36,13 +33,5 @@ public class ApricotTree extends GTFOTree {
     @Override
     protected int getMooreRadiusAtHeight(int height, int totalHeight) {
         return 0;
-    }
-
-    @Override
-    public ItemStack getApple() {
-        if (GTFOValues.rand.nextInt(20) == 0) {
-            return APRICOT.getStackForm();
-        }
-        return ItemStack.EMPTY;
     }
 }

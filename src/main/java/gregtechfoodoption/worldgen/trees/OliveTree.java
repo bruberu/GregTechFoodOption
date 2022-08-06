@@ -11,11 +11,11 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static gregtechfoodoption.item.GTFOMetaItem.APRICOT;
+import static gregtechfoodoption.item.GTFOMetaItem.OLIVE;
 
-public class ApricotTree extends GTFOTree {
-    public ApricotTree() {
-        super("apricot", 3);
+public class OliveTree extends GTFOTree {
+    public OliveTree() {
+        super("olive", 6);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class ApricotTree extends GTFOTree {
     @Override
     public ItemStack getApple() {
         if (GTFOValues.rand.nextInt(20) == 0) {
-            return APRICOT.getStackForm();
+            return OLIVE.getStackForm();
         }
         return ItemStack.EMPTY;
     }

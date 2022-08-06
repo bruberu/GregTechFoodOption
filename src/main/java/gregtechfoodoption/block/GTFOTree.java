@@ -170,10 +170,11 @@ public abstract class GTFOTree {
         ModHandler.addShapelessRecipe(this.name + "_wood_planks",
                 new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 4, seed % 16),
                 new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, seed % 4));
-
     }
 
-    public abstract ItemStack getApple();
+    public ItemStack getApple() {
+        return ItemStack.EMPTY;
+    };
 
     protected IBlockState getNaturalLeavesState() {
         return this.leavesState.withProperty(DECAYABLE, true).withProperty(CHECK_DECAY, true);

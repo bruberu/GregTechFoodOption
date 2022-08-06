@@ -3,7 +3,6 @@ package gregtechfoodoption.worldgen.trees;
 import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
-import net.minecraft.block.state.BlockStateBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,7 @@ import static gregtechfoodoption.item.GTFOMetaItem.ORANGE;
 public class OrangeTree extends GTFOTree {
     public static int LEAVES_COLOR = 0x76c92c;
 
-    public OrangeTree(BlockStateBase logState, BlockStateBase leavesState, int seed) {
+    public OrangeTree() {
         super("orange", 1);
     }
 
@@ -44,7 +43,7 @@ public class OrangeTree extends GTFOTree {
 
     @Override
     public ItemStack getApple() {
-        if (GTFOValues.rand.nextInt(6) == 0) {
+        if (GTFOValues.rand.nextInt(20) == 0) {
             return ORANGE.getStackForm();
         }
         return ItemStack.EMPTY;

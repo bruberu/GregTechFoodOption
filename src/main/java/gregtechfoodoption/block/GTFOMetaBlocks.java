@@ -41,25 +41,26 @@ public class GTFOMetaBlocks {
         GTFO_METAL_CASING = new GTFOMetalCasing();
         GTFO_METAL_CASING.setRegistryName("gtfo_metal_casing");
 
-        for (int i = 0; i <= GTFOTree.TREES.size() / 4; i++) {
+        GTFOTrees.init();
+        for (int i = 0; i <= (GTFOTree.TREES.size() - 1) / 4; i++) {
             GTFOBlockLeaves leaves = new GTFOBlockLeaves(i);
             leaves.setRegistryName("gtfo_leaves_" + i);
         }
-        for (int i = 0; i <= GTFOTree.TREES.size() / 4; i++) {
+        for (int i = 0; i <= (GTFOTree.TREES.size() - 1) / 4; i++) {
             GTFOBlockLog log = new GTFOBlockLog(i);
             log.setRegistryName("gtfo_log_" + i);
         }
-        for (int i = 0; i <= GTFOTree.TREES.size() / 8; i++) {
+        for (int i = 0; i <= (GTFOTree.TREES.size() - 1) / 8; i++) {
             GTFOBlockSapling sapling = new GTFOBlockSapling(i);
             sapling.setRegistryName("gtfo_sapling_" + i);
         }
-        for (int i = 0; i <= GTFOTree.TREES.size() / 16; i++) {
+        for (int i = 0; i <= (GTFOTree.TREES.size() - 1) / 16; i++) {
             GTFOBlockPlanks planks = new GTFOBlockPlanks(i);
             planks.setRegistryName("gtfo_planks_" + i);
         }
 
         GTFOCrops.init();
-        GTFOTrees.init();
+        GTFOTree.TREES.forEach(GTFOTree::setupBlocks);
     }
 
     @SideOnly(Side.CLIENT)

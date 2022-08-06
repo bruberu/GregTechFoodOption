@@ -113,7 +113,7 @@ public class BananaTree extends GTFOTree {
 
     @Override
     public ItemStack getApple() {
-        if (GTFOValues.rand.nextInt(20) == 0) {
+        if (GTFOValues.rand.nextInt(50) == 0) {
             return BANANA.getStackForm(GTFOValues.rand.nextInt(4) + 3);
         }
         return ItemStack.EMPTY;

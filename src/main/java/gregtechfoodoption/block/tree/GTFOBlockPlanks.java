@@ -46,16 +46,22 @@ public class GTFOBlockPlanks extends Block implements IVariantNamed {
         return state.getValue(VARIANT);
     }
 
+    @Override
+    @SuppressWarnings("deprecation")
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(VARIANT, meta);
+    }
+
     public GTFOTree getTreeFromState(IBlockState state) {
         return GTFOTree.TREES.get(state.getValue(VARIANT));
     }
 
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 16; i++) {
             if (GTFOTree.TREES.size() <= i + offset * 16)
                 break;
-            items.add(new ItemStack(this, 1, i << 2));
+            items.add(new ItemStack(this, 1, i));
         }
     }
 }
