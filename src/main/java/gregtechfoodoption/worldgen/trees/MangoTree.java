@@ -14,6 +14,7 @@ import java.util.Random;
 import static gregtechfoodoption.item.GTFOMetaItem.MANGO;
 
 public class MangoTree extends GTFOTree {
+    public static int LEAVES_COLOR = 0x7D921E;
     public MangoTree() {
         super("mango", 2);
     }
@@ -25,12 +26,12 @@ public class MangoTree extends GTFOTree {
 
     @Override
     public int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override
     public int getItemColor(ItemStack stack, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override

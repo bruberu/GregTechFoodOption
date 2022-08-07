@@ -14,6 +14,7 @@ import java.util.Random;
 import static gregtechfoodoption.item.GTFOMetaItem.APRICOT;
 
 public class ApricotTree extends GTFOTree {
+    public static int LEAVES_COLOR = 0x87A92C;
     public ApricotTree() {
         super("apricot", 3);
     }
@@ -25,12 +26,12 @@ public class ApricotTree extends GTFOTree {
 
     @Override
     public int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override
     public int getItemColor(ItemStack stack, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override

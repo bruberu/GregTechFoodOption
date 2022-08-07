@@ -14,6 +14,7 @@ import java.util.Random;
 import static gregtechfoodoption.item.GTFOMetaItem.OLIVE;
 
 public class OliveTree extends GTFOTree {
+    public static int LEAVES_COLOR = 0x828E5A;
     public OliveTree() {
         super("olive", 6);
     }
@@ -25,12 +26,12 @@ public class OliveTree extends GTFOTree {
 
     @Override
     public int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override
     public int getItemColor(ItemStack stack, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override

@@ -14,6 +14,7 @@ import java.util.Random;
 import static gregtechfoodoption.item.GTFOMetaItem.LIME;
 
 public class LimeTree extends GTFOTree {
+    public static int LEAVES_COLOR = 0x426801;
     public LimeTree() {
         super("lime", 5);
     }
@@ -25,12 +26,12 @@ public class LimeTree extends GTFOTree {
 
     @Override
     public int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override
     public int getItemColor(ItemStack stack, int tintIndex) {
-        return 0;
+        return LEAVES_COLOR;
     }
 
     @Override

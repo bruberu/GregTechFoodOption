@@ -32,16 +32,22 @@
         }
       },
       "1": {
-        "end": "gregtechfoodoption:blocks/logs/orange_top",
-        "side": "gregtechfoodoption:blocks/logs/orange_side"
+        "textures": {
+          "end": "gregtechfoodoption:blocks/logs/orange_top",
+          "side": "gregtechfoodoption:blocks/logs/orange_side"
+        }
       },
       "2": {
-        "end": "gregtechfoodoption:blocks/logs/mango_top",
-        "side": "gregtechfoodoption:blocks/logs/mango_side"
+        "textures": {
+          "end": "gregtechfoodoption:blocks/logs/mango_top",
+          "side": "gregtechfoodoption:blocks/logs/mango_side"
+        }
       },
       "3": {
-        "end": "gregtechfoodoption:blocks/logs/apricot_top",
-        "side": "gregtechfoodoption:blocks/logs/apricot_side"
+        "textures": {
+          "end": "gregtechfoodoption:blocks/logs/apricot_top",
+          "side": "gregtechfoodoption:blocks/logs/apricot_side"
+        }
       }
     },
     "inventory": [
