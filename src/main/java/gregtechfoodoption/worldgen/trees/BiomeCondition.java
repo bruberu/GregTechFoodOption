@@ -7,6 +7,12 @@ public class BiomeCondition {
     private final int maxAmount;
     private final double perlinCutoff;
 
+    /*
+    From my testing, here are the chances compared to the perlinCutoff:
+
+    0.15 - 1/3
+    0.85 - 1/100
+     */
     public BiomeCondition(Biome biome, int maxAmount, double perlinCutoff) {
         this.biome = biome;
         this.maxAmount = maxAmount;
