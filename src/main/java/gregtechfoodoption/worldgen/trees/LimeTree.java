@@ -3,8 +3,10 @@ package gregtechfoodoption.worldgen.trees;
 import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -20,8 +22,23 @@ public class LimeTree extends GTFOTree {
     }
 
     @Override
-    public boolean grow(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
-        return false;
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int trunkHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+        BlockPos.MutableBlockPos currentYPos = GTFOUtils.copy(pos);
+        currentYPos.move(EnumFacing.UP, trunkHeight - 2);
+        for (int i = 9; i > 0; i -= (random.nextInt(2) + 2)) {
+            int layerSize = (int) Math.ceil(Math.sqrt(i));
+            Iterable<BlockPos> iterator = BlockPos.getAllInBox(
+                    currentYPos.offset(EnumFacing.NORTH, layerSize).offset(EnumFacing.WEST, layerSize),
+                    currentYPos.offset(EnumFacing.SOUTH, layerSize).offset(EnumFacing.EAST, layerSize));
+            int finalI = i;
+            iterator.forEach(leavesPos -> {
+                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <= Math.sqrt(finalI) ||
+                        (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <= (Math.sqrt(finalI) + 0.5) && random.nextInt(2) == 0))
+                    notifier.accept(world, leavesPos, getNaturalLeavesState());
+            });
+            currentYPos.move(EnumFacing.UP);
+        }
+        notifier.accept(world, GTFOUtils.copy(pos).move(EnumFacing.UP, trunkHeight), getNaturalLeavesState()); // In case the top isn't covered.
     }
 
     @Override
@@ -35,13 +52,8 @@ public class LimeTree extends GTFOTree {
     }
 
     @Override
-    protected int getMooreRadiusAtHeight(int height, int trunkHeight) {
-        return 0;
-    }
-
-    @Override
-    public ItemStack getApple() {
-        if (GTFOValues.rand.nextInt(20) == 0) {
+    public ItemStack getApple(int chance) {
+        if (GTFOValues.rand.nextInt(chance) == 0) {
             return LIME.getStackForm();
         }
         return ItemStack.EMPTY;

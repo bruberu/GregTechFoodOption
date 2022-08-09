@@ -2,6 +2,7 @@ package gregtechfoodoption.worldgen.trees;
 
 import gregtech.common.ConfigHolder;
 import gregtechfoodoption.block.GTFOTree;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -35,7 +36,13 @@ public class GTFOTreeGen extends WorldGenerator {
         if (event.getResult() == Event.Result.DENY) {
             return false;
         }
-        return tree.grow(world, pos, random, this::setBlockAndNotifyAdequately);//grow(world, pos, random);
+        return tree.grow(world, pos, random, this::setBlockSafely);//grow(world, pos, random);
+    }
+
+    public void setBlockSafely(World worldIn, BlockPos pos, IBlockState state) {
+        if (worldIn.getBlockState(pos).getBlock().canBeReplacedByLeaves(worldIn.getBlockState(pos), worldIn, pos)) { // I assume here, for my sanity, that all wood blocks are already accounted for.
+            setBlockAndNotifyAdequately(worldIn, pos, state);
+        }
     }
 
     public boolean generateInChunk(@Nonnull World world, @Nonnull Random random, int chunkX, int chunkZ) {

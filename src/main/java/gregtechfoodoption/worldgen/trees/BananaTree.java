@@ -34,7 +34,7 @@ public class BananaTree extends GTFOTree {
     protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
         // Generate top
         {
-            BlockPos.MutableBlockPos posCopy = GTFOUtils.copy(pos.up(height - 3));
+            BlockPos.MutableBlockPos posCopy = GTFOUtils.copy(pos.up(height - 1));
             for (int i = 0; i < 3; i++) {
                 posCopy.move(EnumFacing.UP);
                 notifier.accept(world, posCopy, getNaturalLeavesState());
@@ -48,7 +48,7 @@ public class BananaTree extends GTFOTree {
         // Generate sideways leaves
         for (int i = 0; i < 4; i++) {
             int leafOffset = random.nextInt(2);
-            BlockPos.MutableBlockPos posCopy = GTFOUtils.copy(pos.up(height - 4 + leafOffset));
+            BlockPos.MutableBlockPos posCopy = GTFOUtils.copy(pos.up(height - 2 + leafOffset));
 
             for (int j = 0; j < 3; j++) {
                 posCopy.move(EnumFacing.byHorizontalIndex(i));
@@ -62,39 +62,26 @@ public class BananaTree extends GTFOTree {
 
         // Generate ring at height - 3 for extra fullness
         for (int i = 0; i < 4; i++) {
-            notifier.accept(world, pos.up(height - 3).offset(EnumFacing.byHorizontalIndex(i)), getNaturalLeavesState());
-            notifier.accept(world, pos.up(height - 3).offset(EnumFacing.byHorizontalIndex(i)).offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
+            notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)), getNaturalLeavesState());
+            notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)).offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
         }
     }
 
-    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int minHeight, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos upN = GTFOUtils.copy(pos);
-        for (int height = 0; height < minHeight - 2; ++height) {
-            upN.move(EnumFacing.UP);
+        for (int height = 0; height < maxHeight; ++height) {
             IBlockState state = world.getBlockState(upN);
 
             if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN)) {
-                notifier.accept(world, pos.up(height), logState.withProperty(BlockLog.LOG_AXIS, height == minHeight - 3 ? BlockLog.EnumAxis.NONE : BlockLog.EnumAxis.Y));
+                notifier.accept(world, pos.up(height), logState.withProperty(BlockLog.LOG_AXIS, height == maxHeight - 1 ? BlockLog.EnumAxis.NONE : BlockLog.EnumAxis.Y));
             }
+            upN.move(EnumFacing.UP);
         }
     }
 
     @Override
-    protected int getMooreRadiusAtHeight(int height, int trunkHeight) {
-        if (height < trunkHeight - 4)
-            return 0;
-        if (height == trunkHeight - 4)
-            return 1;
-        if (height < trunkHeight - 1)
-            return 3;
-        if (height < trunkHeight)
-            return 0;
-        return 1;
-    }
-
-    @Override
-    public ItemStack getApple() {
-        if (GTFOValues.rand.nextInt(50) == 0) {
+    public ItemStack getApple(int chance) {
+        if (GTFOValues.rand.nextInt(chance * 2) == 0) {
             return BANANA.getStackForm(GTFOValues.rand.nextInt(4) + 3);
         }
         return ItemStack.EMPTY;
@@ -110,4 +97,8 @@ public class BananaTree extends GTFOTree {
         return LEAVES_COLOR;
     }
 
+    @Override
+    public int getMinTrunkHeight(Random random) {
+        return 3 + random.nextInt(1);
+    }
 }

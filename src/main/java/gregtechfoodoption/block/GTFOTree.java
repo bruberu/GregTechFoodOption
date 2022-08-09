@@ -84,7 +84,7 @@ public abstract class GTFOTree {
                 if (state.getBlock().canSustainPlant(state, world, pos.down(), EnumFacing.UP, this.getPlantableSapling()) && pos.getY() < world.getHeight() - minHeight - 1) {
                     state.getBlock().onPlantGrow(state, world, pos.down(), pos);
                     generateLeaves(world, pos, minHeight, random, notifier);
-                    generateTrunk(world, pos, minHeight, notifier);
+                    generateTrunk(world, pos, minHeight, random, notifier);
                     return true;
                 }
             }
@@ -160,15 +160,15 @@ public abstract class GTFOTree {
         }
     }
 
-    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int minHeight, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos upN = GTFOUtils.copy(pos);
-        for (int height = 0; height < minHeight; ++height) {
-            upN.move(EnumFacing.UP);
+        for (int height = 0; height < maxHeight; ++height) {
             IBlockState state = world.getBlockState(upN);
 
             if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN)) {
                 notifier.accept(world, pos.up(height), logState.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y));
             }
+            upN.move(EnumFacing.UP);
         }
     }
 
@@ -195,7 +195,9 @@ public abstract class GTFOTree {
      * @param trunkHeight An integer representing the height of the trunk.
      * @return The maximum radius outside the center block that the tree can take up at this height value.
      */
-    protected abstract int getMooreRadiusAtHeight(int height, int trunkHeight);
+    protected int getMooreRadiusAtHeight(int height, int trunkHeight) {
+        return 0;
+    }
 
     public void initRecipes() {
         ModHandler.addShapelessRecipe(this.name + "_wood_planks",
@@ -203,7 +205,7 @@ public abstract class GTFOTree {
                 new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, (seed % 4) << 2));
     }
 
-    public ItemStack getApple() {
+    public ItemStack getApple(int chance) {
         return ItemStack.EMPTY;
     };
 

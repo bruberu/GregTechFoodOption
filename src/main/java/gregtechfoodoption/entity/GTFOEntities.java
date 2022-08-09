@@ -19,7 +19,7 @@ public class GTFOEntities {
                 .id(new ResourceLocation(GregTechFoodOption.MODID, "italian_buffalo"), 28)
                 .name("italian_buffalo")
                 .tracker(80, 3, true)
-                .spawn(EnumCreatureType.CREATURE, 4, 1, 3, EntityItalianBuffalo.POSSIBLE_BIOME_SPAWNS)
+                .spawn(EnumCreatureType.CREATURE, 1, 1, 3, EntityItalianBuffalo.POSSIBLE_BIOME_SPAWNS)
                 .egg(0x3d352f, 0xf0ded1).build());
     }
     public static void registerRenders() {
