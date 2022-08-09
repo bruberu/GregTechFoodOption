@@ -24,10 +24,10 @@ public class BananaTree extends GTFOTree {
 
     public BananaTree() {
         super("banana", 0);
-        this.addCondition(new BiomeCondition(Biomes.JUNGLE, 5, 0.25));
-        this.addCondition(new BiomeCondition(Biomes.JUNGLE_EDGE, 5, 0.2));
-        this.addCondition(new BiomeCondition(Biomes.JUNGLE_HILLS, 5, 0.25));
-        this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE, 5, 0.2));
+        this.addCondition(new BiomeCondition(Biomes.JUNGLE, 5, 0.35));
+        this.addCondition(new BiomeCondition(Biomes.JUNGLE_EDGE, 5, 0.3));
+        this.addCondition(new BiomeCondition(Biomes.JUNGLE_HILLS, 5, 0.35));
+        this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE, 5, 0.3));
         this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE_EDGE, 5, 0.15));
     }
 
@@ -81,7 +81,7 @@ public class BananaTree extends GTFOTree {
 
     @Override
     public ItemStack getApple(int chance) {
-        if (GTFOValues.rand.nextInt(chance * 2) == 0) {
+        if (GTFOValues.rand.nextInt(chance / 8) == 0) {
             return BANANA.getStackForm(GTFOValues.rand.nextInt(4) + 3);
         }
         return ItemStack.EMPTY;
@@ -101,4 +101,5 @@ public class BananaTree extends GTFOTree {
     public int getMinTrunkHeight(Random random) {
         return 3 + random.nextInt(1);
     }
+
 }

@@ -6,6 +6,7 @@ import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -18,8 +19,12 @@ import static gregtechfoodoption.item.GTFOMetaItem.OLIVE;
 
 public class OliveTree extends GTFOTree {
     public static int LEAVES_COLOR = 0x828E5A;
+
     public OliveTree() {
         super("olive", 6);
+        this.addCondition(new BiomeCondition(Biomes.BIRCH_FOREST, 5, 0.65));
+        this.addCondition(new BiomeCondition(Biomes.FOREST, 2, 0.80));
+        this.addCondition(new BiomeCondition(Biomes.PLAINS, 1, 0.88));
     }
 
     @Override
@@ -79,13 +84,17 @@ public class OliveTree extends GTFOTree {
 
     @Override
     protected int getMooreRadiusAtHeight(int height, int trunkHeight) {
+        if (height < trunkHeight - 3)
+            return 0;
+        if (height < trunkHeight)
+            return 4 - (trunkHeight - height);
         return 0;
     }
 
     @Override
     public ItemStack getApple(int chance) {
-        if (GTFOValues.rand.nextInt(chance) == 0) {
-            return OLIVE.getStackForm();
+        if (GTFOValues.rand.nextInt(chance / 15) == 0) {
+            return OLIVE.getStackForm(GTFOValues.rand.nextInt(4) + 1);
         }
         return ItemStack.EMPTY;
     }

@@ -60,7 +60,7 @@ public abstract class GTFOTree {
     }
 
     public double getRandomStrength(int chunkX, int chunkZ) {
-        return generatorSimplex.getValue(chunkX * 0.05, chunkZ * 0.05);
+        return generatorSimplex.getValue(chunkX * getPerlinScale(), chunkZ * getPerlinScale());
     }
 
     // For testing purposes only.
@@ -211,5 +211,9 @@ public abstract class GTFOTree {
 
     protected IBlockState getNaturalLeavesState() {
         return this.leavesState.withProperty(DECAYABLE, true).withProperty(CHECK_DECAY, true);
+    }
+
+    public double getPerlinScale() {
+        return 0.04;
     }
 }

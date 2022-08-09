@@ -5,6 +5,7 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +20,9 @@ public class MangoTree extends GTFOTree {
     public static int LEAVES_COLOR = 0x7D921E;
     public MangoTree() {
         super("mango", 2);
+        this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE_EDGE, 4, 0.2));
+        this.addCondition(new BiomeCondition(Biomes.JUNGLE_EDGE, 4, 0.2));
+        this.addCondition(new BiomeCondition(Biomes.SAVANNA, 2, 0.4));
     }
 
     @Override
@@ -52,7 +56,7 @@ public class MangoTree extends GTFOTree {
 
     @Override
     public ItemStack getApple(int chance) {
-        if (GTFOValues.rand.nextInt(chance) == 0) {
+        if (GTFOValues.rand.nextInt(chance / 15) == 0) {
             return MANGO.getStackForm();
         }
         return ItemStack.EMPTY;

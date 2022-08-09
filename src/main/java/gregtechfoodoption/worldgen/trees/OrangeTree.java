@@ -6,6 +6,7 @@ import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +22,8 @@ public class OrangeTree extends GTFOTree {
 
     public OrangeTree() {
         super("orange", 1);
+        this.addCondition(new BiomeCondition(Biomes.SAVANNA_PLATEAU, 6, 0.25));
+        this.addCondition(new BiomeCondition(Biomes.SAVANNA, 3, 0.45));
     }
 
     @Override
@@ -81,9 +84,10 @@ public class OrangeTree extends GTFOTree {
 
     @Override
     public ItemStack getApple(int chance) {
-        if (GTFOValues.rand.nextInt(chance) == 0) {
-            return ORANGE.getStackForm();
+        if (GTFOValues.rand.nextInt(chance / 10) == 0) {
+            return ORANGE.getStackForm(GTFOValues.rand.nextInt(2) + 1);
         }
         return ItemStack.EMPTY;
     }
+
 }

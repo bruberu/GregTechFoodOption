@@ -43,8 +43,8 @@ public class RainbowwoodTree extends GTFOTree {
 
     public RainbowwoodTree() {
         super("rainbowwood", 7);
-        this.addCondition(new BiomeCondition(Biomes.PLAINS, 5, 0.85));
-        this.addCondition(new BiomeCondition(Biomes.MUTATED_PLAINS, 5, 0.85));
+        this.addCondition(new BiomeCondition(Biomes.PLAINS, 5, 0.89));
+        this.addCondition(new BiomeCondition(Biomes.MUTATED_PLAINS, 5, 0.89));
     }
 
     @Override
@@ -88,5 +88,10 @@ public class RainbowwoodTree extends GTFOTree {
         if (height < trunkHeight + 3)
             return 3;
         return 2;
+    }
+
+    @Override
+    public double getPerlinScale() {
+        return 0.05;
     }
 }

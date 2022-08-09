@@ -5,6 +5,7 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -13,12 +14,14 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static gregtechfoodoption.item.GTFOMetaItem.LEMON;
+import static gregtechfoodoption.item.GTFOMetaItem.ORANGE;
 
 public class LemonTree extends GTFOTree {
     public static int LEAVES_COLOR = 0x87A92C;
     public LemonTree() {
         super("lemon", 4);
+        this.addCondition(new BiomeCondition(Biomes.JUNGLE_EDGE, 3, 0.4));
+        this.addCondition(new BiomeCondition(Biomes.FOREST, 1, 0.65));
     }
 
     @Override
@@ -52,8 +55,8 @@ public class LemonTree extends GTFOTree {
 
     @Override
     public ItemStack getApple(int chance) {
-        if (GTFOValues.rand.nextInt(chance) == 0) {
-            return LEMON.getStackForm();
+        if (GTFOValues.rand.nextInt(chance / 10) == 0) {
+            return ORANGE.getStackForm(GTFOValues.rand.nextInt(2) + 1);
         }
         return ItemStack.EMPTY;
     }
@@ -62,4 +65,5 @@ public class LemonTree extends GTFOTree {
     public int getMinTrunkHeight(Random random) {
         return 6 + random.nextInt(3);
     }
+
 }

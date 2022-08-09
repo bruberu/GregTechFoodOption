@@ -5,6 +5,7 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +20,8 @@ public class ApricotTree extends GTFOTree {
     public static int LEAVES_COLOR = 0x87A92C;
     public ApricotTree() {
         super("apricot", 3);
+        this.addCondition(new BiomeCondition(Biomes.MUTATED_SAVANNA, 4, 0.40));
+        this.addCondition(new BiomeCondition(Biomes.SAVANNA, 2, 0.55));
     }
 
     @Override
@@ -62,7 +65,7 @@ public class ApricotTree extends GTFOTree {
 
     @Override
     public ItemStack getApple(int chance) {
-        if (GTFOValues.rand.nextInt(20) == 0) {
+        if (GTFOValues.rand.nextInt(chance / 15) == 0) {
             return APRICOT.getStackForm();
         }
         return ItemStack.EMPTY;
