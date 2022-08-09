@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.fluids.UniversalBucket;
 
@@ -30,7 +29,7 @@ public class EntityItalianBuffalo extends EntityCow {
     @Override
     public boolean getCanSpawnHere() {
         out:
-        for(byte biomeByte : new Chunk(this.world, this.chunkCoordX, this.chunkCoordZ).getBiomeArray()) {
+        for(byte biomeByte : world.getChunk(this.chunkCoordX, this.chunkCoordZ).getBiomeArray()) {
             for (Biome currentBiome : POSSIBLE_BIOME_SPAWNS) {
                 if (currentBiome.equals(Biome.getBiome(biomeByte)))
                     break out;
@@ -39,7 +38,7 @@ public class EntityItalianBuffalo extends EntityCow {
         Set<Biome> nearbyBiomes = new HashSet<>();
         for(int i = -1; i < 2; i++) { // We loop in a 3x3 around the spawn position.
             for (int j = -1; j < 2; j++) {
-                for(byte biomeByte : new Chunk(this.world, this.chunkCoordX + i, this.chunkCoordZ + j).getBiomeArray()) {
+                for(byte biomeByte : world.getChunk(this.chunkCoordX + i, this.chunkCoordZ + j).getBiomeArray()) {
                     nearbyBiomes.add(Biome.getBiome(biomeByte));
                 }
             }

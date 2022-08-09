@@ -238,8 +238,8 @@ public class BreadsChain {
         ModHandler.addShapelessRecipe("gtfo_sandwich_veggie", SANDWICH_VEGGIE.getStackForm(), PRESLICED_BREAD, CUCUMBER_SLICE, CUCUMBER_SLICE, TOMATO_SLICE, TOMATO_SLICE, ONION_SLICE, ONION_SLICE);
         ModHandler.addShapelessRecipe("gtfo_sandwich_cheese", SANDWICH_CHEESE.getStackForm(), PRESLICED_BREAD, CHEDDAR_SLICE, CHEDDAR_SLICE, CHEDDAR_SLICE, CHEDDAR_SLICE);
         ModHandler.addShapelessRecipe("gtfo_sandwich_bacon", SANDWICH_BACON.getStackForm(), PRESLICED_BREAD, BACON, BACON, BACON, BACON, BACON, BACON, BACON, BACON);
-        ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_meat", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, GTFOMaterialHandler.MeatIngot.getItemStack());
-        ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_oredict", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, OreDictUnifier.get("cookedMeat"));
+        ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_meat", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, GTFOMaterialHandler.MeatIngot.getItemStack(), CHEDDAR_SLICE, CHEDDAR_SLICE);
+        ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_oredict", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, OreDictUnifier.get("cookedMeat"), CHEDDAR_SLICE, CHEDDAR_SLICE);
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(), TOMATO_SLICE.getStackForm(), CUCUMBER_SLICE.getStackForm(), ONION_SLICE.getStackForm())
                 .outputs(SANDWICH_VEGGIE.getStackForm())

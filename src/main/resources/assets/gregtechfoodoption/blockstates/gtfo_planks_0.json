@@ -1,0 +1,69 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "textures": {
+      "all": "gregtech:blocks/rendering_error"
+    }
+  },
+  "variants": {
+    "variant": {
+      "0": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/banana"
+        }
+      },
+      "1": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/orange"
+        }
+      },
+      "2": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/mango"
+        }
+      },
+      "3": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/apricot"
+        }
+      },
+      "4": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/lemon"
+        }
+      },
+      "5": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/lime"
+        }
+      },
+      "6": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/olive"
+        }
+      },
+      "7": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/rainbowwood"
+        }
+      },
+      "8": {
+      },
+      "9": {
+      },
+      "10": {
+      },
+      "11": {
+      },
+      "12": {
+      },
+      "13": {
+      },
+      "14": {
+      },
+      "15": {
+      }
+    }
+  }
+}

@@ -2,6 +2,7 @@ package gregtechfoodoption.recipe;
 
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.recipe.chain.*;
 import net.minecraftforge.fml.common.Loader;
 
@@ -9,6 +10,7 @@ public class GTFORecipeAddition {
     public static void init()
     {
         CoreChain.init();
+        GTFOTree.TREES.forEach(GTFOTree::initRecipes);
         MobExtractionChain.init();
         SeedsChain.init();
         CheeseChain.init();

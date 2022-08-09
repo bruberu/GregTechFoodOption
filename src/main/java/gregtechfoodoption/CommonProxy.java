@@ -5,7 +5,6 @@ import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -13,6 +12,7 @@ import gregtechfoodoption.block.GTFORootCrop;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
+import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
 import gregtechfoodoption.potion.GTFOPotions;
 import gregtechfoodoption.recipe.GTFOOreDictRegistration;
 import gregtechfoodoption.recipe.GTFORecipeAddition;
@@ -81,6 +81,11 @@ public class CommonProxy {
         registry.register(GTFOMetaBlocks.GTFO_METAL_CASING);
 
         CROP_BLOCKS.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_LEAVES.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_LOGS.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_PLANKS.forEach(registry::register);
+        GTFOMetaBlocks.GTFO_SAPLINGS.forEach(registry::register);
+
     }
 
     @SubscribeEvent
@@ -90,6 +95,10 @@ public class CommonProxy {
 
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
+        GTFOMetaBlocks.GTFO_LEAVES.forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_LOGS.forEach(log -> registry.register(createItemBlock(log, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_SAPLINGS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_PLANKS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
 
     }
 
@@ -109,9 +118,12 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering ore prefix...");
-        GTFOMetaItems.registerOreDict();
-        OrePrefix.runMaterialHandlers();
         GTFOOreDictRegistration.init();
+
+        GTFOMetaItems.registerOreDict();
+        GTFOMetaBlocks.registerOreDict();
+
+        //OrePrefix.runMaterialHandlers();
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {
@@ -174,7 +186,9 @@ public class CommonProxy {
 
     @SubscribeEvent
     public static void onSave(WorldEvent.Save event) {
-
+        MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
+        ((MetaPrefixItem)OreDictUnifier.get("plateIron").getItem()).getItem(OreDictUnifier.get("plateIron"))
+                .addComponents(new GTFOFoodStats(0, 0, false, false, ItemStack.EMPTY));
     }
 
     @SubscribeEvent
