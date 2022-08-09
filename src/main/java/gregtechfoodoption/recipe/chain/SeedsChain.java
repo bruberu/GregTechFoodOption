@@ -4,12 +4,9 @@ import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
 import static gregtech.api.unification.material.Materials.SeedOil;
@@ -17,26 +14,11 @@ import static gregtech.api.unification.material.Materials.Wood;
 
 public class SeedsChain {
     public static void init() {
+        /*
         RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
                 .inputs(MetaItems.PLANT_BALL.getStackForm())
                 .chancedOutput(GTFOMaterialHandler.PopcornKernel.getItemStack(), 2000, 250)
-                .buildAndRegister();
-        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
-                .inputs(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata()))
-                .chancedOutput(GTFOMetaItem.LEMON.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.LIME.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.ORANGE.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.BANANA.getStackForm(), 2000, 250)
-                .chancedOutput(GTFOMetaItem.MANGO.getStackForm(), 2000, 250)
-                .buildAndRegister();
-        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
-                .inputs(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.OAK.getMetadata()))
-                .chancedOutput(GTFOMetaItem.OLIVE.getStackForm(), 2000, 250)
-                .buildAndRegister();
-        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
-                .inputs(new ItemStack(Blocks.LEAVES2, 1, 0))
-                .chancedOutput(GTFOMetaItem.APRICOT.getStackForm(), 2000, 250)
-                .buildAndRegister();
+                .buildAndRegister();*/
 
         if(GTFOConfig.gtfoMiscConfig.centrifugeSeeds) {
             ItemStack[] seeds = new ItemStack[]{

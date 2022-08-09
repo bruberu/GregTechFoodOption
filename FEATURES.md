@@ -8,6 +8,7 @@ There are several important machines that are included with this mod. These are:
 - Mob Age Sorters (which can sort mobs by age, useful for automation)
 - Mob Exterminators (obvious)
 - Mob Extractors (which can extract fluids or items from entities, such as milk, automatically)
+- Farmers (which automatically farm vanilla and GTFO crops)
 
 In 0.x versions, there were also Small Bio Reactors, which allowed users to run certain Bio Reactor recipes from GCYL from HV-IV, which had several uses in GTFO chains.
 
@@ -24,6 +25,9 @@ The main blocks featured in GregTechFoodOption are crop blocks, currently consis
 Furthermore, some of these crops are root-based crops, which grows in a pattern where the actual crop may only be harvested at an intermediate stage of growth, while the seeds can be collected only when the crop is fully grown.
 Finally, these crops only give back their seeds through their products; if you plant one in the wrong place, you will have to wait for it to grow to get the seed back (as a germinated seed obviously can't just be ripped out of the ground as normal).
 These crops can currently be automatically harvested via the EnderIO farming station, although a GregTechFoodOption Crop Manager tile is currently in development.
+
+A large selection of various trees are included in GregTech Food Option as well, to be used for generating various food items, including bananas, apricots, olives, and more!
+Each also have their own natural world generation (albeit somewhat rare compared to vanilla trees) and planks (although not any fences, doors, or other variants of miscellaneous wooden items yet).
 
 There also a few casing blocks used for multiblocks, namely:
 - Food-Safe Bismuth Bronze Casing (used for the Electric Baking Oven)
