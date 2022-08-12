@@ -18,9 +18,9 @@ import static gregtech.common.metatileentities.MetaTileEntities.*;
 /* Takes up IDs 8500 - 8599 */
 public class GTFOTileEntities {
     //public static MetaTileEntityBioReactor[] BIOREACTOR = new MetaTileEntityBioReactor[GTValues.V.length];
-    public static SimpleMachineMetaTileEntity[] SLICER = new SimpleMachineMetaTileEntity[GTValues.V.length];
-    public static SimpleMachineMetaTileEntity[] CUISINE_ASSEMBLER = new SimpleMachineMetaTileEntity[GTValues.V.length];
-    public static MetaTileEntityMicrowave[] MICROWAVE = new MetaTileEntityMicrowave[GTValues.V.length];
+    public static SimpleMachineMetaTileEntity[] SLICER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
+    public static SimpleMachineMetaTileEntity[] CUISINE_ASSEMBLER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
+    public static MetaTileEntityMicrowave[] MICROWAVE = new MetaTileEntityMicrowave[GTValues.V.length - 1];
 
     public static final MetaTileEntityMobAgeSorter[] MOB_AGE_SORTER = new MetaTileEntityMobAgeSorter[4];
     public static final MetaTileEntityMobExterminator[] MOB_EXTERMINATOR = new MetaTileEntityMobExterminator[4];
