@@ -48,7 +48,7 @@ public class GTFOMachineRecipes {
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
-            PLATE.appendIngredients(Stream.of(new Object[][]{
+            DENSE_PLATE.appendIngredients(Stream.of(new Object[][]{
                     {9, new UnificationEntry(OrePrefix.plateDense, Orichalcum)},
                     {10, new UnificationEntry(OrePrefix.plateDense, Adamantium)},
 //                {11, new UnificationEntry(OrePrefix.plateDense, Trinium)},
