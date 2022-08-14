@@ -1,5 +1,8 @@
 package gregtechfoodoption.integration;
 
+import static gregicality.science.api.unification.materials.GCYSMaterials.SodiumChlorate;
+import static gregtech.api.unification.material.info.MaterialFlags.DISABLE_DECOMPOSITION;
+
 public class GTFOGAMaterialHandler {
 
     /* Will be added back at a later date, when Gregicality: Science comes out. TODO
@@ -130,6 +133,6 @@ public class GTFOGAMaterialHandler {
 
 */
     public static void onMaterialsInit() {
-
+        SodiumChlorate.addFlags(DISABLE_DECOMPOSITION);
     }
 }
