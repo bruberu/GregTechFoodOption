@@ -510,7 +510,7 @@ public class GTFOMetaItem extends StandardMetaItem {
             int potionDuration = 1200;
 
             MetaItem<?>.MetaValueItem[] smores = {EIGHT_SMORE, SIXTEEN_SMORE, THIRTY_TWO_SMORE, SIXTY_FOUR_SMORE, SMOGUS, MORE_SMOGUS, FOUR_SMOGUS, HEART_SMOGUS};
-            String[] smoreStrings = {"smore.eight", "smore.sixteen", "smore.thirtytwo", "smore.sixtyfour", "smore.gusone", "smore.gustwo", "smore.gusfour", "smore.heartofthesmogus"};
+            String[] smoreStrings = {"eight", "sixteen", "thirtytwo", "sixtyfour", "gusone", "gustwo", "gusfour", "heartofthesmogus"};
 
             for (int i = 0; i < smores.length; i++) {
                 heal = (heal * 2) + 4;
@@ -518,7 +518,7 @@ public class GTFOMetaItem extends StandardMetaItem {
                 potionDuration = (int) (((float) potionDuration) * 1.25);
                 int potionStrength = (int) ((int) (Math.pow(2, (((double) i) + 8))) / Math.pow((((double) i) + 8), 2));
 
-                smores[i] = addItem(100 + i, smoreStrings[i]).addComponents(new GTFOFoodStats(heal, (float) saturation, false, true, ItemStack.EMPTY,
+                smores[i] = addItem(100 + i, "food.smore." + smoreStrings[i]).addComponents(new GTFOFoodStats(heal, (float) saturation, false, true, ItemStack.EMPTY,
                         new RandomPotionEffect(getPotionById(1), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(22), potionDuration, potionStrength, 2 * i),
                         new RandomPotionEffect(getPotionById(3), potionDuration, potionStrength, 2 * i),
