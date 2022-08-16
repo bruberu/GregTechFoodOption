@@ -1,24 +1,34 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtechfoodoption.item.GTFOMetaItem;
+import net.minecraftforge.fml.common.Loader;
 
-import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.GTFOValues.MODID_GCYS;
 
 public class BananaProcessingChain {
     public static void init() {
-
-        ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(100) // NaCl + 3H2O -> NaClO3 + 6H
-                .input(dust, Salt, 2)
-                .fluidInputs(Water.getFluid(3000))
-                .outputs(SodiumChlorate.getItemStack(5))
-                .fluidOutputs(Hydrogen.getFluid(6000))
+        if (!Loader.isModLoaded(MODID_GCYS)) {
+            ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(100) // NaCl + 3H2O -> NaClO3 + 6H
+                    .input(dust, Salt, 2)
+                    .notConsumable(new IntCircuitIngredient(2))
+                    .fluidInputs(Water.getFluid(3000))
+                    .outputs(SodiumChlorate.get(5))
+                    .fluidOutputs(Hydrogen.getFluid(6000))
+                    .buildAndRegister();
+        }
+        ELECTROLYZER_RECIPES.recipeBuilder().EUt(60).duration(100)
+                .inputs(SodiumChlorate.get(5))
+                .notConsumable(new IntCircuitIngredient(1))
+                .output(dust, Sodium)
+                .fluidOutputs(Chlorine.getFluid(1000), Oxygen.getFluid(3000))
                 .buildAndRegister();
-
         ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(100) // NaClO3 + H2O -> NaClO4 + 2H
-                .inputs(SodiumChlorate.getItemStack(5))
+                .inputs(SodiumChlorate.get(5))
                 .fluidInputs(Water.getFluid(1000))
                 .outputs(SodiumPerchlorate.getItemStack(6))
                 .fluidOutputs(Hydrogen.getFluid(2000))

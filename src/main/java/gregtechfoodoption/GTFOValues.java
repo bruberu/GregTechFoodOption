@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class GTFOValues {
     public static final String MODID = "gregtechfoodoption",
-            MODID_GCYS = "gcy_science",
+            MODID_GCYS = "gcys",
             MODID_AA = "actuallyadditions",
             MODID_NC = "nuclearcraft",
             MODID_GF = "gregification",

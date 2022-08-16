@@ -9,16 +9,20 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFOMetalCasing;
 import gregtechfoodoption.machines.GTFOTileEntities;
 import net.minecraft.util.IStringSerializable;
+import net.minecraftforge.fml.common.Loader;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static gregicality.science.api.unification.materials.GCYSMaterials.Adamantium;
+import static gregicality.science.api.unification.materials.GCYSMaterials.Orichalcum;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -32,16 +36,26 @@ public class GTFOMachineRecipes {
 
                 {0, new UnificationEntry(OrePrefix.plate, Materials.WroughtIron)},
                 {1, new UnificationEntry(OrePrefix.plate, Materials.Steel)},
-                {2, new UnificationEntry(OrePrefix.plate, Materials.Aluminium)},
-                {3, new UnificationEntry(OrePrefix.plate, Materials.StainlessSteel)},
-                {4, new UnificationEntry(OrePrefix.plate, Materials.Titanium)},
-                {5, new UnificationEntry(OrePrefix.plate, Materials.TungstenSteel)},
-                {6, new UnificationEntry(OrePrefix.plate, Materials.RhodiumPlatedPalladium)},
-                {7, new UnificationEntry(OrePrefix.plate, Materials.NaquadahAlloy)},
-                {8, new UnificationEntry(OrePrefix.plate, Materials.Darmstadtium)},
-                {9, new UnificationEntry(OrePrefix.plate, Materials.Neutronium)},
+                {2, new UnificationEntry(OrePrefix.plateDense, Materials.Aluminium)},
+                {3, new UnificationEntry(OrePrefix.plateDense, Materials.StainlessSteel)},
+                {4, new UnificationEntry(OrePrefix.plateDense, Materials.Titanium)},
+                {5, new UnificationEntry(OrePrefix.plateDense, Materials.TungstenSteel)},
+                {6, new UnificationEntry(OrePrefix.plateDense, Materials.RhodiumPlatedPalladium)},
+                {7, new UnificationEntry(OrePrefix.plateDense, Materials.NaquadahAlloy)},
+                {8, new UnificationEntry(OrePrefix.plateDense, Materials.Darmstadtium)},
+                {9, new UnificationEntry(OrePrefix.plateDense, Materials.Neutronium)},
 
         }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
+
+        if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
+            DENSE_PLATE.appendIngredients(Stream.of(new Object[][]{
+                    {9, new UnificationEntry(OrePrefix.plateDense, Orichalcum)},
+                    {10, new UnificationEntry(OrePrefix.plateDense, Adamantium)},
+//                {11, new UnificationEntry(OrePrefix.plateDense, Trinium)},
+//                {12, new UnificationEntry(OrePrefix.plateDense, Trinium)},
+//                {13, new UnificationEntry(OrePrefix.plateDense, Trinium)},
+            }).collect(Collectors.toMap(data -> (Integer) data[0], data -> data[1])));
+        }
 
 /*
         registerMachineRecipe(GTFOTileEntities.BIOREACTOR,
