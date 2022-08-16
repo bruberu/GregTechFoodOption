@@ -213,7 +213,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         POPCORN_COB = addItem(3, "component.popcorn.cob");
         DRIED_POPCORN_EAR = addItem(4, "component.popcorn.dried_ear");
         POPCORN_EAR = addItem(5, "component.popcorn.ear");
-        //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "phycomyces.culture");
+        //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
 
         THERMOS = addItem(7, "component.thermos.new");
         USED_THERMOS = addItem(8, "component.thermos.used");
@@ -223,8 +223,8 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         CORED_APPLE = addItem(13, "component.cored_apple");
         PLASTIC_BOTTLE = addItem(15, "component.plastic_bottle");
-        //LACTOBACILLUS_PENTOSIS_CULTURE = addItem(20, "lactobacillus.culture");
-        //BACILLUS_SUBTILIS_CULTURE = addItem(21, "bacillus.culture");
+        //LACTOBACILLUS_PENTOSIS_CULTURE = addItem(20, "culture.lactobacillus");
+        //BACILLUS_SUBTILIS_CULTURE = addItem(21, "culture.bacillus");
 
         SLICER_BLADE_FLAT = addItem(23, "config.slicer_blade.flat");
         SLICER_BLADE_STRIPES = addItem(24, "config.slicer_blade.stripes");
@@ -301,7 +301,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         //SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
         //PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
         //FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
-        //PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "penicillium.culture");
+        //PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicillium");
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
         BANANA_PEEL = addItem(127, "component.banana_peel");
@@ -543,4 +543,10 @@ public class GTFOMetaItem extends StandardMetaItem {
     public ItemStack getContainerItem(ItemStack stack) {
         return stack.copy();
     }
+
+
+    protected String formatModelPath(MetaItem<?>.MetaValueItem metaValueItem) {
+        return "metaitems/" + metaValueItem.unlocalizedName.replace('.', '/');
+    }
+
 }
