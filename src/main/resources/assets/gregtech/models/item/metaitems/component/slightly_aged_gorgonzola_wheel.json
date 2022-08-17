@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/metaitems/component.slightly_aged_gorgonzola_wheel"
+    "layer0": "gregtech:items/metaitems/component/slightly_aged_gorgonzola_wheel"
   }
 }

@@ -1,11 +1,12 @@
 #!/bin/bash
-for FILE in `ls ./metaitems -p | grep -v '/$'`
+for FILE in `find ./metaitems | grep ".png$"`
 do
 	FILEMANIP=`basename $FILE .png`
 	FILEMANIP=${FILEMANIP//./\/}
-	FILEMANIP="./metaitems/""$FILEMANIP"".png"
+	FILEROOT=`dirname $FILE`
+	FILEMANIP="$FILEROOT""/""$FILEMANIP"".png"
 
-	FILE="./metaitems/""$FILE"
+	FILE="$FILE"
 	mkdir -p ${FILEMANIP%/*}
 	echo $FILE " " $FILEMANIP
 	mv $FILE $FILEMANIP -i

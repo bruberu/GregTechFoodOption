@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/metaitems/pizza/baked.mince_meat"
+    "layer0": "gregtech:items/metaitems/food/pizza/baked/mince_meat"
   }
 }

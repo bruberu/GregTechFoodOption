@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/metaitems/component.potato.reduced_fat_slice"
+    "layer0": "gregtech:items/metaitems/component/potato/reduced_fat_slice"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/metaitems/brick.adobe"
+    "layer0": "gregtech:items/metaitems/brick/adobe"
   }
 }

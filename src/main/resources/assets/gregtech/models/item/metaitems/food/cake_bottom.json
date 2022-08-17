@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "gregtech:items/metaitems/food.cake_bottom"
+    "layer0": "gregtech:items/metaitems/food/cake_bottom"
   }
 }
