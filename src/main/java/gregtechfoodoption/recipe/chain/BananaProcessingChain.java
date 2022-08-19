@@ -13,6 +13,12 @@ import static gregtechfoodoption.GTFOValues.MODID_GCYS;
 public class BananaProcessingChain {
     public static void init() {
         if (!Loader.isModLoaded(MODID_GCYS)) {
+            ELECTROLYZER_RECIPES.recipeBuilder().EUt(30).duration(56)
+                    .input(dust, Salt, 2)
+                    .notConsumable(new IntCircuitIngredient(1))
+                    .output(dust, Sodium)
+                    .fluidOutputs(Chlorine.getFluid(6000))
+                    .buildAndRegister();
             ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(100) // NaCl + 3H2O -> NaClO3 + 6H
                     .input(dust, Salt, 2)
                     .notConsumable(new IntCircuitIngredient(2))

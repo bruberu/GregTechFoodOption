@@ -54,8 +54,8 @@ public class GTFOTileEntities {
             MICROWAVE[9] = registerMetaTileEntity(8539, new MetaTileEntityMicrowave(location("microwave.uhv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 9));
             MICROWAVE[10] = registerMetaTileEntity(8540, new MetaTileEntityMicrowave(location("microwave.uev"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 10));
             MICROWAVE[11] = registerMetaTileEntity(8541, new MetaTileEntityMicrowave(location("microwave.uiv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 11));
-            MICROWAVE[12] = registerMetaTileEntity(8542, new MetaTileEntityMicrowave(location("microwave.umv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 12));
-            MICROWAVE[13] = registerMetaTileEntity(8543, new MetaTileEntityMicrowave(location("microwave.uxv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 13));
+            MICROWAVE[12] = registerMetaTileEntity(8542, new MetaTileEntityMicrowave(location("microwave.uxv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 12));
+            MICROWAVE[13] = registerMetaTileEntity(8543, new MetaTileEntityMicrowave(location("microwave.opv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 13));
         }
         BAKING_OVEN = registerMetaTileEntity(8516, new MetaTileEntityBakingOven(location("baking_oven")));
         ELECTRIC_BAKING_OVEN = registerMetaTileEntity(8517, new MetaTileEntityElectricBakingOven(location("electric_baking_oven")));
