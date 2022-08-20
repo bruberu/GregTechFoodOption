@@ -2,7 +2,6 @@ package gregtechfoodoption.entity;
 
 import gregtechfoodoption.GTFOMaterialHandler;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
@@ -45,7 +44,7 @@ public class EntityItalianBuffalo extends EntityCow {
         }
         for(Biome biome : NEARBY_BIOME_SPAWNS) {
             if(nearbyBiomes.contains(biome)) {
-                return ((EntityAnimal) this).getCanSpawnHere();
+                return super.getCanSpawnHere();
             }
         }
         return false;

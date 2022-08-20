@@ -113,6 +113,9 @@ dependencies {
     //compile "com.enderio.core:EnderCore:${mc_version}-0.5.76:dev"
     //compile "com.enderio:EnderIO:${mc_version}-5.3.70"
 
+    deobfCompile "curse.maven:agricraft-225635:3317747"
+    deobfCompile "curse.maven:infinitylib-251396:3317119"
+
     compile "curse.maven:enderio-64578:3328811"
     compile "curse.maven:endercore-231868:2972849"
     compile "info.loenwind.autoconfig:AutoConfig:${mc_version}-1.0.2"

@@ -32,7 +32,7 @@ public interface FarmerMode {
     boolean canPlaceItem(ItemStack stack);
 
     // If the farming mode can actually place something in this position.
-    default boolean canPlaceAt(MutableBlockPos operationPos, MutableBlockPos farmerPos, EnumFacing facing) {
+    default boolean canPlaceAt(MutableBlockPos operationPos, MutableBlockPos farmerPos, EnumFacing facing, World world) {
         return true;
     }
 

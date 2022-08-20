@@ -146,25 +146,30 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         }
 
         // Phase 2: place down seed if possible
-        if (getWorld().isAirBlock(operationPosition) && InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
+        if (isCropSpaceEmpty() && InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
             seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1);
             ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
             boolean canPlaceSeed = true;
-            if (!cachedMode.canPlaceItem(seedItem)) {
-                FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem);
+            if (!cachedMode.canPlaceItem(seedItem) || !cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld())) {
+                FarmerMode mode;
+
+                mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem, GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld());
                 if (mode != null) {
                     cachedMode = mode;
                 } else {
                     canPlaceSeed = false;
-                    // Move this unusable stack to the output
-                    ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
-                    if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
-                        GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
-                                Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
+
+                    if (FarmerModeRegistry.findSuitableFarmerMode(seedItem) == null) {
+                        // Move this unusable stack to the output
+                        ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
+                        if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
+                            GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
+                                    Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
+                        }
                     }
                 }
             }
-            if (canPlaceSeed && cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing())) {
+            if (canPlaceSeed) {
                 EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
                 if (result == EnumActionResult.SUCCESS) {
                     getImportItems().extractItem(seedSlot, 1, false);
@@ -176,6 +181,13 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
             getWorld().playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5,
                     GTFOClientHandler.FARMER_LASER, SoundCategory.BLOCKS, 1.0f, 1.0f);
         updateOperationPosition();
+    }
+
+    private boolean isCropSpaceEmpty() {
+        if (!FarmerModeRegistry.canUseAirOptimization) {
+            return true;
+        }
+        return getWorld().isAirBlock(operationPosition);
     }
 
     protected int getEnergyConsumedPerTick() {

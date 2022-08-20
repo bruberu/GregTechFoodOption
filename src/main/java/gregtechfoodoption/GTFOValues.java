@@ -12,7 +12,8 @@ public class GTFOValues {
             MODID_AA = "actuallyadditions",
             MODID_NC = "nuclearcraft",
             MODID_GF = "gregification",
-            MODID_TFC = "tfc";
+            MODID_TFC = "tfc",
+            MODID_AC = "agricraft";
 
     public static final String craftingToolRollingPin = "craftingToolRollingPin";
 

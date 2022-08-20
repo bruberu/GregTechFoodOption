@@ -1,22 +1,38 @@
 package gregtechfoodoption.machines.farmer;
 
+import gregtechfoodoption.integration.agricraft.GTFOAgriCraftFarmerMode;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static gregtechfoodoption.GTFOValues.MODID_AC;
+
 public class FarmerModeRegistry {
     private static final List<FarmerMode> farmerModes = new ArrayList<>();
+    public static boolean canUseAirOptimization = true;
 
     public static FarmerMode findSuitableFarmerMode(IBlockState state, MetaTileEntityFarmer farmer, MutableBlockPos pos, World world) {
         for (FarmerMode mode : farmerModes) {
             if (mode.canOperate(state, farmer, pos, world)) {
+                return mode;
+            }
+        }
+        return null;
+    }
+
+    public static FarmerMode findSuitableFarmerMode(ItemStack stack, BlockPos.MutableBlockPos operationPos, BlockPos.MutableBlockPos farmerPos, EnumFacing facing, World world) {
+        for (FarmerMode mode : farmerModes) {
+            if (mode.canPlaceItem(stack) && mode.canPlaceAt(operationPos, farmerPos, facing, world)) {
                 return mode;
             }
         }
@@ -62,5 +78,7 @@ public class FarmerModeRegistry {
         registerFarmerMode(new GroundClearingFarmerMode(Blocks.DOUBLE_PLANT));
         registerFarmerMode(new GTFOCropFarmerMode());
         registerFarmerMode(new GTFORootCropFarmerMode());
+        if (Loader.isModLoaded(MODID_AC))
+            registerFarmerMode(new GTFOAgriCraftFarmerMode());
     }
 }
