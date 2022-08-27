@@ -157,7 +157,7 @@ public class KebabChain {
                 .inputs(ONION_SLICE.getStackForm(4), MUSHROOM_SLICE.getStackForm(3), GTFOMaterialHandler.Fat.getItemStack(1))
                 .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(400))
                 .outputs(KubideMeat.getItemStack(5))
-                .notConsumable(new IntCircuitIngredient(0))
+                .notConsumable(new IntCircuitIngredient(3))
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().EUt(30).duration(120)
@@ -190,7 +190,7 @@ public class KebabChain {
                 .inputs(ONION_SLICE.getStackForm(8), Zest.getItemStack(2))
                 .fluidInputs(OliveOil.getFluid(500))
                 .outputs(BargMeat.getItemStack(10))
-                .notConsumable(new IntCircuitIngredient(0))
+                .notConsumable(new IntCircuitIngredient(3))
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().EUt(30).duration(100)

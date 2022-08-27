@@ -51,7 +51,7 @@ public class BreadsChain {
                 .input(OrePrefix.dustTiny, Materials.Salt)
                 .fluidInputs(Water.getFluid(1000))
                 .outputs(DOUGH.getStackForm(2))
-                .notConsumable(new IntCircuitIngredient(0))
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(2))
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("dough_4", DOUGH.getStackForm(4),
@@ -66,7 +66,7 @@ public class BreadsChain {
                 .input(OrePrefix.dustTiny, Materials.SodaAsh)
                 .fluidInputs(Water.getFluid(1000))
                 .outputs(DOUGH.getStackForm(4))
-                .notConsumable(new IntCircuitIngredient(1))
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
                 .buildAndRegister();
 
         ModHandler.addShapedRecipe("bread_dough", UNCOOKED_BREAD.getStackForm(),
@@ -246,7 +246,7 @@ public class BreadsChain {
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(), CHEDDAR_SLICE.getStackForm(2))
-                .notConsumable(MetaItems.INTEGRATED_CIRCUIT)
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
                 .outputs(SANDWICH_CHEESE.getStackForm())
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
@@ -269,7 +269,7 @@ public class BreadsChain {
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)
                 .inputs(PRESLICED_BAGUETTE.getStackForm(), CHEDDAR_SLICE.getStackForm(5))
-                .notConsumable(MetaItems.INTEGRATED_CIRCUIT)
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
                 .outputs(SANDWICH_LARGE_CHEESE.getStackForm())
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)

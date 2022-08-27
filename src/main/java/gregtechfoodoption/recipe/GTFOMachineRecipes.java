@@ -116,7 +116,7 @@ public class GTFOMachineRecipes {
         ASSEMBLER_RECIPES.recipeBuilder().duration(50).EUt(16)
                 .input(plate, inputMaterial, 6)
                 .input(frameGt, inputMaterial)
-                .circuitMeta(0)
+                .circuitMeta(6)
                 .outputs(outputCasingType.getItemVariant(outputCasing, 3))
                 .buildAndRegister();
     }

@@ -13,7 +13,7 @@ import static gregtechfoodoption.recipe.GTFORecipeMaps.MOB_EXTRACTOR_RECIPES;
 public class MobExtractionChain {
     public static void init() {
         MOB_EXTRACTOR_RECIPES.recipeBuilder()
-                .notConsumable(new IntCircuitIngredient(0))
+                .notConsumable(new IntCircuitIngredient(3))
                 .mob(EntityCow.class)
                 .fluidOutputs(Milk.getFluid(10))
                 .EUt(16)

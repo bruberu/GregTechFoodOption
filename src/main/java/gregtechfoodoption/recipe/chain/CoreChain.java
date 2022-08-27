@@ -133,7 +133,7 @@ public class CoreChain {
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(SeedOil.getFluid(16))
                 .fluidOutputs(GTFOMaterialHandler.FryingOil.getFluid(16))
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .EUt(12)
                 .duration(10)
                 .buildAndRegister();
@@ -141,7 +141,7 @@ public class CoreChain {
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(SeedOil.getFluid(16))
                 .fluidOutputs(GTFOMaterialHandler.HotFryingOil.getFluid(16))
-                .circuitMeta(1)
+                .circuitMeta(2)
                 .EUt(60)
                 .duration(25)
                 .buildAndRegister();
@@ -149,7 +149,7 @@ public class CoreChain {
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(GTFOMaterialHandler.FryingOil.getFluid(16))
                 .fluidOutputs(GTFOMaterialHandler.HotFryingOil.getFluid(16))
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .EUt(18)
                 .duration(15)
                 .buildAndRegister();
@@ -515,7 +515,7 @@ public class CoreChain {
                     .input(dustTiny, SodaAsh)
                     .fluidInputs(new FluidStack(f, 1000), Hydrogen.getFluid(1000))
                     .fluidOutputs(Stearin.getFluid(1000))
-                    .notConsumable(new IntCircuitIngredient(0))
+                    .notConsumable(new IntCircuitIngredient(1))
                     .buildAndRegister();
         });
 
@@ -550,11 +550,10 @@ public class CoreChain {
                 .buildAndRegister();
 
         //"Stearic acid is used along with simple sugar or corn syrup as a hardener in candies. In fireworks, stearic acid is often used to coat metal powders such as aluminium and iron. This prevents oxidation, allowing compositions to be stored for a longer period of time"
-        DISTILLERY_RECIPES.recipeBuilder().EUt(32).duration(10)
+        DISTILLATION_RECIPES.recipeBuilder().EUt(32).duration(10)
                 .fluidInputs(SodiumStearate.getFluid(100))
                 .fluidOutputs(StearicAcid.getFluid(100))
                 .output(dustTiny, SodiumHydroxide, 1)
-                .circuitMeta(0)
                 .buildAndRegister();
 
         /*FLUID_SOLIDFICATION_RECIPES.recipeBuilder().EUt(32).duration(100)

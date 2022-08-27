@@ -1,6 +1,7 @@
 package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
@@ -181,7 +182,7 @@ public class SmogusChain {
 
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(GTFONCMaterialHandler.MarshmallowSyrupMixture.getFluid(1000))
-	            .circuitMeta(0)
+	            .circuitMeta(1)
                 .fluidOutputs(GTFONCMaterialHandler.MarshmallowFoam.getFluid(5000))
             	.EUt(240)
                 .duration(300)
@@ -213,6 +214,7 @@ public class SmogusChain {
             	.fluidInputs(GTFOMaterialHandler.Albumen.getFluid(500))
           	    .fluidInputs(GTFONCMaterialHandler.SweetenedDilutedCaneSyrupMixture.getFluid(5000))
             	.fluidOutputs(GTFONCMaterialHandler.MarshmallowSyrupMixture.getFluid(5500))
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(2))
             	.EUt(120)
                 .duration(300)
                 .buildAndRegister();
@@ -235,7 +237,7 @@ public class SmogusChain {
 
         BENDER_RECIPES.recipeBuilder()
                 .inputs(GTFONCMaterialHandler.MATTER_GRAHAM_HOT.getItemStack())
-	            .circuitMeta(0)
+	            .circuitMeta(1)
                 .outputs(GTFONCMaterialHandler.CHUNK_GRAHAM_HOT.getItemStack())
 	            .EUt(45)
                 .duration(80)
@@ -308,7 +310,8 @@ public class SmogusChain {
 	            .fluidInputs(Water.getFluid(5000))
             	.fluidInputs(CaneSyrup.getFluid(5000))
             	.fluidOutputs(GTFONCMaterialHandler.SweetenedDilutedCaneSyrupMixture.getFluid(10000))
-            	.EUt(120)
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
+                .EUt(120)
                 .duration(260)
                 .buildAndRegister();
 
@@ -367,7 +370,7 @@ public class SmogusChain {
 
         PYROLYSE_RECIPES.recipeBuilder()
                 .input(Items.DYE, 8, 3)
-            	.circuitMeta(0)
+            	.circuitMeta(1)
                 .outputs(new ItemStack(NCItems.roasted_cocoa_beans, 8))
                 .fluidOutputs(Water.getFluid(1000))
 	            .EUt(120)

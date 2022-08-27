@@ -141,6 +141,11 @@ public class GTFOTFCCompatibility {
                 .setFoodData(0, 0, 0, 1, 0, 0).register();
         new TFCComponentPreparer(APPLE_SLICE)
                 .setFoodData(0, 0, 1, 0, 0, 0).register();
+        new TFCComponentPreparer(ICE_CREAM_PLAIN)
+                .setFoodData(1, 0, 0, 0, 0, 2)
+                .setHeating(100, 50)
+                .register();
+
 
     }
 

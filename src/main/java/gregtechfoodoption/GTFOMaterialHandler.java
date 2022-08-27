@@ -170,6 +170,24 @@ public class GTFOMaterialHandler {
             .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
             .build();
 
+    public static final Material Cream = fluidBuilder(21542, "cream").color(0xced2d9)
+            .build();
+    public static final Material SkimmedMilk = fluidBuilder(21543, "skimmed_milk").color(0xf7ffe3)
+            .build();
+    public static final Material SoyLecithin = fluidBuilder(21544, "soy_lecithin").color(0xa6963a)
+            .build();
+    public static final Material RawSoybeanOil = fluidBuilder(21545, "raw_soybean_oil").color(0xad5418)
+            .build();
+    public static final Material HydratedSoybeanOil = fluidBuilder(21546, "hydrated_soybean_oil").color(0xc99c7d)
+            .build();
+    public static final Material SoybeanOil = fluidBuilder(21547, "soybean_oil").color(0xe8e4a9)
+            .build();
+    public static final Material PasteurizedMilk = fluidBuilder(21548, "pasteurized_milk").color(0xfefdf3)
+            .build();
+    public static final Material MilkColloid = fluidBuilder(21549, "milk_colloid").color(0xe0d7bf)
+            .build();
+    public static final Material IceCreamMixture = fluidBuilder(21550, "ice_cream_mixture").color(0xdebd80)
+            .build();
 
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 

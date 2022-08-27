@@ -9,8 +9,8 @@ import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
 import net.minecraft.item.ItemStack;
 
-import static gregtech.api.unification.material.Materials.SeedOil;
-import static gregtech.api.unification.material.Materials.Wood;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
 
 public class SeedsChain {
     public static void init() {
@@ -70,14 +70,30 @@ public class SeedsChain {
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
-                .fluidOutputs(SeedOil.getFluid(15))
+                .fluidOutputs(RawSoybeanOil.getFluid(15))
                 .buildAndRegister();
 
         RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(64).duration(64)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
                 .output(OrePrefix.dustSmall, Wood)
-                .fluidOutputs(SeedOil.getFluid(28))
+                .fluidOutputs(RawSoybeanOil.getFluid(28))
                 .buildAndRegister();
+
+        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(24).duration(60)
+                .fluidInputs(RawSoybeanOil.getFluid(1000), Water.getFluid(500))
+                .fluidOutputs(HydratedSoybeanOil.getFluid(1000))
+                .buildAndRegister();
+        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(16).duration(120)
+                .fluidInputs(HydratedSoybeanOil.getFluid(1000))
+                .fluidOutputs(SoyLecithin.getFluid(50), SoybeanOil.getFluid(1000))
+                .buildAndRegister();
+
+        RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(24).duration(40)
+                .fluidInputs(RawSoybeanOil.getFluid(1000))
+                .fluidOutputs(SeedOil.getFluid(600));
+        RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(24).duration(40)
+                .fluidInputs(SoybeanOil.getFluid(1000))
+                .fluidOutputs(SeedOil.getFluid(1000));
 
 
 /*

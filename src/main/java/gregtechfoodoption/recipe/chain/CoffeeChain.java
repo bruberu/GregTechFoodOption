@@ -100,7 +100,7 @@ public class CoffeeChain {
 
         PYROLYSE_RECIPES.recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.LARGE_GRADED_COFFEE.getItemStack())
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .outputs(GTFOAAMaterialHandler.LARGE_ROASTED_COFFEE.getItemStack())
                 .fluidOutputs(Water.getFluid(200))
                 .EUt(120)
@@ -109,7 +109,7 @@ public class CoffeeChain {
 
         PYROLYSE_RECIPES.recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.SMALL_GRADED_COFFEE.getItemStack())
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .outputs(GTFOAAMaterialHandler.SMALL_ROASTED_COFFEE.getItemStack())
                 .fluidOutputs(Water.getFluid(100))
                 .EUt(120)

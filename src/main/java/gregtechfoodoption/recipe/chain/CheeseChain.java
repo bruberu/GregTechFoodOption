@@ -84,7 +84,7 @@ public class CheeseChain {
                 .buildAndRegister();
         BENDER_RECIPES.recipeBuilder().EUt(16).duration(400)
                 .inputs(SolidifiedMozzarellaCurd.getItemStack(5))
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .outputs(MOZZARELLA_BALL.getStackForm())
                 .buildAndRegister();
         EXTRUDER_RECIPES.recipeBuilder().EUt(16).duration(400)
@@ -98,7 +98,7 @@ public class CheeseChain {
                 .buildAndRegister();
         FLUID_HEATER_RECIPES.recipeBuilder().EUt(30).duration(100)
                 .fluidInputs(WheySaltWaterMix.getFluid(1000))
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .fluidOutputs(HeatedRicottaStarter.getFluid(1000))
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(12).duration(40)

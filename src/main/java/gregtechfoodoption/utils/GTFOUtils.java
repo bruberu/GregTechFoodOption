@@ -24,8 +24,7 @@ import java.util.List;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.gem;
-import static gregtechfoodoption.GTFOMaterialHandler.FryingOil;
-import static gregtechfoodoption.GTFOMaterialHandler.OliveOil;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.SKEWER;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 
@@ -165,7 +164,7 @@ public class GTFOUtils {
     }
 
     public static List<Fluid> getOrganicOils() {
-        return Arrays.asList(FishOil.getFluid(), SeedOil.getFluid(), OliveOil.getFluid(1000).getFluid(), FryingOil.getFluid(1000).getFluid());
+        return Arrays.asList(FishOil.getFluid(), SeedOil.getFluid(), OliveOil.getFluid(), FryingOil.getFluid());
     }
 
     public static RecipeMap<?> chemicalDehydratorProxy() {
