@@ -728,8 +728,25 @@ gregtechfoodoption.planks.rainbowwood.name=Rainbowwood Planks
 
 metaitem.food.ice_cream.plain.name=Plain Ice Cream
 metaitem.food.ice_cream.plain.tooltip=Tastes like Ice, I guess
-metaitem.food.ice_cream.plain.name=Chum Ice Cream
-metaitem.food.ice_cream.plain.tooltip=Creamy and Fum!
+metaitem.food.ice_cream.chum.name=Chum Ice Cream
+metaitem.food.ice_cream.chum.tooltip=Creamy and Fum!
+metaitem.food.ice_cream.vanilla.name=Vanilla Ice Cream
+metaitem.food.ice_cream.vanilla.tooltip=Version 1.12.2
+metaitem.food.ice_cream.chocolate.name=Chocolate Ice Cream
+metaitem.food.ice_cream.chocolate.tooltip=Your standard Chocolate Gelato
+metaitem.food.ice_cream.bacon.name=Bacon Ice Cream
+metaitem.food.ice_cream.bacon.tooltip=Manly Gelato
+metaitem.food.ice_cream.banana.name=Banana Ice Cream
+metaitem.food.ice_cream.banana.tooltip=I will have one Minion Gelato, please
+metaitem.food.ice_cream.lemon.name=Lemon Ice Cream
+metaitem.food.ice_cream.lemon.tooltip=Looks like nuclear Sludge
+metaitem.food.ice_cream.melon.name=Melon Ice Cream
+metaitem.food.ice_cream.melon.tooltip=Does not use Human Blood, I swear
+metaitem.food.ice_cream.bear.name=Bear Ice Cream
+metaitem.food.ice_cream.bear.tooltip=Jr's Prize for getting the Baking Oven for once
+metaitem.food.ice_cream.potato_chip.name=Potato Chip Ice Cream
+metaitem.food.ice_cream.potato_chip.tooltip=https://tenor.com/view/cat-swim-in-milk-cat-kitty-milk-milk-cat-gif-23473453
+
 
 material.gtfo_skimmed_milk=Skim Milk
 material.gtfo_cream=Cream
@@ -740,3 +757,11 @@ material.gtfo_soybean_oil=Refined Soybean Oil
 material.gtfo_pasteurized_milk=Pasteurized Milk
 material.gtfo_milk_colloid=Milk Colloid
 material.gtfo_ice_cream_mixture=Ice Cream Mixture
+
+metaitem.vanillylmandelic_acid_dust.name=Vanillylmandelic Acid
+metaitem.vanilglycolic_acid_dust.name=Vanilglycolic Acid
+metaitem.vanillin_dust.name=Vanillin
+material.gtfo_guaiacol=Guaiacol
+material.gtfo_glyoxal=Glyoxal
+material.gtfo_acetaldehyde=Acetaldehyde
+material.gtfo_glyoxylic_acid=Glyoxylic Acid

@@ -1,6 +1,7 @@
 package gregtechfoodoption;
 
 import gregicality.science.api.unification.materials.GCYSMaterials;
+import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
@@ -189,6 +190,22 @@ public class GTFOMaterialHandler {
     public static final Material IceCreamMixture = fluidBuilder(21550, "ice_cream_mixture").color(0xdebd80)
             .build();
 
+    public static final Material Guaiacol = fluidBuilder(21551, "guaiacol").color(0xa63a00)
+            .components(Carbon, 7, Hydrogen, 8, Oxygen, 2)
+            .build();
+
+    public static final Material Acetaldehyde = fluidBuilder(21552, "acetaldehyde").color(0xf3f2f1)
+            .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)
+            .build();
+
+    public static final Material Glyoxal = fluidBuilder(21553, "glyoxal").color(0xc9c7ab)
+            .components(Carbon, 2, Hydrogen, 2, Oxygen, 2)
+            .build();
+
+    public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid").color(0xd9d5a0)
+            .components(Carbon, 2, Hydrogen, 2, Oxygen, 3)
+            .build();
+
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
     public static final GTFOOredictItem.OreDictValueItem Zest = SHAPED_ITEM.addOreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, dust);
@@ -222,6 +239,10 @@ public class GTFOMaterialHandler {
 
     public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121, "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF), MaterialIconSet.ROUGH, dust, "NaClO4");
     public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, MODID_GCYS, () -> OreDictUnifier.get(dust, GCYSMaterials.SodiumChlorate));
+
+    public static final MetaOreDictItem.OreDictValueItem VanillylmandelicAcid = SHAPED_ITEM.addOreDictItem(1123, "vanillylmandelic_acid", 0xf2efbd, MaterialIconSet.ROUGH, dust, "C9H10O5");
+    public static final MetaOreDictItem.OreDictValueItem VanilglycolicAcid = SHAPED_ITEM.addOreDictItem(1124, "vanilglycolic_acid", 0xebe7a4, MaterialIconSet.DULL, dust, "C9H8O5");
+    public static final MetaOreDictItem.OreDictValueItem Vanillin = SHAPED_ITEM.addOreDictItem(1125, "vanillin", 0xfbfbfb, MaterialIconSet.SHINY, OrePrefix.dust, "C8H8O3");
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
