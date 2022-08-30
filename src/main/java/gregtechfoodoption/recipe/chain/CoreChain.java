@@ -169,6 +169,11 @@ public class CoreChain {
                 .fluidOutputs(AppleExtract.getFluid(100))
                 .buildAndRegister();
 
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
+                .input(Items.MELON)
+                .fluidOutputs(MelonExtract.getFluid(100))
+                .buildAndRegister();
+
         CANNER_RECIPES.recipeBuilder()
                 .inputs(APPLE_JUICE.getStackForm())
                 .fluidOutputs(AppleExtract.getFluid(100))

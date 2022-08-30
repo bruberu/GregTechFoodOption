@@ -145,8 +145,42 @@ public class GTFOTFCCompatibility {
                 .setFoodData(1, 0, 0, 0, 0, 2)
                 .setHeating(100, 50)
                 .register();
-
-
+        new TFCComponentPreparer(ICE_CREAM_CHUM)
+                .setFoodData(2, 1, 1, 1, 1, 3)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_BACON)
+                .setFoodData(1, 0, 0, 0, 2, 2)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_BANANA)
+                .setFoodData(1, 0, 3, 0, 0, 2)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_MELON)
+                .setFoodData(1, 0, 1, 0, 0, 2)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_BEAR)
+                .setFoodData(1, 0, 0, 0, 3, 2)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_LEMON)
+                .setFoodData(1, 0, 2, 0, 0, 2)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_CHOCOLATE)
+                .setFoodData(1, 1, 0, 1, 0, 2)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_VANILLA)
+                .setFoodData(1, 1, 0, 3, 0, 3)
+                .setHeating(105, 55)
+                .register();
+        new TFCComponentPreparer(ICE_CREAM_CHIP)
+                .setFoodData(1, 0, 0, 3, 0, 2)
+                .setHeating(105, 55)
+                .register();
     }
 
     private static class TFCComponentPreparer {

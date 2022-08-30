@@ -193,17 +193,17 @@ public class GTFOMaterialHandler {
     public static final Material Guaiacol = fluidBuilder(21551, "guaiacol").color(0xa63a00)
             .components(Carbon, 7, Hydrogen, 8, Oxygen, 2)
             .build();
-
     public static final Material Acetaldehyde = fluidBuilder(21552, "acetaldehyde").color(0xf3f2f1)
             .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)
             .build();
-
     public static final Material Glyoxal = fluidBuilder(21553, "glyoxal").color(0xc9c7ab)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 2)
             .build();
-
     public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid").color(0xd9d5a0)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 3)
+            .build();
+
+    public static final Material MelonExtract = fluidBuilder(21555, "melon_extract").color(0xfc7996)
             .build();
 
     public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);

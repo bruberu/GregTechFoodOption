@@ -201,6 +201,14 @@ public class GTFOMetaItem extends StandardMetaItem {
 
     public static MetaItem<?>.MetaValueItem ICE_CREAM_PLAIN;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_CHUM;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_VANILLA;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_CHOCOLATE;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_BACON;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_BANANA;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_LEMON;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_MELON;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_BEAR;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_CHIP;
 
     public GTFOMetaItem() {
         super();
@@ -496,6 +504,15 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         ICE_CREAM_PLAIN = addItem(165, "food.ice_cream.plain").addComponents(new GTFOFoodStats(4, 0.25f, false, true, ItemStack.EMPTY));
         ICE_CREAM_CHUM = addItem(166, "food.ice_cream.chum").addComponents(new GTFOFoodStats(5, 0.33f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_BANANA = addItem(167, "food.ice_cream.banana").addComponents(new GTFOFoodStats(6, 0.33f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_BACON = addItem(168, "food.ice_cream.bacon").addComponents(new GTFOFoodStats(6, 0.33f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_VANILLA = addItem(169, "food.ice_cream.vanilla").addComponents(new GTFOFoodStats(9, 0.25f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_BEAR = addItem(170, "food.ice_cream.bear").addComponents(new GTFOFoodStats(7, 0.33f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_MELON = addItem(171, "food.ice_cream.melon").addComponents(new GTFOFoodStats(5, 0.33f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_CHOCOLATE = addItem(172, "food.ice_cream.chocolate").addComponents(new GTFOFoodStats(9, 0.25f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_LEMON = addItem(173, "food.ice_cream.lemon").addComponents(new GTFOFoodStats(6, 0.33f, false, true, ItemStack.EMPTY));
+        ICE_CREAM_CHIP = addItem(174, "food.ice_cream.chip").addComponents(new GTFOFoodStats(8, 0.33f, false, true, ItemStack.EMPTY));
+
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");

@@ -744,9 +744,8 @@ metaitem.food.ice_cream.melon.name=Melon Ice Cream
 metaitem.food.ice_cream.melon.tooltip=Does not use Human Blood, I swear
 metaitem.food.ice_cream.bear.name=Bear Ice Cream
 metaitem.food.ice_cream.bear.tooltip=Jr's Prize for getting the Baking Oven for once
-metaitem.food.ice_cream.potato_chip.name=Potato Chip Ice Cream
-metaitem.food.ice_cream.potato_chip.tooltip=https://tenor.com/view/cat-swim-in-milk-cat-kitty-milk-milk-cat-gif-23473453
-
+metaitem.food.ice_cream.chip.name=Potato Chip Ice Cream
+metaitem.food.ice_cream.chip.tooltip=https://tenor.com/view/cat-swim-in-milk-cat-kitty-milk-milk-cat-gif-23473453
 
 material.gtfo_skimmed_milk=Skim Milk
 material.gtfo_cream=Cream
@@ -765,3 +764,5 @@ material.gtfo_guaiacol=Guaiacol
 material.gtfo_glyoxal=Glyoxal
 material.gtfo_acetaldehyde=Acetaldehyde
 material.gtfo_glyoxylic_acid=Glyoxylic Acid
+
+material.gtfo_melon_extract=Melon Extract
