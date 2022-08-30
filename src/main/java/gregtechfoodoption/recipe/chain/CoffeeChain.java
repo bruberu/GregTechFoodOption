@@ -1,16 +1,16 @@
 package gregtechfoodoption.recipe.chain;
 
 import de.ellpeck.actuallyadditions.mod.blocks.InitBlocks;
-import gregtechfoodoption.integration.GTFOAAMaterialHandler;
-import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.GTFOConfig;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import de.ellpeck.actuallyadditions.mod.items.metalists.TheMiscItems;
 import de.ellpeck.actuallyadditions.mod.misc.apiimpl.MethodHandler;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.integration.GTFOAAMaterialHandler;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -66,7 +66,7 @@ public class CoffeeChain {
                 .duration(100)
                 .buildAndRegister();
 
-        GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
+        CHEMICAL_RECIPES.recipeBuilder()
                 .inputs(GTFOAAMaterialHandler.COFFEE_GROUNDS.getItemStack())
                 .inputs(coffeeFilter) // This is a paper cone, or a coffee filter, if you like.
                 .fluidInputs(Materials.Steam.getFluid(1000))

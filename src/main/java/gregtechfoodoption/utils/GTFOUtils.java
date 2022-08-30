@@ -1,9 +1,11 @@
 package gregtechfoodoption.utils;
 
+import gregicality.science.api.recipes.GCYSRecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.util.RandomPotionEffect;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOFoodStats;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -14,6 +16,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
@@ -24,7 +27,8 @@ import java.util.List;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.gem;
-import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.GTFOMaterialHandler.FryingOil;
+import static gregtechfoodoption.GTFOMaterialHandler.OliveOil;
 import static gregtechfoodoption.item.GTFOMetaItem.SKEWER;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.BAKING_OVEN_RECIPES;
 
@@ -168,7 +172,7 @@ public class GTFOUtils {
     }
 
     public static RecipeMap<?> chemicalDehydratorProxy() {
-        return RecipeMaps.CHEMICAL_RECIPES;
+        return Loader.isModLoaded(GTFOValues.MODID_GCYS) ? GCYSRecipeMaps.DRYER_RECIPES : RecipeMaps.CHEMICAL_RECIPES;
     }
 
     public static RecipeMap<?> stellarForgeProxy() {

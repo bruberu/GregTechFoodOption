@@ -18,12 +18,12 @@ public class CheeseChain {
                 .outputs(BEEF_SLICE.getStackForm(9))
                 .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
                 .buildAndRegister();
-        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(8).duration(300)
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(300)
                 .inputs(BEEF_SLICE.getStackForm(4))
                 .fluidInputs(SaltWater.getFluid(1000), AceticAcid.getFluid(100))
                 .fluidOutputs(CrudeRennetSolution.getFluid(500))
                 .buildAndRegister();
-        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(30).duration(200)
+        CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(200)
                 .fluidInputs(CrudeRennetSolution.getFluid(1), Milk.getFluid(3000))
                 .outputs(CoagulatedMilkCurd.getItemStack())
                 .fluidOutputs(Whey.getFluid(600))
