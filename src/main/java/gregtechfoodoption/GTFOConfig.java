@@ -203,9 +203,6 @@ public class GTFOConfig {
     }
 
     public static class GTFOMiscConfig {
-        @Config.Comment("Allow for lemons and limes to drop from trees? Note: makes the early game *much* easier to deal with.")
-        public boolean dropLemonsAndLimes = true;
-
         @Config.Comment("Create methane centrifuging recipes for GTFO seeds?")
         public boolean centrifugeSeeds = true;
     }
