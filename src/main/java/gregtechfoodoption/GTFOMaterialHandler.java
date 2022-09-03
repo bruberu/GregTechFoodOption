@@ -1,6 +1,9 @@
 package gregtechfoodoption;
 
 import gregicality.science.api.unification.materials.GCYSMaterials;
+import gregtech.api.GregTechAPI;
+import gregtech.api.fluids.fluidType.FluidType;
+import gregtech.api.fluids.fluidType.FluidTypes;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -121,10 +124,11 @@ public class GTFOMaterialHandler {
             .color(0x82661d)
             .build();
 
-    public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid")
+    public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid", FluidTypes.ACID)
             .components(Hydrogen, 1, Chlorine, 1, Oxygen, 4)
             .build();
-    public static final Material ChloroauricAcid = fluidBuilder(21530, "chloroauric_acid")
+    public static final Material ChloroauricAcid = GregTechAPI.MaterialRegistry.get("chloroauric_acid") != null ? GregTechAPI.MaterialRegistry.get("chloroauric_acid") :
+            fluidBuilder(21530, "chloroauric_acid", FluidTypes.ACID)
             .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
             .build();
 
@@ -153,15 +157,15 @@ public class GTFOMaterialHandler {
             .color(0xffcc66)
             .components(Carbon, 57, Hydrogen, 110, Oxygen, 6)
             .build();
-    public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid").color(0xfff7e6).
-            components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+    public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid", FluidTypes.ACID).color(0xfff7e6)
+            .components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
             .build()
             .setFormula("C17H35CO2H", true); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
     public static final Material SodiumStearate = fluidBuilder(21539, "sodium_stearate")
             .components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
             .build()
             .setFormula("C17H35COONa", true);
-    public static final Material CitricAcid = fluidBuilder(21540, "citric_acid")
+    public static final Material CitricAcid = fluidBuilder(21540, "citric_acid", FluidTypes.ACID)
             .color(0xccbd61)
             .components(Carbon, 5, Hydrogen, 7, Oxygen, 5)
             .build()
@@ -199,7 +203,7 @@ public class GTFOMaterialHandler {
     public static final Material Glyoxal = fluidBuilder(21553, "glyoxal").color(0xc9c7ab)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 2)
             .build();
-    public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid").color(0xd9d5a0)
+    public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid", FluidTypes.ACID).color(0xd9d5a0)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 3)
             .build();
 
@@ -255,5 +259,9 @@ public class GTFOMaterialHandler {
 
     public static Material.Builder fluidBuilder(int id, String name) {
         return new Material.Builder(id, "gtfo_" + name).fluid();
+    }
+
+    public static Material.Builder fluidBuilder(int id, String name, FluidType type) {
+        return new Material.Builder(id, "gtfo_" + name).fluid(type);
     }
 }
