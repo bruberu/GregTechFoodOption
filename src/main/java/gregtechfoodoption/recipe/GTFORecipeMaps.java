@@ -65,4 +65,7 @@ public class GTFORecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressWidget.MoveType.HORIZONTAL)
             .setSound(GTSounds.COMPRESSOR);
 
+    @ZenProperty
+    public static final RecipeMap<IntCircuitRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMap<>("greenhouse", 2, 4, 1, 4, 0, 1, 0, 1, new IntCircuitRecipeBuilder(), false)
+            .setSound(GTSounds.COOLING);
 }

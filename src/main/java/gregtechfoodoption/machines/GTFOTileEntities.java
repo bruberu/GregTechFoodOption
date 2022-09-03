@@ -9,6 +9,7 @@ import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.machines.farmer.MetaTileEntityFarmer;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
+import gregtechfoodoption.machines.multiblock.MetaTileEntityGreenhouse;
 import gregtechfoodoption.machines.multiblock.MetaTileEntitySteamBakingOven;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.util.ResourceLocation;
@@ -29,6 +30,7 @@ public class GTFOTileEntities {
     public static MetaTileEntityBakingOven BAKING_OVEN;
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
     public static MetaTileEntitySteamBakingOven STEAM_BAKING_OVEN;
+    public static MetaTileEntityGreenhouse GREENHOUSE;
 
 
     public static void init() {
@@ -88,7 +90,7 @@ public class GTFOTileEntities {
         FARMER[2] = registerMetaTileEntity(8563, new MetaTileEntityFarmer(location("farmer.hv"), 3, 5));
         FARMER[3] = registerMetaTileEntity(8564, new MetaTileEntityFarmer(location("farmer.ev"), 4, 2));
 
-
+        GREENHOUSE = registerMetaTileEntity(8565, new MetaTileEntityGreenhouse(location("greenhouse")));
     }
 
     private static ResourceLocation location(String name) {

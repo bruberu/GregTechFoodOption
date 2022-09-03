@@ -11,6 +11,7 @@ public class GTFORecipeAddition {
     {
         CoreChain.init();
         GTFOTree.TREES.forEach(GTFOTree::initRecipes);
+        GreenhouseChain.init();
         MobExtractionChain.init();
         SeedsChain.init();
         CheeseChain.init();
