@@ -1,7 +1,9 @@
 package gregtechfoodoption.utils;
 
 
+import de.ellpeck.actuallyadditions.mod.config.values.ConfigBoolValues;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOValues;
 import nc.Global;
 import net.minecraftforge.fml.common.Loader;
 
@@ -9,7 +11,7 @@ import net.minecraftforge.fml.common.Loader;
 public class GTFOConfigOverrider {
     public static void init() {
         if (GTFOConfig.gtfoncConfig.nuclearCompat) {
-            if (!Loader.isModLoaded("nuclearcraft")) {
+            if (!Loader.isModLoaded(GTFOValues.MODID_NC)) {
                 if (Global.VERSION.charAt(1) != 'o')
                     GTFOLog.logger.warn("It appears you don't have NuclearCraft:Overhauled installed, but you still have the config option for compatibility with it on. Consider turning it off, or installing NuclearCraft:Overhauled.");
                 else
@@ -18,10 +20,13 @@ public class GTFOConfigOverrider {
             }
         }
         if (GTFOConfig.gtfoaaConfig.actuallyCompat) {
-            if (!Loader.isModLoaded("actuallyadditions")) {
+            if (!Loader.isModLoaded(GTFOValues.MODID_AA)) {
                 GTFOLog.logger.warn("It appears you don't have ActuallyAdditions installed, but you still have the config option for compatibility with it on. Consider turning it off, or installing ActuallyAdditions.");
                 GTFOConfig.gtfoaaConfig.setAllToFalse();
             }
+        }
+        if (Loader.isModLoaded(GTFOValues.MODID_AA)) {
+            ConfigBoolValues.DO_COFFEE_GEN.currentValue = false;
         }
         if (GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat) {
             if (!Loader.isModLoaded("applecore")) {

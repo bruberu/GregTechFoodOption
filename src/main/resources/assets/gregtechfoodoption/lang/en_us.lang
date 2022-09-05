@@ -766,3 +766,24 @@ material.gtfo_acetaldehyde=Acetaldehyde
 material.gtfo_glyoxylic_acid=Glyoxylic Acid
 
 material.gtfo_melon_extract=Melon Extract
+
+metaitem.component.gelatin.name=Gelatin
+metaitem.food.chocolate.name=Milk Chocolate
+metaitem.food.graham_cracker.name=Graham Cracker
+metaitem.food.marshmallow.name=Marshmallow
+metaitem.food.smore.one.name=S'more S'mingot
+metaitem.food.smore.two.name=MoreS'more DoubleS'mingot
+metaitem.food.smore.four.name=FourS'more QuadS'mingot
+metaitem.component.cocoa_nibs.name=Ground Cocoa Nibs
+metaitem.component.roasted_beans.name=Roasted Cocoa Beans
+material.gtfo_molten_unsweetened_chocolate=Molten Unsweetened Chocolate
+material.gtfo_cocoa_butter=Cocoa Butter
+material.gtfo_molten_dark_chocolate=Molten Dark Chocolate
+material.gtfo_molten_milk_chocolate=Molten Milk Chocolate
+metaitem.component.paper_cone.name=Coffee Filter
+metaitem.component.empty_cup.name=Empty Cup
+metaitem.food.coffee.normal.name=Coffee Cup
+metaitem.food.coffee.energized.name=Energized Coffee Cup
+metaitem.crop.coffee.name=Coffee Cherry
+metaitem.seed.coffee.name=Coffee Seed
+metaitem.component.unfired_cup.name=Unfired Cup

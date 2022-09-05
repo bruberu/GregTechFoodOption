@@ -342,6 +342,14 @@ public class GTFOMetaItem extends StandardMetaItem {
 
         SCRAP_MEAT = addItem(134, "component.scrap_meat");
 
+        GELATIN = addItem(196, "component.gelatin");
+        ROASTED_COCOA_BEANS = addItem(197, "component.roasted_beans");
+        COCOA_NIBS = addItem(198, "component.cocoa_nibs");
+        EMPTY_CUP = addItem(199, "component.empty_cup");
+        PAPER_CONE = addItem(200, "component.paper_cone");
+        COFFEE_CHERRY = addItem(201, "crop.coffee");
+        UNFIRED_CUP = addItem(205, "component.unfired_cup");
+
         KEBAB_KUBIDEH = addItem(136, "component.kebab.kubide");
         KEBAB_BARG = addItem(138, "component.kebab.barg");
         KEBAB_ONION = addItem(141, "component.kebab.onion");
@@ -536,6 +544,15 @@ public class GTFOMetaItem extends StandardMetaItem {
         ICE_CREAM_LEMON = addItem(173, "food.ice_cream.lemon").addComponents(new GTFOFoodStats(6, 0.33f, false, true, ItemStack.EMPTY));
         ICE_CREAM_CHIP = addItem(174, "food.ice_cream.chip").addComponents(new GTFOFoodStats(8, 0.33f, false, true, ItemStack.EMPTY));
 
+        MILK_CHOCOLATE = addItem(190, "food.chocolate").addComponents(new GTFOFoodStats(4, 1.25f, false, false, ItemStack.EMPTY));
+        GRAHAM_CRACKER = addItem(191, "food.graham_cracker").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY));
+        SMORE_SMINGOT = addItem(192, "food.smore.one").addComponents(new GTFOFoodStats(8, 1.5f, false, false, ItemStack.EMPTY));
+        MORESMORE_DOUBLESMINGOT = addItem(193, "food.smore.two").addComponents(new GTFOFoodStats(20, 3.8f, false, false, ItemStack.EMPTY));
+        FOURSMORE_QUADSMINGOT = addItem(194, "food.smore.four").addComponents(new GTFOFoodStats(44, 8.61363636364f, false, false, ItemStack.EMPTY));
+        MARSHMALLOW = addItem(195, "food.marshmallow").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY));
+
+        COFFEE_CUP = addItem(203, "food.coffee.normal").addComponents(new GTFOFoodStats(8, 5f, true, false, EMPTY_CUP.getStackForm(), new RandomPotionEffect(MobEffects.REGENERATION, 60, 1, 0), new RandomPotionEffect(MobEffects.SPEED, 1800, 2, 0)));
+        ENERGIZING_COFFEE_CUP = addItem(204, "food.coffee.energized").addComponents(new GTFOFoodStats(8, 5f, true, false, EMPTY_CUP.getStackForm(), new RandomPotionEffect(MobEffects.REGENERATION, 200, 3, 0), new RandomPotionEffect(MobEffects.STRENGTH, 200, 2, 0), new RandomPotionEffect(MobEffects.RESISTANCE, 200, 2, 0), new RandomPotionEffect(MobEffects.SPEED, 1000, 4, 0)));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
@@ -549,26 +566,10 @@ public class GTFOMetaItem extends StandardMetaItem {
         GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GRAPE, GRAPE_SEED.getStackForm(), GRAPES.getStackForm()));
         CUCUMBER_SEED = addItem(164, "seed.cucumber");
         CUCUMBER_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER_SEED.getStackForm(), CUCUMBER.getStackForm()));
-
-        // 175-189 left blank for organic circuits
-
-        MILK_CHOCOLATE = addItem(190, "food.chocolate").addComponents(new GTFOFoodStats(4, 1.25f, false, false, ItemStack.EMPTY));
-        GRAHAM_CRACKER = addItem(191, "food.graham_cracker").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY));
-        SMORE_SMINGOT = addItem(192, "food.smore_smingot").addComponents(new GTFOFoodStats(8, 1.5f, false, false, ItemStack.EMPTY));
-        MORESMORE_DOUBLESMINGOT = addItem(193, "food.moresmore_doublesmingot").addComponents(new GTFOFoodStats(20, 3.8f, false, false, ItemStack.EMPTY));
-        FOURSMORE_QUADSMINGOT = addItem(194, "food.foursmore_quadsmingot").addComponents(new GTFOFoodStats(44, 8.61363636364f, false, false, ItemStack.EMPTY));
-        MARSHMALLOW = addItem(195, "food.marshmallow").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY));
-        GELATIN = addItem(196, "gelatin");
-        ROASTED_COCOA_BEANS = addItem(197, "roasted_beans");
-        COCOA_NIBS = addItem(198, "food.cocoa_nibs").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY));
-        EMPTY_CUP = addItem(199, "empty_cup");
-        PAPER_CONE = addItem(200, "paper_cone");
-        COFFEE_CHERRY = addItem(201, "food.coffee_cherry").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY));
         COFFEE_SEED = addItem(202, "seed.coffee");
         COFFEE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_COFFEE, COFFEE_SEED.getStackForm(), COFFEE_CHERRY.getStackForm()));
-        COFFEE_CUP = addItem(203, "food.coffee_cup").addComponents(new GTFOFoodStats(8, 5f, true, false, EMPTY_CUP.getStackForm(), new RandomPotionEffect(MobEffects.REGENERATION, 60, 1, 0), new RandomPotionEffect(MobEffects.SPEED, 1800, 2, 0)));
-        ENERGIZING_COFFEE_CUP = addItem(204, "food.e_coffee_cup").addComponents(new GTFOFoodStats(8, 5f, true, false, EMPTY_CUP.getStackForm(), new RandomPotionEffect(MobEffects.REGENERATION, 200, 3, 0), new RandomPotionEffect(MobEffects.STRENGTH, 200, 2, 0), new RandomPotionEffect(MobEffects.RESISTANCE, 200, 2, 0), new RandomPotionEffect(MobEffects.SPEED, 1000, 4, 0)));
-        UNFIRED_CUP = addItem(205, "unfired_cup");
+
+        // 175-189 left blank for organic circuits
 
         if (GTFOConfig.gtfoncConfig.nuclearCompat && GTFOConfig.gtfoncConfig.addSmogus) {
             int heal = 44;
@@ -601,7 +602,6 @@ public class GTFOMetaItem extends StandardMetaItem {
             MORE_SMOGUS = smores[5];
             FOUR_SMOGUS = smores[6];
             HEART_SMOGUS = smores[7];
-
         }
     }
 

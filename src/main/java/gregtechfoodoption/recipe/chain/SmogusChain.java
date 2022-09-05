@@ -7,7 +7,8 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.integration.jei.JEIGTFOPlugin;
 import gregtechfoodoption.utils.GTFOUtils;
 import nc.init.NCItems;
 import nc.recipe.AbstractRecipeHandler;
@@ -18,6 +19,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Loader;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,33 +31,53 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static nc.recipe.AbstractRecipeHandler.fluidStack;
-import gregtechfoodoption.item.*;
 
 
 public class SmogusChain {
     public static void init() {
-        removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.milk_chocolate, 1));
-        removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.dark_chocolate, 1));
-        removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.unsweetened_chocolate, 1));
-        removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.marshmallow, 1));
-        removeRecipeByMapAndProducts(NCRecipes.salt_mixer, convertToFluidIngredient("milk_chocolate", 288));
-        removeRecipeByMapAndProducts(NCRecipes.salt_mixer, convertToFluidIngredient("dark_chocolate", 144));
-        removeRecipeByMapAndProducts(NCRecipes.salt_mixer, convertToFluidIngredient("unsweetened_chocolate", 144));
-        removeRecipeByMapAndProducts(NCRecipes.extractor, new ItemIngredient[]{convertToItemIngredient(NCItems.cocoa_solids, 1)}, new FluidIngredient[]{convertToFluidIngredient("cocoa_butter", 144)});
-        removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.flour, 1));
-        removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.gelatin, 4));
-        removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.gelatin, 8));
-        removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.ground_cocoa_nibs, 1));
-        removeRecipeByMapAndProducts(NCRecipes.pressurizer, convertToItemIngredient(NCItems.graham_cracker, 1));
-        ModHandler.removeFurnaceSmelting(new ItemStack(Items.DYE, 1, 3));
-        ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:smore"));
-        ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:moresmore"));
-        ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:foursmore"));
-        removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
+        if (Loader.isModLoaded(GTFOValues.MODID_NC)) {
+            removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.milk_chocolate, 1));
+            removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.dark_chocolate, 1));
+            removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.unsweetened_chocolate, 1));
+            removeRecipeByMapAndProducts(NCRecipes.ingot_former, convertToItemIngredient(NCItems.marshmallow, 1));
+            removeRecipeByMapAndProducts(NCRecipes.salt_mixer, convertToFluidIngredient("milk_chocolate", 288));
+            removeRecipeByMapAndProducts(NCRecipes.salt_mixer, convertToFluidIngredient("dark_chocolate", 144));
+            removeRecipeByMapAndProducts(NCRecipes.salt_mixer, convertToFluidIngredient("unsweetened_chocolate", 144));
+            removeRecipeByMapAndProducts(NCRecipes.extractor, new ItemIngredient[]{convertToItemIngredient(NCItems.cocoa_solids, 1)}, new FluidIngredient[]{convertToFluidIngredient("cocoa_butter", 144)});
+            removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.flour, 1));
+            removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.gelatin, 4));
+            removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.gelatin, 8));
+            removeRecipeByMapAndProducts(NCRecipes.manufactory, convertToItemIngredient(NCItems.ground_cocoa_nibs, 1));
+            removeRecipeByMapAndProducts(NCRecipes.pressurizer, convertToItemIngredient(NCItems.graham_cracker, 1));
+            ModHandler.removeFurnaceSmelting(new ItemStack(Items.DYE, 1, 3));
+            ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:smore"));
+            ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:moresmore"));
+            ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:foursmore"));
+            removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
 
-        GTFOAppleCoreCompat.addToSparedItems(NCItems.smore);
-        GTFOAppleCoreCompat.addToSparedItems(NCItems.moresmore);
-        GTFOAppleCoreCompat.addToSparedItems(NCItems.foursmore);
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.flour.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.smore.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.moresmore.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.foursmore.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.gelatin.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.ground_cocoa_nibs.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.graham_cracker.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.cocoa_solids.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.cocoa_butter.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.dark_chocolate.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.milk_chocolate.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.unsweetened_chocolate.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(NCItems.marshmallow.getDefaultInstance());
+
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("chocolate_liquor"));
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("cocoa_butter"));
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("unsweetened_chocolate"));
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("dark_chocolate"));
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("milk_chocolate"));
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("gelatin"));
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("hydrated_gelatin"));
+            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("marshmallow"));
+        }
 
         ItemStack[] smoresout = {
                 SMORE_SMINGOT.getStackForm(),

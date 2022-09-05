@@ -42,13 +42,7 @@ public class GTFORecipeAddition {
             BreadsChain.init();
         if(GTFOConfig.gtfoVanillaOverridesConfig.vanillaOverrideChain)
             VanillaOverrideChain.init();
-
-        if(GTFOConfig.gtfoncConfig.nuclearCompat) {
-            if (GTFOConfig.gtfoncConfig.smoreChain)
-                SmogusChain.init();
-        }
-        if(GTFOConfig.gtfoaaConfig.actuallyCompat)
-            if(GTFOConfig.gtfoaaConfig.coffeeChain)
-                CoffeeChain.init();
+        CoffeeChain.init();
+        SmogusChain.init();
     }
 }
