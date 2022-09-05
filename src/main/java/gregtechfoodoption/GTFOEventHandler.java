@@ -3,7 +3,6 @@ package gregtechfoodoption;
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.net.NetworkHandler;
-import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.GTFOFoodDurationSetter;
@@ -51,12 +50,6 @@ public class GTFOEventHandler {
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             GTFOGAMaterialHandler gtfogaMaterials = new GTFOGAMaterialHandler();
             GTFOGAMaterialHandler.onMaterialsInit();
-        }
-        if (GTFOConfig.gtfoncConfig.nuclearCompat) {
-        }
-        if (GTFOConfig.gtfoaaConfig.actuallyCompat) {
-            GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
-            GTFOAAMaterialHandler.onMaterialsInit();
         }
     }
 
