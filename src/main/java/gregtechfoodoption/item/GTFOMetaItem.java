@@ -1,6 +1,5 @@
 package gregtechfoodoption.item;
 
-import gregicality.science.loaders.recipe.circuits.CrystalCircuits;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
@@ -12,19 +11,14 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.potion.CreativityPotion;
-import gregtechfoodoption.potion.GTFOPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import gregtech.common.items.MetaItem1;
-import gregicality.science.common.items.GCYSMetaItems;
 
 import static gregtech.api.unification.material.Materials.*;
 import static net.minecraft.potion.Potion.getPotionById;
-import gregtechfoodoption.potion.*;
-import gregtechfoodoption.item.GTFOFoodStats;
 
 
 public class GTFOMetaItem extends StandardMetaItem {
@@ -230,23 +224,6 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem ICE_CREAM_MELON;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_BEAR;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_CHIP;
-
-    //circuits
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_15;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_1;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_2;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_3;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_4;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_5;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_6;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_7;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_8;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_9;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_10;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_11;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_12;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_13;
-    public static MetaItem<?>.MetaValueItem ORGANIC_CIRCUIT_14;
 
     //misc items
     public static MetaItem<?>.MetaValueItem GELATIN;
@@ -573,21 +550,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         CUCUMBER_SEED = addItem(164, "seed.cucumber");
         CUCUMBER_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER_SEED.getStackForm(), CUCUMBER.getStackForm()));
 
-        ORGANIC_CIRCUIT_15 = addItem(175, "circuit.organic.ulv").addComponents(new GTFOFoodStats(1, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(StepAssistPotion.instance, 20000000, 1, 0), new RandomPotionEffect(MobEffects.NIGHT_VISION, 2000, 1, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_1 = addItem(176, "circuit.organic.lv").addComponents(new GTFOFoodStats(2, 1.5f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 200, 1, 0), new RandomPotionEffect(MobEffects.SPEED, 400, 1, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_2 = addItem(177, "circuit.organic.mv").addComponents(new GTFOFoodStats(4, 2f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.HASTE, 6000, 2, 0), new RandomPotionEffect(MobEffects.SPEED, 6000, 2, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_3 = addItem(178, "circuit.organic.hv").addComponents(new GTFOFoodStats(8, 2.5f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.STRENGTH, 200, 2, 0), new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_4 = addItem(179, "circuit.organic.ev").addComponents(new GTFOFoodStats(16, 3f, false, true, ItemStack.EMPTY, new RandomPotionEffect(CreativityPotion.instance, 6000, 1, 0), new RandomPotionEffect(MobEffects.REGENERATION, 200, 3, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_5 = addItem(180, "circuit.organic.iv").addComponents(new GTFOFoodStats(32, 3.5f, false, true, ItemStack.EMPTY, new RandomPotionEffect(CreativityPotion.instance, 8000, 1, 10), new RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 8000, 1, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_6 = addItem(181, "circuit.organic.luv").addComponents(new GTFOFoodStats(64, 4f, false, true, ItemStack.EMPTY, new RandomPotionEffect(CreativityPotion.instance, 10000, 1, 20), new RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 10000, 1, 0), new RandomPotionEffect(MobEffects.INSTANT_HEALTH, 20, 2, 70)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_7 = addItem(182, "circuit.organic.zpm").addComponents(new GTFOFoodStats(128, 4.5f, false, true, MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT.getStackForm(), new RandomPotionEffect(CreativityPotion.instance, 12000, 1, 30), new RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 12000, 1, 0), new RandomPotionEffect(MobEffects.INSTANT_HEALTH, 40, 3, 60)).setEatingDuration(1).setReturnChance(80));
-        ORGANIC_CIRCUIT_8 = addItem(183, "circuit.organic.uv").addComponents(new GTFOFoodStats(256, 5f, false, true, MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT.getStackForm(), new RandomPotionEffect(MobEffects.HASTE, 6000, 5, 0), new RandomPotionEffect(MobEffects.RESISTANCE, 6000, 3, 0), new RandomPotionEffect(MobEffects.SPEED, 6000, 5, 0)).setEatingDuration(1).setReturnChance(70));
-        ORGANIC_CIRCUIT_9 = addItem(184, "circuit.organic.uhv").addComponents(new GTFOFoodStats(512, 5.5f, false, true, MetaItems.CRYSTAL_CENTRAL_PROCESSING_UNIT.getStackForm(), new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0)).setEatingDuration(1).setReturnChance(60));
-        ORGANIC_CIRCUIT_10 = addItem(185, "circuit.organic.uev").addComponents(new GTFOFoodStats(1024, 6f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_11 = addItem(186, "circuit.organic.uiv").addComponents(new GTFOFoodStats(2048, 6.5f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_12 = addItem(187, "circuit.organic.uxv").addComponents(new GTFOFoodStats(4096, 7f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_13 = addItem(188, "circuit.organic.opv").addComponents(new GTFOFoodStats(8192, 7.5f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0)).setEatingDuration(1));
-        ORGANIC_CIRCUIT_14 = addItem(189, "circuit.organic.max").addComponents(new GTFOFoodStats(16384, 8f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0)).setEatingDuration(1));
+        // 175-189 left blank for organic circuits
+
         MILK_CHOCOLATE = addItem(190, "food.chocolate").addComponents(new GTFOFoodStats(4, 1.25f, false, false, ItemStack.EMPTY));
         GRAHAM_CRACKER = addItem(191, "food.graham_cracker").addComponents(new GTFOFoodStats(1, 1f, false, false, ItemStack.EMPTY));
         SMORE_SMINGOT = addItem(192, "food.smore_smingot").addComponents(new GTFOFoodStats(8, 1.5f, false, false, ItemStack.EMPTY));
