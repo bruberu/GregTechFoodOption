@@ -200,6 +200,10 @@ public class GTFOConfig {
 
         @Config.Comment("Apply effects of Step Assist?")
         public boolean stepAssist = true;
+
+        @Config.Comment("Apply effects of Snow Golem Spawner?")
+        public boolean snowGolemSpawner = true;
+
     }
 
     public static class GTFOMiscConfig {

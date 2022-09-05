@@ -3,13 +3,16 @@ package gregtechfoodoption;
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.net.NetworkHandler;
+import gregtechfoodoption.entity.EntityStrongSnowman;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.GTFOFoodDurationSetter;
 import gregtechfoodoption.network.SPacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.potion.CreativityPotion;
+import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
@@ -17,7 +20,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
@@ -37,8 +43,7 @@ import java.util.Set;
 public class GTFOEventHandler {
     protected static Random rand = new Random();
 
-    private static final Set<EntityLivingBase> addictedSet = new HashSet<>();
-    private static final HashMap<EntityLivingBase, Integer> addictionAmplifiers = new HashMap<>();
+    private static final HashMap<EntityLivingBase, Integer> snowGolemSpawnSpeeds = new HashMap<>();
 
     private static final Set<EntityLivingBase> jumpBoostSet = new HashSet<>();
 
@@ -116,6 +121,27 @@ public class GTFOEventHandler {
                         persisted.setBoolean(StepAssistPotion.TAG_NAME, false);
 
                         player.stepHeight = 0.6F;
+                    }
+                }
+            }
+            if (GTFOConfig.gtfoPotionConfig.snowGolemSpawner) {
+                if (SnowGolemSpawnerPotion.instance != null && player.isPotionActive(SnowGolemSpawnerPotion.instance)) {
+                    if (!persisted.getBoolean(SnowGolemSpawnerPotion.TAG_NAME)) {
+                        persisted.setBoolean(SnowGolemSpawnerPotion.TAG_NAME, true);
+                    } else {
+                        if (!player.world.isRemote && GTFOValues.rand.nextInt(100 / player.getActivePotionEffect(SnowGolemSpawnerPotion.instance).getAmplifier()) == 0) {
+                            float angle = (float) (GTFOValues.rand.nextFloat() * Math.PI);
+
+                            RayTraceResult result = player.world.rayTraceBlocks(player.getPositionVector(), new Vec3d(1, -0.3, 0).rotateYaw(angle), false, false, true);
+                            EntitySnowman spawn = new EntityStrongSnowman(player.world);
+                            spawn.setLocationAndAngles(result.getBlockPos().getX(), result.getBlockPos().getY() + 1, result.getBlockPos().getZ(), player.rotationYawHead, player.rotationPitch);
+                            player.world.spawnEntity(spawn);
+                            spawn.addPotionEffect(new PotionEffect(Potion.getPotionById(5), 1000, 4));
+                        }
+                    }
+                } else {
+                    if (persisted.getBoolean(SnowGolemSpawnerPotion.TAG_NAME)) {
+                        persisted.setBoolean(SnowGolemSpawnerPotion.TAG_NAME, false);
                     }
                 }
             }
