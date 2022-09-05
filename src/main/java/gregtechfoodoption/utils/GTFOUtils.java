@@ -207,7 +207,7 @@ public class GTFOUtils {
         list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.potion.header").getFormattedText());
         effects.forEach((effect) -> list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.potion.each",
                 new TextComponentTranslation(effect.effect.getEffectName()).getFormattedText(),
-                new TextComponentTranslation("enchantment.level." + effect.effect.getAmplifier()),
+                new TextComponentTranslation("enchantment.level." + (effect.effect.getAmplifier() + 1)),
                 effect.effect.getDuration(),
                 100 - effect.chance).getFormattedText()));
     }

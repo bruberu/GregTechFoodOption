@@ -188,7 +188,7 @@ public class CoffeeChain {
                 .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder()
-                .inputs(GTFOMaterialHandler.UNSORTED_BASIC_COFFEE.getItemStack(30))
+                .inputs(COFFEE_SEED.getStackForm(30))
                 .outputs(GTFOMaterialHandler.LARGE_BASIC_COFFEE.getItemStack(9))
                 .chancedOutput(GTFOMaterialHandler.LARGE_BASIC_COFFEE.getItemStack(), 5000, 200)
                 .outputs(GTFOMaterialHandler.SMALL_BASIC_COFFEE.getItemStack(19))
@@ -199,8 +199,8 @@ public class CoffeeChain {
 
         CUTTER_RECIPES.recipeBuilder()
                 .inputs(GTFOMetaItem.COFFEE_CHERRY.getStackForm())
-                .outputs(GTFOMaterialHandler.UNSORTED_BASIC_COFFEE.getItemStack(9))
-                .chancedOutput(GTFOMaterialHandler.UNSORTED_BASIC_COFFEE.getItemStack(), 5000, 500)
+                .outputs(COFFEE_SEED.getStackForm(9))
+                .chancedOutput(COFFEE_SEED.getStackForm(), 5000, 500)
                 .EUt(60)
                 .duration(20)
                 .buildAndRegister();

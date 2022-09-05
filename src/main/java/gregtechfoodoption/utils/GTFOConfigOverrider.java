@@ -12,10 +12,10 @@ public class GTFOConfigOverrider {
     public static void init() {
         if (GTFOConfig.gtfoncConfig.nuclearCompat) {
             if (!Loader.isModLoaded(GTFOValues.MODID_NC)) {
-                if (Global.VERSION.charAt(1) != 'o')
-                    GTFOLog.logger.warn("It appears you don't have NuclearCraft:Overhauled installed, but you still have the config option for compatibility with it on. Consider turning it off, or installing NuclearCraft:Overhauled.");
-                else
-                    GTFOLog.logger.warn("It appears you have NuclearCraft installed rather than NuclearCraft:Overhauled. This mod does not have compatibility with the first, so consider switching to the other if you want that. Otherwise, turn off the NC Compat config option.");
+                GTFOLog.logger.warn("It appears you have NuclearCraft installed rather than NuclearCraft:Overhauled. This mod does not have compatibility with the first, so consider switching to the other if you want that. Otherwise, turn off the NC Compat config option.");
+                GTFOConfig.gtfoncConfig.setAllToFalse();
+            } else if (Global.VERSION.charAt(1) != 'o') {
+                GTFOLog.logger.warn("It appears you don't have NuclearCraft:Overhauled installed, but you still have the config option for compatibility with it on. Consider turning it off, or installing NuclearCraft:Overhauled.");
                 GTFOConfig.gtfoncConfig.setAllToFalse();
             }
         }

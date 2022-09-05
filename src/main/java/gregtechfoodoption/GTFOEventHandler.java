@@ -129,7 +129,7 @@ public class GTFOEventHandler {
                     if (!persisted.getBoolean(SnowGolemSpawnerPotion.TAG_NAME)) {
                         persisted.setBoolean(SnowGolemSpawnerPotion.TAG_NAME, true);
                     } else {
-                        if (!player.world.isRemote && GTFOValues.rand.nextInt(100 / player.getActivePotionEffect(SnowGolemSpawnerPotion.instance).getAmplifier()) == 0) {
+                        if (!player.world.isRemote && GTFOValues.rand.nextInt(100 / (player.getActivePotionEffect(SnowGolemSpawnerPotion.instance).getAmplifier() + 1)) == 0) {
                             float angle = (float) (GTFOValues.rand.nextFloat() * Math.PI);
 
                             RayTraceResult result = player.world.rayTraceBlocks(player.getPositionVector(), new Vec3d(1, -0.3, 0).rotateYaw(angle), false, false, true);

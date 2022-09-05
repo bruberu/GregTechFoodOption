@@ -610,14 +610,14 @@ metaitem.tool.butchery_knife.hv.name=%s Electric Butchering Knife (HV)
 metaitem.tool.butchery_knife.hv.tooltip=§9Mob Delivinizer §c4000
 
 enchantment.level.0=I
-enchantment.level.6=VI
 enchantment.level.7=VII
-enchantment.level.11=XI
-enchantment.level.16=XVI
-enchantment.level.28=XXVIII
-enchantment.level.48=XLVIII
-enchantment.level.83=LXXXIII
-enchantment.level.145=CXLV
+enchantment.level.8=VIII
+enchantment.level.12=XII
+enchantment.level.17=XVII
+enchantment.level.29=XXVIV
+enchantment.level.49=XLVIV
+enchantment.level.84=LXXXIV
+enchantment.level.146=CXLVI
 
 gregtechfoodoption.chat.food_buff=Upon viewing your progress, you begin to crave new types of foods.
 

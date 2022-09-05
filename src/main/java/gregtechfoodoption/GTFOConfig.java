@@ -102,7 +102,6 @@ public class GTFOConfig {
         public void setAllToFalse() {
             nuclearCompat = false;
             smoreChain = false;
-            addSmogus = false;
         }
     }
 
@@ -119,7 +118,6 @@ public class GTFOConfig {
         public void setAllToFalse() {
             actuallyCompat = false;
             disableCoffeeMaker = false;
-            coffeeChain = false;
         }
     }
 

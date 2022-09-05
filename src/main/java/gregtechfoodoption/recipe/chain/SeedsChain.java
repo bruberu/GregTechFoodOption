@@ -58,6 +58,9 @@ public class SeedsChain {
         ModHandler.addShapedRecipe("gtfo_seed_grapes_ungenerify", GTFOMetaItem.GRAPE_SEED.getStackForm(),
                 "   ", " S ", "   ",
                 'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_coffee_ungenerify", GTFOMetaItem.COFFEE_SEED.getStackForm(),
+                "   ", "   ", "S  ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
 
         ModHandler.addShapelessRecipe("gtfo_seed_soy_extraction", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
                 GTFOMetaItem.SOYBEAN);
@@ -67,6 +70,8 @@ public class SeedsChain {
                 GTFOMetaItem.CUCUMBER);
         ModHandler.addShapelessRecipe("gtfo_seed_grapes_extraction", GTFOMetaItem.GRAPE_SEED.getStackForm(),
                 GTFOMetaItem.GRAPES);
+        ModHandler.addShapelessRecipe("gtfo_seed_coffee_extraction", GTFOMetaItem.COFFEE_SEED.getStackForm(),
+                GTFOMetaItem.COFFEE_CHERRY);
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
