@@ -5,7 +5,6 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.net.NetworkHandler;
 import gregtechfoodoption.integration.GTFOAAMaterialHandler;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
-import gregtechfoodoption.integration.GTFONCMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.GTFOFoodDurationSetter;
 import gregtechfoodoption.network.SPacketAppleCoreFoodDivisorUpdate;
@@ -54,8 +53,6 @@ public class GTFOEventHandler {
             GTFOGAMaterialHandler.onMaterialsInit();
         }
         if (GTFOConfig.gtfoncConfig.nuclearCompat) {
-            GTFONCMaterialHandler gtfoncMaterials = new GTFONCMaterialHandler();
-            GTFONCMaterialHandler.onMaterialsInit();
         }
         if (GTFOConfig.gtfoaaConfig.actuallyCompat) {
             GTFOAAMaterialHandler gtfoaaMaterials = new GTFOAAMaterialHandler();
