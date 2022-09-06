@@ -213,6 +213,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem COFFEE_CHERRY;
     public static MetaItem<?>.MetaValueItem ENERGIZING_COFFEE_CUP;
     public static MetaItem<?>.MetaValueItem COFFEE_CUP;
+    public static MetaItem<?>.MetaValueItem CYANIDE_CAPLET;
 
     //juice
     public static MetaItem<?>.MetaValueItem ORANGE_JUICE;
@@ -247,6 +248,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem PAPER_CONE;
     public static MetaItem<?>.MetaValueItem EMPTY_CUP;
     public static MetaItem<?>.MetaValueItem UNFIRED_CUP;
+    public static MetaItem<?>.MetaValueItem CAPLET_CAP;
+    public static MetaItem<?>.MetaValueItem CAPLET_BODY;
+    public static MetaItem<?>.MetaValueItem GEL_CAPLET;
 
     public static MetaItem<?>.MetaValueItem MUSHY_PEAS;
     public static MetaItem<?>.MetaValueItem PEA_POD;
@@ -638,6 +642,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
 
+        CAPLET_CAP = addItem(227, "caplet_cap");
+        CAPLET_BODY = addItem(228, "caplet_body");
+        GEL_CAPLET = addItem(229, "gel_caplet");
 
         // 175-189 left blank for organic circuits
 

@@ -22,6 +22,8 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.plate;
+import static gregtech.api.unification.ore.OrePrefix.dustSmall;
+import static gregtechfoodoption.GTFOValues.MODID_GCYS;
 import static gregtechfoodoption.GTFOValues.Organic;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
@@ -353,6 +355,16 @@ public class GTFOMaterialHandler {
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("C6H5NH2");
+
+    public static final Material HeatedWater = fluidBuilder(22003, "heated_water").fluidTemp(343)
+            .color(0x024B86)
+            .build();
+    public static final Material GelatinSolution = fluidBuilder(22004, "gelatin_solution").fluidTemp(343)
+            .color(0xD3D3D3)
+            .build();
+    public static final Material GelatinSolutionNoBubbles = fluidBuilder(22005, "gelatin_solution_no_bubbs").fluidTemp(343)
+            .color(0xD3D3D3)
+            .build();
 
     public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem SMALL_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1018, "roasted_coffee_small", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
