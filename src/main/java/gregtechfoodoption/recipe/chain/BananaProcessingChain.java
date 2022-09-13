@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtech.api.recipes.GTRecipeHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtechfoodoption.item.GTFOMetaItem;
 import net.minecraftforge.fml.common.Loader;
@@ -19,12 +20,18 @@ public class BananaProcessingChain {
                     .output(dust, Sodium)
                     .fluidOutputs(Chlorine.getFluid(6000))
                     .buildAndRegister();
-            ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(100) // NaCl + 3H2O -> NaClO3 + 6H
+            ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(400) // NaCl + 3H2O -> NaClO3 + 6H
                     .input(dust, Salt, 2)
                     .notConsumable(new IntCircuitIngredient(2))
                     .fluidInputs(Water.getFluid(3000))
                     .outputs(SodiumChlorate.get(5))
                     .fluidOutputs(Hydrogen.getFluid(6000))
+                    .buildAndRegister();
+            GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES, Water.getFluid(1000));
+            ELECTROLYZER_RECIPES.recipeBuilder().EUt(30).duration(1500) // NaCl + 3H2O -> NaClO3 + 6H
+                    .notConsumable(new IntCircuitIngredient(1))
+                    .fluidInputs(Water.getFluid(1000))
+                    .fluidOutputs(Hydrogen.getFluid(2000), Oxygen.getFluid(1000))
                     .buildAndRegister();
         }
         ELECTROLYZER_RECIPES.recipeBuilder().EUt(60).duration(100)
@@ -36,6 +43,7 @@ public class BananaProcessingChain {
         ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(100) // NaClO3 + H2O -> NaClO4 + 2H
                 .inputs(SodiumChlorate.get(5))
                 .fluidInputs(Water.getFluid(1000))
+                .notConsumable(new IntCircuitIngredient(2))
                 .outputs(SodiumPerchlorate.getItemStack(6))
                 .fluidOutputs(Hydrogen.getFluid(2000))
                 .buildAndRegister();

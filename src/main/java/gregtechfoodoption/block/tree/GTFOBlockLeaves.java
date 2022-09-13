@@ -153,7 +153,7 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
     @Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
-        spawnAsEntity(worldIn, pos, ((GTFOBlockLeaves)state.getBlock()).getTreeFromState(state).getApple(chance));
+        spawnAsEntity(worldIn, pos, ((GTFOBlockLeaves)state.getBlock()).getTreeFromState(state).getAppleDrop(chance));
     }
 
     // Primarily for getting the correct sapling type.

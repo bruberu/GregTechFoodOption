@@ -64,10 +64,15 @@ public class ApricotTree extends GTFOTree {
     }
 
     @Override
-    public ItemStack getApple(int chance) {
+    public ItemStack getAppleDrop(int chance) {
         if (GTFOValues.rand.nextInt(chance / 15) == 0) {
             return APRICOT.getStackForm();
         }
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    public ItemStack getApple() {
+        return APRICOT.getStackForm();
     }
 }

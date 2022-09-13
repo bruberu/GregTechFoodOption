@@ -10,8 +10,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
 
 import java.util.Random;
+
+import static gregtechfoodoption.GTFOMaterialHandler.RainbowSap;
 
 public class RainbowwoodTree extends GTFOTree {
     public static final int[] RAINBOW_ARRAY = {
@@ -93,5 +96,10 @@ public class RainbowwoodTree extends GTFOTree {
     @Override
     public double getPerlinScale() {
         return 0.05;
+    }
+
+    @Override
+    public Fluid getSap() {
+        return RainbowSap.getFluid();
     }
 }

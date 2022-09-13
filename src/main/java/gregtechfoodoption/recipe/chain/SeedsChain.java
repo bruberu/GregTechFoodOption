@@ -5,7 +5,6 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
 import net.minecraft.item.ItemStack;
 
@@ -33,7 +32,7 @@ public class SeedsChain {
                     GTFOMetaItem.GRAPES.getStackForm(),
                     GTFOMetaItem.MANGO.getStackForm(),
                     GTFOMetaItem.APRICOT.getStackForm(),
-                    GTFOMaterialHandler.PopcornKernel.getItemStack()
+                    //GTFOMaterialHandler.PopcornKernel.getItemStack()
             };
             for (ItemStack seed : seeds) {
                 RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(5).duration(144)

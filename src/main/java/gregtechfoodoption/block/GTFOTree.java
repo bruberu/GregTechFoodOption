@@ -1,7 +1,11 @@
 package gregtechfoodoption.block;
 
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.util.GTUtility;
 import gregtech.api.util.function.TriConsumer;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
@@ -21,11 +25,15 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.NoiseGeneratorSimplex;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static gregtech.api.unification.material.Materials.Steel;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.GREENHOUSE_RECIPES;
 import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
 import static net.minecraft.block.BlockLeaves.DECAYABLE;
 
@@ -200,14 +208,73 @@ public abstract class GTFOTree {
     }
 
     public void initRecipes() {
-        ModHandler.addShapelessRecipe(this.name + "_wood_planks",
-                new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 4, seed % 16),
-                new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, (seed % 4) << 2));
+        ItemStack sapling = new ItemStack(GTFOMetaBlocks.GTFO_SAPLINGS.get(seed / 8), 1, (seed % 8) << 1);
+        ItemStack planks = new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 1, seed % 16);
+        ItemStack log = new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, (seed % 4) << 2);
+        ItemStack leaves = new ItemStack(GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4), 1, (seed % 4) << 2);
+
+
+        ModHandler.addShapelessRecipe(this.name + "_wood_planks", planks, log);
+
+        GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)
+                .inputs(sapling)
+                .circuitMeta(1)
+                .fluidInputs(Materials.Water.getFluid(10000))
+                .outputs(GTUtility.copyAmount(6, log), sapling, getApple())
+                .chancedOutput(sapling, 2000, 1000)
+                .buildAndRegister();
+        GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)
+                .inputs(sapling)
+                .circuitMeta(2)
+                .fluidInputs(Materials.Water.getFluid(10000))
+                .outputs(GTUtility.copyAmount(5, log))
+                .chancedOutput(sapling, 1000, 1000)
+                .outputs(GTUtility.copyAmount(20, leaves))
+                .buildAndRegister();
+        if (!this.getApple().isEmpty()) {
+            GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(3000)
+                    .inputs(sapling)
+                    .circuitMeta(3)
+                    .fluidInputs(Materials.Water.getFluid(20000))
+                    .outputs(GTUtility.copyAmount(5, log))
+                    .chancedOutput(sapling, 8000, 200)
+                    .outputs(GTUtility.copyAmount(3, getApple()))
+                    .chancedOutput(GTUtility.copyAmount(2, getApple()), 4000, 500)
+                    .buildAndRegister();
+            GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)
+                    .inputs(sapling, MetaItems.FERTILIZER.getStackForm(2))
+                    .circuitMeta(4)
+                    .fluidInputs(Materials.Water.getFluid(20000))
+                    .outputs(GTUtility.copyAmount(10, log), sapling)
+                    .chancedOutput(sapling, 8000, 200)
+                    .outputs(GTUtility.copyAmount(3, getApple()))
+                    .buildAndRegister();
+        }
+        if (this.getSap() != null) {
+            GREENHOUSE_RECIPES.recipeBuilder().EUt(90).duration(3000)
+                    .inputs(sapling)
+                    .notConsumable(OrePrefix.toolHeadSword, Steel)
+                    .circuitMeta(5)
+                    .fluidInputs(Materials.Water.getFluid(10000))
+                    .outputs(GTUtility.copyAmount(5, log))
+                    .chancedOutput(sapling, 8000, 200)
+                    .fluidOutputs(new FluidStack(this.getSap(), 4000))
+                    .buildAndRegister();
+            GREENHOUSE_RECIPES.recipeBuilder().EUt(90).duration(4000)
+                    .inputs(sapling, MetaItems.FERTILIZER.getStackForm(1))
+                    .notConsumable(OrePrefix.toolHeadSword, Steel)
+                    .circuitMeta(6)
+                    .fluidInputs(Materials.Water.getFluid(10000))
+                    .outputs(GTUtility.copyAmount(8, log))
+                    .chancedOutput(sapling, 8000, 200)
+                    .fluidOutputs(new FluidStack(this.getSap(), 16000))
+                    .buildAndRegister();
+        }
     }
 
-    public ItemStack getApple(int chance) {
+    public ItemStack getAppleDrop(int chance) {
         return ItemStack.EMPTY;
-    };
+    }
 
     protected IBlockState getNaturalLeavesState() {
         return this.leavesState.withProperty(DECAYABLE, true).withProperty(CHECK_DECAY, true);
@@ -215,5 +282,13 @@ public abstract class GTFOTree {
 
     public double getPerlinScale() {
         return 0.04;
+    }
+
+    public ItemStack getApple() {
+        return ItemStack.EMPTY;
+    }
+
+    public Fluid getSap() {
+        return null;
     }
 }

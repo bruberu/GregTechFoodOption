@@ -375,13 +375,13 @@ public class CoreChain {
 
 
     public static void airRecipes() {
-        MIXER_RECIPES.recipeBuilder().duration(60).EUt(32)
+        MIXER_RECIPES.recipeBuilder().duration(60).EUt(8)
                 .fluidInputs(Air.getFluid(900))
                 .fluidInputs(Steam.getFluid(10))
                 .fluidOutputs(GTFOMaterialHandler.MoistAir.getFluid(1000))
                 .buildAndRegister();
 
-        VACUUM_RECIPES.recipeBuilder().duration(110).EUt(32)
+        VACUUM_RECIPES.recipeBuilder().duration(110).EUt(8)
                 .fluidInputs(GTFOMaterialHandler.MoistAir.getFluid(4000))
                 .fluidOutputs(GTFOMaterialHandler.ColdMoistAir.getFluid(4000))
                 .buildAndRegister();

@@ -92,7 +92,7 @@ public class OliveTree extends GTFOTree {
     }
 
     @Override
-    public ItemStack getApple(int chance) {
+    public ItemStack getAppleDrop(int chance) {
         if (GTFOValues.rand.nextInt(chance / 15) == 0) {
             return OLIVE.getStackForm(GTFOValues.rand.nextInt(4) + 1);
         }

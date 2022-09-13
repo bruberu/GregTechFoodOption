@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe;
 
+import gregtech.api.GTValues;
 import gregtech.api.block.VariantBlock;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.MarkerMaterials;
@@ -9,6 +10,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
+import gregtech.common.metatileentities.MetaTileEntities;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -104,6 +106,15 @@ public class GTFOMachineRecipes {
         Arrays.stream(GTFOMetalCasing.CasingType.values()).forEach(casing -> {
             registerMetalCasingRecipe(casing.getMaterial(), GTFOMetaBlocks.GTFO_METAL_CASING, casing);
         });
+
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(120).duration(400)
+                .inputs(MetaTileEntities.HULL[GTValues.MV].getStackForm(), MetaItems.ELECTRIC_PUMP_MV.getStackForm(2))
+                .input(circuit, MarkerMaterials.Tier.HV, 4)
+                .inputs(MetaBlocks.FRAMES.get(Steel).getItem(Steel))
+                .input(OrePrefix.plate, SterlingSilver, 6)
+                .circuitMeta(3)
+                .outputs(GTFOTileEntities.GREENHOUSE.getStackForm())
+                .buildAndRegister();
     }
 
     private static <T extends Enum<T> & IStringSerializable> void registerMetalCasingRecipe(Material inputMaterial, VariantBlock<T> outputCasingType, T outputCasing) {

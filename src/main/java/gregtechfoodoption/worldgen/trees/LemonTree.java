@@ -54,7 +54,7 @@ public class LemonTree extends GTFOTree {
     }
 
     @Override
-    public ItemStack getApple(int chance) {
+    public ItemStack getAppleDrop(int chance) {
         if (GTFOValues.rand.nextInt(chance / 10) == 0) {
             return ORANGE.getStackForm(GTFOValues.rand.nextInt(2) + 1);
         }

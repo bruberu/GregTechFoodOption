@@ -1,6 +1,8 @@
 package gregtechfoodoption;
 
 import gregicality.science.api.unification.materials.GCYSMaterials;
+import gregtech.api.fluids.MetaFluids;
+import gregtech.api.fluids.fluidType.FluidTypes;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -171,42 +173,62 @@ public class GTFOMaterialHandler {
             .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
             .build();
 
-    public static final Material Cream = fluidBuilder(21542, "cream").color(0xced2d9)
+    public static final Material Cream = fluidBuilder(21542, "cream")
+            .color(0xced2d9)
             .build();
-    public static final Material SkimmedMilk = fluidBuilder(21543, "skimmed_milk").color(0xf7ffe3)
+    public static final Material SkimmedMilk = fluidBuilder(21543, "skimmed_milk")
+            .color(0xf7ffe3)
             .build();
-    public static final Material SoyLecithin = fluidBuilder(21544, "soy_lecithin").color(0xa6963a)
+    public static final Material SoyLecithin = fluidBuilder(21544, "soy_lecithin")
+            .color(0xa6963a)
             .build();
-    public static final Material RawSoybeanOil = fluidBuilder(21545, "raw_soybean_oil").color(0xad5418)
+    public static final Material RawSoybeanOil = fluidBuilder(21545, "raw_soybean_oil")
+            .color(0xad5418)
             .build();
-    public static final Material HydratedSoybeanOil = fluidBuilder(21546, "hydrated_soybean_oil").color(0xc99c7d)
+    public static final Material HydratedSoybeanOil = fluidBuilder(21546, "hydrated_soybean_oil")
+            .color(0xc99c7d)
             .build();
-    public static final Material SoybeanOil = fluidBuilder(21547, "soybean_oil").color(0xe8e4a9)
+    public static final Material SoybeanOil = fluidBuilder(21547, "soybean_oil")
+            .color(0xe8e4a9)
             .build();
-    public static final Material PasteurizedMilk = fluidBuilder(21548, "pasteurized_milk").color(0xfefdf3)
+    public static final Material PasteurizedMilk = fluidBuilder(21548, "pasteurized_milk")
+            .color(0xfefdf3)
             .build();
-    public static final Material MilkColloid = fluidBuilder(21549, "milk_colloid").color(0xe0d7bf)
+    public static final Material MilkColloid = fluidBuilder(21549, "milk_colloid")
+            .color(0xe0d7bf)
             .build();
-    public static final Material IceCreamMixture = fluidBuilder(21550, "ice_cream_mixture").color(0xdebd80)
+    public static final Material IceCreamMixture = fluidBuilder(21550, "ice_cream_mixture")
+            .color(0xdebd80)
             .build();
 
-    public static final Material Guaiacol = fluidBuilder(21551, "guaiacol").color(0xa63a00)
+    public static final Material Guaiacol = fluidBuilder(21551, "guaiacol")
+            .color(0xa63a00)
             .components(Carbon, 7, Hydrogen, 8, Oxygen, 2)
             .build();
-    public static final Material Acetaldehyde = fluidBuilder(21552, "acetaldehyde").color(0xf3f2f1)
+    public static final Material Acetaldehyde = fluidBuilder(21552, "acetaldehyde")
+            .color(0xf3f2f1)
             .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)
             .build();
-    public static final Material Glyoxal = fluidBuilder(21553, "glyoxal").color(0xc9c7ab)
+    public static final Material Glyoxal = fluidBuilder(21553, "glyoxal")
+            .color(0xc9c7ab)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 2)
             .build();
-    public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid").color(0xd9d5a0)
+    public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid")
+            .color(0xd9d5a0)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 3)
             .build();
 
-    public static final Material MelonExtract = fluidBuilder(21555, "melon_extract").color(0xfc7996)
+    public static final Material MelonExtract = fluidBuilder(21555, "melon_extract")
+            .color(0xfc7996)
             .build();
 
-    public static final GTFOOredictItem.OreDictValueItem PopcornKernel = SHAPED_ITEM.addOreDictItem(1002, "popcorn_kernel", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final Material RubberSap = fluidBuilder(21556, "rubber_sap")
+            .color(0xf7f6dc)
+            .build();
+    public static final Material RainbowSap = fluidBuilder(21557, "rainbow_sap")
+            .color(0xffffff)
+            .build();
+
 
     public static final GTFOOredictItem.OreDictValueItem Zest = SHAPED_ITEM.addOreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, dust);
     public static final GTFOOredictItem.OreDictValueItem PotatoStarch = SHAPED_ITEM.addOreDictItem(1101, "potato_starch", 0xdedcb1, MaterialIconSet.ROUGH, dust);
@@ -255,5 +277,9 @@ public class GTFOMaterialHandler {
 
     public static Material.Builder fluidBuilder(int id, String name) {
         return new Material.Builder(id, "gtfo_" + name).fluid();
+    }
+
+    public static void customFluidTextures() {
+        MetaFluids.setMaterialFluidTexture(GTFOMaterialHandler.RainbowSap, FluidTypes.LIQUID);
     }
 }

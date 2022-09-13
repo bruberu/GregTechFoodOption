@@ -28,6 +28,7 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.MICROWAVE_RECIPES;
 import static nc.recipe.AbstractRecipeHandler.fluidStack;
 
 
@@ -106,6 +107,13 @@ public class SmogusChain {
             euPerTick *= 4;
             ticks *= 2;
         }
+
+        MICROWAVE_RECIPES.recipeBuilder()
+                .input(NCItems.milk_chocolate)
+                .outputs(GTFONCMaterialHandler.HOT_MILK_CHOCOLATE.getItemStack())
+                .EUt(120)
+                .duration(100)
+                .buildAndRegister();
 
 
         BLAST_RECIPES.recipeBuilder()
