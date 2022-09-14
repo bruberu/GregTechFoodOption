@@ -610,14 +610,14 @@ metaitem.tool.butchery_knife.hv.name=%s Electric Butchering Knife (HV)
 metaitem.tool.butchery_knife.hv.tooltip=§9Mob Delivinizer §c4000
 
 enchantment.level.0=I
-enchantment.level.6=VI
 enchantment.level.7=VII
-enchantment.level.11=XI
-enchantment.level.16=XVI
-enchantment.level.28=XXVIII
-enchantment.level.48=XLVIII
-enchantment.level.83=LXXXIII
-enchantment.level.145=CXLV
+enchantment.level.8=VIII
+enchantment.level.12=XII
+enchantment.level.17=XVII
+enchantment.level.29=XXVIV
+enchantment.level.49=XLVIV
+enchantment.level.84=LXXXIV
+enchantment.level.146=CXLVI
 
 gregtechfoodoption.chat.food_buff=Upon viewing your progress, you begin to crave new types of foods.
 
@@ -766,6 +766,30 @@ material.gtfo_acetaldehyde=Acetaldehyde
 material.gtfo_glyoxylic_acid=Glyoxylic Acid
 
 material.gtfo_melon_extract=Melon Extract
+
+metaitem.component.gelatin.name=Gelatin
+metaitem.food.chocolate.name=Milk Chocolate
+metaitem.food.graham_cracker.name=Graham Cracker
+metaitem.food.marshmallow.name=Marshmallow
+metaitem.food.smore.one.name=S'more S'mingot
+metaitem.food.smore.two.name=MoreS'more DoubleS'mingot
+metaitem.food.smore.four.name=FourS'more QuadS'mingot
+metaitem.component.cocoa_nibs.name=Ground Cocoa Nibs
+metaitem.component.roasted_beans.name=Roasted Cocoa Beans
+material.gtfo_molten_unsweetened_chocolate=Molten Unsweetened Chocolate
+material.gtfo_cocoa_butter=Cocoa Butter
+material.gtfo_molten_dark_chocolate=Molten Dark Chocolate
+material.gtfo_molten_milk_chocolate=Molten Milk Chocolate
+metaitem.component.paper_cone.name=Coffee Filter
+metaitem.component.empty_cup.name=Empty Cup
+metaitem.food.coffee.normal.name=Coffee Cup
+metaitem.food.coffee.energized.name=Energized Coffee Cup
+metaitem.crop.coffee.name=Coffee Cherry
+metaitem.seed.coffee.name=Coffee Seed
+metaitem.component.unfired_cup.name=Unfired Cup
+
+entity.Snowman.name=Snow Golem
+gregtechfoodoption.potion.snowgolemspawner=Snow-Protected
 
 gregtechfoodoption.machine.greenhouse.name=Greenhouse
 recipemap.greenhouse.name=Greenhouse

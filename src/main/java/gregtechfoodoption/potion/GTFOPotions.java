@@ -10,10 +10,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class GTFOPotions {
     public static void initPotionInstances()
     {
-        CreativityPotion CREATIVITY = new CreativityPotion();
-        //AddictionPotion ADDICTION = new AddictionPotion();
-        //WithdrawalPotion WITHDRAWAL = new WithdrawalPotion();
-        StepAssistPotion STEPASSIST = new StepAssistPotion();
+        new CreativityPotion();
+        //new AddictionPotion();
+        //new WithdrawalPotion();
+        new StepAssistPotion();
+        new SnowGolemSpawnerPotion();
     }
 
 
@@ -24,5 +25,6 @@ public class GTFOPotions {
         //event.getRegistry().registerAll(AddictionPotion.instance);
         //event.getRegistry().registerAll(WithdrawalPotion.instance);
         event.getRegistry().registerAll(StepAssistPotion.instance);
+        event.getRegistry().registerAll(SnowGolemSpawnerPotion.instance);
     }
 }

@@ -102,7 +102,6 @@ public class GTFOConfig {
         public void setAllToFalse() {
             nuclearCompat = false;
             smoreChain = false;
-            addSmogus = false;
         }
     }
 
@@ -119,7 +118,6 @@ public class GTFOConfig {
         public void setAllToFalse() {
             actuallyCompat = false;
             disableCoffeeMaker = false;
-            coffeeChain = false;
         }
     }
 
@@ -200,12 +198,13 @@ public class GTFOConfig {
 
         @Config.Comment("Apply effects of Step Assist?")
         public boolean stepAssist = true;
+
+        @Config.Comment("Apply effects of Snow Golem Spawner?")
+        public boolean snowGolemSpawner = true;
+
     }
 
     public static class GTFOMiscConfig {
-        @Config.Comment("Allow for lemons and limes to drop from trees? Note: makes the early game *much* easier to deal with.")
-        public boolean dropLemonsAndLimes = true;
-
         @Config.Comment("Create methane centrifuging recipes for GTFO seeds?")
         public boolean centrifugeSeeds = true;
     }
