@@ -98,10 +98,9 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-
-        tooltip.add(I18n.format("gregtechfoodoption.machine.electric_baking_oven.tooltip.1"));
-        tooltip.add(I18n.format("gregtechfoodoption.machine.electric_baking_oven.tooltip.2"));
-        tooltip.add(I18n.format("gregtechfoodoption.machine.electric_baking_oven.tooltip.3"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.greenhouse.tooltip.1"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.greenhouse.tooltip.2"));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.greenhouse.tooltip.3"));
     }
 
     @Override
