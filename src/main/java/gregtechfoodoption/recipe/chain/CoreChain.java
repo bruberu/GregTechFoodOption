@@ -630,5 +630,6 @@ public class CoreChain {
                 .inputs(SCRAP_MEAT.getStackForm())
                 .output(dust, Meat)
                 .buildAndRegister();
+
     }
 }

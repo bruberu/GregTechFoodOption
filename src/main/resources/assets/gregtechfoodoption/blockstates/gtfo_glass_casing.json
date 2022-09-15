@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active=false,variant=greenhouse_glass": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/transparent/greenhouse_glass"
+      }
+    },
+    "active=true,variant=greenhouse_glass": {
+      "model": "minecraft:cube_all",
+      "ambientocclusion": false,
+      "textures": {
+        "all": "gregtech:blocks/casings/transparent/greenhouse_glass"
+      }
+    }
+  }
+}

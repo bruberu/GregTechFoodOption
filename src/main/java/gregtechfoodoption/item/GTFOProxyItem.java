@@ -1,8 +1,8 @@
 package gregtechfoodoption.item;
 
+import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
 
 import java.util.function.Supplier;
 
@@ -11,15 +11,15 @@ import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 public class GTFOProxyItem {
     private final Supplier<ItemStack> itemPreparer;
     private ItemStack preferredItem;
-    private final boolean isOverridden;
+    private final boolean isOverriden;
 
-    public GTFOProxyItem(Supplier<MetaOreDictItem.OreDictValueItem> gtfoItem, int gtfoItemID, String modid, Supplier<ItemStack> otherItem) {
-        this.isOverridden = Loader.isModLoaded(modid);
-        if (isOverridden) {
+    public GTFOProxyItem(Supplier<MetaOreDictItem.OreDictValueItem> gtfoItem, int gtfoItemID, String name, Supplier<ItemStack> otherItem) {
+        isOverriden = GregTechAPI.MaterialRegistry.get(name) != null;
+        if (isOverriden) {
             itemPreparer = otherItem;
         } else {
             itemPreparer = () -> SHAPED_ITEM.getItem((short) gtfoItemID).getStackForm();
-            gtfoItem.get();
+            gtfoItem.get(); // Initialize it, but don't use it yet.
         }
     }
 
@@ -33,5 +33,9 @@ public class GTFOProxyItem {
         ItemStack copy = this.get();
         copy.setCount(count);
         return copy;
+    }
+
+    public boolean isOverriden() {
+        return isOverriden;
     }
 }

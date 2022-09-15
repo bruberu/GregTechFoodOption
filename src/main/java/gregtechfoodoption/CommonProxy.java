@@ -79,6 +79,7 @@ public class CommonProxy {
         IForgeRegistry<Block> registry = event.getRegistry();
         registry.register(GTFOMetaBlocks.GTFO_CASING);
         registry.register(GTFOMetaBlocks.GTFO_METAL_CASING);
+        registry.register(GTFOMetaBlocks.GTFO_GLASS_CASING);
 
         CROP_BLOCKS.forEach(registry::register);
         GTFOMetaBlocks.GTFO_LEAVES.forEach(registry::register);
@@ -95,6 +96,7 @@ public class CommonProxy {
 
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTFOMetaBlocks.GTFO_GLASS_CASING, VariantItemBlock::new));
         GTFOMetaBlocks.GTFO_LEAVES.forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
         GTFOMetaBlocks.GTFO_LOGS.forEach(log -> registry.register(createItemBlock(log, GTFOSpecialVariantItemBlock::new)));
         GTFOMetaBlocks.GTFO_SAPLINGS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));

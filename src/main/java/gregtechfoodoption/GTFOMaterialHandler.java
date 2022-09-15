@@ -1,12 +1,10 @@
 package gregtechfoodoption;
 
 import gregicality.science.api.unification.materials.GCYSMaterials;
-import gregtech.api.fluids.MetaFluids;
-import gregtech.api.fluids.fluidType.FluidTypes;
 import gregtech.api.GregTechAPI;
+import gregtech.api.fluids.MetaFluids;
 import gregtech.api.fluids.fluidType.FluidType;
 import gregtech.api.fluids.fluidType.FluidTypes;
-import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
@@ -226,24 +224,37 @@ public class GTFOMaterialHandler {
             .color(0xfc7996)
             .build();
 
-    public static final Material RubberSap = fluidBuilder(21556, "rubber_sap")
+    public static final Material MoltenUnsweetenedChocolate = fluidBuilder(21556, "molten_unsweetened_chocolate")
+            .color(0x7b3f00)
+            .fluidTemp(370)
+            .build();
+    public static final Material CocoaButter = fluidBuilder(21557, "cocoa_butter")
+            .color(0xe5dbce)
+            .build();
+    public static final Material MoltenDarkChocolate = fluidBuilder(21558, "molten_dark_chocolate")
+            .color(0x490206)
+            .fluidTemp(360)
+            .build();
+    public static final Material MoltenMilkChocolate = fluidBuilder(21559, "molten_milk_chocolate")
+            .color(0x84563c)
+            .fluidTemp(350)
+            .build();
+
+    public static final Material SodiumArseniteSolution = fluidBuilder(21560, "sodium_arsenite_solution")
+            .color(averageRGB(2, SodaAsh.getMaterialRGB(), Arsenic.getMaterialRGB()))
+            .components(Sodium, 1, Arsenic, 1, Oxygen, 2, Water, 1)
+            .build();
+    public static final Material RubberSap = fluidBuilder(21561, "rubber_sap")
             .color(0xf7f6dc)
             .build();
-    public static final Material RainbowSap = fluidBuilder(21557, "rainbow_sap")
+    public static final Material RainbowSap = fluidBuilder(21562, "rainbow_sap")
             .color(0xffffff)
             .build();
-
-    public static final Material MoltenUnsweetenedChocolate = fluidBuilder(21556, "molten_unsweetened_chocolate").color(0x7b3f00).fluidTemp(303)
-            .build();
-
-    public static final Material CocoaButter = fluidBuilder(21557, "cocoa_butter").color(0xe5dbce).fluidTemp(309)
-            .build();
-
-    public static final Material MoltenDarkChocolate = fluidBuilder(21558, "molten_dark_chocolate").color(0x490206).fluidTemp(326)
-            .build();
-
-    public static final Material MoltenMilkChocolate = fluidBuilder(21559, "molten_milk_chocolate").color(0x84563c).fluidTemp(316)
-            .build();
+    public static final Material BlueVitriol = GregTechAPI.MaterialRegistry.get("blue_vitriol") != null ? GregTechAPI.MaterialRegistry.get("blue_vitriol") :
+            fluidBuilder(21563, "blue_vitriol")
+                    .color(0x4242DE)
+                    .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
+                    .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
@@ -312,11 +323,14 @@ public class GTFOMaterialHandler {
     //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
 
     public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121, "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF), MaterialIconSet.ROUGH, dust, "NaClO4");
-    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, MODID_GCYS, () -> OreDictUnifier.get(dust, GCYSMaterials.SodiumChlorate));
+    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, "sodium_chlorate", () -> OreDictUnifier.get(dust, GCYSMaterials.SodiumChlorate));
 
-    public static final MetaOreDictItem.OreDictValueItem VanillylmandelicAcid = SHAPED_ITEM.addOreDictItem(1123, "vanillylmandelic_acid", 0xf2efbd, MaterialIconSet.ROUGH, dust, "C9H10O5");
-    public static final MetaOreDictItem.OreDictValueItem VanilglycolicAcid = SHAPED_ITEM.addOreDictItem(1124, "vanilglycolic_acid", 0xebe7a4, MaterialIconSet.DULL, dust, "C9H8O5");
-    public static final MetaOreDictItem.OreDictValueItem Vanillin = SHAPED_ITEM.addOreDictItem(1125, "vanillin", 0xfbfbfb, MaterialIconSet.SHINY, OrePrefix.dust, "C8H8O3");
+    public static final GTFOOredictItem.OreDictValueItem VanillylmandelicAcid = SHAPED_ITEM.addOreDictItem(1123, "vanillylmandelic_acid", 0xf2efbd, MaterialIconSet.ROUGH, dust, "C9H10O5");
+    public static final GTFOOredictItem.OreDictValueItem VanilglycolicAcid = SHAPED_ITEM.addOreDictItem(1124, "vanilglycolic_acid", 0xebe7a4, MaterialIconSet.DULL, dust, "C9H8O5");
+    public static final GTFOOredictItem.OreDictValueItem Vanillin = SHAPED_ITEM.addOreDictItem(1125, "vanillin", 0xfbfbfb, MaterialIconSet.SHINY, OrePrefix.dust, "C8H8O3");
+
+    public static final GTFOProxyItem ArsenicTrioxide = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1126, "arsenic_trioxide", averageRGB(2, Arsenic.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "As2O3"), 1126, "arsenic_trioxide", () -> OreDictUnifier.get(dust, GregTechAPI.MaterialRegistry.get("arsenic_trioxide")));
+    public static final GTFOOredictItem.OreDictValueItem CupricHydrogenArsenite = SHAPED_ITEM.addOreDictItem(1127, "cupric_hydrogen_arsenite", 0x0fff00, MaterialIconSet.SHINY, OrePrefix.dust, "CuHAsO3");
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem COCOA_NIB = SHAPED_ITEM.addOreDictItem(1036, "cocoa_nib", 0x635943, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
