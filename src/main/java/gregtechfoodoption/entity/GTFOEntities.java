@@ -13,6 +13,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOEntities {
@@ -30,6 +32,8 @@ public class GTFOEntities {
         EntityRegistry.registerModEntity(new ResourceLocation(GTValues.MODID, "strong_snowball"), EntityStrongSnowball.class, "Snowball", 2, GregTechFoodOption.instance, 64, 5, true);
 
     }
+
+    @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         RenderingRegistry.registerEntityRenderingHandler(EntityItalianBuffalo.class, RenderItalianBuffalo::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityStrongSnowman.class, RenderSnowMan::new);

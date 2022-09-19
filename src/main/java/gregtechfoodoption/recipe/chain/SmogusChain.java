@@ -37,19 +37,19 @@ public class SmogusChain {
             ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:foursmore"));
             removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
 
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.flour.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.smore.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.moresmore.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.foursmore.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.gelatin.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.ground_cocoa_nibs.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.graham_cracker.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.cocoa_solids.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.cocoa_butter.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.dark_chocolate.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.milk_chocolate.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.unsweetened_chocolate.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(NCItems.marshmallow.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.flour));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.smore));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.moresmore));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.foursmore));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.gelatin));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.ground_cocoa_nibs));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.graham_cracker));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.cocoa_solids));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.cocoa_butter));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.dark_chocolate));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.milk_chocolate));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.unsweetened_chocolate));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.marshmallow));
 
             JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("chocolate_liquor"));
             JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("cocoa_butter"));

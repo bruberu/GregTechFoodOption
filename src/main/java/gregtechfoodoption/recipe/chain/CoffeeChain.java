@@ -27,9 +27,9 @@ public class CoffeeChain {
             ModHandler.removeRecipes(new ItemStack(InitBlocks.blockCoffeeMachine));
 
         if (Loader.isModLoaded(GTFOValues.MODID_AA)) {
-            JEIGTFOPlugin.itemStacksToHide.add(InitItems.itemCoffee.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(InitItems.itemCoffeeSeed.getDefaultInstance());
-            JEIGTFOPlugin.itemStacksToHide.add(InitItems.itemCoffeeBean.getDefaultInstance());
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(InitItems.itemCoffee));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(InitItems.itemCoffeeSeed));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(InitItems.itemCoffeeBean));
             JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(InitBlocks.blockCoffeeMachine));
         }
 
