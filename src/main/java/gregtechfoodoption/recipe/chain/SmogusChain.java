@@ -113,7 +113,7 @@ public class SmogusChain {
         }
 
         MICROWAVE_RECIPES.recipeBuilder()
-                .input(NCItems.milk_chocolate)
+                .inputs(MILK_CHOCOLATE.getStackForm())
                 .outputs(GTFOMaterialHandler.HOT_MILK_CHOCOLATE.getItemStack())
                 .EUt(120)
                 .duration(100)
