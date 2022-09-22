@@ -40,6 +40,14 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         this.potionEffects = potionEffects;
     }
 
+    public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible) {
+        this(foodLevel, saturation, isDrink, alwaysEdible, ItemStack.EMPTY);
+    }
+
+    public GTFOFoodStats(int foodLevel, float saturation) {
+        this(foodLevel, saturation, false, false);
+    }
+
     public EnumAction getFoodAction(ItemStack itemStack) {
         return this.isDrink ? EnumAction.DRINK : EnumAction.EAT;
     }

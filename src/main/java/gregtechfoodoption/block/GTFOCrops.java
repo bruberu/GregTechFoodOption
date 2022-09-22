@@ -7,7 +7,8 @@ public class GTFOCrops {
     public static GTFOCrop CROP_CUCUMBER = GTFOCrop.create("cucumber");
     public static GTFOCrop CROP_GRAPE = GTFOCrop.create("grape");
     public static GTFOCrop CROP_SOY = GTFOCrop.create("soy");
-
+    public static GTFOCrop CROP_BEAN = GTFOCrop.create("bean");
+    public static GTFOCrop CROP_PEA = GTFOCrop.create("pea");
     public static void init() {
 
     }
