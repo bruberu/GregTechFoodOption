@@ -5,7 +5,7 @@ while true; do
 	NAME="${NAME//./\/}"
 	
 	# Copy PNG
-	PNGFILEPATH="./textures/item/metaitems/"$NAME".png"
+	PNGFILEPATH="./textures/items/metaitems/"$NAME".png"
 	PNGFOLDERPATH=${PNGFILEPATH%\/*}
 	mkdir -p $PNGFOLDERPATH
 	cp "blankitem.png" $PNGFILEPATH
