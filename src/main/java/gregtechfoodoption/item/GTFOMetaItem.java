@@ -241,7 +241,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem FULL_BREAKFAST;
     public static MetaItem<?>.MetaValueItem SHEPARDS_PIE;
     public static MetaItem<?>.MetaValueItem SAUSAGE_ROLL;
-    public static MetaItem<?>.MetaValueItem WHITE_BEANS;
+    public static MetaItem<?>.MetaValueItem BEANS;
     public static MetaItem<?>.MetaValueItem BAKED_BEANS;
     public static MetaItem<?>.MetaValueItem BEANS_ON_TOAST;
     public static MetaItem<?>.MetaValueItem TOAST;
@@ -600,8 +600,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         PEA_POD = addItem(206, "component.pea_pod");
         PEAS = addItem(207, "seed.pea");
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
-        WHITE_BEANS = addItem(208, "seed.bean");
-        WHITE_BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, WHITE_BEANS.getStackForm(), WHITE_BEANS.getStackForm()));
+        BEANS = addItem(208, "seed.bean");
+        BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
 
         // 175-189 left blank for organic circuits
 
