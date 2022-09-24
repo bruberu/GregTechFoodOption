@@ -34,7 +34,7 @@ public class MetaTileEntityMicrowave extends SimpleMachineMetaTileEntity {
         if (this.energyContainer.getEnergyStored() > GTValues.V[this.getTier()]) {
             MaterialStack materialIn = OreDictUnifier.getMaterial(importItems.getStackInSlot(0));
             if (materialIn != null) {
-                if (materialIn.material.hasProperty(PropertyKey.INGOT) || materialIn.material.hasFlag(MaterialFlags.FLAMMABLE)) {
+                if (materialIn.material.hasProperty(PropertyKey.INGOT) || materialIn.material.hasFlag(MaterialFlags.FLAMMABLE) || materialIn.material.hasFlag(MaterialFlags.EXPLOSIVE)) {
                     this.doExplosion(this.getTier() * 4);
                     return;
                 }
