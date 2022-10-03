@@ -21,8 +21,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtechfoodoption.GTFOMaterialHandler.TomatoSauce;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.*;
 
 public class BreadsChain {
     public static void init() {
@@ -209,6 +208,19 @@ public class BreadsChain {
                 .outputs(PRESLICED_BUN.getStackForm())
                 .buildAndRegister();
 
+        SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+                .inputs(BREAD_SLICE.getStackForm())
+                .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
+                .outputs(BREAD_SLICE.getStackForm(8))
+                .buildAndRegister();
+        GTFOUtils.addBakingOvenRecipes(
+                BREAD_SLICE.getStackForm(),
+                TOAST.getStackForm(),
+                50,
+                445,
+                2
+        );
+
         // Get ready for a *lot* of sandwiches!
 
         ModHandler.addShapelessRecipe("gtfo_burger_veggie", BURGER_VEGGIE.getStackForm(), PRESLICED_BUN.getStackForm(), CUCUMBER_SLICE.getStackForm(), CUCUMBER_SLICE.getStackForm(), TOMATO_SLICE.getStackForm(), TOMATO_SLICE.getStackForm(), ONION_SLICE.getStackForm(), ONION_SLICE.getStackForm());
@@ -240,28 +252,38 @@ public class BreadsChain {
         ModHandler.addShapelessRecipe("gtfo_sandwich_bacon", SANDWICH_BACON.getStackForm(), PRESLICED_BREAD, BACON, BACON, BACON, BACON, BACON, BACON, BACON, BACON);
         ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_meat", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, GTFOMaterialHandler.MeatIngot.getItemStack(), CHEDDAR_SLICE, CHEDDAR_SLICE);
         ModHandler.addShapelessRecipe("gtfo_sandwich_steak_from_oredict", SANDWICH_STEAK.getStackForm(), PRESLICED_BREAD, OreDictUnifier.get("cookedMeat"), CHEDDAR_SLICE, CHEDDAR_SLICE);
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
+        ModHandler.addShapelessRecipe("gtfo_sandwich_toast", SANDWICH_TOAST.getStackForm(), TOAST, BREAD_SLICE, BREAD_SLICE);
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(), TOMATO_SLICE.getStackForm(), CUCUMBER_SLICE.getStackForm(), ONION_SLICE.getStackForm())
                 .outputs(SANDWICH_VEGGIE.getStackForm())
                 .buildAndRegister();
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(), CHEDDAR_SLICE.getStackForm(2))
                 .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
                 .outputs(SANDWICH_CHEESE.getStackForm())
                 .buildAndRegister();
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(), BACON.getStackForm(4))
                 .outputs(SANDWICH_BACON.getStackForm())
                 .buildAndRegister();
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))
                 .inputs(GTFOMaterialHandler.MeatIngot.getItemStack())
                 .outputs(SANDWICH_STEAK.getStackForm(3))
                 .buildAndRegister();
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(120)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))
                 .input("cookedMeat", 1)
                 .outputs(SANDWICH_STEAK.getStackForm(3))
+                .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
+                .inputs(PRESLICED_BREAD.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))
+                .input("cookedMeat", 1)
+                .outputs(SANDWICH_STEAK.getStackForm(3))
+                .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
+                .inputs(PRESLICED_BREAD.getStackForm(2), TOAST.getStackForm(1))
+                .outputs(SANDWICH_TOAST.getStackForm())
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)
                 .inputs(PRESLICED_BAGUETTE.getStackForm(), TOMATO_SLICE.getStackForm(3), CUCUMBER_SLICE.getStackForm(3), ONION_SLICE.getStackForm(3))
@@ -286,6 +308,7 @@ public class BreadsChain {
                 .input("cookedMeat", 3)
                 .outputs(SANDWICH_LARGE_STEAK.getStackForm(3))
                 .buildAndRegister();
+
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(180).duration(400)
                 .inputs(FLAT_DOUGH.getStackForm(), MOZZARELLA_SLICE.getStackForm(3), MUSHROOM_SLICE.getStackForm(8), OLIVE_SLICE.getStackForm(8))

@@ -236,7 +236,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem MUSHY_PEAS;
     public static MetaItem<?>.MetaValueItem PEA_POD;
     public static MetaItem<?>.MetaValueItem PEAS;
-    public static MetaItem<?>.MetaValueItem TOAST_SANDWICH;
+    public static MetaItem<?>.MetaValueItem SANDWICH_TOAST;
     public static MetaItem<?>.MetaValueItem FISH_AND_CHIPS;
     public static MetaItem<?>.MetaValueItem FULL_BREAKFAST;
     public static MetaItem<?>.MetaValueItem SHEPARDS_PIE;
@@ -246,6 +246,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem BEANS_ON_TOAST;
     public static MetaItem<?>.MetaValueItem TOAST;
     public static MetaItem<?>.MetaValueItem BREAD_SLICE;
+    public static MetaItem<?>.MetaValueItem FRIED_FISH;
 
 
     public GTFOMetaItem() {
@@ -573,8 +574,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         MUSHY_PEAS = addItem(209, "food.mushy_peas").addComponents(new GTFOFoodStats(3, 1));
         BREAD_SLICE = addItem(210, "food.bread_slice").addComponents(new GTFOFoodStats(1, 0.5f));
         TOAST = addItem(211, "food.toast").addComponents(new GTFOFoodStats(2, 0.5f, false, true));
-        TOAST_SANDWICH = addItem(212, "food.sandwich.toast").addComponents(new GTFOFoodStats(6, 0.5f));
-        FISH_AND_CHIPS = addItem(213, "food.fish_and_chips").addComponents(new GTFOFoodStats(6, 0.6f));
+        SANDWICH_TOAST = addItem(212, "food.sandwich.toast").addComponents(new GTFOFoodStats(6, 0.5f));
+        FISH_AND_CHIPS = addItem(213, "food.fish_and_chips").addComponents(new GTFOFoodStats(7, 0.6f));
         FULL_BREAKFAST = addItem(214, "food.full_breakfast").addComponents(new GTFOFoodStats(10, 1.2f));
         SHEPARDS_PIE = addItem(215, "food.shepards_pie").addComponents(new GTFOFoodStats(9, 1f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.ABSORPTION, 1000, 0, 100 - 50)));
@@ -582,6 +583,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         BAKED_BEANS = addItem(217, "food.baked_beans").addComponents(new GTFOFoodStats(4, 1f));
         BEANS_ON_TOAST = addItem(218, "food.beans_on_toast").addComponents(new GTFOFoodStats(7, 0.8f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.SATURATION, 500, 0, 100 - 20)));
+        FRIED_FISH = addItem(219, "food.fried_fish").addComponents(new GTFOFoodStats(4, 0.3f));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
