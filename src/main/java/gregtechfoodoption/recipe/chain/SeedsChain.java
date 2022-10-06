@@ -60,6 +60,13 @@ public class SeedsChain {
         ModHandler.addShapedRecipe("gtfo_seed_coffee_ungenerify", GTFOMetaItem.COFFEE_SEED.getStackForm(),
                 "   ", "   ", "S  ",
                 'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_pea_ungenerify", GTFOMetaItem.PEAS.getStackForm(),
+                "   ", "  S", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_bean_ungenerify", GTFOMetaItem.BEANS.getStackForm(),
+                "   ", "   ", " S ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+
 
         ModHandler.addShapelessRecipe("gtfo_seed_soy_extraction", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
                 GTFOMetaItem.SOYBEAN);

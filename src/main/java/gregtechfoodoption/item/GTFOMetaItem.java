@@ -241,12 +241,16 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem FULL_BREAKFAST;
     public static MetaItem<?>.MetaValueItem SHEPARDS_PIE;
     public static MetaItem<?>.MetaValueItem SAUSAGE_ROLL;
+    public static MetaItem<?>.MetaValueItem SAUSAGE;
     public static MetaItem<?>.MetaValueItem BEANS;
     public static MetaItem<?>.MetaValueItem BAKED_BEANS;
     public static MetaItem<?>.MetaValueItem BEANS_ON_TOAST;
     public static MetaItem<?>.MetaValueItem TOAST;
     public static MetaItem<?>.MetaValueItem BREAD_SLICE;
     public static MetaItem<?>.MetaValueItem FRIED_FISH;
+    public static MetaItem<?>.MetaValueItem BEER;
+    public static MetaItem<?>.MetaValueItem BEANS_WITH_SAUCE;
+    public static MetaItem<?>.MetaValueItem UNCOOKED_SAUSAGE_ROLL;
 
 
     public GTFOMetaItem() {
@@ -374,6 +378,9 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_CARROT = addItem(149, "component.kebab.carrot");
         KEBAB_FAT = addItem(150, "component.kebab.fat");
         KEBAB_MEAT = addItem(156, "component.kebab.meat");
+
+        BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
+        BEANS_WITH_SAUCE = addItem(223, "component.uncooked_sausage_roll");
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -584,6 +591,10 @@ public class GTFOMetaItem extends StandardMetaItem {
         BEANS_ON_TOAST = addItem(218, "food.beans_on_toast").addComponents(new GTFOFoodStats(7, 0.8f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.SATURATION, 500, 0, 100 - 20)));
         FRIED_FISH = addItem(219, "food.fried_fish").addComponents(new GTFOFoodStats(4, 0.3f));
+        BEER = addItem(220, "food.beer").addComponents(new GTFOFoodStats(2, 0.5f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.NAUSEA, 500, 0, 100 - 40)));
+        SAUSAGE_ROLL = addItem(222, "food.sausage").addComponents(new GTFOFoodStats(4, 0.7f));
+
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
@@ -604,6 +615,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
+
+
 
         // 175-189 left blank for organic circuits
 

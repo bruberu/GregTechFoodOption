@@ -8,7 +8,7 @@ while true; do
 	PNGFILEPATH="./textures/items/metaitems/"$NAME".png"
 	PNGFOLDERPATH=${PNGFILEPATH%\/*}
 	mkdir -p $PNGFOLDERPATH
-	cp "blankitem.png" $PNGFILEPATH
+	cp -n "blankitem.png" $PNGFILEPATH
 	echo "Created " $PNGFILEPATH
 	
 	# Copy JSON

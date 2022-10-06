@@ -4,9 +4,8 @@ import gregtech.api.unification.material.Materials;
 import net.minecraft.init.Items;
 
 import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtechfoodoption.item.GTFOMetaItem.LENINADE;
-import static gregtechfoodoption.item.GTFOMetaItem.VODKA;
 import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
 
 public class AlcoholChain {
     public static void init() {
@@ -15,10 +14,21 @@ public class AlcoholChain {
                 .fluidInputs(Materials.Water.getFluid(1000))
                 .fluidOutputs(PotatoJuice.getFluid(1000))
                 .buildAndRegister();
+        FERMENTING_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .input(Items.WHEAT)
+                .fluidInputs(Materials.Water.getFluid(1000))
+                .fluidOutputs(WheatyJuice.getFluid(1000))
+                .buildAndRegister();
+
 
         FERMENTING_RECIPES.recipeBuilder().EUt(8).duration(3000)
                 .fluidInputs(PotatoJuice.getFluid(2000))
                 .fluidOutputs(Vodka.getFluid(2000))
+                .buildAndRegister();
+
+        FERMENTING_RECIPES.recipeBuilder().EUt(8).duration(3000)
+                .fluidInputs(WheatyJuice.getFluid(2000))
+                .fluidOutputs(PoorQualityBeer.getFluid(2000))
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().EUt(12).duration(30)
@@ -31,11 +41,15 @@ public class AlcoholChain {
                 .fluidInputs(Vodka.getFluid(100))
                 .outputs(VODKA.getStackForm())
                 .buildAndRegister();
-
         CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
                 .input(Items.GLASS_BOTTLE)
                 .fluidInputs(Leninade.getFluid(100))
                 .outputs(LENINADE.getStackForm())
+                .buildAndRegister();
+        CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
+                .input(Items.GLASS_BOTTLE)
+                .fluidInputs(PoorQualityBeer.getFluid(100))
+                .outputs(BEER.getStackForm())
                 .buildAndRegister();
     }
 }
