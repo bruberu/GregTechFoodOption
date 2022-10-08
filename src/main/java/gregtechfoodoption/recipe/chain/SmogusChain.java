@@ -17,7 +17,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
@@ -51,14 +50,14 @@ public class SmogusChain {
             JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.unsweetened_chocolate));
             JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.marshmallow));
 
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("chocolate_liquor"));
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("cocoa_butter"));
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("unsweetened_chocolate"));
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("dark_chocolate"));
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("milk_chocolate"));
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("gelatin"));
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("hydrated_gelatin"));
-            JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("marshmallow"));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.chocolate_liquor")));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.cocoa_butter")));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.unsweetened_chocolate")));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.dark_chocolate")));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.milk_chocolate")));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.gelatin")));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.hydrated_gelatin")));
+            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.marshmallow")));
         }
         removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
 

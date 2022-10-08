@@ -1,5 +1,7 @@
 package gregtechfoodoption.integration.nc;
 
+import nc.block.fluid.NCBlockFluid;
+import nc.init.NCFluids;
 import nc.init.NCItems;
 import nc.recipe.AbstractRecipeHandler;
 import nc.recipe.NCRecipes;
@@ -7,6 +9,8 @@ import nc.recipe.ingredient.FluidIngredient;
 import nc.recipe.ingredient.ItemIngredient;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -46,5 +50,14 @@ public class GTFONCRecipeHandler {
 
     public static FluidIngredient convertToFluidIngredient(String fluid, int count) {
         return new FluidIngredient(fluid, count);
+    }
+
+    public static NCBlockFluid getFluidBlock(String fluid) {
+        for (Pair<Fluid, NCBlockFluid> pair : NCFluids.fluidPairList) {
+            if (pair.getLeft().getUnlocalizedName().equals(fluid)) {
+                return pair.getRight();
+            }
+        }
+        return null;
     }
 }
