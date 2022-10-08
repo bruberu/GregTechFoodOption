@@ -632,5 +632,16 @@ public class CoreChain {
                 .buildAndRegister();
 
         GTFOUtils.addBakingOvenRecipes(OreDictUnifier.get(dust, Meat), CookedMinceMeat.getItemStack(), 200, 400, 1);
+
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(60)
+                .inputs(PAPER_BAG.getStackForm())
+                .inputs(FLAVORED_POPCORN_FLAKE.getStackForm(32))
+                .outputs(POPCORN_BAG.getStackForm())
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(80).duration(30)
+                .circuitMeta(0)
+                .input(plate, Paper, 3)
+                .outputs(PAPER_BAG.getStackForm())
+                .buildAndRegister();
     }
 }

@@ -2,16 +2,6 @@ package gregtechfoodoption.recipe.chain;
 
 public class PopcornChain {
     public static void init() {/*
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(60)
-                .inputs(PAPER_BAG.getStackForm())
-                .inputs(FLAVORED_POPCORN_FLAKE.getStackForm(32))
-                .outputs(POPCORN_BAG.getStackForm())
-                .buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder().EUt(80).duration(30)
-                .circuitMeta(0)
-                .input(plate, Paper, 3)
-                .outputs(PAPER_BAG.getStackForm())
-                .buildAndRegister();
         PYROLYSE_RECIPES.recipeBuilder().EUt(120).duration(60)
                 .circuitMeta(0)
                 .inputs(GradedPopcornKernel.getItemStack())

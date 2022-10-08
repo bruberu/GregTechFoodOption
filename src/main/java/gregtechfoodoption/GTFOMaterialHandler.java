@@ -259,6 +259,7 @@ public class GTFOMaterialHandler {
                     .build();
     public static final Material BakingSodaSolution = fluidBuilder(21564, "baking_soda_solution")
             .color(SodiumBicarbonate.getMaterialRGB())
+            .components(SodiumBicarbonate, 1, Water, 1)
             .build();
     public static final Material BeerBatter = fluidBuilder(21565, "beer_batter")
             .color(0xe4cfc0)
