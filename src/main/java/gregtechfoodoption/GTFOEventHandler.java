@@ -3,6 +3,7 @@ package gregtechfoodoption;
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.net.NetworkHandler;
+import gregtech.api.util.GregFakePlayer;
 import gregtechfoodoption.entity.EntityStrongSnowman;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
@@ -11,6 +12,7 @@ import gregtechfoodoption.network.SPacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
+import gregtechfoodoption.utils.GTFODamageSources;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,9 +28,11 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -208,5 +212,11 @@ public class GTFOEventHandler {
                     event.player.getUniqueID(), GTFOAppleCoreCompat.advancementLookup(event.player)).toFMLPacket());
         }
 
+    }
+
+    @SubscribeEvent
+    public static void onWorldLoadEvent(WorldEvent.Load event) {
+        if (!event.getWorld().isRemote)
+            GTFODamageSources.EXTERMINATOR = GregFakePlayer.get((WorldServer) event.getWorld());
     }
 }

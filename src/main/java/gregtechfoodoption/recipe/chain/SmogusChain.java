@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtech.api.GTValues;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
@@ -108,7 +109,11 @@ public class SmogusChain {
                         .duration(ticks)
                         .buildAndRegister();
             }
-            euPerTick *= 4;
+            if (euPerTick < GTValues.VA[GTValues.UV] || GTValues.HT) {
+                euPerTick *= 4;
+            } else {
+                ticks *= 2;
+            }
             ticks *= 2;
         }
 
