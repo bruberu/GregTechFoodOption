@@ -106,10 +106,16 @@ public class SeedsChain {
 
         RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(24).duration(40)
                 .fluidInputs(RawSoybeanOil.getFluid(1000))
-                .fluidOutputs(SeedOil.getFluid(600));
+                .fluidOutputs(SeedOil.getFluid(600))
+                .buildAndRegister();
         RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(24).duration(40)
                 .fluidInputs(SoybeanOil.getFluid(1000))
-                .fluidOutputs(SeedOil.getFluid(1000));
+                .fluidOutputs(SeedOil.getFluid(1000))
+                .buildAndRegister();
+        RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(24).duration(40)
+                .fluidInputs(OliveOil.getFluid(1000))
+                .fluidOutputs(SeedOil.getFluid(500))
+                .buildAndRegister();
 
         ModHandler.addShapelessRecipe("gtfo_seed_pea_extraction", PEAS.getStackForm(),
                 PEA_POD);
