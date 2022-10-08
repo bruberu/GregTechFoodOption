@@ -32,6 +32,7 @@ public class DyeChain {
                 .input(dust, SodiumHydroxide, 3)
                 .fluidInputs(SodiumArseniteSolution.getFluid(1000), GTFOMaterialHandler.BlueVitriol.getFluid(1000))
                 .outputs(CupricHydrogenArsenite.getItemStack(6))
+                .output(dust, SodiumSulfate, 7)
                 .fluidOutputs(Water.getFluid(500))
                 .buildAndRegister();
 

@@ -269,6 +269,10 @@ public class GTFOMaterialHandler {
     public static final Material PoorQualityBeer = fluidBuilder(21567, "poor_quality_beer")
             .color(0xa87b58)
             .build();
+    public static final Material SodiumSulfate = new Material.Builder(21568, "sodium_sulfate")
+            .dust()
+            .components(Sodium, 1, Sulfur, 1, Oxygen, 4)
+            .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
