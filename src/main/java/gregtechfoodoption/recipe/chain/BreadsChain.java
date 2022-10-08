@@ -189,28 +189,26 @@ public class BreadsChain {
                 .outputs(FLAT_DOUGH.getStackForm())
                 .buildAndRegister();
 
-        ModHandler.addShapelessRecipe("gtfo_slice_bread", PRESLICED_BREAD.getStackForm(), 'k', Items.BREAD);
-        SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+        ModHandler.addShapedRecipe("gtfo_slice_bread",  PRESLICED_BREAD.getStackForm(), "Bk", 'B', Items.BREAD);
+        CUTTER_RECIPES.recipeBuilder().EUt(18).duration(30)
                 .inputs(new ItemStack(Items.BREAD))
-                .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(PRESLICED_BREAD.getStackForm())
                 .buildAndRegister();
         ModHandler.addShapelessRecipe("gtfo_slice_baguette", PRESLICED_BAGUETTE.getStackForm(), 'k', BAGUETTE);
-        SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+        CUTTER_RECIPES.recipeBuilder().EUt(18).duration(30)
                 .inputs(BAGUETTE.getStackForm())
-                .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(PRESLICED_BAGUETTE.getStackForm())
                 .buildAndRegister();
         ModHandler.addShapelessRecipe("gtfo_slice_bun", PRESLICED_BUN.getStackForm(), 'k', BUN);
-        SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
+        CUTTER_RECIPES.recipeBuilder().EUt(18).duration(30)
                 .inputs(BUN.getStackForm())
-                .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(PRESLICED_BUN.getStackForm())
                 .buildAndRegister();
 
+        ModHandler.addShapedRecipe("gtfo_vertical_slice_bread",  TOAST.getStackForm(4), "B", "k", 'B', Items.BREAD);
         SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
-                .inputs(BREAD_SLICE.getStackForm())
-                .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
+                .input(Items.BREAD)
+                .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(BREAD_SLICE.getStackForm(8))
                 .buildAndRegister();
         GTFOUtils.addBakingOvenRecipes(
