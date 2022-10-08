@@ -10,6 +10,8 @@ import net.minecraft.item.ItemStack;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.item.GTFOMetaItem.PEAS;
+import static gregtechfoodoption.item.GTFOMetaItem.PEA_POD;
 
 public class SeedsChain {
     public static void init() {
@@ -60,6 +62,13 @@ public class SeedsChain {
         ModHandler.addShapedRecipe("gtfo_seed_coffee_ungenerify", GTFOMetaItem.COFFEE_SEED.getStackForm(),
                 "   ", "   ", "S  ",
                 'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_pea_ungenerify", GTFOMetaItem.PEAS.getStackForm(),
+                "   ", "  S", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_bean_ungenerify", GTFOMetaItem.BEANS.getStackForm(),
+                "   ", "   ", " S ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+
 
         ModHandler.addShapelessRecipe("gtfo_seed_soy_extraction", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
                 GTFOMetaItem.SOYBEAN);
@@ -98,6 +107,13 @@ public class SeedsChain {
         RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(24).duration(40)
                 .fluidInputs(SoybeanOil.getFluid(1000))
                 .fluidOutputs(SeedOil.getFluid(1000));
+
+        ModHandler.addShapelessRecipe("gtfo_seed_pea_extraction", PEAS.getStackForm(),
+                PEA_POD);
+        RecipeMaps.CANNER_RECIPES.recipeBuilder().EUt(8).duration(20)
+                .inputs(PEA_POD.getStackForm())
+                .outputs(PEAS.getStackForm(8))
+                .buildAndRegister();
 
 
 /*

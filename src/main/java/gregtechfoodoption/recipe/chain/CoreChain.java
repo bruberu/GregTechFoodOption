@@ -631,5 +631,6 @@ public class CoreChain {
                 .output(dust, Meat)
                 .buildAndRegister();
 
+        GTFOUtils.addBakingOvenRecipes(OreDictUnifier.get(dust, Meat), CookedMinceMeat.getItemStack(), 200, 400, 1);
     }
 }

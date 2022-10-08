@@ -11,6 +11,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 
+// It's alive...
 public class DyeChain {
     public static void init() {
         ARC_FURNACE_RECIPES.recipeBuilder().EUt(30).duration(100)

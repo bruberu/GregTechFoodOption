@@ -22,6 +22,7 @@ public class GTFORecipeAddition {
         IceCreamChain.init();
         VanillinChain.init();
         DyeChain.init();
+        BritishChain.init();
         if(GTFOConfig.gtfoChainsConfig.potatoProcessingChain)
             PotatoProcessingChain.init();
         if(GTFOConfig.gtfoChainsConfig.alcoholChain)
