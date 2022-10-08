@@ -255,7 +255,7 @@ public class GTFOMaterialHandler {
     public static final Material BlueVitriol = GregTechAPI.MaterialRegistry.get("blue_vitriol") != null ? GregTechAPI.MaterialRegistry.get("blue_vitriol") :
             fluidBuilder(21563, "blue_vitriol")
                     .color(0x4242DE)
-                    .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
+                    .components(Copper, 1, Sulfur, 1, Oxygen, 4)
                     .build();
     public static final Material BakingSodaSolution = fluidBuilder(21564, "baking_soda_solution")
             .color(SodiumBicarbonate.getMaterialRGB())
@@ -281,8 +281,8 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material SodiumCarbonateSolution = fluidBuilder(21973, "sodium_carbonate_solution")
             .color(averageRGB(2, 0xaaaaaa, SodaAsh.getMaterialRGB()))
-            .build()
-            .setFormula("Na2CO3");
+            .components(Water, 1, SodaAsh, 1)
+            .build();
 
     public static final Material Coffee = fluidBuilder(21990, "coffee")
             .color(0x36312e)

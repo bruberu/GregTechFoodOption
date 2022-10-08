@@ -10,7 +10,6 @@ import static gregtech.api.unification.material.Materials.Sugar;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.common.items.MetaItems.SHAPE_MOLD_BALL;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static nc.recipe.AbstractRecipeHandler.fluidStack;
 
 public class IceCreamChain {
     public static void init() {
@@ -52,7 +51,7 @@ public class IceCreamChain {
         if (Loader.isModLoaded(GTFOValues.MODID_NC))
             RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(GTFOMetaItem.ICE_CREAM_PLAIN.getStackForm(4))
-                .fluidInputs(fluidStack("milk_chocolate", 72).getStack())
+                .fluidInputs(MoltenMilkChocolate.getFluid(72))
                 .outputs(GTFOMetaItem.ICE_CREAM_CHOCOLATE.getStackForm(4))
                 .buildAndRegister();
 

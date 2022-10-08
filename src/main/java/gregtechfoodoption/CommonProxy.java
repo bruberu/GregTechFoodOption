@@ -53,7 +53,7 @@ public class CommonProxy {
         try {
             addSlotsToMaps(RecipeMaps.FERMENTING_RECIPES, "maxInputs", 1);
             addSlotsToMaps(RecipeMaps.FERMENTING_RECIPES, "maxOutputs", 1);
-            addSlotsToMaps(RecipeMaps.COMPRESSOR_RECIPES, "maxFluidOutputs", 1);
+            addSlotsToMaps(RecipeMaps.EXTRACTOR_RECIPES, "maxInputs", 2);
             addSlotsToMaps(RecipeMaps.BREWING_RECIPES, "maxOutputs", 1);
             addSlotsToMaps(RecipeMaps.BREWING_RECIPES, "minFluidOutputs", -1);
         } catch (Exception e) {

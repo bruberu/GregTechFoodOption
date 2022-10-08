@@ -27,13 +27,20 @@ public class DyeChain {
                 .fluidOutputs(SodiumArseniteSolution.getFluid(2000), CarbonDioxide.getFluid(1000))
                 .buildAndRegister();
 
-        // $stoik NaAsO2 + CuSO4 + NaOH -> CuAsHO3 + Na2SO4
+        // $stoik NaAsO2 (+ H2O) + CuSO4 + NaOH -> CuAsHO3 + Na2SO4 (+ H2O)
         CHEMICAL_RECIPES.recipeBuilder().EUt(24).duration(80)
                 .input(dust, SodiumHydroxide, 3)
                 .fluidInputs(SodiumArseniteSolution.getFluid(1000), GTFOMaterialHandler.BlueVitriol.getFluid(1000))
                 .outputs(CupricHydrogenArsenite.getItemStack(6))
-                .fluidOutputs(CarbonDioxide.getFluid(1000), Water.getFluid(1000))
+                .fluidOutputs(Water.getFluid(1000))
                 .buildAndRegister();
+
+        // $stoik Cu + H2SO4 -> CuSO4 + H2
+        CHEMICAL_RECIPES.recipeBuilder().EUt(16).duration(160)
+                        .input(dust, Copper)
+                                .fluidInputs(SulfuricAcid.getFluid(1000))
+                                        .fluidOutputs(GTFOMaterialHandler.BlueVitriol.getFluid(1000), Hydrogen.getFluid(1000))
+                                                .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(60)
                 .inputs(CupricHydrogenArsenite.getItemStack(), MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))

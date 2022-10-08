@@ -2,6 +2,7 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.GTFOConfig;
@@ -83,11 +84,13 @@ public class SeedsChain {
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
                 .fluidOutputs(RawSoybeanOil.getFluid(15))
                 .buildAndRegister();
 
-        RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(64).duration(64)
+        RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(64).duration(64)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(2))
                 .output(OrePrefix.dustSmall, Wood)
                 .fluidOutputs(RawSoybeanOil.getFluid(28))
                 .buildAndRegister();
