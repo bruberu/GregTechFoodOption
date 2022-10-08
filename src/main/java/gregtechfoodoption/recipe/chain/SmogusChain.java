@@ -36,7 +36,6 @@ public class SmogusChain {
             ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:smore"));
             ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:moresmore"));
             ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:foursmore"));
-            removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
 
             JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.flour));
             JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.smore));
@@ -61,6 +60,7 @@ public class SmogusChain {
             JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("hydrated_gelatin"));
             JEIGTFOPlugin.fluidsToHide.add(FluidRegistry.getFluid("marshmallow"));
         }
+        removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
 
         ItemStack[] smoresout = {
                 SMORE_SMINGOT.getStackForm(),
@@ -386,8 +386,5 @@ public class SmogusChain {
                 .duration(30)
                 .buildAndRegister();
     }
-
-
-
 
 }

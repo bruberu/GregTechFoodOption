@@ -62,6 +62,10 @@ public class LemonTree extends GTFOTree {
     }
 
     @Override
+    public ItemStack getApple() {
+        return LEMON.getStackForm();
+    }
+    @Override
     public int getMinTrunkHeight(Random random) {
         return 6 + random.nextInt(3);
     }

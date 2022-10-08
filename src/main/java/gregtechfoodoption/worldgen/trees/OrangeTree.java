@@ -90,4 +90,9 @@ public class OrangeTree extends GTFOTree {
         return ItemStack.EMPTY;
     }
 
+    @Override
+    public ItemStack getApple() {
+        return ORANGE.getStackForm();
+    }
+
 }

@@ -98,4 +98,10 @@ public class OliveTree extends GTFOTree {
         }
         return ItemStack.EMPTY;
     }
+
+
+    @Override
+    public ItemStack getApple() {
+        return OLIVE.getStackForm();
+    }
 }

@@ -87,6 +87,12 @@ public class BananaTree extends GTFOTree {
         return ItemStack.EMPTY;
     }
 
+
+    @Override
+    public ItemStack getApple() {
+        return BANANA.getStackForm();
+    }
+
     @Override
     public int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
         return LEAVES_COLOR;

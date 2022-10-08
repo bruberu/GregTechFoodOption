@@ -61,4 +61,9 @@ public class MangoTree extends GTFOTree {
         }
         return ItemStack.EMPTY;
     }
+
+    @Override
+    public ItemStack getApple() {
+        return MANGO.getStackForm();
+    }
 }
