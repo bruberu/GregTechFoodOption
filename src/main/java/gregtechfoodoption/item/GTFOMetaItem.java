@@ -380,7 +380,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         KEBAB_MEAT = addItem(156, "component.kebab.meat");
 
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
-        BEANS_WITH_SAUCE = addItem(223, "component.uncooked_sausage_roll");
+        UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -593,7 +593,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         FRIED_FISH = addItem(219, "food.fried_fish").addComponents(new GTFOFoodStats(4, 0.3f));
         BEER = addItem(220, "food.beer").addComponents(new GTFOFoodStats(2, 0.5f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 0, 100 - 40)));
-        SAUSAGE_ROLL = addItem(222, "food.sausage").addComponents(new GTFOFoodStats(4, 0.7f));
+        SAUSAGE = addItem(222, "food.sausage").addComponents(new GTFOFoodStats(4, 0.7f));
 
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");

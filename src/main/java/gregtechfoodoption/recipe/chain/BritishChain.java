@@ -42,9 +42,9 @@ public class BritishChain {
                     .outputs(FRIED_FISH.getStackForm())
                     .buildAndRegister();
 
-        ModHandler.addShapelessRecipe("fish_and_chips", FISH_AND_CHIPS.getStackForm(1), FRIED_FISH.getStackForm(), FRIED_POTATO_STRIP.getStackForm());
+        ModHandler.addShapelessRecipe("fish_and_chips", FISH_AND_CHIPS.getStackForm(1), FRIED_FISH.getStackForm(), FRENCH_FRIES.getStackForm());
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(8).duration(10)
-                .inputs(FRIED_FISH.getStackForm(), FRIED_POTATO_STRIP.getStackForm())
+                .inputs(FRIED_FISH.getStackForm(), FRENCH_FRIES.getStackForm())
                 .outputs(FISH_AND_CHIPS.getStackForm())
                 .buildAndRegister();
 
