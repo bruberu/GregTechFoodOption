@@ -64,7 +64,7 @@ public class BritishChain {
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(64).duration(200)
                 .inputs(MashedPotato.getItemStack(), CookedMinceMeat.getItemStack())
-                .outputs(SHEPARDS_PIE.getStackForm())
+                .outputs(SHEPHERDS_PIE.getStackForm())
                 .buildAndRegister();
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(400)

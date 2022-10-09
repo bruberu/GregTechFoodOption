@@ -239,7 +239,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem SANDWICH_TOAST;
     public static MetaItem<?>.MetaValueItem FISH_AND_CHIPS;
     public static MetaItem<?>.MetaValueItem FULL_BREAKFAST;
-    public static MetaItem<?>.MetaValueItem SHEPARDS_PIE;
+    public static MetaItem<?>.MetaValueItem SHEPHERDS_PIE;
     public static MetaItem<?>.MetaValueItem SAUSAGE_ROLL;
     public static MetaItem<?>.MetaValueItem SAUSAGE;
     public static MetaItem<?>.MetaValueItem BEANS;
@@ -584,7 +584,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         SANDWICH_TOAST = addItem(212, "food.sandwich.toast").addComponents(new GTFOFoodStats(6, 0.5f));
         FISH_AND_CHIPS = addItem(213, "food.fish_and_chips").addComponents(new GTFOFoodStats(7, 0.6f));
         FULL_BREAKFAST = addItem(214, "food.full_breakfast").addComponents(new GTFOFoodStats(10, 1.2f));
-        SHEPARDS_PIE = addItem(215, "food.shepards_pie").addComponents(new GTFOFoodStats(9, 1f, false, false, ItemStack.EMPTY,
+        SHEPHERDS_PIE = addItem(215, "food.shepherds_pie").addComponents(new GTFOFoodStats(9, 1f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.ABSORPTION, 1000, 0, 100 - 50)));
         SAUSAGE_ROLL = addItem(216, "food.sausage_roll").addComponents(new GTFOFoodStats(7, 0.7f));
         BAKED_BEANS = addItem(217, "food.baked_beans").addComponents(new GTFOFoodStats(4, 1f));
