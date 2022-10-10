@@ -1,7 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.GTValues;
-import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -9,17 +8,11 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.integration.jei.JEIGTFOPlugin;
 import gregtechfoodoption.integration.nc.GTFONCRecipeHandler;
 import gregtechfoodoption.utils.GTFOUtils;
-import nc.init.NCItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.ForgeModContainer;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.UniversalBucket;
 import net.minecraftforge.fml.common.Loader;
 
 import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
@@ -34,42 +27,6 @@ public class SmogusChain {
     public static void init() {
         if (Loader.isModLoaded(GTFOValues.MODID_NC)) {
             GTFONCRecipeHandler.initSmingotRemoval();
-            ModHandler.removeFurnaceSmelting(new ItemStack(Items.DYE, 1, 3));
-            ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:smore"));
-            ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:moresmore"));
-            ModHandler.removeRecipeByName(new ResourceLocation("nuclearcraft:foursmore"));
-
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.flour));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.smore));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.moresmore));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.foursmore));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.gelatin));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.ground_cocoa_nibs));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.graham_cracker));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.cocoa_solids));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.cocoa_butter));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.dark_chocolate));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.milk_chocolate));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.unsweetened_chocolate));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(NCItems.marshmallow));
-
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("chocolate_liquor")));
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("cocoa_butter")));
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("unsweetened_chocolate")));
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("dark_chocolate")));
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("milk_chocolate")));
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("gelatin")));
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("hydrated_gelatin")));
-            JEIGTFOPlugin.itemStacksToHide.add(UniversalBucket.getFilledBucket(ForgeModContainer.getInstance().universalBucket, FluidRegistry.getFluid("marshmallow")));
-
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.chocolate_liquor")));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.cocoa_butter")));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.unsweetened_chocolate")));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.dark_chocolate")));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.milk_chocolate")));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.gelatin")));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.hydrated_gelatin")));
-            JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(GTFONCRecipeHandler.getFluidBlock("fluid.marshmallow")));
         }
         removeRecipesByInputs(MACERATOR_RECIPES, new ItemStack(Items.DYE, 1, 3));
 
@@ -345,7 +302,7 @@ public class SmogusChain {
 
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(Water.getFluid(1000))
-                .input(OrePrefix.dust, SodaAsh, 4)
+                .input(OrePrefix.dust, SodaAsh)
                 .fluidOutputs(GTFOMaterialHandler.SodiumCarbonateSolution.getFluid(1000))
                 .EUt(30)
                 .duration(40)

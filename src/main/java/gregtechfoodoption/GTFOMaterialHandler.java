@@ -16,8 +16,7 @@ import gregtechfoodoption.item.GTFOProxyItem;
 import net.minecraftforge.fml.common.Loader;
 
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_DENSE;
-import static gregtech.api.unification.material.info.MaterialFlags.GENERATE_FRAME;
+import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtechfoodoption.GTFOValues.MODID_GCYS;
@@ -157,10 +156,12 @@ public class GTFOMaterialHandler {
 
     public static final Material Stearin = fluidBuilder(21537, "stearin")
             .color(0xffcc66)
+            .flags(DISABLE_DECOMPOSITION)
             .components(Carbon, 57, Hydrogen, 110, Oxygen, 6)
             .build();
     public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid", FluidTypes.ACID).color(0xfff7e6)
             .components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("C17H35CO2H", true); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
     public static final Material SodiumStearate = fluidBuilder(21539, "sodium_stearate")
@@ -244,7 +245,8 @@ public class GTFOMaterialHandler {
 
     public static final Material SodiumArseniteSolution = fluidBuilder(21560, "sodium_arsenite_solution")
             .color(averageRGB(2, SodaAsh.getMaterialRGB(), Arsenic.getMaterialRGB()))
-            .components(Sodium, 1, Arsenic, 1, Oxygen, 2, Water, 1)
+            .components(Sodium, 1, Arsenic, 1, Oxygen, 2)
+            .flags(DISABLE_DECOMPOSITION)
             .build();
     public static final Material RubberSap = fluidBuilder(21561, "rubber_sap")
             .color(0xf7f6dc)
@@ -260,6 +262,7 @@ public class GTFOMaterialHandler {
     public static final Material BakingSodaSolution = fluidBuilder(21564, "baking_soda_solution")
             .color(SodiumBicarbonate.getMaterialRGB())
             .components(SodiumBicarbonate, 1, Water, 1)
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .build();
     public static final Material BeerBatter = fluidBuilder(21565, "beer_batter")
             .color(0xe4cfc0)
@@ -286,6 +289,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material SodiumCarbonateSolution = fluidBuilder(21973, "sodium_carbonate_solution")
             .color(averageRGB(2, 0xaaaaaa, SodaAsh.getMaterialRGB()))
+            .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .components(Water, 1, SodaAsh, 1)
             .build();
 
