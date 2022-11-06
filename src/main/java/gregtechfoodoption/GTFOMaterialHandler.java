@@ -1,6 +1,5 @@
 package gregtechfoodoption;
 
-import gregicality.science.api.unification.materials.GCYSMaterials;
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.MetaFluids;
 import gregtech.api.fluids.fluidType.FluidType;
@@ -13,13 +12,11 @@ import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.item.GTFOProxyItem;
-import net.minecraftforge.fml.common.Loader;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.plate;
-import static gregtechfoodoption.GTFOValues.MODID_GCYS;
 import static gregtechfoodoption.GTFOValues.Organic;
 import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
@@ -173,7 +170,7 @@ public class GTFOMaterialHandler {
             .components(Carbon, 5, Hydrogen, 7, Oxygen, 5)
             .build()
             .setFormula("HOC(CH2CO2H)2", true); //good for processing food
-    public static final Material HydrogenCyanide = Loader.isModLoaded(MODID_GCYS) ? GCYSMaterials.HydrogenCyanide : fluidBuilder(21541, "hydrogen_cyanide")
+    public static final Material HydrogenCyanide = GregTechAPI.MaterialRegistry.get("hydrogen_cyanide") != null ? GregTechAPI.MaterialRegistry.get("hydrogen_cyanide") : fluidBuilder(21541, "hydrogen_cyanide")
             .color(0x6e6a5e)
             .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
             .build();
@@ -346,7 +343,7 @@ public class GTFOMaterialHandler {
     //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
 
     public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121, "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF), MaterialIconSet.ROUGH, dust, "NaClO4");
-    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, "sodium_chlorate", () -> OreDictUnifier.get(dust, GCYSMaterials.SodiumChlorate));
+    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, "sodium_chlorate", () -> OreDictUnifier.get(dust, GregTechAPI.MaterialRegistry.get("sodium_chlorate")));
 
     public static final GTFOOredictItem.OreDictValueItem VanillylmandelicAcid = SHAPED_ITEM.addOreDictItem(1123, "vanillylmandelic_acid", 0xf2efbd, MaterialIconSet.ROUGH, dust, "C9H10O5");
     public static final GTFOOredictItem.OreDictValueItem VanilglycolicAcid = SHAPED_ITEM.addOreDictItem(1124, "vanilglycolic_acid", 0xebe7a4, MaterialIconSet.DULL, dust, "C9H8O5");

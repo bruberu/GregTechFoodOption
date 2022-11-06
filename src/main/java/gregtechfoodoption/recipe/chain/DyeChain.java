@@ -10,6 +10,7 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.GTFOMaterialHandler.ArsenicTrioxide;
 
 // It's alive...
 public class DyeChain {

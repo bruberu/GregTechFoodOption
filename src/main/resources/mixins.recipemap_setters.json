@@ -1,0 +1,10 @@
+{
+  "package": "gregtechfoodoption.recipe.mixins",
+  "refmap": "mixins.gregtechfoodoption.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "RecipeMapMixin"
+  ]
+}

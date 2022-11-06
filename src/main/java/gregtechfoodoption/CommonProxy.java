@@ -3,7 +3,6 @@ package gregtechfoodoption;
 import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
-import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOCrops;
@@ -14,10 +13,7 @@ import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
 import gregtechfoodoption.potion.GTFOPotions;
-import gregtechfoodoption.recipe.GTFOOreDictRegistration;
-import gregtechfoodoption.recipe.GTFORecipeAddition;
-import gregtechfoodoption.recipe.GTFORecipeHandler;
-import gregtechfoodoption.recipe.GTFORecipeRemoval;
+import gregtechfoodoption.recipe.*;
 import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -35,8 +31,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
 import javax.annotation.Nonnull;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -51,11 +45,11 @@ public class CommonProxy {
 
         GTFORecipeHandler.register();
         try {
-            addSlotsToMaps(RecipeMaps.FERMENTING_RECIPES, "maxInputs", 1);
-            addSlotsToMaps(RecipeMaps.FERMENTING_RECIPES, "maxOutputs", 1);
-            addSlotsToMaps(RecipeMaps.EXTRACTOR_RECIPES, "maxInputs", 2);
-            addSlotsToMaps(RecipeMaps.BREWING_RECIPES, "maxOutputs", 1);
-            addSlotsToMaps(RecipeMaps.BREWING_RECIPES, "minFluidOutputs", -1);
+            ((IExpandableRecipeMap)RecipeMaps.BREWING_RECIPES).setMaxOutputs(1);
+            ((IExpandableRecipeMap)RecipeMaps.BREWING_RECIPES).setMinFluidOutputs(0);
+            ((IExpandableRecipeMap)RecipeMaps.EXTRACTOR_RECIPES).setMaxInputs(2);
+            ((IExpandableRecipeMap)RecipeMaps.FERMENTING_RECIPES).setMaxInputs(1);
+            ((IExpandableRecipeMap)RecipeMaps.FERMENTING_RECIPES).setMaxOutputs(1);
         } catch (Exception e) {
 
         }
@@ -154,26 +148,6 @@ public class CommonProxy {
                     .setRegistryName(crop.getRegistryName()));
         }
     }
-
-    public static void addSlotsToMaps(
-            final RecipeMap<?> map,
-            final String slotType,
-            final int value)
-            throws Exception {
-
-        // set public
-        Field field = RecipeMap.class.getDeclaredField(slotType);
-        field.setAccessible(true);
-
-        // set non-final
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-        // set the value of the parameter
-        field.setInt(map, value);
-    }
-
 
     // These recipes are generated at the beginning of the init() phase with the proper config set.
     // This is not great practice, but ensures that they are run AFTER CraftTweaker,

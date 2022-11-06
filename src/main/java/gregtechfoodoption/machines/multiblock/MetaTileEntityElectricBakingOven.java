@@ -319,8 +319,8 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
     }
 
     @Override
-    public int getLightValueForPart(IMultiblockPart sourcePart) {
-        return sourcePart == null && temp > 300 ? 15 : 0;
+    public int getActualLightValue() {
+        return temp > 300 ? 15 : 0;
     }
 
     private class ElectricBakingOvenLogic extends MultiblockRecipeLogic {

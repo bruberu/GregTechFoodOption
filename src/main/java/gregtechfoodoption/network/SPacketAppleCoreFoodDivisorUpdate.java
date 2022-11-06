@@ -12,6 +12,7 @@ public class SPacketAppleCoreFoodDivisorUpdate implements IPacket {
     public UUID uuid;
     public float divisor;
 
+
     public SPacketAppleCoreFoodDivisorUpdate(UUID uuid, float divisor) {
         this.uuid = uuid;
         this.divisor = divisor;

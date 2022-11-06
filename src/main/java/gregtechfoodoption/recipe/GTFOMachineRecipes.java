@@ -23,8 +23,8 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static gregicality.science.api.unification.materials.GCYSMaterials.Adamantium;
-import static gregicality.science.api.unification.materials.GCYSMaterials.Orichalcum;
+//import static gregicality.science.api.unification.materials.GCYSMaterials.Adamantium;
+//import static gregicality.science.api.unification.materials.GCYSMaterials.Orichalcum;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -51,8 +51,8 @@ public class GTFOMachineRecipes {
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             DENSE_PLATE.appendIngredients(Stream.of(new Object[][]{
-                    {9, new UnificationEntry(OrePrefix.plateDense, Orichalcum)},
-                    {10, new UnificationEntry(OrePrefix.plateDense, Adamantium)},
+//                    {9, new UnificationEntry(OrePrefix.plateDense, Orichalcum)},
+//                    {10, new UnificationEntry(OrePrefix.plateDense, Adamantium)},
 //                {11, new UnificationEntry(OrePrefix.plateDense, Trinium)},
 //                {12, new UnificationEntry(OrePrefix.plateDense, Trinium)},
 //                {13, new UnificationEntry(OrePrefix.plateDense, Trinium)},

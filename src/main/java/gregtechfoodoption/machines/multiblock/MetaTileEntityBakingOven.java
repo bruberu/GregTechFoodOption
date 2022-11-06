@@ -36,8 +36,8 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
     }
 
     @Override
-    public int getLightValueForPart(IMultiblockPart sourcePart) {
-        return sourcePart == null && recipeMapWorkable.isActive() ? 15 : 0;
+    public int getActualLightValue() {
+        return recipeMapWorkable.isActive() ? 15 : 0;
     }
 
     protected IBlockState getCasingState() {

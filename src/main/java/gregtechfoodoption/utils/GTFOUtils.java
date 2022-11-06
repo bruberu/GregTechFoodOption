@@ -1,6 +1,5 @@
 package gregtechfoodoption.utils;
 
-import gregicality.science.api.recipes.GCYSRecipeMaps;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
@@ -172,7 +171,7 @@ public class GTFOUtils {
     }
 
     public static RecipeMap<?> chemicalDehydratorProxy() {
-        return Loader.isModLoaded(GTFOValues.MODID_GCYS) ? GCYSRecipeMaps.DRYER_RECIPES : RecipeMaps.CHEMICAL_RECIPES;
+        return Loader.isModLoaded(GTFOValues.MODID_GCYS) ? RecipeMap.getByName("dryer_recipes") : RecipeMaps.CHEMICAL_RECIPES;
     }
 
     public static RecipeMap<?> stellarForgeProxy() {
