@@ -300,6 +300,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
         data.setLong("operationPosition", operationPosition.toLong());
+        data.setBoolean("isWorkingEnabled", isWorkingEnabled);
         return data;
     }
 
@@ -307,6 +308,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
         operationPosition = new MutableBlockPos(BlockPos.fromLong(data.getLong("operationPosition")));
+        isWorkingEnabled = data.getBoolean("isWorkingEnabled");
     }
 
     private boolean isOperationPositionInsideWorkingArea() {
