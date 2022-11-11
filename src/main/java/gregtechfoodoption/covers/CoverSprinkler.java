@@ -5,18 +5,17 @@ import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
 import gregtech.api.GregTechAPI;
-import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.cover.CoverBehavior;
 import gregtech.api.cover.CoverWithUI;
 import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.ModularUI;
-import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.material.Material;
 import gregtech.api.util.XSTR;
-import gregtech.client.particle.GTParticleManager;
 import gregtechfoodoption.client.particle.GTFOSprinkle;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
@@ -30,8 +29,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-import static gregtechfoodoption.GTFOValues.UPDATE_OPERATION_POS;
-import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLE_COLOR;
+import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_DATA;
 import static net.minecraft.block.BlockFarmland.MOISTURE;
 
 public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITickable {
@@ -58,7 +56,8 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
     @Override
     public void renderCover(CCRenderState ccRenderState, Matrix4 matrix4, IVertexOperation[] iVertexOperations, Cuboid6 cuboid6, BlockRenderLayer blockRenderLayer) {
         if (wasWorking) {
-            GTParticleManager.INSTANCE.addEffect(new GTFOSprinkle(this.coverHolder.getWorld(), operationPosition.getX() + 0.5, operationPosition.getY() + 1, operationPosition.getZ() + 0.5, sprinkleColor));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new GTFOSprinkle(this.coverHolder.getWorld(), this.coverHolder.getPos().getX() + 0.5, this.coverHolder.getPos().getY() - 0.3, this.coverHolder.getPos().getZ() + 0.5, operationPosition.getX() + 0.5, operationPosition.getY() + 1, operationPosition.getZ() + 0.5, sprinkleColor));
+            //this.coverHolder.getWorld().spawnParticle(EnumParticleTypes.DRIP_WATER, operationPosition.getX() + 0.5, operationPosition.getY() + 1, operationPosition.getZ() + 0.5, 0, 0, 0);
             updateOperationPosition();
         }
     }
@@ -71,27 +70,29 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
     @Override
     public void update() {
         IFluidHandler fluidHandler = this.coverHolder.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide);
-        boolean isWorkingNow = fluidHandler != null && fluidHandler.drain(Materials.Water.getFluid(1), true) != null;
-        if (fluidHandler != null && fluidHandler.getTankProperties().length > 0) {
-            FluidStack fluid = fluidHandler.getTankProperties()[0].getContents();
-            FluidStack drop = fluid.copy();
-            drop.amount = 1;
-            if (fluidHandler.drain(drop, true) != null) {
-                isWorkingNow = true;
-                int color = GregTechAPI.MaterialRegistry.get(drop.getFluid().getName()).getMaterialRGB();
+        if (fluidHandler == null)
+            return;
+        FluidStack fluid = fluidHandler.drain(1, true);
+        boolean isWorkingNow = fluid != null;
+        if (isWorkingNow) {
+            Material mat = GregTechAPI.MaterialRegistry.get(fluid.getFluid().getName());
+            if (mat != null) {
+                int color = mat.getMaterialRGB();
                 if (color != sprinkleColor) {
                     sprinkleColor = color;
-                    syncSprinkleColor();
                 }
+            } else {
+                sprinkleColor = 255;
             }
         }
-        this.setWorking(isWorkingNow);
-        if (isWorkingNow && this.coverHolder.getOffsetTimer() % 20 == 0)
+        this.wasWorking = isWorkingNow;
+        if (isWorkingNow && this.coverHolder.getOffsetTimer() % 20 == 0) {
+            syncAllData();
             return;
+        }
         if (operationPosition == null || workingArea == null)
             setupWorkingArea();
         updateOperationPosition();
-        syncOperationPosition();
         IBlockState cropState = this.coverHolder.getWorld().getBlockState(operationPosition);
         if (cropState.getBlock() instanceof IGrowable) {
             ((IGrowable) cropState.getBlock()).grow(this.coverHolder.getWorld(), random, operationPosition, cropState);
@@ -101,8 +102,7 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
         if (farmlandState.getBlock() instanceof BlockFarmland) {
             this.coverHolder.getWorld().setBlockState(operationPosition.down(), farmlandState.withProperty(MOISTURE, Math.min(7, farmlandState.getValue(MOISTURE) + 2)));
         }
-
-
+        this.syncAllData();
     }
 
     private void updateOperationPosition() {
@@ -140,37 +140,21 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
         return this.coverHolder.getPos().down(3);
     }
 
-    private void syncOperationPosition() {
-        writeUpdateData(UPDATE_OPERATION_POS, packetBuffer -> {
+    private void syncAllData() {
+        writeUpdateData(UPDATE_SPRINKLER_DATA, packetBuffer -> {
             packetBuffer.writeBlockPos(operationPosition);
-        });
-    }
-
-    private void syncSprinkleColor() {
-        writeUpdateData(UPDATE_SPRINKLE_COLOR, packetBuffer -> {
             packetBuffer.writeInt(sprinkleColor);
+            packetBuffer.writeBoolean(wasWorking);
         });
     }
-
     @Override
     public void readUpdateData(int id, PacketBuffer packetBuffer) {
         super.readUpdateData(id, packetBuffer);
-        if (id == UPDATE_OPERATION_POS) {
+        if (id == UPDATE_SPRINKLER_DATA) {
             this.operationPosition = new BlockPos.MutableBlockPos(packetBuffer.readBlockPos());
-            this.coverHolder.scheduleRenderUpdate();
-        } else if (id == UPDATE_SPRINKLE_COLOR) {
             this.sprinkleColor = packetBuffer.readInt();
-        } else if (id == GregtechDataCodes.IS_WORKING) {
-            wasWorking = packetBuffer.readBoolean();
-        }
-    }
-
-    public void setWorking(boolean b) {
-        if (wasWorking != b) {
-            wasWorking = b;
-            writeUpdateData(GregtechDataCodes.IS_WORKING, packetBuffer -> {
-                packetBuffer.writeBoolean(wasWorking);
-            });
+            this.wasWorking = packetBuffer.readBoolean();
+            this.coverHolder.scheduleRenderUpdate();
         }
     }
 

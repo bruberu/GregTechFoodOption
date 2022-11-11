@@ -20,7 +20,7 @@ public class GTFOValues {
     public static final MaterialIconSet Organic = new MaterialIconSet("organic");
 
     public static final int UPDATE_OPERATION_POS = 97800;
-    public static final int UPDATE_SPRINKLE_COLOR = 97801;
+    public static final int UPDATE_SPRINKLER_DATA = 97801;
 
     public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.BANANA.getStackForm(), true);
 
