@@ -27,6 +27,7 @@ public class GTFOTileEntities {
     public static final MetaTileEntityMobExterminator[] MOB_EXTERMINATOR = new MetaTileEntityMobExterminator[4];
     public static final MetaTileEntityMobExtractor[] MOB_EXTRACTOR = new MetaTileEntityMobExtractor[GTValues.UV];
     public static final MetaTileEntityFarmer[] FARMER = new MetaTileEntityFarmer[4];
+    public static final MetaTileEntitySprinkler[] SPRINKLER = new MetaTileEntitySprinkler[4];
     public static MetaTileEntityBakingOven BAKING_OVEN;
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
     public static MetaTileEntitySteamBakingOven STEAM_BAKING_OVEN;
@@ -91,6 +92,13 @@ public class GTFOTileEntities {
         FARMER[3] = registerMetaTileEntity(8564, new MetaTileEntityFarmer(location("farmer.ev"), 4, 2));
 
         GREENHOUSE = registerMetaTileEntity(8565, new MetaTileEntityGreenhouse(location("greenhouse")));
+
+        // Sprinklers, IDs 8566-8569
+        SPRINKLER[0] = registerMetaTileEntity(8566, new MetaTileEntitySprinkler(location("sprinkler.lv"), 1));
+        SPRINKLER[1] = registerMetaTileEntity(8567, new MetaTileEntitySprinkler(location("sprinkler.mv"), 2));
+        SPRINKLER[2] = registerMetaTileEntity(8568, new MetaTileEntitySprinkler(location("sprinkler.hv"), 3));
+        SPRINKLER[3] = registerMetaTileEntity(8569, new MetaTileEntitySprinkler(location("sprinkler.ev"), 4));
+
     }
 
     private static ResourceLocation location(String name) {

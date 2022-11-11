@@ -3,6 +3,7 @@ package gregtechfoodoption;
 import gregtech.api.GTValues;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.covers.GTFOCoverBehaviors;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.integration.tfc.GTFOTFCCompatibility;
@@ -75,6 +76,7 @@ public class GregTechFoodOption {
         if (Loader.isModLoaded(GTFOValues.MODID_GF) && Loader.isModLoaded(GTFOValues.MODID_TFC)) {
             GTFOTFCCompatibility.init();
         }
+        GTFOCoverBehaviors.init();
         GameRegistry.registerWorldGenerator(GTFOWorldGenerator.INSTANCE, 1);
     }
 
