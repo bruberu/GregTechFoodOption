@@ -4,14 +4,17 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
 import codechicken.lib.vec.Matrix4;
+import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverBehavior;
 import gregtech.api.cover.CoverWithUI;
 import gregtech.api.cover.ICoverable;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.unification.material.Material;
-import gregtech.api.util.XSTR;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.client.particle.GTFOSprinkle;
+import gregtechfoodoption.materials.FertilizerProperty;
 import net.minecraft.block.BlockFarmland;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
@@ -37,7 +40,6 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
 
     private BlockPos.MutableBlockPos operationPosition;
     private int sprinkleColor;
-    private final SprinklerRandom random;
     private AxisAlignedBB workingArea;
     private boolean wasWorking = false;
     private static final int LENGTH = 9;
@@ -45,7 +47,6 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
     public CoverSprinkler(ICoverable coverHolder, EnumFacing attachedSide, int tier) {
         super(coverHolder, attachedSide);
         this.tier = tier;
-        this.random = new SprinklerRandom(8 - tier);
     }
 
     @Override
@@ -54,12 +55,13 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
     }
 
     @Override
-    public void renderCover(CCRenderState ccRenderState, Matrix4 matrix4, IVertexOperation[] iVertexOperations, Cuboid6 cuboid6, BlockRenderLayer blockRenderLayer) {
+    public void renderCover(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline, Cuboid6 plateBox, BlockRenderLayer blockRenderLayer) {
         if (wasWorking) {
-            Minecraft.getMinecraft().effectRenderer.addEffect(new GTFOSprinkle(this.coverHolder.getWorld(), this.coverHolder.getPos().getX() + 0.5, this.coverHolder.getPos().getY() - 0.3, this.coverHolder.getPos().getZ() + 0.5, operationPosition.getX() + 0.5, operationPosition.getY() + 1, operationPosition.getZ() + 0.5, sprinkleColor));
+            Minecraft.getMinecraft().effectRenderer.addEffect(new GTFOSprinkle(this.coverHolder.getWorld(), this.coverHolder.getPos().getX() + 0.5, this.coverHolder.getPos().getY() - 0.1, this.coverHolder.getPos().getZ() + 0.5, operationPosition.getX() + 0.5, operationPosition.getY() + 1, operationPosition.getZ() + 0.5, sprinkleColor));
             //this.coverHolder.getWorld().spawnParticle(EnumParticleTypes.DRIP_WATER, operationPosition.getX() + 0.5, operationPosition.getY() + 1, operationPosition.getZ() + 0.5, 0, 0, 0);
             updateOperationPosition();
         }
+        GTFOClientHandler.SPRINKLER_OVERLAY.renderSided(attachedSide, plateBox, renderState, pipeline, translation);
     }
 
     @Override
@@ -74,12 +76,17 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
             return;
         FluidStack fluid = fluidHandler.drain(1, true);
         boolean isWorkingNow = fluid != null;
+        int percentageChance = 0;
         if (isWorkingNow) {
             Material mat = GregTechAPI.MaterialRegistry.get(fluid.getFluid().getName());
             if (mat != null) {
                 int color = mat.getMaterialRGB();
                 if (color != sprinkleColor) {
                     sprinkleColor = color;
+                }
+                FertilizerProperty property = mat.getProperty(GTFOMaterialHandler.FERTILIZER);
+                if (property != null) {
+                    percentageChance = property.getBoostPercentage();
                 }
             } else {
                 sprinkleColor = 255;
@@ -94,8 +101,8 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
             setupWorkingArea();
         updateOperationPosition();
         IBlockState cropState = this.coverHolder.getWorld().getBlockState(operationPosition);
-        if (cropState.getBlock() instanceof IGrowable) {
-            ((IGrowable) cropState.getBlock()).grow(this.coverHolder.getWorld(), random, operationPosition, cropState);
+        if (cropState.getBlock() instanceof IGrowable && GTValues.RNG.nextInt(100) < percentageChance) {
+            ((IGrowable) cropState.getBlock()).grow(this.coverHolder.getWorld(), GTValues.RNG, operationPosition, cropState);
         }
 
         IBlockState farmlandState = this.coverHolder.getWorld().getBlockState(operationPosition.down());
@@ -150,7 +157,7 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
     @Override
     public void readUpdateData(int id, PacketBuffer packetBuffer) {
         super.readUpdateData(id, packetBuffer);
-        if (id == UPDATE_SPRINKLER_DATA) {
+        if (id == UPDATE_SPRINKLER_DATA && this.isRemote()) {
             this.operationPosition = new BlockPos.MutableBlockPos(packetBuffer.readBlockPos());
             this.sprinkleColor = packetBuffer.readInt();
             this.wasWorking = packetBuffer.readBoolean();
@@ -191,18 +198,5 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
         this.operationPosition = new BlockPos.MutableBlockPos(BlockPos.fromLong(tagCompound.getLong("operationPos")));
         this.wasWorking = tagCompound.getBoolean("wasWorking");
         this.sprinkleColor = tagCompound.getInteger("sprinkleColor");
-    }
-
-    public static class SprinklerRandom extends XSTR {
-        private int actualBound;
-
-        public SprinklerRandom(int actualBound) {
-            this.actualBound = actualBound;
-        }
-
-        @Override
-        public int nextInt(int bound) {
-            return super.nextInt(actualBound);
-        }
     }
 }

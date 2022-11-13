@@ -44,7 +44,7 @@ public class MetaTileEntityMobExtractor extends SimpleMachineMetaTileEntity {
     }
 
     protected boolean checkRecipe(@Nonnull Recipe recipe) {
-        ResourceLocation entityRequired = recipe.getProperty(MobOnTopProperty.getInstance(), EntityList.LIGHTNING_BOLT);
+        ResourceLocation entityRequired = recipe.getProperty(MobOnTopProperty.getInstance(), null);
         List<Entity> nearbyEntities = getEntitiesInProximity();
         for (Entity entity : nearbyEntities) {
             if (EntityList.isMatchingName(entity, entityRequired)) {

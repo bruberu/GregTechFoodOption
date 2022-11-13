@@ -643,5 +643,16 @@ public class CoreChain {
                 .input(plate, Paper, 3)
                 .outputs(PAPER_BAG.getStackForm())
                 .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().EUt(16).duration(100)
+                .inputs(MetaItems.FERTILIZER.getStackForm())
+                .fluidInputs(Water.getFluid(10000))
+                .fluidOutputs(FertilizerSolution.getFluid(10000));
+
+        MIXER_RECIPES.recipeBuilder().EUt(16).duration(100)
+                .inputs(new ItemStack(Items.DYE, 1, 15))
+                .fluidInputs(Water.getFluid(5000))
+                .fluidOutputs(FertilizerSolution.getFluid(5000))
+                .buildAndRegister();
     }
 }

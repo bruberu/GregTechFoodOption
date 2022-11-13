@@ -9,9 +9,13 @@ import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialIconSet;
+import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.util.FluidTooltipUtil;
+import gregtech.api.util.LocalizationUtils;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.item.GTFOProxyItem;
+import gregtechfoodoption.materials.FertilizerProperty;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
@@ -22,6 +26,7 @@ import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 
 public class GTFOMaterialHandler {
+    public static final PropertyKey<FertilizerProperty> FERTILIZER = new PropertyKey<>("gtfo_fertilizer", FertilizerProperty.class);
 
     // 21500 - 21969
 
@@ -275,6 +280,15 @@ public class GTFOMaterialHandler {
             .components(Sodium, 2, Sulfur, 1, Oxygen, 4)
             .build();
 
+    public static final Material Blood = fluidBuilder(21569, "blood")
+            .color(0x691a15)
+            .fluidTemp(310)
+            .build();
+
+    public static final Material FertilizerSolution = fluidBuilder(21570, "fertilizer_solution")
+            .color(0x947760)
+            .build();
+
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
             .build();
@@ -372,6 +386,8 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_PRESSED = SHAPED_ITEM.addOreDictItem(1050, "chocolate_liquor_pressed", 0xa6795a, GTFOValues.Organic, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = SHAPED_ITEM.addOreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, GTFOValues.Organic, OrePrefix.crushed);
 
+
+
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
         Materials.BismuthBronze.addFlags(GENERATE_FRAME);
@@ -379,6 +395,10 @@ public class GTFOMaterialHandler {
         Materials.StainlessSteel.addFlags(GENERATE_DENSE);
         Materials.Titanium.addFlags(GENERATE_DENSE);
         Materials.Aluminium.addFlags(GENERATE_DENSE);
+
+        Water.setProperty(FERTILIZER, new FertilizerProperty(5));
+        Blood.setProperty(FERTILIZER, new FertilizerProperty(30));
+        FertilizerSolution.setProperty(FERTILIZER, new FertilizerProperty(15));
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
@@ -391,5 +411,13 @@ public class GTFOMaterialHandler {
 
     public static void customFluidTextures() {
         MetaFluids.setMaterialFluidTexture(GTFOMaterialHandler.RainbowSap, FluidTypes.LIQUID);
+    }
+
+    public static void registerFertilizerTooltips() {
+        for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
+            FertilizerProperty fertilizerProperty = material.getProperty(FERTILIZER);
+            if (fertilizerProperty != null)
+                FluidTooltipUtil.registerTooltip(material.getFluid(), LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", fertilizerProperty.getBoostPercentage()));
+        }
     }
 }

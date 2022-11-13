@@ -13,9 +13,9 @@ public class GTFOSprinkle extends Particle {
 
     public GTFOSprinkle(World worldIn, double posXIn, double posYIn, double posZIn, double posXFinal, double posYFinal, double posZFinal, int color) {
         super(worldIn, posXIn, posYIn, posZIn);
-        this.particleRed = (float) (color - (color % (256 * 256))) / (256 * 256);
-        this.particleGreen = (float) (color % (256 * 256) - color % 256) / 256;
-        this.particleBlue = (float) (color % 256) / 255;
+        this.particleRed = (float) (color - (color % (256 * 256))) / (256 * 256 * 256);
+        this.particleGreen = (float) (color % (256 * 256) - color % 256) / (256 * 256);
+        this.particleBlue = (float) (color % 256) / 256;
 
         this.posXFinal = posXFinal;
         this.posYFinal = posYFinal;
