@@ -4,15 +4,17 @@ import gregtech.api.net.IPacket;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.PacketBuffer;
-import lombok.NoArgsConstructor;
+
 import java.util.UUID;
 
-@NoArgsConstructor
 public class SPacketAppleCoreFoodDivisorUpdate implements IPacket {
     public UUID uuid;
     public float divisor;
 
+    public SPacketAppleCoreFoodDivisorUpdate() {
 
+    }
+    
     public SPacketAppleCoreFoodDivisorUpdate(UUID uuid, float divisor) {
         this.uuid = uuid;
         this.divisor = divisor;

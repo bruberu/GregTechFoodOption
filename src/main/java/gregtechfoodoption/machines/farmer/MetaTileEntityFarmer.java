@@ -51,7 +51,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static gregtech.api.capability.GregtechDataCodes.*;
-import static gregtechfoodoption.GTFOValues.UPDATE_LASER_POS;
+import static gregtechfoodoption.GTFOValues.UPDATE_OPERATION_POS;
 
 public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IControllable {
 
@@ -214,7 +214,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
                 .grow(.1);
         if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to weirdness in how the facing is set.
             setDefaultOperationPosition();
-            writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
+            writeCustomData(UPDATE_OPERATION_POS, buf -> buf.writeBlockPos(operationPosition));
         }
     }
 
@@ -233,7 +233,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
             this.isWorkingEnabled = buf.readBoolean();
             getHolder().scheduleRenderUpdate();
         }
-        if (dataId == UPDATE_LASER_POS) {
+        if (dataId == UPDATE_OPERATION_POS) {
             this.operationPosition = new MutableBlockPos(buf.readBlockPos());
             getHolder().scheduleRenderUpdate();
         }
@@ -300,6 +300,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         super.writeToNBT(data);
         data.setLong("operationPosition", operationPosition.toLong());
+        data.setBoolean("isWorkingEnabled", isWorkingEnabled);
         return data;
     }
 
@@ -307,6 +308,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public void readFromNBT(NBTTagCompound data) {
         super.readFromNBT(data);
         operationPosition = new MutableBlockPos(BlockPos.fromLong(data.getLong("operationPosition")));
+        isWorkingEnabled = data.getBoolean("isWorkingEnabled");
     }
 
     private boolean isOperationPositionInsideWorkingArea() {
@@ -315,7 +317,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
 
     private void setDefaultOperationPosition() {
         operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
-        writeCustomData(UPDATE_LASER_POS, buf -> buf.writeBlockPos(operationPosition));
+        writeCustomData(UPDATE_OPERATION_POS, buf -> buf.writeBlockPos(operationPosition));
     }
 
     @Override

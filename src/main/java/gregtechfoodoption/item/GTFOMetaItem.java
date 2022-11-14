@@ -252,6 +252,8 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem BEANS_WITH_SAUCE;
     public static MetaItem<?>.MetaValueItem UNCOOKED_SAUSAGE_ROLL;
 
+    public static MetaItem<?>.MetaValueItem SPRINKLER_COVER;
+
 
     public GTFOMetaItem() {
         super();
@@ -619,6 +621,8 @@ public class GTFOMetaItem extends StandardMetaItem {
 
 
         // 175-189 left blank for organic circuits
+
+        SPRINKLER_COVER = addItem(224, "cover.sprinkler");
 
         {
             int heal = 44;

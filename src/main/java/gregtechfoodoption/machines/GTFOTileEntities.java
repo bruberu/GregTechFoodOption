@@ -91,6 +91,7 @@ public class GTFOTileEntities {
         FARMER[3] = registerMetaTileEntity(8564, new MetaTileEntityFarmer(location("farmer.ev"), 4, 2));
 
         GREENHOUSE = registerMetaTileEntity(8565, new MetaTileEntityGreenhouse(location("greenhouse")));
+
     }
 
     private static ResourceLocation location(String name) {

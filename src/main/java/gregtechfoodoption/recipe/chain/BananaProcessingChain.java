@@ -18,7 +18,7 @@ public class BananaProcessingChain {
                     .input(dust, Salt, 2)
                     .notConsumable(new IntCircuitIngredient(1))
                     .output(dust, Sodium)
-                    .fluidOutputs(Chlorine.getFluid(6000))
+                    .fluidOutputs(Chlorine.getFluid(1000))
                     .buildAndRegister();
             ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(400) // NaCl + 3H2O -> NaClO3 + 6H
                     .input(dust, Salt, 2)
@@ -27,6 +27,7 @@ public class BananaProcessingChain {
                     .outputs(SodiumChlorate.get(5))
                     .fluidOutputs(Hydrogen.getFluid(6000))
                     .buildAndRegister();
+
             GTRecipeHandler.removeRecipesByInputs(ELECTROLYZER_RECIPES, Water.getFluid(1000));
             ELECTROLYZER_RECIPES.recipeBuilder().EUt(30).duration(1500) // NaCl + 3H2O -> NaClO3 + 6H
                     .notConsumable(new IntCircuitIngredient(1))
