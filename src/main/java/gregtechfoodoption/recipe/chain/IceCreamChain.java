@@ -85,5 +85,10 @@ public class IceCreamChain {
                 .inputs(GTFOMetaItem.ICE_CREAM_PLAIN.getStackForm(4), GTFOMetaItem.FRIED_POTATO_SLICE.getStackForm(3))
                 .outputs(GTFOMetaItem.ICE_CREAM_CHIP.getStackForm(4))
                 .buildAndRegister();
+        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(24).duration(120)
+                .inputs(GTFOMetaItem.ICE_CREAM_PLAIN.getStackForm(4))
+                .fluidInputs(RainbowSap.getFluid(25))
+                .outputs(GTFOMetaItem.ICE_CREAM_RAINBOW.getStackForm(4))
+                .buildAndRegister();
     }
 }

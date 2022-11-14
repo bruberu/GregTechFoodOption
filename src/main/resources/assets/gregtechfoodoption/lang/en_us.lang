@@ -746,6 +746,8 @@ metaitem.food.ice_cream.bear.name=Bear Ice Cream
 metaitem.food.ice_cream.bear.tooltip=Jr's Prize for getting the Baking Oven for once
 metaitem.food.ice_cream.chip.name=Potato Chip Ice Cream
 metaitem.food.ice_cream.chip.tooltip=https://tenor.com/view/cat-swim-in-milk-cat-kitty-milk-milk-cat-gif-23473453
+metaitem.food.ice_cream.rainbow.name=Rainbow Ice Cream
+metaitem.food.ice_cream.rainbow.tooltip=Taste the full Rainbow
 
 material.gtfo_skimmed_milk=Skim Milk
 material.gtfo_cream=Cream

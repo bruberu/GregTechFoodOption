@@ -225,6 +225,7 @@ public class GTFOMetaItem extends StandardMetaItem {
     public static MetaItem<?>.MetaValueItem ICE_CREAM_MELON;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_BEAR;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_CHIP;
+    public static MetaItem<?>.MetaValueItem ICE_CREAM_RAINBOW;
 
     //misc items
     public static MetaItem<?>.MetaValueItem GELATIN;
@@ -569,6 +570,8 @@ public class GTFOMetaItem extends StandardMetaItem {
         ICE_CREAM_CHOCOLATE = addItem(172, "food.ice_cream.chocolate").addComponents(new GTFOFoodStats(9, 0.25f, false, true));
         ICE_CREAM_LEMON = addItem(173, "food.ice_cream.lemon").addComponents(new GTFOFoodStats(6, 0.33f, false, true));
         ICE_CREAM_CHIP = addItem(174, "food.ice_cream.chip").addComponents(new GTFOFoodStats(8, 0.33f, false, true));
+        ICE_CREAM_RAINBOW = addItem(225, "food.ice_cream.rainbow").addComponents(new GTFOFoodStats(6, 0.33f, false, true, ItemStack.EMPTY,
+                new RandomPotionEffect(MobEffects.NIGHT_VISION, 1000, 0, 100 - 50)));
 
         MILK_CHOCOLATE = addItem(190, "food.chocolate").addComponents(new GTFOFoodStats(4, 1.25f));
         GRAHAM_CRACKER = addItem(191, "food.graham_cracker").addComponents(new GTFOFoodStats(1, 1f));
