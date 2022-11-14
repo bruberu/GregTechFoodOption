@@ -841,8 +841,9 @@ material.gtfo_hydrogen_cyanide=Hydrogen Cyanide
 
 gregtechfoodoption.fluid.fertilizer=§2%d%% effective as a Sprinkler Fertilizer
 metaitem.cover.sprinkler.name=Sprinkler
-metaitem.cover.sprinkler.tooltip=Sprays Fluids onto a 9x9 Area of Crops (leave a 3 Block Space between This and the Ground)
+metaitem.cover.sprinkler.tooltip=As a §4downwards-facing§7 Cover, Sprays Fluids onto a 9x9 Area of Crops (leave a §63-Block Space§7 between This and the Ground)
 material.gtfo_blue_vitriol=Blue Vitriol
 material.gtfo_rubber_sap=Rubber Sap
 material.gtfo_blood=Blood
 material.gtfo_fertilizer_solution=Fertilizer Solution
+gregtechfoodoption.recipe.cause_damage=Causes %d damage to the mob

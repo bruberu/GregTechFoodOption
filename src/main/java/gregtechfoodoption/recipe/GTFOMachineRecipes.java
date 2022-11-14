@@ -15,6 +15,7 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFOMetalCasing;
+import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.machines.GTFOTileEntities;
 import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.common.Loader;
@@ -25,6 +26,7 @@ import java.util.stream.Stream;
 
 //import static gregicality.science.api.unification.materials.GCYSMaterials.Adamantium;
 //import static gregicality.science.api.unification.materials.GCYSMaterials.Orichalcum;
+import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -115,6 +117,22 @@ public class GTFOMachineRecipes {
                 .circuitMeta(3)
                 .outputs(GTFOTileEntities.GREENHOUSE.getStackForm())
                 .buildAndRegister();
+
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(200)
+                .input(plate, Iron)
+                .input(pipeTinyFluid, Steel)
+                .inputs(MetaItems.FLUID_FILTER.getStackForm())
+                .fluidInputs(Tin.getFluid(L))
+                .outputs(GTFOMetaItem.SPRINKLER_COVER.getStackForm())
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(200)
+                .input(plate, Iron)
+                .input(pipeTinyFluid, Steel)
+                .inputs(MetaItems.FLUID_FILTER.getStackForm())
+                .fluidInputs(SolderingAlloy.getFluid(L / 2))
+                .outputs(GTFOMetaItem.SPRINKLER_COVER.getStackForm())
+                .buildAndRegister();
+
     }
 
     private static <T extends Enum<T> & IStringSerializable> void registerMetalCasingRecipe(Material inputMaterial, VariantBlock<T> outputCasingType, T outputCasing) {
