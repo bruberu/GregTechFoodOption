@@ -5,6 +5,8 @@ import gregtech.api.GTValues;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.ItemMaterialInfo;
+import gregtech.api.unification.stack.MaterialStack;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockPlanks;
@@ -123,6 +125,7 @@ public class GTFOMetaBlocks {
         });
         GTFO_PLANKS.forEach(planks -> {
             OreDictUnifier.registerOre(new ItemStack(planks, 1, GTValues.W), OrePrefix.plank, Materials.Wood);
+            OreDictUnifier.registerOre(new ItemStack(planks, 1, GTValues.W), new ItemMaterialInfo(new MaterialStack(Materials.Wood, GTValues.M)));
         });
     }
 

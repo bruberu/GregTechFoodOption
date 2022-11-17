@@ -213,8 +213,9 @@ public abstract class GTFOTree {
         ItemStack log = new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, (seed % 4) << 2);
         ItemStack leaves = new ItemStack(GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4), 1, (seed % 4) << 2);
 
-
-        ModHandler.addShapelessRecipe(this.name + "_wood_planks", planks, log);
+        ItemStack planksAmount = planks.copy();
+        planksAmount.setCount(4);
+        ModHandler.addShapelessRecipe(this.name + "_wood_planks", planksAmount, log);
 
         GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)
                 .inputs(sapling)
