@@ -9,6 +9,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.ParallelLogicType;
 import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
@@ -346,6 +347,11 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         @Override
         public boolean isWorking() {
             return temp > 300 && !this.hasNotEnoughEnergy && this.workingEnabled;
+        }
+
+        @Override
+        public Enum<ParallelLogicType> getParallelLogicType() {
+            return ParallelLogicType.APPEND_ITEMS;
         }
     }
 
