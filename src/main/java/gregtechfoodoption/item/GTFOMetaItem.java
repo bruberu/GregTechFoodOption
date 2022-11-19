@@ -40,9 +40,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem POPCORN_BAG;
     public static MetaItem<?>.MetaValueItem PAPER_BAG;
     public static MetaItem<?>.MetaValueItem FLAVORED_POPCORN_FLAKE;
-    public static MetaItem<?>.MetaValueItem POPCORN_COB;
-    public static MetaItem<?>.MetaValueItem DRIED_POPCORN_EAR;
-    public static MetaItem<?>.MetaValueItem POPCORN_EAR;
+    public static MetaItem<?>.MetaValueItem CORN_COB;
+    public static MetaItem<?>.MetaValueItem DRIED_CORN_EAR;
+    public static MetaItem<?>.MetaValueItem CORN_EAR;
     public static MetaItem<?>.MetaValueItem PHYCOMYCES_BLAKESLEEANUS_CULTURE;
     public static MetaItem<?>.MetaValueItem THERMOS;
     public static MetaItem<?>.MetaValueItem THERMOS_CASING;
@@ -275,6 +275,16 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem PLUTONIUM_241_CAPLET;
     public static MetaItem<?>.MetaValueItem IV_BAG;
 
+    public static MetaItem<?>.MetaValueItem GARLIC_BULB;
+    public static MetaItem<?>.MetaValueItem GARLIC_CLOVE;
+    public static MetaItem<?>.MetaValueItem OREGANO;
+    public static MetaItem<?>.MetaValueItem OREGANO_SEED;
+    public static MetaItem<?>.MetaValueItem BASIL;
+    public static MetaItem<?>.MetaValueItem BASIL_SEED;
+    public static MetaItem<?>.MetaValueItem HORSERADISH;
+    public static MetaItem<?>.MetaValueItem HORSERADISH_SEED;
+    public static MetaItem<?>.MetaValueItem AUBERGINE;
+    public static MetaItem<?>.MetaValueItem AUBERGINE_SEED;
 
     public GTFOMetaItem() {
         super();
@@ -286,10 +296,10 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
 
 
         PAPER_BAG = addItem(1, "component.bag");
-        FLAVORED_POPCORN_FLAKE = addItem(2, "component.popcorn.flavored_flake");
-        POPCORN_COB = addItem(3, "component.popcorn.cob");
-        DRIED_POPCORN_EAR = addItem(4, "component.popcorn.dried_ear");
-        POPCORN_EAR = addItem(5, "component.popcorn.ear");
+        FLAVORED_POPCORN_FLAKE = addItem(2, "component.corn.flavored_flake");
+        CORN_COB = addItem(3, "component.corn.cob");
+        DRIED_CORN_EAR = addItem(4, "component.corn.dried_ear");
+        CORN_EAR = addItem(5, "component.corn.ear");
         //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
 
         THERMOS = addItem(7, "component.thermos.new");
@@ -405,6 +415,18 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
+        GARLIC_BULB = addItem(230, "component.garlic_bulb");
+        AUBERGINE = addItem(231, "component.aubergine");
+        HORSERADISH = addItem(232, "component.horseradish");
+        BASIL = addItem(233, "component.basil");
+        OREGANO = addItem(234, "component.oregano");
+
+        if (GTFOConfig.gtfoChainsConfig.popcornChain)
+            POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
+                    new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
+        if (GTFOConfig.gtfoChainsConfig.mineralWaterChain)
+            MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
+                    new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0)));
         CAPLET_CAP = addItem(227, "component.caplet_cap");
         CAPLET_BODY = addItem(228, "component.caplet_body");
         IV_BAG = addItem(232, "component.iv_bag");
@@ -649,6 +671,16 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
+        OREGANO_SEED = addItem(225, "seed.oregano");
+        OREGANO_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_OREGANO, OREGANO_SEED.getStackForm(), OREGANO.getStackForm()));
+        BASIL_SEED = addItem(226, "seed.basil");
+        BASIL_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BASIL, BASIL_SEED.getStackForm(), BASIL.getStackForm()));
+        AUBERGINE_SEED = addItem(227, "seed.aubergine");
+        AUBERGINE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_AUBERGINE, AUBERGINE_SEED.getStackForm(), AUBERGINE.getStackForm()));
+        HORSERADISH_SEED = addItem(228, "seed.horseradish");
+        HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH, HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
+        GARLIC_CLOVE = addItem(229, "seed.garlic");
+        GARLIC_CLOVE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GARLIC, GARLIC_CLOVE.getStackForm(), GARLIC_BULB.getStackForm()));
 
         // 175-189 left blank for organic circuits
         SPRINKLER_COVER = addItem(224, "cover.sprinkler");
