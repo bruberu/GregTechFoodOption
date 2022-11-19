@@ -318,6 +318,16 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem RICE;
     public static MetaItem<?>.MetaValueItem NUTMEG_SEED;
 
+    public static MetaItem<?>.MetaValueItem GARLIC_BULB;
+    public static MetaItem<?>.MetaValueItem GARLIC_CLOVE;
+    public static MetaItem<?>.MetaValueItem OREGANO;
+    public static MetaItem<?>.MetaValueItem OREGANO_SEED;
+    public static MetaItem<?>.MetaValueItem BASIL;
+    public static MetaItem<?>.MetaValueItem BASIL_SEED;
+    public static MetaItem<?>.MetaValueItem HORSERADISH;
+    public static MetaItem<?>.MetaValueItem HORSERADISH_SEED;
+    public static MetaItem<?>.MetaValueItem AUBERGINE;
+    public static MetaItem<?>.MetaValueItem AUBERGINE_SEED;
     public static MetaItem<?>.MetaValueItem BRUSCHETTA;
     public static MetaItem<?>.MetaValueItem CAPONATA;
     public static MetaItem<?>.MetaValueItem CARBONARA;
@@ -480,6 +490,12 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
 
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
+
+        GARLIC_BULB = addItem(230, "component.garlic_bulb");
+        AUBERGINE = addItem(231, "component.aubergine");
+        HORSERADISH = addItem(232, "component.horseradish");
+        BASIL = addItem(233, "component.basil");
+        OREGANO = addItem(234, "component.oregano");
 
         GARLIC_BULB = addItem(308, "component.garlic_bulb");
         AUBERGINE = addItem(232, "crop.aubergine");
