@@ -491,11 +491,11 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
-        GARLIC_BULB = addItem(230, "component.garlic_bulb");
-        AUBERGINE = addItem(231, "component.aubergine");
-        HORSERADISH = addItem(232, "component.horseradish");
-        BASIL = addItem(233, "component.basil");
-        OREGANO = addItem(234, "component.oregano");
+        GARLIC_BULB = addItem(231, "component.garlic_bulb");
+        AUBERGINE = addItem(232, "component.aubergine");
+        HORSERADISH = addItem(233, "component.horseradish");
+        BASIL = addItem(234, "component.basil");
+        OREGANO = addItem(235, "component.oregano");
 
         GARLIC_BULB = addItem(308, "component.garlic_bulb");
         AUBERGINE = addItem(232, "crop.aubergine");
