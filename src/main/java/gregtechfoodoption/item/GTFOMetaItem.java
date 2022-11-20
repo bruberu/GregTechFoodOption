@@ -280,6 +280,7 @@ public class GTFOMetaItem extends StandardMetaItem {
         CORN_COB = addItem(3, "component.corn.cob");
         DRIED_CORN_EAR = addItem(4, "component.corn.dried_ear");
         CORN_EAR = addItem(5, "component.corn.ear");
+        CORN_EAR.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CORN, CORN_EAR.getStackForm(), CORN_COB.getStackForm()));
         //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
 
         THERMOS = addItem(7, "component.thermos.new");
@@ -339,7 +340,7 @@ public class GTFOMetaItem extends StandardMetaItem {
                 .addOreDict("cropOnion");
         CUCUMBER = addItem(78, "crop.cucumber")
                 .addOreDict("cropCucumber");
-        CUCUMBER.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
+        CUCUMBER.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
 
         WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").addComponents(selfContainerItemProvider);
         UNCOOKED_BUN = addItem(83, "component.bun");
@@ -395,11 +396,11 @@ public class GTFOMetaItem extends StandardMetaItem {
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
-        GARLIC_BULB = addItem(230, "component.garlic_bulb");
-        AUBERGINE = addItem(231, "component.aubergine");
-        HORSERADISH = addItem(232, "component.horseradish");
-        BASIL = addItem(233, "component.basil");
-        OREGANO = addItem(234, "component.oregano");
+        GARLIC_BULB = addItem(231, "component.garlic_bulb");
+        AUBERGINE = addItem(232, "component.aubergine");
+        HORSERADISH = addItem(233, "component.horseradish");
+        BASIL = addItem(234, "component.basil");
+        OREGANO = addItem(235, "component.oregano");
 
         if (GTFOConfig.gtfoChainsConfig.popcornChain)
             POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
@@ -636,15 +637,15 @@ public class GTFOMetaItem extends StandardMetaItem {
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
-        OREGANO_SEED = addItem(225, "seed.oregano");
+        OREGANO_SEED = addItem(226, "seed.oregano");
         OREGANO_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_OREGANO, OREGANO_SEED.getStackForm(), OREGANO.getStackForm()));
-        BASIL_SEED = addItem(226, "seed.basil");
+        BASIL_SEED = addItem(227, "seed.basil");
         BASIL_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BASIL, BASIL_SEED.getStackForm(), BASIL.getStackForm()));
-        AUBERGINE_SEED = addItem(227, "seed.aubergine");
+        AUBERGINE_SEED = addItem(228, "seed.aubergine");
         AUBERGINE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_AUBERGINE, AUBERGINE_SEED.getStackForm(), AUBERGINE.getStackForm()));
-        HORSERADISH_SEED = addItem(228, "seed.horseradish");
+        HORSERADISH_SEED = addItem(229, "seed.horseradish");
         HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH, HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
-        GARLIC_CLOVE = addItem(229, "seed.garlic");
+        GARLIC_CLOVE = addItem(230, "seed.garlic");
         GARLIC_CLOVE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GARLIC, GARLIC_CLOVE.getStackForm(), GARLIC_BULB.getStackForm()));
 
         // 175-189 left blank for organic circuits
