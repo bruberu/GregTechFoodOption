@@ -1,7 +1,9 @@
 package gregtechfoodoption.item;
 
+import gregtech.api.items.metaitem.FoodUseManager;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.StandardMetaItem;
+import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
 import gregtech.api.items.toolitem.ToolMetaItem;
 import gregtech.api.unification.OreDictUnifier;
@@ -9,6 +11,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
@@ -17,12 +20,18 @@ import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Optional;
+import squeek.applecore.api.food.FoodValues;
+import squeek.applecore.api.food.IEdible;
+
+import javax.annotation.Nonnull;
 
 import static gregtech.api.unification.material.Materials.*;
 import static net.minecraft.potion.Potion.getPotionById;
 
 
-public class GTFOMetaItem extends StandardMetaItem {
+@Optional.Interface(modid = GTFOValues.MODID_AP, iface = "squeek.applecore.api.food.IEdible")
+public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     //foods
     public static MetaItem<?>.MetaValueItem POPCORN_BAG;
     public static MetaItem<?>.MetaValueItem PAPER_BAG;
@@ -671,4 +680,18 @@ public class GTFOMetaItem extends StandardMetaItem {
         return "metaitems/" + metaValueItem.unlocalizedName.replace('.', '/');
     }
 
+    @Override
+    public boolean getHasSubtypes() {
+        return true;
+    }
+
+    @Optional.Method(modid = GTFOValues.MODID_AP)
+    public FoodValues getFoodValues(@Nonnull ItemStack itemStack) {
+        MetaItem<?>.MetaValueItem item = this.getItem(itemStack);
+        if (item != null && item.getUseManager() instanceof FoodUseManager) {
+            IFoodBehavior stats = ((FoodUseManager) item.getUseManager()).getFoodStats();
+            return new FoodValues(stats.getFoodLevel(itemStack, null), stats.getSaturation(itemStack, null));
+        }
+        return null;
+    }
 }

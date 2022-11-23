@@ -2,6 +2,7 @@ package gregtechfoodoption.integration.applecore;
 
 import gregtech.api.GTValues;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOValues;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,7 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import squeek.applecore.api.food.FoodEvent;
@@ -102,5 +105,10 @@ public class GTFOAppleCoreCompat {
         sparedItems.add(item);
         if (GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
             sparedItemsFoodValues.put(item, new FoodValues(hunger, saturation));
+    }
+
+    @Optional.Method(modid = GTFOValues.MODID_AP)
+    public static void sendEatenEvent(EntityPlayer player, ItemStack itemStack, int hunger, float sat) {
+        MinecraftForge.EVENT_BUS.post(new FoodEvent.FoodEaten(player, itemStack, new FoodValues(hunger, sat), hunger, sat));
     }
 }

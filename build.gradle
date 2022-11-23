@@ -126,6 +126,7 @@ dependencies {
 
     deobfCompile "curse.maven:agricraft-225635:3317747"
     deobfCompile "curse.maven:infinitylib-251396:3317119"
+    deobfCompile "curse.maven:spice-of-life-carrot-edition-277616:2959847"
 
     compile "curse.maven:enderio-64578:3328811"
     compile "curse.maven:endercore-231868:2972849"
@@ -173,6 +174,7 @@ jar {
     manifest.attributes(
             "FMLCorePlugin": "gregtechfoodoption.GTFOMixinPlugin",
             "FMLCorePluginContainsFMLMod": "true",
+            //"ForceLoadAsMod": "true",
             "FMLAT": "gtfo_at.cfg",
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
     )

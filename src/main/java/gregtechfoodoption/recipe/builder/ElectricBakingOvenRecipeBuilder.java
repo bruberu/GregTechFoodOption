@@ -47,7 +47,7 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
             GTLog.logger.error("Temperature cannot be less or equal to 300", new IllegalArgumentException());
             this.recipeStatus = EnumValidationResult.INVALID;
         }
-
+        this.EUt(1);
         return this.recipeStatus;
     }
 

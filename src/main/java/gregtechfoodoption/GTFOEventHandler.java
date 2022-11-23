@@ -207,7 +207,7 @@ public class GTFOEventHandler {
 
     @SubscribeEvent
     public static void onPlayerLoginEvent(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!event.player.getEntityWorld().isRemote) {
+        if (!event.player.getEntityWorld().isRemote && Loader.isModLoaded(GTFOValues.MODID_AP)) {
             NetworkHandler.channel.sendToAll(new SPacketAppleCoreFoodDivisorUpdate(
                     event.player.getUniqueID(), GTFOAppleCoreCompat.advancementLookup(event.player)).toFMLPacket());
         }
