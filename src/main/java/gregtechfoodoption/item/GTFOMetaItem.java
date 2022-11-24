@@ -17,10 +17,14 @@ import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
 import gregtechfoodoption.utils.GTFOUtils;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.food.IEdible;
 
@@ -693,5 +697,22 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
             return new FoodValues(stats.getFoodLevel(itemStack, null), stats.getSaturation(itemStack, null));
         }
         return null;
+    }
+
+    @Nonnull
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[]{GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD};
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {
+        if (tab == GTFOValues.TAB_GTFO || tab == GTFOValues.TAB_GTFO_FOOD) {
+            for (MetaItem.MetaValueItem item : this.getAllItems()) {
+                if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) || ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) || tab == CreativeTabs.SEARCH)) {
+                    ItemStack itemStack = item.getStackForm();
+                    item.getSubItemHandler().getSubItems(itemStack, tab, subItems);
+                }
+            }
+        }
     }
 }

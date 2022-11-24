@@ -693,6 +693,7 @@ metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
 metaitem.sodium_chlorate_dust.name=Sodium Chlorate
 
 itemGroup.gregtechfoodoption.main=GregTech Food Option
+itemGroup.gregtechfoodoption.food=GregTech Food Option Foods
 
 gregtechfoodoption.leaves.banana.name=Banana Leaves
 gregtechfoodoption.log.banana.name=Banana Pseudostem

@@ -23,7 +23,8 @@ public class GTFOValues {
     public static final int UPDATE_OPERATION_POS = 97800;
     public static final int UPDATE_SPRINKLER_DATA = 97801;
 
-    public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.BANANA.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.DOUGH.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food", () -> GTFOMetaItem.BANANA.getStackForm(), true);
 
     public static final Random rand = new Random();
 }
