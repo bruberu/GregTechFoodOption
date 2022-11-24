@@ -207,5 +207,9 @@ public class GTFOConfig {
     public static class GTFOMiscConfig {
         @Config.Comment("Create methane centrifuging recipes for GTFO seeds?")
         public boolean centrifugeSeeds = true;
+
+        @Config.Comment("Greenhouse replacements for dirt (use block names like minecraft:dirt or blockstates like minecraft:dirt[snowy=true])")
+        @Config.RequiresMcRestart
+        public String[] greenhouseDirts = new String[0];
     }
 }
