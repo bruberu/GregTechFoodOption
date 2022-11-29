@@ -8,7 +8,6 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.recipes.Recipe;
-import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
@@ -140,9 +139,11 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
     }
 
     public boolean checkNaturalLighting() {
+        if (!this.getWorld().isDaytime())
+            return false;
         for (BlockPos pos : BlockPos.getAllInBox(this.getPos().up(8).offset(this.frontFacing.rotateY(), 3),
                 this.getPos().up(8).offset(this.getFrontFacing().rotateYCCW(), 3).offset(this.getFrontFacing().getOpposite(), 6))) {
-            if (!GTUtility.canSeeSunClearly(this.getWorld(), pos)) {
+            if (!this.getWorld().canSeeSky(pos.up())) {
                 return false;
             }
         }

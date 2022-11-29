@@ -806,7 +806,7 @@ tile.transparent_casing.greenhouse_glass.name=Greenhouse Glass
 gregtech.multiblock.not_enough_sun=Warning: The Roof did not receive enough natural Sunlight for the recipe!
 
 gregtechfoodoption.machine.greenhouse.tooltip.1=Simulates the growth of Trees inside.
-gregtechfoodoption.machine.greenhouse.tooltip.2=Takes twice as long to run a Recipe if Any Part of the Roof is blocked.
+gregtechfoodoption.machine.greenhouse.tooltip.2=Takes twice as long to run a Recipe if Any Part of the Roof is blocked, or it is Night.
 
 material.gtfo_beer_batter=Beer Batter
 metaitem.puff_pastry_plate.name=Puff Pastry
