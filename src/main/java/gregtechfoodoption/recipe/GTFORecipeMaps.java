@@ -2,10 +2,12 @@ package gregtechfoodoption.recipe;
 
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.builders.IntCircuitRecipeBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.api.sound.GTSounds;
+import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
@@ -56,6 +58,9 @@ public class GTFORecipeMaps {
                             .inputs(recipeBuilder.getInputs().get(0)) // We don't need charcoal.
                             .outputs(recipeBuilder.getOutputs())
                             .buildAndRegister();
+                }
+                if (GTFOConfig.gtfoMiscConfig.bakingOvenReplacement) {
+                    ModHandler.addSmeltingRecipe(recipeBuilder.getInputs().get(0).getInputStacks()[0], recipeBuilder.getOutputs().get(0), 0);
                 }
             });
 

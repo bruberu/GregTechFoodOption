@@ -211,5 +211,8 @@ public class GTFOConfig {
         @Config.Comment("Greenhouse replacements for dirt (use block names like minecraft:dirt or blockstates like minecraft:dirt[snowy=true])")
         @Config.RequiresMcRestart
         public String[] greenhouseDirts = new String[0];
+
+        @Config.Comment("Add furnace recipes for each baking oven recipe?")
+        public boolean bakingOvenReplacement = false;
     }
 }

@@ -110,7 +110,7 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
 
         @Override
         protected int[] calculateOverclock(Recipe recipe) {
-            return new int[]{0, recipe.getDuration() * 8};
+            return new int[]{0, recipe.getDuration() * 4};
         }
 
         protected boolean drawEnergy(int recipeEUt, boolean simulate) {
