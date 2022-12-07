@@ -3,6 +3,7 @@ package gregtechfoodoption.utils;
 import gregtech.api.GTValues;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOFoodStats;
@@ -182,18 +183,22 @@ public class GTFOUtils {
     public static void addBakingOvenRecipes(ItemStack input, ItemStack output, int duration, int temperature, int fuelAmount) {
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
                 .inputs(input)
-                .input(gem, Charcoal, fuelAmount)
+                .input(OrePrefix.plank, Wood, fuelAmount * 2)
                 .outputs(output)
                 .buildAndRegister();
+        ItemStack inputx4 = input.copy();
+        inputx4.setCount(input.getCount() * 4);
+        ItemStack outputx4 = input.copy();
+        outputx4.setCount(output.getCount() * 4);
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                .inputs(input)
-                .input(gem, Coal, fuelAmount)
-                .outputs(output)
+                .inputs(inputx4)
+                .input(gem, Coal, Math.max(fuelAmount, 1))
+                .outputs(outputx4)
                 .buildAndRegister();
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                .inputs(input)
-                .input(gem, Coke, Math.max(fuelAmount / 2, 1))
-                .outputs(output)
+                .inputs(inputx4)
+                .input(gem, Charcoal, Math.max(fuelAmount, 1))
+                .outputs(outputx4)
                 .buildAndRegister();
     }
 
