@@ -188,7 +188,7 @@ public class GTFOUtils {
                 .buildAndRegister();
         ItemStack inputx4 = input.copy();
         inputx4.setCount(input.getCount() * 4);
-        ItemStack outputx4 = input.copy();
+        ItemStack outputx4 = output.copy();
         outputx4.setCount(output.getCount() * 4);
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
                 .inputs(inputx4)
