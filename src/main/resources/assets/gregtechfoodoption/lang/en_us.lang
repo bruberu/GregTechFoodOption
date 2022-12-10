@@ -802,7 +802,7 @@ material.gtfo_rainbow_sap=Rainbow Sap
 material.gtfo_rub_sap=Rubber Sap
 material.gtfo_sodium_arsenite_solution=Sodium Arsenite Solution
 metaitem.arsenic_trioxide_dust.name=Arsenic Trioxide
-metaitem.cupric_hydrogen_arsenite_dust.name=Cupric Hydrogen Arsenite
+metaitem.cupric_hydrogen_arsenite_dust.name=Scheele's Green
 tile.transparent_casing.greenhouse_glass.name=Greenhouse Glass
 gregtech.multiblock.not_enough_sun=Warning: The Roof did not receive enough natural Sunlight for the recipe!
 
