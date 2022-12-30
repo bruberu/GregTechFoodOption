@@ -102,7 +102,7 @@ public class CheeseChain {
                 .fluidOutputs(HeatedRicottaStarter.getFluid(1000))
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(12).duration(40)
-                .fluidInputs(Milk.getFluid(144), LemonExtract.getFluid(2))
+                .fluidInputs(Milk.getFluid(144), LemonExtract.getFluid(10))
                 .fluidOutputs(AcidicMilkSolution.getFluid(144))
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(12).duration(40)
