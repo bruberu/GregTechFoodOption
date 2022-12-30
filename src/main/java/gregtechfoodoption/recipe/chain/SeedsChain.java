@@ -5,6 +5,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.item.GTFOMetaItem;
 import net.minecraft.item.ItemStack;
@@ -50,6 +51,12 @@ public class SeedsChain {
                     .inputs(seed)
                     .fluidInputs(Water.getFluid(100))
                     .fluidOutputs(Biomass.getFluid(100))
+                    .buildAndRegister();
+            ItemStack eight = seed.copy();
+            eight.setCount(8);
+            RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(2).duration(300)
+                    .inputs(eight)
+                    .outputs(MetaItems.PLANT_BALL.getStackForm())
                     .buildAndRegister();
         }
         ModHandler.addShapedRecipe("gtfo_seed_soy_ungenerify", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
