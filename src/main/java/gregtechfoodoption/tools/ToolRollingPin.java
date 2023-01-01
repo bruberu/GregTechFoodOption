@@ -1,3 +1,4 @@
+/*
 package gregtechfoodoption.tools;
 
 import gregtech.common.tools.ToolBase;
@@ -35,3 +36,4 @@ public class ToolRollingPin extends ToolBase {
         lines.add(I18n.format("metaitem.tool.tooltip.rolling_pin.slime"));
     }
 }
+*/

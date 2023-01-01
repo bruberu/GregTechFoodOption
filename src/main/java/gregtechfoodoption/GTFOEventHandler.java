@@ -2,13 +2,12 @@ package gregtechfoodoption;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.net.NetworkHandler;
 import gregtech.api.util.GregFakePlayer;
 import gregtechfoodoption.entity.EntityStrongSnowman;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.GTFOFoodDurationSetter;
-import gregtechfoodoption.network.SPacketAppleCoreFoodDivisorUpdate;
+import gregtechfoodoption.network.PacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
@@ -197,8 +196,8 @@ public class GTFOEventHandler {
         if (GTFOConfig.gtfoAppleCoreConfig.reduceForeignFoodStats) {
             float divisorObtained = GTFOAppleCoreCompat.getDivisorOnAdvancement(event.getAdvancement());
             if (divisorObtained > 1 && GTFOAppleCoreCompat.advancementLookup(event.getEntityPlayer()) == divisorObtained) {
-                NetworkHandler.channel.sendToAll(new SPacketAppleCoreFoodDivisorUpdate(
-                        event.getEntityPlayer().getUniqueID(), divisorObtained).toFMLPacket());
+                GregTechAPI.networkHandler.sendToAll(new PacketAppleCoreFoodDivisorUpdate(
+                        event.getEntityPlayer().getUniqueID(), divisorObtained));
                 event.getEntityPlayer().sendMessage(new TextComponentTranslation("gregtechfoodoption.chat.food_buff"));
             }
         }
@@ -208,8 +207,8 @@ public class GTFOEventHandler {
     @SubscribeEvent
     public static void onPlayerLoginEvent(PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.player.getEntityWorld().isRemote && Loader.isModLoaded(GTFOValues.MODID_AP)) {
-            NetworkHandler.channel.sendToAll(new SPacketAppleCoreFoodDivisorUpdate(
-                    event.player.getUniqueID(), GTFOAppleCoreCompat.advancementLookup(event.player)).toFMLPacket());
+            GregTechAPI.networkHandler.sendToAll(new PacketAppleCoreFoodDivisorUpdate(
+                    event.player.getUniqueID(), GTFOAppleCoreCompat.advancementLookup(event.player)));
         }
 
     }

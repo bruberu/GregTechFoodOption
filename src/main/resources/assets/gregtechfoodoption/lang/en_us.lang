@@ -607,8 +607,8 @@ material.gtfo_stearic_acid=Stearic Acid
 material.gtfo_sodium_stearate=Sodium Stearate (Soap)
 material.gtfo_citric_acid=Citric Acid
 
-metaitem.tool.butchery_knife.hv.name=%s Electric Butchering Knife (HV)
-metaitem.tool.butchery_knife.hv.tooltip=§9Mob Delivinizer §c4000
+item.gt.tool.butchery_knife.hv.name=%s Electric Butchering Knife (HV)
+item.gt.tool.butchery_knife.hv.tooltip=§9Mob Delivinizer §c4000
 
 enchantment.level.0=I
 enchantment.level.7=VII

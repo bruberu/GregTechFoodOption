@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "gregtech:items/tools/power_unit_hv_advanced",
+    "layer1": "gregtech:items/tools/butchery_knife_electric"
+  }
+}

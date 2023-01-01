@@ -1,31 +1,26 @@
 package gregtechfoodoption.recipe;
 
-import gregtech.api.capability.GregtechCapabilities;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.material.MarkerMaterials;
 import gregtech.api.unification.material.Material;
-import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.ToolProperty;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
 import gregtechfoodoption.item.GTFOMetaItem;
-import net.minecraft.item.ItemStack;
 
-import static gregtech.common.items.MetaItems.POWER_UNIT_HV;
+import static gregtech.loaders.recipe.handlers.ToolRecipeHandler.addToolRecipe;
 
 public class GTFORecipeHandler {
 
     public static void register() {
         OrePrefix.ingot.addProcessingHandler(PropertyKey.TOOL, GTFORecipeHandler::processIngot);
+/*
         OrePrefix.toolHeadSword.addProcessingHandler(PropertyKey.TOOL, GTFORecipeHandler::processSword);
+*/
     }
 
     private static void processIngot(OrePrefix ingotPrefix, Material material, ToolProperty property) {
         if (property.getToolDurability() > 0) {
-            ModHandler.addShapedRecipe(String.format("rolling_pin_%s", material.toString()),
-                    GTFOMetaItem.ROLLING_PIN.getStackForm(material),
+            addToolRecipe(material, GTFOMetaItem.ROLLING_PIN, true,
                     "  R", " I ", "R f",
                     'I', new UnificationEntry(ingotPrefix, material),
                     'R', new UnificationEntry(OrePrefix.stick, material));
@@ -33,7 +28,7 @@ public class GTFORecipeHandler {
 
     }
 
-    private static void processSword(OrePrefix prefix, Material material, ToolProperty property) {
+/*    private static void processSword(OrePrefix prefix, Material material, ToolProperty property) {
         if (property.getToolDurability() > 0) {
             ItemStack[] power_units = {POWER_UNIT_HV.getMaxChargeOverrideStack(1800000L), POWER_UNIT_HV.getMaxChargeOverrideStack(1600000L), POWER_UNIT_HV.getMaxChargeOverrideStack(1200000L), POWER_UNIT_HV.getMaxChargeOverrideStack(6400000L)};
             for (ItemStack power_unit : power_units) {
@@ -52,6 +47,6 @@ public class GTFORecipeHandler {
 
         }
 
-    }
+    }*/
 
 }

@@ -120,7 +120,7 @@ public class CommonProxy {
         GTFOLog.logger.info("Registering ore prefix...");
         GTFOOreDictRegistration.init();
 
-        GTFOMetaItems.registerOreDict();
+        //GTFOMetaItems.registerOreDict();
         GTFOMetaBlocks.registerOreDict();
 
         //OrePrefix.runMaterialHandlers();

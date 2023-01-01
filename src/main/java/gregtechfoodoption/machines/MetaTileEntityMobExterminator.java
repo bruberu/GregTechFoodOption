@@ -12,8 +12,8 @@ import gregtech.api.gui.widgets.TankWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.sound.GTSounds;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
+import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.utils.GTFODamageSources;
 import net.minecraft.client.resources.I18n;
@@ -174,7 +174,7 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
 
     @Override
     public SoundEvent getSound() {
-        return GTSounds.MACERATOR;
+        return GTSoundEvents.MACERATOR;
     }
 
     @Override
