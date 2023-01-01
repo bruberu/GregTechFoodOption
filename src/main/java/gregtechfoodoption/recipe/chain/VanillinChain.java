@@ -26,7 +26,7 @@ public class VanillinChain {
                 .fluidOutputs(GTFOMaterialHandler.Glyoxal.getFluid(2000), Materials.NitrogenDioxide.getFluid(1000), Materials.Water.getFluid(3000))
                 .buildAndRegister();
         RecipeMaps.LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(240).duration(30) // 2C2H2O2 + 2HNO3 -> 2C2H2O3 + H2O + NO2 + NO
-                .fluidInputs(GTFOMaterialHandler.Glyoxal.getFluid(2000), Materials.NitrogenDioxide.getFluid(2000))
+                .fluidInputs(GTFOMaterialHandler.Glyoxal.getFluid(2000), Materials.NitricAcid.getFluid(2000))
                 .fluidOutputs(GTFOMaterialHandler.GlyoxylicAcid.getFluid(2000), Materials.Water.getFluid(1000), Materials.NitrogenDioxide.getFluid(1000), Materials.NitrousOxide.getFluid(1000))
                 .buildAndRegister();
 
