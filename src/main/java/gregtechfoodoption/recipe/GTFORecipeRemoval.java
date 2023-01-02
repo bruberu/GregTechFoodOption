@@ -17,7 +17,7 @@ public class GTFORecipeRemoval {
         }
         if(Loader.isModLoaded("actuallyadditions"))
         {
-            if (GTFOConfig.gtfoChainsConfig.breadsChain) {
+            if (GTFOConfig.gtfoChainsConfig.deleteBreadRecipe) {
                 ModHandler.removeFurnaceSmelting(new ItemStack(InitItems.itemMisc, 1, TheMiscItems.DOUGH.ordinal()));
                 ModHandler.removeRecipeByName(new ResourceLocation("actuallyadditions:recipes218"));
             }

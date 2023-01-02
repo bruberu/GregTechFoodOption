@@ -8,8 +8,7 @@ import gregtechfoodoption.tools.GTFOToolItems;
 import net.minecraftforge.fml.common.Loader;
 
 public class GTFORecipeAddition {
-    public static void init()
-    {
+    public static void init() {
         CoreChain.init();
         GTFOTree.TREES.forEach(GTFOTree::initRecipes);
         GreenhouseChain.init();
@@ -25,17 +24,12 @@ public class GTFORecipeAddition {
         VanillinChain.init();
         DyeChain.init();
         BritishChain.init();
-        if(GTFOConfig.gtfoChainsConfig.potatoProcessingChain)
-            PotatoProcessingChain.init();
-        if(GTFOConfig.gtfoChainsConfig.alcoholChain)
-            AlcoholChain.init();
+        PotatoProcessingChain.init();
+        AlcoholChain.init();
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
-            if(GTFOConfig.gtfoChainsConfig.popcornChain)
-                PopcornChain.init();
-            if(GTFOConfig.gtfoChainsConfig.mineralWaterChain)
-                MineralWaterChain.init();
-            if(GTFOConfig.gtfoChainsConfig.purpleDrinkChain)
-                PurpleDrinkChain.init();
+            PopcornChain.init();
+            MineralWaterChain.init();
+            PurpleDrinkChain.init();
         }
     }
 
@@ -43,9 +37,8 @@ public class GTFORecipeAddition {
     }
 
     public static void compatInit() {
-        if(GTFOConfig.gtfoChainsConfig.breadsChain)
-            BreadsChain.init();
-        if(GTFOConfig.gtfoVanillaOverridesConfig.vanillaOverrideChain)
+        BreadsChain.init();
+        if (GTFOConfig.gtfoVanillaOverridesConfig.vanillaOverrideChain)
             VanillaOverrideChain.init();
         CoffeeChain.init();
         SmogusChain.init();

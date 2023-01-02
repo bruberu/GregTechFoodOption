@@ -37,26 +37,17 @@ public class GTFOConfig {
     public static GTFOMiscConfig gtfoMiscConfig = new GTFOMiscConfig();
 
     public static class GTFOChainsConfig {
-        @Config.Comment("Add Popcorn Chain?")
+/*        @Config.Comment("Add Popcorn Chain?")
         public boolean popcornChain = true;
 
         @Config.Comment("Add Mineral Water Chain?")
         public boolean mineralWaterChain = true;
 
         @Config.Comment("Add Purple Drink Chain? (Note: also adds Etirps and Apple Hard Candy as sideproducts.)")
-        public boolean purpleDrinkChain = true;
-
-        @Config.Comment("Add Potato processing?")
-        public boolean potatoProcessingChain = true;
-
-        @Config.Comment("Add Breads Chain?")
-        public boolean breadsChain = false;
+        public boolean purpleDrinkChain = true;*/
 
         @Config.Comment("Delete vanilla bread recipe?")
         public boolean deleteBreadRecipe = false;
-
-        @Config.Comment("Add Alcohol Recipes?")
-        public boolean alcoholChain = true;
     }
 
     public static class GTFOVanillaOverridesConfig {
