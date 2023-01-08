@@ -850,3 +850,7 @@ material.gtfo_rubber_sap=Rubber Sap
 material.gtfo_blood=Blood
 material.gtfo_fertilizer_solution=Fertilizer Solution
 gregtechfoodoption.recipe.cause_damage=Causes %d damage to the mob
+
+material.gtfo_nilk=Nilk
+metaitem.food.nilk.name=Nilk
+metaitem.food.nilk.tooltip=Nilk

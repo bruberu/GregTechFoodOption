@@ -265,6 +265,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem BEER;
     public static MetaItem<?>.MetaValueItem BEANS_WITH_SAUCE;
     public static MetaItem<?>.MetaValueItem UNCOOKED_SAUSAGE_ROLL;
+    public static MetaItem<?>.MetaValueItem NILK;
 
     public static MetaItem<?>.MetaValueItem SPRINKLER_COVER;
 
@@ -398,12 +399,10 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
-        if (GTFOConfig.gtfoChainsConfig.popcornChain)
-            POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
-                    new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
-        if (GTFOConfig.gtfoChainsConfig.mineralWaterChain)
-            MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
-                    new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0)));
+        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
+                new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
+        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
+                new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0)));
         APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger, GTFOConfig.gtfoFoodConfig.hardCandySaturation, true, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50))
                 .setEatingDuration(24));
@@ -424,8 +423,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 .setEatingDuration(24));
 
         FRENCH_FRIES = addItem(37, "food.french_fries").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.friesHunger, GTFOConfig.gtfoFoodConfig.friesSaturation, false, false, USED_PAPER_BAG.getStackForm(),
-                new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0))
-                .setEatingDuration(20))
+                        new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0))
+                        .setEatingDuration(20))
                 .addOreDict("foodFries");
         SYALS = addItem(38, "food.syals").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger / 2, GTFOConfig.gtfoFoodConfig.chipSaturation / 2, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Tin),
                 new RandomPotionEffect(MobEffects.LEVITATION, 300, 1, 0)));
@@ -438,7 +437,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50))
                 .setEatingDuration(20));
         POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK))
-                .setEatingDuration(12))
+                        .setEatingDuration(12))
                 .setMaxStackSize(16);
 
         BAGUETTE = addItem(51, "food.baguette").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger, GTFOConfig.gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
@@ -507,20 +506,20 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         CHUM = addItem(119, "food.chum").addComponents(new GTFOFoodStats(3, 0f, false, true, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
         CHUM_ON_A_STICK = addItem(120, "food.chum_on_a_stick").addComponents(new GTFOFoodStats(3, 0f, false, true, new ItemStack(Items.STICK),
-                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
-                .setEatingDuration(16))
+                        new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
+                        .setEatingDuration(16))
                 .setMaxStackSize(16);
         BURGER_CHUM = addItem(121, "food.burger.chum").addComponents(new GTFOFoodStats(4, 1f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99)));
 
         BANANA = addItem(122, "food.banana").addComponents(new GTFOFoodStats(2, 1f)
-                .setEatingDuration(60))
+                        .setEatingDuration(60))
                 .addOreDict("cropBanana").addOreDict("listAllfruit");
         ORANGE = addItem(123, "food.orange").addComponents(new GTFOFoodStats(2, 1f)
-                .setEatingDuration(50))
+                        .setEatingDuration(50))
                 .addOreDict("cropOrange").addOreDict("listAllfruit");
         GRAPES = addItem(124, "food.grapes").addComponents(new GTFOFoodStats(1, 1f)
-                .setEatingDuration(20))
+                        .setEatingDuration(20))
                 .addOreDict("cropGrapes").addOreDict("listAllfruit");
         MANGO = addItem(125, "food.mango").addComponents(new GTFOFoodStats(2, 1f))
                 .addOreDict("cropMango").addOreDict("listAllfruit");
@@ -613,6 +612,10 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 0, 100 - 40)));
         SAUSAGE = addItem(222, "food.sausage").addComponents(new GTFOFoodStats(4, 0.7f));
 
+        NILK = addItem(226, "food.nilk").addComponents(new GTFOFoodStats(6, 4, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.NAUSEA, 1000, 0, 100 - 80),
+                new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 100 - 60)));
+
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
@@ -633,7 +636,6 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
-
 
 
         // 175-189 left blank for organic circuits

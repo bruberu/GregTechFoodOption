@@ -289,6 +289,10 @@ public class GTFOMaterialHandler {
             .color(0x947760)
             .build();
 
+    public static final Material Nilk = fluidBuilder(21571, "nilk")
+            .color(0x252626)
+            .build();
+
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
             .build();
@@ -367,6 +371,7 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CupricHydrogenArsenite = SHAPED_ITEM.addOreDictItem(1127, "cupric_hydrogen_arsenite", 0x0fff00, MaterialIconSet.SHINY, OrePrefix.dust, "CuHAsO3");
     public static final GTFOOredictItem.OreDictValueItem LaminatedDough = SHAPED_ITEM.addOreDictItem(1128, "laminated_dough", 0xc6b4bb, MaterialIconSet.DULL, plate);
     public static final MetaOreDictItem.OreDictValueItem CookedMinceMeat = SHAPED_ITEM.addOreDictItem(1129, "cooked_mince_meat", 0x462b25, MaterialIconSet.ROUGH, dust);
+
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem COCOA_NIB = SHAPED_ITEM.addOreDictItem(1036, "cocoa_nib", 0x635943, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
