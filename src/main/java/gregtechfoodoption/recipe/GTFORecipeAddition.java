@@ -26,10 +26,10 @@ public class GTFORecipeAddition {
         BritishChain.init();
         PotatoProcessingChain.init();
         AlcoholChain.init();
+        PurpleDrinkChain.init();
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
             MineralWaterChain.init();
-            PurpleDrinkChain.init();
         }
     }
 
