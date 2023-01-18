@@ -1,5 +1,6 @@
 package gregtechfoodoption.machines.farmer;
 
+import gregtech.api.util.GregFakePlayer;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public interface FarmerMode {
     }
 
     default EnumActionResult place(ItemStack stack, World world, MutableBlockPos pos, MetaTileEntityFarmer farmer) {
-        FakePlayer placer = farmer.fakePlayer;
+        GregFakePlayer placer = farmer.fakePlayer;
         placer.setHeldItem(EnumHand.MAIN_HAND, stack);
         return stack.getItem().onItemUse(placer, world, pos.down(), EnumHand.MAIN_HAND, EnumFacing.UP, 0, 0, 0);
     }

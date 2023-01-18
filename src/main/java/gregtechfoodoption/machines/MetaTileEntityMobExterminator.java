@@ -160,7 +160,7 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip", getTier() - 1));
         tooltip.add(I18n.format("gregtech.universal.tooltip.max_voltage_in", energyContainer.getInputVoltage(), GTValues.VNF[getTier()]));
         tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.getEnergyCapacity()));
-        tooltip.add(I18n.format("gregtech.machine.item_controller.tooltip.redstone"));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.requires_redstone"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.consumption", getEnergyConsumedPerKill()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.nitrous"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.warning"));
