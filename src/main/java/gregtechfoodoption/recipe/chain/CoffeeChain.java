@@ -49,7 +49,7 @@ public class CoffeeChain {
                 .outputs(EMPTY_CUP.getStackForm(16))
                 .blastFurnaceTemp(1033)
                 .EUt(120)
-                .duration(10800)
+                .duration(1200)
                 .buildAndRegister();
 
         CANNER_RECIPES.recipeBuilder()
