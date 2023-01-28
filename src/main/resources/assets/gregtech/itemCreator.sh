@@ -2,6 +2,10 @@
 while true; do
 	echo "What file should be created? (Do not include extension)"
 	read NAME
+	if ["$NAME" = ""]; then
+		exit
+	fi
+	
 	NAME="${NAME//./\/}"
 	
 	# Copy PNG
@@ -9,6 +13,7 @@ while true; do
 	PNGFOLDERPATH=${PNGFILEPATH%\/*}
 	mkdir -p $PNGFOLDERPATH
 	cp -n "blankitem.png" $PNGFILEPATH
+	chmod 744 $PNGFILEPATH
 	echo "Created " $PNGFILEPATH
 	
 	# Copy JSON
@@ -22,5 +27,6 @@ while true; do
 	SEDFUNC="s/REPLACE/"$SAFENAME"/"
 	# Points the model to the correct texture
 	sed -i $SEDFUNC $JSONFILEPATH
+	chmod 744 $JSONFILEPATH
 	echo "Created " $JSONFILEPATH
 done
