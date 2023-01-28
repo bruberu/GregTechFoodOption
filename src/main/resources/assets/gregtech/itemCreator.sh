@@ -5,7 +5,7 @@ while true; do
 	if [[ -n $VAR ]]; then
 		exit
 	fi
-	
+
 	NAME="${NAME//./\/}"
 	
 	# Copy PNG
