@@ -329,21 +329,21 @@ public class BreadsChain {
                 PIZZA_VEGGIE_RAW.getStackForm(),
                 PIZZA_VEGGIE.getStackForm(),
                 1200,
-                495,
+                645,
                 10
         );
         GTFOUtils.addBakingOvenRecipes(
                 PIZZA_CHEESE_RAW.getStackForm(),
                 PIZZA_CHEESE.getStackForm(),
                 1400,
-                495,
+                645,
                 12
         );
         GTFOUtils.addBakingOvenRecipes(
                 PIZZA_MINCE_MEAT_RAW.getStackForm(),
                 PIZZA_MINCE_MEAT.getStackForm(),
                 1600,
-                495,
+                645,
                 16
         );
     }

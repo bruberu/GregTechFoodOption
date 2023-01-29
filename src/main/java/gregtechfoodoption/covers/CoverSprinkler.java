@@ -31,6 +31,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_DATA;
 import static net.minecraft.block.BlockFarmland.MOISTURE;
@@ -54,6 +56,7 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
         return attachedSide == EnumFacing.DOWN && coverHolder.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, attachedSide) != null;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void renderCover(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline, Cuboid6 plateBox, BlockRenderLayer blockRenderLayer) {
         if (wasWorking) {

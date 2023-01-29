@@ -16,7 +16,7 @@ import static gregtechfoodoption.GTFOMaterialHandler.ArsenicTrioxide;
 public class DyeChain {
     public static void init() {
         ARC_FURNACE_RECIPES.recipeBuilder().EUt(30).duration(100)
-                .input(dust, Arsenic)
+                .input(dust, Arsenic, 2)
                 .fluidInputs(Oxygen.getFluid(3000))
                 .outputs(ArsenicTrioxide.get(5))
                 .buildAndRegister();

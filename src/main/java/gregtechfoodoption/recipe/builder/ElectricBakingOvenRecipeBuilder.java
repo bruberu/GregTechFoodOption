@@ -4,6 +4,7 @@ import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.recipeproperties.RecipeProperty;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
+import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -47,7 +48,7 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
             GTLog.logger.error("Temperature cannot be less or equal to 300", new IllegalArgumentException());
             this.recipeStatus = EnumValidationResult.INVALID;
         }
-
+        this.EUt(MetaTileEntityElectricBakingOven.temperatureEnergyCost(this.temp, 1));
         return this.recipeStatus;
     }
 

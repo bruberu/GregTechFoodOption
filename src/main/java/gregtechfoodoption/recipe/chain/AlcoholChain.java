@@ -1,6 +1,7 @@
 package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 import net.minecraft.init.Items;
 
 import static gregtechfoodoption.GTFOMaterialHandler.*;
@@ -50,6 +51,17 @@ public class AlcoholChain {
                 .input(Items.GLASS_BOTTLE)
                 .fluidInputs(PoorQualityBeer.getFluid(100))
                 .outputs(BEER.getStackForm())
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().EUt(800).duration(1000)
+                .fluidInputs(Materials.Milk.getFluid(1000))
+                .input(OrePrefix.dustTiny, Materials.Naquadah)
+                .fluidOutputs(Nilk.getFluid(1000))
+                .buildAndRegister();
+        CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
+                .input(Items.GLASS_BOTTLE)
+                .fluidInputs(Nilk.getFluid(200))
+                .outputs(NILK.getStackForm())
                 .buildAndRegister();
     }
 }

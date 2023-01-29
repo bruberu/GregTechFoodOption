@@ -201,7 +201,7 @@ material.gtfo_cough_syrup=Cough Syrup
 material.gtfo_apple_candy_syrup=Apple Candy Syrup
 material.gtfo_purple_drink=Purple Drink
 material.gtfo_carbonated_water=Carbonated Water
-material.gtfo_10-phenothiazine-2-propyl_chloride=10-Phenothiazine-2-propyl chloride
+material.gtfo_x_phenothiazine_ii_propyl_chloride=10-Phenothiazine-2-propyl chloride
 material.gtfo_hfcs_solution=High Fructose Corn Syrup Solution
 material.gtfo_glucose_solution=Glucose Solution
 material.gtfo_apple_syrup=Apple Syrup
@@ -277,6 +277,7 @@ gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=Not enough energy c
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=Set target temperature:
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4=Consumption: %d EU/t.
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.5=Target temperature: §a%dK§7.
+gregtechfoodoption.multiblock.electric_baking_oven.tooltip.6=Toggle adaptability (sets temperature itself):
 gregtechfoodoption.recipe.baking_oven_temperature=Temperature: %dK
 recipemap.baking_oven.name=Primitive Baking Oven
 recipemap.electric_baking_oven.name=Electric Baking Oven
@@ -340,7 +341,7 @@ metaitem.food.sandwich.steak.large.tooltip=At least you didn't call it Steamed H
 metaitem.food.burger.meat.name=Meat Burger
 metaitem.food.burger.meat.tooltip=For normal people
 metaitem.food.burger.cheese.name=Cheese Burger
-metaitem.food.burger.cheese.tooltip=Technically a Hambger
+metaitem.food.burger.cheese.tooltip=Technically a Hamrger
 metaitem.food.burger.veggie.name=Veggie Burger
 metaitem.food.burger.veggie.tooltip=I'm still going to call this a burger.
 metaitem.food.bun.name=Bun
@@ -606,12 +607,13 @@ material.gtfo_stearic_acid=Stearic Acid
 material.gtfo_sodium_stearate=Sodium Stearate (Soap)
 material.gtfo_citric_acid=Citric Acid
 
-metaitem.tool.butchery_knife.hv.name=%s Electric Butchering Knife (HV)
-metaitem.tool.butchery_knife.hv.tooltip=§9Mob Delivinizer §c4000
+item.gt.tool.butchery_knife.hv.name=%s Electric Butchering Knife (HV)
+item.gt.tool.butchery_knife.hv.tooltip=§9Mob Delivinizer §c4000
 
 enchantment.level.0=I
 enchantment.level.7=VII
 enchantment.level.8=VIII
+enchantment.level.11=XI
 enchantment.level.12=XII
 enchantment.level.17=XVII
 enchantment.level.29=XXVIV
@@ -692,6 +694,7 @@ metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
 metaitem.sodium_chlorate_dust.name=Sodium Chlorate
 
 itemGroup.gregtechfoodoption.main=GregTech Food Option
+itemGroup.gregtechfoodoption.food=GregTech Food Option Foods
 
 gregtechfoodoption.leaves.banana.name=Banana Leaves
 gregtechfoodoption.log.banana.name=Banana Pseudostem
@@ -799,12 +802,12 @@ material.gtfo_rainbow_sap=Rainbow Sap
 material.gtfo_rub_sap=Rubber Sap
 material.gtfo_sodium_arsenite_solution=Sodium Arsenite Solution
 metaitem.arsenic_trioxide_dust.name=Arsenic Trioxide
-metaitem.cupric_hydrogen_arsenite_dust.name=Cupric Hydrogen Arsenite
+metaitem.cupric_hydrogen_arsenite_dust.name=Scheele's Green
 tile.transparent_casing.greenhouse_glass.name=Greenhouse Glass
 gregtech.multiblock.not_enough_sun=Warning: The Roof did not receive enough natural Sunlight for the recipe!
 
 gregtechfoodoption.machine.greenhouse.tooltip.1=Simulates the growth of Trees inside.
-gregtechfoodoption.machine.greenhouse.tooltip.2=Takes twice as long to run a Recipe if Any Part of the Roof is blocked.
+gregtechfoodoption.machine.greenhouse.tooltip.2=Takes twice as long to run a Recipe if Any Part of the Roof is blocked, or it is Night.
 
 material.gtfo_beer_batter=Beer Batter
 metaitem.puff_pastry_plate.name=Puff Pastry
@@ -847,3 +850,7 @@ material.gtfo_rubber_sap=Rubber Sap
 material.gtfo_blood=Blood
 material.gtfo_fertilizer_solution=Fertilizer Solution
 gregtechfoodoption.recipe.cause_damage=Causes %d damage to the mob
+
+material.gtfo_nilk=Nilk
+metaitem.food.nilk.name=Nilk
+metaitem.food.nilk.tooltip=Nilk

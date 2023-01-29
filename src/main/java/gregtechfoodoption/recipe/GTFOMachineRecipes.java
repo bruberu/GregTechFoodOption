@@ -85,8 +85,12 @@ public class GTFOMachineRecipes {
 
         ModHandler.addShapedRecipe("baking_oven", GTFOTileEntities.BAKING_OVEN.getStackForm(),
                 "dSS", "RRA", "fSS",
-                'S', new UnificationEntry(screw, WroughtIron),
-                'R', new UnificationEntry(stick, WroughtIron),
+                'S', new UnificationEntry(screw, Iron),
+                'R', new UnificationEntry(stick, Iron),
+                'A', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.ADOBE_BRICKS));
+        ModHandler.addShapedRecipe("baking_oven2", GTFOTileEntities.BAKING_OVEN.getStackForm(),
+                "dRR", "RRA", "fRR",
+                'R', new UnificationEntry(stick, Iron),
                 'A', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.ADOBE_BRICKS));
 
         ModHandler.addShapedRecipe("steam_baking_oven", GTFOTileEntities.STEAM_BAKING_OVEN.getStackForm(),

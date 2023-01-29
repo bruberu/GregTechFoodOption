@@ -1,5 +1,6 @@
 package gregtechfoodoption.machines.multiblock;
 
+import gregtech.api.GTValues;
 import gregtech.api.capability.impl.SteamMultiWorkable;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -110,7 +111,7 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
 
         @Override
         protected int[] calculateOverclock(Recipe recipe) {
-            return new int[]{0, recipe.getDuration() * 8};
+            return new int[]{0, recipe.getDuration() * 4};
         }
 
         protected boolean drawEnergy(int recipeEUt, boolean simulate) {
@@ -141,5 +142,10 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
             super.receiveInitialData(buf);
             recipeSteamT = buf.readInt();
         }
+
+        protected long getMaxVoltage() {
+            return GTValues.V[4];
+        }
+
     }
 }

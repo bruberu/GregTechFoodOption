@@ -12,6 +12,7 @@ import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
+import gregtechfoodoption.machines.multiblock.MetaTileEntityGreenhouse;
 import gregtechfoodoption.potion.GTFOPotions;
 import gregtechfoodoption.recipe.*;
 import gregtechfoodoption.utils.GTFOLog;
@@ -83,6 +84,7 @@ public class CommonProxy {
         GTFOMetaBlocks.GTFO_PLANKS.forEach(registry::register);
         GTFOMetaBlocks.GTFO_SAPLINGS.forEach(registry::register);
 
+        MetaTileEntityGreenhouse.addGrasses();
     }
 
     @SubscribeEvent
@@ -118,7 +120,7 @@ public class CommonProxy {
         GTFOLog.logger.info("Registering ore prefix...");
         GTFOOreDictRegistration.init();
 
-        GTFOMetaItems.registerOreDict();
+        //GTFOMetaItems.registerOreDict();
         GTFOMetaBlocks.registerOreDict();
 
         //OrePrefix.runMaterialHandlers();

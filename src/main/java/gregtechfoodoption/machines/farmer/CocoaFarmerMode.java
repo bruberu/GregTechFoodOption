@@ -1,5 +1,6 @@
 package gregtechfoodoption.machines.farmer;
 
+import gregtech.api.util.GregFakePlayer;
 import net.minecraft.block.BlockCocoa;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
@@ -10,7 +11,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.FakePlayer;
 
 public class CocoaFarmerMode implements FarmerMode {
     public static final int COCOA_MAX_AGE = 2;
@@ -27,7 +27,7 @@ public class CocoaFarmerMode implements FarmerMode {
 
     @Override
     public EnumActionResult place(ItemStack stack, World world, BlockPos.MutableBlockPos pos, MetaTileEntityFarmer farmer) {
-        FakePlayer placer = farmer.fakePlayer;
+        GregFakePlayer placer = farmer.fakePlayer;
         placer.setHeldItem(EnumHand.MAIN_HAND, stack);
         for (EnumFacing facing : EnumFacing.HORIZONTALS) {
             if (stack.onItemUse(placer, world, pos.offset(facing), EnumHand.MAIN_HAND, facing.getOpposite(), 0, 0, 0) == EnumActionResult.SUCCESS)

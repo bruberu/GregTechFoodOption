@@ -64,7 +64,7 @@ public class GreenhouseChain {
                 .buildAndRegister();
         GREENHOUSE_RECIPES.recipeBuilder().EUt(90).duration(3000)
                 .inputs(sapling)
-                .notConsumable(OrePrefix.toolHeadSword, Steel)
+                .notConsumable(OrePrefix.toolHeadChainsaw, Steel)
                 .circuitMeta(3)
                 .fluidInputs(Materials.Water.getFluid(10000))
                 .outputs(GTUtility.copyAmount(5, log))
@@ -73,7 +73,7 @@ public class GreenhouseChain {
                 .buildAndRegister();
         GREENHOUSE_RECIPES.recipeBuilder().EUt(90).duration(4000)
                 .inputs(sapling, MetaItems.FERTILIZER.getStackForm(1))
-                .notConsumable(OrePrefix.toolHeadSword, Steel)
+                .notConsumable(OrePrefix.toolHeadChainsaw, Steel)
                 .circuitMeta(4)
                 .fluidInputs(Materials.Water.getFluid(10000))
                 .outputs(GTUtility.copyAmount(8, log))

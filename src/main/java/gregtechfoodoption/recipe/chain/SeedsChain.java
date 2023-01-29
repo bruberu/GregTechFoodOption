@@ -5,14 +5,14 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.item.GTFOMetaItem;
 import net.minecraft.item.ItemStack;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtechfoodoption.item.GTFOMetaItem.PEAS;
-import static gregtechfoodoption.item.GTFOMetaItem.PEA_POD;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
 
 public class SeedsChain {
     public static void init() {
@@ -22,29 +22,43 @@ public class SeedsChain {
                 .chancedOutput(GTFOMaterialHandler.PopcornKernel.getItemStack(), 2000, 250)
                 .buildAndRegister();*/
 
-        if(GTFOConfig.gtfoMiscConfig.centrifugeSeeds) {
-            ItemStack[] seeds = new ItemStack[]{
-                    GTFOMetaItem.LEMON.getStackForm(),
-                    GTFOMetaItem.LIME.getStackForm(),
-                    GTFOMetaItem.TOMATO.getStackForm(),
-                    GTFOMetaItem.CUCUMBER.getStackForm(),
-                    GTFOMetaItem.OLIVE.getStackForm(),
-                    GTFOMetaItem.ONION.getStackForm(),
-                    GTFOMetaItem.BANANA.getStackForm(),
-                    GTFOMetaItem.ORANGE.getStackForm(),
-                    GTFOMetaItem.GRAPES.getStackForm(),
-                    GTFOMetaItem.MANGO.getStackForm(),
-                    GTFOMetaItem.APRICOT.getStackForm(),
-                    //GTFOMaterialHandler.PopcornKernel.getItemStack()
-            };
-            for (ItemStack seed : seeds) {
+        ItemStack[] seeds = new ItemStack[]{
+                LEMON.getStackForm(),
+                LIME.getStackForm(),
+                TOMATO.getStackForm(),
+                CUCUMBER.getStackForm(),
+                OLIVE.getStackForm(),
+                ONION.getStackForm(),
+                BANANA.getStackForm(),
+                ORANGE.getStackForm(),
+                GRAPES.getStackForm(),
+                MANGO.getStackForm(),
+                APRICOT.getStackForm(),
+                PEA_POD.getStackForm(),
+                SOYBEAN.getStackForm(),
+                BEANS.getStackForm(),
+                COFFEE_CHERRY.getStackForm(),
+        };
+
+        for (ItemStack seed : seeds) {
+            if(GTFOConfig.gtfoMiscConfig.centrifugeSeeds) {
                 RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(5).duration(144)
                         .inputs(seed)
                         .fluidOutputs(Materials.Methane.getFluid(34))
                         .buildAndRegister();
             }
+            RecipeMaps.BREWING_RECIPES.recipeBuilder().EUt(3).duration(800)
+                    .inputs(seed)
+                    .fluidInputs(Water.getFluid(100))
+                    .fluidOutputs(Biomass.getFluid(100))
+                    .buildAndRegister();
+            ItemStack eight = seed.copy();
+            eight.setCount(8);
+            RecipeMaps.COMPRESSOR_RECIPES.recipeBuilder().EUt(2).duration(300)
+                    .inputs(eight)
+                    .outputs(MetaItems.PLANT_BALL.getStackForm())
+                    .buildAndRegister();
         }
-
         ModHandler.addShapedRecipe("gtfo_seed_soy_ungenerify", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
                 "S  ", "   ", "   ",
                 'S', GTFOMetaItem.UNKNOWN_SEED);

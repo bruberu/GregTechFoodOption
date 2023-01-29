@@ -4,10 +4,13 @@ import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.RandomPotionEffect;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 
 import java.util.Arrays;
 import java.util.List;
@@ -65,6 +68,11 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     }
 
     public ItemStack onFoodEaten(ItemStack itemStack, EntityPlayer player) {
+        if (Loader.isModLoaded(GTFOValues.MODID_AP)) {
+            itemStack.grow(1);
+            GTFOAppleCoreCompat.sendEatenEvent(player, itemStack, getFoodLevel(itemStack, player), getSaturation(itemStack, player));
+            itemStack.shrink(1);
+        }
         if (!player.world.isRemote) {
             for (RandomPotionEffect potionEffect : this.potionEffects) {
                 if (Math.random() * 100.0D > (double) potionEffect.chance) {
@@ -85,6 +93,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
                 }
             }
         }
+
 
         return itemStack;
     }

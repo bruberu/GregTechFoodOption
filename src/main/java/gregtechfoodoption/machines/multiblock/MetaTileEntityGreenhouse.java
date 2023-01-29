@@ -8,17 +8,22 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.recipes.Recipe;
-import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.block.GTFOGlassCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
+import gregtechfoodoption.utils.GTFOLog;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.InvalidBlockStateException;
+import net.minecraft.command.NumberInvalidException;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,6 +34,8 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -37,6 +44,52 @@ import java.util.List;
 import static gregtech.api.unification.material.Materials.Steel;
 
 public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
+    protected static IBlockState[] GRASSES;
+
+    public static void addGrasses() {
+        GRASSES = new IBlockState[GTFOConfig.gtfoMiscConfig.greenhouseDirts.length];
+        boolean errorsFound = false;
+        for (int i = 0; i < GTFOConfig.gtfoMiscConfig.greenhouseDirts.length; i++) {
+            String blockStateString = GTFOConfig.gtfoMiscConfig.greenhouseDirts[i];
+            try {
+                IBlockState state;
+                final String[] splitBlockStateString = StringUtils.split(blockStateString, "[");
+                final String blockString = splitBlockStateString[0];
+                final String stateString;
+                if (splitBlockStateString.length == 1) {
+                    stateString = "default";
+                } else if (splitBlockStateString.length == 2) {
+                    stateString = StringUtils.reverse(StringUtils.reverse(StringUtils.split(blockStateString, "[")[1]).replaceFirst("]", ""));
+                } else {
+                    GTFOLog.logger.error("Block/BlockState Parsing error for \"" + blockStateString + "\"");
+                    errorsFound = true;
+                    continue;
+                }
+
+                final Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(blockString));
+                if (block == null) {
+                    GTFOLog.logger.error("Block Parsing error for \"" + blockString + "\". Block does not exist!");
+                    errorsFound = true;
+                    continue;
+                }
+                try {
+                    state = CommandBase.convertArgToBlockState(block, stateString);
+                    GRASSES[i] = state;
+                } catch (NumberInvalidException e) {
+                    GTFOLog.logger.error("BlockState Parsing error " + e + " for \"" + stateString + "\". Invalid Number!");
+                    errorsFound = true;
+                } catch (InvalidBlockStateException e) {
+                    GTFOLog.logger.error("BlockState Parsing error " + e + " for \"" + stateString + "\". Invalid BlockState!");
+                    errorsFound = true;
+                }
+            } catch (Exception e) {
+                GTFOLog.logger.error("Smoothable BlockState Parsing error " + e + " for \"" + blockStateString + "\"");
+                errorsFound = true;
+            }
+        }
+        if (errorsFound)
+            throw new IllegalArgumentException("One or more errors were found with the Greenhouse Blocks configuration for GTFO. Check log above.");
+    }
 
     public MetaTileEntityGreenhouse(ResourceLocation metaTileEntityId) {
         super(metaTileEntityId, GTFORecipeMaps.GREENHOUSE_RECIPES);
@@ -55,7 +108,7 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
                 .aisle("CCCYCCC", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "XXXFXXX", "   F   ")
                 .where('X', states(getCasingState()))
                 .where('F', states(getFrameState()))
-                .where('D', states(Blocks.DIRT.getDefaultState(), Blocks.GRASS.getDefaultState()))
+                .where('D', states(Blocks.DIRT.getDefaultState(), Blocks.GRASS.getDefaultState()).or(states(GRASSES)))
                 .where('C', states(getCasingState2()).setMinGlobalLimited(10).or(autoAbilities()))
                 .where('#', air())
                 .where(' ', any())
@@ -86,9 +139,11 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
     }
 
     public boolean checkNaturalLighting() {
+        if (!this.getWorld().isDaytime())
+            return false;
         for (BlockPos pos : BlockPos.getAllInBox(this.getPos().up(8).offset(this.frontFacing.rotateY(), 3),
                 this.getPos().up(8).offset(this.getFrontFacing().rotateYCCW(), 3).offset(this.getFrontFacing().getOpposite(), 6))) {
-            if (!GTUtility.canSeeSunClearly(this.getWorld(), pos)) {
+            if (!this.getWorld().canSeeSky(pos.up())) {
                 return false;
             }
         }

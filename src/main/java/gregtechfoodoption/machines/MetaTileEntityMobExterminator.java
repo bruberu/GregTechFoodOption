@@ -12,8 +12,8 @@ import gregtech.api.gui.widgets.TankWidget;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.sound.GTSounds;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
+import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.utils.GTFODamageSources;
 import net.minecraft.client.resources.I18n;
@@ -160,7 +160,7 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip", getTier() - 1));
         tooltip.add(I18n.format("gregtech.universal.tooltip.max_voltage_in", energyContainer.getInputVoltage(), GTValues.VNF[getTier()]));
         tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.getEnergyCapacity()));
-        tooltip.add(I18n.format("gregtech.machine.item_controller.tooltip.redstone"));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.requires_redstone"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.consumption", getEnergyConsumedPerKill()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.nitrous"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.warning"));
@@ -174,7 +174,7 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
 
     @Override
     public SoundEvent getSound() {
-        return GTSounds.MACERATOR;
+        return GTSoundEvents.MACERATOR;
     }
 
     @Override

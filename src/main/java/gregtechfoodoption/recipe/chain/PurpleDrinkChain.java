@@ -1,8 +1,16 @@
 package gregtechfoodoption.recipe.chain;
 
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtech.common.items.MetaItems.*;
+import static gregtech.api.unification.material.Materials.*;
+import net.minecraft.init.Items;
+import net.minecraft.init.Blocks;
+import static gregtech.api.unification.ore.OrePrefix.*;
+
 public class PurpleDrinkChain {
     public static void init() {
-        /*
         CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(PurpleDrink.getFluid(500))
                 .input(Items.GLASS_BOTTLE, 1)
@@ -30,7 +38,7 @@ public class PurpleDrinkChain {
                 .EUt(30)
                 .duration(20)
                 .buildAndRegister();
-        MIXER_RECIPES.recipeBuilder()
+/*        MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(LemonLimeSludge.getFluid(1000), HFCSLv.getFluid(166))
                 .fluidOutputs(LemonLimeSodaSyrup.getFluid(1000))
                 .EUt(60)
@@ -41,7 +49,7 @@ public class PurpleDrinkChain {
                 .fluidOutputs(LemonLimeSodaSyrup.getFluid(750))
                 .EUt(60)
                 .duration(40)
-                .buildAndRegister();
+                .buildAndRegister();*/
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(LemonLimeSludge.getFluid(500))
                 .input(Items.SUGAR, 9)
@@ -61,9 +69,11 @@ public class PurpleDrinkChain {
                 .EUt(30)
                 .duration(100)
                 .buildAndRegister();
+/*
         RecipeUtils.addBioReactorRecipes(DistilledWater, LACTOBACILLUS_PENTOSIS_CULTURE, LactobacillusPentosis.getItemStack(), Milk);
         RecipeUtils.addBioReactorRecipes(DistilledWater, BACILLUS_SUBTILIS_CULTURE, BacillusSubtilis.getItemStack(), new ItemStack(Items.WHEAT));
-        MIXER_RECIPES.recipeBuilder()
+*/
+/*        MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(HFCSXlii.getFluid(771),HFCSXc.getFluid(229))
                 .fluidOutputs(HFCSLv.getFluid(1000))
                 .EUt(30)
@@ -130,8 +140,8 @@ public class PurpleDrinkChain {
                 .fluidOutputs(OligosaccharideSolution.getFluid(1000))
                 .EUt(120)
                 .duration(100)
-                .buildAndRegister();
-        MIXER_RECIPES.recipeBuilder()
+                .buildAndRegister();*/
+/*        MIXER_RECIPES.recipeBuilder()
                 .inputs(CornStarch.getItemStack())
                 .fluidInputs(DistilledWater.getFluid(1000))
                 .fluidOutputs(CornStarchSolution.getFluid(1000))
@@ -144,14 +154,14 @@ public class PurpleDrinkChain {
                 .output(dustSmall, Wood, 2)
                 .EUt(18)
                 .duration(200)
-                .buildAndRegister();
+                .buildAndRegister();*/
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(Water.getFluid(1000), CarbonDioxide.getFluid(100))
                 .fluidOutputs(CarbonatedWater.getFluid(1050))
                 .EUt(120)
                 .duration(60)
                 .buildAndRegister();
-        FLUID_CANNER_RECIPES.recipeBuilder()
+        CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(CarbonatedWater.getFluid(500))
                 .inputs(PLASTIC_BOTTLE.getStackForm())
                 .outputs(SPARKLING_WATER.getStackForm())
@@ -159,7 +169,7 @@ public class PurpleDrinkChain {
                 .duration(100)
                 .buildAndRegister();
         FLUID_SOLIDFICATION_RECIPES.recipeBuilder()
-                .fluidInputs(Plastic.getFluid(288))
+                .fluidInputs(Polyethylene.getFluid(288))
                 .notConsumable(SHAPE_MOLD_BOTTLE.getStackForm())
                 .outputs(PLASTIC_BOTTLE.getStackForm())
                 .EUt(60)
@@ -211,7 +221,7 @@ public class PurpleDrinkChain {
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Aniline.getFluid(2000), HydrochloricAcid.getFluid(1000))
                 .outputs(Diphenylamine.getItemStack(24))
-                .fluidOutputs(AmmoniumChloride.getFluid(1000))
+                .output(dust, AmmoniumChloride, 6)
                 .EUt(480)
                 .duration(120)
                 .buildAndRegister();
@@ -260,7 +270,7 @@ public class PurpleDrinkChain {
                 .EUt(120)
                 .duration(60)
                 .buildAndRegister();
-        FLUID_EXTRACTION_RECIPES.recipeBuilder()
+        EXTRACTOR_RECIPES.recipeBuilder()
                 .inputs(CORED_APPLE.getStackForm(2))
                 .fluidOutputs(AppleSyrup.getFluid(1000))
                 .EUt(30)
@@ -272,6 +282,15 @@ public class PurpleDrinkChain {
                 .EUt(60)
                 .duration(200)
                 .buildAndRegister();
-         */
+        // 6H + C6H5NO2 -> C6H5NH2 + 2H2O
+        CHEMICAL_RECIPES.recipeBuilder()
+                .fluidInputs(Hydrogen.getFluid(6000))
+                .fluidInputs(Nitrobenzene.getFluid(1000))
+                .notConsumable(dust, Zinc)
+                .fluidOutputs(Aniline.getFluid(1000))
+                .fluidOutputs(Water.getFluid(2000))
+                .EUt(30)
+                .duration(100)
+                .buildAndRegister();
     }
 }

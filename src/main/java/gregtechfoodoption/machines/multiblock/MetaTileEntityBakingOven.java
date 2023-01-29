@@ -75,9 +75,9 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
     @Override
     protected BlockPattern createStructurePattern() {
         return FactoryBlockPattern.start()
-                .aisle("XXXX", "XXXX", "XXXX", " XX ")
-                .aisle("XXXX", "XFFX", "X##X", " XX ")
-                .aisle("XXXX", "YFFX", "X##X", " XX ")
+                .aisle("XXX", "XXX")
+                .aisle("XFX", "X#X")
+                .aisle("XYX", "XXX")
                 .where('X', states(getCasingState()))
                 .where('F', states(getFrameState()))
                 .where('#', air())

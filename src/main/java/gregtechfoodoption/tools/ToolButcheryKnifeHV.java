@@ -1,3 +1,4 @@
+/*
 package gregtechfoodoption.tools;
 
 import com.google.common.collect.Lists;
@@ -5,6 +6,7 @@ import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.IElectricItem;
 import gregtech.api.enchants.EnchantmentData;
+import gregtech.api.items.toolitem.behavior.IToolBehavior;
 import gregtech.common.items.MetaItems;
 import gregtech.common.tools.ToolButcheryKnife;
 import net.minecraft.block.material.Material;
@@ -14,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ToolButcheryKnifeHV extends ToolButcheryKnife {
+public class ToolButcheryKnifeHVBehavior implements IToolBehavior {
 
     private static final long use = GTValues.V[GTValues.HV * 4];
 
@@ -56,3 +58,4 @@ public class ToolButcheryKnifeHV extends ToolButcheryKnife {
         return (block.getMaterial() == Material.LEAVES) || (block.getMaterial() == Material.WEB);
     }
 }
+*/
