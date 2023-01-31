@@ -363,6 +363,15 @@ public class GTFOMaterialHandler {
     public static final Material GelatinSolutionNoBubbles = fluidBuilder(22005, "gelatin_solution_no_bubbs").fluidTemp(343)
             .color(0xD3D3D3)
             .build();
+    public static final Material SodiumHypochlorite = fluidBuilder(25006, "sodium_hypochlorite").fluidTemp(343)
+            .color(0xFFFFFF)
+            .build();
+    public static final Material AceticAnhydride = fluidBuilder(25007, "acetic_anhydride").fluidTemp(343)
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Nitrophenols = fluidBuilder(25008, "nitrophenols").fluidTemp(343)
+            .color(0xFFFFFF)
+            .build();
 
     public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem SMALL_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1018, "roasted_coffee_small", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
@@ -463,7 +472,7 @@ public class GTFOMaterialHandler {
         Materials.Iron.addFlags(GENERATE_FRAME);
         Materials.BismuthBronze.addFlags(GENERATE_FRAME);
         Materials.Aluminium.addFlags(GENERATE_DENSE);
-        Materials.StainlessSteel.addFlags(GENERATE_DENSE);
+        Materials.StainlessSteel.addFlags(GENERATE_DENSE, GENERATE_SPRING_SMALL);
         Materials.Titanium.addFlags(GENERATE_DENSE);
         Materials.Aluminium.addFlags(GENERATE_DENSE);
 

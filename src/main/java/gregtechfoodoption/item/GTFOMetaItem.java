@@ -213,7 +213,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem COFFEE_CHERRY;
     public static MetaItem<?>.MetaValueItem ENERGIZING_COFFEE_CUP;
     public static MetaItem<?>.MetaValueItem COFFEE_CUP;
-    public static MetaItem<?>.MetaValueItem CYANIDE_CAPLET;
+    public static MetaItem<?>.MetaValueItem PARACETAMOL_CAPLET;
 
     //juice
     public static MetaItem<?>.MetaValueItem ORANGE_JUICE;
@@ -273,6 +273,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem NILK;
 
     public static MetaItem<?>.MetaValueItem SPRINKLER_COVER;
+    public static MetaItem<?>.MetaValueItem PLUTONIUM_241_CAPLET;
+    public static MetaItem<?>.MetaValueItem IV_BAG;
 
 
     public GTFOMetaItem() {
@@ -406,6 +408,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
 
         CAPLET_CAP = addItem(227, "component.caplet_cap");
         CAPLET_BODY = addItem(228, "component.caplet_body");
+        IV_BAG = addItem(232, "component.iv_bag");
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
@@ -625,6 +628,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 100 - 60)));
 
         GEL_CAPLET = addItem(229, "food.gel_caplet");
+        PARACETAMOL_CAPLET = addItem(230, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
+        PLUTONIUM_241_CAPLET = addItem(231, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
@@ -647,7 +652,6 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
 
         // 175-189 left blank for organic circuits
-
         SPRINKLER_COVER = addItem(224, "cover.sprinkler");
 
         {

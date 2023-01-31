@@ -4,6 +4,9 @@ import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.material.Materials;
 
 import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.api.unification.ore.OrePrefix.dustSmall;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
@@ -40,5 +43,22 @@ public class CapletChain {
                 .inputs(CAPLET_CAP.getStackForm(4))
                 .outputs(GEL_CAPLET.getStackForm(4))
                 .buildAndRegister();
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(20)
+                .inputs(CAPLET_BODY.getStackForm())
+                .inputs(ParacetamolSmall.getItemStack())
+                .inputs(CAPLET_CAP.getStackForm())
+                .outputs(PARACETAMOL_CAPLET.getStackForm())
+                .buildAndRegister();
+        ModHandler.addShapelessRecipe("paracetamol_small", ParacetamolSmall.getItemStack(4), Paracetamol.getItemStack());
+        ModHandler.addShapelessRecipe("handful_paracetamol", HANDFUL_PARACETAMOL.getStackForm(), PARACETAMOL_CAPLET.getStackForm(), PARACETAMOL_CAPLET.getStackForm(), PARACETAMOL_CAPLET.getStackForm(), PARACETAMOL_CAPLET.getStackForm(), PARACETAMOL_CAPLET.getStackForm(), PARACETAMOL_CAPLET.getStackForm(), PARACETAMOL_CAPLET.getStackForm(), PARACETAMOL_CAPLET.getStackForm());
+
+        // Plutonium 241
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(20)
+                .inputs(CAPLET_BODY.getStackForm())
+                .input(dustSmall, Plutonium241)
+                .inputs(CAPLET_CAP.getStackForm())
+                .outputs(PLUTONIUM_241_CAPLET.getStackForm())
+                .buildAndRegister();
+
     }
 }
