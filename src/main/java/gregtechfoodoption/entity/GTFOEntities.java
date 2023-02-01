@@ -1,6 +1,6 @@
 package gregtechfoodoption.entity;
 
-import gregtech.api.GTValues;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.GregTechFoodOption;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderSnowMan;
@@ -28,8 +28,8 @@ public class GTFOEntities {
                 .spawn(EnumCreatureType.CREATURE, 2, 1, 3, EntityItalianBuffalo.POSSIBLE_BIOME_SPAWNS)
                 .egg(0x3d352f, 0xf0ded1).build());
 
-        EntityRegistry.registerModEntity(new ResourceLocation(GTValues.MODID, "strong_snowman"), EntityStrongSnowman.class, "Snowman", 1, GregTechFoodOption.instance, 64, 5, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(GTValues.MODID, "strong_snowball"), EntityStrongSnowball.class, "Snowball", 2, GregTechFoodOption.instance, 64, 5, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GTFOValues.MODID, "strong_snowman"), EntityStrongSnowman.class, "Snowman", 1, GregTechFoodOption.instance, 64, 5, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(GTFOValues.MODID, "strong_snowball"), EntityStrongSnowball.class, "Snowball", 2, GregTechFoodOption.instance, 64, 5, true);
 
     }
 
