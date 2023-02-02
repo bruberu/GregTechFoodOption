@@ -1,12 +1,15 @@
 package gregtechfoodoption.utils;
 
 import gregtech.api.GTValues;
+import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.items.metaitem.stats.IItemComponent;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.item.GTFOFoodStats;
+import gregtechfoodoption.item.GTFOMetaItems;
+import gregtechfoodoption.item.food.GTFOFoodStats;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -243,5 +246,18 @@ public class GTFOUtils {
                 return false;
         }
         return true;
+    }
+
+    public static GTFOFoodStats getGTFOFoodStats(ItemStack stack) {
+        if (stack.getItem() instanceof MetaItem<?>) {
+            if (GTFOMetaItems.META_ITEM.getItem(stack) != null) {
+                for (IItemComponent stats : GTFOMetaItems.META_ITEM.getItem(stack).getAllStats()) {
+                    if (stats instanceof GTFOFoodStats) {
+                        return ((GTFOFoodStats) stats);
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

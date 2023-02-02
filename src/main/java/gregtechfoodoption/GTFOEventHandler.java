@@ -6,7 +6,7 @@ import gregtech.api.util.GregFakePlayer;
 import gregtechfoodoption.entity.EntityStrongSnowman;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.item.GTFOFoodDurationSetter;
+import gregtechfoodoption.item.food.GTFOFoodDurationSetter;
 import gregtechfoodoption.network.PacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;

@@ -854,3 +854,6 @@ gregtechfoodoption.recipe.cause_damage=Causes %d damage to the mob
 material.gtfo_nilk=Nilk
 metaitem.food.nilk.name=Nilk
 metaitem.food.nilk.tooltip=Nilk
+
+gregtechfoodoption.tooltip.food.lacing=§2May be laced with Fun Chemicals
+gregtechfoodoption.fluid.lacing=§2Can be used to lace items with 100 mB in the Canner

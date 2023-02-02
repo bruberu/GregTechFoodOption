@@ -174,7 +174,7 @@ jar {
     manifest.attributes(
             "FMLCorePlugin": "gregtechfoodoption.GTFOMixinPlugin",
             "FMLCorePluginContainsFMLMod": "true",
-           // "ForceLoadAsMod": "true",
+            "ForceLoadAsMod": project.gradle.startParameter.taskNames[0] == "build",
             "FMLAT": "gtfo_at.cfg",
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
     )

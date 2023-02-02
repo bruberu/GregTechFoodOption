@@ -11,8 +11,6 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.util.FluidTooltipUtil;
-import gregtech.api.util.LocalizationUtils;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.item.GTFOProxyItem;
 import gregtechfoodoption.materials.FertilizerProperty;
@@ -475,8 +473,10 @@ public class GTFOMaterialHandler {
     public static void registerFertilizerTooltips() {
         for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
             FertilizerProperty fertilizerProperty = material.getProperty(FERTILIZER);
+/*
             if (fertilizerProperty != null)
                 FluidTooltipUtil.registerTooltip(material.getFluid(), LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", fertilizerProperty.getBoostPercentage()));
+*/
         }
     }
 }
