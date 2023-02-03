@@ -3,8 +3,12 @@ package gregtechfoodoption.potion;
 import gregtechfoodoption.utils.GTFODamageSources;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextComponentTranslation;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CyanidePoisoningPotion extends GTFOPotion {
     public static final String TAG_NAME = "gregtechfoodoption - cyanidepoisoning";
@@ -49,5 +53,10 @@ public class CyanidePoisoningPotion extends GTFOPotion {
     @Override
     public boolean shouldRender(PotionEffect effect) {
         return false;
+    }
+
+    @Override
+    public List<ItemStack> getCurativeItems() {
+        return new ArrayList<>(); // Nothing :)
     }
 }
