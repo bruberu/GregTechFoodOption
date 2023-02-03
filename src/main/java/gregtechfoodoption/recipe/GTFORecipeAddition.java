@@ -27,7 +27,7 @@ public class GTFORecipeAddition {
         PotatoProcessingChain.init();
         AlcoholChain.init();
         PurpleDrinkChain.init();
-        PillChain.init();
+        CapletChain.init();
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
             MineralWaterChain.init();

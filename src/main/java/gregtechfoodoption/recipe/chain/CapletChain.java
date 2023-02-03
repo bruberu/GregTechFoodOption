@@ -7,7 +7,7 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
-public class PillChain {
+public class CapletChain {
     public static void init() {
         FLUID_HEATER_RECIPES.recipeBuilder().EUt(2048).duration(280)
                 .fluidInputs(Materials.Water.getFluid(1000))
