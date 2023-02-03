@@ -678,6 +678,7 @@ metaitem.seed.onion.tooltip=For growing YoungOnions
 
 death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
+death.attack.cyanide=%s smelled some almonds
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
 
 # Farmer
@@ -857,3 +858,6 @@ metaitem.food.nilk.tooltip=Nilk
 
 gregtechfoodoption.tooltip.food.lacing=§2May be laced with Fun Chemicals
 gregtechfoodoption.fluid.lacing=§2Can be used to lace items with 100 mB in the Canner
+gregtechfoodoption.cyanide.1=§cYou feel really nauseous...
+gregtechfoodoption.cyanide.2=§cYou can't breathe anymore...
+gregtechfoodoption.cyanide.3=§cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA

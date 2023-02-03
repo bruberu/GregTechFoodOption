@@ -6,10 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class CreativityPotion extends GTFOPotion {
     public static final String TAG_NAME = "gregtechfoodoption - creativity";
-    public static CreativityPotion instance = null;
+    public static CreativityPotion INSTANCE = null;
     public CreativityPotion() {
         super("creativity", false, 0x51f5d1, 0);
-        instance = this;
+        INSTANCE = this;
     }
 
     @Override

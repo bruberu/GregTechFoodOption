@@ -33,7 +33,6 @@ public class RecipeMapFluidCannerMixin {
             @At(value = "RETURN", ordinal = 1),
             locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void checkLacingRecipes(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, int outputFluidTankCapacity, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe, Iterator var8, ItemStack input, ItemStack inputStack, ItemStack fluidHandlerItemStack, IFluidHandlerItem fluidHandlerItem) {
-        GTFOLog.logger.info("Today I did something");
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
@@ -44,7 +43,6 @@ public class RecipeMapFluidCannerMixin {
             @At(value = "RETURN", ordinal = 4),
             locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void checkLacingRecipes2(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, int outputFluidTankCapacity, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe) {
-        GTFOLog.logger.info("Today I did something");
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
@@ -65,7 +63,11 @@ public class RecipeMapFluidCannerMixin {
 
                 NBTTagCompound gtfoStatsTag = overallTag.getCompoundTag("gtfoStats");
 
-                FluidStack inputFluid = fluidInputs.get(0).copy();
+                FluidStack potentialFluid = fluidInputs.get(0);
+                if (potentialFluid == null) {
+                    return;
+                }
+                FluidStack inputFluid = potentialFluid.copy();
                 if (inputFluid.amount < 100)
                     return;
                 inputFluid.amount = 100; // For use in the recipe; it's fine since it's a copy
