@@ -1,22 +1,13 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregicality.science.api.unification.materials.GCYSMaterials;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtechfoodoption.GTFOMaterialHandler;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Items;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.items.materialitem.MetaPrefixItem;
+import gregtech.api.unification.material.Materials;
 
-import gregtech.common.items.MetaItems;
-
-import static gregicality.science.api.unification.materials.GCYSMaterials.*;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
-public class CyanidePillChain {
+public class PillChain {
     public static void init() {
         FLUID_HEATER_RECIPES.recipeBuilder().EUt(2048).duration(280)
                 .fluidInputs(Materials.Water.getFluid(1000))
@@ -49,11 +40,5 @@ public class CyanidePillChain {
                 .inputs(CAPLET_CAP.getStackForm(4))
                 .outputs(GEL_CAPLET.getStackForm(4))
                 .buildAndRegister();
-        CANNER_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(GEL_CAPLET.getStackForm())
-                .input(OrePrefix.dustSmall, SodiumCyanide)
-                .outputs(CYANIDE_CAPLET.getStackForm())
-                .buildAndRegister();
-
     }
 }

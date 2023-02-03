@@ -404,6 +404,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
+        CAPLET_CAP = addItem(227, "component.caplet_cap");
+        CAPLET_BODY = addItem(228, "component.caplet_body");
+
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
         MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
@@ -621,6 +624,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 new RandomPotionEffect(MobEffects.NAUSEA, 1000, 0, 100 - 80),
                 new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 100 - 60)));
 
+        GEL_CAPLET = addItem(229, "food.gel_caplet");
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
@@ -641,10 +645,6 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
-
-        CAPLET_CAP = addItem(227, "caplet_cap");
-        CAPLET_BODY = addItem(228, "caplet_body");
-        GEL_CAPLET = addItem(229, "gel_caplet");
 
         // 175-189 left blank for organic circuits
 

@@ -16,7 +16,6 @@ import gregtechfoodoption.machines.multiblock.MetaTileEntityGreenhouse;
 import gregtechfoodoption.potion.GTFOPotions;
 import gregtechfoodoption.recipe.*;
 import gregtechfoodoption.utils.GTFOLog;
-import gregicality.science.api.recipes.GCYSRecipeMaps;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;

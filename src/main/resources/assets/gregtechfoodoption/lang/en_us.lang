@@ -856,11 +856,12 @@ material.gtfo_nilk=Nilk
 metaitem.food.nilk.name=Nilk
 metaitem.food.nilk.tooltip=Nilk
 
-gregtechfoodoption.tooltip.food.lacing=§2May be laced with Fun Chemicals
+gregtechfoodoption.tooltip.food.lacing=§2May be laced with fun Chemicals
 gregtechfoodoption.fluid.lacing=§2Can be used to lace items with 100 mB in the Canner
 gregtechfoodoption.cyanide.1=§cYou feel really nauseous...
 gregtechfoodoption.cyanide.2=§cYou can't breathe anymore...
 gregtechfoodoption.cyanide.3=§cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-metaitem.gel_caplet.name=Gel Caplet
-metaitem.caplet_cap.name=Caplet Cap
-metaitem.caplet_body.name=Caplet Body
+metaitem.food.gel_caplet.name=Gel Caplet
+metaitem.food.gel_caplet.tooltip=For performing Placebo-controlled Tests on Cyanide Poisoning
+metaitem.component.caplet_cap.name=Caplet Cap
+metaitem.component.caplet_body.name=Caplet Body
