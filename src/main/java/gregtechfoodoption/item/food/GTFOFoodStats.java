@@ -1,4 +1,4 @@
-package gregtechfoodoption.item;
+package gregtechfoodoption.item.food;
 
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
@@ -6,10 +6,14 @@ import gregtech.api.util.GTUtility;
 import gregtech.api.util.RandomPotionEffect;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import gregtechfoodoption.potion.CyanidePoisoningPotion;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Loader;
 
 import java.util.Arrays;
@@ -17,14 +21,16 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These names suck
-    public final int foodLevel;
-    public final float saturation;
-    public final boolean isDrink;
-    public final boolean alwaysEdible;
-    public final RandomPotionEffect[] potionEffects;
-    public final Supplier<ItemStack> stackSupplier;
+    protected int foodLevel;
+    protected float saturation;
+    protected boolean isDrink;
+    protected boolean alwaysEdible;
+    protected RandomPotionEffect[] potionEffects;
+    protected Supplier<ItemStack> stackSupplier;
     protected int eatingDuration = 32;
+    protected int toxinConcentration;
 
+    @Deprecated
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, Supplier<ItemStack> itemStackSupplier, RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
         this.saturation = saturation;
@@ -34,6 +40,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         this.potionEffects = potionEffects;
     }
 
+    @Deprecated
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, ItemStack stack, RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
         this.saturation = saturation;
@@ -43,6 +50,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         this.potionEffects = potionEffects;
     }
 
+    @Deprecated
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible) {
         this(foodLevel, saturation, isDrink, alwaysEdible, ItemStack.EMPTY);
     }
@@ -68,6 +76,13 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     }
 
     public ItemStack onFoodEaten(ItemStack itemStack, EntityPlayer player) {
+        NBTTagCompound nbtStats = itemStack.getSubCompound("gtfoStats");
+        if (nbtStats != null) {
+            if (nbtStats.getBoolean("5dkcap/2/4/")) { // Cyanide
+                player.addPotionEffect(new PotionEffect(CyanidePoisoningPotion.INSTANCE, 500, 0));
+            }
+        }
+
         if (Loader.isModLoaded(GTFOValues.MODID_AP)) {
             itemStack.grow(1);
             GTFOAppleCoreCompat.sendEatenEvent(player, itemStack, getFoodLevel(itemStack, player), getSaturation(itemStack, player));
@@ -94,7 +109,6 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
             }
         }
 
-
         return itemStack;
     }
 
@@ -103,6 +117,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         if (this.potionEffects.length > 0) {
             GTFOUtils.addPotionTooltip(Arrays.asList(potionEffects), list);
         }
+        list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.lacing").getFormattedText());
     }
 
     public GTFOFoodStats setEatingDuration(int duration) {
@@ -113,4 +128,5 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     public int getEatingDuration() {
         return eatingDuration;
     }
+
 }
