@@ -64,12 +64,12 @@ public class VanillaOverrideChain {
         }
 
         if(GTFOConfig.gtfoVanillaOverridesConfig.useRollingPinForPaper) {
-            ModHandler.removeRecipes(new ItemStack(Items.PAPER, 2));
+            ModHandler.removeRecipeByOutput(new ItemStack(Items.PAPER, 2));
             ModHandler.addShapedRecipe("gtfo_paper", new ItemStack(Items.PAPER, 2),
                     " R ", "CCC",
                     'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
                     'C', new UnificationEntry(OrePrefix.dust, Materials.Paper));
-            ModHandler.removeRecipes(new ItemStack(Blocks.STICKY_PISTON, 1));
+            ModHandler.removeRecipeByOutput(new ItemStack(Blocks.STICKY_PISTON, 1));
             ModHandler.addShapedRecipe("gtfo_sticky_piston", new ItemStack(Blocks.STICKY_PISTON, 1),
                     "R", "S", "P",
                     'R', OreDictUnifier.get(GTFOValues.craftingToolRollingPin),
@@ -82,11 +82,11 @@ public class VanillaOverrideChain {
                     'P', Blocks.PISTON);
         }
 
-        ModHandler.removeRecipes(new ItemStack(Items.RABBIT_STEW));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.RABBIT_STEW));
         GTFOAppleCoreCompat.addToSparedItems(Items.RABBIT_STEW, 7, (float) 1.2);
-        ModHandler.removeRecipes(new ItemStack(Items.MUSHROOM_STEW));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.MUSHROOM_STEW));
         GTFOAppleCoreCompat.addToSparedItems(Items.MUSHROOM_STEW, 5, (float) 0.9);
-        ModHandler.removeRecipes(new ItemStack(Items.BEETROOT_SOUP));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.BEETROOT_SOUP));
         GTFOAppleCoreCompat.addToSparedItems(Items.BEETROOT_SOUP, 3, (float) 0.9);
 
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(8).duration(100)
@@ -132,8 +132,8 @@ public class VanillaOverrideChain {
                 .output(Items.RABBIT_STEW)
                 .buildAndRegister();
 
-        ModHandler.removeRecipes(new ItemStack(Items.GOLDEN_CARROT));
-        ModHandler.removeRecipes(new ItemStack(Items.GOLDEN_APPLE));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.GOLDEN_CARROT));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.GOLDEN_APPLE));
 
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.nugget, Gold, 8), new ItemStack(Items.CARROT));
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.CHEMICAL_RECIPES, OreDictUnifier.get(OrePrefix.ingot, Gold, 8), new ItemStack(Items.APPLE));

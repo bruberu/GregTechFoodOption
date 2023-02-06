@@ -42,6 +42,7 @@ public class GTFOTileEntities {
 
         MetaTileEntities.registerSimpleMetaTileEntity(SLICER, 8503, "slicer", GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
         MetaTileEntities.registerSimpleMetaTileEntity(CUISINE_ASSEMBLER, 8518, "cuisine_assembler", GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
+
         MICROWAVE[1] = registerMetaTileEntity(8531, new MetaTileEntityMicrowave(location("microwave.lv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 1));
         MICROWAVE[2] = registerMetaTileEntity(8532, new MetaTileEntityMicrowave(location("microwave.mv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 2));
         MICROWAVE[3] = registerMetaTileEntity(8533, new MetaTileEntityMicrowave(location("microwave.hv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 3));

@@ -13,6 +13,7 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOCrops;
+import gregtechfoodoption.item.food.GTFOFoodStats;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
@@ -212,6 +213,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem COFFEE_CHERRY;
     public static MetaItem<?>.MetaValueItem ENERGIZING_COFFEE_CUP;
     public static MetaItem<?>.MetaValueItem COFFEE_CUP;
+    public static MetaItem<?>.MetaValueItem PARACETAMOL_CAPLET;
 
     //juice
     public static MetaItem<?>.MetaValueItem ORANGE_JUICE;
@@ -246,6 +248,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem PAPER_CONE;
     public static MetaItem<?>.MetaValueItem EMPTY_CUP;
     public static MetaItem<?>.MetaValueItem UNFIRED_CUP;
+    public static MetaItem<?>.MetaValueItem CAPLET_CAP;
+    public static MetaItem<?>.MetaValueItem CAPLET_BODY;
+    public static MetaItem<?>.MetaValueItem GEL_CAPLET;
 
     public static MetaItem<?>.MetaValueItem MUSHY_PEAS;
     public static MetaItem<?>.MetaValueItem PEA_POD;
@@ -268,6 +273,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem NILK;
 
     public static MetaItem<?>.MetaValueItem SPRINKLER_COVER;
+    public static MetaItem<?>.MetaValueItem PLUTONIUM_241_CAPLET;
+    public static MetaItem<?>.MetaValueItem IV_BAG;
 
     public static MetaItem<?>.MetaValueItem GARLIC_BULB;
     public static MetaItem<?>.MetaValueItem GARLIC_CLOVE;
@@ -416,11 +423,14 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BASIL = addItem(235, "component.basil");
         OREGANO = addItem(236, "component.oregano");
 
+        CAPLET_CAP = addItem(240, "component.caplet_cap");
+        CAPLET_BODY = addItem(241, "component.caplet_body");
+        IV_BAG = addItem(242, "component.iv_bag");
+
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
         MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
-                new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0)));
-
+                new RandomPotionEffect(CreativityPotion.INSTANCE, 5000, 0, 0)));
         APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger, GTFOConfig.gtfoFoodConfig.hardCandySaturation, true, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50))
                 .setEatingDuration(24));
@@ -476,7 +486,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0))
                 .setEatingDuration(50));
         PIZZA_VEGGIE = addItem(63, "food.pizza.veggie").addComponents(new GTFOFoodStats(5, 0.7f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(StepAssistPotion.instance, 2000, 1, 0))
+                new RandomPotionEffect(StepAssistPotion.INSTANCE, 2000, 1, 0))
                 .setEatingDuration(50));
         PIZZA_MINCE_MEAT = addItem(64, "food.pizza.mince_meat").addComponents(new GTFOFoodStats(6, 0.8f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.STRENGTH, 2000, 2, 0))
@@ -496,7 +506,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         SANDWICH_LARGE_CHEESE = addItem(70, "food.sandwich.cheese.large").addComponents(new GTFOFoodStats(11, 0.6f)
                 .setEatingDuration(60));
         SANDWICH_LARGE_BACON = addItem(71, "food.sandwich.bacon.large").addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(StepAssistPotion.instance, 600, 0, 0))
+                new RandomPotionEffect(StepAssistPotion.INSTANCE, 600, 0, 0))
                 .setEatingDuration(60));
         SANDWICH_LARGE_STEAK = addItem(72, "food.sandwich.steak.large").addComponents(new GTFOFoodStats(13, 0.7f)
                 .setEatingDuration(60));
@@ -594,7 +604,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         ICE_CREAM_BANANA = addItem(167, "food.ice_cream.banana").addComponents(new GTFOFoodStats(6, 0.33f, false, true));
         ICE_CREAM_BACON = addItem(168, "food.ice_cream.bacon").addComponents(new GTFOFoodStats(6, 0.33f, false, true));
         ICE_CREAM_VANILLA = addItem(169, "food.ice_cream.vanilla").addComponents(new GTFOFoodStats(9, 0.25f, false, true, ItemStack.EMPTY,
-                new RandomPotionEffect(SnowGolemSpawnerPotion.instance, 300, 0, 100 - 50)));
+                new RandomPotionEffect(SnowGolemSpawnerPotion.INSTANCE, 300, 0, 100 - 50)));
         ICE_CREAM_BEAR = addItem(170, "food.ice_cream.bear").addComponents(new GTFOFoodStats(7, 0.33f, false, true));
         ICE_CREAM_MELON = addItem(171, "food.ice_cream.melon").addComponents(new GTFOFoodStats(5, 0.33f, false, true));
         ICE_CREAM_CHOCOLATE = addItem(172, "food.ice_cream.chocolate").addComponents(new GTFOFoodStats(9, 0.25f, false, true));
@@ -634,6 +644,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 new RandomPotionEffect(MobEffects.NAUSEA, 1000, 0, 100 - 80),
                 new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 100 - 60)));
 
+        GEL_CAPLET = addItem(237, "food.gel_caplet");
+        PARACETAMOL_CAPLET = addItem(238, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
+        PLUTONIUM_241_CAPLET = addItem(239, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
@@ -665,9 +678,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         GARLIC_CLOVE = addItem(231, "seed.garlic");
         GARLIC_CLOVE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GARLIC, GARLIC_CLOVE.getStackForm(), GARLIC_BULB.getStackForm()));
 
-
         // 175-189 left blank for organic circuits
-
         SPRINKLER_COVER = addItem(224, "cover.sprinkler");
 
         {

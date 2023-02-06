@@ -4,6 +4,7 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
@@ -468,14 +469,21 @@ public class CoreChain {
     public static void meatAndFat() {
         ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), new UnificationEntry(dust, Meat), new UnificationEntry(dust, Meat), Items.WATER_BUCKET);
         GTFOUtils.getMeat().forEach(itemStack -> {
+            ArrayList<ItemStack> input = new ArrayList<>();
+            input.add(itemStack);
+            Recipe conflict = MACERATOR_RECIPES.findRecipe(2, input, new ArrayList<>(), 0);
+            if (conflict != null) {
+                MACERATOR_RECIPES.removeRecipe(conflict);
+            }
+
             itemStack.setCount(8);
-            CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
+
+            MACERATOR_RECIPES.recipeBuilder().EUt(20).duration(400)
                     .inputs(itemStack)
                     .output(dust, Meat, 13)
                     .output(dustSmall, Bone, 8)
                     .outputs(Fat.getItemStack(8))
                     .chancedOutput(Fat.getItemStack(4), 5000, 2000)
-                    .notConsumable(new IntCircuitIngredient(0))
                     .buildAndRegister();
             LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
                     .input(itemStack.getItem(), 32)
@@ -494,7 +502,7 @@ public class CoreChain {
                 .fluidOutputs(Stearin.getFluid(3500), Sludge.getFluid(16000), Chlorine.getFluid(12000))
                 .buildAndRegister();
 
-        CENTRIFUGE_RECIPES.recipeBuilder().EUt(20).duration(400)
+        MACERATOR_RECIPES.recipeBuilder().EUt(20).duration(400)
                 .input(SCRAP_MEAT, 8)
                 .output(dust, Meat, 10)
                 .output(dustSmall, Bone, 16)
@@ -624,11 +632,6 @@ public class CoreChain {
                 .input(dust, Meat)
                 .notConsumable(MetaItems.SHAPE_EXTRUDER_INGOT)
                 .outputs(GTFOMaterialHandler.MeatIngot.getItemStack())
-                .buildAndRegister();
-
-        MACERATOR_RECIPES.recipeBuilder().EUt(4).duration(40)
-                .inputs(SCRAP_MEAT.getStackForm())
-                .output(dust, Meat)
                 .buildAndRegister();
 
         GTFOUtils.addBakingOvenRecipes(OreDictUnifier.get(dust, Meat), CookedMinceMeat.getItemStack(), 200, 400, 1);

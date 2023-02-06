@@ -678,6 +678,7 @@ metaitem.seed.onion.tooltip=For growing YoungOnions
 
 death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
+death.attack.cyanide=%s smelled some almonds
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
 
 # Farmer
@@ -854,3 +855,31 @@ gregtechfoodoption.recipe.cause_damage=Causes %d damage to the mob
 material.gtfo_nilk=Nilk
 metaitem.food.nilk.name=Nilk
 metaitem.food.nilk.tooltip=Nilk
+
+gregtechfoodoption.tooltip.food.lacing=§2May be laced with fun Chemicals
+gregtechfoodoption.fluid.lacing=§2Can be used to lace items with 100 mB in the Canner
+gregtechfoodoption.cyanide.1=§cYou feel really nauseous...
+gregtechfoodoption.cyanide.2=§cYou can't breathe anymore...
+gregtechfoodoption.cyanide.3=§cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+metaitem.food.gel_caplet.name=Gel Caplet
+metaitem.food.gel_caplet.tooltip=For performing Placebo-controlled Tests on Cyanide Poisoning
+metaitem.component.caplet_cap.name=Caplet Cap
+metaitem.component.caplet_body.name=Caplet Body
+metaitem.paracetamol_dust.name=Paracetamol
+metaitem.paracetamol_dust_small.name=Small Pile of Paracetamol
+metaitem.food.paracetamol_caplet.name=Paracetamol Caplet
+metaitem.food.handful_paracetamol.name=Handful of Paracetamol Caplets
+metaitem.sodium_cyanide_dust.name=Sodium Cyanide
+metaitem.sodium_cyanide_dust_small.name=Small Pile of Sodium Cyanide
+metaitem.aminophenol_dust.name=p-Aminophenol
+metaitem.iinitrophenol_dust.name=2-Nitrophenol
+metaitem.ivnitrophenol_dust.name=4-Nitrophenol
+metaitem.plutonium_241_caplet.name=Plutonium-241 Caplet
+metaitem.iv_bag.name=IV Bag
+
+material.gtfo_acetic_anhydride=Acetic Anhydride
+material.gtfo_heated_water=Heated Water
+material.gtfo_gelatin_solution=Gelatin Solution
+material.gtfo_gelatin_solution_no_bubbles=Gelatin Solution (Airless)
+material.gtfo_sodium_hypochlorite=Sodium Hypochlorite
+material.gtfo_nitrophenols=Nitrophenols

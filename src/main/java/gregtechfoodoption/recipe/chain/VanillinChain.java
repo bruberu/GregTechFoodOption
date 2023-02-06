@@ -35,12 +35,6 @@ public class VanillinChain {
                 .fluidInputs(GTFOMaterialHandler.Guaiacol.getFluid(1000), GTFOMaterialHandler.GlyoxylicAcid.getFluid(1000))
                 .outputs(GTFOMaterialHandler.VanillylmandelicAcid.getItemStack(24))
                 .buildAndRegister();
-
-        RecipeMaps.CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(160) // C7H8O2 + C2H2O3 -> C9H10O5
-                .notConsumable(OrePrefix.dust, Materials.SodiumHydroxide)
-                .fluidInputs(GTFOMaterialHandler.Guaiacol.getFluid(1000), GTFOMaterialHandler.GlyoxylicAcid.getFluid(1000))
-                .outputs(GTFOMaterialHandler.VanillylmandelicAcid.getItemStack(24))
-                .buildAndRegister();
         RecipeMaps.CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(160) // C9H10O5 + O -> C9H8O5 + H2O
                 .notConsumable(OrePrefix.dust, Materials.SodiumHydroxide)
                 .inputs(GTFOMaterialHandler.VanillylmandelicAcid.getItemStack(24))

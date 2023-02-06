@@ -6,10 +6,10 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class StepAssistPotion extends GTFOPotion {
     public static final String TAG_NAME = "gregtechfoodoption - stepassist";
-    public static StepAssistPotion instance = null;
+    public static StepAssistPotion INSTANCE = null;
     public StepAssistPotion() {
         super("stepassist", false, 0xdb5800, 3);
-        instance = this;
+        INSTANCE = this;
     }
 
     @Override

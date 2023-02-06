@@ -6,9 +6,10 @@ import gregtech.api.util.GregFakePlayer;
 import gregtechfoodoption.entity.EntityStrongSnowman;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.item.GTFOFoodDurationSetter;
+import gregtechfoodoption.item.food.GTFOFoodDurationSetter;
 import gregtechfoodoption.network.PacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.potion.CreativityPotion;
+import gregtechfoodoption.potion.CyanidePoisoningPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
 import gregtechfoodoption.utils.GTFODamageSources;
@@ -30,6 +31,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.PotionColorCalculationEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -99,7 +101,7 @@ public class GTFOEventHandler {
                 player.getEntityData().setTag(EntityPlayer.PERSISTED_NBT_TAG, persisted);
             }
             if (GTFOConfig.gtfoPotionConfig.creativity) {
-                if (CreativityPotion.instance != null && player.isPotionActive(CreativityPotion.instance)) {
+                if (CreativityPotion.INSTANCE != null && player.isPotionActive(CreativityPotion.INSTANCE)) {
                     if (!persisted.getBoolean(CreativityPotion.TAG_NAME)) {
                         persisted.setBoolean(CreativityPotion.TAG_NAME, true);
                     }
@@ -117,7 +119,7 @@ public class GTFOEventHandler {
                 }
             }
             if (GTFOConfig.gtfoPotionConfig.stepAssist) {
-                if (StepAssistPotion.instance != null && player.isPotionActive(StepAssistPotion.instance)) {
+                if (StepAssistPotion.INSTANCE != null && player.isPotionActive(StepAssistPotion.INSTANCE)) {
                     if (!persisted.getBoolean(StepAssistPotion.TAG_NAME)) {
                         persisted.setBoolean(StepAssistPotion.TAG_NAME, true);
                     }
@@ -130,11 +132,11 @@ public class GTFOEventHandler {
                 }
             }
             if (GTFOConfig.gtfoPotionConfig.snowGolemSpawner) {
-                if (SnowGolemSpawnerPotion.instance != null && player.isPotionActive(SnowGolemSpawnerPotion.instance)) {
+                if (SnowGolemSpawnerPotion.INSTANCE != null && player.isPotionActive(SnowGolemSpawnerPotion.INSTANCE)) {
                     if (!persisted.getBoolean(SnowGolemSpawnerPotion.TAG_NAME)) {
                         persisted.setBoolean(SnowGolemSpawnerPotion.TAG_NAME, true);
                     } else {
-                        if (!player.world.isRemote && GTFOValues.rand.nextInt(100 / (player.getActivePotionEffect(SnowGolemSpawnerPotion.instance).getAmplifier() + 1)) == 0) {
+                        if (!player.world.isRemote && GTFOValues.rand.nextInt(100 / (player.getActivePotionEffect(SnowGolemSpawnerPotion.INSTANCE).getAmplifier() + 1)) == 0) {
                             float angle = (float) (GTFOValues.rand.nextFloat() * Math.PI);
 
                             RayTraceResult result = player.world.rayTraceBlocks(player.getPositionVector(), new Vec3d(1, -0.3, 0).rotateYaw(angle), false, false, true);
@@ -217,5 +219,11 @@ public class GTFOEventHandler {
     public static void onWorldLoadEvent(WorldEvent.Load event) {
         if (!event.getWorld().isRemote)
             GTFODamageSources.EXTERMINATOR = GregFakePlayer.get((WorldServer) event.getWorld());
+    }
+
+    @SubscribeEvent
+    public static void getPotionParticleColor(PotionColorCalculationEvent event) {
+        if (event.getEffects().stream().anyMatch(effect -> effect.getPotion() instanceof CyanidePoisoningPotion))
+            event.shouldHideParticles(true);
     }
 }
