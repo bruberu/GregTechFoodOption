@@ -26,7 +26,7 @@ import static gregtechfoodoption.recipe.GTFORecipeMaps.*;
 public class BreadsChain {
     public static void init() {
         if (GTFOConfig.gtfoChainsConfig.deleteBreadRecipe) {
-            ModHandler.removeRecipes(new ItemStack(Items.BREAD));
+            ModHandler.removeRecipeByOutput(new ItemStack(Items.BREAD));
             GTFOAppleCoreCompat.addToSparedItems(Items.BREAD, (int) ((float) GTFOConfig.gtfoFoodConfig.baguetteHunger * 3) / 2, GTFOConfig.gtfoFoodConfig.baguetteSaturation);
         }
         ModHandler.addShapedRecipe("wooden_form_bread", WOODEN_FORM_BREAD.getStackForm(),
@@ -122,7 +122,7 @@ public class BreadsChain {
                 2
         );
 
-        ModHandler.removeRecipes(new ItemStack(Items.CAKE));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.CAKE));
         ModHandler.addShapelessRecipe("sugary_dough", SUGARY_DOUGH.getStackForm(2), new UnificationEntry(dust, Sugar), DOUGH.getStackForm());
         MIXER_RECIPES.recipeBuilder().EUt(7).duration(32)
                 .input(dust, Sugar)
@@ -162,11 +162,11 @@ public class BreadsChain {
                 .buildAndRegister();
 
         GTFOAppleCoreCompat.addToSparedItems(Items.COOKIE, 3, 0.2f);
-        ModHandler.removeRecipes(new ItemStack(Items.COOKIE));
-        ModHandler.removeRecipes(new ItemStack(Items.COOKIE, 8));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.COOKIE));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.COOKIE, 8));
         ModHandler.addShapelessRecipe("gtfo_cookie", new ItemStack(Items.COOKIE, 4), SUGARY_DOUGH, SUGARY_DOUGH, new UnificationEntry(dust, Cocoa));
 
-        ModHandler.removeRecipes(new ItemStack(Items.PUMPKIN_PIE));
+        ModHandler.removeRecipeByOutput(new ItemStack(Items.PUMPKIN_PIE));
         GTFOAppleCoreCompat.addToSparedItems(Items.PUMPKIN_PIE);
         ModHandler.addShapedRecipe("gtfo_pie_crust", PIE_CRUST.getStackForm(),
                 "RD",

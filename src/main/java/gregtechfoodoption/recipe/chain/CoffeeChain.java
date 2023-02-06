@@ -24,7 +24,7 @@ import static gregtechfoodoption.item.GTFOMetaItem.*;
 public class CoffeeChain {
     public static void init() {
         if (GTFOConfig.gtfoaaConfig.disableCoffeeMaker)
-            ModHandler.removeRecipes(new ItemStack(InitBlocks.blockCoffeeMachine));
+            ModHandler.removeRecipeByOutput(new ItemStack(InitBlocks.blockCoffeeMachine));
 
         if (Loader.isModLoaded(GTFOValues.MODID_AA)) {
             JEIGTFOPlugin.itemStacksToHide.add(new ItemStack(InitItems.itemCoffee));
