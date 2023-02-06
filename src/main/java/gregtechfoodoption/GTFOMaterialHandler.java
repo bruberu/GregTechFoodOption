@@ -30,7 +30,7 @@ public class GTFOMaterialHandler {
     public static final PropertyKey<FertilizerProperty> FERTILIZER = new PropertyKey<>("gtfo_fertilizer", FertilizerProperty.class);
     public static final PropertyKey<LacingProperty> LACING = new PropertyKey<>("gtfo_lacing", LacingProperty.class);
 
-    // 21500 - 21969
+    // 21500 - 21999
 
     public static final Material IsopropylChloride = fluidBuilder(21500, "isopropyl_chloride")
             .components(Carbon, 3, Hydrogen, 7, Chlorine, 1)
@@ -295,6 +295,58 @@ public class GTFOMaterialHandler {
             .color(0x252626)
             .build();
 
+    public static final Material HighFructoseCornSyrupSolution = fluidBuilder(21572, "hfcs_solution")
+            .color(0xe3bc20)
+            .build();
+    public static final Material XPhenothiazineIiPropylChloride = fluidBuilder(21573, "x_phenothiazine_ii_propyl_chloride")
+            .components(Carbon, 15, Hydrogen, 16, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
+            .flags(DISABLE_DECOMPOSITION)
+            .build();
+    public static final Material AppleSyrup = fluidBuilder(21574, "apple_syrup")
+            .color(0xf2e1ac)
+            .build();
+    public static final Material AppleCandySyrup = fluidBuilder(21575, "apple_candy_syrup")
+            .color(0xe7f5ae)
+            .build();
+    public static final Material Etirps = fluidBuilder(21576, "etirps")
+            .color(0xb0ff73)
+            .build();
+    public static final Material LemonLimeSodaSyrup = fluidBuilder(21577, "lemon_lime_soda_syrup")
+            .color(0x76ff0d)
+            .build();
+    public static final Material CarbonatedWater = fluidBuilder(21578, "carbonated_water")
+            .color(0xf5ffff)
+            .build();
+    public static final Material CoughSyrup = fluidBuilder(21579, "cough_syrup")
+            .color(0x5c1b5e)
+            .build();
+    public static final Material LemonLimeSolution = fluidBuilder(21580, "lemon_lime_solution")
+            .color(0xbddb5a)
+            .build();
+    public static final Material LemonLimeSludge = fluidBuilder(21581, "lemon_lime_sludge")
+            .color(0x779906)
+            .build();
+    public static final Material Aniline = fluidBuilder(21582, "aniline")
+            .color(0x4c911d)
+            .components(Carbon, 6, Hydrogen, 7, Nitrogen, 2)
+            .flags(DISABLE_DECOMPOSITION)
+            .build()
+            .setFormula("C6H5NH2");
+
+    public static final Material HeatedWater = fluidBuilder(21583, "heated_water").fluidTemp(343)
+            .color(0x024B86)
+            .build();
+    public static final Material GelatinSolution = fluidBuilder(21584, "gelatin_solution").fluidTemp(343)
+            .color(0xD3D3D3)
+            .build();
+    public static final Material AceticAnhydride = fluidBuilder(21585, "acetic_anhydride").fluidTemp(343)
+            .components(Carbon, 4, Hydrogen, 6, Oxygen, 3)
+            .build();
+    public static final Material Nitrophenols = fluidBuilder(21586, "nitrophenols").fluidTemp(343)
+            .color(0xFFFFFF)
+            .build().setFormula("(C6H5NO3)(C6H5NO3)");
+
+
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
             .build();
@@ -315,62 +367,6 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material EnergizedCoffee = fluidBuilder(21991, "energized_coffee")
             .color(0x695934)
-            .build();
-    public static final Material HighFructoseCornSyrupSolution = fluidBuilder(21992, "hfcs_solution")
-            .color(0xe3bc20)
-            .build();
-    public static final Material XPhenothiazineIiPropylChloride = fluidBuilder(21993, "x_phenothiazine_ii_propyl_chloride")
-            .components(Carbon, 15, Hydrogen, 16, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build();
-    public static final Material AppleSyrup = fluidBuilder(21994, "apple_syrup")
-            .color(0xf2e1ac)
-            .build();
-    public static final Material AppleCandySyrup = fluidBuilder(21995, "apple_candy_syrup")
-            .color(0xe7f5ae)
-            .build();
-    public static final Material Etirps = fluidBuilder(21996, "etirps")
-            .color(0xb0ff73)
-            .build();
-    public static final Material LemonLimeSodaSyrup = fluidBuilder(21997, "lemon_lime_soda_syrup")
-            .color(0x76ff0d)
-            .build();
-    public static final Material CarbonatedWater = fluidBuilder(21998, "carbonated_water")
-            .color(0xf5ffff)
-            .build();
-    public static final Material CoughSyrup = fluidBuilder(21999, "cough_syrup")
-            .color(0x5c1b5e)
-            .build();
-    public static final Material LemonLimeSolution = fluidBuilder(22000, "lemon_lime_solution")
-            .color(0xbddb5a)
-            .build();
-    public static final Material LemonLimeSludge = fluidBuilder(22001, "lemon_lime_sludge")
-            .color(0x779906)
-            .build();
-    public static final Material Aniline = fluidBuilder(22002, "aniline")
-            .color(0x4c911d)
-            .components(Carbon, 6, Hydrogen, 7, Nitrogen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("C6H5NH2");
-
-    public static final Material HeatedWater = fluidBuilder(22003, "heated_water").fluidTemp(343)
-            .color(0x024B86)
-            .build();
-    public static final Material GelatinSolution = fluidBuilder(22004, "gelatin_solution").fluidTemp(343)
-            .color(0xD3D3D3)
-            .build();
-    public static final Material GelatinSolutionNoBubbles = fluidBuilder(22005, "gelatin_solution_no_bubbs").fluidTemp(343)
-            .color(0xD3D3D3)
-            .build();
-    public static final Material SodiumHypochlorite = fluidBuilder(25006, "sodium_hypochlorite").fluidTemp(343)
-            .color(0xFFFFFF)
-            .build();
-    public static final Material AceticAnhydride = fluidBuilder(25007, "acetic_anhydride").fluidTemp(343)
-            .color(0xFFFFFF)
-            .build();
-    public static final Material Nitrophenols = fluidBuilder(25008, "nitrophenols").fluidTemp(343)
-            .color(0xFFFFFF)
             .build();
 
     public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
@@ -447,6 +443,9 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CupricHydrogenArsenite = SHAPED_ITEM.addOreDictItem(1127, "cupric_hydrogen_arsenite", 0x0fff00, MaterialIconSet.SHINY, OrePrefix.dust, "CuHAsO3");
     public static final GTFOOredictItem.OreDictValueItem LaminatedDough = SHAPED_ITEM.addOreDictItem(1128, "laminated_dough", 0xc6b4bb, MaterialIconSet.DULL, plate);
     public static final MetaOreDictItem.OreDictValueItem CookedMinceMeat = SHAPED_ITEM.addOreDictItem(1129, "cooked_mince_meat", 0x462b25, MaterialIconSet.ROUGH, dust);
+    public static final MetaOreDictItem.OreDictValueItem Aminophenol = SHAPED_ITEM.addOreDictItem(1130, "aminophenol", 0xFFFFFF, MaterialIconSet.SHINY, dust, "C6H7NO");
+    public static final MetaOreDictItem.OreDictValueItem IVNitrophenol = SHAPED_ITEM.addOreDictItem(1131, "ivnitrophenol", 0xFFFFE0, MaterialIconSet.SHINY, dust, "C6H5NO3");
+    public static final MetaOreDictItem.OreDictValueItem IINitrophenol = SHAPED_ITEM.addOreDictItem(1132, "iinitrophenol", 0xFFFF00, MaterialIconSet.SHINY, dust, "C6H5NO3");
 
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
@@ -467,6 +466,10 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_PRESSED = SHAPED_ITEM.addOreDictItem(1050, "chocolate_liquor_pressed", 0xa6795a, GTFOValues.Organic, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = SHAPED_ITEM.addOreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, GTFOValues.Organic, OrePrefix.crushed);
 
+    public static final Material Paracetamol = new Material.Builder(21900, "paracetamol").dust()
+            .color(0x0045A0).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 8, Hydrogen, 9, Nitrogen, 1, Oxygen, 2)
+            .build();
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
