@@ -546,6 +546,31 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         LASAGNA_PESTO_COOKED = addItem(301, "component.pasta.lasagna.cooked.pesto");
 
 
+        PASTA_DOUGH = addItem(243, "component.dough.pasta");
+        EGG_PASTA_DOUGH = addItem(244, "component.dough.egg_pasta");
+        PREMIXED_PASTA_DOUGH = addItem(245, "component.dough.premixed_pasta");
+
+        PASTA_DOUGH = addItem(243, "component.dough.pasta");
+        EGG_PASTA_DOUGH = addItem(244, "component.dough.egg_pasta");
+        PREMIXED_PASTA_DOUGH = addItem(245, "component.dough.premixed_pasta");
+
+        RAW_TAGLIATELLE = addItem(252, "component.pasta.raw.tagliatelle");
+        RAW_SPAGHETTI = addItem(252, "component.pasta.raw.spaghetti");
+        RAW_LASAGNA = addItem(252, "component.pasta.raw.lasagna");
+        RAW_DITALINI = addItem(252, "component.pasta.raw.ditalini");
+        RAW_RIGATONI = addItem(252, "component.pasta.raw.rigatoni");
+        DRIED_TAGLIATELLE = addItem(252, "component.pasta.dried.tagliatelle");
+        DRIED_SPAGHETTI = addItem(252, "component.pasta.dried.spaghetti");
+        DRIED_LASAGNA = addItem(252, "component.pasta.dried.lasagna");
+        DRIED_DITALINI = addItem(252, "component.pasta.dried.ditalini");
+        DRIED_RIGATONI = addItem(252, "component.pasta.dried.rigatoni");
+        TAGLIATELLE = addItem(252, "component.pasta.tagliatelle");
+        SPAGHETTI = addItem(252, "component.pasta.spaghetti");
+        DITALINI = addItem(252, "component.pasta.ditalini");
+        RIGATONI = addItem(252, "component.pasta.rigatoni");
+
+        TORTELLINI = addItem(252, "component.pasta.tortellini");
+
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
         MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
