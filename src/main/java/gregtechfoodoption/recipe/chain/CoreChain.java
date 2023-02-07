@@ -613,6 +613,18 @@ public class CoreChain {
                 .EUt(45)
                 .duration(60)
                 .buildAndRegister();
+        EXTRACTOR_RECIPES.recipeBuilder().duration(60).EUt(24)
+                .input(Items.EGG)
+                .fluidOutputs(Egg.getFluid(200));
+
+        CENTRIFUGE_RECIPES.recipeBuilder()
+                .fluidInputs(Egg.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.Albumen.getFluid(100))
+                .fluidOutputs(GTFOMaterialHandler.Yolk.getFluid(100))
+                .EUt(16)
+                .duration(60)
+                .buildAndRegister();
+
 
         MACERATOR_RECIPES.recipeBuilder().EUt(4).duration(40)
                 .input(Items.POTATO)
