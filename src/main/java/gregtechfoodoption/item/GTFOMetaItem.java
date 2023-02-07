@@ -286,6 +286,33 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem AUBERGINE;
     public static MetaItem<?>.MetaValueItem AUBERGINE_SEED;
 
+    public static MetaItem<?>.MetaValueItem PASTA_DOUGH;
+    public static MetaItem<?>.MetaValueItem EGG_PASTA_DOUGH;
+    public static MetaItem<?>.MetaValueItem PREMIXED_PASTA_DOUGH;
+
+    public static MetaItem<?>.MetaValueItem BLANK_PASTA_DIE;
+    public static MetaItem<?>.MetaValueItem TAGLIATELLE_PASTA_DIE;
+    public static MetaItem<?>.MetaValueItem SPAGHETTI_PASTA_DIE;
+    public static MetaItem<?>.MetaValueItem LASAGNA_PASTA_DIE;
+    public static MetaItem<?>.MetaValueItem DITALINI_PASTA_DIE;
+    public static MetaItem<?>.MetaValueItem RIGATONI_PASTA_DIE;
+
+    public static MetaItem<?>.MetaValueItem RAW_TAGLIATELLE;
+    public static MetaItem<?>.MetaValueItem RAW_SPAGHETTI;
+    public static MetaItem<?>.MetaValueItem RAW_LASAGNA;
+    public static MetaItem<?>.MetaValueItem RAW_DITALINI;
+    public static MetaItem<?>.MetaValueItem RAW_RIGATONI;
+    public static MetaItem<?>.MetaValueItem DRIED_TAGLIATELLE;
+    public static MetaItem<?>.MetaValueItem DRIED_SPAGHETTI;
+    public static MetaItem<?>.MetaValueItem DRIED_LASAGNA;
+    public static MetaItem<?>.MetaValueItem DRIED_DITALINI;
+    public static MetaItem<?>.MetaValueItem DRIED_RIGATONI;
+    public static MetaItem<?>.MetaValueItem TORTELLINI;
+    public static MetaItem<?>.MetaValueItem TAGLIATELLE;
+    public static MetaItem<?>.MetaValueItem SPAGHETTI;
+    public static MetaItem<?>.MetaValueItem DITALINI;
+    public static MetaItem<?>.MetaValueItem RIGATONI;
+
     public GTFOMetaItem() {
         super();
     }
@@ -431,6 +458,31 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         CAPLET_CAP = addItem(227, "component.caplet_cap");
         CAPLET_BODY = addItem(228, "component.caplet_body");
         IV_BAG = addItem(232, "component.iv_bag");
+
+        PASTA_DOUGH = addItem(243, "component.dough.pasta");
+        EGG_PASTA_DOUGH = addItem(244, "component.dough.egg_pasta");
+        PREMIXED_PASTA_DOUGH = addItem(245, "component.dough.premixed_pasta");
+
+        PASTA_DOUGH = addItem(243, "component.dough.pasta");
+        EGG_PASTA_DOUGH = addItem(244, "component.dough.egg_pasta");
+        PREMIXED_PASTA_DOUGH = addItem(245, "component.dough.premixed_pasta");
+
+        RAW_TAGLIATELLE = addItem(252, "component.pasta.raw.tagliatelle");
+        RAW_SPAGHETTI = addItem(252, "component.pasta.raw.spaghetti");
+        RAW_LASAGNA = addItem(252, "component.pasta.raw.lasagna");
+        RAW_DITALINI = addItem(252, "component.pasta.raw.ditalini");
+        RAW_RIGATONI = addItem(252, "component.pasta.raw.rigatoni");
+        DRIED_TAGLIATELLE = addItem(252, "component.pasta.dried.tagliatelle");
+        DRIED_SPAGHETTI = addItem(252, "component.pasta.dried.spaghetti");
+        DRIED_LASAGNA = addItem(252, "component.pasta.dried.lasagna");
+        DRIED_DITALINI = addItem(252, "component.pasta.dried.ditalini");
+        DRIED_RIGATONI = addItem(252, "component.pasta.dried.rigatoni");
+        TAGLIATELLE = addItem(252, "component.pasta.tagliatelle");
+        SPAGHETTI = addItem(252, "component.pasta.spaghetti");
+        DITALINI = addItem(252, "component.pasta.ditalini");
+        RIGATONI = addItem(252, "component.pasta.rigatoni");
+
+        TORTELLINI = addItem(252, "component.pasta.tortellini");
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
@@ -685,6 +737,15 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
 
         // 175-189 left blank for organic circuits
         SPRINKLER_COVER = addItem(224, "cover.sprinkler");
+
+        BLANK_PASTA_DIE = addItem(246, "shape.pasta.blank");
+        TAGLIATELLE_PASTA_DIE = addItem(247, "shape.pasta.tagliatelle");
+        SPAGHETTI_PASTA_DIE = addItem(248, "shape.pasta.spaghetti");
+        DITALINI_PASTA_DIE = addItem(249, "shape.pasta.ditalini");
+        RIGATONI_PASTA_DIE = addItem(250, "shape.pasta.rigatoni");
+        LASAGNA_PASTA_DIE = addItem(251, "shape.pasta.lasagna");
+
+
 
         {
             int heal = 44;

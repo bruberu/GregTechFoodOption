@@ -345,7 +345,9 @@ public class GTFOMaterialHandler {
     public static final Material Nitrophenols = fluidBuilder(21586, "nitrophenols").fluidTemp(343)
             .color(0xFFFFFF)
             .build().setFormula("(C6H5NO3)(C6H5NO3)", true);
-
+    public static final Material Egg = fluidBuilder(21587, "egg")
+            .color(0xFFFF0F)
+            .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
@@ -368,6 +370,7 @@ public class GTFOMaterialHandler {
     public static final Material EnergizedCoffee = fluidBuilder(21991, "energized_coffee")
             .color(0x695934)
             .build();
+
 
     public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
     public static final GTFOOredictItem.OreDictValueItem SMALL_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1018, "roasted_coffee_small", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
