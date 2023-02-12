@@ -213,6 +213,7 @@ public class CoreChain {
                 .fluidOutputs(Biomass.getFluid(200))
                 .fluidOutputs(AceticAcid.getFluid(10))
                 .fluidOutputs(Water.getFluid(1000))
+                .fluidOutputs(HydrogenCyanide.getFluid(10))
                 .output(dust, Sugar)
                 .buildAndRegister();
 
