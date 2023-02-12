@@ -546,11 +546,11 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 2, 70),
                 new RandomPotionEffect(MobEffects.SPEED, 500, 2, 0)));
 
-        HOT_MUSHROOM_STEW = addItem(131, "food.mushroom_stew.hot").addComponents(new GTFOFoodStats(8, 1f, false, false, new ItemStack(Items.BOWL))
+        HOT_MUSHROOM_STEW = addItem(131, "food.mushroom_stew.hot").setMaxStackSize(1).addComponents(new GTFOFoodStats(8, 1f, false, false, new ItemStack(Items.BOWL))
                 .setEatingDuration(60));
-        HOT_BEETROOT_SOUP = addItem(132, "food.beetroot_soup.hot").addComponents(new GTFOFoodStats(7, 1f, false, false, new ItemStack(Items.BOWL))
+        HOT_BEETROOT_SOUP = addItem(132, "food.beetroot_soup.hot").setMaxStackSize(1).addComponents(new GTFOFoodStats(7, 1f, false, false, new ItemStack(Items.BOWL))
                 .setEatingDuration(60));
-        HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
+        HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").setMaxStackSize(1).addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
                 .setEatingDuration(60));
 
         KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide").addComponents(GTFOUtils.getKebabFood(6, 0.8f));

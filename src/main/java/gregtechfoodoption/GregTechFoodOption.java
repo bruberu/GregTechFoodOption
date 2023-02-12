@@ -13,6 +13,7 @@ import gregtechfoodoption.machines.GTFOTileEntities;
 import gregtechfoodoption.machines.farmer.FarmerModeRegistry;
 import gregtechfoodoption.network.PacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.utils.GTFOConfigOverrider;
+import gregtechfoodoption.worldgen.GTFODungeonLootLoader;
 import gregtechfoodoption.worldgen.GTFOWorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -80,6 +81,8 @@ public class GregTechFoodOption {
         GTFOCoverBehaviors.init();
         GameRegistry.registerWorldGenerator(GTFOWorldGenerator.INSTANCE, 1);
         GTFOMaterialHandler.registerFertilizerTooltips();
+
+        GTFODungeonLootLoader.init();
     }
 
     @Mod.EventHandler
