@@ -188,7 +188,7 @@ public class GTFOTFCCompatibility {
 
         public TFCComponentPreparer(MetaItem.MetaValueItem item) {
             comp.setInteger("item", Item.getIdFromItem(item.getMetaItem()));
-            comp.setInteger("damage", item.getMetaValue());
+            comp.setShort("damage", (short) item.getMetaValue());
         }
         
         public TFCComponentPreparer setFoodData(float water, float grain, float fruit, float veg, float meat, float dairy) {

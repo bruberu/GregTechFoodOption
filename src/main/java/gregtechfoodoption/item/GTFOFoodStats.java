@@ -1,4 +1,4 @@
-package gregtechfoodoption.item.food;
+package gregtechfoodoption.item;
 
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
@@ -25,8 +25,8 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     protected float saturation;
     protected boolean isDrink;
     protected boolean alwaysEdible;
-    protected RandomPotionEffect[] potionEffects;
-    protected Supplier<ItemStack> stackSupplier;
+    public RandomPotionEffect[] potionEffects;
+    public Supplier<ItemStack> stackSupplier;
     protected int eatingDuration = 32;
 
     @Deprecated
