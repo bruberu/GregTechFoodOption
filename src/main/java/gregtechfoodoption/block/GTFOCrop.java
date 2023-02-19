@@ -25,12 +25,14 @@ public class GTFOCrop extends BlockCrops {
     protected ItemStack seed;
     protected ItemStack crop;
     public static List<GTFOCrop> CROP_BLOCKS = new ArrayList<>();
+    private String name;
 
     protected GTFOCrop(String name, int age) {
         AGE_GTFO = PropertyInteger.create("age", 0, age);
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
         this.setRegistryName("gregtechfoodoption", "crop_" + name);
         CROP_BLOCKS.add(this);
+        this.name = name;
     }
 
     protected GTFOCrop(String name) {
@@ -85,6 +87,10 @@ public class GTFOCrop extends BlockCrops {
         return crop.getItem();
     }
 
+    public ItemStack getCropStack() {
+        return crop;
+    }
+
     public void setSeed(ItemStack seed) {
         this.seed = seed;
     }
@@ -113,5 +119,9 @@ public class GTFOCrop extends BlockCrops {
     }
     protected BlockStateContainer createBlockState() {
         return AGE_GTFO == null ? new BlockStateContainer(this, AGE_TEMP) : new BlockStateContainer(this, AGE_GTFO);
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
