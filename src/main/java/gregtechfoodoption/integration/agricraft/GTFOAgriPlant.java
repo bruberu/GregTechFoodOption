@@ -37,7 +37,7 @@ public class GTFOAgriPlant implements IAgriPlant {
     public GTFOAgriPlant(GTFOCrop wrap) {
         this.wrap = wrap;
         this.seeds = new ArrayList<>();
-        this.seeds.add(new FuzzyStack(wrap.getSeedStack()));
+        this.seeds.add(new FuzzyStack(wrap.getSeedStack(), false, false, "agri_growth", "agri_gain", "agri_strength", "agri_analyzed"));
     }
 
     @Nonnull
@@ -123,7 +123,7 @@ public class GTFOAgriPlant implements IAgriPlant {
     @Override
     @SideOnly(Side.CLIENT)
     public String getInformation() {
-        return I18n.format("gregtechfoodoption.crop." + this.wrap.getName() + ".info");
+        return I18n.format("gregtechfoodoption.crop.agricraft.info");
     }
 
     @Nonnull
