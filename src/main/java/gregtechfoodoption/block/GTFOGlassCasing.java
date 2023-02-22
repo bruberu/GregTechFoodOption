@@ -1,7 +1,6 @@
 package gregtechfoodoption.block;
 
 import gregtech.api.block.VariantActiveBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -56,11 +55,12 @@ public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingTy
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("deprecation")
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
-        Block block = iblockstate.getBlock();
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
+        IBlockState sideState = world.getBlockState(pos.offset(side));
 
-        return block != this && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        return sideState.getBlock() == this ?
+                getState(sideState) != getState(state) :
+                super.shouldSideBeRendered(state, world, pos, side);
     }
 
     public enum CasingType implements IStringSerializable {
