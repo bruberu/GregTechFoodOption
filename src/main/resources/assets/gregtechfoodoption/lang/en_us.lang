@@ -883,3 +883,11 @@ material.gtfo_gelatin_solution=Gelatin Solution
 material.gtfo_gelatin_solution_no_bubbles=Gelatin Solution (Airless)
 material.gtfo_sodium_hypochlorite=Sodium Hypochlorite
 material.gtfo_nitrophenols=Nitrophenols
+material.gtfo_aniline=Aniline
+material.paracetamol=Paracetamol
+
+gregtechfoodoption.crop.agricraft.info=Hey there! I see you're reading this, for some reason. This crop, uh, does stuff. It's probably important. Also, sorry about the completely broken page; it looks *way* too hard to fix right now. And yes, this tooltip isn't specific at all to any GTFO crop.
+metaitem.food.plutonium_241_caplet.name=Plutonium-241 Caplet
+metaitem.food.plutonium_241_caplet.tooltip=Do Not Eat (pretty please)
+metaitem.component.iv_bag.name=IV Bag
+metaitem.component.iv_bag.tooltip=A direct upgrade to the EV Bag

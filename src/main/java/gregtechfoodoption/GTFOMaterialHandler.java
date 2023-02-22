@@ -331,7 +331,7 @@ public class GTFOMaterialHandler {
             .components(Carbon, 6, Hydrogen, 7, Nitrogen, 2)
             .flags(DISABLE_DECOMPOSITION)
             .build()
-            .setFormula("C6H5NH2");
+            .setFormula("C6H5NH2", true);
 
     public static final Material HeatedWater = fluidBuilder(21583, "heated_water").fluidTemp(343)
             .color(0x024B86)
@@ -344,7 +344,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material Nitrophenols = fluidBuilder(21586, "nitrophenols").fluidTemp(343)
             .color(0xFFFFFF)
-            .build().setFormula("(C6H5NO3)(C6H5NO3)");
+            .build().setFormula("(C6H5NO3)(C6H5NO3)", true);
 
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
