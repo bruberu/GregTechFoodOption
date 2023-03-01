@@ -15,6 +15,10 @@ public class GTFOCrops {
     public static GTFOCrop CROP_BASIL = GTFOCrop.create("basil");
     public static GTFOCrop CROP_AUBERGINE = GTFOCrop.create("aubergine");
     public static GTFOCrop CROP_CORN = GTFOCrop.create("corn");
+    public static GTFOCrop CROP_ARTICHOKE = GTFOCrop.create("artichoke");
+    public static GTFOCrop CROP_BLACK_PEPPER = GTFOCrop.create("black_pepper");
+    public static GTFOCrop CROP_RICE = GTFOCrop.create("rice");
+
     //public static GTFOCrop CROP_HOPS = GTFOCrop.create("hops");
     public static void init() {
 
