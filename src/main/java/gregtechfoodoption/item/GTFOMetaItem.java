@@ -13,7 +13,6 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOCrops;
-import gregtechfoodoption.item.food.GTFOFoodStats;
 import gregtechfoodoption.potion.CreativityPotion;
 import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
 import gregtechfoodoption.potion.StepAssistPotion;
@@ -313,6 +312,10 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem SPAGHETTI;
     public static MetaItem<?>.MetaValueItem DITALINI;
     public static MetaItem<?>.MetaValueItem RIGATONI;
+    public static MetaItem<?>.MetaValueItem ARTICHOKE_HEART;
+    public static MetaItem<?>.MetaValueItem ARTICHOKE_SEED;
+    public static MetaItem<?>.MetaValueItem BLACK_PEPPERCORN;
+    public static MetaItem<?>.MetaValueItem RICE;
 
     public GTFOMetaItem() {
         super();
@@ -445,7 +448,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
         GARLIC_BULB = addItem(232, "component.garlic_bulb");
-        AUBERGINE = addItem(233, "component.aubergine");
+        AUBERGINE = addItem(233, "crop.aubergine");
         HORSERADISH = addItem(234, "component.horseradish");
         BASIL = addItem(235, "component.basil");
         OREGANO = addItem(236, "component.oregano");
@@ -725,6 +728,15 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH, HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
         GARLIC_CLOVE = addItem(231, "seed.garlic");
         GARLIC_CLOVE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GARLIC, GARLIC_CLOVE.getStackForm(), GARLIC_BULB.getStackForm()));
+        HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH, HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
+        ARTICHOKE_HEART = addItem(267, "component.artichoke");
+        ARTICHOKE_SEED = addItem(268, "seed.artichoke");
+        ARTICHOKE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ARTICHOKE, ARTICHOKE_SEED.getStackForm(), ARTICHOKE_HEART.getStackForm()));
+        BLACK_PEPPERCORN = addItem(269, "component.black_pepper");
+        BLACK_PEPPERCORN.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BLACK_PEPPER, BLACK_PEPPERCORN.getStackForm(), BLACK_PEPPERCORN.getStackForm()));
+        RICE = addItem(270, "seed.rice");
+        RICE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_RICE, RICE.getStackForm(), RICE.getStackForm()));
+
 
         // 175-189 left blank for organic circuits
         SPRINKLER_COVER = addItem(224, "cover.sprinkler");

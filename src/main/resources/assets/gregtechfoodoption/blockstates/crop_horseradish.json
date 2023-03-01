@@ -35,8 +35,16 @@
           "cross": "gregtechfoodoption:crop/crop_horseradish/stage5"
         }
       },
-      "6": {},
-      "7": {}
+      "6": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage6"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage7"
+        }
+      }
     }
   }
 }

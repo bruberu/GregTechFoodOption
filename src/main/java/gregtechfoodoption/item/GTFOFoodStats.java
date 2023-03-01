@@ -1,4 +1,4 @@
-package gregtechfoodoption.item.food;
+package gregtechfoodoption.item;
 
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;

@@ -9,7 +9,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOMetaItems;
-import gregtechfoodoption.item.food.GTFOFoodStats;
+import gregtechfoodoption.item.GTFOFoodStats;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;

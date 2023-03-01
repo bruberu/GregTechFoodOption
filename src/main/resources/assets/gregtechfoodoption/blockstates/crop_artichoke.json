@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage5"
+        }
+      },
+      "6": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage6"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_artichoke/stage7"
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ package gregtechfoodoption.recipe.mixins;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.machines.RecipeMapFluidCanner;
-import gregtechfoodoption.item.food.GTFOFoodStats;
+import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.item.ItemStack;

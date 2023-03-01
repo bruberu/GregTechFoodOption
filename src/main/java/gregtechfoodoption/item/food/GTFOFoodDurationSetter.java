@@ -1,5 +1,6 @@
 package gregtechfoodoption.item.food;
 
+import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.item.ItemStack;
 
