@@ -28,7 +28,6 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     protected RandomPotionEffect[] potionEffects;
     protected Supplier<ItemStack> stackSupplier;
     protected int eatingDuration = 32;
-    protected int toxinConcentration;
 
     @Deprecated
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, Supplier<ItemStack> itemStackSupplier, RandomPotionEffect... potionEffects) {
@@ -73,6 +72,11 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
 
     public boolean alwaysEdible(ItemStack itemStack, EntityPlayer player) {
         return this.alwaysEdible;
+    }
+
+    public GTFOFoodStats setReturnStack(ItemStack stack) {
+        this.stackSupplier = () -> stack;
+        return this;
     }
 
     public ItemStack onFoodEaten(ItemStack itemStack, EntityPlayer player) {

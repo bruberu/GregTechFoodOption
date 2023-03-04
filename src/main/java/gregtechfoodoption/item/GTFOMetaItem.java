@@ -316,6 +316,41 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem ARTICHOKE_SEED;
     public static MetaItem<?>.MetaValueItem BLACK_PEPPERCORN;
     public static MetaItem<?>.MetaValueItem RICE;
+    public static MetaItem<?>.MetaValueItem NUTMEG_SEED;
+
+    public static MetaItem<?>.MetaValueItem BRUSCHETTA;
+    public static MetaItem<?>.MetaValueItem CAPONATA;
+    public static MetaItem<?>.MetaValueItem CARBONARA;
+    public static MetaItem<?>.MetaValueItem CARCIOFI_ALLA_ROMANA;
+    public static MetaItem<?>.MetaValueItem FETUCCINE_ALFREDO;
+    public static MetaItem<?>.MetaValueItem PARMIGIANA;
+    public static MetaItem<?>.MetaValueItem PASTA_AL_NORMA;
+    public static MetaItem<?>.MetaValueItem PASTA_AL_POMODORO;
+    public static MetaItem<?>.MetaValueItem PASTA_E_FAGIOLI;
+    public static MetaItem<?>.MetaValueItem POLENTA;
+    public static MetaItem<?>.MetaValueItem RAFANATA;
+    public static MetaItem<?>.MetaValueItem RISOTTO;
+    public static MetaItem<?>.MetaValueItem SPAGHETTI_ALLASSASSINA;
+    public static MetaItem<?>.MetaValueItem TAGLIATELLE_AL_RAGU;
+    public static MetaItem<?>.MetaValueItem TORTELLINI_IN_BRODO;
+    public static MetaItem<?>.MetaValueItem VITELLO_TONNATO;
+    public static MetaItem<?>.MetaValueItem LASAGNA_CHUM;
+    public static MetaItem<?>.MetaValueItem LASAGNA_NAPOLETANA;
+    public static MetaItem<?>.MetaValueItem LASAGNA_PESTO;
+    public static MetaItem<?>.MetaValueItem PASTA_ALLAMOGUS;
+
+    public static MetaItem<?>.MetaValueItem CERAMIC_BOWL;
+    public static MetaItem<?>.MetaValueItem DIRTY_CERAMIC_BOWL;
+    public static MetaItem<?>.MetaValueItem PLATE;
+    public static MetaItem<?>.MetaValueItem DIRTY_PLATE;
+    public static MetaItem<?>.MetaValueItem BAKING_TRAY;
+
+    public static MetaItem<?>.MetaValueItem LASAGNA_CHUM_RAW;
+    public static MetaItem<?>.MetaValueItem LASAGNA_NAPOLETANA_RAW;
+    public static MetaItem<?>.MetaValueItem LASAGNA_PESTO_RAW;
+    public static MetaItem<?>.MetaValueItem LASAGNA_CHUM_COOKED;
+    public static MetaItem<?>.MetaValueItem LASAGNA_NAPOLETANA_COOKED;
+    public static MetaItem<?>.MetaValueItem LASAGNA_PESTO_COOKED;
 
     public GTFOMetaItem() {
         super();
@@ -324,7 +359,6 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     @Override
     public void registerSubItems() {
         IItemContainerItemProvider selfContainerItemProvider = itemStack -> itemStack;
-
 
         PAPER_BAG = addItem(1, "component.bag");
         FLAVORED_POPCORN_FLAKE = addItem(2, "component.corn.flavored_flake");
@@ -477,6 +511,20 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         RIGATONI = addItem(265, "component.pasta.rigatoni");
 
         TORTELLINI = addItem(266, "component.pasta.tortellini");
+
+        PLATE = addItem(291, "component.plate");
+        DIRTY_PLATE = addItem(292, "component.dirty_plate");
+        CERAMIC_BOWL = addItem(293, "component.ceramic_bowl");
+        DIRTY_CERAMIC_BOWL = addItem(294, "component.dirty_bowl");
+        BAKING_TRAY = addItem(302, "component.baking_tray");
+
+        LASAGNA_CHUM_RAW = addItem(296, "component.pasta.lasagna.raw.chum");
+        LASAGNA_NAPOLETANA_RAW = addItem(297, "component.pasta.lasagna.raw.napoletana");
+        LASAGNA_PESTO_RAW = addItem(298, "component.pasta.lasagna.raw.pesto");
+        LASAGNA_CHUM_COOKED = addItem(299, "component.pasta.lasagna.cooked.chum");
+        LASAGNA_NAPOLETANA_COOKED = addItem(300, "component.pasta.lasagna.cooked.napoletana");
+        LASAGNA_PESTO_COOKED = addItem(301, "component.pasta.lasagna.cooked.pesto");
+
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
@@ -699,6 +747,27 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PARACETAMOL_CAPLET = addItem(238, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
         PLUTONIUM_241_CAPLET = addItem(239, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
 
+        BRUSCHETTA = addItem(272, "food.bruschetta").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        CAPONATA = addItem(273, "food.caponata").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
+        CARBONARA = addItem(274, "food.carbonara").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        CARCIOFI_ALLA_ROMANA = addItem(275, "food.carciofi_alla_romana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        FETUCCINE_ALFREDO = addItem(276, "food.fettuccine_alfredo").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        PARMIGIANA = addItem(277, "food.parmigiana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        PASTA_E_FAGIOLI = addItem(278, "food.pasta_e_fagioli").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
+        PASTA_AL_NORMA = addItem(279, "food.pasta_al_norma").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        PASTA_AL_POMODORO = addItem(280, "food.pasta_al_pomodoro").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        POLENTA = addItem(281, "food.polenta").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
+        RAFANATA = addItem(282, "food.rafanata").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        RISOTTO = addItem(283, "food.risotto").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
+        SPAGHETTI_ALLASSASSINA = addItem(284, "food.spaghetti_all'assassina").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        TAGLIATELLE_AL_RAGU = addItem(285, "food.tagliatelle_al_ragu").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        TORTELLINI_IN_BRODO = addItem(286, "food.tortellini_in_brodo").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
+        VITELLO_TONNATO = addItem(287, "food.vitello_tonnato").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        LASAGNA_CHUM = addItem(288, "food.lasagna.chum").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        LASAGNA_NAPOLETANA = addItem(289, "food.lasagna.napoletana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        LASAGNA_PESTO = addItem(290, "food.lasagna.pesto").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
         ONION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
@@ -734,8 +803,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         ARTICHOKE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ARTICHOKE, ARTICHOKE_SEED.getStackForm(), ARTICHOKE_HEART.getStackForm()));
         BLACK_PEPPERCORN = addItem(269, "component.black_pepper");
         BLACK_PEPPERCORN.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BLACK_PEPPER, BLACK_PEPPERCORN.getStackForm(), BLACK_PEPPERCORN.getStackForm()));
-        RICE = addItem(270, "seed.rice");
+        RICE = addItem(270, "component.rice");
         RICE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_RICE, RICE.getStackForm(), RICE.getStackForm()));
+        NUTMEG_SEED = addItem(271, "component.nutmeg");
 
 
         // 175-189 left blank for organic circuits
