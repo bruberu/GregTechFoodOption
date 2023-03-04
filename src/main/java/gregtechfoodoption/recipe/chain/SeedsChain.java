@@ -38,6 +38,15 @@ public class SeedsChain {
                 SOYBEAN.getStackForm(),
                 BEANS.getStackForm(),
                 COFFEE_CHERRY.getStackForm(),
+                CORN_COB.getStackForm(),
+                RICE.getStackForm(),
+                HORSERADISH.getStackForm(),
+                OREGANO.getStackForm(),
+                GARLIC_BULB.getStackForm(),
+                BASIL.getStackForm(),
+                AUBERGINE.getStackForm(),
+                ARTICHOKE_HEART.getStackForm(),
+                BLACK_PEPPERCORN.getStackForm()
         };
 
         for (ItemStack seed : seeds) {
@@ -82,6 +91,33 @@ public class SeedsChain {
                 'S', GTFOMetaItem.UNKNOWN_SEED);
         ModHandler.addShapedRecipe("gtfo_seed_bean_ungenerify", GTFOMetaItem.BEANS.getStackForm(),
                 "   ", "   ", " S ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_oregano_ungenerify", OREGANO_SEED.getStackForm(),
+                "   ", "   ", "  S",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_horseradish_ungenerify", HORSERADISH_SEED.getStackForm(2),
+                "SS ", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_garlic_ungenerify", GARLIC_CLOVE.getStackForm(2),
+                "S S", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_basil_ungenerify", BASIL_SEED.getStackForm(2),
+                " SS", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_aubergine_ungenerify", AUBERGINE_SEED.getStackForm(2),
+                "S  ", "S  ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_corn_ungenerify", CORN_EAR.getStackForm(2),
+                " S ", "S  ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_artichoke_ungenerify", ARTICHOKE_SEED.getStackForm(2),
+                "  S", "S  ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_black_pepper_ungenerify", BLACK_PEPPERCORN.getStackForm(2),
+                "S  ", " S ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_rice_ungenerify", RICE.getStackForm(2),
+                " S ", " S ", "   ",
                 'S', GTFOMetaItem.UNKNOWN_SEED);
 
 

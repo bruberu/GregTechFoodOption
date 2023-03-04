@@ -74,6 +74,11 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         return this.alwaysEdible;
     }
 
+    public GTFOFoodStats setReturnStack(ItemStack stack) {
+        this.stackSupplier = () -> stack;
+        return this;
+    }
+
     public ItemStack onFoodEaten(ItemStack itemStack, EntityPlayer player) {
         NBTTagCompound nbtStats = itemStack.getSubCompound("gtfoStats");
         if (nbtStats != null) {

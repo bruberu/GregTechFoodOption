@@ -49,6 +49,9 @@
         }
       },
       "8": {
+        "textures": {
+          "all": "gregtechfoodoption:blocks/planks/nutmeg"
+        }
       },
       "9": {
       },
