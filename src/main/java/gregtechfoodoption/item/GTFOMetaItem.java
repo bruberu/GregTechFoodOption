@@ -318,16 +318,6 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem RICE;
     public static MetaItem<?>.MetaValueItem NUTMEG_SEED;
 
-    public static MetaItem<?>.MetaValueItem GARLIC_BULB;
-    public static MetaItem<?>.MetaValueItem GARLIC_CLOVE;
-    public static MetaItem<?>.MetaValueItem OREGANO;
-    public static MetaItem<?>.MetaValueItem OREGANO_SEED;
-    public static MetaItem<?>.MetaValueItem BASIL;
-    public static MetaItem<?>.MetaValueItem BASIL_SEED;
-    public static MetaItem<?>.MetaValueItem HORSERADISH;
-    public static MetaItem<?>.MetaValueItem HORSERADISH_SEED;
-    public static MetaItem<?>.MetaValueItem AUBERGINE;
-    public static MetaItem<?>.MetaValueItem AUBERGINE_SEED;
     public static MetaItem<?>.MetaValueItem BRUSCHETTA;
     public static MetaItem<?>.MetaValueItem CAPONATA;
     public static MetaItem<?>.MetaValueItem CARBONARA;
@@ -362,6 +352,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem LASAGNA_NAPOLETANA_COOKED;
     public static MetaItem<?>.MetaValueItem LASAGNA_PESTO_COOKED;
 
+    public static MetaItem<?>.MetaValueItem PORCHETTA;
+    public static MetaItem<?>.MetaValueItem PORCHETTA_SLICE;
     public GTFOMetaItem() {
         super();
     }
@@ -498,7 +490,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         OREGANO = addItem(235, "component.oregano");
 
         GARLIC_BULB = addItem(308, "component.garlic_bulb");
-        AUBERGINE = addItem(232, "crop.aubergine");
+        AUBERGINE = addItem(309, "crop.aubergine");
         HORSERADISH = addItem(233, "component.horseradish");
         BASIL = addItem(234, "component.basil");
         OREGANO = addItem(235, "component.oregano");
@@ -580,6 +572,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         LASAGNA_NAPOLETANA_COOKED = addItem(300, "component.pasta.lasagna.cooked.napoletana");
         LASAGNA_PESTO_COOKED = addItem(301, "component.pasta.lasagna.cooked.pesto");
 
+        PORCHETTA = addItem(310, "component.porchetta");
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
@@ -843,6 +836,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         LASAGNA_NAPOLETANA = addItem(289, "food.lasagna.napoletana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         LASAGNA_PESTO = addItem(290, "food.lasagna.pesto").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+
+        PORCHETTA_SLICE = addItem(311, "food.porchetta_slice").addComponents(new GTFOFoodStats(4, 0.7f).setEatingDuration(5));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
