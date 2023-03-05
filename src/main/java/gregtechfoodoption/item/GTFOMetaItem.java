@@ -481,18 +481,16 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BEANS_WITH_SAUCE = addItem(221, "component.beans_with_sauce");
         UNCOOKED_SAUSAGE_ROLL = addItem(223, "component.uncooked_sausage_roll");
 
-        GARLIC_BULB = addItem(231, "component.garlic_bulb");
+        GARLIC_BULB = addItem(308, "component.garlic_bulb");
         AUBERGINE = addItem(232, "crop.aubergine");
         HORSERADISH = addItem(233, "component.horseradish");
         BASIL = addItem(234, "component.basil");
         OREGANO = addItem(235, "component.oregano");
 
-        if (GTFOConfig.gtfoChainsConfig.popcornChain)
-            POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
-                    new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
-        if (GTFOConfig.gtfoChainsConfig.mineralWaterChain)
-            MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
-                    new RandomPotionEffect(CreativityPotion.instance, 5000, 0, 0)));
+        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
+                new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
+        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
+                new RandomPotionEffect(CreativityPotion.INSTANCE, 5000, 0, 0)));
         CAPLET_CAP = addItem(227, "component.caplet_cap");
         CAPLET_BODY = addItem(228, "component.caplet_body");
         IV_BAG = addItem(232, "component.iv_bag");
@@ -793,15 +791,15 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
-        OREGANO_SEED = addItem(226, "seed.oregano");
+        OREGANO_SEED = addItem(303, "seed.oregano");
         OREGANO_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_OREGANO, OREGANO_SEED.getStackForm(), OREGANO.getStackForm()));
-        BASIL_SEED = addItem(227, "seed.basil");
+        BASIL_SEED = addItem(304, "seed.basil");
         BASIL_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BASIL, BASIL_SEED.getStackForm(), BASIL.getStackForm()));
-        AUBERGINE_SEED = addItem(228, "seed.aubergine");
+        AUBERGINE_SEED = addItem(305, "seed.aubergine");
         AUBERGINE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_AUBERGINE, AUBERGINE_SEED.getStackForm(), AUBERGINE.getStackForm()));
-        HORSERADISH_SEED = addItem(229, "seed.horseradish");
+        HORSERADISH_SEED = addItem(306, "seed.horseradish");
         HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH, HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
-        GARLIC_CLOVE = addItem(230, "seed.garlic");
+        GARLIC_CLOVE = addItem(307, "seed.garlic");
         GARLIC_CLOVE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GARLIC, GARLIC_CLOVE.getStackForm(), GARLIC_BULB.getStackForm()));
         HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH, HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
         ARTICHOKE_HEART = addItem(267, "component.artichoke");
@@ -823,7 +821,6 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         DITALINI_PASTA_DIE = addItem(249, "shape.pasta.ditalini");
         RIGATONI_PASTA_DIE = addItem(250, "shape.pasta.rigatoni");
         LASAGNA_PASTA_DIE = addItem(251, "shape.pasta.lasagna");
-
 
 
         {
