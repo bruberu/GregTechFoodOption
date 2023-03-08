@@ -71,7 +71,7 @@ public class CoreChain {
                 .EUt(5)
                 .duration(100)
                 .buildAndRegister();
-        //Hand recipe for early game (veeeery ineficient) P.S: i don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
+        //Hand recipe for early game (veeeery inefficient) P.S: I don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
         ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON, LEMON, LEMON, LEMON, OreDictUnifier.get("craftingToolMortar"));
         ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME, LIME, LIME, LIME, OreDictUnifier.get("craftingToolMortar"));
         ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE, ORANGE, ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
@@ -493,6 +493,8 @@ public class CoreChain {
                     .output(dust, Bone, 16)
                     .fluidOutputs(Stearin.getFluid(3200), Sludge.getFluid(12000), Chlorine.getFluid(12000))
                     .buildAndRegister();
+
+            ModHandler.addShapelessRecipe("gtfo_hand_mince_meat", OreDictUnifier.get(dust, Meat), itemStack, OreDictUnifier.get("craftingToolMortar"));
         });
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)

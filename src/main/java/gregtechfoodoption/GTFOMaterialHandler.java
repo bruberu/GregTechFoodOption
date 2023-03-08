@@ -348,6 +348,17 @@ public class GTFOMaterialHandler {
     public static final Material Egg = fluidBuilder(21587, "egg")
             .color(0xFFFF0F)
             .build();
+    public static final Material UnpasteurizedSkimmedMilk = fluidBuilder(21588, "unpasteurized_skimmed_milk")
+            .color(0xfcfcf0)
+            .build();
+    public static final Material ParmigianoReggianoStarter = fluidBuilder(21589, "parmigiano_reggiano_starter")
+            .color(0xf0eac0)
+            .build();
+    public static final Material CurdlingParmigianoReggiano = fluidBuilder(21590, "curdling_parmigiano_reggiano")
+            .color(0xfff4ab)
+            .build();
+
+
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
@@ -449,6 +460,7 @@ public class GTFOMaterialHandler {
     public static final MetaOreDictItem.OreDictValueItem Aminophenol = SHAPED_ITEM.addOreDictItem(1130, "aminophenol", 0xFFFFFF, MaterialIconSet.SHINY, dust, "C6H7NO");
     public static final MetaOreDictItem.OreDictValueItem IVNitrophenol = SHAPED_ITEM.addOreDictItem(1131, "ivnitrophenol", 0xFFFFE0, MaterialIconSet.SHINY, dust, "C6H5NO3");
     public static final MetaOreDictItem.OreDictValueItem IINitrophenol = SHAPED_ITEM.addOreDictItem(1132, "iinitrophenol", 0xFFFF00, MaterialIconSet.SHINY, dust, "C6H5NO3");
+    public static final MetaOreDictItem.OreDictValueItem ShreddedParmesan = SHAPED_ITEM.addOreDictItem(1133, "shredded_parmesan", 0xdbd6b4, MaterialIconSet.DULL, dust);
 
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);

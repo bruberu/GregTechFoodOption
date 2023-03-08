@@ -354,6 +354,12 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
 
     public static MetaItem<?>.MetaValueItem PORCHETTA;
     public static MetaItem<?>.MetaValueItem PORCHETTA_SLICE;
+
+    public static MetaItem<?>.MetaValueItem AGED_PARMIGIANO_ROLL;
+    public static MetaItem<?>.MetaValueItem BRINED_PARMIGIANO_ROLL;
+    public static MetaItem<?>.MetaValueItem BRINED_PARMIGIANO;
+    public static MetaItem<?>.MetaValueItem CURDLING_PARMIGIANO;
+    public static MetaItem<?>.MetaValueItem CHEESE_ROLL_FORM;
     public GTFOMetaItem() {
         super();
     }
@@ -495,10 +501,6 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BASIL = addItem(234, "component.basil");
         OREGANO = addItem(235, "component.oregano");
 
-        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
-                new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
-        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
-                new RandomPotionEffect(CreativityPotion.INSTANCE, 5000, 0, 0)));
         CAPLET_CAP = addItem(227, "component.caplet_cap");
         CAPLET_BODY = addItem(228, "component.caplet_body");
         IV_BAG = addItem(232, "component.iv_bag");
@@ -573,6 +575,12 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         LASAGNA_PESTO_COOKED = addItem(301, "component.pasta.lasagna.cooked.pesto");
 
         PORCHETTA = addItem(310, "component.porchetta");
+
+        AGED_PARMIGIANO_ROLL = addItem(312, "component.aged_parmigiano_roll");
+        BRINED_PARMIGIANO = addItem(313, "component.brined_parmigiano");
+        BRINED_PARMIGIANO_ROLL = addItem(314, "component.brined_parmigiano_roll");
+        CURDLING_PARMIGIANO = addItem(315, "component.curdling_parmigiano");
+        CHEESE_ROLL_FORM = addItem(316, "component.cheese_form");
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
@@ -837,7 +845,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         LASAGNA_PESTO = addItem(290, "food.lasagna.pesto").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
 
-        PORCHETTA_SLICE = addItem(311, "food.porchetta_slice").addComponents(new GTFOFoodStats(4, 0.7f).setEatingDuration(5));
+        PORCHETTA_SLICE = addItem(311, "food.porchetta_slice").addComponents(new GTFOFoodStats(2, 0.7f).setEatingDuration(5));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
