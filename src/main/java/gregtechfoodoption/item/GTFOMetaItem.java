@@ -325,7 +325,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem CARCIOFI_ALLA_ROMANA;
     public static MetaItem<?>.MetaValueItem FETUCCINE_ALFREDO;
     public static MetaItem<?>.MetaValueItem PARMIGIANA;
-    public static MetaItem<?>.MetaValueItem PASTA_AL_NORMA;
+    public static MetaItem<?>.MetaValueItem PASTA_ALLA_NORMA;
     public static MetaItem<?>.MetaValueItem PASTA_AL_POMODORO;
     public static MetaItem<?>.MetaValueItem PASTA_E_FAGIOLI;
     public static MetaItem<?>.MetaValueItem POLENTA;
@@ -775,7 +775,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         FETUCCINE_ALFREDO = addItem(276, "food.fettuccine_alfredo").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         PARMIGIANA = addItem(277, "food.parmigiana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         PASTA_E_FAGIOLI = addItem(278, "food.pasta_e_fagioli").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
-        PASTA_AL_NORMA = addItem(279, "food.pasta_al_norma").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        PASTA_ALLA_NORMA = addItem(279, "food.pasta_alla_norma").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         PASTA_AL_POMODORO = addItem(280, "food.pasta_al_pomodoro").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         POLENTA = addItem(281, "food.polenta").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
         RAFANATA = addItem(282, "food.rafanata").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
