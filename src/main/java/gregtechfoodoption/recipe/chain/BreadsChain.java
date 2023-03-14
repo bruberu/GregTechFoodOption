@@ -135,7 +135,7 @@ public class BreadsChain {
                 'M', MetaItems.SHAPE_MOLD_CYLINDER.getStackForm());
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(100)
                 .inputs(SUGARY_DOUGH.getStackForm(4))
-                .inputs(MetaItems.SHAPE_MOLD_CYLINDER.getStackForm())
+                .notConsumable(MetaItems.SHAPE_MOLD_CYLINDER.getStackForm())
                 .outputs(CAKE_BOTTOM.getStackForm())
                 .buildAndRegister();
 
