@@ -47,6 +47,7 @@ public class CommonProxy {
         GTFORecipeHandler.register();
         ((IExpandableRecipeMap) RecipeMaps.BREWING_RECIPES).setMaxOutputs(1);
         ((IExpandableRecipeMap) RecipeMaps.BREWING_RECIPES).setMinFluidOutputs(0);
+        ((IExpandableRecipeMap) RecipeMaps.CHEMICAL_BATH_RECIPES).setMinOutputs(0);
         ((IExpandableRecipeMap) RecipeMaps.EXTRACTOR_RECIPES).setMaxInputs(2);
         ((IExpandableRecipeMap) RecipeMaps.FERMENTING_RECIPES).setMaxInputs(1);
         ((IExpandableRecipeMap) RecipeMaps.FERMENTING_RECIPES).setMaxOutputs(1);
