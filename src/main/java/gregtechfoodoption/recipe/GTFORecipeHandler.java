@@ -43,7 +43,7 @@ public class GTFORecipeHandler {
             for (int i = 0; i < powerUnits.length; i++) {
                 IElectricItem powerUnit = powerUnits[i].getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null);
                 ItemStack toolItem = BUTCHERY_KNIFE_HV.get(material, 0, powerUnit.getMaxCharge());
-                ModHandler.addShapedEnergyTransferRecipe(String.format("%s_%s", "electric_butchery_knife", material),
+                ModHandler.addShapedEnergyTransferRecipe(String.format("%s_%s", "butchery_knife", material),
                         toolItem,
                         Ingredient.fromStacks(powerUnits[i]), true, true,
                         "WUd", "wMf", "H H",

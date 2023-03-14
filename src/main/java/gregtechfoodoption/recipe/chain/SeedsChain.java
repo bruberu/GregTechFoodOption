@@ -175,6 +175,14 @@ public class SeedsChain {
                 .buildAndRegister();
 
 
+        ModHandler.addShapelessRecipe("gtfo_black_pepper", BlackPepper.getItemStack(),
+                BLACK_PEPPERCORN, 'm');
+        RecipeMaps.MACERATOR_RECIPES.recipeBuilder().EUt(8).duration(80)
+                .inputs(BLACK_PEPPERCORN.getStackForm())
+                .outputs(BlackPepper.getItemStack(2))
+                .buildAndRegister();
+
+
 /*
         RecipeUtils.addGreenHouseRecipes(LEMON.getStackForm(), LEMON);
         RecipeUtils.addGreenHouseRecipes(LIME.getStackForm(), LIME);

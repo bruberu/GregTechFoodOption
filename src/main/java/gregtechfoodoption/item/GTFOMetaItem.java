@@ -31,6 +31,7 @@ import squeek.applecore.api.food.IEdible;
 import javax.annotation.Nonnull;
 
 import static gregtech.api.unification.material.Materials.*;
+import static gregtechfoodoption.GTFOMaterialHandler.BareCornKernel;
 import static net.minecraft.potion.Potion.getPotionById;
 
 
@@ -360,6 +361,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem BRINED_PARMIGIANO;
     public static MetaItem<?>.MetaValueItem CURDLING_PARMIGIANO;
     public static MetaItem<?>.MetaValueItem CHEESE_ROLL_FORM;
+    public static MetaItem<?>.MetaValueItem EGGPLANT_SLICE;
+    public static MetaItem<?>.MetaValueItem SEASONED_PORK;
     public GTFOMetaItem() {
         super();
     }
@@ -373,7 +376,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         CORN_COB = addItem(3, "component.corn.cob");
         DRIED_CORN_EAR = addItem(4, "component.corn.dried_ear");
         CORN_EAR = addItem(5, "component.corn.ear");
-        CORN_EAR.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CORN, CORN_EAR.getStackForm(), CORN_COB.getStackForm()));
+        CORN_EAR.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CORN, BareCornKernel.getItemStack(), CORN_EAR.getStackForm()));
         //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
 
         THERMOS = addItem(7, "component.thermos.new");
@@ -582,6 +585,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         CURDLING_PARMIGIANO = addItem(315, "component.curdling_parmigiano");
         CHEESE_ROLL_FORM = addItem(316, "component.cheese_form");
 
+        SEASONED_PORK = addItem(318, "component.seasoned_pork");
+
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
         MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
@@ -747,6 +752,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         CUCUMBER_SLICE = addItem(81, "component.cucumber_slice").addComponents(new GTFOFoodStats(1, 0.0f));
         CARROT_SLICE = addItem(148, "component.carrot_slice").addComponents(new GTFOFoodStats(1, 0.0f));
         APPLE_SLICE = addItem(152, "component.apple_slice").addComponents(new GTFOFoodStats(1, 0.1f));
+        EGGPLANT_SLICE = addItem(317, "component.eggplant_slice").addComponents(new GTFOFoodStats(1, 0.0f));
 
         APPLE_JUICE = addItem(153, "food.juice.apple").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45)));
@@ -803,7 +809,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PARACETAMOL_CAPLET = addItem(230, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
         PLUTONIUM_241_CAPLET = addItem(231, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
 
-        BRUSCHETTA = addItem(272, "food.bruschetta").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        BRUSCHETTA = addItem(272, "food.bruschetta").addComponents(new GTFOFoodStats(4, 0.7f)); // I mean, you can technically hold this without a plate
         CAPONATA = addItem(273, "food.caponata").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
         CARBONARA = addItem(274, "food.carbonara").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         CARCIOFI_ALLA_ROMANA = addItem(275, "food.carciofi_alla_romana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
