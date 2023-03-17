@@ -32,7 +32,11 @@ public class GTFOBlockLog extends BlockLog implements IVariantNamed {
 
     @Override
     public String getVariantTranslationKey(IBlockState state) {
-        return "gregtechfoodoption.log." + this.getTreeFromState(state).name;
+        try {
+            return "gregtechfoodoption.log." + this.getTreeFromState(state).name;
+        } catch (IndexOutOfBoundsException e) {
+            return "gregtechfoodoption.hello_buildcraft";
+        }
     }
 
     @Override

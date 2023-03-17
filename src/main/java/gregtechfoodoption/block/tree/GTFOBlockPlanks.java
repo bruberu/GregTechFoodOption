@@ -38,7 +38,11 @@ public class GTFOBlockPlanks extends Block implements IVariantNamed {
 
     @Override
     public String getVariantTranslationKey(IBlockState state) {
-        return "gregtechfoodoption.planks." + this.getTreeFromState(state).name;
+        try {
+            return "gregtechfoodoption.planks." + this.getTreeFromState(state).name;
+        } catch (IndexOutOfBoundsException e) {
+            return "gregtechfoodoption.hello_buildcraft";
+        }
     }
 
     @Override
@@ -53,7 +57,7 @@ public class GTFOBlockPlanks extends Block implements IVariantNamed {
     }
 
     public GTFOTree getTreeFromState(IBlockState state) {
-        return GTFOTree.TREES.get(state.getValue(VARIANT));
+        return GTFOTree.TREES.get(state.getValue(VARIANT) + (offset * 16));
     }
 
     @Override
