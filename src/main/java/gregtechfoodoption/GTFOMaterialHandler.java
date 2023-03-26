@@ -362,7 +362,12 @@ public class GTFOMaterialHandler {
     public static final Material Polenta = fluidBuilder(21592, "polenta")
             .color(0xBBA844)
             .build();
-
+    public static final Material Pesto = fluidBuilder(21593, "pesto")
+            .color(0x309027)
+            .build();
+    public static final Material BechamelSauce = fluidBuilder(21594, "bechamel_sauce")
+            .color(0xD1B7AC)
+            .build();
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
             .build();
@@ -468,7 +473,7 @@ public class GTFOMaterialHandler {
     public static final MetaOreDictItem.OreDictValueItem UncookedBreadIngot = SHAPED_ITEM.addOreDictItem(1135, "uncooked_bread", 0xcfb46b, MaterialIconSet.DULL, ingot);
 
     public static final MetaOreDictItem.OreDictValueItem BlackPepper = SHAPED_ITEM.addOreDictItem(1136, "black_pepper", 0x02030f, MaterialIconSet.DULL, dust);
-
+    public static final MetaOreDictItem.OreDictValueItem Nutmeg = SHAPED_ITEM.addOreDictItem(1137, "nutmeg", 0x391A0C, MaterialIconSet.DULL, dust);
     public static final GTFOOredictItem.OreDictValueItem BareCornKernel = SHAPED_ITEM.addOreDictItem(1001, "corn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addOreDictItem(1000, "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
 
