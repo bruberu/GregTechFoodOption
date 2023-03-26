@@ -22,6 +22,7 @@ public class GTFOTileEntities {
     public static SimpleMachineMetaTileEntity[] SLICER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
     public static SimpleMachineMetaTileEntity[] CUISINE_ASSEMBLER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
     public static MetaTileEntityMicrowave[] MICROWAVE = new MetaTileEntityMicrowave[GTValues.V.length - 1];
+    public static SimpleMachineMetaTileEntity[] MULTICOOKER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
 
     public static final MetaTileEntityMobAgeSorter[] MOB_AGE_SORTER = new MetaTileEntityMobAgeSorter[4];
     public static final MetaTileEntityMobExterminator[] MOB_EXTERMINATOR = new MetaTileEntityMobExterminator[4];
@@ -93,6 +94,7 @@ public class GTFOTileEntities {
 
         GREENHOUSE = registerMetaTileEntity(8565, new MetaTileEntityGreenhouse(location("greenhouse")));
 
+        MetaTileEntities.registerSimpleMetaTileEntity(MULTICOOKER, 8566, "multicooker", GTFORecipeMaps.MULTICOOKER_RECIPES, GTFOClientHandler.MULTICOOKER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
     }
 
     private static ResourceLocation location(String name) {

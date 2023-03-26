@@ -42,6 +42,15 @@ public class GTFORecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
+    public static final RecipeMap<SimpleRecipeBuilder> MULTICOOKER_RECIPES = new RecipeMap<>("multicooker",
+            0, 3, 0, 3, 0, 3, 0, 2, new SimpleRecipeBuilder(), false)
+            .setSlotOverlay(false, false, GuiTextures.HEATING_OVERLAY_1)
+            .setSlotOverlay(false, true, GuiTextures.HEATING_OVERLAY_1)
+            .setSound(GTSoundEvents.MIXER)
+            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
+
+
+    @ZenProperty
     public static final ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder> ELECTRIC_BAKING_OVEN_RECIPES = (ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder>) new ElectricBakingOvenRecipeMap<>("electric_baking_oven", new ElectricBakingOvenRecipeBuilder())
             .setSound(GTSoundEvents.FURNACE)
             .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY_1)

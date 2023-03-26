@@ -10,18 +10,28 @@ import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 
 import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.AceticAcid;
-import static gregtech.api.unification.material.Materials.Salt;
+import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustSmall;
 import static gregtechfoodoption.item.GTFOMetaItem.PORCHETTA;
 import static gregtechfoodoption.item.GTFOMetaItem.PORCHETTA_SLICE;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.*;
 
 public class ItalianChain {
     public static void init() {
-        MIXER_RECIPES.recipeBuilder().EUt(24).duration(300)
+        MIXER_RECIPES.recipeBuilder().EUt(24).duration(100)
+                .inputs(GTFOMaterialHandler.ShreddedParmesan.getItemStack(), GTFOMetaItem.BASIL.getStackForm(3), GTFOMetaItem.GARLIC_CLOVE.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.OliveOil.getFluid(500))
+                .fluidOutputs(GTFOMaterialHandler.Pesto.getFluid(500))
+                .buildAndRegister();
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(100)
+                .inputs(GTFOMaterialHandler.Nutmeg.getItemStack())
+                .input(dust, Wheat)
+                .fluidInputs(GTFOMaterialHandler.Butter.getFluid(50), Materials.Milk.getFluid(450))
+                .fluidOutputs(GTFOMaterialHandler.BechamelSauce.getFluid(500))
+                .buildAndRegister();
+
+        MIXER_RECIPES.recipeBuilder().EUt(8).duration(300)
                 .input(dust, Materials.Sugar)
                 .fluidInputs(AceticAcid.getFluid(1000))
                 .fluidOutputs(GTFOMaterialHandler.Agrodolce.getFluid(1000))
@@ -83,5 +93,25 @@ public class ItalianChain {
                 .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(200))
                 .outputs(GTFOMetaItem.PASTA_ALLA_NORMA.getStackForm())
                 .buildAndRegister();
+
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
+                .inputs(GTFOMetaItem.RAW_LASAGNA.getStackForm(4), GTFOMetaItem.BAKING_TRAY.getStackForm(), GTFOMaterialHandler.ShreddedParmesan.getItemStack(3))
+                .input(dust, Meat, 2)
+                .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(500))
+                .outputs(GTFOMetaItem.LASAGNA_NAPOLETANA_RAW.getStackForm())
+                .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
+                .inputs(GTFOMetaItem.RAW_LASAGNA.getStackForm(4), GTFOMetaItem.BAKING_TRAY.getStackForm(), GTFOMetaItem.MOZZARELLA_BALL.getStackForm(1))
+                .input(dust, Meat, 2)
+                .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(500))
+                .outputs(GTFOMetaItem.LASAGNA_PESTO_RAW.getStackForm())
+                .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
+                .inputs(GTFOMetaItem.RAW_LASAGNA.getStackForm(4), GTFOMetaItem.BAKING_TRAY.getStackForm(), GTFOMetaItem.CHUM.getStackForm(2), GTFOMetaItem.CHEDDAR_SLICE.getStackForm(1))
+                .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(200))
+                .outputs(GTFOMetaItem.LASAGNA_CHUM_RAW.getStackForm())
+                .buildAndRegister();
+
+
     }
 }
