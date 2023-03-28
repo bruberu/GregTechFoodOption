@@ -13,8 +13,7 @@ import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustSmall;
-import static gregtechfoodoption.item.GTFOMetaItem.PORCHETTA;
-import static gregtechfoodoption.item.GTFOMetaItem.PORCHETTA_SLICE;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.*;
 
 public class ItalianChain {
@@ -103,7 +102,7 @@ public class ItalianChain {
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
                 .inputs(GTFOMetaItem.RAW_LASAGNA.getStackForm(4), GTFOMetaItem.BAKING_TRAY.getStackForm(), GTFOMetaItem.MOZZARELLA_BALL.getStackForm(1))
                 .input(dust, Meat, 2)
-                .fluidInputs(GTFOMaterialHandler.TomatoSauce.getFluid(500))
+                .fluidInputs(GTFOMaterialHandler.Pesto.getFluid(250), GTFOMaterialHandler.BechamelSauce.getFluid(250))
                 .outputs(GTFOMetaItem.LASAGNA_PESTO_RAW.getStackForm())
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
@@ -112,6 +111,28 @@ public class ItalianChain {
                 .outputs(GTFOMetaItem.LASAGNA_CHUM_RAW.getStackForm())
                 .buildAndRegister();
 
+        GTFOUtils.addBakingOvenRecipes(GTFOMetaItem.LASAGNA_NAPOLETANA_RAW.getStackForm(), GTFOMetaItem.LASAGNA_NAPOLETANA_COOKED.getStackForm(), 1500, 465, 2);
+        GTFOUtils.addBakingOvenRecipes(GTFOMetaItem.LASAGNA_PESTO_RAW.getStackForm(), GTFOMetaItem.LASAGNA_PESTO_COOKED.getStackForm(), 1750, 465, 2);
+        GTFOUtils.addBakingOvenRecipes(GTFOMetaItem.LASAGNA_CHUM_RAW.getStackForm(), GTFOMetaItem.LASAGNA_CHUM_COOKED.getStackForm(), 2000, 1570, 3);
+
+        CANNER_RECIPES.recipeBuilder().EUt(8).duration(80)
+                .inputs(GTFOMetaItem.PLATE.getStackForm(), GTFOMetaItem.LASAGNA_NAPOLETANA_COOKED.getStackForm())
+                .outputs(GTFOMetaItem.LASAGNA_NAPOLETANA.getStackForm(), GTFOMetaItem.BAKING_TRAY.getStackForm())
+                .buildAndRegister();
+        CANNER_RECIPES.recipeBuilder().EUt(8).duration(80)
+                .inputs(GTFOMetaItem.PLATE.getStackForm(), GTFOMetaItem.LASAGNA_PESTO_COOKED.getStackForm())
+                .outputs(GTFOMetaItem.LASAGNA_PESTO.getStackForm(), GTFOMetaItem.BAKING_TRAY.getStackForm())
+                .buildAndRegister();
+        CANNER_RECIPES.recipeBuilder().EUt(8).duration(80)
+                .inputs(GTFOMetaItem.PLATE.getStackForm(), GTFOMetaItem.LASAGNA_CHUM_COOKED.getStackForm())
+                .outputs(GTFOMetaItem.LASAGNA_CHUM.getStackForm(), GTFOMetaItem.BAKING_TRAY.getStackForm())
+                .buildAndRegister();
+
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(16).duration(1000)
+                .inputs(TORTELLINI.getStackForm(6), CERAMIC_BOWL.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.ChickenBroth.getFluid(1000))
+                .outputs(TORTELLINI_IN_BRODO.getStackForm())
+                .buildAndRegister();
 
     }
 }

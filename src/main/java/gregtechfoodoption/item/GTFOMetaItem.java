@@ -642,23 +642,23 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
                 .setEatingDuration(60));
         BAKED_CAKE_BOTTOM = addItem(57, "food.cake_bottom_baked").addComponents(new GTFOFoodStats(3, 0.5f));
 
-        PIZZA_CHEESE = addItem(62, "food.pizza.cheese").addComponents(new GTFOFoodStats(5, 0.8f, false, false, ItemStack.EMPTY,
+        PIZZA_CHEESE = addItem(62, "food.pizza.cheese").addComponents(new GTFOFoodStats(10, 0.8f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0))
                 .setEatingDuration(50));
-        PIZZA_VEGGIE = addItem(63, "food.pizza.veggie").addComponents(new GTFOFoodStats(5, 0.7f, false, false, ItemStack.EMPTY,
+        PIZZA_VEGGIE = addItem(63, "food.pizza.veggie").addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(StepAssistPotion.INSTANCE, 2000, 1, 0))
                 .setEatingDuration(50));
-        PIZZA_MINCE_MEAT = addItem(64, "food.pizza.mince_meat").addComponents(new GTFOFoodStats(6, 0.8f, false, false, ItemStack.EMPTY,
+        PIZZA_MINCE_MEAT = addItem(64, "food.pizza.mince_meat").addComponents(new GTFOFoodStats(11, 0.8f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.STRENGTH, 2000, 2, 0))
                 .setEatingDuration(50));
 
-        SANDWICH_VEGGIE = addItem(65, "food.sandwich.veggie").addComponents(new GTFOFoodStats(4, 0.6f)
+        SANDWICH_VEGGIE = addItem(65, "food.sandwich.veggie").addComponents(new GTFOFoodStats(6, 0.6f)
                 .setEatingDuration(40));
-        SANDWICH_CHEESE = addItem(66, "food.sandwich.cheese").addComponents(new GTFOFoodStats(5, 0.6f)
+        SANDWICH_CHEESE = addItem(66, "food.sandwich.cheese").addComponents(new GTFOFoodStats(6, 0.6f)
                 .setEatingDuration(40));
-        SANDWICH_BACON = addItem(67, "food.sandwich.bacon").addComponents(new GTFOFoodStats(5, 0.7f)
+        SANDWICH_BACON = addItem(67, "food.sandwich.bacon").addComponents(new GTFOFoodStats(6, 0.7f)
                 .setEatingDuration(40));
-        SANDWICH_STEAK = addItem(68, "food.sandwich.steak").addComponents(new GTFOFoodStats(6, 0.7f)
+        SANDWICH_STEAK = addItem(68, "food.sandwich.steak").addComponents(new GTFOFoodStats(7, 0.7f)
                 .setEatingDuration(40));
 
         SANDWICH_LARGE_VEGGIE = addItem(69, "food.sandwich.veggie.large").addComponents(new GTFOFoodStats(9, 0.6f)
@@ -674,7 +674,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         BUN = addItem(87, "food.bun").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger / 3, GTFOConfig.gtfoFoodConfig.baguetteSaturation)
                 .setEatingDuration(25));
 
-        BURGER_VEGGIE = addItem(88, "food.burger.veggie").addComponents(new GTFOFoodStats(3, 0.6f));
+        BURGER_VEGGIE = addItem(88, "food.burger.veggie").addComponents(new GTFOFoodStats(4, 0.6f));
         BURGER_CHEESE = addItem(89, "food.burger.cheese").addComponents(new GTFOFoodStats(4, 0.6f));
         BURGER_MEAT = addItem(90, "food.burger.meat").addComponents(new GTFOFoodStats(4, 0.7f));
 
