@@ -891,3 +891,6 @@ metaitem.food.plutonium_241_caplet.name=Plutonium-241 Caplet
 metaitem.food.plutonium_241_caplet.tooltip=Do Not Eat (pretty please)
 metaitem.component.iv_bag.name=IV Bag
 metaitem.component.iv_bag.tooltip=A direct upgrade to the EV Bag
+
+metaitem.food.lasagna.chum.name=Chum Lasagna
+metaitem.food.lasagna.chum.tooltip="chumagna" - dan, the wise

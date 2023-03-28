@@ -368,6 +368,11 @@ public class GTFOMaterialHandler {
     public static final Material BechamelSauce = fluidBuilder(21594, "bechamel_sauce")
             .color(0xD1B7AC)
             .build();
+    public static final Material ChickenBroth = fluidBuilder(21595, "chicken_broth")
+            .color(0xA4600D)
+            .build();
+
+
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
             .build();

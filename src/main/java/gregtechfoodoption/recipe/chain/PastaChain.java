@@ -2,6 +2,8 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.recipes.ModHandler;
 import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
+import net.minecraft.init.Items;
 
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -105,6 +107,18 @@ public class PastaChain {
                 .inputs(DRIED_DITALINI.getStackForm())
                 .fluidInputs(Water.getFluid(1000))
                 .outputs(DITALINI.getStackForm())
+                .buildAndRegister();
+
+        GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(100)
+                .inputs(RAW_LASAGNA.getStackForm(), GTFOMaterialHandler.ShreddedParmesan.getItemStack(), GTFOMaterialHandler.Nutmeg.getItemStack())
+                .input(Items.PORKCHOP)
+                .outputs(TORTELLINI.getStackForm(8))
+                .buildAndRegister();
+        GTFORecipeMaps.MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(5000)
+                .input(Items.CHICKEN, 3)
+                .fluidInputs(Water.getFluid(8000))
+                .output(Items.COOKED_CHICKEN, 2)
+                .fluidOutputs(GTFOMaterialHandler.ChickenBroth.getFluid(8000))
                 .buildAndRegister();
     }
 }
