@@ -134,5 +134,21 @@ public class ItalianChain {
                 .outputs(TORTELLINI_IN_BRODO.getStackForm())
                 .buildAndRegister();
 
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(2000)
+                .input(Items.FISH)
+                .inputs(GARLIC_CLOVE.getStackForm(), ONION_SLICE.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.WhiteWine.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.VitelloTonnatoFlavorant.getFluid(200))
+                .buildAndRegister();
+        MIXER_RECIPES.recipeBuilder().EUt(16).duration(100)
+                .fluidInputs(GTFOMaterialHandler.VitelloTonnatoFlavorant.getFluid(200), GTFOMaterialHandler.OliveOil.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.VitelloTonnatoSauce.getFluid(400))
+                .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(100)
+                .fluidInputs(GTFOMaterialHandler.VitelloTonnatoSauce.getFluid(100), GTFOMaterialHandler.Yolk.getFluid(100))
+                .input(Items.COOKED_BEEF)
+                .inputs(PLATE.getStackForm())
+                .outputs(VITELLO_TONNATO.getStackForm())
+                .buildAndRegister();
     }
 }

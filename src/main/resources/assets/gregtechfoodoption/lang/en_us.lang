@@ -462,7 +462,7 @@ metaitem.food.meat_rotten.tooltip=You should have added Salt
 
 metaitem.food.banana.name=Banana
 metaitem.food.orange.name=Orange
-metaitem.food.grapes.name=Grapes
+metaitem.food.grapes.name=White Grapes
 metaitem.food.mango.name=Mango
 metaitem.food.apricot.name=Apricot
 metaitem.food.banana.tooltip=From Antananarivo
@@ -485,6 +485,7 @@ metaitem.food.leninade.tooltip=Let the Communism flow through you!
 material.gtfo_potato_juice=Potato Juice
 material.gtfo_vodka=Vodka
 material.gtfo_leninade=Leninade
+material.gtfo_white_wine=White Wine
 
 material.gtfo_sodium_carbonate_solution=Sodium Carbonate Solution
 
