@@ -371,6 +371,25 @@ public class GTFOMaterialHandler {
     public static final Material ChickenBroth = fluidBuilder(21595, "chicken_broth")
             .color(0xA4600D)
             .build();
+    public static final Material VitelloTonnatoSauce = fluidBuilder(21596, "vitello_tonnato_sauce")
+            .color(0xC6BABE)
+            .build();
+    public static final Material WhiteWine = fluidBuilder(21597, "white_wine")
+            .color(0xD7C259)
+            .build();
+    public static final Material MaceratedWhiteGrapes = fluidBuilder(21598, "macerated_white_grapes")
+            .color(0x8C9D41)
+            .build();
+    public static final Material PressedWhiteWort = fluidBuilder(21599, "pressed_white_wort")
+            .color(0xDEF37F)
+            .build();
+
+    public static final Material ClarifiedWhiteWort = fluidBuilder(21600, "clarified_white_wort")
+            .color(0xD8E4A4)
+            .build();
+    public static final Material VitelloTonnatoFlavorant = fluidBuilder(21601, "vitello_tonnato_flavorant")
+            .color(0xC2ACB0)
+            .build();
 
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")

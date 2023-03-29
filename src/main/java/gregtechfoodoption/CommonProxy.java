@@ -49,6 +49,8 @@ public class CommonProxy {
         RecipeMaps.EXTRACTOR_RECIPES.setMaxInputs(2);
         RecipeMaps.FERMENTING_RECIPES.setMaxInputs(1);
         RecipeMaps.FERMENTING_RECIPES.setMaxOutputs(1);
+        RecipeMaps.COMPRESSOR_RECIPES.setMaxFluidInputs(1);
+        RecipeMaps.COMPRESSOR_RECIPES.setMaxFluidOutputs(1);
     }
 
     public void onLoad() {

@@ -363,6 +363,9 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem CHEESE_ROLL_FORM;
     public static MetaItem<?>.MetaValueItem EGGPLANT_SLICE;
     public static MetaItem<?>.MetaValueItem SEASONED_PORK;
+
+    public static MetaItem<?>.MetaValueItem WHITE_WINE;
+
     public GTFOMetaItem() {
         super();
     }
@@ -852,6 +855,11 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
 
         PORCHETTA_SLICE = addItem(311, "food.porchetta_slice").addComponents(new GTFOFoodStats(2, 0.7f).setEatingDuration(5));
+
+        WHITE_WINE = addItem(319, "food.white_wine").addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 60),
+                new RandomPotionEffect(MobEffects.ABSORPTION, 400, 1, 100 - 40)));
+
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
