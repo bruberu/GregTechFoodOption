@@ -150,5 +150,31 @@ public class ItalianChain {
                 .inputs(PLATE.getStackForm())
                 .outputs(VITELLO_TONNATO.getStackForm())
                 .buildAndRegister();
+
+
+
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(2000)
+                .inputs(GTFOMaterialHandler.MashedPotato.getItemStack(4), GTFOMaterialHandler.GratedHorseradishRoot.getItemStack())
+                .fluidInputs(GTFOMaterialHandler.Egg.getFluid(600), GTFOMaterialHandler.OliveOil.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.RafanataMixture.getFluid(800))
+                .buildAndRegister();
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(64).duration(500)
+                .inputs(PLATE.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.RafanataMixture.getFluid(200))
+                .outputs(RAFANATA.getStackForm())
+                .buildAndRegister();
+
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(300)
+                .inputs(TAGLIATELLE.getStackForm(), GTFOMaterialHandler.ShreddedParmesan.getItemStack(), PLATE.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.Butter.getFluid(200))
+                .outputs(FETTUCCINE_ALFREDO.getStackForm())
+                .buildAndRegister();
+
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(1000)
+                .inputs(RICE.getStackForm(3), GTFOMaterialHandler.ShreddedParmesan.getItemStack(), GTFOMetaItem.ONION_SLICE.getStackForm(), CERAMIC_BOWL.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.ChickenBroth.getFluid(700), GTFOMaterialHandler.Butter.getFluid(200), GTFOMaterialHandler.WhiteWine.getFluid(100))
+                .outputs(RISOTTO.getStackForm())
+                .buildAndRegister();
+
     }
 }
