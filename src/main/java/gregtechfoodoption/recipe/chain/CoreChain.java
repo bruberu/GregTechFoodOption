@@ -674,6 +674,11 @@ public class CoreChain {
                 .fluidInputs(Water.getFluid(5000))
                 .fluidOutputs(FertilizerSolution.getFluid(5000))
                 .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder().EUt(8).duration(100)
+                .inputs(HORSERADISH.getStackForm())
+                .outputs(GratedHorseradishRoot.getItemStack())
+                .buildAndRegister();
     }
 
     public static void corn() {
