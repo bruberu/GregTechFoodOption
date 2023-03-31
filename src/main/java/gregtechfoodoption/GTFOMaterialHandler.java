@@ -393,6 +393,15 @@ public class GTFOMaterialHandler {
     public static final Material RafanataMixture = fluidBuilder(21602, "rafanata_mixture")
             .color(0xDCB239)
             .build();
+    public static final Material CarbonaraSauce = fluidBuilder(21603, "carbonara_sauce")
+            .color(0xCDAF44)
+            .build();
+    public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base")
+            .color(0xD4592F)
+            .build();
+    public static final Material MixedPastaEFagioli = fluidBuilder(21604, "mixed_pasta_e_fagioli")
+            .color(0xE48628)
+            .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
