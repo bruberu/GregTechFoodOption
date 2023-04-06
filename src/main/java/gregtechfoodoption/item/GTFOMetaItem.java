@@ -365,6 +365,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem SEASONED_PORK;
 
     public static MetaItem<?>.MetaValueItem WHITE_WINE;
+    public static MetaItem<?>.MetaValueItem WHITE_GRAPES;
 
     public GTFOMetaItem() {
         super();
@@ -899,6 +900,8 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         RICE = addItem(270, "component.rice");
         RICE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_RICE, RICE.getStackForm(), RICE.getStackForm()));
         NUTMEG_SEED = addItem(271, "component.nutmeg");
+        WHITE_GRAPES = addItem(320, "food.white_grapes").addComponents(new GTFOFoodStats(1, 1f)
+                .setEatingDuration(20));
 
 
         // 175-189 left blank for organic circuits
