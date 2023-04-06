@@ -67,7 +67,7 @@ public class AlcoholChain {
                 .buildAndRegister();
 
         FERMENTING_RECIPES.recipeBuilder().EUt(4).duration(500)
-                .inputs(GRAPES.getStackForm(10))
+                .inputs(WHITE_GRAPES.getStackForm(10))
                 .fluidInputs(Water.getFluid(4000))
                 .fluidOutputs(MaceratedWhiteGrapes.getFluid(4000))
                 .buildAndRegister();

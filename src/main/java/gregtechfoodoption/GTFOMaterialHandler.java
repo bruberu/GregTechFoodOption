@@ -507,6 +507,7 @@ public class GTFOMaterialHandler {
     public static final MetaOreDictItem.OreDictValueItem BlackPepper = SHAPED_ITEM.addOreDictItem(1134, "black_pepper", 0x02030f, MaterialIconSet.DULL, dust);
     public static final MetaOreDictItem.OreDictValueItem Nutmeg = SHAPED_ITEM.addOreDictItem(1135, "nutmeg", 0x391A0C, MaterialIconSet.DULL, dust);
     public static final MetaOreDictItem.OreDictValueItem GratedHorseradishRoot = SHAPED_ITEM.addOreDictItem(1136, "grated_horseradish_root", 0xE5D2C1, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem BoneChinaClay = SHAPED_ITEM.addOreDictItem(1137, "bone_china_clay", 0xEEC1C1, MaterialIconSet.DULL, dust);
 
     public static final GTFOOredictItem.OreDictValueItem BareCornKernel = SHAPED_ITEM.addOreDictItem(1001, "corn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addOreDictItem(1000, "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
