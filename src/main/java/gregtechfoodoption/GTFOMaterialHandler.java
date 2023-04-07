@@ -399,8 +399,21 @@ public class GTFOMaterialHandler {
     public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base")
             .color(0xD4592F)
             .build();
-    public static final Material MixedPastaEFagioli = fluidBuilder(21604, "mixed_pasta_e_fagioli")
+    public static final Material MixedPastaEFagioli = fluidBuilder(21605, "mixed_pasta_e_fagioli")
             .color(0xE48628)
+            .build();
+
+    public static final Material RedGrapesMust = fluidBuilder(21606, "red_grapes_must")
+            .color(0xD32552)
+            .build();
+    public static final Material FermentedRedGrapesMust = fluidBuilder(21607, "fermented_red_grapes_must")
+            .color(0xA83351)
+            .build();
+    public static final Material AlcoholicRedGrapeJuice = fluidBuilder(21608, "alcoholic_red_grape_juice")
+            .color(0xA4002A)
+            .build();
+    public static final Material RedWine = fluidBuilder(21609, "red_wine")
+            .color(0x641126)
             .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")

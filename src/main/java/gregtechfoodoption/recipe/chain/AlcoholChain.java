@@ -2,6 +2,7 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.MetaItems;
 import net.minecraft.init.Items;
 
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -83,11 +84,35 @@ public class AlcoholChain {
                 .fluidInputs(ClarifiedWhiteWort.getFluid(8000))
                 .fluidOutputs(WhiteWine.getFluid(8000))
                 .buildAndRegister();
-
         CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
                 .input(Items.GLASS_BOTTLE)
                 .fluidInputs(WhiteWine.getFluid(200))
                 .outputs(WHITE_WINE.getStackForm())
                 .buildAndRegister();
+
+        COMPRESSOR_RECIPES.recipeBuilder().EUt(16).duration(300)
+                .inputs(GRAPES.getStackForm(10))
+                .outputs(MetaItems.BIO_CHAFF.getStackForm(1))
+                .fluidOutputs(RedGrapesMust.getFluid(4000))
+                .buildAndRegister();
+        FERMENTING_RECIPES.recipeBuilder().EUt(8).duration(8000)
+                .fluidInputs(RedGrapesMust.getFluid(8000))
+                .fluidOutputs(FermentedRedGrapesMust.getFluid(8000))
+                .buildAndRegister();
+        COMPRESSOR_RECIPES.recipeBuilder().EUt(24).duration(500)
+                .fluidInputs(FermentedRedGrapesMust.getFluid(1000))
+                .outputs(MetaItems.BIO_CHAFF.getStackForm(1))
+                .fluidOutputs(AlcoholicRedGrapeJuice.getFluid(1000))
+                .buildAndRegister();
+        FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(8000)
+                .fluidInputs(AlcoholicRedGrapeJuice.getFluid(8000))
+                .fluidOutputs(RedWine.getFluid(8000))
+                .buildAndRegister();
+/*        CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
+                .input(Items.GLASS_BOTTLE)
+                .fluidInputs(RedWine.getFluid(200))
+                .outputs(RED_WINE.getStackForm())
+                .buildAndRegister();*/
+
     }
 }
