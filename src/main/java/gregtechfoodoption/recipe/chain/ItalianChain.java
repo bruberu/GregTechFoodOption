@@ -209,5 +209,25 @@ public class ItalianChain {
                 .outputs(PASTA_E_FAGIOLI.getStackForm())
                 .buildAndRegister();
 
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(16).duration(1500)
+                .input(dust, Meat, 2)
+                .inputs(CARROT_SLICE.getStackForm(4), ONION_SLICE.getStackForm(2))
+                .fluidInputs(GTFOMaterialHandler.ChickenBroth.getFluid(800), GTFOMaterialHandler.OliveOil.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.BologneseSauce.getFluid(1000))
+                .buildAndRegister();
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(500)
+                .fluidInputs(GTFOMaterialHandler.BologneseSauce.getFluid(900), GTFOMaterialHandler.RedWine.getFluid(100), TomatoSauce.getFluid(100))
+                .fluidOutputs(GTFOMaterialHandler.TomatoBologneseSauce.getFluid(2000))
+                .buildAndRegister();
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(500)
+                .inputs(TAGLIATELLE.getStackForm(), PLATE.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.TomatoBologneseSauce.getFluid(350), Milk.getFluid(50))
+                .outputs(TAGLIATELLE_AL_RAGU.getStackForm())
+                .buildAndRegister();
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(64).duration(1000)
+                .inputs(EGGPLANT_SLICE.getStackForm(8), GTFOMaterialHandler.ShreddedParmesan.getItemStack(2), MOZZARELLA_SLICE.getStackForm(2), PLATE.getStackForm())
+                .fluidInputs(TomatoSauce.getFluid(200))
+                .outputs(PARMIGIANA.getStackForm())
+                .buildAndRegister();
     }
 }

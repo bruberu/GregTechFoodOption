@@ -415,6 +415,13 @@ public class GTFOMaterialHandler {
     public static final Material RedWine = fluidBuilder(21609, "red_wine")
             .color(0x641126)
             .build();
+    public static final Material BologneseSauce = fluidBuilder(21610, "bolognese_sauce")
+            .color(0x782A14)
+            .build();
+    public static final Material TomatoBologneseSauce = fluidBuilder(21611, "tomato_bolognese_sauce")
+            .color(0xCA190F)
+            .build();
+
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
