@@ -48,11 +48,6 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
     }
 
     @Override
-    public RecipeMap<?> getRecipeMap() {
-        return super.getRecipeMap();
-    }
-
-    @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
         return GTFOClientHandler.REINFORCED_ADOBE_BRICKS;
     }

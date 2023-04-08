@@ -472,7 +472,7 @@ public class CoreChain {
         GTFOUtils.getMeat().forEach(itemStack -> {
             ArrayList<ItemStack> input = new ArrayList<>();
             input.add(itemStack);
-            Recipe conflict = MACERATOR_RECIPES.findRecipe(2, input, new ArrayList<>(), 0);
+            Recipe conflict = MACERATOR_RECIPES.findRecipe(2, input, new ArrayList<>(), false);
             if (conflict != null) {
                 MACERATOR_RECIPES.removeRecipe(conflict);
             }

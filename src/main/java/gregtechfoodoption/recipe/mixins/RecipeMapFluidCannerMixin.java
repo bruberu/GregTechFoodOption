@@ -32,7 +32,7 @@ public class RecipeMapFluidCannerMixin {
                     ordinal = 0),*/
             @At(value = "RETURN", ordinal = 1),
             locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void checkLacingRecipes(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, int outputFluidTankCapacity, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe, Iterator var8, ItemStack input, ItemStack inputStack, ItemStack fluidHandlerItemStack, IFluidHandlerItem fluidHandlerItem) {
+    private void checkLacingRecipes(long voltage, List inputs, List fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe, Iterator var7, ItemStack input, ItemStack inputStack, ItemStack fluidHandlerItemStack, IFluidHandlerItem fluidHandlerItem) {
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
@@ -41,8 +41,8 @@ public class RecipeMapFluidCannerMixin {
                     opcode = Opcodes.GOTO,
                     ordinal = 0),*/
             @At(value = "RETURN", ordinal = 4),
-            locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void checkLacingRecipes2(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, int outputFluidTankCapacity, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe) {
+            locals = LocalCapture.PRINT, cancellable = true)
+    private void checkLacingRecipes2(long voltage, List inputs, List fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe) {
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
