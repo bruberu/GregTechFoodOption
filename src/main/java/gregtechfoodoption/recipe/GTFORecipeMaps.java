@@ -43,8 +43,7 @@ public class GTFORecipeMaps {
 
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> MULTICOOKER_RECIPES = new RecipeMap<>("multicooker",
-            0, 3, 0, 3, 0, 3, 0, 2, new SimpleRecipeBuilder(), false)
-            .setSlotOverlay(false, false, GuiTextures.HEATING_OVERLAY_1)
+            0, 6, 0, 3, 0, 3, 0, 2, new SimpleRecipeBuilder(), false)
             .setSlotOverlay(false, true, GuiTextures.HEATING_OVERLAY_1)
             .setSound(GTSoundEvents.MIXER)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);

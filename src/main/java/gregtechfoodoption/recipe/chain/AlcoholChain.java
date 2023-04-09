@@ -108,11 +108,11 @@ public class AlcoholChain {
                 .fluidInputs(AlcoholicRedGrapeJuice.getFluid(8000))
                 .fluidOutputs(RedWine.getFluid(8000))
                 .buildAndRegister();
-/*        CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
+        CANNER_RECIPES.recipeBuilder().EUt(12).duration(30)
                 .input(Items.GLASS_BOTTLE)
                 .fluidInputs(RedWine.getFluid(200))
                 .outputs(RED_WINE.getStackForm())
-                .buildAndRegister();*/
+                .buildAndRegister();
 
     }
 }

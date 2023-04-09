@@ -181,6 +181,12 @@ public class SeedsChain {
                 .inputs(BLACK_PEPPERCORN.getStackForm())
                 .outputs(BlackPepper.getItemStack(2))
                 .buildAndRegister();
+        ModHandler.addShapelessRecipe("gtfo_nutmeg", Nutmeg.getItemStack(),
+                NUTMEG_SEED, 'm');
+        RecipeMaps.MACERATOR_RECIPES.recipeBuilder().EUt(8).duration(80)
+                .inputs(NUTMEG_SEED.getStackForm())
+                .outputs(Nutmeg.getItemStack(2))
+                .buildAndRegister();
 
 
 /*

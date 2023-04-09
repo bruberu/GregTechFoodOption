@@ -30,6 +30,8 @@ public class GTFORecipeAddition {
         CapletChain.init();
         IVBagChain.init();
         ItalianChain.init();
+        PastaChain.init();
+        PlateChain.init();
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
