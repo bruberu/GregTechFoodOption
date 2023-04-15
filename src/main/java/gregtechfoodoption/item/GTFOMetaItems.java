@@ -1,12 +1,8 @@
 package gregtechfoodoption.item;
 
-import gregtech.api.items.metaitem.MetaItem;
 import gregtechfoodoption.tools.GTFOToolItems;
 
-import java.util.List;
-
 public class GTFOMetaItems {
-    public static List<MetaItem<?>> ITEMS = MetaItem.getMetaItems();
     public static GTFOMetaItem META_ITEM;
     public static GTFOOredictItem SHAPED_ITEM = new GTFOOredictItem((short) 0);
 

@@ -28,10 +28,12 @@ public class GTFOClientHandler {
 
     public static SoundEvent MICROWAVE_FINISH;
     public static SoundEvent FARMER_LASER;
+    public static SoundEvent AMOGUS_VENT;
 
     public static void registerSounds() {
         MICROWAVE_FINISH = registerSound("microwave.finish");
         FARMER_LASER = registerSound("farmer.laser");
+        AMOGUS_VENT = registerSound("amogus.vent");
     }
 
     private static SoundEvent registerSound(String soundNameIn) {

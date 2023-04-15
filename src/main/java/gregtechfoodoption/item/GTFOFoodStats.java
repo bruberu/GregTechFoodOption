@@ -92,21 +92,20 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
             GTFOAppleCoreCompat.sendEatenEvent(player, itemStack, getFoodLevel(itemStack, player), getSaturation(itemStack, player));
             itemStack.shrink(1);
         }
-        if (!player.world.isRemote) {
-            for (RandomPotionEffect potionEffect : this.potionEffects) {
-                if (Math.random() * 100.0D > (double) potionEffect.chance) {
-                    player.addPotionEffect(GTUtility.copyPotionEffect(potionEffect.effect));
-                }
+        for (RandomPotionEffect potionEffect : this.potionEffects) {
+            if (Math.random() * 100.0D > (double) potionEffect.chance) {
+                player.addPotionEffect(GTUtility.copyPotionEffect(potionEffect.effect));
             }
-
+        }
+        if (player != null && !player.world.isRemote) {
             if (this.stackSupplier != null) {
                 ItemStack containerItem = stackSupplier.get().copy();
-                if (player == null || !player.capabilities.isCreativeMode) {
+                if (!player.capabilities.isCreativeMode) {
                     if (itemStack.isEmpty()) {
                         return containerItem;
                     }
 
-                    if (player != null && !player.inventory.addItemStackToInventory(containerItem)) {
+                    if (!player.inventory.addItemStackToInventory(containerItem)) {
                         player.dropItem(containerItem, false, false);
                     }
                 }
@@ -122,10 +121,18 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
             GTFOUtils.addPotionTooltip(Arrays.asList(potionEffects), list);
         }
         list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.lacing").getFormattedText());
+        if (this.eatingDuration != 32) {
+            list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.duration", this.eatingDuration).getFormattedText());
+        }
     }
 
     public GTFOFoodStats setEatingDuration(int duration) {
         this.eatingDuration = duration;
+        return this;
+    }
+
+    public GTFOFoodStats setPotionEffects(RandomPotionEffect... effects) {
+        this.potionEffects = effects;
         return this;
     }
 

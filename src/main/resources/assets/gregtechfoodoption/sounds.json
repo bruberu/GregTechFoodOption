@@ -1,4 +1,5 @@
 {
+  "amogus.vent": {"category": "player", "sounds": [{"name": "gregtechfoodoption:amogus.vent", "stream": false}]},
   "microwave.finish": {"category": "block", "sounds": [{"name": "gregtechfoodoption:microwave.finish", "stream": false}]},
   "farmer.laser": {"category": "block", "sounds": [{"name": "gregtechfoodoption:farmer.laser", "stream": false}]}
 }

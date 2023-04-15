@@ -229,5 +229,10 @@ public class ItalianChain {
                 .fluidInputs(TomatoSauce.getFluid(200))
                 .outputs(PARMIGIANA.getStackForm())
                 .buildAndRegister();
+
+        MULTICOOKER_RECIPES.recipeBuilder().EUt(64).duration(3000)
+                .inputs(ARTICHOKE_HEART.getStackForm(), GARLIC_CLOVE.getStackForm())
+                .outputs(CARCIOFI_ALLA_ROMANA.getStackForm())
+                .buildAndRegister();
     }
 }

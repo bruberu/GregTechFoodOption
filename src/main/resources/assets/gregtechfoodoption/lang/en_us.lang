@@ -896,3 +896,4 @@ gregtechfoodoption.hello_buildcraft=A mod (probably BuildCraft) is being stupid
 
 metaitem.food.lasagna.chum.name=Chum Lasagna
 metaitem.food.lasagna.chum.tooltip="chumagna" - dan, the wise
+gregtechfoodoption.tooltip.food.duration=§aTakes §f%i§a ticks to eat (compared to the normal 32)

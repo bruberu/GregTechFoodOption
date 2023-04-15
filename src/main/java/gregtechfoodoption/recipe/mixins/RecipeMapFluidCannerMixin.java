@@ -41,7 +41,7 @@ public class RecipeMapFluidCannerMixin {
                     opcode = Opcodes.GOTO,
                     ordinal = 0),*/
             @At(value = "RETURN", ordinal = 4),
-            locals = LocalCapture.PRINT, cancellable = true)
+            locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
     private void checkLacingRecipes2(long voltage, List inputs, List fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe) {
         findLacingRecipe(inputs, fluidInputs, cir);
     }

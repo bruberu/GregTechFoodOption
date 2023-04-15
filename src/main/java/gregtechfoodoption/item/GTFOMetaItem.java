@@ -2,8 +2,8 @@ package gregtechfoodoption.item;
 
 import gregtech.api.items.metaitem.FoodUseManager;
 import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.items.metaitem.StandardMetaItem;
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
+import gregtech.api.items.metaitem.stats.IItemComponent;
 import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
 import gregtech.api.items.toolitem.IGTTool;
 import gregtech.api.unification.OreDictUnifier;
@@ -13,9 +13,9 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOCrops;
-import gregtechfoodoption.potion.CreativityPotion;
-import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
-import gregtechfoodoption.potion.StepAssistPotion;
+import gregtechfoodoption.item.food.GTFOFoodUseManager;
+import gregtechfoodoption.potion.*;
+import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -29,6 +29,7 @@ import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.food.IEdible;
 
 import javax.annotation.Nonnull;
+import java.lang.reflect.Field;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.GTFOMaterialHandler.BareCornKernel;
@@ -36,7 +37,7 @@ import static net.minecraft.potion.Potion.getPotionById;
 
 
 @Optional.Interface(modid = GTFOValues.MODID_AP, iface = "squeek.applecore.api.food.IEdible")
-public class GTFOMetaItem extends StandardMetaItem implements IEdible {
+public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> implements IEdible {
     //foods
     public static MetaItem<?>.MetaValueItem POPCORN_BAG;
     public static MetaItem<?>.MetaValueItem PAPER_BAG;
@@ -374,7 +375,12 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     public static MetaItem<?>.MetaValueItem UNFIRED_BOWL;
 
     public GTFOMetaItem() {
-        super();
+        super((short) 0);
+    }
+
+    @Override
+    protected GTFOMetaValueItem constructMetaValueItem(short metaValue, String unlocalizedName) {
+        return new GTFOMetaValueItem(metaValue, unlocalizedName);
     }
 
     @Override
@@ -781,35 +787,55 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
         PARACETAMOL_CAPLET = addItem(230, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
         PLUTONIUM_241_CAPLET = addItem(231, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
 
-        BRUSCHETTA = addItem(272, "food.bruschetta").addComponents(new GTFOFoodStats(4, 0.7f)); // I mean, you can technically hold this without a plate
-        CAPONATA = addItem(273, "food.caponata").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
-        CARBONARA = addItem(274, "food.carbonara").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        CARCIOFI_ALLA_ROMANA = addItem(275, "food.carciofi_alla_romana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        FETTUCCINE_ALFREDO = addItem(276, "food.fettuccine_alfredo").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        PARMIGIANA = addItem(277, "food.parmigiana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        PASTA_E_FAGIOLI = addItem(278, "food.pasta_e_fagioli").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
-        PASTA_ALLA_NORMA = addItem(279, "food.pasta_alla_norma").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        PASTA_AL_POMODORO = addItem(280, "food.pasta_al_pomodoro").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        POLENTA = addItem(281, "food.polenta").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
-        RAFANATA = addItem(282, "food.rafanata").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        RISOTTO = addItem(283, "food.risotto").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
-        SPAGHETTI_ALLASSASSINA = addItem(284, "food.spaghetti_all'assassina").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        BRUSCHETTA = addItem(272, "food.bruschetta").addComponents(new GTFOFoodStats(6, 0.5f)
+                .setPotionEffects(new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 200, 0, 100 - 50))); // I mean, you can technically hold this without a plate
+        CAPONATA = addItem(273, "food.caponata").addComponents(new GTFOFoodStats(6, 0.9f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(PotionLengthenerPotion.INSTANCE, 200, 0, 100 - 50)));
+        CARBONARA = addItem(274, "food.carbonara").addComponents(new GTFOFoodStats(9, 0.8f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.HEALTH_BOOST, 1000, 0, 100 - 50)));
+        CARCIOFI_ALLA_ROMANA = addItem(275, "food.carciofi_alla_romana").addComponents(new GTFOFoodStats(8, 1.3f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 1500, 1, 100 - 95)));
+        FETTUCCINE_ALFREDO = addItem(276, "food.fettuccine_alfredo").addComponents(new GTFOFoodStats(8, 0.4f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setEatingDuration(20));
+        PARMIGIANA = addItem(277, "food.parmigiana").addComponents(new GTFOFoodStats(8, 1.1f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.REGENERATION, 500, 0, 100 - 50)));
+        PASTA_E_FAGIOLI = addItem(278, "food.pasta_e_fagioli").addComponents(new GTFOFoodStats(4, 2.5f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.HASTE, 3000, 1, 100 - 50)));
+        PASTA_ALLA_NORMA = addItem(279, "food.pasta_alla_norma").addComponents(new GTFOFoodStats(10, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setEatingDuration(128));
+        PASTA_AL_POMODORO = addItem(280, "food.pasta_al_pomodoro").addComponents(new GTFOFoodStats(5, 0.5f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 160, 1, 100 - 30)).setEatingDuration(50));
+        POLENTA = addItem(281, "food.polenta").addComponents(new GTFOFoodStats(6, 0.4f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.SATURATION, 500, 0, 100 - 50)));
+        RAFANATA = addItem(282, "food.rafanata").addComponents(new GTFOFoodStats(7, 1f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.JUMP_BOOST, 500, 0, 100 - 80)));
+        RISOTTO = addItem(283, "food.risotto").addComponents(new GTFOFoodStats(10, 0.8f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.SPEED, 3000, 1, 100 - 50)));
+        SPAGHETTI_ALLASSASSINA = addItem(284, "food.spaghetti_all'assassina").addComponents(new GTFOFoodStats(6, 0.8f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 100, 10, 100 - 60)));
         TAGLIATELLE_AL_RAGU = addItem(285, "food.tagliatelle_al_ragu").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
         TORTELLINI_IN_BRODO = addItem(286, "food.tortellini_in_brodo").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm()));
-        VITELLO_TONNATO = addItem(287, "food.vitello_tonnato").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        LASAGNA_CHUM = addItem(288, "food.lasagna.chum").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        LASAGNA_NAPOLETANA = addItem(289, "food.lasagna.napoletana").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        LASAGNA_PESTO = addItem(290, "food.lasagna.pesto").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
-        PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus").addComponents(new GTFOFoodStats(4, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm()));
+        VITELLO_TONNATO = addItem(287, "food.vitello_tonnato").addComponents(new GTFOFoodStats(5, 0.6f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(PotionLengthenerPotion.INSTANCE, 400, 1, 100 - 50), new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 400, 0, 100 - 50)));
+        LASAGNA_CHUM = addItem(288, "food.lasagna.chum").addComponents(new GTFOFoodStats(9, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.LUCK, 3000, 0, 100 - 80)).setEatingDuration(64));
+        LASAGNA_NAPOLETANA = addItem(289, "food.lasagna.napoletana").addComponents(new GTFOFoodStats(8, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.NIGHT_VISION, 3000, 0, 100 - 90)).setEatingDuration(64));
+        LASAGNA_PESTO = addItem(290, "food.lasagna.pesto").addComponents(new GTFOFoodStats(8, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 3000, 0, 100 - 90)).setEatingDuration(64));
+        PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus").addComponents(new GTFOFoodStats(5, 0.1f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(VentingPotion.INSTANCE, 400, 0, 100 - 50)));
 
         PORCHETTA_SLICE = addItem(311, "food.porchetta_slice").addComponents(new GTFOFoodStats(2, 0.7f).setEatingDuration(5));
 
-        WHITE_WINE = addItem(319, "food.white_wine").addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+        WHITE_WINE = addItem(319, "food.white_wine").addComponents(new GTFOFoodStats(6, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 60),
-                new RandomPotionEffect(MobEffects.ABSORPTION, 400, 1, 100 - 40)));
+                new RandomPotionEffect(MobEffects.ABSORPTION, 400, 1, 100 - 40))
+                .setEatingDuration(96));
         RED_WINE = addItem(324, "food.red_wine").addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 60),
-                new RandomPotionEffect(MobEffects.RESISTANCE, 400, 0, 100 - 40)));
+                new RandomPotionEffect(MobEffects.RESISTANCE, 400, 0, 100 - 40))
+                .setEatingDuration(96));
 
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
@@ -907,7 +933,7 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
     }
 
 
-    protected String formatModelPath(MetaItem<?>.MetaValueItem metaValueItem) {
+    protected String formatModelPath(GTFOMetaItem.GTFOMetaValueItem metaValueItem) {
         return "metaitems/" + metaValueItem.unlocalizedName.replace('.', '/');
     }
 
@@ -942,4 +968,33 @@ public class GTFOMetaItem extends StandardMetaItem implements IEdible {
             }
         }
     }
+
+    public class GTFOMetaValueItem extends MetaItem<?>.MetaValueItem {
+
+        protected GTFOMetaValueItem(int metaValue, String unlocalizedName) {
+            super(metaValue, unlocalizedName);
+            setMaxStackSize(1);
+        }
+
+
+        protected void addItemComponentsInternal(IItemComponent... stats) {
+            super.addItemComponentsInternal(stats);
+            for (IItemComponent stat : stats) {
+                if (stat instanceof GTFOFoodStats) {
+                    try {
+                        Class clazz = this.getClass();
+                        Field field = clazz.getDeclaredField("useManager");
+                        field.setAccessible(true);
+                        field.set(this, new GTFOFoodUseManager((GTFOFoodStats) stat));
+                    } catch (Exception e) {
+                        GTFOLog.logger.error("Failed to add GTFOFoodStats to GTFOMetaValueItem", e);
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+    }
+
+
 }

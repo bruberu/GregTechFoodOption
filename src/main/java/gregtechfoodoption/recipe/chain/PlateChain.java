@@ -7,6 +7,7 @@ import net.minecraft.init.Items;
 
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.Glass;
+import static gregtech.api.unification.material.Materials.Water;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class PlateChain {
@@ -35,6 +36,17 @@ public class PlateChain {
         ALLOY_SMELTER_RECIPES.recipeBuilder().EUt(8).duration(200)
                 .input(dust, Glass)
                 .inputs(GTFOMetaItem.UNFIRED_BOWL.getStackForm())
+                .outputs(GTFOMetaItem.CERAMIC_BOWL.getStackForm())
+                .buildAndRegister();
+
+        CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(8).duration(800)
+                .inputs(GTFOMetaItem.DIRTY_PLATE.getStackForm())
+                .fluidInputs(Water.getFluid(2000))
+                .outputs(GTFOMetaItem.PLATE.getStackForm())
+                .buildAndRegister();
+        CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(8).duration(800)
+                .inputs(GTFOMetaItem.DIRTY_CERAMIC_BOWL.getStackForm())
+                .fluidInputs(Water.getFluid(2000))
                 .outputs(GTFOMetaItem.CERAMIC_BOWL.getStackForm())
                 .buildAndRegister();
     }
