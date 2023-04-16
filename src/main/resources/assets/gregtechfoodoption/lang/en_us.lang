@@ -900,7 +900,7 @@ gregtechfoodoption.hello_buildcraft=A mod (probably BuildCraft) is being stupid
 
 metaitem.food.lasagna.chum.name=Chum Lasagna
 metaitem.food.lasagna.chum.tooltip="chumagna" - dan, the wise
-gregtechfoodoption.tooltip.food.duration=§aTakes §f%i§a ticks to eat (compared to the normal 32)
+gregtechfoodoption.tooltip.food.duration=§aTakes §f%s§a ticks to eat (compared to the normal 32)
 gregtechfoodoption.potion.amplifier=Effect Amplification
 gregtechfoodoption.potion.lengthener=Effect Lengthener
 gregtechfoodoption.potion.venting=Venting
@@ -1056,3 +1056,6 @@ gregtechfoodoption.machine.multicooker.uiv.tooltip=Cooking Pot 9001
 gregtechfoodoption.machine.multicooker.uxv.tooltip=Cooking Pot 9001
 gregtechfoodoption.machine.multicooker.opv.tooltip=Cooking Pot 9001
 recipemap.multicooker.name=Multicooker
+
+metaitem.food.emergency_rations.name=Emergency Rations
+metaitem.food.emergency_rations.tooltip=The seal is way too hard to open

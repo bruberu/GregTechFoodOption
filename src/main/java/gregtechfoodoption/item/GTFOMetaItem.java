@@ -374,6 +374,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem UNFIRED_PLATE;
     public static MetaItem<?>.MetaValueItem UNFIRED_BOWL;
 
+    public static MetaItem<?>.MetaValueItem EMERGENCY_RATIONS;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -837,6 +839,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 new RandomPotionEffect(MobEffects.RESISTANCE, 400, 0, 100 - 40))
                 .setEatingDuration(96));
 
+        EMERGENCY_RATIONS = addItem(325, "food.emergency_rations").addComponents(new GTFOFoodStats(5, 1.0f, false, true)
+                .setPotionEffects(new RandomPotionEffect(MobEffects.NAUSEA, 400, 0, 100 - 10)).setEatingDuration(60));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");

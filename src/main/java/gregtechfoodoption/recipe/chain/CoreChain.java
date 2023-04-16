@@ -680,6 +680,12 @@ public class CoreChain {
                 .inputs(HORSERADISH.getStackForm())
                 .outputs(GratedHorseradishRoot.getItemStack())
                 .buildAndRegister();
+
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(64).duration(200)
+                .inputs(BEANS.getStackForm(), MeatIngot.getItemStack())
+                .input(plate, Polyethylene, 2)
+                .outputs(EMERGENCY_RATIONS.getStackForm())
+                .buildAndRegister();
     }
 
     public static void corn() {
