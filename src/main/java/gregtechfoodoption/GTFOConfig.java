@@ -12,6 +12,9 @@ public class GTFOConfig {
     @Config.Comment("Show tooltips always, regardless of what keys are held?")
     public static boolean showTooltipsAlways = true;
 
+    @Config.Comment("Turn on GTFO tree generation? Required for many mod features.")
+    public static boolean enableGTFOTrees = true;
+
     @Config.Comment("Chain Options")
     public static GTFOChainsConfig gtfoChainsConfig = new GTFOChainsConfig();
 

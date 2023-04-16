@@ -82,7 +82,7 @@ public class MetaTileEntityMobExtractor extends SimpleMachineMetaTileEntity {
         }
 
         @Override
-        protected boolean checkRecipe(Recipe recipe) {
+        public boolean checkRecipe(Recipe recipe) {
             return ((MetaTileEntityMobExtractor) metaTileEntity).checkRecipe(recipe);
         }
 

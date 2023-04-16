@@ -67,7 +67,11 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
 
     @Override
     public String getVariantTranslationKey(IBlockState state) {
-        return "gregtechfoodoption.sapling." + this.getTreeFromState(state).name;
+        try {
+            return "gregtechfoodoption.sapling." + this.getTreeFromState(state).name;
+        } catch (IndexOutOfBoundsException e) {
+            return "gregtechfoodoption.hello_buildcraft";
+        }
     }
 
     public GTFOTree getTreeFromState(IBlockState state) {

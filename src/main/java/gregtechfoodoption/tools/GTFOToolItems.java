@@ -14,6 +14,7 @@ import gregtech.common.items.ToolItems;
 import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOMetaItem;
+import net.minecraft.init.Enchantments;
 
 public class GTFOToolItems {
 
@@ -25,11 +26,10 @@ public class GTFOToolItems {
                 .oreDict("craftingToolRollingPin")
                 .toolClasses(ROLLING_PIN_CLASS));
         GTFOMetaItem.BUTCHERY_KNIFE_HV = ToolItems.register(ItemGTSword.Builder.of(GTFOValues.MODID, "butchery_knife.hv")
-                .toolStats(b -> b.crafting().attacking().brokenStack(ToolHelper.SUPPLY_POWER_UNIT_HV))
+                .toolStats(b -> b.crafting().attacking().brokenStack(ToolHelper.SUPPLY_POWER_UNIT_HV).defaultEnchantment(Enchantments.LOOTING, 5))
                 .sound(GTSoundEvents.CUT)
                 .toolClasses(ToolClasses.BUTCHERY_KNIFE)
                 .electric(GTValues.HV));
-
     }
 
     public static void registerCustomRecipes() {

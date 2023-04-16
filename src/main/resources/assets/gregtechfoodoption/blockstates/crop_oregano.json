@@ -1,0 +1,42 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_oregano/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_oregano/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_oregano/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_oregano/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_oregano/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_oregano/stage5"
+        }
+      },
+      "6": {},
+      "7": {}
+    }
+  }
+}

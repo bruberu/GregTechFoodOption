@@ -48,11 +48,6 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
     }
 
     @Override
-    public RecipeMap<?> getRecipeMap() {
-        return super.getRecipeMap();
-    }
-
-    @Override
     public ICubeRenderer getBaseTexture(IMultiblockPart iMultiblockPart) {
         return GTFOClientHandler.REINFORCED_ADOBE_BRICKS;
     }
@@ -106,7 +101,7 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
         @Override
         protected void setupRecipe(Recipe recipe) {
             super.setupRecipe(recipe);
-            recipeSteamT = previousRecipe == null ? 0 : this.previousRecipe.getProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), 0);
+            recipeSteamT = previousRecipe == null ? 0 : this.previousRecipe.getProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), 0) / 4;
         }
 
         @Override

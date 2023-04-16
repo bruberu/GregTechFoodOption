@@ -1,21 +1,30 @@
 package gregtechfoodoption.recipe;
 
+import gregtech.api.capability.GregtechCapabilities;
+import gregtech.api.capability.IElectricItem;
+import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Material;
+import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.material.properties.ToolProperty;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.item.GTFOMetaItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 
+import static gregtech.common.items.MetaItems.POWER_UNIT_HV;
 import static gregtech.loaders.recipe.handlers.ToolRecipeHandler.addToolRecipe;
+import static gregtechfoodoption.item.GTFOMetaItem.BUTCHERY_KNIFE_HV;
 
 public class GTFORecipeHandler {
 
     public static void register() {
         OrePrefix.ingot.addProcessingHandler(PropertyKey.TOOL, GTFORecipeHandler::processIngot);
-/*
-        OrePrefix.toolHeadSword.addProcessingHandler(PropertyKey.TOOL, GTFORecipeHandler::processSword);
-*/
+
+        OrePrefix.plate.addProcessingHandler(PropertyKey.TOOL, GTFORecipeHandler::processPlate);
+
     }
 
     private static void processIngot(OrePrefix ingotPrefix, Material material, ToolProperty property) {
@@ -28,25 +37,24 @@ public class GTFORecipeHandler {
 
     }
 
-/*    private static void processSword(OrePrefix prefix, Material material, ToolProperty property) {
+    private static void processPlate(OrePrefix prefix, Material material, ToolProperty property) {
         if (property.getToolDurability() > 0) {
-            ItemStack[] power_units = {POWER_UNIT_HV.getMaxChargeOverrideStack(1800000L), POWER_UNIT_HV.getMaxChargeOverrideStack(1600000L), POWER_UNIT_HV.getMaxChargeOverrideStack(1200000L), POWER_UNIT_HV.getMaxChargeOverrideStack(6400000L)};
-            for (ItemStack power_unit : power_units) {
-                ItemStack output = GTFOMetaItem.BUTCHERY_KNIFE_HV.getMaxChargeOverrideStack(material, power_unit.getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null).getMaxCharge());
-                RecipeMaps.ASSEMBLER_RECIPES.recipeBuilder().EUt(480).duration(250)
-                        .input(prefix, material)
-                        .input(OrePrefix.stick, material, 2)
-                        .input(OrePrefix.plate, material)
-                        .input(OrePrefix.circuit, MarkerMaterials.Tier.EV, 2)
-                        .inputs(power_unit)
-                        .input(OrePrefix.wireGtDouble, Materials.MercuryBariumCalciumCuprate, 4)
-                        .fluidInputs(Materials.SolderingAlloy.getFluid(144 * 10))
-                        .outputs(output)
-                        .buildAndRegister();
+            ItemStack[] powerUnits = {POWER_UNIT_HV.getMaxChargeOverrideStack(1800000L), POWER_UNIT_HV.getMaxChargeOverrideStack(1600000L), POWER_UNIT_HV.getMaxChargeOverrideStack(1200000L), POWER_UNIT_HV.getMaxChargeOverrideStack(6400000L)};
+            for (int i = 0; i < powerUnits.length; i++) {
+                IElectricItem powerUnit = powerUnits[i].getCapability(GregtechCapabilities.CAPABILITY_ELECTRIC_ITEM, null);
+                ItemStack toolItem = BUTCHERY_KNIFE_HV.get(material, 0, powerUnit.getMaxCharge());
+                ModHandler.addShapedEnergyTransferRecipe(String.format("%s_%s_%s", "butchery_knife", material, i),
+                        toolItem,
+                        Ingredient.fromStacks(powerUnits[i]), true, true,
+                        "WUd", "wMf", "H H",
+                        'H', new UnificationEntry(prefix, material),
+                        'U', powerUnits[i],
+                        'M', MetaItems.ELECTRIC_MOTOR_HV,
+                        'W', new UnificationEntry(OrePrefix.wireGtDouble, Materials.MercuryBariumCalciumCuprate));
             }
 
         }
 
-    }*/
+    }
 
 }

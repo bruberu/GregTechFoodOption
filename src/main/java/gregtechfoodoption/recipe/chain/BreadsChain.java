@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.unification.OreDictUnifier;
@@ -19,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.common.items.MetaItems.SHAPE_MOLD_CYLINDER;
 import static gregtechfoodoption.GTFOMaterialHandler.TomatoSauce;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.*;
@@ -44,7 +46,7 @@ public class BreadsChain {
                 "FFF", "FBS", "   ",
                 'F', new UnificationEntry(dust, Materials.Wheat),
                 'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
-                'B', Items.WATER_BUCKET);
+                'B', new ItemStack(Items.WATER_BUCKET));
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)
                 .input(OrePrefix.dustTiny, Materials.Salt)
@@ -57,7 +59,7 @@ public class BreadsChain {
                 "FFF", "FBS", "O  ",
                 'F', new UnificationEntry(dust, Materials.Wheat),
                 'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
-                'B', Items.WATER_BUCKET,
+                'B', new ItemStack(Items.WATER_BUCKET),
                 'O', new UnificationEntry(OrePrefix.dustTiny, Materials.SodaAsh));
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)
@@ -129,13 +131,15 @@ public class BreadsChain {
                 .inputs(DOUGH.getStackForm())
                 .outputs(SUGARY_DOUGH.getStackForm(2))
                 .buildAndRegister();
+        IItemContainerItemProvider selfContainerItemProvider = itemStack -> itemStack;
+        SHAPE_MOLD_CYLINDER.addComponents(selfContainerItemProvider);
         ModHandler.addShapedRecipe("cake_bottom", CAKE_BOTTOM.getStackForm(),
                 "D D", "DMD",
                 'D', SUGARY_DOUGH.getStackForm(),
-                'M', MetaItems.SHAPE_MOLD_CYLINDER.getStackForm());
+                'M', SHAPE_MOLD_CYLINDER.getStackForm());
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(100)
                 .inputs(SUGARY_DOUGH.getStackForm(4))
-                .inputs(MetaItems.SHAPE_MOLD_CYLINDER.getStackForm())
+                .notConsumable(SHAPE_MOLD_CYLINDER.getStackForm())
                 .outputs(CAKE_BOTTOM.getStackForm())
                 .buildAndRegister();
 

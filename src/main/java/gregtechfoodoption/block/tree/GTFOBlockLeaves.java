@@ -115,7 +115,11 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
     @Override
     public String getVariantTranslationKey(IBlockState state) {
-        return "gregtechfoodoption.leaves." + this.getTreeFromState(state).name;
+        try {
+            return "gregtechfoodoption.leaves." + this.getTreeFromState(state).name;
+        } catch (IndexOutOfBoundsException e) {
+            return "gregtechfoodoption.hello_buildcraft";
+        }
     }
 
     // The following code mostly taken from GregTechCEu's BlockRubberLeaves.java

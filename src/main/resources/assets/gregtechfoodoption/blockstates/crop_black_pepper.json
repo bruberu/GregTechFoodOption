@@ -1,0 +1,42 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_black_pepper/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_black_pepper/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_black_pepper/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_black_pepper/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_black_pepper/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_black_pepper/stage5"
+        }
+      },
+      "6": {},
+      "7": {}
+    }
+  }
+}

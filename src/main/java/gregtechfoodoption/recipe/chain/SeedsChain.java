@@ -7,7 +7,9 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.block.GTFOTrees;
 import gregtechfoodoption.item.GTFOMetaItem;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.item.ItemStack;
 
 import static gregtech.api.unification.material.Materials.*;
@@ -31,13 +33,22 @@ public class SeedsChain {
                 ONION.getStackForm(),
                 BANANA.getStackForm(),
                 ORANGE.getStackForm(),
-                GRAPES.getStackForm(),
+                //GRAPES.getStackForm(),  Done in AlcoholChain
                 MANGO.getStackForm(),
                 APRICOT.getStackForm(),
                 PEA_POD.getStackForm(),
                 SOYBEAN.getStackForm(),
                 BEANS.getStackForm(),
                 COFFEE_CHERRY.getStackForm(),
+                CORN_COB.getStackForm(),
+                RICE.getStackForm(),
+                HORSERADISH.getStackForm(),
+                OREGANO.getStackForm(),
+                GARLIC_BULB.getStackForm(),
+                BASIL.getStackForm(),
+                AUBERGINE.getStackForm(),
+                ARTICHOKE_HEART.getStackForm(),
+                BLACK_PEPPERCORN.getStackForm()
         };
 
         for (ItemStack seed : seeds) {
@@ -83,6 +94,33 @@ public class SeedsChain {
         ModHandler.addShapedRecipe("gtfo_seed_bean_ungenerify", GTFOMetaItem.BEANS.getStackForm(),
                 "   ", "   ", " S ",
                 'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_oregano_ungenerify", OREGANO_SEED.getStackForm(),
+                "   ", "   ", "  S",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_horseradish_ungenerify", HORSERADISH_SEED.getStackForm(2),
+                "SS ", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_garlic_ungenerify", GARLIC_CLOVE.getStackForm(2),
+                "S S", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_basil_ungenerify", BASIL_SEED.getStackForm(2),
+                " SS", "   ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_aubergine_ungenerify", AUBERGINE_SEED.getStackForm(2),
+                "S  ", "S  ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_corn_ungenerify", CORN_EAR.getStackForm(2),
+                " S ", "S  ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_artichoke_ungenerify", ARTICHOKE_SEED.getStackForm(2),
+                "  S", "S  ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_black_pepper_ungenerify", BLACK_PEPPERCORN.getStackForm(2),
+                "S  ", " S ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_rice_ungenerify", RICE.getStackForm(2),
+                " S ", " S ", "   ",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
 
 
         ModHandler.addShapelessRecipe("gtfo_seed_soy_extraction", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
@@ -95,6 +133,12 @@ public class SeedsChain {
                 GTFOMetaItem.GRAPES);
         ModHandler.addShapelessRecipe("gtfo_seed_coffee_extraction", GTFOMetaItem.COFFEE_SEED.getStackForm(),
                 GTFOMetaItem.COFFEE_CHERRY);
+        ModHandler.addShapelessRecipe("gtfo_seed_aubergine_extraction", AUBERGINE_SEED.getStackForm(),
+                AUBERGINE);
+        ModHandler.addShapelessRecipe("gtfo_seed_artichoke_extraction", ARTICHOKE_SEED.getStackForm(),
+                ARTICHOKE_HEART);
+
+
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
@@ -138,6 +182,25 @@ public class SeedsChain {
                 .outputs(PEAS.getStackForm(8))
                 .buildAndRegister();
 
+
+        ModHandler.addShapelessRecipe("gtfo_black_pepper", BlackPepper.getItemStack(),
+                BLACK_PEPPERCORN, 'm');
+        RecipeMaps.MACERATOR_RECIPES.recipeBuilder().EUt(8).duration(80)
+                .inputs(BLACK_PEPPERCORN.getStackForm())
+                .outputs(BlackPepper.getItemStack(2))
+                .buildAndRegister();
+        ModHandler.addShapelessRecipe("gtfo_nutmeg", Nutmeg.getItemStack(),
+                NUTMEG_SEED, 'm');
+        RecipeMaps.MACERATOR_RECIPES.recipeBuilder().EUt(8).duration(80)
+                .inputs(NUTMEG_SEED.getStackForm())
+                .outputs(Nutmeg.getItemStack(2))
+                .buildAndRegister();
+
+        GTFORecipeMaps.GREENHOUSE_RECIPES.recipeBuilder().EUt(15).duration(500)
+                .inputs(NUTMEG_SEED.getStackForm())
+                .fluidInputs(Water.getFluid(1000))
+                .chancedOutput(GTFOTrees.NUTMEG_TREE.getSaplingStack(), 5000,  0)
+                .buildAndRegister();
 
 /*
         RecipeUtils.addGreenHouseRecipes(LEMON.getStackForm(), LEMON);
