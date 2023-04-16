@@ -25,3 +25,5 @@ run
 forge*changelog.txt
 *.gz
 *.log
+/src/main/resources/assets/gregtech/models/item/metaitems/.json
+/src/main/resources/assets/gregtech/textures/items/metaitems/.png

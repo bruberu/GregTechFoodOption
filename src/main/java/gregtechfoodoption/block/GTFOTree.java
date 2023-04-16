@@ -208,7 +208,7 @@ public abstract class GTFOTree {
     }
 
     public void initRecipes() {
-        ItemStack sapling = new ItemStack(GTFOMetaBlocks.GTFO_SAPLINGS.get(seed / 8), 1, (seed % 8) << 1);
+        ItemStack sapling = this.getSaplingStack();
         ItemStack planks = new ItemStack(GTFOMetaBlocks.GTFO_PLANKS.get(seed / 16), 1, seed % 16);
         ItemStack log = new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, (seed % 4) << 2);
         ItemStack leaves = new ItemStack(GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4), 1, (seed % 4) << 2);
@@ -291,5 +291,9 @@ public abstract class GTFOTree {
 
     public Fluid getSap() {
         return null;
+    }
+
+    public ItemStack getSaplingStack() {
+        return new ItemStack(GTFOMetaBlocks.GTFO_SAPLINGS.get(seed / 8), 1, (seed % 8) << 1);
     }
 }

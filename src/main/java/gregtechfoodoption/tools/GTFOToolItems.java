@@ -30,7 +30,6 @@ public class GTFOToolItems {
                 .sound(GTSoundEvents.CUT)
                 .toolClasses(ToolClasses.BUTCHERY_KNIFE)
                 .electric(GTValues.HV));
-
     }
 
     public static void registerCustomRecipes() {

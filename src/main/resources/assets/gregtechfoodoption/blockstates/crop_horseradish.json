@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cross"
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage0"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage1"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage2"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage3"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage4"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage5"
+        }
+      },
+      "6": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage6"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "gregtechfoodoption:crop/crop_horseradish/stage7"
+        }
+      }
+    }
+  }
+}

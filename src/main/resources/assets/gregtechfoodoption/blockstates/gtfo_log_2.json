@@ -1,0 +1,45 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "model": "minecraft:cube_column",
+    "textures": {
+      "end": "gregtech:blocks/wood/rubber/log_rubber_top",
+      "side": "gregtech:blocks/wood/rubber/log_rubber_side"
+    }
+  },
+  "variants": {
+    "axis": {
+      "none": {
+        "textures": {
+          "end": "#side"
+        }
+      },
+      "x": {
+        "x": 90,
+        "y": 90
+      },
+      "y": {},
+      "z": {
+        "x": 90
+      }
+    },
+    "variant": {
+      "0": {
+        "textures": {
+          "end": "gregtechfoodoption:blocks/logs/nutmeg_top",
+          "side": "gregtechfoodoption:blocks/logs/nutmeg_side"
+        }
+      },
+      "1": {
+      },
+      "2": {
+      },
+      "3": {
+      }
+    },
+    "inventory": [
+      {}
+    ]
+  }
+}

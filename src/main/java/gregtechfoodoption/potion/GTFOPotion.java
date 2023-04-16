@@ -34,6 +34,7 @@ public abstract class GTFOPotion extends Potion {
             throw e;
         }
         this.iconIndex = iconIndex;
+        GTFOPotions.POTIONS.add(this);
     }
 
     public boolean hasEffect(EntityLivingBase entity) {

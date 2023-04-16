@@ -6,8 +6,13 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOPotions {
+    public static final List<GTFOPotion> POTIONS = new ArrayList<>();
+
     public static void initPotionInstances()
     {
         new CreativityPotion();
@@ -16,17 +21,18 @@ public class GTFOPotions {
         new StepAssistPotion();
         new SnowGolemSpawnerPotion();
         new CyanidePoisoningPotion();
+        new VentingPotion();
+        new PotionAmplifierPotion();
+        new PotionLengthenerPotion();
     }
 
 
     @SubscribeEvent
     public static void registerPotionEffects(RegistryEvent.Register<Potion> event)
     {
-        event.getRegistry().registerAll(CreativityPotion.INSTANCE);
-        //event.getRegistry().registerAll(AddictionPotion.instance);
-        //event.getRegistry().registerAll(WithdrawalPotion.instance);
-        event.getRegistry().registerAll(StepAssistPotion.INSTANCE);
-        event.getRegistry().registerAll(SnowGolemSpawnerPotion.INSTANCE);
-        event.getRegistry().registerAll(CyanidePoisoningPotion.INSTANCE);
+        for (GTFOPotion potion : POTIONS)
+        {
+            event.getRegistry().register(potion);
+        }
     }
 }

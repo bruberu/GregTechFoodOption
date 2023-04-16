@@ -14,6 +14,7 @@ public class GTFOClientHandler {
     public static OrientedOverlayRenderer BAKING_OVEN_OVERLAY = new OrientedOverlayRenderer("machines/baking_oven", FRONT);
     public static OrientedOverlayRenderer CUISINE_ASSEMBLER_OVERLAY = new OrientedOverlayRenderer("machines/cuisine_assembler", FRONT, TOP);
     public static OrientedOverlayRenderer MICROWAVE_OVERLAY = new OrientedOverlayRenderer("machines/microwave", FRONT);
+    public static OrientedOverlayRenderer MULTICOOKER_OVERLAY = new OrientedOverlayRenderer("machines/multicooker", FRONT);
     public static final OrientedOverlayRenderer MOB_AGE_SORTER_OVERLAY = new OrientedOverlayRenderer("machines/mob_age_sorter", FRONT, BACK);
     public static final OrientedOverlayRenderer MOB_EXTERMINATOR_OVERLAY = new OrientedOverlayRenderer("machines/mob_exterminator", FRONT, TOP);
     public static final OrientedOverlayRenderer MOB_EXTRACTOR_OVERLAY = new OrientedOverlayRenderer("machines/mob_extractor", FRONT, TOP);
@@ -27,10 +28,12 @@ public class GTFOClientHandler {
 
     public static SoundEvent MICROWAVE_FINISH;
     public static SoundEvent FARMER_LASER;
+    public static SoundEvent AMOGUS_VENT;
 
     public static void registerSounds() {
         MICROWAVE_FINISH = registerSound("microwave.finish");
         FARMER_LASER = registerSound("farmer.laser");
+        AMOGUS_VENT = registerSound("amogus.vent");
     }
 
     private static SoundEvent registerSound(String soundNameIn) {

@@ -11,6 +11,7 @@ public class GTFOTrees {
     public static LimeTree LIME_TREE;
     public static OliveTree OLIVE_TREE;
     public static RainbowwoodTree RAINBOWWOOD_TREE;
+    public static NutmegTree NUTMEG_TREE;
 
     public static void init() {
         BANANA_TREE = new BananaTree();
@@ -21,5 +22,6 @@ public class GTFOTrees {
         LIME_TREE = new LimeTree();
         OLIVE_TREE = new OliveTree();
         RAINBOWWOOD_TREE = new RainbowwoodTree();
+        NUTMEG_TREE = new NutmegTree();
     }
 }

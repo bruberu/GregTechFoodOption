@@ -47,6 +47,7 @@ public class CoreChain {
         misc();
         slicerBlades();
         slicingRecipes();
+        corn();
     }
 
     public static void zest() {
@@ -71,7 +72,7 @@ public class CoreChain {
                 .EUt(5)
                 .duration(100)
                 .buildAndRegister();
-        //Hand recipe for early game (veeeery ineficient) P.S: i don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
+        //Hand recipe for early game (veeeery inefficient) P.S: I don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
         ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON, LEMON, LEMON, LEMON, OreDictUnifier.get("craftingToolMortar"));
         ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME, LIME, LIME, LIME, OreDictUnifier.get("craftingToolMortar"));
         ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE, ORANGE, ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
@@ -331,6 +332,7 @@ public class CoreChain {
         slicingArray.put(OLIVE, OLIVE_SLICE);
         slicingArray.put(TOMATO, TOMATO_SLICE);
         slicingArray.put(ONION, ONION_SLICE);
+        slicingArray.put(AUBERGINE, EGGPLANT_SLICE);
         for (Map.Entry<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> entry : slicingArray.entrySet()) {
             ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().unlocalizedName, entry.getValue().getStackForm(4), 'k', entry.getKey());
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
@@ -493,6 +495,8 @@ public class CoreChain {
                     .output(dust, Bone, 16)
                     .fluidOutputs(Stearin.getFluid(3200), Sludge.getFluid(12000), Chlorine.getFluid(12000))
                     .buildAndRegister();
+
+            ModHandler.addShapelessRecipe("gtfo_hand_mince_meat" + itemStack.getDisplayName(), OreDictUnifier.get(dust, Meat), itemStack, OreDictUnifier.get("craftingToolMortar"));
         });
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
@@ -614,6 +618,19 @@ public class CoreChain {
                 .EUt(45)
                 .duration(60)
                 .buildAndRegister();
+        EXTRACTOR_RECIPES.recipeBuilder().duration(60).EUt(24)
+                .input(Items.EGG)
+                .fluidOutputs(Egg.getFluid(200))
+                .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder()
+                .fluidInputs(Egg.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.Albumen.getFluid(100))
+                .fluidOutputs(GTFOMaterialHandler.Yolk.getFluid(100))
+                .EUt(16)
+                .duration(60)
+                .buildAndRegister();
+
 
         MACERATOR_RECIPES.recipeBuilder().EUt(4).duration(40)
                 .input(Items.POTATO)
@@ -658,5 +675,26 @@ public class CoreChain {
                 .fluidInputs(Water.getFluid(5000))
                 .fluidOutputs(FertilizerSolution.getFluid(5000))
                 .buildAndRegister();
+
+        MACERATOR_RECIPES.recipeBuilder().EUt(8).duration(100)
+                .inputs(HORSERADISH.getStackForm())
+                .outputs(GratedHorseradishRoot.getItemStack())
+                .buildAndRegister();
+    }
+
+    public static void corn() {
+        EXTRACTOR_RECIPES.recipeBuilder().duration(60).EUt(16)
+                .inputs(CornKernel.getItemStack())
+                .outputs(BareCornKernel.getItemStack())
+                .buildAndRegister();
+
+        CENTRIFUGE_RECIPES.recipeBuilder().EUt(16).duration(200)
+                .inputs(CORN_EAR.getStackForm())
+                .outputs(CornKernel.getItemStack(20))
+                .outputs(CORN_COB.getStackForm())
+                .buildAndRegister();
+
+        ModHandler.addShapelessRecipe("gtfo_hand_corn_seed", BareCornKernel.getItemStack(), CornKernel.getItemStack());
+        ModHandler.addShapelessRecipe("gtfo_hand_corn_kernel", CornKernel.getItemStack(10), CORN_EAR.getStackForm());
     }
 }

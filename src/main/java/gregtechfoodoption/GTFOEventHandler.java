@@ -8,10 +8,7 @@ import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.food.GTFOFoodDurationSetter;
 import gregtechfoodoption.network.PacketAppleCoreFoodDivisorUpdate;
-import gregtechfoodoption.potion.CreativityPotion;
-import gregtechfoodoption.potion.CyanidePoisoningPotion;
-import gregtechfoodoption.potion.SnowGolemSpawnerPotion;
-import gregtechfoodoption.potion.StepAssistPotion;
+import gregtechfoodoption.potion.*;
 import gregtechfoodoption.utils.GTFODamageSources;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySnowman;
@@ -32,6 +29,7 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.PotionColorCalculationEvent;
+import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -166,6 +164,7 @@ public class GTFOEventHandler {
 
     @SubscribeEvent
     public static void onLivingUpdate(LivingEntityUseItemEvent.Tick event) {
+
         if (event.getItem().getItem() instanceof ItemFood || event.getItem().getItem() instanceof MetaItem<?>) {
             EntityLivingBase livingBase = event.getEntityLiving();
             ItemStack stack = event.getItem();
@@ -188,6 +187,8 @@ public class GTFOEventHandler {
                     }
 
                     livingBase.playSound(SoundEvents.ENTITY_GENERIC_EAT, 0.5F + 0.5F * (float) rand.nextInt(2), (rand.nextFloat() - rand.nextFloat()) * 0.2F + 1.0F);
+                } else if (stack.getItemUseAction() == EnumAction.DRINK) {
+                    livingBase.playSound(SoundEvents.ENTITY_GENERIC_DRINK, 0.5F, livingBase.world.rand.nextFloat() * 0.1F + 0.9F);
                 }
             }
         }
@@ -225,5 +226,21 @@ public class GTFOEventHandler {
     public static void getPotionParticleColor(PotionColorCalculationEvent event) {
         if (event.getEffects().stream().anyMatch(effect -> effect.getPotion() instanceof CyanidePoisoningPotion))
             event.shouldHideParticles(true);
+    }
+
+    @SubscribeEvent
+    public static void onDrinkPotion(PotionEvent.PotionAddedEvent event) {
+        if (PotionAmplifierPotion.INSTANCE != null && event.getEntityLiving().isPotionActive(PotionAmplifierPotion.INSTANCE) && !event.getPotionEffect().getPotion().equals(PotionAmplifierPotion.INSTANCE)) {
+            int amplificationBonus = event.getEntityLiving().getActivePotionEffect(PotionAmplifierPotion.INSTANCE).getAmplifier() + 1;
+            Potion type = event.getPotionEffect().getPotion();
+            int newAmplifier = event.getPotionEffect().getAmplifier() + amplificationBonus;
+            event.getPotionEffect().combine(new PotionEffect(type, 0, newAmplifier));
+        }
+        if (PotionLengthenerPotion.INSTANCE != null && event.getEntityLiving().isPotionActive(PotionLengthenerPotion.INSTANCE) && !event.getPotionEffect().getPotion().equals(PotionLengthenerPotion.INSTANCE)) {
+            int durationBonus = event.getEntityLiving().getActivePotionEffect(PotionLengthenerPotion.INSTANCE).getAmplifier();
+            Potion type = event.getPotionEffect().getPotion();
+            int newDuration = (int) (event.getPotionEffect().getAmplifier() * ((durationBonus * 0.5) + 1.5));
+            event.getPotionEffect().combine(new PotionEffect(type, newDuration));
+        }
     }
 }
