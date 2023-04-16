@@ -63,7 +63,7 @@ public class BritishChain {
         ModHandler.addShapelessRecipe("beans_on_toast", BEANS_ON_TOAST.getStackForm(1), BAKED_BEANS.getStackForm(), TOAST.getStackForm());
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(64).duration(200)
-                .inputs(MashedPotato.getItemStack(), CookedMinceMeat.getItemStack())
+                .inputs(MashedPotato.getItemStack(), CookedMinceMeat.getItemStack(), PEAS.getStackForm())
                 .outputs(SHEPHERDS_PIE.getStackForm())
                 .buildAndRegister();
 
@@ -74,8 +74,7 @@ public class BritishChain {
                 .buildAndRegister();
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(8).duration(100)
-                .input(dust, Meat)
-                .inputs(LaminatedDough.getItemStack())
+                .inputs(LaminatedDough.getItemStack(), SAUSAGE.getStackForm())
                 .outputs(UNCOOKED_SAUSAGE_ROLL.getStackForm())
                 .buildAndRegister();
         GTFOUtils.addBakingOvenRecipes(UNCOOKED_SAUSAGE_ROLL.getStackForm(), SAUSAGE_ROLL.getStackForm(), 250, 460, 2);

@@ -982,7 +982,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
             for (IItemComponent stat : stats) {
                 if (stat instanceof GTFOFoodStats) {
                     try {
-                        Class clazz = this.getClass();
+                        Class clazz = Class.forName("gregtech.api.items.metaitem.MetaItem$MetaValueItem");
                         Field field = clazz.getDeclaredField("useManager");
                         field.setAccessible(true);
                         field.set(this, new GTFOFoodUseManager((GTFOFoodStats) stat));

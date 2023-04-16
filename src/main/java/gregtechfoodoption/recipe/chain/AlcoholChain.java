@@ -91,8 +91,8 @@ public class AlcoholChain {
                 .buildAndRegister();
 
         COMPRESSOR_RECIPES.recipeBuilder().EUt(16).duration(300)
-                .inputs(GRAPES.getStackForm(10))
-                .outputs(MetaItems.BIO_CHAFF.getStackForm(1))
+                .inputs(GRAPES.getStackForm(8))
+                .outputs(MetaItems.PLANT_BALL.getStackForm(1))
                 .fluidOutputs(RedGrapesMust.getFluid(4000))
                 .buildAndRegister();
         FERMENTING_RECIPES.recipeBuilder().EUt(8).duration(8000)

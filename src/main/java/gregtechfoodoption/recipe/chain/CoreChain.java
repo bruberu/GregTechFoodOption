@@ -620,7 +620,8 @@ public class CoreChain {
                 .buildAndRegister();
         EXTRACTOR_RECIPES.recipeBuilder().duration(60).EUt(24)
                 .input(Items.EGG)
-                .fluidOutputs(Egg.getFluid(200));
+                .fluidOutputs(Egg.getFluid(200))
+                .buildAndRegister();
 
         CENTRIFUGE_RECIPES.recipeBuilder()
                 .fluidInputs(Egg.getFluid(200))

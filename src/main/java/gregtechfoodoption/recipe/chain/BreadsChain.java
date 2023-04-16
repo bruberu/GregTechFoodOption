@@ -46,7 +46,7 @@ public class BreadsChain {
                 "FFF", "FBS", "   ",
                 'F', new UnificationEntry(dust, Materials.Wheat),
                 'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
-                'B', Items.WATER_BUCKET);
+                'B', new ItemStack(Items.WATER_BUCKET));
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)
                 .input(OrePrefix.dustTiny, Materials.Salt)
@@ -59,7 +59,7 @@ public class BreadsChain {
                 "FFF", "FBS", "O  ",
                 'F', new UnificationEntry(dust, Materials.Wheat),
                 'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
-                'B', Items.WATER_BUCKET,
+                'B', new ItemStack(Items.WATER_BUCKET),
                 'O', new UnificationEntry(OrePrefix.dustTiny, Materials.SodaAsh));
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)

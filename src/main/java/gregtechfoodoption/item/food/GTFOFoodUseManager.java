@@ -11,6 +11,6 @@ public class GTFOFoodUseManager extends FoodUseManager {
 
     @Override
     public int getMaxItemUseDuration(ItemStack itemStack) {
-        return ((GTFOFoodStats) this.getFoodStats()).getEatingDuration();
+        return ((GTFOFoodStats) this.getFoodStats()).getEatingDuration() * 5 / 4; // You need to extend this so that the animation works correctly :P
     }
 }
