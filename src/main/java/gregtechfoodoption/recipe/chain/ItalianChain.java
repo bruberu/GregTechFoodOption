@@ -40,7 +40,7 @@ public class ItalianChain {
 
 
         CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(16).duration(400)
-                .inputs(GTFOMetaItem.CORN_EAR.getStackForm(10))
+                .inputs(GTFOMaterialHandler.BareCornKernel.getItemStack(10))
                 .fluidInputs(GTFOMaterialHandler.HeatedWater.getFluid(250))
                 .fluidOutputs(GTFOMaterialHandler.Polenta.getFluid(250))
                 .buildAndRegister();
