@@ -1059,3 +1059,22 @@ recipemap.multicooker.name=Multicooker
 
 metaitem.food.emergency_rations.name=Emergency Rations
 metaitem.food.emergency_rations.tooltip=The seal is way too hard to open
+
+tile.gtfo_crop_coffee.name=Coffee
+tile.gtfo_crop_tomato.name=Tomato
+tile.gtfo_crop_onion.name=Onion
+tile.gtfo_crop_cucumber.name=Cucumber
+tile.gtfo_crop_grape.name=Grape
+tile.gtfo_crop_soy.name=Soy
+tile.gtfo_crop_bean.name=Bean
+tile.gtfo_crop_pea.name=Pea
+tile.gtfo_crop_oregano.name=Oregano
+tile.gtfo_crop_horseradish.name=Horseradish
+tile.gtfo_crop_garlic.name=Garlic
+tile.gtfo_crop_basil.name=Basil
+tile.gtfo_crop_aubergine.name=Aubergine
+tile.gtfo_crop_corn.name=Corn
+tile.gtfo_crop_artichoke.name=Artichoke
+tile.gtfo_crop_black_pepper.name=Black Pepper
+tile.gtfo_crop_rice.name=Rice
+tile.gtfo_crop_white_grape.name=White Grape

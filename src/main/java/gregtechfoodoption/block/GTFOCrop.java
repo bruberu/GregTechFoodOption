@@ -33,6 +33,7 @@ public class GTFOCrop extends BlockCrops {
         this.setRegistryName("gregtechfoodoption", "crop_" + name);
         CROP_BLOCKS.add(this);
         this.name = name;
+        this.setTranslationKey("gtfo_crop_" + name);
     }
 
     protected GTFOCrop(String name) {

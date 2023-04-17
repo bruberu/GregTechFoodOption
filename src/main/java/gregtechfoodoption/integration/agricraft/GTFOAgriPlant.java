@@ -177,7 +177,8 @@ public class GTFOAgriPlant implements IAgriPlant {
     @Nullable
     @Override
     public ResourceLocation getPrimaryPlantTexture(int i) {
-        return new ResourceLocation(GTFOValues.MODID, "crop/crop_" + this.wrap.getName() + "/stage" + i);
+        int possibleAge = Math.min(i, wrap.getMaxAge()); // Required for clippings to render correctly (they assume all crops have 7 stages... the fools)
+        return new ResourceLocation(GTFOValues.MODID, "crop/crop_" + this.wrap.getName() + "/stage" + possibleAge);
     }
 
     @Nullable
