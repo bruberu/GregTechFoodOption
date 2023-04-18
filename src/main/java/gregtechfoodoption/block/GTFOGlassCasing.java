@@ -63,6 +63,11 @@ public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingTy
                 super.shouldSideBeRendered(state, world, pos, side);
     }
 
+    @Override
+    public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
+        return BlockRenderLayer.TRANSLUCENT == layer;
+    }
+
     public enum CasingType implements IStringSerializable {
 
         GREENHOUSE_GLASS("greenhouse_glass");
