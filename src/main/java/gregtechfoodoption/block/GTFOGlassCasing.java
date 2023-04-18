@@ -20,7 +20,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingType> {
 
     public GTFOGlassCasing() {
-        super(Material.IRON);
+        super(Material.GLASS);
         setTranslationKey("transparent_casing");
         setHardness(5.0F);
         setResistance(5.0F);
