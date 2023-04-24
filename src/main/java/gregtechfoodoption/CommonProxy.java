@@ -5,7 +5,6 @@ import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMaps;
 import gregtechfoodoption.block.GTFOCrop;
-import gregtechfoodoption.block.GTFOCrops;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFORootCrop;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
@@ -14,7 +13,10 @@ import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityGreenhouse;
 import gregtechfoodoption.potion.GTFOPotions;
-import gregtechfoodoption.recipe.*;
+import gregtechfoodoption.recipe.GTFOOreDictRegistration;
+import gregtechfoodoption.recipe.GTFORecipeAddition;
+import gregtechfoodoption.recipe.GTFORecipeHandler;
+import gregtechfoodoption.recipe.GTFORecipeRemoval;
 import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -139,10 +141,12 @@ public class CommonProxy {
     @SubscribeEvent
     @Optional.Method(modid = "enderio")
     public static void registerEIOFarmerJoes(@Nonnull RegistryEvent.Register<IFarmerJoe> event) {
-        event.getRegistry().register(new GTFORootCropFarmer(GTFOCrops.CROP_ONION, GTFOMetaItem.ONION_SEED.getStackForm())
-                .setRegistryName(GregTechFoodOption.MODID, "root_onion"));
         for (GTFOCrop crop : CROP_BLOCKS) {
-            if (crop instanceof GTFORootCrop) continue;
+            if (crop instanceof GTFORootCrop) {
+                event.getRegistry().register(new GTFORootCropFarmer(crop, crop.getSeedStack())
+                        .setRegistryName(crop.getRegistryName()));
+                continue;
+            };
             event.getRegistry().register(new CustomSeedFarmer(crop, crop.getSeedStack())
                     .setRegistryName(crop.getRegistryName()));
         }

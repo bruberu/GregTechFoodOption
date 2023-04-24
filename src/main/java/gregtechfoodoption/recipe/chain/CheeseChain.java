@@ -212,7 +212,7 @@ public class CheeseChain {
                 .inputs(BRINED_PARMIGIANO.getStackForm())
                 .outputs(BRINED_PARMIGIANO_ROLL.getStackForm(), CHEESE_ROLL_FORM.getStackForm())
                 .buildAndRegister();
-        FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(3600)
+        FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(36000)
                 .inputs(BRINED_PARMIGIANO_ROLL.getStackForm(64))
                 .fluidInputs(Air.getFluid(10000))
                 .outputs(AGED_PARMIGIANO_ROLL.getStackForm(64))

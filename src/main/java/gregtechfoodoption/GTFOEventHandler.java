@@ -205,8 +205,7 @@ public class GTFOEventHandler {
             }
         }
     }
-
-
+    
     @SubscribeEvent
     public static void onPlayerLoginEvent(PlayerEvent.PlayerLoggedInEvent event) {
         if (!event.player.getEntityWorld().isRemote && Loader.isModLoaded(GTFOValues.MODID_AP)) {
