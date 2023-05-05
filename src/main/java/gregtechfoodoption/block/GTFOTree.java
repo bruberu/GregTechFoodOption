@@ -1,11 +1,12 @@
 package gregtechfoodoption.block;
 
-import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.GTUtility;
 import gregtech.api.util.function.TriConsumer;
 import gregtech.common.items.MetaItems;
+import gregtech.loaders.WoodTypeEntry;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
@@ -33,6 +34,7 @@ import java.util.List;
 import java.util.Random;
 
 import static gregtech.api.unification.material.Materials.Steel;
+import static gregtech.loaders.recipe.WoodRecipeLoader.registerWoodTypeRecipe;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.GREENHOUSE_RECIPES;
 import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
 import static net.minecraft.block.BlockLeaves.DECAYABLE;
@@ -213,9 +215,10 @@ public abstract class GTFOTree {
         ItemStack log = new ItemStack(GTFOMetaBlocks.GTFO_LOGS.get(seed / 4), 1, (seed % 4) << 2);
         ItemStack leaves = new ItemStack(GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4), 1, (seed % 4) << 2);
 
-        ItemStack planksAmount = planks.copy();
-        planksAmount.setCount(4);
-        ModHandler.addShapelessRecipe(this.name + "_wood_planks", planksAmount, log);
+        registerWoodTypeRecipe(new WoodTypeEntry.Builder(GTFOValues.MODID, this.name)
+                .planks(planks, this.name + "_planks")
+                .log(log)
+                .build());
 
         GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)
                 .inputs(sapling)
