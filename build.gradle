@@ -1,33 +1,33 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url = "http://maven.minecraftforge.net/" }
-        maven { url = "https://repo.spongepowered.org/maven" }
-    }
-    dependencies {
-        classpath("net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT")
-        classpath("org.spongepowered:mixingradle:0.6-SNAPSHOT")
-    }
+import com.gtnewhorizons.retrofuturagradle.mcp.ReobfuscatedJar
+
+plugins {
+    id("java")
+    id("java-library")
+    id("maven-publish")
+    id("org.jetbrains.gradle.plugin.idea-ext") version "1.1.7"
+    id("eclipse")
+    id("com.gtnewhorizons.retrofuturagradle") version "1.3.8"
+    id("com.matthewprenger.cursegradle") version "1.4.0"
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'org.spongepowered.mixin'
 
 version = "1.12.2-1.9.1"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
-sourceCompatibility = targetCompatibility = '1.8'
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
+// Set the toolchain version to decouple the Java we run Gradle with from the Java used to compile and run the mod
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
+        vendor.set(org.gradle.jvm.toolchain.JvmVendorSpec.AZUL)
+    }
+    // Generate sources and javadocs jars when building and publishing
+    withSourcesJar()
+    withJavadocJar()
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2847"
-    runDir = "run"
-    mappings = "stable_39"
-    makeObfSourceJar = false
-    replace("@VERSION@", project.version)
-    replaceIn("GregTechFoodOption.java")
+    version = "1.12.2"
 
     def args = [
             "-Dfml.coreMods.load=gregtechfoodoption.GTFOMixinPlugin",
@@ -35,24 +35,27 @@ minecraft {
             "-Dmixin.checks.interfaces=true",
             "-Dmixin.debug.export=true"
     ]
-    clientJvmArgs.addAll(args)
-    serverJvmArgs.addAll(args)
+    extraRunJvmArguments.addAll(args)
+
+    useDependencyAccessTransformers = true
+
+    injectedTags.put("VERSION", project.version)
 }
 
 repositories {
     maven {
-        url "http://maven.shadowfacts.net/"
+        url "https://maven.shadowfacts.net/"
     }
     maven {
         name = "ic2, forestry"
-        setUrl("http://maven.ic2.player.to/")
+        setUrl("https://maven.ic2.player.to/")
     }
     maven {
         name = "OpenComputers"
         url = "https://maven.cil.li/"
     }
     maven {
-        url "http://maven.k-4u.nl"
+        url "https://maven.k-4u.nl"
     }
     maven {
         name = "CurseForge"
@@ -60,15 +63,15 @@ repositories {
     }
     maven {
         name = "progwml6"
-        url = "http://dvs1.progwml6.com/files/maven/"
+        url = "https://dvs1.progwml6.com/files/maven/"
     }
     maven {
         name = "blamejared"
-        url = "http://maven.blamejared.com/"
+        url = "https://maven.blamejared.com/"
     }
     maven {
         name = "CCL Maven"
-        url = "http://chickenbones.net/maven/"
+        url = "https://chickenbones.net/maven/"
     }
     maven {
         name = "CyclopsMC"
@@ -94,50 +97,51 @@ repositories {
         url = "https://www.cursemaven.com"
     }
     maven {
-        url "http://www.ryanliptak.com/maven/"
+        url "https://www.ryanliptak.com/maven/"
     }
     maven {
         url "https://maven.cleanroommc.com"
     }
-
+    maven { url = "https://repo.spongepowered.org/maven" }
+    mavenLocal() // Must be last for caching to work
 }
 
 dependencies {
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    api("org.spongepowered:mixin:0.8.3") { transitive = false }
+    annotationProcessor ("org.spongepowered:mixin:0.8.3") {transitive = false}
 
-    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
-    deobfCompile "mezz.jei:jei_1.12.2:+"
+    implementation 'zone.rong:mixinbooter:7.0'
+
+    implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
+    implementation "mezz.jei:jei_1.12.2:+"
     //deobfCompile "curse.maven:gregtechceu-557242:3612824"
-    deobfCompile "team.chisel.ctm:CTM:MC${project.minecraft.version}-1.0.2.31"
+    implementation "team.chisel.ctm:CTM:MC${project.minecraft.version}-1.0.2.31"
     //provided files("libs/gregicality-1.12.2-0.23.1.jar")
-    deobfCompile "codechicken:ChickenASM:1.12-1.0.2.9"
-    deobfCompile "codechicken-lib-1-8:CodeChickenLib-${project.minecraft.version}:3.2.3.358:universal"
-    deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
+    implementation "codechicken:ChickenASM:1.12-1.0.2.9"
+    implementation rfg.deobf("curse.maven:codechicken-lib-1-8-${ccl_pid}:${ccl_fid}")
+    implementation "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.28-17"
 
     //deobfCompile "nuclearcraft-overhauled:NuclearCraft:2o.6.0:1.12.2"
-    deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:${project.minecraft.version}-r144"
+    implementation "de.ellpeck.actuallyadditions:ActuallyAdditions:${project.minecraft.version}-r144"
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
-    deobfCompile "applecore:AppleCore:${project.minecraft.version}-3.1.5:deobf"
+    implementation rfg.deobf("applecore:AppleCore:${project.minecraft.version}-3.1.5:deobf")
 
-    deobfCompile "zone.rong:mixinbooter:4.2"
     // One day...
     //compile "com.enderio.core:EnderCore:${mc_version}-0.5.76:dev"
     //compile "com.enderio:EnderIO:${mc_version}-5.3.70"
 
-    deobfCompile "curse.maven:agricraft-225635:3317747"
-    deobfCompile "curse.maven:infinitylib-251396:3317119"
-    deobfCompile "curse.maven:spice-of-life-carrot-edition-277616:2959847"
+    implementation "curse.maven:agricraft-225635:3317747"
+    implementation "curse.maven:infinitylib-251396:3317119"
+    implementation "curse.maven:spice-of-life-carrot-edition-277616:2959847"
 
-    compile "curse.maven:enderio-64578:3328811"
-    compile "curse.maven:endercore-231868:2972849"
-    compile "info.loenwind.autoconfig:AutoConfig:${project.minecraft.version}-1.0.2"
-    compile "info.loenwind.autosave:AutoSave:${project.minecraft.version}-1.0.11"
+    compileOnly "curse.maven:enderio-64578:3328811"
+    compileOnly "curse.maven:endercore-231868:2972849"
+    compileOnly "info.loenwind.autoconfig:AutoConfig:${project.minecraft.version}-1.0.2"
+    compileOnly "info.loenwind.autosave:AutoSave:${project.minecraft.version}-1.0.11"
 
 
     //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
     //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
-
-    compileOnly files("etc/Pam's+HarvestCraft+1.12.2zg.jar")
 
     //compile "curse.maven:spiceoflife-220811:2571951"
 
@@ -152,7 +156,7 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
 
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
     from(sourceSets.main.resources.srcDirs) {
@@ -166,9 +170,26 @@ runClient {
     jvmArgs "-Xmx3G"
 }
 
-mixin {
-    add sourceSets.main, "mixins.gregtechfoodoption.refmap.json"
+def mixinConfigRefMap = 'mixins.' + project.archives_base_name + '.refmap.json'
+def mixinTmpDir = buildDir.path + File.separator + 'tmp' + File.separator + 'mixins'
+def refMap = "${mixinTmpDir}" + File.separator + mixinConfigRefMap
+def mixinSrg = "${mixinTmpDir}" + File.separator + "mixins.srg"
+
+tasks.named("reobfJar", ReobfuscatedJar).configure {
+    extraSrgFiles.from(mixinSrg)
 }
+
+tasks.named("compileJava", JavaCompile).configure {
+    doFirst {
+        new File(mixinTmpDir).mkdirs()
+    }
+    options.compilerArgs += [
+            "-AreobfSrgFile=${tasks.reobfJar.srg.get().asFile}",
+            "-AoutSrgFile=${mixinSrg}",
+            "-AoutRefMapFile=${refMap}",
+    ]
+}
+
 
 jar {
     manifest.attributes(
