@@ -109,6 +109,9 @@ repositories {
 dependencies {
     api("org.spongepowered:mixin:0.8.3") { transitive = false }
     annotationProcessor ("org.spongepowered:mixin:0.8.3") {transitive = false}
+    annotationProcessor "com.google.code.gson:gson:${gson_version}"
+    annotationProcessor "com.google.guava:guava:${guava_version}-jre"
+    annotationProcessor "org.ow2.asm:asm-debug-all:${asm_debug_version}"
 
     implementation 'zone.rong:mixinbooter:7.0'
 
@@ -124,7 +127,7 @@ dependencies {
     //deobfCompile "nuclearcraft-overhauled:NuclearCraft:2o.6.0:1.12.2"
     implementation "de.ellpeck.actuallyadditions:ActuallyAdditions:${project.minecraft.version}-r144"
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
-    implementation rfg.deobf("applecore:AppleCore:${project.minecraft.version}-3.1.5:deobf")
+    implementation "applecore:AppleCore:${project.minecraft.version}-3.1.5:deobf"
 
     // One day...
     //compile "com.enderio.core:EnderCore:${mc_version}-0.5.76:dev"
@@ -139,31 +142,33 @@ dependencies {
     compileOnly "info.loenwind.autoconfig:AutoConfig:${project.minecraft.version}-1.0.2"
     compileOnly "info.loenwind.autosave:AutoSave:${project.minecraft.version}-1.0.11"
 
-
-    //provided files("libs/AppleSkin-mc1.12-1.0.9.jar")
-    //provided files("libs/NuclearCraft-2o.5.2-1.12.2.jar")
-
     //compile "curse.maven:spiceoflife-220811:2571951"
+
+    /*implementation files("libs/gregtech-2.6.1-beta-dev.jar")*/
+    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4483462")
+    implementation files("libs/AppleSkin-mc1.12-1.0.9.jar")
+    implementation files("libs/EnderCore-1.12.2-0.5.76-core.jar")
+    implementation files("libs/groovyscript-0.4.0.jar")
+    implementation files("libs/NuclearCraft-2o.6.0-1.12.2.jar")
 
     testImplementation 'junit:junit:4.13.2'
     implementation 'org.projectlombok:lombok:1.18.24'
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-
-        expand 'version': project.version, 'mcversion': project.minecraft.version
+    // this will ensure that this task is redone when the versions change.
+    inputs.property 'version', project.version
+    inputs.property 'mcversion', project.minecraft.version
+    // replace stuff in mcmod.info, nothing else
+    filesMatching(['mcmod.info', 'pack.mcmeta']) { fcd ->
+        // replace version and mcversion
+        fcd.expand(
+                'version': project.version,
+                'mcversion': project.minecraft.version
+        )
     }
 
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-
-    //rename("(.+_at.cfg)", "META-INF/1")
+    rename '(.+_at.cfg)', 'META-INF/$1' // Access Transformers
 }
 
 runClient {
