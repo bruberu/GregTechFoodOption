@@ -4,6 +4,7 @@ import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.utils.GTFOUtils;
@@ -11,8 +12,7 @@ import net.minecraft.init.Items;
 
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtech.api.unification.ore.OrePrefix.dustSmall;
+import static gregtech.api.unification.ore.OrePrefix.*;
 import static gregtechfoodoption.GTFOMaterialHandler.OliveOil;
 import static gregtechfoodoption.GTFOMaterialHandler.TomatoSauce;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
@@ -93,6 +93,12 @@ public class ItalianChain {
                 .inputs(GTFOMetaItem.RIGATONI.getStackForm(), GTFOMetaItem.PLATE.getStackForm(), GTFOMetaItem.EGGPLANT_SLICE.getStackForm(3), GTFOMetaItem.BASIL.getStackForm())
                 .fluidInputs(TomatoSauce.getFluid(200))
                 .outputs(GTFOMetaItem.PASTA_ALLA_NORMA.getStackForm())
+                .buildAndRegister();
+
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(16).duration(800)
+                .input(ingot, Steel, 4)
+                .notConsumable(MetaItems.SHAPE_MOLD_BLOCK)
+                .outputs(BAKING_TRAY.getStackForm())
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
