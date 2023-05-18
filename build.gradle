@@ -27,7 +27,7 @@ java {
 }
 
 minecraft {
-    version = "1.12.2"
+    mcVersion = "1.12.2"
 
     def args = [
             "-Dfml.coreMods.load=gregtechfoodoption.GTFOMixinPlugin",
