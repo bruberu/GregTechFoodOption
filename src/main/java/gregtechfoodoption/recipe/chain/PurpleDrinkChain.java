@@ -1,13 +1,14 @@
 package gregtechfoodoption.recipe.chain;
 
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtech.common.items.MetaItems.*;
-import static gregtech.api.unification.material.Materials.*;
-import net.minecraft.init.Items;
 import net.minecraft.init.Blocks;
-import static gregtech.api.unification.ore.OrePrefix.*;
+import net.minecraft.init.Items;
+
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtech.common.items.MetaItems.*;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
 
 public class PurpleDrinkChain {
     public static void init() {
@@ -212,7 +213,6 @@ public class PurpleDrinkChain {
         LARGE_CHEMICAL_RECIPES.recipeBuilder()
                 .inputs(Diphenylamine.getItemStack(24))
                 .input(dust, Sulfur, 2)
-                .notConsumable(dust, Iodine)
                 .outputs(Phenothiazine.getItemStack(23))
                 .fluidOutputs(HydrogenSulfide.getFluid(1000))
                 .EUt(120)
