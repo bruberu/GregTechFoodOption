@@ -42,11 +42,10 @@ public class BreadsChain {
                 'M', MetaItems.WOODEN_FORM_EMPTY.getStackForm());
 
 
-        ModHandler.addShapedRecipe("dough_2", DOUGH.getStackForm(2),
-                "FFF", "FBS", "   ",
-                'F', new UnificationEntry(dust, Materials.Wheat),
-                'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
-                'B', new ItemStack(Items.WATER_BUCKET));
+        ModHandler.addShapelessRecipe("dough_2", DOUGH.getStackForm(2),
+                new UnificationEntry(dust, Materials.Wheat),
+                new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
+                new ItemStack(Items.WATER_BUCKET));
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)
                 .input(OrePrefix.dustTiny, Materials.Salt)
@@ -55,12 +54,11 @@ public class BreadsChain {
                 .notConsumable(IntCircuitIngredient.getIntegratedCircuit(2))
                 .buildAndRegister();
 
-        ModHandler.addShapedRecipe("dough_4", DOUGH.getStackForm(4),
-                "FFF", "FBS", "O  ",
-                'F', new UnificationEntry(dust, Materials.Wheat),
-                'S', new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
-                'B', new ItemStack(Items.WATER_BUCKET),
-                'O', new UnificationEntry(OrePrefix.dustTiny, Materials.SodaAsh));
+        ModHandler.addShapelessRecipe("dough_4", DOUGH.getStackForm(4),
+                new UnificationEntry(dust, Materials.Wheat),
+                new UnificationEntry(OrePrefix.dustTiny, Materials.Salt),
+                new ItemStack(Items.WATER_BUCKET),
+                new UnificationEntry(OrePrefix.dustTiny, Materials.SodaAsh));
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(150)
                 .input(dust, Materials.Wheat, 4)
                 .input(OrePrefix.dustTiny, Materials.Salt)

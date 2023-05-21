@@ -22,11 +22,13 @@ public class PastaChain {
                 .inputs(PREMIXED_PASTA_DOUGH.getStackForm())
                 .fluidInputs(GTFOMaterialHandler.Egg.getFluid(400))
                 .fluidInputs(Air.getFluid(600))
+                .circuitMeta(1)
                 .outputs(EGG_PASTA_DOUGH.getStackForm())
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(120).duration(600)
                 .inputs(PREMIXED_PASTA_DOUGH.getStackForm())
                 .fluidInputs(Air.getFluid(600))
+                .circuitMeta(2)
                 .outputs(PASTA_DOUGH.getStackForm())
                 .buildAndRegister();
 
