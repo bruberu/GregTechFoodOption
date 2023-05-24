@@ -29,7 +29,6 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     public Supplier<ItemStack> stackSupplier;
     protected int eatingDuration = 32;
 
-    @Deprecated
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, Supplier<ItemStack> itemStackSupplier, RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
         this.saturation = saturation;
@@ -39,7 +38,6 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         this.potionEffects = potionEffects;
     }
 
-    @Deprecated
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, ItemStack stack, RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
         this.saturation = saturation;
@@ -49,7 +47,6 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         this.potionEffects = potionEffects;
     }
 
-    @Deprecated
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible) {
         this(foodLevel, saturation, isDrink, alwaysEdible, ItemStack.EMPTY);
     }
