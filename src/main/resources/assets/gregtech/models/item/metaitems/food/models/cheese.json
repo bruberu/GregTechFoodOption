@@ -1,0 +1,6 @@
+{
+  "parent": "cheese/generated",
+  "textures": {
+    "layer0": "gregtechfoodoption:food/models"
+  }
+}

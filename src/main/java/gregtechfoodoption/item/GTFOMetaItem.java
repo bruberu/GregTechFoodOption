@@ -17,12 +17,19 @@ import gregtechfoodoption.item.food.GTFOFoodUseManager;
 import gregtechfoodoption.potion.*;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import squeek.applecore.api.food.FoodValues;
@@ -375,6 +382,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem UNFIRED_BOWL;
 
     public static MetaItem<?>.MetaValueItem EMERGENCY_RATIONS;
+
+    //KillReal items
+    public static MetaItem<?>.MetaValueItem JACK_DANIELS;
+    public static MetaItem<?>.MetaValueItem CHEESE;
+    //
 
     public GTFOMetaItem() {
         super((short) 0);
@@ -883,6 +895,14 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         WHITE_GRAPE_SEED = addItem(321, "seed.white_grape");
         WHITE_GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_WHITE_GRAPE, WHITE_GRAPE_SEED.getStackForm(), WHITE_GRAPES.getStackForm()));
 
+        //ALCOHOL
+        JACK_DANIELS = addItem (326,"food.alcohol.jack_daniels").addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 60),
+                new RandomPotionEffect(MobEffects.RESISTANCE, 400, 0, 100 - 40))
+                .setEatingDuration(96));
+        //
+        //Experiment
+        CHEESE = addItem (327,"food.models.cheese").addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE)));
 
         // 175-189 left blank for organic circuits
         SPRINKLER_COVER = addItem(224, "cover.sprinkler");
@@ -996,6 +1016,17 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         }
 
     }
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void onRegistryModel(ModelRegistryEvent e) {
 
-
+    }
+    @SideOnly(Side.CLIENT)
+    private static void registryModel(Item cheese) {
+        final ResourceLocation regName = cheese.getRegistryName();
+        final ModelResourceLocation mrl = new ModelResourceLocation(regName, "inventory");
+        ModelBakery.registerItemVariants(cheese, mrl);
+        ModelLoader.setCustomModelResourceLocation();
+        //TODO understand what is this ._.
+    }
 }
