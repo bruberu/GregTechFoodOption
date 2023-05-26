@@ -51,7 +51,7 @@ public class SeedsChain {
         };
 
         for (ItemStack seed : seeds) {
-            if(GTFOConfig.gtfoMiscConfig.centrifugeSeeds) {
+            if (GTFOConfig.gtfoMiscConfig.centrifugeSeeds) {
                 RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(5).duration(144)
                         .inputs(seed)
                         .fluidOutputs(Materials.Methane.getFluid(34))
@@ -144,7 +144,13 @@ public class SeedsChain {
                 AUBERGINE);
         ModHandler.addShapelessRecipe("gtfo_seed_artichoke_extraction", ARTICHOKE_SEED.getStackForm(),
                 ARTICHOKE_HEART);
-
+        ModHandler.addShapelessRecipe("gtfo_clove_garlic_extraction", GARLIC_BULB.getStackForm(),
+                GARLIC_CLOVE.getStackForm(3));
+        GTFORecipeMaps.SLICER_RECIPES.recipeBuilder().EUt(8).duration(40)
+                .inputs(GARLIC_BULB.getStackForm())
+                .notConsumable(SLICER_BLADE_OCTAGONAL.getStackForm())
+                .outputs(GARLIC_CLOVE.getStackForm(8))
+                .buildAndRegister();
 
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
@@ -206,7 +212,7 @@ public class SeedsChain {
         GTFORecipeMaps.GREENHOUSE_RECIPES.recipeBuilder().EUt(15).duration(500)
                 .inputs(NUTMEG_SEED.getStackForm())
                 .fluidInputs(Water.getFluid(1000))
-                .chancedOutput(GTFOTrees.NUTMEG_TREE.getSaplingStack(), 5000,  0)
+                .chancedOutput(GTFOTrees.NUTMEG_TREE.getSaplingStack(), 5000, 0)
                 .buildAndRegister();
 
 /*
