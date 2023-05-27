@@ -17,11 +17,14 @@ import gregtechfoodoption.item.food.GTFOFoodUseManager;
 import gregtechfoodoption.potion.*;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -375,6 +378,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem UNFIRED_BOWL;
 
     public static MetaItem<?>.MetaValueItem EMERGENCY_RATIONS;
+
+    //KillReal items
+    public static MetaItem<?>.MetaValueItem JACK_DANIELS;
+    public static MetaItem<?>.MetaValueItem CHEESE;
+    //
 
     public GTFOMetaItem() {
         super((short) 0);
@@ -883,6 +891,15 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         WHITE_GRAPE_SEED = addItem(321, "seed.white_grape");
         WHITE_GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_WHITE_GRAPE, WHITE_GRAPE_SEED.getStackForm(), WHITE_GRAPES.getStackForm()));
 
+        //ALCOHOL
+        JACK_DANIELS = addItem(326, "food.alcohol.jack_daniels").addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 60),
+                new RandomPotionEffect(MobEffects.RESISTANCE, 400, 0, 100 - 40))
+                .setEatingDuration(96));
+        //
+        //Experiment
+        CHEESE = addItem(327, "food.models.cheese").setHasObjModel(true)
+                .addComponents(new GTFOFoodStats(4, 0.7f));
 
         // 175-189 left blank for organic circuits
         SPRINKLER_COVER = addItem(224, "cover.sprinkler");
@@ -936,7 +953,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
 
     protected String formatModelPath(GTFOMetaItem.GTFOMetaValueItem metaValueItem) {
-        return "metaitems/" + metaValueItem.unlocalizedName.replace('.', '/');
+        return "metaitems/" + metaValueItem.unlocalizedName.replace('.', '/') + (metaValueItem.hasObjModel ? ".obj" : "");
     }
 
     @Override
@@ -972,6 +989,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     }
 
     public class GTFOMetaValueItem extends MetaItem<?>.MetaValueItem {
+        private boolean hasObjModel;
 
         protected GTFOMetaValueItem(int metaValue, String unlocalizedName) {
             super(metaValue, unlocalizedName);
@@ -995,7 +1013,37 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
             }
         }
 
+        public boolean hasObjModel() {
+            return hasObjModel;
+        }
+
+        public GTFOMetaValueItem setHasObjModel(boolean hasObjModel) {
+            this.hasObjModel = hasObjModel;
+            return this;
+        }
     }
 
+    @SideOnly(Side.CLIENT)
+    public void registerModels() {
+        for (short itemMetaKey : metaItems.keySet()) {
+            GTFOMetaValueItem metaValueItem = metaItems.get(itemMetaKey);
+            int numberOfModels = metaValueItem.getModelAmount();
+            if (numberOfModels > 1) {
+                ModelResourceLocation[] resourceLocations = new ModelResourceLocation[numberOfModels];
+                for (int i = 0; i < resourceLocations.length; i++) {
+                    ResourceLocation resourceLocation = createItemModelPath(metaValueItem, "/" + (i + 1));
+                    ModelBakery.registerItemVariants(this, resourceLocation);
+                    resourceLocations[i] = new ModelResourceLocation(resourceLocation, "inventory");
+                }
+                specialItemsModels.put((short) (metaItemOffset + itemMetaKey), resourceLocations);
+                continue;
+            }
+            ResourceLocation resourceLocation = createItemModelPath(metaValueItem, "");
+            if (numberOfModels > 0) {
+                ModelBakery.registerItemVariants(this, resourceLocation);
+            }
 
+            metaItemsModels.put((short) (metaItemOffset + itemMetaKey), new ModelResourceLocation(resourceLocation, "inventory"));
+        }
+    }
 }
