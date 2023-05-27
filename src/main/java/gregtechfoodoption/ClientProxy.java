@@ -1,6 +1,7 @@
 package gregtechfoodoption;
 
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import gregtech.api.GTValues;
 import gregtech.api.util.LocalizationUtils;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.entity.GTFOEntities;
@@ -14,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -42,13 +44,14 @@ public class ClientProxy extends CommonProxy {
             Minecraft.getMinecraft().getFramebuffer().enableStencil();
         }
         GTFOEntities.registerRenders();
+        OBJLoader.INSTANCE.addDomain(GTValues.MODID);
     }
 
 
     @Override
     public void onLoad() {
         super.onLoad();
-        if(Loader.isModLoaded("appleskin")) {
+        if(Loader.isModLoaded(GTFOValues.MODID_AP)) {
             GTFOMetaTooltipOverlay.init();
             GTFOMetaHUDOverlay.init();
         }
