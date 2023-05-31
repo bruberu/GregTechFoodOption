@@ -376,7 +376,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
 
         @Override
         public Enum<ParallelLogicType> getParallelLogicType() {
-            return ParallelLogicType.APPEND_ITEMS;
+            return ParallelLogicType.MULTIPLY;
         }
 
         @Override

@@ -10,7 +10,7 @@ plugins {
     id("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
-version = "1.12.2-1.9.1"
+version = "1.12.2-1.9.2"
 group = "bruberu"
 archivesBaseName = "GregTech Food Option"
 
