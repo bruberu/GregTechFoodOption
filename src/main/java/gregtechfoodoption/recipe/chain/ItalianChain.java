@@ -209,6 +209,11 @@ public class ItalianChain {
                 .fluidInputs(GTFOMaterialHandler.PastaEFagioliBase.getFluid(500))
                 .fluidOutputs(GTFOMaterialHandler.MixedPastaEFagioli.getFluid(500))
                 .buildAndRegister();
+        MIXER_RECIPES.recipeBuilder().EUt(16).duration(100)
+                .inputs(DRIED_DITALINI.getStackForm(), BEANS.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.PastaEFagioliBase.getFluid(500))
+                .fluidOutputs(GTFOMaterialHandler.MixedPastaEFagioli.getFluid(500))
+                .buildAndRegister();
         MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(300)
                 .inputs(CERAMIC_BOWL.getStackForm())
                 .fluidInputs(GTFOMaterialHandler.MixedPastaEFagioli.getFluid(250))
