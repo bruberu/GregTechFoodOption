@@ -41,7 +41,7 @@ public class GTFOMixinPlugin implements IFMLLoadingPlugin {
 
     private static void initMixin() {
         MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.recipemap_setters.json");
+        Mixins.addConfiguration("mixins.gregtechfoodoption.json");
     }
 
 }
