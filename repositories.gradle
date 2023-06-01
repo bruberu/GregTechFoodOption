@@ -1,0 +1,64 @@
+// Add any additional repositories for your dependencies here
+
+repositories {
+    maven {
+        url "https://maven.shadowfacts.net/"
+    }
+    maven {
+        name = "ic2, forestry"
+        setUrl("https://maven.ic2.player.to/")
+    }
+    maven {
+        name = "OpenComputers"
+        url = "https://maven.cil.li/"
+    }
+    maven {
+        url "https://maven.k-4u.nl"
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
+    maven {
+        name = "progwml6"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "blamejared"
+        url = "https://maven.blamejared.com/"
+    }
+    maven {
+        name = "CCL Maven"
+        url = "https://chickenbones.net/maven/"
+    }
+    maven {
+        name = "CyclopsMC"
+        url = "https://oss.jfrog.org/artifactory/simple/libs-release/"
+    }
+    maven {
+        name 'tterrag Maven'
+        url "https://maven.tterrag.com/"
+    }
+    maven {
+        name = "mcmoddev"
+        url = "https://maven.mcmoddev.com"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+    maven {
+        name = "Ellpeck's Maven"
+        url = "https://maven.ellpeck.de"
+    }
+    maven {
+        url = "https://www.cursemaven.com"
+    }
+    maven {
+        url "https://www.ryanliptak.com/maven/"
+    }
+    maven {
+        url "https://maven.cleanroommc.com"
+    }
+    maven { url = "https://repo.spongepowered.org/maven" }
+}
