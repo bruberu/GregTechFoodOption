@@ -242,7 +242,7 @@ public class ItalianChain {
                 .buildAndRegister();
 
         MULTICOOKER_RECIPES.recipeBuilder().EUt(64).duration(3000)
-                .inputs(ARTICHOKE_HEART.getStackForm(), GARLIC_CLOVE.getStackForm())
+                .inputs(ARTICHOKE_HEART.getStackForm(), GARLIC_CLOVE.getStackForm(), PLATE.getStackForm())
                 .outputs(CARCIOFI_ALLA_ROMANA.getStackForm())
                 .buildAndRegister();
     }
