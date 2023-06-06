@@ -54,14 +54,16 @@ public class ItalianChain {
                 .circuitMeta(1)
                 .inputs(GTFOMetaItem.CERAMIC_BOWL.getStackForm(), GTFOMetaItem.CARROT_SLICE.getStackForm(3), GTFOMetaItem.OLIVE_SLICE.getStackForm(3), GTFOMetaItem.EGGPLANT_SLICE.getStackForm(3))
                 .fluidInputs(GTFOMaterialHandler.Agrodolce.getFluid(250), GTFOMaterialHandler.OliveOil.getFluid(250))
-                .outputs(GTFOMetaItem.CAPONATA.getStackForm());
+                .outputs(GTFOMetaItem.CAPONATA.getStackForm())
+                .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(300)
                 .circuitMeta(1)
                 .inputs(GTFOMetaItem.TOMATO_SLICE.getStackForm(3), GTFOMetaItem.BUN.getStackForm(1), GTFOMetaItem.GARLIC_CLOVE.getStackForm(1))
                 .input(dustSmall, Salt)
                 .fluidInputs(GTFOMaterialHandler.OliveOil.getFluid(250))
-                .outputs(GTFOMetaItem.BRUSCHETTA.getStackForm());
+                .outputs(GTFOMetaItem.BRUSCHETTA.getStackForm())
+                .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().EUt(24).duration(40)
                 .input(Items.PORKCHOP)

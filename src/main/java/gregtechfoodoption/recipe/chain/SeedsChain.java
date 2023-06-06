@@ -144,8 +144,8 @@ public class SeedsChain {
                 AUBERGINE);
         ModHandler.addShapelessRecipe("gtfo_seed_artichoke_extraction", ARTICHOKE_SEED.getStackForm(),
                 ARTICHOKE_HEART);
-        ModHandler.addShapelessRecipe("gtfo_clove_garlic_extraction", GARLIC_BULB.getStackForm(),
-                GARLIC_CLOVE.getStackForm(3));
+        ModHandler.addShapelessRecipe("gtfo_clove_garlic_extraction", GARLIC_CLOVE.getStackForm(3),
+                GARLIC_BULB.getStackForm());
         GTFORecipeMaps.SLICER_RECIPES.recipeBuilder().EUt(8).duration(40)
                 .inputs(GARLIC_BULB.getStackForm())
                 .notConsumable(SLICER_BLADE_OCTAGONAL.getStackForm())
