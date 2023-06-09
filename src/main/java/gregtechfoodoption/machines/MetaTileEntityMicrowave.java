@@ -6,7 +6,6 @@ import gregtech.api.capability.impl.RecipeLogicEnergy;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.info.MaterialFlags;
@@ -14,6 +13,7 @@ import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtechfoodoption.client.GTFOClientHandler;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 
@@ -39,7 +39,7 @@ public class MetaTileEntityMicrowave extends SimpleMachineMetaTileEntity {
                     return;
                 }
             }
-            if (ModHandler.getFuelValue(importItems.getStackInSlot(0)) > 0) {
+            if (TileEntityFurnace.getItemBurnTime(importItems.getStackInSlot(0)) > 0) {
                 this.doExplosion(this.getTier() * 4);
                 return;
             }

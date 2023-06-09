@@ -8,8 +8,8 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.item.GTFOFoodStats;
+import gregtechfoodoption.item.GTFOMetaItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -24,9 +24,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.gem;
@@ -103,14 +103,6 @@ public class GTFOUtils {
 
     public static int boolToInt(boolean boole) {
         return boole ? 1 : 0;
-    }
-
-    public static int average(float divisor, int... inputs) {
-        int result = 0;
-        for (int i : inputs) {
-            result += i;
-        }
-        return (int) (result / divisor);
     }
 
     public static int averageRGB(float divisor, int... inputs) {
@@ -259,5 +251,48 @@ public class GTFOUtils {
             }
         }
         return null;
+    }
+
+    public static int getNumberOfEmptySlotsInInventory(IItemHandler inventory) {
+        // IItemHandler#getSlots() is an int, so this cast is safe.
+        return (int)
+                streamFrom(inventory)
+                        .filter(ItemStack::isEmpty)
+                        .count();
+    }
+
+    public static Stream<ItemStack> streamFrom(IItemHandler inventory) {
+        return StreamSupport.stream(iterableFrom(inventory).spliterator(),
+                false);
+    }
+
+    public static Iterable<ItemStack> iterableFrom(IItemHandler inventory) {
+        return new Iterable<>() {
+            @Override
+            public Iterator<ItemStack> iterator() {
+                return new Iterator<>() {
+                    private int cursor = 0;
+
+                    @Override
+                    public boolean hasNext() {
+                        return cursor < inventory.getSlots();
+                    }
+
+                    @Override
+                    public ItemStack next() {
+                        if (!hasNext()) throw new NoSuchElementException("ItemStack iterator does not have next value");
+
+                        ItemStack next = inventory.getStackInSlot(cursor);
+                        cursor++;
+                        return next;
+                    }
+                };
+            }
+
+            @Override
+            public Spliterator<ItemStack> spliterator() {
+                return Spliterators.spliterator(iterator(), inventory.getSlots(), 0);
+            }
+        };
     }
 }

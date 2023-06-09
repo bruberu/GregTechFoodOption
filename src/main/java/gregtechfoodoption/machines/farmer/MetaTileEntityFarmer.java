@@ -21,7 +21,6 @@ import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.api.util.GregFakePlayer;
-import gregtech.api.util.InventoryUtils;
 import gregtech.client.particle.GTParticleManager;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
@@ -155,7 +154,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         }
 
         // Phase 2: place down seed if possible
-        if (isCropSpaceEmpty() && InventoryUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
+        if (isCropSpaceEmpty() && GTFOUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
             seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1);
             ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
             boolean canPlaceSeed = true;

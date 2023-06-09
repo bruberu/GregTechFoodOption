@@ -2,7 +2,6 @@ package gregtechfoodoption.item;
 
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.util.GTUtility;
 import gregtech.api.util.RandomPotionEffect;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
@@ -91,7 +90,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         }
         for (RandomPotionEffect potionEffect : this.potionEffects) {
             if (Math.random() * 100.0D > (double) potionEffect.chance) {
-                player.addPotionEffect(GTUtility.copyPotionEffect(potionEffect.effect));
+                player.addPotionEffect(new PotionEffect(potionEffect.effect));
             }
         }
         if (player != null && !player.world.isRemote) {

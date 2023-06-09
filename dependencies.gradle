@@ -55,8 +55,8 @@ dependencies {
 
     //compile "curse.maven:spiceoflife-220811:2571951"
 
-    /*implementation files("libs/gregtech-2.6.1-beta-dev.jar")*/
-    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4483462")
+    implementation files("libs/gregtech-2.6.2-beta-dev.jar")
+    //implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4483462")
     implementation files("libs/AppleSkin-mc1.12-1.0.9.jar")
     implementation files("libs/groovyscript-0.4.0.jar")
     implementation files("libs/NuclearCraft-2o.6.0-1.12.2.jar")

@@ -6,7 +6,7 @@ import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.util.FluidTooltipUtil;
 import gregtech.api.util.LocalizationUtils;
 
-public class LacingProperty implements IMaterialProperty<LacingProperty> {
+public class LacingProperty implements IMaterialProperty {
     @Override
     public void verifyProperty(MaterialProperties properties) {
         properties.ensureSet(PropertyKey.FLUID, true);
