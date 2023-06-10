@@ -1,7 +1,6 @@
 package gregtechfoodoption.machines.farmer;
 
 import gregtechfoodoption.block.GTFORootCrop;
-import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -17,6 +16,11 @@ public class GTFORootCropFarmerMode extends GTFOCropFarmerMode {
 
     private boolean hasNoSeeds(MetaTileEntityFarmer farmer, GTFORootCrop crop) {
         ItemStack seed = crop.getSeedStack();
-        return GTFOUtils.streamFrom(farmer.getImportItems()).noneMatch(stack -> stack.isItemEqual(seed));
+        for (int i = 0; i < farmer.getImportItems().getSlots(); i++) {
+            if (seed.isItemEqual(farmer.getImportItems().getStackInSlot(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 }

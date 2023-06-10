@@ -43,7 +43,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -66,6 +65,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public GregFakePlayer fakePlayer;
     private final List<FarmerMode> unusableHarvestingModes = new ArrayList<>();
     protected int seedSlot;
+    protected boolean seedsAreEmpty = false;
     private boolean autoOutputItems;
     private EnumFacing outputFacing;
     private boolean allowInputFromOutputSide = false;
@@ -116,12 +116,32 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
             pushItemsIntoNearbyHandlers(getOutputFacing());
         }
 
-        boolean didSomething = false;
+        boolean didSomething;
 
         if (this.fakePlayer == null)
             this.fakePlayer = new GregFakePlayer(this.getWorld());
 
         // Phase 1: move crop pointer and collect crops if there exists enough inventory
+        didSomething = collectCrops();
+
+        // If the output inventory has updated and isn't full, use all modes
+        if (!unusableHarvestingModes.isEmpty()) {
+            if (notifiedItemOutputList.contains(getExportItems()) && !GTFOUtils.isFull(getExportItems())) {
+                unusableHarvestingModes.clear();
+            }
+        }
+
+        // Phase 2: place down seed if possible
+        didSomething |= placeSeed();
+
+        if (didSomething)
+            getWorld().playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5,
+                    GTFOClientHandler.FARMER_LASER, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        updateOperationPosition();
+    }
+
+    // Returns true if it successfully collected crops
+    public boolean collectCrops() {
         IBlockState blockState = getWorld().getBlockState(operationPosition);
         if (!getWorld().isAirBlock(operationPosition)) {
             boolean canHarvestBlock = true;
@@ -138,57 +158,54 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
                 if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
                     GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
                     cachedMode.harvest(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
-                    didSomething = true;
+                    return true;
                 } else {
                     unusableHarvestingModes.add(cachedMode);
                     notifiedItemOutputList.clear();
                 }
             }
         }
+        return false;
+    }
 
-        // If the output inventory has updated and isn't full, use all modes
-        if (!unusableHarvestingModes.isEmpty()) {
-            if (notifiedItemOutputList.contains(getExportItems()) && !GTFOUtils.isFull(getExportItems())) {
-                unusableHarvestingModes.clear();
-            }
-        }
+    public boolean placeSeed() {
+        if (isCropSpaceEmpty() && (!seedsAreEmpty || !this.getNotifiedItemInputList().isEmpty())) {
+            seedsAreEmpty = false; // At least, I hope
+            seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1); // It loops around if it doesn't find anything after
+            if (seedSlot == -1) {
+                seedsAreEmpty = true;
+            } else {
+                ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
+                boolean canPlaceSeed = true;
+                if (!cachedMode.canPlaceItem(seedItem) || !cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld())) {
+                    FarmerMode mode;
 
-        // Phase 2: place down seed if possible
-        if (isCropSpaceEmpty() && GTFOUtils.getNumberOfEmptySlotsInInventory(getImportItems()) != getImportItems().getSlots()) {
-            seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1);
-            ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
-            boolean canPlaceSeed = true;
-            if (!cachedMode.canPlaceItem(seedItem) || !cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld())) {
-                FarmerMode mode;
+                    mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem, GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld());
+                    if (mode != null) {
+                        cachedMode = mode;
+                    } else {
+                        canPlaceSeed = false;
 
-                mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem, GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld());
-                if (mode != null) {
-                    cachedMode = mode;
-                } else {
-                    canPlaceSeed = false;
-
-                    if (FarmerModeRegistry.findSuitableFarmerMode(seedItem) == null) {
-                        // Move this unusable stack to the output
-                        ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
-                        if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
-                            GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
-                                    Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
+                        if (FarmerModeRegistry.findSuitableFarmerMode(seedItem) == null) {
+                            // Move this unusable stack to the output
+                            ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
+                            if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
+                                GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
+                                        Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
+                            }
                         }
                     }
                 }
-            }
-            if (canPlaceSeed) {
-                EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
-                if (result == EnumActionResult.SUCCESS) {
-                    getImportItems().extractItem(seedSlot, 1, false);
-                    didSomething = true;
+                if (canPlaceSeed) {
+                    EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
+                    if (result == EnumActionResult.SUCCESS) {
+                        getImportItems().extractItem(seedSlot, 1, false);
+                        return true;
+                    }
                 }
             }
         }
-        if (didSomething)
-            getWorld().playSound(null, getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5,
-                    GTFOClientHandler.FARMER_LASER, SoundCategory.BLOCKS, 1.0f, 1.0f);
-        updateOperationPosition();
+        return false;
     }
 
     private boolean isCropSpaceEmpty() {
@@ -263,7 +280,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
 
 
     protected IItemHandlerModifiable createImportItemHandler() {
-        return new ItemStackHandler(9);
+        return new NotifiableItemStackHandler(9, this, false);
     }
 
     protected IItemHandlerModifiable createExportItemHandler() {

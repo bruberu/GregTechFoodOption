@@ -24,9 +24,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 
-import java.util.*;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.gem;
@@ -220,7 +220,7 @@ public class GTFOUtils {
             if (!handler.getStackInSlot(i).isEmpty())
                 return i;
         }
-        return 0;
+        return -1;
     }
 
     public static Vec3d getScaledFacingVec(EnumFacing facing, double scale) {
@@ -251,48 +251,5 @@ public class GTFOUtils {
             }
         }
         return null;
-    }
-
-    public static int getNumberOfEmptySlotsInInventory(IItemHandler inventory) {
-        // IItemHandler#getSlots() is an int, so this cast is safe.
-        return (int)
-                streamFrom(inventory)
-                        .filter(ItemStack::isEmpty)
-                        .count();
-    }
-
-    public static Stream<ItemStack> streamFrom(IItemHandler inventory) {
-        return StreamSupport.stream(iterableFrom(inventory).spliterator(),
-                false);
-    }
-
-    public static Iterable<ItemStack> iterableFrom(IItemHandler inventory) {
-        return new Iterable<>() {
-            @Override
-            public Iterator<ItemStack> iterator() {
-                return new Iterator<>() {
-                    private int cursor = 0;
-
-                    @Override
-                    public boolean hasNext() {
-                        return cursor < inventory.getSlots();
-                    }
-
-                    @Override
-                    public ItemStack next() {
-                        if (!hasNext()) throw new NoSuchElementException("ItemStack iterator does not have next value");
-
-                        ItemStack next = inventory.getStackInSlot(cursor);
-                        cursor++;
-                        return next;
-                    }
-                };
-            }
-
-            @Override
-            public Spliterator<ItemStack> spliterator() {
-                return Spliterators.spliterator(iterator(), inventory.getSlots(), 0);
-            }
-        };
     }
 }
