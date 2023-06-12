@@ -17,7 +17,5 @@ public class GTFOOredictItem extends MetaOreDictItem {
     public CreativeTabs[] getCreativeTabs() {
         return new gregtech.api.util.BaseCreativeTab[]{GregTechAPI.TAB_GREGTECH_MATERIALS};
     }
-
-    //
 }
 

@@ -4,6 +4,7 @@ import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.machines.RecipeMapFluidCanner;
 import gregtechfoodoption.item.GTFOFoodStats;
+import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.item.ItemStack;
@@ -47,53 +48,90 @@ public class RecipeMapFluidCannerMixin {
     }
 
     public void findLacingRecipe(List<ItemStack> inputs, List<FluidStack> fluidInputs, CallbackInfoReturnable<Recipe> cir) {
+        ItemStack inputStack = ItemStack.EMPTY;
+        ItemStack lacingWith = ItemStack.EMPTY;
+        ItemStack outputStack;
+        FluidStack inputFluid;
         for (ItemStack input : inputs) {
             GTFOFoodStats stats = GTFOUtils.getGTFOFoodStats(input);
             if (stats != null) {
                 // For pushing about
-                ItemStack inputStack = input.copy();
+                inputStack = input.copy();
                 inputStack.setCount(1);
+                continue;
+            }
+            GTFOLog.logger.info(input.getItem());
+            if (input.getItem() instanceof GTFOOredictItem) { // Hoping there's only one
+                lacingWith = input.copy();
+            }
+        }
+        if (inputStack.isEmpty()) {
+            return;
+        }
+        FluidStack potentialFluid = fluidInputs.get(0);
+        if (potentialFluid != null && potentialFluid.amount != 0) {
+            inputFluid = potentialFluid.copy();
+            if (inputFluid.amount < 100)
+                return;
+            inputFluid.amount = 100; // For use in the recipe; it's fine since it's a copy
+            outputStack = inputStack.copy();
+            outputStack.setCount(1);
 
-                ItemStack outputStack = input.copy();
-                outputStack.setCount(1);
+            NBTTagCompound overallTag = outputStack.getTagCompound();
+            if (outputStack.getTagCompound() == null)
+                overallTag = new NBTTagCompound();
 
-                NBTTagCompound overallTag = outputStack.getTagCompound();
-                if (outputStack.getTagCompound() == null)
-                    overallTag = new NBTTagCompound();
+            NBTTagCompound gtfoStatsTag = overallTag.getCompoundTag("gtfoStats");
 
-                NBTTagCompound gtfoStatsTag = overallTag.getCompoundTag("gtfoStats");
-
-                FluidStack potentialFluid = fluidInputs.get(0);
-                if (potentialFluid == null) {
+            switch (inputFluid.getUnlocalizedName()) {
+/*                case "material.gtfo_hydrogen_cyanide": {
+                    gtfoStatsTag.setBoolean("5dkcap/2/4/", true);
+                    break;
+                }*/
+                default: {
                     return;
-                }
-                FluidStack inputFluid = potentialFluid.copy();
-                if (inputFluid.amount < 100)
-                    return;
-                inputFluid.amount = 100; // For use in the recipe; it's fine since it's a copy
-                GTFOLog.logger.info(inputFluid.getUnlocalizedName());
-                switch (inputFluid.getUnlocalizedName()) {
-                    case "material.gtfo_hydrogen_cyanide": {
-                        gtfoStatsTag.setBoolean("5dkcap/2/4/", true);
-                        break;
-                    }
-                    default: {
-                        return;
-                    }
-                }
-                overallTag.setTag("gtfoStats", gtfoStatsTag);
-                outputStack.setTagCompound(overallTag);
-
-                if (inputFluid.amount > 0) {
-                    cir.setReturnValue(CANNER_RECIPES.recipeBuilder()
-                            //we can reuse recipe as long as input container stack fully matches our one
-                            .inputs(GTRecipeItemInput.getOrCreate(inputStack, 1))
-                            .fluidInputs(inputFluid)
-                            .outputs(outputStack)
-                            .duration(Math.max(16, inputFluid.amount / 64)).EUt(4)
-                            .build().getResult());
                 }
             }
+/*
+            overallTag.setTag("gtfoStats", gtfoStatsTag);
+            outputStack.setTagCompound(overallTag);
+            cir.setReturnValue(CANNER_RECIPES.recipeBuilder()
+                    //we can reuse recipe as long as input container stack fully matches our one
+                    .inputs(GTRecipeItemInput.getOrCreate(inputStack, 1))
+                    .fluidInputs(inputFluid)
+                    .outputs(outputStack)
+                    .duration(Math.max(16, inputFluid.amount / 64)).EUt(4)
+                    .build().getResult());
+*/
+        }
+
+        if (!lacingWith.isEmpty()) {
+            outputStack = inputStack.copy();
+            outputStack.setCount(1);
+            GTFOLog.logger.info("hello");
+
+            NBTTagCompound overallTag = outputStack.getTagCompound();
+            if (outputStack.getTagCompound() == null)
+                overallTag = new NBTTagCompound();
+
+            NBTTagCompound gtfoStatsTag = overallTag.getCompoundTag("gtfoStats");
+
+            switch (lacingWith.getMetadata()) {
+                case 1138:
+                    gtfoStatsTag.setBoolean("5dkcap/2/4/", true);
+                    GTFOLog.logger.info("applied");
+                    break;
+                default:
+                    return;
+            }
+            overallTag.setTag("gtfoStats", gtfoStatsTag);
+            outputStack.setTagCompound(overallTag);
+            cir.setReturnValue(CANNER_RECIPES.recipeBuilder()
+                    //we can reuse recipe as long as input container stack fully matches our one
+                    .inputs(GTRecipeItemInput.getOrCreate(inputStack, 1), GTRecipeItemInput.getOrCreate(lacingWith, 1))
+                    .outputs(outputStack)
+                    .duration(16).EUt(4)
+                    .build().getResult());
         }
 
     }

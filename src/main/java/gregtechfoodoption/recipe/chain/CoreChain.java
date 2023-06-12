@@ -218,6 +218,13 @@ public class CoreChain {
                 .output(dust, Sugar)
                 .buildAndRegister();
 
+        CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(80)
+                .fluidInputs(HydrogenCyanide.getFluid(1000))
+                .input(dust, SodiumHydroxide, 3)
+                .outputs(SodiumCyanide.getItemStack(3))
+                .fluidOutputs(Water.getFluid(1000))
+                .buildAndRegister();
+
         DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
                 .fluidInputs(AppleCider.getFluid(1000))
                 .fluidOutputs(AceticAcid.getFluid(80))
