@@ -12,7 +12,7 @@ import static gregtechfoodoption.item.GTFOMetaItem.*;
 
 public class CapletChain {
     public static void init() {
-        FLUID_HEATER_RECIPES.recipeBuilder().EUt(2048).duration(280)
+        FLUID_HEATER_RECIPES.recipeBuilder().EUt(120).duration(540)
                 .fluidInputs(Water.getFluid(1000))
                 .circuitMeta(2)
                 .fluidOutputs(HeatedWater.getFluid(1000))
