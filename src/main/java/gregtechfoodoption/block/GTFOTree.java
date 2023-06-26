@@ -216,7 +216,7 @@ public abstract class GTFOTree {
         ItemStack leaves = new ItemStack(GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4), 1, (seed % 4) << 2);
 
         registerWoodTypeRecipe(new WoodTypeEntry.Builder(GTFOValues.MODID, this.name)
-                .planks(planks, this.name + "_planks")
+                .planks(planks, null)
                 .log(log)
                 .build());
 
