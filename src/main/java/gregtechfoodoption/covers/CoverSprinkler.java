@@ -81,7 +81,7 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
         boolean isWorkingNow = fluid != null;
         int percentageChance = 0;
         if (isWorkingNow) {
-            Material mat = GregTechAPI.MaterialRegistry.get(fluid.getFluid().getName());
+            Material mat = GregTechAPI.materialManager.getMaterial(fluid.getFluid().getName());
             if (mat != null) {
                 int color = mat.getMaterialRGB();
                 if (color != sprinkleColor) {

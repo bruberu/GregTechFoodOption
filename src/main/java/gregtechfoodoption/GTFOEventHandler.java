@@ -2,6 +2,7 @@ package gregtechfoodoption;
 
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.util.GregFakePlayer;
 import gregtechfoodoption.entity.EntityStrongSnowman;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
@@ -52,7 +53,7 @@ public class GTFOEventHandler {
 
 
     @SubscribeEvent
-    public static void onMaterialsInit(GregTechAPI.MaterialEvent event) { // Must be called during construction to be registered in time for MaterialEvents.
+    public static void onMaterialsInit(MaterialEvent event) { // Must be called during construction to be registered in time for MaterialEvents.
         GTFOMaterialHandler gtfoMaterials = new GTFOMaterialHandler();
         GTFOMaterialHandler.onMaterialsInit();
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {

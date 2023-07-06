@@ -1,5 +1,6 @@
 package gregtechfoodoption;
 
+import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.MetaFluids;
 import gregtech.api.fluids.fluidType.FluidType;
@@ -17,6 +18,7 @@ import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.item.GTFOProxyItem;
 import gregtechfoodoption.materials.FertilizerProperty;
 import gregtechfoodoption.materials.LacingProperty;
+import net.minecraft.util.ResourceLocation;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
@@ -131,7 +133,7 @@ public class GTFOMaterialHandler {
     public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid", FluidTypes.ACID)
             .components(Hydrogen, 1, Chlorine, 1, Oxygen, 4)
             .build();
-    public static final Material ChloroauricAcid = GregTechAPI.MaterialRegistry.get("chloroauric_acid") != null ? GregTechAPI.MaterialRegistry.get("chloroauric_acid") :
+    public static final Material ChloroauricAcid = GregTechAPI.materialManager.getMaterial("chloroauric_acid") != null ? GregTechAPI.materialManager.getMaterial("chloroauric_acid") :
             fluidBuilder(21530, "chloroauric_acid", FluidTypes.ACID)
                     .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
                     .build();
@@ -176,7 +178,7 @@ public class GTFOMaterialHandler {
             .components(Carbon, 5, Hydrogen, 7, Oxygen, 5)
             .build()
             .setFormula("HOC(CH2CO2H)2", true); //good for processing food
-    public static final Material HydrogenCyanide = GregTechAPI.MaterialRegistry.get("hydrogen_cyanide") != null ? GregTechAPI.MaterialRegistry.get("hydrogen_cyanide") : fluidBuilder(21541, "hydrogen_cyanide")
+    public static final Material HydrogenCyanide = GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") != null ? GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") : fluidBuilder(21541, "hydrogen_cyanide")
             .color(0x6e6a5e)
             .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
             .build();
@@ -257,7 +259,7 @@ public class GTFOMaterialHandler {
     public static final Material RainbowSap = fluidBuilder(21562, "rainbow_sap")
             .color(0xffffff)
             .build();
-    public static final Material BlueVitriol = GregTechAPI.MaterialRegistry.get("blue_vitriol") != null ? GregTechAPI.MaterialRegistry.get("blue_vitriol") :
+    public static final Material BlueVitriol = GregTechAPI.materialManager.getMaterial("blue_vitriol") != null ? GregTechAPI.materialManager.getMaterial("blue_vitriol") :
             fluidBuilder(21563, "blue_vitriol")
                     .color(0x4242DE)
                     .components(Copper, 1, Sulfur, 1, Oxygen, 4)
@@ -276,7 +278,7 @@ public class GTFOMaterialHandler {
     public static final Material PoorQualityBeer = fluidBuilder(21567, "poor_quality_beer")
             .color(0xa87b58)
             .build();
-    public static final Material SodiumSulfate = new Material.Builder(21568, "sodium_sulfate")
+    public static final Material SodiumSulfate = new Material.Builder(21568, gtfoId("sodium_sulfate"))
             .dust()
             .components(Sodium, 2, Sulfur, 1, Oxygen, 4)
             .build();
@@ -506,19 +508,19 @@ public class GTFOMaterialHandler {
 
     public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117, "kubide_meat", 0x9B0600, Organic, dust);
     public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addOreDictItem(1118, "barg_meat", 0x7F0000, Organic, dust);
-    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1119, "fat", 0xFFF200, Organic, ingot, "C57H110O6"); // yea Fat is much more complicated but i just stick to this formula...
+    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1119, "fat", 0xFFF200, Organic, ingot, "C57H110O6"); // yea Fat is much more complicated, but I just stick to this formula...
 
     public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addOreDictItem(1120, "cooked_meat", 0xa63028, MaterialIconSet.ROUGH, ingot);
     //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
 
     public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121, "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF), MaterialIconSet.ROUGH, dust, "NaClO4");
-    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, "sodium_chlorate", () -> OreDictUnifier.get(dust, GregTechAPI.MaterialRegistry.get("sodium_chlorate")));
+    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, "sodium_chlorate", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("sodium_chlorate")));
 
     public static final GTFOOredictItem.OreDictValueItem VanillylmandelicAcid = SHAPED_ITEM.addOreDictItem(1123, "vanillylmandelic_acid", 0xf2efbd, MaterialIconSet.ROUGH, dust, "C9H10O5");
     public static final GTFOOredictItem.OreDictValueItem VanilglycolicAcid = SHAPED_ITEM.addOreDictItem(1124, "vanilglycolic_acid", 0xebe7a4, MaterialIconSet.DULL, dust, "C9H8O5");
     public static final GTFOOredictItem.OreDictValueItem Vanillin = SHAPED_ITEM.addOreDictItem(1125, "vanillin", 0xfbfbfb, MaterialIconSet.SHINY, OrePrefix.dust, "C8H8O3");
 
-    public static final GTFOProxyItem ArsenicTrioxide = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1126, "arsenic_trioxide", averageRGB(2, Arsenic.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "As2O3"), 1126, "arsenic_trioxide", () -> OreDictUnifier.get(dust, GregTechAPI.MaterialRegistry.get("arsenic_trioxide")));
+    public static final GTFOProxyItem ArsenicTrioxide = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1126, "arsenic_trioxide", averageRGB(2, Arsenic.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "As2O3"), 1126, "arsenic_trioxide", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("arsenic_trioxide")));
     public static final GTFOOredictItem.OreDictValueItem CupricHydrogenArsenite = SHAPED_ITEM.addOreDictItem(1127, "cupric_hydrogen_arsenite", 0x0fff00, MaterialIconSet.SHINY, OrePrefix.dust, "CuHAsO3");
     public static final GTFOOredictItem.OreDictValueItem LaminatedDough = SHAPED_ITEM.addOreDictItem(1128, "laminated_dough", 0xc6b4bb, MaterialIconSet.DULL, plate);
     public static final MetaOreDictItem.OreDictValueItem CookedMinceMeat = SHAPED_ITEM.addOreDictItem(1129, "cooked_mince_meat", 0x462b25, MaterialIconSet.ROUGH, dust);
@@ -554,7 +556,7 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_PRESSED = SHAPED_ITEM.addOreDictItem(1050, "chocolate_liquor_pressed", 0xa6795a, GTFOValues.Organic, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = SHAPED_ITEM.addOreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, GTFOValues.Organic, OrePrefix.crushed);
 
-    public static final Material Paracetamol = new Material.Builder(21900, "paracetamol").dust()
+    public static final Material Paracetamol = new Material.Builder(21900, gtfoId("paracetamol")).dust()
             .color(0x0045A0).iconSet(MaterialIconSet.SHINY)
             .components(Carbon, 8, Hydrogen, 9, Nitrogen, 1, Oxygen, 2)
             .build();
@@ -575,11 +577,11 @@ public class GTFOMaterialHandler {
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
-        return new Material.Builder(id, "gtfo_" + name).fluid();
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).fluid();
     }
 
     public static Material.Builder fluidBuilder(int id, String name, FluidType type) {
-        return new Material.Builder(id, "gtfo_" + name).fluid(type);
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).fluid(type);
     }
 
     public static void customFluidTextures() {
@@ -587,7 +589,7 @@ public class GTFOMaterialHandler {
     }
 
     public static void registerFertilizerTooltips() {
-        for (Material material : GregTechAPI.MATERIAL_REGISTRY) {
+        for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
             FertilizerProperty fertilizerProperty = material.getProperty(FERTILIZER);
             if (fertilizerProperty != null)
                 FluidTooltipUtil.registerTooltip(material.getFluid(), LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", fertilizerProperty.getBoostPercentage()));
@@ -595,5 +597,9 @@ public class GTFOMaterialHandler {
             if (lacingProperty != null)
                 FluidTooltipUtil.registerTooltip(material.getFluid(), LocalizationUtils.format("gregtechfoodoption.fluid.lacing"));
         }
+    }
+
+    public static ResourceLocation gtfoId(String path) {
+        return new ResourceLocation(GTValues.MODID, path);
     }
 }

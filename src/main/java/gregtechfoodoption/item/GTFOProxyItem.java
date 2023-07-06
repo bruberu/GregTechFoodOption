@@ -14,7 +14,7 @@ public class GTFOProxyItem {
     private final boolean isOverriden;
 
     public GTFOProxyItem(Supplier<MetaOreDictItem.OreDictValueItem> gtfoItem, int gtfoItemID, String name, Supplier<ItemStack> otherItem) {
-        isOverriden = GregTechAPI.MaterialRegistry.get(name) != null;
+        isOverriden = GregTechAPI.materialManager.getMaterial(name) != null;
         if (isOverriden) {
             itemPreparer = otherItem;
         } else {
