@@ -1,11 +1,12 @@
 package gregtechfoodoption.machines;
 
 import gregtech.api.GTValues;
-import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
+import gregtech.api.recipes.RecipeMap;
 import gregtech.api.util.GTUtility;
-import gregtech.common.metatileentities.MetaTileEntities;
+import gregtech.client.renderer.ICubeRenderer;
 import gregtechfoodoption.GregTechFoodOption;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.item.GTFOSimpleMachineMetaTileEntity;
 import gregtechfoodoption.machines.farmer.MetaTileEntityFarmer;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
@@ -14,15 +15,17 @@ import gregtechfoodoption.machines.multiblock.MetaTileEntitySteamBakingOven;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.util.ResourceLocation;
 
+import java.util.function.Function;
+
 import static gregtech.common.metatileentities.MetaTileEntities.*;
 
 /* Takes up IDs 8500 - 8599 */
 public class GTFOTileEntities {
     //public static MetaTileEntityBioReactor[] BIOREACTOR = new MetaTileEntityBioReactor[GTValues.V.length];
-    public static SimpleMachineMetaTileEntity[] SLICER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
-    public static SimpleMachineMetaTileEntity[] CUISINE_ASSEMBLER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
+    public static GTFOSimpleMachineMetaTileEntity[] SLICER = new GTFOSimpleMachineMetaTileEntity[GTValues.V.length - 1];
+    public static GTFOSimpleMachineMetaTileEntity[] CUISINE_ASSEMBLER = new GTFOSimpleMachineMetaTileEntity[GTValues.V.length - 1];
     public static MetaTileEntityMicrowave[] MICROWAVE = new MetaTileEntityMicrowave[GTValues.V.length - 1];
-    public static SimpleMachineMetaTileEntity[] MULTICOOKER = new SimpleMachineMetaTileEntity[GTValues.V.length - 1];
+    public static GTFOSimpleMachineMetaTileEntity[] MULTICOOKER = new GTFOSimpleMachineMetaTileEntity[GTValues.V.length - 1];
 
     public static final MetaTileEntityMobAgeSorter[] MOB_AGE_SORTER = new MetaTileEntityMobAgeSorter[4];
     public static final MetaTileEntityMobExterminator[] MOB_EXTERMINATOR = new MetaTileEntityMobExterminator[4];
@@ -41,8 +44,8 @@ public class GTFOTileEntities {
         BIOREACTOR[4] = MetaTileEntities.registerMetaTileEntity(8502, new MetaTileEntityBioReactor(location("bioreactor.iv"), 5));
 */
 
-        MetaTileEntities.registerSimpleMetaTileEntity(SLICER, 8503, "slicer", GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
-        MetaTileEntities.registerSimpleMetaTileEntity(CUISINE_ASSEMBLER, 8518, "cuisine_assembler", GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
+        registerGTFOSimpleMetaTileEntity(SLICER, 8503, "slicer", GTFORecipeMaps.SLICER_RECIPES, GTFOClientHandler.SLICER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
+        registerGTFOSimpleMetaTileEntity(CUISINE_ASSEMBLER, 8518, "cuisine_assembler", GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES, GTFOClientHandler.CUISINE_ASSEMBLER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
 
         MICROWAVE[1] = registerMetaTileEntity(8531, new MetaTileEntityMicrowave(location("microwave.lv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 1));
         MICROWAVE[2] = registerMetaTileEntity(8532, new MetaTileEntityMicrowave(location("microwave.mv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.MICROWAVE_OVERLAY, 2));
@@ -94,10 +97,24 @@ public class GTFOTileEntities {
 
         GREENHOUSE = registerMetaTileEntity(8565, new MetaTileEntityGreenhouse(location("greenhouse")));
 
-        MetaTileEntities.registerSimpleMetaTileEntity(MULTICOOKER, 8566, "multicooker", GTFORecipeMaps.MULTICOOKER_RECIPES, GTFOClientHandler.MULTICOOKER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
+        registerGTFOSimpleMetaTileEntity(MULTICOOKER, 8566, "multicooker", GTFORecipeMaps.MULTICOOKER_RECIPES, GTFOClientHandler.MULTICOOKER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
     }
 
     private static ResourceLocation location(String name) {
         return new ResourceLocation(GregTechFoodOption.MODID, name);
+    }
+
+    public static void registerGTFOSimpleMetaTileEntity(GTFOSimpleMachineMetaTileEntity[] machines, int startId, String name, RecipeMap<?> map, ICubeRenderer texture, boolean hasFrontFacing, Function<String, ResourceLocation> resourceId, Function<Integer, Integer> tankScalingFunction) {
+        for(int i = 0; i < machines.length - 1; ++i) {
+            if (i <= 4 || getMidTier(name)) {
+                if (i > 7 && !getHighTier(name)) {
+                    break;
+                }
+
+                String voltageName = GTValues.VN[i + 1].toLowerCase();
+                machines[i + 1] = registerMetaTileEntity(startId + i, new GTFOSimpleMachineMetaTileEntity(resourceId.apply(String.format("%s.%s", name, voltageName)), map, texture, i + 1, hasFrontFacing, tankScalingFunction));
+            }
+        }
+
     }
 }

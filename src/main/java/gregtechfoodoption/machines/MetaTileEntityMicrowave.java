@@ -4,7 +4,6 @@ import gregtech.api.GTValues;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.RecipeLogicEnergy;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.unification.OreDictUnifier;
@@ -13,13 +12,14 @@ import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.stack.MaterialStack;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.item.GTFOSimpleMachineMetaTileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 
 import java.util.function.Supplier;
 
-public class MetaTileEntityMicrowave extends SimpleMachineMetaTileEntity {
+public class MetaTileEntityMicrowave extends GTFOSimpleMachineMetaTileEntity {
     public MetaTileEntityMicrowave(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier) {
         super(metaTileEntityId, recipeMap, renderer, tier, true);
     }
