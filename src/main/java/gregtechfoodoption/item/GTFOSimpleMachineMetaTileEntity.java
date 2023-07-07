@@ -73,7 +73,7 @@ public class GTFOSimpleMachineMetaTileEntity extends SimpleMachineMetaTileEntity
                 .setButtonTexture(GuiTextures.BUTTON_OVERCLOCK));
 
         if (exportItems.getSlots() + exportFluids.getTanks() <= 9) {
-            ImageWidget logo = new ImageWidget(152, 63 + yOffset, 17, 17,
+            ImageWidget logo = new ImageWidget(152, 62 + yOffset, 17, 17,
                     GTValues.XMAS.get() ? GTFOGuiTextures.GTFO_LOGO_XMAS : GTFOGuiTextures.GTFO_LOGO)
                     .setIgnoreColor(true);
 
