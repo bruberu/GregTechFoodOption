@@ -774,7 +774,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         SAUSAGE_ROLL = addItem(216, "food.sausage_roll").addComponents(new GTFOFoodStats(7, 0.7f));
         BAKED_BEANS = addItem(217, "food.baked_beans").addComponents(new GTFOFoodStats(4, 1f));
         BEANS_ON_TOAST = addItem(218, "food.beans_on_toast").addComponents(new GTFOFoodStats(7, 0.8f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.SATURATION, 500, 0, 100 - 20)));
+                new RandomPotionEffect(MobEffects.SATURATION, 40, 0, 100 - 20)));
         FRIED_FISH = addItem(219, "food.fried_fish").addComponents(new GTFOFoodStats(4, 0.3f));
         BEER = addItem(220, "food.beer").addComponents(new GTFOFoodStats(2, 0.5f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 0, 100 - 40)));
@@ -807,7 +807,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         PASTA_AL_POMODORO = addItem(280, "food.pasta_al_pomodoro").addComponents(new GTFOFoodStats(5, 0.5f).setReturnStack(DIRTY_PLATE.getStackForm())
                 .setPotionEffects(new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 160, 1, 100 - 30)).setEatingDuration(50));
         POLENTA = addItem(281, "food.polenta").addComponents(new GTFOFoodStats(6, 0.4f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.SATURATION, 500, 0, 100 - 50)));
+                .setPotionEffects(new RandomPotionEffect(MobEffects.SATURATION, 40, 0, 100 - 50)));
         RAFANATA = addItem(282, "food.rafanata").addComponents(new GTFOFoodStats(7, 1f).setReturnStack(DIRTY_PLATE.getStackForm())
                 .setPotionEffects(new RandomPotionEffect(MobEffects.JUMP_BOOST, 500, 0, 100 - 80)));
         RISOTTO = addItem(283, "food.risotto").addComponents(new GTFOFoodStats(10, 0.8f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())

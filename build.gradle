@@ -434,7 +434,7 @@ dependencies {
         }
         // workaround for https://github.com/bsideup/jabel/issues/174
         annotationProcessor 'net.java.dev.jna:jna-platform:5.13.0'
-        // Allow jdk.unsupported classes like sun.misc.Unsafe, workaround for JDK-8206937 and fixes Forge crashes in tests.
+        // Allow jdk.unsupporte classes like sun.misc.Unsafe, workaround for JDK-8206937 and fixes Forge crashes in tests.
         patchedMinecraft 'me.eigenraven.java8unsupported:java-8-unsupported-shim:1.0.0'
 
         // allow Jabel to work in tests

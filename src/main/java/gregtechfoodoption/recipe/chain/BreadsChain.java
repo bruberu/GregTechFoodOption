@@ -206,7 +206,7 @@ public class BreadsChain {
                 .outputs(PRESLICED_BUN.getStackForm())
                 .buildAndRegister();
 
-        ModHandler.addShapedRecipe("gtfo_vertical_slice_bread",  TOAST.getStackForm(4), "B", "k", 'B', Items.BREAD);
+        ModHandler.addShapedRecipe("gtfo_vertical_slice_bread", BREAD_SLICE.getStackForm(4), "B", "k", 'B', Items.BREAD);
         SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                 .input(Items.BREAD)
                 .notConsumable(SLICER_BLADE_FLAT.getStackForm())

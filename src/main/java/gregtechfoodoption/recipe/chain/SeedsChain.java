@@ -6,6 +6,7 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOTrees;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
@@ -23,7 +24,7 @@ public class SeedsChain {
                 .chancedOutput(GTFOMaterialHandler.PopcornKernel.getItemStack(), 2000, 250)
                 .buildAndRegister();*/
 
-        ItemStack[] seeds = new ItemStack[]{
+        ItemStack[] crops = new ItemStack[]{
                 LEMON.getStackForm(),
                 LIME.getStackForm(),
                 TOMATO.getStackForm(),
@@ -50,7 +51,7 @@ public class SeedsChain {
                 BLACK_PEPPERCORN.getStackForm()
         };
 
-        for (ItemStack seed : seeds) {
+        for (ItemStack seed : crops) {
             if (GTFOConfig.gtfoMiscConfig.centrifugeSeeds) {
                 RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(5).duration(144)
                         .inputs(seed)
@@ -68,8 +69,11 @@ public class SeedsChain {
                     .inputs(eight)
                     .outputs(MetaItems.PLANT_BALL.getStackForm())
                     .buildAndRegister();
+
+        }
+        for (GTFOCrop crop : GTFOCrop.CROP_BLOCKS) {
             RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().duration(32).EUt(2)
-                    .inputs(seed)
+                    .inputs(crop.getSeedStack())
                     .circuitMeta(3)
                     .fluidOutputs(SeedOil.getFluid(8))
                     .buildAndRegister();
