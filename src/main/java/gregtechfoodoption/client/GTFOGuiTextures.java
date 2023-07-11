@@ -11,6 +11,7 @@ public class GTFOGuiTextures {
     public static final TextureArea CROP_OVERLAY = TextureArea.fullImage("textures/gui/overlay/crop_overlay.png");
     public static final TextureArea SEED_OVERLAY = TextureArea.fullImage("textures/gui/overlay/seed_overlay.png");
     public static final TextureArea BUTTON_MOB_SORTER_MODE = TextureArea.fullImage("textures/gui/widget/button_mob_sorter_mode.png");
+    public static final TextureArea BUTTON_ADAPTABILITY = TextureArea.fullImage("textures/gui/widget/button_adaptability.png");
 
     public static final TextureArea GTFO_LOGO = TextureArea.fullImage("textures/gui/icon/gtfo_logo.png");
     public static final TextureArea GTFO_LOGO_XMAS = TextureArea.fullImage("textures/gui/icon/gtfo_logo_xmas.png");

@@ -3,8 +3,14 @@ package gregtechfoodoption.machines.multiblock;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import gregtech.api.capability.GregtechTileCapabilities;
+import gregtech.api.capability.IControllable;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
+import gregtech.api.gui.GuiTextures;
+import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.Widget;
+import gregtech.api.gui.resources.TextureArea;
+import gregtech.api.gui.widgets.*;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -18,27 +24,33 @@ import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.util.RelativeDirection;
 import gregtech.client.renderer.ICubeRenderer;
-import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.block.GTFOMetalCasing;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.*;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static gregtech.api.gui.widgets.AdvancedTextWidget.withButton;
 import static gregtech.api.unification.material.Materials.Steel;
 import static gregtechfoodoption.block.GTFOMetaBlocks.GTFO_METAL_CASING;
 
@@ -77,8 +89,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
             hasEnoughEnergy = drainEnergy();
             if (adaptable && !canRunRecipe)
                 targetTemp = 300;
-        }
-        else
+        } else
             hasEnoughEnergy = true;
 
         if (getOffsetTimer() % 20 == 0 && !recipeMapWorkable.isActive())
@@ -135,9 +146,6 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
             tooltip.setStyle((new Style()).setColor(TextFormatting.GRAY));
             textList.add((new TextComponentTranslation("gregtech.multiblock.invalid_structure")).setStyle((new Style()).setColor(TextFormatting.RED).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, tooltip))));
         } else {
-            if (this.hasMaintenanceMechanics() && ConfigHolder.machines.enableMaintenance) {
-                this.addMaintenanceText(textList);
-            }
             if (!this.recipeMapWorkable.isWorkingEnabled()) {
                 textList.add(new TextComponentTranslation("gregtech.multiblock.work_paused"));
             } else if (this.recipeMapWorkable.isActive()) {
@@ -159,19 +167,6 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1", temp));
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4", temperatureEnergyCost(temp, size)));
 
-            ITextComponent toggleText = new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.6");
-            toggleText.appendSibling(withButton(new TextComponentString(" [T]"), "toggle"));
-            textList.add(toggleText);
-
-            if (!adaptable) {
-                ITextComponent buttonText = new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3");
-                buttonText.appendText(" ");
-                buttonText.appendSibling(withButton(new TextComponentString("[-]"), "sub"));
-                buttonText.appendText(" ");
-                buttonText.appendSibling(withButton(new TextComponentString("[+]"), "add"));
-                textList.add(buttonText);
-            }
-
             textList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.5", targetTemp));
 
 
@@ -185,16 +180,12 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         }
     }
 
-    @Override
-    protected void handleDisplayClick(String componentData, Widget.ClickData clickData) {
-        super.handleDisplayClick(componentData, clickData);
-        if (componentData.equals("add")) {
-            targetTemp += 5;
-        } else if (componentData.equals("sub")) {
-            targetTemp -= 5;
-        } else {
-            adaptable = !adaptable;
-        }
+    public void decrementTemperatureTarget(Widget.ClickData data) {
+        targetTemp -= data.isShiftClick ? 25 : 5;
+    }
+
+    public void incrementTemperatureTarget(Widget.ClickData data) {
+        targetTemp += data.isShiftClick ? 25 : 5;
     }
 
     protected IBlockState getCasingState() {
@@ -386,8 +377,98 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         }
     }
 
+    @Override
+    public SoundEvent getBreakdownSound() {
+        return GTSoundEvents.BREAKDOWN_ELECTRICAL;
+    }
+
     public boolean canCreateSound() {
         return temp > 300 && this.recipeMapWorkable.isWorkingEnabled();
+    }
+
+    @Override
+    protected @NotNull TextureArea getLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_WORKING;
+    }
+
+    @Override
+    protected @NotNull TextureArea getWarningLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_WARNING;
+    }
+
+    @Override
+    protected @NotNull TextureArea getErrorLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_ERROR;
+    }
+
+    public int getAdaptableMode() {
+        return adaptable ? 0 : 1;
+    }
+
+    public void setAdaptableMode(int mode) {
+        adaptable = mode == 0;
+    }
+
+    @Override
+    protected @NotNull Widget getFlexButton(int x, int y, int width, int height) {
+        return (new ImageCycleButtonWidget(x, y, width, height, GTFOGuiTextures.BUTTON_ADAPTABILITY, 2, this::getAdaptableMode, this::setAdaptableMode)).setTooltipHoverString((mode) -> {
+            String tooltip = "";
+            switch (mode) {
+                case 0:
+                    tooltip = "gregtechfoodoption.multiblock.electric_baking_oven.adaptable_on";
+                    break;
+                case 1:
+                    tooltip = "gregtechfoodoption.multiblock.electric_baking_oven.adaptable_off";
+                    break;
+            }
+
+            return tooltip;
+        });
+    }
+
+    protected @NotNull Widget getTemperatureButton(int x, int y, int width, int height) {
+        WidgetGroup group = new WidgetGroup(x, y, width, height);
+        group.addWidget((new ClickButtonWidget(0, 0, 9, 18, "", this::decrementTemperatureTarget)).setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS).setTooltipText("gregtechfoodoption.multiblock.electric_baking_oven.temp_increment", new Object[0]));
+        group.addWidget((new ClickButtonWidget(9, 0, 9, 18, "", this::incrementTemperatureTarget)).setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS).setTooltipText("gregtechfoodoption.multiblock.electric_baking_oven.temp_decrement", new Object[0]));
+        return group;
+    }
+
+    protected ModularUI.Builder createUITemplate(EntityPlayer entityPlayer) {
+        ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 198, 208);
+
+        // Display
+        builder.image(4, 4, 190, 117, GuiTextures.DISPLAY);
+        builder.label(9, 9, getMetaFullName(), 0xFFFFFF);
+        builder.widget(new AdvancedTextWidget(9, 20, this::addDisplayText, 0xFFFFFF)
+                .setMaxWidthLimit(181)
+                .setClickHandler(this::handleDisplayClick));
+
+        // Power Button
+        // todo in the future, refactor so that this class is instanceof IControllable.
+        IControllable controllable = getCapability(GregtechTileCapabilities.CAPABILITY_CONTROLLABLE, null);
+        if (controllable != null) {
+            builder.widget(new ImageCycleButtonWidget(173, 183, 18, 18, GuiTextures.BUTTON_POWER,
+                    controllable::isWorkingEnabled, controllable::setWorkingEnabled));
+            builder.widget(new ImageWidget(173, 201, 18, 6, GuiTextures.BUTTON_POWER_DETAIL));
+        }
+
+        // Temperature control button
+        builder.widget(getTemperatureButton(173, 143, 18, 18));
+
+        // Flex Button
+        builder.widget(getFlexButton(173, 124, 18, 18));
+
+        // Lack of voiding button
+        builder.widget(new ImageWidget(173, 161, 18, 18, GuiTextures.BUTTON_VOID_NONE)
+                .setTooltip("gregtech.gui.multiblock_voiding_not_supported"));
+
+        // Logo / Indicator Widget
+        builder.widget(new IndicatorImageWidget(174, 101, 17, 17, getLogo())
+                .setWarningStatus(getWarningLogo(), this::addWarningText)
+                .setErrorStatus(getErrorLogo(), this::addErrorText));
+
+        builder.bindPlayerInventory(entityPlayer.inventory, 125);
+        return builder;
     }
 
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {

@@ -2,6 +2,7 @@ package gregtechfoodoption.machines.multiblock;
 
 import gregtech.api.GTValues;
 import gregtech.api.capability.impl.SteamMultiWorkable;
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -17,11 +18,13 @@ import gregtech.common.blocks.MetaBlocks;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -142,5 +145,20 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
             return GTValues.V[4];
         }
 
+    }
+
+    @Override
+    protected @NotNull TextureArea getLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_WORKING;
+    }
+
+    @Override
+    protected @NotNull TextureArea getWarningLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_WARNING;
+    }
+
+    @Override
+    protected @NotNull TextureArea getErrorLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_ERROR;
     }
 }

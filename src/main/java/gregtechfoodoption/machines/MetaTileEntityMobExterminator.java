@@ -164,7 +164,6 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.consumption", getEnergyConsumedPerKill()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.nitrous"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.warning"));
-
     }
 
     @Override

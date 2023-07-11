@@ -278,6 +278,10 @@ gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=Set target temperat
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.4=Consumption: %d EU/t.
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.5=Target temperature: §a%dK§7.
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.6=Toggle adaptability (sets temperature itself):
+gregtechfoodoption.multiblock.electric_baking_oven.temp_increment=Increase target temperature by §a+5K§r/n§7The Electric Baking Oven consumes more Power as its Temperature increases/n§cOnly works when Adaptable Mode is off
+gregtechfoodoption.multiblock.electric_baking_oven.temp_decrement=Decrease target temperature by §c-5K§r/n§7The Electric Baking Oven consumes more Power as its Temperature increases/n§cOnly works when Adaptable Mode is off
+gregtechfoodoption.multiblock.electric_baking_oven.adaptable_on=Turn adaptable mode §coff§r/nAdaptable mode automatically turns off the Oven when not in use, but takes time to increase the Temperature between recipes/nTurning it off allows the Temperature to be set manually
+gregtechfoodoption.multiblock.electric_baking_oven.adaptable_off=Turn adaptable mode §aon§r/nAdaptable mode automatically turns off the Oven when not in use, but takes time to increase the Temperature between recipes/nTurning it off allows the Temperature to be set manually
 gregtechfoodoption.recipe.baking_oven_temperature=Temperature: %dK
 recipemap.baking_oven.name=Primitive Baking Oven
 recipemap.electric_baking_oven.name=Electric Baking Oven
@@ -492,6 +496,7 @@ gregtech.material.gtfo_sodium_carbonate_solution=Sodium Carbonate Solution
 gregtechfoodoption.machine.electric_baking_oven.tooltip.1=Only runs recipes if the required temperature is set.
 gregtechfoodoption.machine.electric_baking_oven.tooltip.2=The §aEU§7 per tick required is exponentially related to the current temperature.
 gregtechfoodoption.machine.electric_baking_oven.tooltip.3=Extend the multiblock out by §a1§7 block to run an extra recipe in parallel.
+
 
 gregtechfoodoption.machine.microwave.lv.name=Basic Microwave
 gregtechfoodoption.machine.microwave.mv.name=Advanced Microwave
