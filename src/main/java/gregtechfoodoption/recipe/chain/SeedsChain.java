@@ -156,6 +156,11 @@ public class SeedsChain {
                 .outputs(GARLIC_CLOVE.getStackForm(8))
                 .buildAndRegister();
 
+        RecipeMaps.CUTTER_RECIPES.recipeBuilder().EUt(8).duration(100)
+                .inputs(SOYBEAN.getStackForm())
+                .outputs(SOYBEAN_SEED.getStackForm(3))
+                .chancedOutput(SOYBEAN_SEED.getStackForm(2), 5000, 100)
+                .buildAndRegister();
 
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
