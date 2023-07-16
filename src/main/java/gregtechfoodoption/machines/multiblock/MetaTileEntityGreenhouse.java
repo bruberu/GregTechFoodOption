@@ -1,6 +1,8 @@
 package gregtechfoodoption.machines.multiblock;
 
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
+import gregtech.api.gui.ModularUI;
+import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.metatileentity.multiblock.IMultiblockPart;
@@ -16,6 +18,7 @@ import gregtech.common.blocks.MetaBlocks;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.block.GTFOGlassCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
@@ -24,6 +27,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.InvalidBlockStateException;
 import net.minecraft.command.NumberInvalidException;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,6 +40,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -158,8 +163,8 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
     }
 
     @Override
-    protected void addDisplayText(List<ITextComponent> textList) {
-        super.addDisplayText(textList);
+    protected void addWarningText(List<ITextComponent> textList) {
+        super.addWarningText(textList);
         if (this.isStructureFormed()) {
             if (!((GreenhouseWorkable)this.recipeMapWorkable).hasSun())
                 textList.add(new TextComponentTranslation("gregtech.multiblock.not_enough_sun")
@@ -167,6 +172,11 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
         }
     }
 
+    @Override
+    protected ModularUI createUI(EntityPlayer entityPlayer) {
+        ((GreenhouseWorkable) this.recipeMapWorkable).hasSun = this.checkNaturalLighting();
+        return super.createUI(entityPlayer);
+    }
 
     public static class GreenhouseWorkable extends MultiblockRecipeLogic {
 
@@ -227,6 +237,22 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
             this.hasSun = compound.getBoolean("hasSun");
         }
     }
+
+    @Override
+    protected @NotNull TextureArea getLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_WORKING;
+    }
+
+    @Override
+    protected @NotNull TextureArea getWarningLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_WARNING;
+    }
+
+    @Override
+    protected @NotNull TextureArea getErrorLogo() {
+        return GTFOGuiTextures.GTFO_LOGO_ERROR;
+    }
+
 
 
 }
