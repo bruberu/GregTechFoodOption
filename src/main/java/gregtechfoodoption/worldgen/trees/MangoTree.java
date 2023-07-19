@@ -4,6 +4,8 @@ import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.trees.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.trees.condition.TemperatureRainfallCondition;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
@@ -11,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 import java.util.Random;
 
@@ -20,9 +23,8 @@ public class MangoTree extends GTFOTree {
     public static int LEAVES_COLOR = 0x7D921E;
     public MangoTree() {
         super("mango", 2);
-        this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE_EDGE, 4, 0.2));
-        this.addCondition(new BiomeCondition(Biomes.JUNGLE_EDGE, 4, 0.2));
-        this.addCondition(new BiomeCondition(Biomes.SAVANNA, 2, 0.4));
+        this.addCondition(new BiomeCondition(new Biome[]{Biomes.MUTATED_JUNGLE_EDGE, Biomes.JUNGLE_EDGE}, 4, 0.2));
+        this.addCondition(new TemperatureRainfallCondition(2, 0.5, 0.9, 0.9, 0.3));
     }
 
     @Override

@@ -2,6 +2,7 @@ package gregtechfoodoption.worldgen.trees;
 
 import gregtech.common.ConfigHolder;
 import gregtechfoodoption.block.GTFOTree;
+import gregtechfoodoption.worldgen.trees.condition.TreeCondition;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,7 +37,7 @@ public class GTFOTreeGen extends WorldGenerator {
         if (event.getResult() == Event.Result.DENY) {
             return false;
         }
-        return tree.grow(world, pos, random, this::setBlockSafely);//grow(world, pos, random);
+        return tree.grow(world, pos, random, this::setBlockSafely);
     }
 
     public void setBlockSafely(World worldIn, BlockPos pos, IBlockState state) {
@@ -49,7 +50,7 @@ public class GTFOTreeGen extends WorldGenerator {
         Chunk chunk = world.getChunk(chunkX, chunkZ);
         int seaLevel = chunk.getWorld().getSeaLevel();
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(chunk.getPos().getBlock(8, seaLevel, 8));
-        int treeCount = getAmountInChunk(tree.biomeConditions, chunkX, chunkZ, world, pos);
+        int treeCount = getAmountInChunk(tree.treeConditions, chunkX, chunkZ, world, pos);
         if (treeCount > 0) {
             for (int j = 0; j < treeCount; j++) {
                 // Set up position for tree spawn, offset by 8 to prevent cascading
@@ -69,19 +70,23 @@ public class GTFOTreeGen extends WorldGenerator {
         return false;
     }
 
-    public int getAmountInChunk(List<BiomeCondition> conditions, int chunkX, int chunkZ, World world, BlockPos pos) {
+    public int getAmountInChunk(List<TreeCondition> conditions, int chunkX, int chunkZ, World world, BlockPos pos) {
         Biome biome = world.getBiome(pos);
-        Optional<BiomeCondition> relevantCondition = conditions.stream().filter(biomeCondition -> biomeCondition.getBiome().equals(biome)).findFirst();
+        Optional<TreeCondition> relevantCondition = conditions.stream().filter(biomeCondition -> biomeCondition.isSatisfied(biome)).findFirst();
         double treeStrength = tree.getRandomStrength(chunkX, chunkZ);
         if (!ConfigHolder.misc.debug) {
-            if (relevantCondition.isPresent() && relevantCondition.get().getPerlinCutoff() < treeStrength) {
-                return (int) Math.ceil((relevantCondition.get().getMaxTrees() - relevantCondition.get().getPerlinCutoff()) / (1 - relevantCondition.get().getPerlinCutoff()));
+            if (relevantCondition.isPresent() && relevantCondition.get().getPerlinCutoff(biome) < treeStrength) {
+                double perlinCutoff = relevantCondition.get().getPerlinCutoff(biome);
+                double maxTrees = relevantCondition.get().getMaxTrees();
+                return (int) Math.ceil(maxTrees - perlinCutoff * maxTrees);
             }
         } else {
             if (relevantCondition.isPresent()) {
-                if (relevantCondition.get().getPerlinCutoff() < treeStrength) {
+                if (relevantCondition.get().getPerlinCutoff(biome) < treeStrength) {
                     tree.updatePlacePercentage(true);
-                    return (int) Math.ceil((relevantCondition.get().getMaxTrees() - relevantCondition.get().getPerlinCutoff()) / (1 - relevantCondition.get().getPerlinCutoff()));
+                    double perlinCutoff = relevantCondition.get().getPerlinCutoff(biome);
+                    double maxTrees = relevantCondition.get().getMaxTrees();
+                    return (int) Math.ceil(maxTrees - perlinCutoff * maxTrees);
                 } else {
                     tree.updatePlacePercentage(false);
                 }

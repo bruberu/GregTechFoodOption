@@ -4,6 +4,8 @@ import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.trees.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.trees.condition.TemperatureRainfallCondition;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
@@ -22,6 +24,7 @@ public class ApricotTree extends GTFOTree {
         super("apricot", 3);
         this.addCondition(new BiomeCondition(Biomes.MUTATED_SAVANNA, 4, 0.40));
         this.addCondition(new BiomeCondition(Biomes.SAVANNA, 2, 0.55));
+        this.addCondition(new TemperatureRainfallCondition(2, 0.40, 1.2, 0.05, 0.2));
     }
 
     @Override

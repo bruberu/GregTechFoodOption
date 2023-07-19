@@ -253,6 +253,8 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
         return GTFOGuiTextures.GTFO_LOGO_ERROR;
     }
 
-
-
+    @Override
+    public boolean canBeDistinct() {
+        return true;
+    }
 }

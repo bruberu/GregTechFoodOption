@@ -12,7 +12,7 @@ import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.trees.BiomeCondition;
+import gregtechfoodoption.worldgen.trees.condition.TreeCondition;
 import gregtechfoodoption.worldgen.trees.GTFOTreeGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
@@ -53,7 +53,7 @@ public abstract class GTFOTree {
 
     private NoiseGeneratorSimplex generatorSimplex;
     private final int seed;
-    public final List<BiomeCondition> biomeConditions = new ArrayList<>();
+    public final List<TreeCondition> treeConditions = new ArrayList<>();
 
     public static final List<GTFOTree> TREES = new ArrayList<>();
 
@@ -114,8 +114,8 @@ public abstract class GTFOTree {
         return WORLD_GEN_INSTANCE;
     }
 
-    public GTFOTree addCondition(BiomeCondition condition) {
-        biomeConditions.add(condition);
+    public GTFOTree addCondition(TreeCondition condition) {
+        treeConditions.add(condition);
         return this;
     }
 

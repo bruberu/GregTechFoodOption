@@ -4,6 +4,8 @@ import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.trees.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.trees.condition.TemperatureRainfallCondition;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -22,9 +24,11 @@ public class OliveTree extends GTFOTree {
 
     public OliveTree() {
         super("olive", 6);
-        this.addCondition(new BiomeCondition(Biomes.BIRCH_FOREST, 5, 0.65));
-        this.addCondition(new BiomeCondition(Biomes.FOREST, 2, 0.80));
+        this.addCondition(new BiomeCondition(Biomes.BIRCH_FOREST, 5, 0.55));
+        this.addCondition(new BiomeCondition(Biomes.FOREST, 2, 0.65));
         this.addCondition(new BiomeCondition(Biomes.PLAINS, 1, 0.88));
+        this.addCondition(new TemperatureRainfallCondition(3, 0.5, 0.6, 0.6, 0.3));
+
     }
 
     @Override
