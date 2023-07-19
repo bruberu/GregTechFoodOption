@@ -312,19 +312,19 @@ public class BreadsChain {
                 .buildAndRegister();
 
 
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(180).duration(400)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(400)
                 .inputs(FLAT_DOUGH.getStackForm(), MOZZARELLA_SLICE.getStackForm(3), MUSHROOM_SLICE.getStackForm(8), OLIVE_SLICE.getStackForm(8))
                 .circuitMeta(2)
                 .fluidInputs(TomatoSauce.getFluid(300))
                 .outputs(PIZZA_VEGGIE_RAW.getStackForm())
                 .buildAndRegister();
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(180).duration(400)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(400)
                 .inputs(FLAT_DOUGH.getStackForm(), MOZZARELLA_SLICE.getStackForm(8))
                 .circuitMeta(1)
                 .fluidInputs(TomatoSauce.getFluid(600))
                 .outputs(PIZZA_CHEESE_RAW.getStackForm())
                 .buildAndRegister();
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(180).duration(400)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(400)
                 .inputs(FLAT_DOUGH.getStackForm(), MOZZARELLA_SLICE.getStackForm(4))
                 .input(dust, Meat, 10)
                 .circuitMeta(3)

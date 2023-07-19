@@ -51,6 +51,9 @@ public class GTFOConfig {
 
         @Config.Comment("Delete vanilla bread recipe?")
         public boolean deleteBreadRecipe = false;
+
+        @Config.Comment("Force chains to be harder? (Most of the content of the hard chains will still exist, but less efficient and easier routes will exist without this configuration.)")
+        public boolean makeChainsHarder = false;
     }
 
     public static class GTFOVanillaOverridesConfig {
