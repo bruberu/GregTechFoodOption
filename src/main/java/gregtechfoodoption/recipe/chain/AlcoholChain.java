@@ -3,6 +3,7 @@ package gregtechfoodoption.recipe.chain;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOConfig;
 import net.minecraft.init.Items;
 
 import static gregtech.api.recipes.RecipeMaps.*;
@@ -76,11 +77,17 @@ public class AlcoholChain {
                 .fluidInputs(MaceratedWhiteGrapes.getFluid(1000))
                 .fluidOutputs(PressedWhiteWort.getFluid(1000))
                 .buildAndRegister();
+        if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
+            FERMENTING_RECIPES.recipeBuilder().EUt(4).duration(8000)
+                    .fluidInputs(MaceratedWhiteGrapes.getFluid(8000))
+                    .fluidOutputs(WhiteWine.getFluid(2000))
+                    .buildAndRegister();
+        }
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(16).duration(200)
                 .fluidInputs(PressedWhiteWort.getFluid(1000))
                 .fluidOutputs(ClarifiedWhiteWort.getFluid(800), Biomass.getFluid(200))
                 .buildAndRegister();
-        FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(8000)
+        FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(4000)
                 .fluidInputs(ClarifiedWhiteWort.getFluid(8000))
                 .fluidOutputs(WhiteWine.getFluid(8000))
                 .buildAndRegister();

@@ -1,9 +1,11 @@
 package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.recipes.ModHandler;
+import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -23,15 +25,31 @@ public class PastaChain {
                 .fluidInputs(GTFOMaterialHandler.Egg.getFluid(400))
                 .fluidInputs(Air.getFluid(600))
                 .circuitMeta(1)
-                .outputs(EGG_PASTA_DOUGH.getStackForm())
+                .outputs(EGG_PASTA_DOUGH.getStackForm(2))
                 .buildAndRegister();
-        MIXER_RECIPES.recipeBuilder().EUt(120).duration(600)
+        MIXER_RECIPES.recipeBuilder().EUt(30).duration(600)
                 .inputs(PREMIXED_PASTA_DOUGH.getStackForm())
                 .fluidInputs(Air.getFluid(600))
                 .circuitMeta(2)
                 .outputs(PASTA_DOUGH.getStackForm())
                 .buildAndRegister();
 
+        if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
+            MIXER_RECIPES.recipeBuilder().EUt(30).duration(1200)
+                    .inputs(EGG_PASTA_DOUGH.getStackForm())
+                    .fluidInputs(GTFOMaterialHandler.Egg.getFluid(400))
+                    .fluidInputs(Air.getFluid(600))
+                    .circuitMeta(2)
+                    .outputs(EGG_PASTA_DOUGH.getStackForm())
+                    .buildAndRegister();
+            MIXER_RECIPES.recipeBuilder().EUt(30).duration(1200)
+                    .input(dust, Wheat, 1)
+                    .fluidInputs(Water.getFluid(32))
+                    .fluidInputs(Air.getFluid(1000))
+                    .circuitMeta(3)
+                    .outputs(PASTA_DOUGH.getStackForm())
+                    .buildAndRegister();
+        }
         BENDER_RECIPES.recipeBuilder().EUt(24).duration(100)
                 .input(plate, Bronze, 4)
                 .circuitMeta(4)
@@ -111,15 +129,43 @@ public class PastaChain {
                 .outputs(DITALINI.getStackForm())
                 .buildAndRegister();
 
+        if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
+            CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(24).duration(1500)
+                    .inputs(RAW_TAGLIATELLE.getStackForm())
+                    .fluidInputs(GTFOMaterialHandler.HeatedWater.getFluid(1000))
+                    .outputs(TAGLIATELLE.getStackForm())
+                    .buildAndRegister();
+            CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(24).duration(1500)
+                    .inputs(RAW_SPAGHETTI.getStackForm())
+                    .fluidInputs(GTFOMaterialHandler.HeatedWater.getFluid(1000))
+                    .outputs(SPAGHETTI.getStackForm())
+                    .buildAndRegister();
+            CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(24).duration(1500)
+                    .inputs(RAW_RIGATONI.getStackForm())
+                    .fluidInputs(GTFOMaterialHandler.HeatedWater.getFluid(1000))
+                    .outputs(RIGATONI.getStackForm())
+                    .buildAndRegister();
+            CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(24).duration(1500)
+                    .inputs(RAW_DITALINI.getStackForm())
+                    .fluidInputs(Water.getFluid(1000))
+                    .outputs(DITALINI.getStackForm())
+                    .buildAndRegister();
+        }
+
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(100)
                 .inputs(RAW_LASAGNA.getStackForm(), GTFOMaterialHandler.ShreddedParmesan.getItemStack(), GTFOMaterialHandler.Nutmeg.getItemStack())
                 .input(Items.PORKCHOP)
                 .outputs(TORTELLINI.getStackForm(8))
                 .buildAndRegister();
         GTFORecipeMaps.MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(5000)
-                .input(Items.CHICKEN, 3)
+                .input(Items.CHICKEN, 1)
                 .fluidInputs(Water.getFluid(8000))
-                .output(Items.COOKED_CHICKEN, 2)
+                .output(Items.COOKED_CHICKEN, 1)
+                .fluidOutputs(GTFOMaterialHandler.ChickenBroth.getFluid(8000))
+                .buildAndRegister();
+        GTFORecipeMaps.MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(5000)
+                .notConsumable(new ItemStack(Items.COOKED_CHICKEN))
+                .fluidInputs(Water.getFluid(8000))
                 .fluidOutputs(GTFOMaterialHandler.ChickenBroth.getFluid(8000))
                 .buildAndRegister();
     }

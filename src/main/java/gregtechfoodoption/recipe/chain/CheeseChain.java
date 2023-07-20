@@ -34,10 +34,16 @@ public class CheeseChain {
                 .notConsumable(SLICER_BLADE_STRIPES.getStackForm())
                 .outputs(CutCurd.getItemStack(64))
                 .buildAndRegister();
+        if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
+            CANNER_RECIPES.recipeBuilder().EUt(4).duration(200)
+                    .inputs(CutCurd.getItemStack(64), MetaItems.SHAPE_MOLD_BLOCK.getStackForm())
+                    .outputs(CHEDDAR_CURD_MOLD.getStackForm())
+                    .buildAndRegister();
+        }
         CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(6).duration(2400)
                 .inputs(CutCurd.getItemStack(64))
                 .fluidInputs(Steam.getFluid(1000))
-                .outputs(CookedCurd.getItemStack(60))
+                .outputs(CookedCurd.getItemStack(64))
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(20).duration(100)
                 .input(dust, Salt)
@@ -45,7 +51,7 @@ public class CheeseChain {
                 .outputs(SaltedCurd.getItemStack(64))
                 .buildAndRegister();
         CANNER_RECIPES.recipeBuilder().EUt(4).duration(200)
-                .inputs(SaltedCurd.getItemStack(64), MetaItems.SHAPE_MOLD_BLOCK.getStackForm())
+                .inputs(SaltedCurd.getItemStack(32), MetaItems.SHAPE_MOLD_BLOCK.getStackForm())
                 .outputs(CHEDDAR_CURD_MOLD.getStackForm())
                 .buildAndRegister();
         COMPRESSOR_RECIPES.recipeBuilder().EUt(16).duration(6000)
@@ -67,12 +73,14 @@ public class CheeseChain {
                 .buildAndRegister();
         if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
             MIXER_RECIPES.recipeBuilder().EUt(8).duration(1200)
-                    .fluidInputs(ActivatedBuffaloMilk.getFluid(6000), CrudeRennetSolution.getFluid(1))
+                    .fluidInputs(Milk.getFluid(6000), CrudeRennetSolution.getFluid(1))
+                    .circuitMeta(2)
                     .outputs(LargeMozzarellaCurd.getItemStack())
                     .buildAndRegister();
         }
         MIXER_RECIPES.recipeBuilder().EUt(8).duration(120)
                 .fluidInputs(ActivatedBuffaloMilk.getFluid(3000), CrudeRennetSolution.getFluid(1))
+                .circuitMeta(1)
                 .outputs(LargeMozzarellaCurd.getItemStack())
                 .buildAndRegister();
         SLICER_RECIPES.recipeBuilder().EUt(12).duration(1000)

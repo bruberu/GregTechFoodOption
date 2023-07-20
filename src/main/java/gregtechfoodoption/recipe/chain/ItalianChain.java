@@ -147,7 +147,7 @@ public class ItalianChain {
         MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(2000)
                 .input(Items.FISH)
                 .inputs(GARLIC_CLOVE.getStackForm(), ONION_SLICE.getStackForm())
-                .fluidInputs(GTFOMaterialHandler.WhiteWine.getFluid(200))
+                .fluidInputs(GTFOMaterialHandler.WhiteWine.getFluid(20))
                 .fluidOutputs(GTFOMaterialHandler.VitelloTonnatoFlavorant.getFluid(200))
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(16).duration(100)
@@ -180,7 +180,7 @@ public class ItalianChain {
 
         MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(1000)
                 .inputs(RICE.getStackForm(3), GTFOMaterialHandler.ShreddedParmesan.getItemStack(), GTFOMetaItem.ONION_SLICE.getStackForm(), CERAMIC_BOWL.getStackForm())
-                .fluidInputs(GTFOMaterialHandler.ChickenBroth.getFluid(700), GTFOMaterialHandler.Butter.getFluid(200), GTFOMaterialHandler.WhiteWine.getFluid(100))
+                .fluidInputs(GTFOMaterialHandler.ChickenBroth.getFluid(700), GTFOMaterialHandler.Butter.getFluid(200), GTFOMaterialHandler.WhiteWine.getFluid(5))
                 .outputs(RISOTTO.getStackForm())
                 .buildAndRegister();
 
@@ -229,8 +229,8 @@ public class ItalianChain {
                 .fluidOutputs(GTFOMaterialHandler.BologneseSauce.getFluid(1000))
                 .buildAndRegister();
         MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(500)
-                .fluidInputs(GTFOMaterialHandler.BologneseSauce.getFluid(900), GTFOMaterialHandler.RedWine.getFluid(100), TomatoSauce.getFluid(100))
-                .fluidOutputs(GTFOMaterialHandler.TomatoBologneseSauce.getFluid(2000))
+                .fluidInputs(GTFOMaterialHandler.BologneseSauce.getFluid(100), GTFOMaterialHandler.RedWine.getFluid(10), TomatoSauce.getFluid(100))
+                .fluidOutputs(GTFOMaterialHandler.TomatoBologneseSauce.getFluid(200))
                 .buildAndRegister();
         MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(500)
                 .inputs(TAGLIATELLE.getStackForm(), PLATE.getStackForm())
