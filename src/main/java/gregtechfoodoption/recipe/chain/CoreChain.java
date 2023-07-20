@@ -81,7 +81,7 @@ public class CoreChain {
     public static void caneSyrup() {
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(GTFOMaterialHandler.UnheatedCaneSyrup.getFluid(1000))
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .fluidOutputs(GTFOMaterialHandler.CaneSyrup.getFluid(1000))
                 .EUt(120)
                 .duration(80)
@@ -90,6 +90,7 @@ public class CoreChain {
         MIXER_RECIPES.recipeBuilder()
                 .input(OrePrefix.dust, Sugar, 24)
                 .fluidInputs(Water.getFluid(2000))
+                .circuitMeta(2)
                 .fluidOutputs(GTFOMaterialHandler.UnheatedCaneSyrup.getFluid(2000))
                 .EUt(80)
                 .duration(260)
@@ -103,9 +104,10 @@ public class CoreChain {
                 .fluidOutputs(GTFOMaterialHandler.IsopropylChloride.getFluid(1000))
                 .buildAndRegister();
 
-        ELECTROLYZER_RECIPES.recipeBuilder().duration(300).EUt(480)
+        CHEMICAL_RECIPES.recipeBuilder().duration(300).EUt(480)
                 .input(dust, Gold, 2)
                 .fluidInputs(HydrochloricAcid.getFluid(8000))
+                .circuitMeta(1)
                 .fluidOutputs(GTFOMaterialHandler.ChloroauricAcid.getFluid(2000), Hydrogen.getFluid(3000))
                 .buildAndRegister();
     }
@@ -575,11 +577,11 @@ public class CoreChain {
                 .buildAndRegister();
 
         //"Stearic acid is used along with simple sugar or corn syrup as a hardener in candies. In fireworks, stearic acid is often used to coat metal powders such as aluminium and iron. This prevents oxidation, allowing compositions to be stored for a longer period of time"
-        DISTILLATION_RECIPES.recipeBuilder().EUt(32).duration(10)
+/*        DISTILLATION_RECIPES.recipeBuilder().EUt(32).duration(10)
                 .fluidInputs(SodiumStearate.getFluid(100))
                 .fluidOutputs(StearicAcid.getFluid(100))
                 .output(dustTiny, SodiumHydroxide, 1)
-                .buildAndRegister();
+                .buildAndRegister();*/
 
         /*FLUID_SOLIDFICATION_RECIPES.recipeBuilder().EUt(32).duration(100)
                 .fluidInputs(StearicAcidSoap.getFluid(1000))
@@ -667,7 +669,7 @@ public class CoreChain {
                 .outputs(POPCORN_BAG.getStackForm())
                 .buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(80).duration(30)
-                .circuitMeta(0)
+                .circuitMeta(2)
                 .input(plate, Paper, 3)
                 .outputs(PAPER_BAG.getStackForm())
                 .buildAndRegister();

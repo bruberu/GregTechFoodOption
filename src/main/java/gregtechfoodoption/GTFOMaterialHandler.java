@@ -164,13 +164,14 @@ public class GTFOMaterialHandler {
             .flags(DISABLE_DECOMPOSITION)
             .components(Carbon, 57, Hydrogen, 110, Oxygen, 6)
             .build();
-    public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid", FluidTypes.ACID).color(0xfff7e6)
+/*    public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid", FluidTypes.ACID).color(0xfff7e6)
             .components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
             .flags(DISABLE_DECOMPOSITION)
             .build()
-            .setFormula("C17H35CO2H", true); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)
+            .setFormula("C17H35CO2H", true); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)*/
     public static final Material SodiumStearate = fluidBuilder(21539, "sodium_stearate")
             .components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
+            .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("C17H35COONa", true);
     public static final Material CitricAcid = fluidBuilder(21540, "citric_acid", FluidTypes.ACID)

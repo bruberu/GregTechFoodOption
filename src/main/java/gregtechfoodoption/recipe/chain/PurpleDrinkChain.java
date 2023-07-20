@@ -245,7 +245,7 @@ public class PurpleDrinkChain {
                 .buildAndRegister();
         BENDER_RECIPES.recipeBuilder()
                 .inputs(HardCandyPlate.getItemStack())
-                .circuitMeta(0)
+                .circuitMeta(1)
                 .outputs(HotAppleHardCandy.getItemStack())
                 .EUt(24)
                 .duration(64)

@@ -32,14 +32,17 @@ public class CapletChain {
                 .notConsumable(MetaItems.SHAPE_MOLD_BOTTLE)
                 .outputs(CAPLET_CAP.getStackForm(1))
                 .buildAndRegister();
-        FORMING_PRESS_RECIPES.recipeBuilder().EUt(120).duration(100)
-                .inputs(CAPLET_BODY.getStackForm(4))
-                .inputs(CAPLET_CAP.getStackForm(4))
-                .outputs(GEL_CAPLET.getStackForm(4))
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(100)
+                .inputs(CAPLET_BODY.getStackForm(1))
+                .inputs(CAPLET_CAP.getStackForm(1))
+                .circuitMeta(1)
+                .outputs(GEL_CAPLET.getStackForm(1))
                 .buildAndRegister();
-        CANNER_RECIPES.recipeBuilder().EUt(30).duration(20)
-                .inputs(GEL_CAPLET.getStackForm())
+        FORMING_PRESS_RECIPES.recipeBuilder().EUt(30).duration(20)
+                .inputs(CAPLET_BODY.getStackForm())
                 .input(dustSmall, Paracetamol)
+                .inputs(CAPLET_CAP.getStackForm())
+                .circuitMeta(3)
                 .outputs(PARACETAMOL_CAPLET.getStackForm())
                 .buildAndRegister();
 
@@ -81,6 +84,7 @@ public class CapletChain {
                 .inputs(CAPLET_BODY.getStackForm())
                 .input(dustSmall, Plutonium241)
                 .inputs(CAPLET_CAP.getStackForm())
+                .circuitMeta(2)
                 .outputs(PLUTONIUM_241_CAPLET.getStackForm())
                 .buildAndRegister();
 
