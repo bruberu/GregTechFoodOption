@@ -537,6 +537,9 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem BareCornKernel = SHAPED_ITEM.addOreDictItem(1001, "corn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addOreDictItem(1000, "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem SodiumCyanide = SHAPED_ITEM.addOreDictItem(1138, "sodium_cyanide", averageRGB(2, HydrogenCyanide.getMaterialRGB(), Sodium.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NaCN");
+    public static final GTFOOredictItem.OreDictValueItem LithiumOxide = SHAPED_ITEM.addOreDictItem(1139, "lithium_oxide", averageRGB(2, Lithium.getMaterialRGB(), 0), MaterialIconSet.DULL, OrePrefix.dust, "Li2O");
+    public static final GTFOOredictItem.OreDictValueItem LithiumCarbonate = SHAPED_ITEM.addOreDictItem(1140, "lithium_carbonate", averageRGB(2, Lithium.getMaterialRGB(), CarbonDioxide.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "Li2CO3");
+
 
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);

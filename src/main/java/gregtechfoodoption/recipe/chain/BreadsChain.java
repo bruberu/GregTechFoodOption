@@ -50,7 +50,7 @@ public class BreadsChain {
                 .input(dust, Materials.Wheat, 4)
                 .input(OrePrefix.dustTiny, Materials.Salt)
                 .fluidInputs(Water.getFluid(1000))
-                .outputs(DOUGH.getStackForm(2))
+                .outputs(DOUGH.getStackForm(8))
                 .notConsumable(IntCircuitIngredient.getIntegratedCircuit(2))
                 .buildAndRegister();
 
@@ -64,7 +64,7 @@ public class BreadsChain {
                 .input(OrePrefix.dustTiny, Materials.Salt)
                 .input(OrePrefix.dustTiny, Materials.SodaAsh)
                 .fluidInputs(Water.getFluid(1000))
-                .outputs(DOUGH.getStackForm(4))
+                .outputs(DOUGH.getStackForm(16))
                 .notConsumable(IntCircuitIngredient.getIntegratedCircuit(1))
                 .buildAndRegister();
 

@@ -627,7 +627,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .setMaxStackSize(16);
 
         BAGUETTE = addItem(51, "food.baguette").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger, GTFOConfig.gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 50))
+                new RandomPotionEffect(MobEffects.HASTE, 1200, 0, 50))
                 .setEatingDuration(40));
         TUNGSTENSTEEL_APPLE = addItem(54, "food.tungstensteel_apple").addComponents(new GTFOFoodStats(3, 1f, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
@@ -780,7 +780,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         MARSHMALLOW = addItem(195, "food.marshmallow").addComponents(new GTFOFoodStats(1, 1f));
 
         COFFEE_CUP = addItem(203, "food.coffee.normal").addComponents(new GTFOFoodStats(8, 0.4f, true, false, EMPTY_CUP.getStackForm(), new RandomPotionEffect(MobEffects.REGENERATION, 60, 1, 0), new RandomPotionEffect(MobEffects.SPEED, 1800, 2, 0)));
-        ENERGIZING_COFFEE_CUP = addItem(204, "food.coffee.energized").addComponents(new GTFOFoodStats(8, 0.6f, true, false, EMPTY_CUP.getStackForm(), new RandomPotionEffect(MobEffects.REGENERATION, 200, 3, 0), new RandomPotionEffect(MobEffects.STRENGTH, 200, 2, 0), new RandomPotionEffect(MobEffects.RESISTANCE, 200, 2, 0), new RandomPotionEffect(MobEffects.SPEED, 1000, 4, 0)));
+        ENERGIZING_COFFEE_CUP = addItem(204, "food.coffee.energized").addComponents(new GTFOFoodStats(8, 0.6f, true, false, EMPTY_CUP.getStackForm(),
+                new RandomPotionEffect(MobEffects.REGENERATION, 200, 3, 0),
+                new RandomPotionEffect(MobEffects.STRENGTH, 200, 1, 0),
+                new RandomPotionEffect(MobEffects.RESISTANCE, 200, 1, 0),
+                new RandomPotionEffect(MobEffects.SPEED, 1000, 3, 0)));
 
         MUSHY_PEAS = addItem(209, "food.mushy_peas").addComponents(new GTFOFoodStats(3, 1));
         BREAD_SLICE = addItem(210, "food.bread_slice").addComponents(new GTFOFoodStats(1, 0.5f));
@@ -816,6 +820,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         CARCIOFI_ALLA_ROMANA = addItem(275, "food.carciofi_alla_romana").addComponents(new GTFOFoodStats(8, 1.3f).setReturnStack(DIRTY_PLATE.getStackForm())
                 .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 1500, 1, 100 - 95)));
         FETTUCCINE_ALFREDO = addItem(276, "food.fettuccine_alfredo").addComponents(new GTFOFoodStats(8, 0.4f).setReturnStack(DIRTY_PLATE.getStackForm())
+                .setPotionEffects(new RandomPotionEffect(MobEffects.RESISTANCE, 1500, 1, 100 - 80))
                 .setEatingDuration(20));
         PARMIGIANA = addItem(277, "food.parmigiana").addComponents(new GTFOFoodStats(8, 1.1f).setReturnStack(DIRTY_PLATE.getStackForm())
                 .setPotionEffects(new RandomPotionEffect(MobEffects.REGENERATION, 500, 0, 100 - 75)));

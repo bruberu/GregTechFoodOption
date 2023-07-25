@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.Loader;
 public class GTFORecipeAddition {
     public static void init() {
         CoreChain.init();
+        FatChain.init();
         GTFOTree.TREES.forEach(GTFOTree::initRecipes);
         GreenhouseChain.init();
         MobExtractionChain.init();
