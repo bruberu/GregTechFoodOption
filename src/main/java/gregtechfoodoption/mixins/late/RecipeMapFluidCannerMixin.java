@@ -1,10 +1,11 @@
-package gregtechfoodoption.recipe.mixins;
+package gregtechfoodoption.mixins.late;
 
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.machines.RecipeMapFluidCanner;
 import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.item.GTFOOredictItem;
+import gregtechfoodoption.potion.LacingEntry;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.item.ItemStack;
@@ -108,7 +109,6 @@ public class RecipeMapFluidCannerMixin {
         if (!lacingWith.isEmpty()) {
             outputStack = inputStack.copy();
             outputStack.setCount(1);
-            GTFOLog.logger.info("hello");
 
             NBTTagCompound overallTag = outputStack.getTagCompound();
             if (outputStack.getTagCompound() == null)
@@ -116,14 +116,17 @@ public class RecipeMapFluidCannerMixin {
 
             NBTTagCompound gtfoStatsTag = overallTag.getCompoundTag("gtfoStats");
 
-            switch (lacingWith.getMetadata()) {
-                case 1138:
-                    gtfoStatsTag.setBoolean("5dkcap/2/4/", true);
-                    GTFOLog.logger.info("applied");
-                    break;
-                default:
-                    return;
+            boolean lacingSuccessful = false;
+            for (LacingEntry entry : LacingEntry.LACING_REGISTRY) {
+                if (entry.getLacingItem().isItemEqual(lacingWith)) {
+                    gtfoStatsTag.setBoolean(entry.getNbtKey(), true);
+                    lacingSuccessful = true;
+                }
             }
+
+            if (!lacingSuccessful)
+                return;
+
             overallTag.setTag("gtfoStats", gtfoStatsTag);
             outputStack.setTagCompound(overallTag);
             cir.setReturnValue(CANNER_RECIPES.recipeBuilder()

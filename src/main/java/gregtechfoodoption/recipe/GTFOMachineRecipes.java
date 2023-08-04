@@ -24,8 +24,6 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-//import static gregicality.science.api.unification.materials.GCYSMaterials.Adamantium;
-//import static gregicality.science.api.unification.materials.GCYSMaterials.Orichalcum;
 import static gregtech.api.GTValues.L;
 import static gregtech.api.recipes.RecipeMaps.ASSEMBLER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;

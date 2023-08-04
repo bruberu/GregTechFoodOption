@@ -6,13 +6,16 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.appleskin.GTFOMetaHUDOverlay;
 import gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
+import gregtechfoodoption.potion.AntiSchizoPotion;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -85,6 +88,14 @@ public class ClientProxy extends CommonProxy {
 
         if (itemStack.getItem().equals(Items.WATER_BUCKET)) {
             event.getToolTip().add(LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", 5));
+        }
+    }
+
+    @SubscribeEvent
+    public static void checkIfPlayerIsSane(RenderLivingEvent.Pre event) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        if (player != null && player.isPotionActive(AntiSchizoPotion.INSTANCE) && event.getEntity() instanceof EntityPlayer && !event.getEntity().isEntityEqual(player)) {
+            event.setCanceled(true);
         }
     }
 

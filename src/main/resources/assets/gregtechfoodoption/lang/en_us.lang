@@ -1065,6 +1065,9 @@ recipemap.multicooker.name=Multicooker
 metaitem.food.emergency_rations.name=Emergency Rations
 metaitem.food.emergency_rations.tooltip=The seal is way too hard to open
 
+metaitem.lithium_oxide_dust.name=Lithium Oxide
+metaitem.lithium_carbonate_dust.name=Lithium Carbonate
+
 tile.gtfo_crop_coffee.name=Coffee
 tile.gtfo_crop_tomato.name=Tomato
 tile.gtfo_crop_onion.name=Onion

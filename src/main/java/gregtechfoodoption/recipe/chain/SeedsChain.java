@@ -162,24 +162,24 @@ public class SeedsChain {
                 .chancedOutput(SOYBEAN_SEED.getStackForm(2), 5000, 100)
                 .buildAndRegister();
 
-        RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(64)
+        RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(30)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
                 .circuitMeta(1)
-                .fluidOutputs(RawSoybeanOil.getFluid(15))
+                .fluidOutputs(RawSoybeanOil.getFluid(25))
                 .buildAndRegister();
 
-        RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(64).duration(64)
+        RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(16).duration(30)
                 .input(GTFOMetaItem.SOYBEAN_SEED)
                 .circuitMeta(2)
                 .output(OrePrefix.dustSmall, Wood)
-                .fluidOutputs(RawSoybeanOil.getFluid(28))
+                .fluidOutputs(RawSoybeanOil.getFluid(50))
                 .buildAndRegister();
 
-        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(24).duration(60)
+        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(24).duration(20)
                 .fluidInputs(RawSoybeanOil.getFluid(1000), Water.getFluid(500))
                 .fluidOutputs(HydratedSoybeanOil.getFluid(1000))
                 .buildAndRegister();
-        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(16).duration(120)
+        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(16).duration(60)
                 .fluidInputs(HydratedSoybeanOil.getFluid(1000))
                 .fluidOutputs(SoyLecithin.getFluid(50), SoybeanOil.getFluid(1000))
                 .buildAndRegister();
