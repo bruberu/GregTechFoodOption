@@ -1,5 +1,7 @@
 package gregtechfoodoption.potion;
 
+import net.minecraft.entity.EntityLivingBase;
+
 public class AntiSchizoPotion extends GTFOPotion {
     public static AntiSchizoPotion INSTANCE = null;
 
@@ -16,5 +18,10 @@ public class AntiSchizoPotion extends GTFOPotion {
     @Override
     public boolean isReady(int duration, int amplifier) {
         return true;
+    }
+
+    @Override
+    public void performEffect(EntityLivingBase entityLivingBaseIn, int amplifier) {
+        super.performEffect(entityLivingBaseIn, amplifier);
     }
 }
