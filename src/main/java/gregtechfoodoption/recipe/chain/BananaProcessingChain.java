@@ -16,13 +16,12 @@ public class BananaProcessingChain {
         if (!Loader.isModLoaded(MODID_GCYS)) {
             ELECTROLYZER_RECIPES.recipeBuilder().EUt(30).duration(56)
                     .input(dust, Salt, 2)
-                    .circuitMeta(1)
                     .output(dust, Sodium)
                     .fluidOutputs(Chlorine.getFluid(1000))
                     .buildAndRegister();
             CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(400) // NaCl + 3H2O -> NaClO3 + 6H
                     .input(dust, Salt, 2)
-                    .circuitMeta(2)
+                    .circuitMeta(1)
                     .fluidInputs(Water.getFluid(3000))
                     .outputs(SodiumChlorate.get(5))
                     .fluidOutputs(Hydrogen.getFluid(6000))
