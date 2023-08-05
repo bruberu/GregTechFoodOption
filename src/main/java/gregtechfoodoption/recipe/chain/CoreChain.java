@@ -105,7 +105,6 @@ public class CoreChain {
         CHEMICAL_RECIPES.recipeBuilder().duration(300).EUt(480)
                 .input(dust, Gold, 2)
                 .fluidInputs(HydrochloricAcid.getFluid(8000))
-                .circuitMeta(1)
                 .fluidOutputs(GTFOMaterialHandler.ChloroauricAcid.getFluid(2000), Hydrogen.getFluid(3000))
                 .buildAndRegister();
     }
