@@ -78,19 +78,9 @@ public class GTFOSimpleMachineMetaTileEntity extends SimpleMachineMetaTileEntity
                     .setIgnoreColor(true);
 
             if (this.circuitInventory != null) {
-                SlotWidget circuitSlot = new GhostCircuitSlotWidget(circuitInventory, 0, 124, 62 + yOffset)
-                        .setBackgroundTexture(GuiTextures.SLOT, getCircuitSlotOverlay());
-                builder.widget(getCircuitSlotTooltip(circuitSlot)).widget(logo)
-                        .widget(new ClickButtonWidget(115, 62 + yOffset, 9, 9, "",
-                                click -> circuitInventory.addCircuitValue(click.isShiftClick ? 5 : 1))
-                                .setShouldClientCallback(true)
-                                .setButtonTexture(GuiTextures.BUTTON_INT_CIRCUIT_PLUS)
-                                .setDisplayFunction(() -> circuitInventory.hasCircuitValue() && circuitInventory.getCircuitValue() < IntCircuitIngredient.CIRCUIT_MAX))
-                        .widget(new ClickButtonWidget(115, 71 + yOffset, 9, 9, "",
-                                click -> circuitInventory.addCircuitValue(click.isShiftClick ? -5 : -1))
-                                .setShouldClientCallback(true)
-                                .setButtonTexture(GuiTextures.BUTTON_INT_CIRCUIT_MINUS)
-                                .setDisplayFunction(() -> circuitInventory.hasCircuitValue() && circuitInventory.getCircuitValue() > IntCircuitIngredient.CIRCUIT_MIN));
+                SlotWidget circuitSlot = new GhostCircuitSlotWidget(this.circuitInventory, 0, 124, 62 + yOffset)
+                        .setBackgroundTexture(GuiTextures.SLOT, this.getCircuitSlotOverlay());
+                builder.widget(this.getCircuitSlotTooltip(circuitSlot)).widget(logo);
             }
         }
         return builder;

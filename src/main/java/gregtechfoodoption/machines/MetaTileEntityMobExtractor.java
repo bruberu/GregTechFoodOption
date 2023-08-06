@@ -9,6 +9,7 @@ import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.item.GTFOSimpleMachineMetaTileEntity;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregtechfoodoption.recipe.properties.CauseDamageProperty;
 import gregtechfoodoption.recipe.properties.MobOnTopProperty;
@@ -25,7 +26,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class MetaTileEntityMobExtractor extends SimpleMachineMetaTileEntity {
+public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity {
     private EntityLivingBase attackableTarget;
 
     public MetaTileEntityMobExtractor(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier, boolean hasFrontFacing,
