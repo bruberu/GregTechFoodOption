@@ -15,6 +15,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Loader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -27,6 +28,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     public RandomPotionEffect[] potionEffects;
     public Supplier<ItemStack> stackSupplier;
     protected int eatingDuration = 32;
+
 
     public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, Supplier<ItemStack> itemStackSupplier, RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
