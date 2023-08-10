@@ -93,12 +93,12 @@ public class VanillaOverrideChain {
                 .input(Blocks.BROWN_MUSHROOM)
                 .input(Blocks.RED_MUSHROOM)
                 .input(OrePrefix.dust, Wheat)
-                .fluidInputs(Milk.getFluid(25))
-                .fluidOutputs(GTFOMaterialHandler.MushroomSoup.getFluid(50))
+                .fluidInputs(Milk.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.MushroomSoup.getFluid(200))
                 .buildAndRegister();
 
         RecipeMaps.CANNER_RECIPES.recipeBuilder().EUt(8).duration(10)
-                .fluidInputs(GTFOMaterialHandler.MushroomSoup.getFluid(250))
+                .fluidInputs(GTFOMaterialHandler.MushroomSoup.getFluid(50))
                 .input(Items.BOWL)
                 .output(Items.MUSHROOM_STEW)
                 .buildAndRegister();
@@ -106,12 +106,12 @@ public class VanillaOverrideChain {
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(8).duration(100)
                 .input(Items.BEETROOT, 2)
                 .input(OrePrefix.dust, Wheat)
-                .fluidInputs(Water.getFluid(100))
-                .fluidOutputs(GTFOMaterialHandler.BeetrootSoup.getFluid(125))
+                .fluidInputs(Water.getFluid(200))
+                .fluidOutputs(GTFOMaterialHandler.BeetrootSoup.getFluid(200))
                 .buildAndRegister();
 
         RecipeMaps.CANNER_RECIPES.recipeBuilder().EUt(8).duration(10)
-                .fluidInputs(GTFOMaterialHandler.BeetrootSoup.getFluid(250))
+                .fluidInputs(GTFOMaterialHandler.BeetrootSoup.getFluid(50))
                 .input(Items.BOWL)
                 .output(Items.BEETROOT_SOUP)
                 .buildAndRegister();
@@ -123,11 +123,11 @@ public class VanillaOverrideChain {
                 .inputs(MashedPotato.getItemStack())
                 .input(OrePrefix.dust, Wheat)
                 .fluidInputs(Water.getFluid(50))
-                .fluidOutputs(GTFOMaterialHandler.RabbitStew.getFluid(125))
+                .fluidOutputs(GTFOMaterialHandler.RabbitStew.getFluid(500))
                 .buildAndRegister();
 
         RecipeMaps.CANNER_RECIPES.recipeBuilder().EUt(8).duration(10)
-                .fluidInputs(GTFOMaterialHandler.RabbitStew.getFluid(250))
+                .fluidInputs(GTFOMaterialHandler.RabbitStew.getFluid(50))
                 .input(Items.BOWL)
                 .output(Items.RABBIT_STEW)
                 .buildAndRegister();
