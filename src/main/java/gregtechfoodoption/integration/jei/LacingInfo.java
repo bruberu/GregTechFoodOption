@@ -16,7 +16,6 @@ import java.util.List;
 
 public class LacingInfo implements IRecipeWrapper {
     private final LacingEntry entry;
-    private static final List<ItemStack> FOOD_ITEMS = new ArrayList<>();
 
     public LacingInfo(LacingEntry entry) {
         this.entry = entry;
@@ -26,7 +25,7 @@ public class LacingInfo implements IRecipeWrapper {
     public void getIngredients(IIngredients ingredients) {
         List<List<ItemStack>> inputs = new ArrayList<>();
         inputs.add(Collections.singletonList(entry.getLacingItem()));
-        inputs.add(FOOD_ITEMS);
+        inputs.add(JEIGTFOPlugin.FOOD_ITEMS);
         ingredients.setInputLists(VanillaTypes.ITEM, inputs);
     }
 
@@ -39,16 +38,6 @@ public class LacingInfo implements IRecipeWrapper {
     }
     public int getPotionDuration() {
         return entry.getAppliedEffect().getDuration();
-    }
-
-    public static void initializeFoodItems() {
-        for (MetaItem<?> metaItem : MetaItem.getMetaItems()) {
-            for (MetaItem.MetaValueItem metaValueItem : metaItem.getAllItems()) {
-                if (metaValueItem.getUseManager() instanceof GTFOFoodUseManager) {
-                    FOOD_ITEMS.add(metaValueItem.getStackForm());
-                }
-            }
-        }
     }
 
     @Override

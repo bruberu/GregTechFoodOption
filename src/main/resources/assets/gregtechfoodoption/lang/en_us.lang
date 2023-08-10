@@ -1087,8 +1087,9 @@ tile.gtfo_crop_black_pepper.name=Black Pepper
 tile.gtfo_crop_rice.name=Rice
 tile.gtfo_crop_white_grape.name=White Grape
 
-lacing.item_list.name=Lacing Recipes
+lacing.item_list.name=Lacing Recipe
 gregtechfoodoption.lacing.info.1=Applies effect:
 gregtechfoodoption.lacing.info.2=Lasts %s ticks
 gregtechfoodoption.potion.cyanidepoisoning=Cyanide Poisoning
 gregtechfoodoption.potion.antischizo=Schizophrenia Meds
+eating.output.name=Eating Recipe
