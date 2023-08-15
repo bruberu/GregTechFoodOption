@@ -23,14 +23,14 @@ public class GTFOProxyItem {
         }
     }
 
-    public ItemStack get() {
+    public ItemStack getItemStack() {
         if (preferredItem == null)
             preferredItem = itemPreparer.get();
         return preferredItem.copy();
     }
 
-    public ItemStack get(int count) {
-        ItemStack copy = this.get();
+    public ItemStack getItemStack(int count) {
+        ItemStack copy = this.getItemStack();
         copy.setCount(count);
         return copy;
     }

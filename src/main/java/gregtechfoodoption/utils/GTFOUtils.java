@@ -7,7 +7,6 @@ import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
-import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.item.GTFOMetaItems;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -171,8 +170,20 @@ public class GTFOUtils {
     }
 
     public static RecipeMap<?> chemicalDehydratorProxy() {
-        return Loader.isModLoaded(GTFOValues.MODID_GCYS) ? RecipeMap.getByName("dryer_recipes") : RecipeMaps.CHEMICAL_RECIPES;
+        if (Loader.isModLoaded("supersymmetry")) {
+            return RecipeMap.getByName("dryer");
+        }
+        return RecipeMaps.CHEMICAL_RECIPES;
     }
+
+    public static RecipeMap<?> roasterProxy() {
+        if (Loader.isModLoaded("supersymmetry")) {
+            return RecipeMap.getByName("roaster");
+        }
+        return RecipeMaps.CHEMICAL_RECIPES;
+    }
+
+
 
     public static RecipeMap<?> stellarForgeProxy() {
         return RecipeMaps.FORMING_PRESS_RECIPES;

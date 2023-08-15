@@ -48,8 +48,7 @@ public class IceCreamChain {
                 .outputs(GTFOMetaItem.ICE_CREAM_CHUM.getStackForm(4))
                 .buildAndRegister();
 
-        if (Loader.isModLoaded(GTFOValues.MODID_NC))
-            RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(24).duration(120)
+        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(GTFOMetaItem.ICE_CREAM_PLAIN.getStackForm(4))
                 .fluidInputs(MoltenMilkChocolate.getFluid(72))
                 .outputs(GTFOMetaItem.ICE_CREAM_CHOCOLATE.getStackForm(4))

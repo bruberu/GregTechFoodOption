@@ -3,13 +3,14 @@ package gregtechfoodoption.recipe.chain;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtechfoodoption.utils.GTFOUtils;
 
 import static gregtechfoodoption.GTFOMaterialHandler.LithiumCarbonate;
 import static gregtechfoodoption.GTFOMaterialHandler.LithiumOxide;
 
 public class LithiumChain {
     public static void init() {
-        RecipeMaps.CHEMICAL_RECIPES.recipeBuilder()
+        GTFOUtils.roasterProxy().recipeBuilder()
                 .input(OrePrefix.dust, Materials.Lithium, 2)
                 .fluidInputs(Materials.Oxygen.getFluid(1000))
                 .outputs(LithiumOxide.getItemStack(3))

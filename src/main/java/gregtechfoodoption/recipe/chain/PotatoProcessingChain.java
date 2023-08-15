@@ -20,14 +20,14 @@ public class PotatoProcessingChain {
                 .fluidInputs(Water.getFluid(500))
                 .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(PEELED_POTATO.getStackForm())
-                .fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(500))
+                //.fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(500))
                 .buildAndRegister();
         SLICER_RECIPES.recipeBuilder().EUt(20).duration(80)
                 .inputs(PEELED_POTATO.getStackForm())
                 .fluidInputs(Water.getFluid(200))
                 .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(POTATO_SLICE.getStackForm(10))
-                .fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(200))
+                //.fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(200))
                 .buildAndRegister();
         GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(20)
                 .fluidInputs(GTFOMaterialHandler.StarchFilledWater.getFluid(1000))

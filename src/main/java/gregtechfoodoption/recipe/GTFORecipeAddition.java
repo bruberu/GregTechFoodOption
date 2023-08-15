@@ -33,6 +33,7 @@ public class GTFORecipeAddition {
         ItalianChain.init();
         PastaChain.init();
         PlateChain.init();
+        LithiumChain.init();
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
