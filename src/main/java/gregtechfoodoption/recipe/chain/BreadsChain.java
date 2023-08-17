@@ -41,6 +41,15 @@ public class BreadsChain {
                 "   ", "kM ", "   ",
                 'M', MetaItems.WOODEN_FORM_EMPTY.getStackForm());
 
+        ModHandler.addShapelessRecipe("dough_1", DOUGH.getStackForm(1),
+                new UnificationEntry(dust, Materials.Wheat),
+                new ItemStack(Items.WATER_BUCKET));
+        MIXER_RECIPES.recipeBuilder().EUt(8).duration(200)
+                .input(dust, Materials.Wheat, 4)
+                .fluidInputs(Water.getFluid(1000))
+                .outputs(DOUGH.getStackForm(4))
+                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(3))
+                .buildAndRegister();
 
         ModHandler.addShapelessRecipe("dough_2", DOUGH.getStackForm(2),
                 new UnificationEntry(dust, Materials.Wheat),
