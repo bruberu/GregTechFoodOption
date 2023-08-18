@@ -424,7 +424,18 @@ public class GTFOMaterialHandler {
     public static final Material TomatoBologneseSauce = fluidBuilder(21611, "tomato_bolognese_sauce")
             .color(0xCA190F)
             .build();
-
+    public static final Material CranberryExtract = fluidBuilder(21612, "cranberry_extract")
+            .color(0x8C0D22)
+            .build();
+    public static final Material EtirpsCranberry = fluidBuilder(21613, "etirps_cranberry")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0xbbddbb))
+            .build();
+    public static final Material CranberrySludge = fluidBuilder(21613, "cranberry_sludge")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x222222))
+            .build();
+    public static final Material CranberrySodaSyrup = fluidBuilder(21613, "cranberry_soda_syrup")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x333333))
+            .build();
 
 
 

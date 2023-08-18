@@ -376,6 +376,20 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     public static MetaItem<?>.MetaValueItem EMERGENCY_RATIONS;
 
+    public static MetaItem<?>.MetaValueItem BLUEBERRY;
+    public static MetaItem<?>.MetaValueItem BLACKBERRY;
+    public static MetaItem<?>.MetaValueItem RASPBERRY;
+    public static MetaItem<?>.MetaValueItem STRAWBERRY;
+    public static MetaItem<?>.MetaValueItem RED_CURRANT;
+    public static MetaItem<?>.MetaValueItem BLACK_CURRANT;
+    public static MetaItem<?>.MetaValueItem WHITE_CURRANT;
+    public static MetaItem<?>.MetaValueItem LINGONBERRY;
+    public static MetaItem<?>.MetaValueItem ELDERBERRY;
+    public static MetaItem<?>.MetaValueItem CRANBERRY;
+
+    public static MetaItem<?>.MetaValueItem BERRY_MEDLEY;
+    public static MetaItem<?>.MetaValueItem ETIRPS_CRANBERRY;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -598,7 +612,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .addOreDict("cropLemon").addOreDict("listAllfruit").addComponents();
         LIME = addItem(18, "food.lime").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.limeHunger, GTFOConfig.gtfoFoodConfig.limeSaturation))
                 .addOreDict("cropLime").addOreDict("listAllfruit");
-        ETIRPS = addItem(19, "food.etirps").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger, GTFOConfig.gtfoFoodConfig.etirpsSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
+        ETIRPS = addItem(19, "food.etirps").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger, GTFOConfig.gtfoFoodConfig.etirpsSaturation, true, true, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0)));
 
         MetaItems.BOTTLE_PURPLE_DRINK.addComponents(new GTFOFoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE),
@@ -864,6 +878,32 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         EMERGENCY_RATIONS = addItem(325, "food.emergency_rations").addComponents(new GTFOFoodStats(5, 1.0f, false, true)
                 .setPotionEffects(new RandomPotionEffect(MobEffects.NAUSEA, 400, 0, 100 - 10)).setEatingDuration(60));
+
+        BLUEBERRY = addItem(326, "food.berry.blueberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropBlueberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+        BLACKBERRY = addItem(327, "food.berry.blackberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropBlackberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+        RASPBERRY = addItem(328, "food.berry.raspberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropRaspberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+        STRAWBERRY = addItem(329, "food.berry.strawberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropStrawberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+        RED_CURRANT = addItem(330, "food.berry.red_currant").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropRedCurrant").addOreDict("listAllfruit").addOreDict("listAllberry");
+        BLACK_CURRANT = addItem(331, "food.berry.black_currant").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropBlackCurrant").addOreDict("listAllfruit").addOreDict("listAllberry");
+        WHITE_CURRANT = addItem(332, "food.berry.white_currant").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropWhiteCurrant").addOreDict("listAllfruit").addOreDict("listAllberry");
+        LINGONBERRY = addItem(333, "food.berry.lingonberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropLingonberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+        ELDERBERRY = addItem(334, "food.berry.elderberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropElderberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+        CRANBERRY = addItem(335, "food.berry.cranberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropCranberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+
+        BERRY_MEDLEY = addItem(336, "food.berry_medley").addComponents(new GTFOFoodStats(5, 0.5f, false, false, new ItemStack(Items.BOWL)));
+        ETIRPS_CRANBERRY = addItem(337, "food.etirps_cranberry").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger + 3, GTFOConfig.gtfoFoodConfig.etirpsSaturation + 0.3f, true, true, PLASTIC_BOTTLE.getStackForm(),
+                new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
+                new RandomPotionEffect(MobEffects.REGENERATION, 200, 1, 100 - 80)));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
