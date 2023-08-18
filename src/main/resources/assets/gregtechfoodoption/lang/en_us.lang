@@ -815,7 +815,7 @@ gregtech.material.gtfo_sodium_arsenite_solution=Sodium Arsenite Solution
 metaitem.arsenic_trioxide_dust.name=Arsenic Trioxide
 metaitem.cupric_hydrogen_arsenite_dust.name=Scheele's Green
 tile.transparent_casing.greenhouse_glass.name=Greenhouse Glass
-gregtech.multiblock.not_enough_sun=Warning: The Roof did not receive enough natural Sunlight for the recipe!
+gregtech.multiblock.not_enough_sun=The Roof is not getting enough Sunlight, and Recipes will run twice as slow
 
 gregtechfoodoption.machine.greenhouse.tooltip.1=Simulates the growth of Trees inside.
 gregtechfoodoption.machine.greenhouse.tooltip.2=Takes twice as long to run a Recipe if Any Part of the Roof is blocked, or it is Night.
