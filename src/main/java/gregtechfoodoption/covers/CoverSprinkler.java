@@ -104,7 +104,7 @@ public class CoverSprinkler extends CoverBehavior implements CoverWithUI, ITicka
             setupWorkingArea();
         updateOperationPosition();
         IBlockState cropState = this.coverHolder.getWorld().getBlockState(operationPosition);
-        if (cropState.getBlock() instanceof IGrowable && GTValues.RNG.nextInt(100) < percentageChance) {
+        if (cropState.getBlock() instanceof IGrowable && GTValues.RNG.nextInt(100) < percentageChance && ((IGrowable) cropState.getBlock()).canGrow(this.coverHolder.getWorld(), operationPosition, cropState, false)) {
             ((IGrowable) cropState.getBlock()).grow(this.coverHolder.getWorld(), GTValues.RNG, operationPosition, cropState);
         }
 
