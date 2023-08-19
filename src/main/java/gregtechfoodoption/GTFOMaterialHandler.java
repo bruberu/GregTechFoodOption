@@ -430,14 +430,19 @@ public class GTFOMaterialHandler {
     public static final Material EtirpsCranberry = fluidBuilder(21613, "etirps_cranberry")
             .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0xbbddbb))
             .build();
-    public static final Material CranberrySludge = fluidBuilder(21613, "cranberry_sludge")
+    public static final Material CranberrySludge = fluidBuilder(21614, "cranberry_sludge")
             .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x222222))
             .build();
-    public static final Material CranberrySodaSyrup = fluidBuilder(21613, "cranberry_soda_syrup")
+    public static final Material CranberrySodaSyrup = fluidBuilder(21615, "cranberry_soda_syrup")
             .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x333333))
             .build();
 
-
+    public static final Material LingonberryJam = fluidBuilder(21616, "lingonberry_jam")
+            .color(0x61262D)
+            .build();
+    public static final Material ElderberryJam = fluidBuilder(21617, "elderberry_jam")
+            .color(0x5F414F)
+            .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)

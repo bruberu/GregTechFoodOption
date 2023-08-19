@@ -880,25 +880,27 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .setPotionEffects(new RandomPotionEffect(MobEffects.NAUSEA, 400, 0, 100 - 10)).setEatingDuration(60));
 
         BLUEBERRY = addItem(326, "food.berry.blueberry").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropBlueberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropBlueberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
         BLACKBERRY = addItem(327, "food.berry.blackberry").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropBlackberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropBlackberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
         RASPBERRY = addItem(328, "food.berry.raspberry").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropRaspberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropRaspberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
         STRAWBERRY = addItem(329, "food.berry.strawberry").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropStrawberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropStrawberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
         RED_CURRANT = addItem(330, "food.berry.red_currant").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropRedCurrant").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropRedCurrant").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
         BLACK_CURRANT = addItem(331, "food.berry.black_currant").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropBlackCurrant").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropBlackCurrant").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
         WHITE_CURRANT = addItem(332, "food.berry.white_currant").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropWhiteCurrant").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropWhiteCurrant").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
         LINGONBERRY = addItem(333, "food.berry.lingonberry").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropLingonberry").addOreDict("listAllfruit").addOreDict("listAllberry");
-        ELDERBERRY = addItem(334, "food.berry.elderberry").addComponents(new GTFOFoodStats(1, 0.5f))
+                .addOreDict("cropLingonberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
+        ELDERBERRY = addItem(334, "food.berry.elderberry").addComponents(new GTFOFoodStats(1, 0.5f).setPotionEffects(
+                new RandomPotionEffect(MobEffects.NAUSEA, 400, 0, 100 - 4),
+                new RandomPotionEffect(MobEffects.POISON, 200, 0, 100 - 1)))
                 .addOreDict("cropElderberry").addOreDict("listAllfruit").addOreDict("listAllberry");
         CRANBERRY = addItem(335, "food.berry.cranberry").addComponents(new GTFOFoodStats(1, 0.5f))
-                .addOreDict("cropCranberry").addOreDict("listAllfruit").addOreDict("listAllberry");
+                .addOreDict("cropCranberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
 
         BERRY_MEDLEY = addItem(336, "food.berry_medley").addComponents(new GTFOFoodStats(5, 0.5f, false, false, new ItemStack(Items.BOWL)));
         ETIRPS_CRANBERRY = addItem(337, "food.etirps_cranberry").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger + 3, GTFOConfig.gtfoFoodConfig.etirpsSaturation + 0.3f, true, true, PLASTIC_BOTTLE.getStackForm(),
