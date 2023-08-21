@@ -80,7 +80,8 @@ public class GTFOSimpleMachineMetaTileEntity extends SimpleMachineMetaTileEntity
             if (this.circuitInventory != null) {
                 SlotWidget circuitSlot = new GhostCircuitSlotWidget(this.circuitInventory, 0, 124, 62 + yOffset)
                         .setBackgroundTexture(GuiTextures.SLOT, this.getCircuitSlotOverlay());
-                builder.widget(this.getCircuitSlotTooltip(circuitSlot)).widget(logo);
+                this.getCircuitSlotTooltip(circuitSlot);
+                builder.widget(circuitSlot).widget(logo);
             }
         }
         return builder;
