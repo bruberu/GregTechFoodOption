@@ -26,7 +26,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
-        dependencies = "required-after:gregtech@[2.7.0-beta,);" + "after:gcy_science")
+        dependencies = "required-after:gregtech@[2.7.3-beta,);" + "after:gcy_science")
 public class GregTechFoodOption {
     public static final String MODID = "gregtechfoodoption";
     public static final String NAME = "GregTech Food Option";
