@@ -27,7 +27,9 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity {
+    private AxisAlignedBB boundingBox;
     private EntityLivingBase attackableTarget;
+    private List<Entity> nearbyEntities;
 
     public MetaTileEntityMobExtractor(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier, boolean hasFrontFacing,
                                       Function<Integer, Integer> tankScalingFunction) {
@@ -46,7 +48,8 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
 
     protected boolean checkRecipe(@Nonnull Recipe recipe) {
         ResourceLocation entityRequired = recipe.getProperty(MobOnTopProperty.getInstance(), null);
-        List<Entity> nearbyEntities = getEntitiesInProximity();
+        if (this.nearbyEntities == null || this.getOffsetTimer() % 5 == 0)
+            this.nearbyEntities = getEntitiesInProximity();
         for (Entity entity : nearbyEntities) {
             if (EntityList.isMatchingName(entity, entityRequired)) {
                 if (entity instanceof EntityLivingBase) // Prepare to cause damage if needed.
@@ -60,7 +63,9 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
     }
 
     protected List<Entity> getEntitiesInProximity() {
-        return this.getWorld().getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(this.getPos().up()));
+        if (boundingBox == null)
+            boundingBox = new AxisAlignedBB(this.getPos().up());
+        return this.getWorld().getEntitiesWithinAABB(Entity.class, boundingBox);
     }
 
     protected void damageEntity(Recipe recipe) {
