@@ -425,8 +425,12 @@ public class GTFOMaterialHandler {
             .color(0xCA190F)
             .build();
 
-
-
+    public static final Material SourCream = fluidBuilder(21612, "sour_cream")
+            .color(0xe3de9d)
+            .build();
+    public static final Material LacticAcidBacteria = fluidBuilder(21613, "lactic_acid_bacteria")
+            .color(0x371040)
+            .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)

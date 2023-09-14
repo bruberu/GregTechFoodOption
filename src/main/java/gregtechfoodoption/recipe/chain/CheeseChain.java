@@ -201,6 +201,7 @@ public class CheeseChain {
                 .buildAndRegister();
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(24).duration(100)
                 .fluidInputs(Milk.getFluid(1000))
+                .circuitMeta(1)
                 .fluidOutputs(UnpasteurizedSkimmedMilk.getFluid(800))
                 .buildAndRegister();
         if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {

@@ -1093,3 +1093,12 @@ gregtechfoodoption.lacing.info.2=Lasts %s ticks
 gregtechfoodoption.potion.cyanidepoisoning=Cyanide Poisoning
 gregtechfoodoption.potion.antischizo=Schizophrenia Meds
 eating.output.name=Eating Recipe
+
+metaitem.component.pelmeni_uncooked.name=Uncooked Pelmeni
+metaitem.component.pelmeni_uncooked_seasoned.name=Seasoned Uncooked Pelmeni
+metaitem.food.pelmeni.name=Pelmeni
+metaitem.food.pelmeni.tooltip=Better than PelmeniCraft
+metaitem.food.pelmeni_seasoned.name=Seasoned Pelmeni
+metaitem.food.pelmeni_seasoned.tooltip=With a side of Sour Cream
+gregtech.material.gtfo_sour_cream=Sour Cream
+gregtech.material.gtfo_lactic_acid_bacteria=Lactic Acid Bacteria

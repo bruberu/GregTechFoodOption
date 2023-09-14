@@ -376,6 +376,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     public static MetaItem<?>.MetaValueItem EMERGENCY_RATIONS;
 
+    public static MetaItem<?>.MetaValueItem UNCOOKED_PELMENI;
+    public static MetaItem<?>.MetaValueItem UNCOOKED_SEASONED_PELMENI;
+    public static MetaItem<?>.MetaValueItem PELMENI;
+    public static MetaItem<?>.MetaValueItem SEASONED_PELMENI;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -584,6 +589,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         UNFIRED_PLATE = addItem(322, "component.unfired_plate");
         UNFIRED_BOWL = addItem(323, "component.unfired_bowl");
+
+        UNCOOKED_PELMENI = addItem(338, "component.pelmeni_uncooked");
+        UNCOOKED_SEASONED_PELMENI = addItem(339, "component.pelmeni_uncooked_seasoned");
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
@@ -864,6 +872,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         EMERGENCY_RATIONS = addItem(325, "food.emergency_rations").addComponents(new GTFOFoodStats(5, 1.0f, false, true)
                 .setPotionEffects(new RandomPotionEffect(MobEffects.NAUSEA, 400, 0, 100 - 10)).setEatingDuration(60));
+
+        PELMENI = addItem(340, "food.pelmeni").addComponents(new GTFOFoodStats(5, 0.5f));
+        SEASONED_PELMENI = addItem(341, "food.pelmeni_seasoned").addComponents(new GTFOFoodStats(7, 1f).setEatingDuration(24));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
