@@ -693,7 +693,7 @@ gregtechfoodoption.machine.farmer.mv.name=Advanced Farmer
 gregtechfoodoption.machine.farmer.hv.name=Advanced Farmer II
 gregtechfoodoption.machine.farmer.ev.name=Advanced Farmer III
 gregtechfoodoption.machine.farmer.tooltip.flavor=Applies laser Technology to Farming
-gregtechfoodoption.machine.farmer.tooltip.consumption=While working, constantly consumes %,d EU/t
+gregtechfoodoption.machine.farmer.tooltip.consumption=While working, consumes %,d EU/t per operation
 gregtechfoodoption.machine.farmer.tooltip.working=Works on a 9x9 Farm in front
 gregtechfoodoption.machine.farmer.tooltip.speed=Works on one Block every %d Ticks
 
@@ -855,7 +855,7 @@ gregtech.material.gtfo_hydrogen_cyanide=Hydrogen Cyanide
 
 gregtechfoodoption.fluid.fertilizer=§2%d%% effective as a Sprinkler Fertilizer
 metaitem.cover.sprinkler.name=Sprinkler
-metaitem.cover.sprinkler.tooltip=As a §4downwards-facing§7 Cover, Sprays Fluids onto a 9x9 Area of Crops (leave a §63-Block Space§7 between This and the Ground)
+metaitem.cover.sprinkler.tooltip=As a §4downwards-facing§7 Cover, Sprays Fluids onto a 9x9 Area of Crops/nLeave a §63-Block Space§7 between This and the Ground/nLeft click with a Soft Mallet to turn off Particles
 gregtech.material.gtfo_blue_vitriol=Blue Vitriol
 gregtech.material.gtfo_rubber_sap=Rubber Sap
 gregtech.material.gtfo_blood=Blood
@@ -1102,3 +1102,6 @@ metaitem.food.pelmeni_seasoned.name=Seasoned Pelmeni
 metaitem.food.pelmeni_seasoned.tooltip=With a side of Sour Cream
 gregtech.material.gtfo_sour_cream=Sour Cream
 gregtech.material.gtfo_lactic_acid_bacteria=Lactic Acid Bacteria
+
+gregtechfoodoption.sprinkler.particles.on=Sprinkler Particles turned on.
+gregtechfoodoption.sprinkler.particles.off=Sprinkler Particles turned off.
