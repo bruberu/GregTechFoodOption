@@ -206,6 +206,10 @@ gregtech.material.gtfo_hfcs_solution=High Fructose Corn Syrup Solution
 gregtech.material.gtfo_glucose_solution=Glucose Solution
 gregtech.material.gtfo_apple_syrup=Apple Syrup
 gregtech.material.gtfo_etirps=Etirps™
+gregtech.material.gtfo_cranberry_extract=Cranberry Extract
+gregtech.material.gtfo_cranberry_sludge=Cranberry Sludge
+gregtech.material.gtfo_cranberry_soda_syrup=Cranberry Soda Syrup
+gregtech.material.gtfo_etirps_cranberry=Etirps Cranberry™
 
 gregtechfoodoption.machine.slicer.lv.name=Basic Slicing Machine
 gregtechfoodoption.machine.slicer.mv.name=Advanced Slicing Machine
