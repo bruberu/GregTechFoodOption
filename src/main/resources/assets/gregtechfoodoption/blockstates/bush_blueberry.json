@@ -1,0 +1,31 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "transform": "forge:default-block",
+    "textures": {
+      "particle": "#all"
+    }
+  },
+  "variants": {
+    "age": {
+      "0": {
+        "model": "gregtechfoodoption:small_berry_bush",
+        "textures": {
+          "all": "gregtechfoodoption:blocks/berry/blueberry"
+        }
+      },
+      "1": {
+        "model": "gregtechfoodoption:large_berry_bush",
+        "textures": {
+          "all": "gregtechfoodoption:blocks/berry/blueberry"
+        }
+      },
+      "2": {
+        "model": "gregtechfoodoption:large_berry_bush",
+        "textures": {
+          "all": "gregtechfoodoption:blocks/berry/blueberry_ripe"
+        }
+      }
+    }
+  }
+}

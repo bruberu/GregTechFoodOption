@@ -1099,6 +1099,7 @@ metaitem.food.berry_medley.tooltip=Just how Remy would have made it
 metaitem.food.berry.blueberry.name=Blueberry
 metaitem.food.berry.blueberry.tooltip=You see a Caracal's Face on one of them
 metaitem.food.berry.blackberry.name=Blackberry
+metaitem.food.berry.blackberry.tooltip=Would you eat a phone?
 metaitem.food.berry.raspberry.name=Raspberry
 metaitem.food.berry.raspberry.tooltip=Otherwise known as a Voiceless Linguolabial Trill
 metaitem.food.berry.strawberry.name=Strawberry
@@ -1117,3 +1118,5 @@ metaitem.food.etirps_cranberry.name=Etirps Cranberry
 metaitem.food.berry_medley.name=Berry Medley
 gregtech.material.gtfo_lingonberry_jam=Lingonberry Jam
 gregtech.material.gtfo_elderberry_jam=Elderberry Jam
+
+gregtechfoodoption.blocked=This blocks a berry bush at %s!
