@@ -4,8 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -75,13 +78,14 @@ public class GTFOBerryBush extends GTFOCrop {
             i = j;
         }
 
-        worldIn.setBlockState(pos, withEfficiency(this.withAge(i), getEfficiency(worldIn, pos, state)), 2);
+        worldIn.setBlockState(pos, withEfficiency(this.withAge(i), getEfficiency(worldIn, pos, state)), 3);
     }
 
     public int getEfficiency(World worldIn, BlockPos pos, IBlockState state) {
         int[] efficiencies = new int[EFFICIENCY_GTFO.getAllowedValues().stream().max(Integer::compare).get() + 1];
         BlockPos.getAllInBox(pos.east().north(), pos.west().south()).forEach((blockpos) -> {
-            efficiencies[getEfficiency(worldIn.getBlockState(blockpos)) + 1]++;
+            if (!blockpos.equals(pos))
+                efficiencies[getEfficiency(worldIn.getBlockState(blockpos)) + 1]++;
         });
         for (int i = efficiencies.length - 1; i >= 0; --i) {
             if (efficiencies[i] > 2) {
@@ -131,4 +135,15 @@ public class GTFOBerryBush extends GTFOCrop {
         return 2;
     }
 
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (this.isMaxAge(state)) {
+            if (!playerIn.addItemStackToInventory(this.getCropStack())) {
+                playerIn.dropItem(this.getCropStack(), false);
+                worldIn.setBlockState(pos, state.withProperty(AGE_GTFO, Integer.valueOf(this.getMaxAge() - 1)), 3);
+            }
+            return true;
+        }
+        return false;
+    }
 }
