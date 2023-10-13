@@ -7,15 +7,18 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
 public class GTFOBerryBush extends GTFOCrop {
     public static final PropertyInteger EFFICIENCY_GTFO = PropertyInteger.create("efficiency", 0, 4);
+    private static final AxisAlignedBB SMALL_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5D, 0.75D);
 
     protected GTFOBerryBush(String name) {
         super(name, 2);
@@ -59,25 +62,33 @@ public class GTFOBerryBush extends GTFOCrop {
     }
 
     public int getEfficiency(IBlockState state) {
-        return state.getValue(EFFICIENCY_GTFO).intValue();
+        return state.getProperties().get(EFFICIENCY_GTFO) != null ? state.getValue(EFFICIENCY_GTFO).intValue() : -1;
     }
 
     @Override
     public void grow(World worldIn, BlockPos pos, IBlockState state) {
-        super.grow(worldIn, pos, state);
-        addEfficiency(worldIn, pos, state);
+        int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
+        int j = this.getMaxAge();
+
+        if (i > j)
+        {
+            i = j;
+        }
+
+        worldIn.setBlockState(pos, withEfficiency(this.withAge(i), getEfficiency(worldIn, pos, state)), 2);
     }
 
-    public void addEfficiency(World worldIn, BlockPos pos, IBlockState state) {
-        int[] efficiencies = new int[EFFICIENCY_GTFO.getAllowedValues().stream().max(Integer::compare).get()];
+    public int getEfficiency(World worldIn, BlockPos pos, IBlockState state) {
+        int[] efficiencies = new int[EFFICIENCY_GTFO.getAllowedValues().stream().max(Integer::compare).get() + 1];
         BlockPos.getAllInBox(pos.east().north(), pos.west().south()).forEach((blockpos) -> {
-            efficiencies[getEfficiency(worldIn.getBlockState(blockpos))]++;
+            efficiencies[getEfficiency(worldIn.getBlockState(blockpos)) + 1]++;
         });
         for (int i = efficiencies.length - 1; i >= 0; --i) {
-            if (i > 2) {
-                worldIn.setBlockState(pos, withEfficiency(state, i + 1), 3);
+            if (efficiencies[i] > 2) {
+                return i;
             }
         }
+        return 0;
     }
 
     protected int getBonemealAgeIncrease(World worldIn) {
@@ -99,4 +110,25 @@ public class GTFOBerryBush extends GTFOCrop {
 
         return growthSlowdown;
     }
+
+    @Override
+    public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
+        return EnumPlantType.Plains;
+    }
+
+    @Nullable
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        return this.getBoundingBox(blockState, worldIn, pos);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return this.getAge(state) == 0 ? SMALL_AABB : Block.FULL_BLOCK_AABB;
+    }
+
+    public int getMaxAge() {
+        return 2;
+    }
+
 }

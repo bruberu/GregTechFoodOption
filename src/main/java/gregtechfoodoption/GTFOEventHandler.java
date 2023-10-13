@@ -251,7 +251,9 @@ public class GTFOEventHandler {
     @SubscribeEvent
     public static void handleBerryGrowth(BlockEvent.CropGrowEvent.Post event) {
         if (event.getState().getBlock() instanceof GTFOBerryBush bush) {
-            bush.addEfficiency(event.getWorld(), event.getPos(), event.getState());
+            event.getWorld().setBlockState(event.getPos(),
+                    bush.withEfficiency(event.getState(), bush.getEfficiency(event.getWorld(), event.getPos(), event.getState())),
+                    2);
         }
     }
 

@@ -11,13 +11,13 @@
       "0": {
         "model": "gregtechfoodoption:small_berry_bush",
         "textures": {
-          "all": "gregtechfoodoption:blocks/berry/blueberry"
+          "all": "gregtechfoodoption:blocks/berry/ungrown"
         }
       },
       "1": {
         "model": "gregtechfoodoption:large_berry_bush",
         "textures": {
-          "all": "gregtechfoodoption:blocks/berry/blueberry"
+          "all": "gregtechfoodoption:blocks/berry/ungrown"
         }
       },
       "2": {
@@ -26,6 +26,9 @@
           "all": "gregtechfoodoption:blocks/berry/blueberry_ripe"
         }
       }
+    },
+    "efficiency": {
+      "0": {}, "1": {}, "2": {}, "3": {}, "4": {}, "5": {}
     }
   }
 }
