@@ -81,6 +81,11 @@ public class GTFOBerryBush extends GTFOCrop {
         worldIn.setBlockState(pos, withEfficiency(this.withAge(i), getEfficiency(worldIn, pos, state)), 3);
     }
 
+    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
+    {
+        this.grow(worldIn, pos, state);
+    }
+
     public int getEfficiency(World worldIn, BlockPos pos, IBlockState state) {
         int[] efficiencies = new int[EFFICIENCY_GTFO.getAllowedValues().stream().max(Integer::compare).get() + 1];
         BlockPos.getAllInBox(pos.east().north(), pos.west().south()).forEach((blockpos) -> {
@@ -104,6 +109,9 @@ public class GTFOBerryBush extends GTFOCrop {
     }
 
     public int getGrowthSlowdown(World world, BlockPos pos, IBlockState state) {
+        if (getAge(state) == 0) {
+            return 4; // Usual value for growing crops
+        }
         int growthSlowdown = 320 << getEfficiency(state);
         if (!world.isDaytime()) {
             growthSlowdown *= 2;

@@ -11,6 +11,8 @@ import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockPlanks;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
+import gregtechfoodoption.worldgen.trees.GTFOTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;

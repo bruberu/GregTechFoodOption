@@ -1,12 +1,12 @@
-package gregtechfoodoption.worldgen.trees.condition;
+package gregtechfoodoption.worldgen.condition;
 
 import net.minecraft.world.biome.Biome;
 
-public abstract class TreeCondition {
+public abstract class FeatureCondition {
     private final int maxAmount;
 
 
-    public TreeCondition(int maxAmount) {
+    public FeatureCondition(int maxAmount) {
         this.maxAmount = maxAmount;
     }
 
@@ -20,7 +20,7 @@ public abstract class TreeCondition {
      */
     public abstract double getPerlinCutoff(Biome biome);
 
-    public double getMaxTrees() {
+    public double getMaxFeatures() {
         return maxAmount;
     }
 }

@@ -2,7 +2,7 @@ package gregtechfoodoption.recipe;
 
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOTree;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
 import gregtechfoodoption.recipe.chain.*;
 import gregtechfoodoption.tools.GTFOToolItems;
 import net.minecraftforge.fml.common.Loader;

@@ -1,10 +1,10 @@
-package gregtechfoodoption.worldgen.trees.condition;
+package gregtechfoodoption.worldgen.condition;
 
 import net.minecraft.world.biome.Biome;
 
 import java.util.Arrays;
 
-public class BiomeCondition extends TreeCondition {
+public class BiomeCondition extends FeatureCondition {
     private Biome[] biomes;
     private double perlinCutoff;
 
