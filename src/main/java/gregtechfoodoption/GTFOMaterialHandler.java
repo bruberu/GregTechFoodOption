@@ -399,7 +399,6 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material VitelloTonnatoSauce = fluidBuilder(21596, "vitello_tonnato_sauce")
             .color(0xC6BABE)
-            .fluidTemp(343)
             .build();
     public static final Material WhiteWine = fluidBuilder(21597, "white_wine")
             .color(0xD7C259)
