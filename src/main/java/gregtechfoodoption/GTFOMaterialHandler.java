@@ -399,6 +399,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material VitelloTonnatoSauce = fluidBuilder(21596, "vitello_tonnato_sauce")
             .color(0xC6BABE)
+            .fluidTemp(343)
             .build();
     public static final Material WhiteWine = fluidBuilder(21597, "white_wine")
             .color(0xD7C259)
@@ -415,6 +416,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material VitelloTonnatoFlavorant = fluidBuilder(21601, "vitello_tonnato_flavorant")
             .color(0xC2ACB0)
+            .fluidTemp(343)
             .build();
     public static final Material RafanataMixture = fluidBuilder(21602, "rafanata_mixture")
             .color(0xDCB239)
@@ -425,9 +427,11 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base")
             .color(0xD4592F)
+            .fluidTemp(343)
             .build();
     public static final Material MixedPastaEFagioli = fluidBuilder(21605, "mixed_pasta_e_fagioli")
             .color(0xE48628)
+            .fluidTemp(353)
             .build();
 
     public static final Material RedGrapesMust = fluidBuilder(21606, "red_grapes_must")
