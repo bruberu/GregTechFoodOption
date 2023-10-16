@@ -34,6 +34,7 @@ public class GTFOMaterialHandler {
     // 21500 - 21999
 
     public static final Material IsopropylChloride = fluidBuilder(21500, "isopropyl_chloride")
+            .fluidTemp(155)
             .components(Carbon, 3, Hydrogen, 7, Chlorine, 1)
             .build()
             .setFormula("(CH3)2CHCl", true);
@@ -58,6 +59,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material CaneSyrup = fluidBuilder(21507, "cane_syrup")
             .color(0xf2f1dc)
+            .fluidTemp(473)
             .build();
     public static final Material PurpleDrink = fluidBuilder(21508, "purple_drink")
             .color(0xb405ff)
@@ -68,6 +70,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material HotFryingOil = fluidBuilder(21510, "hot_frying_oil")
             .color(0xffd166)
+            .fluidTemp(483)
             .build();
     public static final Material StarchFilledWater = fluidBuilder(21511, "starch_filled_water")
             .color(0xd1cbbe)
@@ -75,9 +78,11 @@ public class GTFOMaterialHandler {
 
     public static final Material MushroomSoup = fluidBuilder(21512, "mushroom_soup")
             .color(0xedcaaf)
+            .fluidTemp(343)
             .build();
     public static final Material BeetrootSoup = fluidBuilder(21513, "beetroot_soup")
             .color(0xc25132)
+            .fluidTemp(343)
             .build();
 
     public static final Material ItalianBuffaloMilk = fluidBuilder(21514, "italian_buffalo_milk")
@@ -97,6 +102,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material HeatedRicottaStarter = fluidBuilder(21519, "heated_ricotta_starter")
             .color(0xdef72f)
+            .fluidTemp(348)
             .build();
     public static final Material AcidicMilkSolution = fluidBuilder(21520, "acidic_milk_solution")
             .color(0xb2c71c)
@@ -131,18 +137,22 @@ public class GTFOMaterialHandler {
             .build();
 
     public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid", FluidTypes.ACID)
+            .fluidTemp(256)
             .components(Hydrogen, 1, Chlorine, 1, Oxygen, 4)
             .build();
     public static final Material ChloroauricAcid = GregTechAPI.materialManager.getMaterial("chloroauric_acid") != null ? GregTechAPI.materialManager.getMaterial("chloroauric_acid") :
             fluidBuilder(21530, "chloroauric_acid", FluidTypes.ACID)
+                    .fluidTemp(527)
                     .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
                     .build();
 
     public static final Material MoistAir = fluidBuilder(21531, "moist_air")
             .color(0x82c8ff)
+            .fluidTemp(333)
             .build();
     public static final Material ColdMoistAir = fluidBuilder(21532, "cold_moist_air")
             .color(0x72a2ff)
+            .fluidTemp(273)
             .build();
 
     public static final Material Albumen = fluidBuilder(21533, "albumen")
@@ -157,6 +167,7 @@ public class GTFOMaterialHandler {
 
     public static final Material RabbitStew = fluidBuilder(21536, "rabbit_stew")
             .color(0xe0c0a0)
+            .fluidTemp(343)
             .build();
 
     public static final Material Stearin = fluidBuilder(21537, "stearin")
@@ -176,11 +187,13 @@ public class GTFOMaterialHandler {
             .setFormula("C17H35COONa", true);
     public static final Material CitricAcid = fluidBuilder(21540, "citric_acid", FluidTypes.ACID)
             .color(0xccbd61)
+            .fluidTemp(429)
             .components(Carbon, 5, Hydrogen, 7, Oxygen, 5)
             .build()
             .setFormula("HOC(CH2CO2H)2", true); //good for processing food
     public static final Material HydrogenCyanide = GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") != null ? GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") : fluidBuilder(21541, "hydrogen_cyanide")
             .color(0x6e6a5e)
+            .fluidTemp(259)
             .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
             .build();
 
@@ -218,14 +231,17 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material Acetaldehyde = fluidBuilder(21552, "acetaldehyde")
             .color(0xf3f2f1)
+            .fluidTemp(149)
             .components(Carbon, 2, Hydrogen, 4, Oxygen, 1)
             .build();
     public static final Material Glyoxal = fluidBuilder(21553, "glyoxal")
             .color(0xc9c7ab)
+            .fluidTemp(288)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 2)
             .build();
     public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid", FluidTypes.ACID)
             .color(0xd9d5a0)
+            .fluidTemp(353)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 3)
             .build();
 
@@ -256,13 +272,16 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material RubberSap = fluidBuilder(21561, "rubber_sap")
             .color(0xf7f6dc)
+            .fluidTemp(343)
             .build();
     public static final Material RainbowSap = fluidBuilder(21562, "rainbow_sap")
             .color(0xffffff)
+            .fluidTemp(343)
             .build();
     public static final Material BlueVitriol = GregTechAPI.materialManager.getMaterial("blue_vitriol") != null ? GregTechAPI.materialManager.getMaterial("blue_vitriol") :
             fluidBuilder(21563, "blue_vitriol")
                     .color(0x4242DE)
+                    .fluidTemp(383)
                     .components(Copper, 1, Sulfur, 1, Oxygen, 4)
                     .build();
     public static final Material BakingSodaSolution = fluidBuilder(21564, "baking_soda_solution")
@@ -301,7 +320,8 @@ public class GTFOMaterialHandler {
             .color(0xe3bc20)
             .build();
     public static final Material XPhenothiazineIiPropylChloride = fluidBuilder(21573, "x_phenothiazine_ii_propyl_chloride")
-            .components(Carbon, 15, Hydrogen, 16, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
+            .components(Carbon, 12, Hydrogen, 9, Nitrogen, 1, Sulfur, 1)
+            .fluidTemp(458)
             .flags(DISABLE_DECOMPOSITION)
             .build();
     public static final Material AppleSyrup = fluidBuilder(21574, "apple_syrup")
@@ -328,12 +348,11 @@ public class GTFOMaterialHandler {
     public static final Material LemonLimeSludge = fluidBuilder(21581, "lemon_lime_sludge")
             .color(0x779906)
             .build();
-    public static final Material Aniline = fluidBuilder(21582, "aniline")
+    public static final Material Aniline = fluidBuilder(21582, "aniline").fluidTemp(266)
             .color(0x4c911d)
-            .components(Carbon, 6, Hydrogen, 7, Nitrogen, 2)
+            .components(Carbon, 6, Hydrogen, 5, Nitrogen, 1, Helium, 2)
             .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("C6H5NH2", true);
+            .build();
 
     public static final Material HeatedWater = fluidBuilder(21583, "heated_water").fluidTemp(343)
             .color(0x024B86)
@@ -358,24 +377,29 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material CurdlingParmigianoReggiano = fluidBuilder(21590, "curdling_parmigiano_reggiano")
             .color(0xfff4ab)
+            .fluidTemp(338)
             .build();
     public static final Material Agrodolce = fluidBuilder(21591, "agrodolce")
             .color(0xba1430)
             .build();
     public static final Material Polenta = fluidBuilder(21592, "polenta")
             .color(0xBBA844)
+            .fluidTemp(368)
             .build();
     public static final Material Pesto = fluidBuilder(21593, "pesto")
             .color(0x309027)
             .build();
     public static final Material BechamelSauce = fluidBuilder(21594, "bechamel_sauce")
             .color(0xD1B7AC)
+            .fluidTemp(343)
             .build();
     public static final Material ChickenBroth = fluidBuilder(21595, "chicken_broth")
             .color(0xA4600D)
+            .fluidTemp(353)
             .build();
     public static final Material VitelloTonnatoSauce = fluidBuilder(21596, "vitello_tonnato_sauce")
             .color(0xC6BABE)
+            .fluidTemp(343)
             .build();
     public static final Material WhiteWine = fluidBuilder(21597, "white_wine")
             .color(0xD7C259)
@@ -398,6 +422,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material CarbonaraSauce = fluidBuilder(21603, "carbonara_sauce")
             .color(0xCDAF44)
+            .fluidTemp(343)
             .build();
     public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base")
             .color(0xD4592F)
@@ -420,9 +445,11 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material BologneseSauce = fluidBuilder(21610, "bolognese_sauce")
             .color(0x782A14)
+            .fluidTemp(343)
             .build();
     public static final Material TomatoBologneseSauce = fluidBuilder(21611, "tomato_bolognese_sauce")
             .color(0xCA190F)
+            .fluidTemp(343)
             .build();
 
     public static final Material SourCream = fluidBuilder(21612, "sour_cream")
@@ -443,6 +470,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material SodiumCarbonateSolution = fluidBuilder(21973, "sodium_carbonate_solution")
             .color(averageRGB(2, 0xaaaaaa, SodaAsh.getMaterialRGB()))
+            .fluidTemp(300)
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .components(Water, 1, SodaAsh, 1)
             .build();
