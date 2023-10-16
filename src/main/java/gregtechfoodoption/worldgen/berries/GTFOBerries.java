@@ -1,13 +1,12 @@
 package gregtechfoodoption.worldgen.berries;
 
-import gregtechfoodoption.block.GTFOBerryBush;
 import gregtechfoodoption.block.GTFOCrops;
-import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.GTFOFeature;
 import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class GTFOBerries {
-    public static GTFOBerry BUSH_BLUEBERRY = new GTFOBerry(1000, GTFOCrops.BUSH_BLUEBERRY)
-            .addCondition(new TemperatureRainfallCondition(3, ));
+    public static GTFOFeature BUSH_BLUEBERRY = new GTFOBerry(1000, GTFOCrops.BUSH_BLUEBERRY)
+            .addCondition(new TemperatureRainfallCondition(3, 1.2, 0.7, 0.5, 0.5));
     public static GTFOBerry BUSH_BLACKBERRY = new GTFOBerry(1001, GTFOCrops.BUSH_BLACKBERRY);
     public static GTFOBerry BUSH_RASPBERRY = new GTFOBerry(1002, GTFOCrops.BUSH_RASPBERRY);
     public static GTFOBerry BUSH_STRAWBERRY = new GTFOBerry(1003, GTFOCrops.BUSH_STRAWBERRY);
@@ -18,4 +17,7 @@ public class GTFOBerries {
     public static GTFOBerry BUSH_ELDERBERRY = new GTFOBerry(1008, GTFOCrops.BUSH_ELDERBERRY);
     public static GTFOBerry BUSH_CRANBERRY = new GTFOBerry(1009, GTFOCrops.BUSH_CRANBERRY);
 
+    public static void init() {
+
+    }
 }

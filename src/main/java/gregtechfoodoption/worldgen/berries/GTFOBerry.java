@@ -28,7 +28,7 @@ public class GTFOBerry extends GTFOFeature {
         if (canGrowAt(world, pos)) {
             notifier.accept(world, pos, berryBush.withAge(2));
             for (int i = 0; i < random.nextInt(3); i++) {
-                BlockPos other = pos.add(random.nextInt(-2, 3), random.nextInt(-2, 3), 0);
+                BlockPos other = pos.add(random.nextInt(5) - 2, random.nextInt(5) - 2, 0);
                 if (canGrowAt(world, other)) {
                     notifier.accept(world, other, berryBush.withAge(2));
                 }

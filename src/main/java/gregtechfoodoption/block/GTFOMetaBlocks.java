@@ -11,6 +11,7 @@ import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockPlanks;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
+import gregtechfoodoption.worldgen.berries.GTFOBerries;
 import gregtechfoodoption.worldgen.trees.GTFOTree;
 import gregtechfoodoption.worldgen.trees.GTFOTrees;
 import net.minecraft.block.Block;
@@ -50,6 +51,7 @@ public class GTFOMetaBlocks {
         GTFO_GLASS_CASING.setRegistryName("gtfo_glass_casing");
 
         GTFOTrees.init();
+        GTFOBerries.init();
         for (int i = 0; i <= (GTFOTree.TREES.size() - 1) / 4; i++) {
             GTFOBlockLeaves leaves = new GTFOBlockLeaves(i);
             leaves.setRegistryName("gtfo_leaves_" + i);
