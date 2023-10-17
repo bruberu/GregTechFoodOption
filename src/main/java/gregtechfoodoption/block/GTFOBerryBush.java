@@ -22,6 +22,7 @@ import java.util.Random;
 public class GTFOBerryBush extends GTFOCrop {
     public static final PropertyInteger EFFICIENCY_GTFO = PropertyInteger.create("efficiency", 0, 4);
     private static final AxisAlignedBB SMALL_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5D, 0.75D);
+    private static final AxisAlignedBB LARGE_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
 
     protected GTFOBerryBush(String name) {
         super(name, 2);
@@ -136,7 +137,7 @@ public class GTFOBerryBush extends GTFOCrop {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return this.getAge(state) == 0 ? SMALL_AABB : Block.FULL_BLOCK_AABB;
+        return this.getAge(state) == 0 ? SMALL_AABB : LARGE_AABB;
     }
 
     public int getMaxAge() {
