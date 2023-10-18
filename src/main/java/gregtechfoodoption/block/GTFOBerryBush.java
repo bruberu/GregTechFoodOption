@@ -71,6 +71,9 @@ public class GTFOBerryBush extends GTFOCrop {
 
     @Override
     public void grow(World worldIn, BlockPos pos, IBlockState state) {
+        if (worldIn.rand.nextInt(getGrowthSlowdown(worldIn, pos, state) / 8) != 0) {
+            return;
+        }
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
 
@@ -80,11 +83,6 @@ public class GTFOBerryBush extends GTFOCrop {
         }
 
         worldIn.setBlockState(pos, withEfficiency(this.withAge(i), getEfficiency(worldIn, pos, state)), 3);
-    }
-
-    public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
-    {
-        this.grow(worldIn, pos, state);
     }
 
     public int getEfficiency(World worldIn, BlockPos pos, IBlockState state) {
