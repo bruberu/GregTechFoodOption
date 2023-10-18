@@ -87,7 +87,8 @@ public class ItalianChain {
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(64).duration(400)
-                .inputs(GTFOMetaItem.RIGATONI.getStackForm(), GTFOMetaItem.PLATE.getStackForm(), MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING), GTFOMaterialHandler.BlackPepper.getItemStack(2))
+                .notConsumable(MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING))
+                .inputs(GTFOMetaItem.RIGATONI.getStackForm(), GTFOMetaItem.PLATE.getStackForm(), GTFOMaterialHandler.BlackPepper.getItemStack(2))
                 .fluidInputs(TomatoSauce.getFluid(500))
                 .outputs(GTFOMetaItem.PASTA_ALLAMOGUS.getStackForm())
                 .buildAndRegister();
@@ -131,7 +132,7 @@ public class ItalianChain {
                 .buildAndRegister();
         CANNER_RECIPES.recipeBuilder().EUt(8).duration(80)
                 .inputs(GTFOMetaItem.PLATE.getStackForm(4), GTFOMetaItem.LASAGNA_PESTO_COOKED.getStackForm())
-                .outputs(GTFOMetaItem.LASAGNA_PESTO.getStackForm(), GTFOMetaItem.BAKING_TRAY.getStackForm(4))
+                .outputs(GTFOMetaItem.LASAGNA_PESTO.getStackForm(4), GTFOMetaItem.BAKING_TRAY.getStackForm())
                 .buildAndRegister();
         CANNER_RECIPES.recipeBuilder().EUt(8).duration(80)
                 .inputs(GTFOMetaItem.PLATE.getStackForm(4), GTFOMetaItem.LASAGNA_CHUM_COOKED.getStackForm())
