@@ -87,8 +87,7 @@ public class ItalianChain {
                 .buildAndRegister();
 
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(64).duration(400)
-                .notConsumable(MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING))
-                .inputs(GTFOMetaItem.RIGATONI.getStackForm(), GTFOMetaItem.PLATE.getStackForm(), GTFOMaterialHandler.BlackPepper.getItemStack(2))
+                .inputs(GTFOMetaItem.RIGATONI.getStackForm(), GTFOMetaItem.PLATE.getStackForm(), MetaBlocks.CLEANROOM_CASING.getItemVariant(BlockCleanroomCasing.CasingType.FILTER_CASING), GTFOMaterialHandler.BlackPepper.getItemStack(2))
                 .fluidInputs(TomatoSauce.getFluid(500))
                 .outputs(GTFOMetaItem.PASTA_ALLAMOGUS.getStackForm())
                 .buildAndRegister();
