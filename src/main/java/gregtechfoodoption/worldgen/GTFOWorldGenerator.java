@@ -16,7 +16,7 @@ public class GTFOWorldGenerator implements IWorldGenerator {
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator iChunkGenerator, IChunkProvider iChunkProvider) {
-        if (!(iChunkGenerator instanceof ChunkGeneratorFlat) && GTFOConfig.enableGTFOTrees) {
+        if (!(iChunkGenerator instanceof ChunkGeneratorFlat)) {
             for (GTFOFeature feature : GTFOFeature.FEATURES) {
                 feature.setWorld(world);
                 feature.getWorldGenInstance().generateInChunk(world, random, chunkX, chunkZ);

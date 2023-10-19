@@ -59,6 +59,8 @@ public abstract class GTFOFeatureGen extends WorldGenerator {
     }
 
     public boolean generateInChunk(@Nonnull World world, @Nonnull Random random, int chunkX, int chunkZ) {
+        if (!configOption())
+            return false;
         Chunk chunk = world.getChunk(chunkX, chunkZ);
         int seaLevel = chunk.getWorld().getSeaLevel();
         BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(chunk.getPos().getBlock(8, seaLevel, 8));
@@ -79,6 +81,8 @@ public abstract class GTFOFeatureGen extends WorldGenerator {
         }
         return false;
     }
+
+    public abstract boolean configOption();
 
     public abstract boolean generateImpl(World world, Random random, BlockPos.MutableBlockPos pos);
 }

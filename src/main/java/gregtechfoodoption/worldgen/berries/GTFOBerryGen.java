@@ -1,5 +1,6 @@
 package gregtechfoodoption.worldgen.berries;
 
+import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.worldgen.GTFOFeatureGen;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +12,11 @@ import java.util.Random;
 public class GTFOBerryGen extends GTFOFeatureGen {
     public GTFOBerryGen(GTFOBerry berry) {
         super(true, berry);
+    }
+
+    @Override
+    public boolean configOption() {
+        return GTFOConfig.gtfoWorldgenConfig.enableGTFOBerries;
     }
 
     @Override

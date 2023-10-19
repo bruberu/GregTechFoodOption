@@ -1,5 +1,6 @@
 package gregtechfoodoption.worldgen.trees;
 
+import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.worldgen.GTFOFeatureGen;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,4 +26,8 @@ public class GTFOTreeGen extends GTFOFeatureGen {
         return feature.generate(world, pos, random, this::setBlockSafely);
     }
 
+    @Override
+    public boolean configOption() {
+        return GTFOConfig.gtfoWorldgenConfig.enableGTFOTrees;
+    }
 }
