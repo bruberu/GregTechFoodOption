@@ -52,4 +52,8 @@ public class GTFOBerry extends GTFOFeature {
         }
         return false;
     }
+
+    public String toString() {
+        return "Berry " + berryBush.getRegistryName();
+    }
 }
