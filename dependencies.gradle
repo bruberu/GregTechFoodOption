@@ -29,7 +29,7 @@ dependencies {
     implementation 'zone.rong:mixinbooter:7.0'
 
     implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
-    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4701483")
+    //implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4701483")
     implementation "team.chisel.ctm:CTM:MC${project.minecraft.version}-1.0.2.31"
     //provided files("libs/gregicality-1.12.2-0.23.1.jar")
     implementation "codechicken:ChickenASM:1.12-1.0.2.9"
@@ -55,7 +55,7 @@ dependencies {
 
     //compile "curse.maven:spiceoflife-220811:2571951"
 
-    //implementation files("libs/gregtech-1.12.2-2.6.2-beta-dev.jar")
+    implementation files("libs/gregtech-1.12.2-2.7.3-beta-dev.jar")
     implementation files("libs/AppleSkin-mc1.12-1.0.9.jar")
     implementation files("libs/groovyscript-0.6.1.jar")
     implementation files("libs/NuclearCraft-2o.6.0-1.12.2.jar")

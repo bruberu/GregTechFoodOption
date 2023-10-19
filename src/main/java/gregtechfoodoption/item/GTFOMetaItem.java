@@ -391,6 +391,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem ETIRPS_CRANBERRY;
 
 
+    public static MetaItem<?>.MetaValueItem UNCOOKED_PELMENI;
+    public static MetaItem<?>.MetaValueItem UNCOOKED_SEASONED_PELMENI;
+    public static MetaItem<?>.MetaValueItem PELMENI;
+    public static MetaItem<?>.MetaValueItem SEASONED_PELMENI;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -599,6 +604,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         UNFIRED_PLATE = addItem(322, "component.unfired_plate");
         UNFIRED_BOWL = addItem(323, "component.unfired_bowl");
+
+        UNCOOKED_PELMENI = addItem(338, "component.pelmeni_uncooked");
+        UNCOOKED_SEASONED_PELMENI = addItem(339, "component.pelmeni_uncooked_seasoned");
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
@@ -917,6 +925,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         ETIRPS_CRANBERRY = addItem(337, "food.etirps_cranberry").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger + 3, GTFOConfig.gtfoFoodConfig.etirpsSaturation + 0.3f, true, true, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
                 new RandomPotionEffect(MobEffects.REGENERATION, 200, 1, 100 - 80)));
+
+        PELMENI = addItem(340, "food.pelmeni").addComponents(new GTFOFoodStats(5, 0.5f));
+        SEASONED_PELMENI = addItem(341, "food.pelmeni_seasoned").addComponents(new GTFOFoodStats(7, 1f).setEatingDuration(24));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");

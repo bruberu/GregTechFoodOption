@@ -76,12 +76,12 @@ public class GTFODungeonLootLoader {
             copy.setTagCompound(comp);
 
             ChestGenHooks.addItem(LootTableList.CHESTS_ABANDONED_MINESHAFT, copy, min, max, weight / 3);
-            ChestGenHooks.addItem(LootTableList.CHESTS_JUNGLE_TEMPLE, foodStack, min, max, weight);
-            ChestGenHooks.addItem(LootTableList.CHESTS_DESERT_PYRAMID, foodStack, min, max, weight / 2);
-            ChestGenHooks.addItem(LootTableList.CHESTS_SIMPLE_DUNGEON, foodStack, min, max, weight / 2);
-            ChestGenHooks.addItem(LootTableList.CHESTS_STRONGHOLD_CORRIDOR, foodStack, min, max, weight / 3);
-            ChestGenHooks.addItem(LootTableList.CHESTS_STRONGHOLD_CROSSING, foodStack, min, max, weight / 2);
-            ChestGenHooks.addItem(LootTableList.CHESTS_WOODLAND_MANSION, foodStack, min, max, weight);
+            ChestGenHooks.addItem(LootTableList.CHESTS_JUNGLE_TEMPLE, copy, min, max, weight);
+            ChestGenHooks.addItem(LootTableList.CHESTS_DESERT_PYRAMID, copy, min, max, weight / 2);
+            ChestGenHooks.addItem(LootTableList.CHESTS_SIMPLE_DUNGEON, copy, min, max, weight / 2);
+            ChestGenHooks.addItem(LootTableList.CHESTS_STRONGHOLD_CORRIDOR, copy, min, max, weight / 3);
+            ChestGenHooks.addItem(LootTableList.CHESTS_STRONGHOLD_CROSSING, copy, min, max, weight / 2);
+            ChestGenHooks.addItem(LootTableList.CHESTS_WOODLAND_MANSION, copy, min, max, weight);
         }
     }
 
@@ -97,9 +97,9 @@ public class GTFODungeonLootLoader {
             comp.setTag("foodStats", foodStats);
             copy.setTagCompound(comp);
 
-            ChestGenHooks.addItem(LootTableList.CHESTS_JUNGLE_TEMPLE, foodStack, min, max, weight);
-            ChestGenHooks.addItem(LootTableList.CHESTS_WOODLAND_MANSION, foodStack, min, max, weight);
-            ChestGenHooks.addItem(LootTableList.CHESTS_SIMPLE_DUNGEON, foodStack, min, max, weight * 4);
+            ChestGenHooks.addItem(LootTableList.CHESTS_JUNGLE_TEMPLE, copy, min, max, weight);
+            ChestGenHooks.addItem(LootTableList.CHESTS_WOODLAND_MANSION, copy, min, max, weight);
+            ChestGenHooks.addItem(LootTableList.CHESTS_SIMPLE_DUNGEON, copy, min, max, weight * 4);
 
         }
     }

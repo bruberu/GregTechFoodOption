@@ -147,7 +147,7 @@ public class FatChain {
                 .fluidOutputs(Methane.getFluid(8000))
                 .input(dust, Calcite, 3)
                 .notConsumable(CARBON_MESH)
-                .notConsumable(new IntCircuitIngredient(1))
+                .notConsumable(new IntCircuitIngredient(2))
                 .buildAndRegister();
     }
 

@@ -189,7 +189,7 @@ public abstract class GTFOTree extends GTFOFeature {
 
         registerWoodTypeRecipe(new WoodTypeEntry.Builder(GTFOValues.MODID, this.name)
                 .planks(planks, null)
-                .log(log)
+                .log(log).removeCharcoalRecipe()
                 .build());
 
         GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)

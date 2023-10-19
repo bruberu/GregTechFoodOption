@@ -131,7 +131,7 @@ public class ItalianChain {
                 .buildAndRegister();
         CANNER_RECIPES.recipeBuilder().EUt(8).duration(80)
                 .inputs(GTFOMetaItem.PLATE.getStackForm(4), GTFOMetaItem.LASAGNA_PESTO_COOKED.getStackForm())
-                .outputs(GTFOMetaItem.LASAGNA_PESTO.getStackForm(), GTFOMetaItem.BAKING_TRAY.getStackForm(4))
+                .outputs(GTFOMetaItem.LASAGNA_PESTO.getStackForm(4), GTFOMetaItem.BAKING_TRAY.getStackForm())
                 .buildAndRegister();
         CANNER_RECIPES.recipeBuilder().EUt(8).duration(80)
                 .inputs(GTFOMetaItem.PLATE.getStackForm(4), GTFOMetaItem.LASAGNA_CHUM_COOKED.getStackForm())
