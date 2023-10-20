@@ -61,7 +61,6 @@ public class RecipeMapFluidCannerMixin {
                 inputStack.setCount(1);
                 continue;
             }
-            GTFOLog.logger.info(input.getItem());
             if (input.getItem() instanceof GTFOOredictItem) { // Hoping there's only one
                 lacingWith = input.copy();
             }
