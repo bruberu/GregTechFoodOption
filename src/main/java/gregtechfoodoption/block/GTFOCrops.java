@@ -21,8 +21,8 @@ public class GTFOCrops {
     public static GTFOCrop CROP_WHITE_GRAPE = GTFOCrop.create("white_grape");
 
     public static GTFOBerryBush BUSH_BLUEBERRY = GTFOBerryBush.create("blueberry");
-    public static GTFOBerryBush BUSH_BLACKBERRY = GTFOBerryBush.create("blackberry");
-    public static GTFOBerryBush BUSH_RASPBERRY = GTFOBerryBush.create("raspberry");
+    public static GTFOBerryBush BUSH_BLACKBERRY = GTFOBerryBush.create("blackberry").setThorny(true);
+    public static GTFOBerryBush BUSH_RASPBERRY = GTFOBerryBush.create("raspberry").setThorny(true);
     public static GTFOBerryBush BUSH_STRAWBERRY = GTFOBerryBush.create("strawberry");
     public static GTFOBerryBush BUSH_RED_CURRANT = GTFOBerryBush.create("red_currant");
     public static GTFOBerryBush BUSH_BLACK_CURRANT = GTFOBerryBush.create("black_currant");

@@ -1,12 +1,15 @@
 package gregtechfoodoption.block;
 
+import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
@@ -23,10 +26,12 @@ public class GTFOBerryBush extends GTFOCrop {
     public static final PropertyInteger EFFICIENCY_GTFO = PropertyInteger.create("efficiency", 0, 4);
     private static final AxisAlignedBB SMALL_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5D, 0.75D);
     private static final AxisAlignedBB LARGE_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
+    private boolean isThorny = false;
 
     protected GTFOBerryBush(String name) {
         super(name, 2);
         this.setTranslationKey("gtfo_berry_bush_" + name);
+        this.setHardness(1F);
     }
 
     @Override
@@ -71,7 +76,7 @@ public class GTFOBerryBush extends GTFOCrop {
 
     @Override
     public void grow(World worldIn, BlockPos pos, IBlockState state) {
-        if (worldIn.rand.nextInt(getGrowthSlowdown(worldIn, pos, state) / 8) != 0) {
+        if (worldIn.rand.nextInt(Math.max(2, getGrowthSlowdown(worldIn, pos, state) / 8)) != 0) {
             return;
         }
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
@@ -104,6 +109,10 @@ public class GTFOBerryBush extends GTFOCrop {
     }
 
     public IBlockState withEfficiency(IBlockState state, int efficiency) {
+        if (efficiency > 4) {
+            efficiency = 4;
+            GTFOLog.logger.warn("Somehow, you managed to get your berry's efficiency higher than 4, which is really cool (or the result of a hacked mod/bug), but it's currently not available in GTFO. Please report this to the mod author, along with a screenshot of how great your berry setup is.");
+        }
         return state.withProperty(EFFICIENCY_GTFO, Integer.valueOf(efficiency));
     }
 
@@ -116,7 +125,7 @@ public class GTFOBerryBush extends GTFOCrop {
             growthSlowdown *= 2;
         }
         if (world.isRaining()) {
-            growthSlowdown -= 10;
+            growthSlowdown = growthSlowdown * 2 / 3;
         }
 
         return growthSlowdown;
@@ -125,6 +134,17 @@ public class GTFOBerryBush extends GTFOCrop {
     @Override
     public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
         return EnumPlantType.Plains;
+    }
+
+    @Override
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        if (isThorny)
+            entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+    }
+
+    public GTFOBerryBush setThorny(boolean thorny) {
+        isThorny = thorny;
+        return this;
     }
 
     @Nullable

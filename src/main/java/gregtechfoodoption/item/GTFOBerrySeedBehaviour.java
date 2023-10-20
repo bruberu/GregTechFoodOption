@@ -3,6 +3,7 @@ package gregtechfoodoption.item;
 import gregtechfoodoption.block.GTFOBerryBush;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -13,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 // bri'ish class
@@ -58,4 +60,11 @@ public class GTFOBerrySeedBehaviour extends GTFOCropSeedBehaviour {
         return areAnyBlocked.get();
     }
 
+    @Override
+    public void addInformation(ItemStack itemStack, List<String> lines) {
+        super.addInformation(itemStack, lines);
+        for (int i = 0; i < 4; i++) {
+            lines.add(I18n.format("gregtechfoodoption.berry.description." + i));
+        }
+    }
 }

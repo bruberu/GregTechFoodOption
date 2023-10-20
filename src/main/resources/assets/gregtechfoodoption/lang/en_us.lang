@@ -1133,4 +1133,9 @@ metaitem.food.berry_medley.name=Berry Medley
 gregtech.material.gtfo_lingonberry_jam=Lingonberry Jam
 gregtech.material.gtfo_elderberry_jam=Elderberry Jam
 
+gregtechfoodoption.berry.description.0=§4Grows very slowly by itself!
+gregtechfoodoption.berry.description.1=§bGrows faster in higher tiers
+gregtechfoodoption.berry.description.2=Place §5three§r grown berry bushes of the previous tier in the 3x3 centered on the bush to get to the next tier
+gregtechfoodoption.berry.description.3=§4The 3x3 centered on the bush must not be filled!
+
 gregtechfoodoption.blocked=This blocks a berry bush at %s!
