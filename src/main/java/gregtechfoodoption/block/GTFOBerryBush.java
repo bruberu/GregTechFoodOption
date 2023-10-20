@@ -81,10 +81,10 @@ public class GTFOBerryBush extends GTFOCrop {
             i = j;
         }
 
-        worldIn.setBlockState(pos, withEfficiency(this.withAge(i), getEfficiency(worldIn, pos, state)), 3);
+        worldIn.setBlockState(pos, withEfficiency(this.withAge(i), calcEfficiency(worldIn, pos)), 3);
     }
 
-    public int getEfficiency(World worldIn, BlockPos pos, IBlockState state) {
+    public int calcEfficiency(World worldIn, BlockPos pos) {
         int[] efficiencies = new int[EFFICIENCY_GTFO.getAllowedValues().stream().max(Integer::compare).get() + 1];
         BlockPos.getAllInBox(pos.east().north(), pos.west().south()).forEach((blockpos) -> {
             if (!blockpos.equals(pos))
@@ -185,5 +185,15 @@ public class GTFOBerryBush extends GTFOCrop {
     @Override
     public int getMetaFromState(IBlockState state) {
         return this.getEfficiency(state) * 3 + this.getAge(state);
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+        if (!(worldIn.getBlockState(fromPos).getBlock() instanceof GTFOBerryBush)) {
+            // We don't want crops transmuting to higher efficiencies.
+            int newEfficiency = Math.min(calcEfficiency(worldIn, pos), getEfficiency(state));
+            worldIn.setBlockState(pos, state.withProperty(EFFICIENCY_GTFO, newEfficiency), 3);
+        }
+        super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
     }
 }

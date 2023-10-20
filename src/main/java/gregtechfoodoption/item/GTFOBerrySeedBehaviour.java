@@ -43,7 +43,7 @@ public class GTFOBerrySeedBehaviour extends GTFOCropSeedBehaviour {
     private boolean isBlocked(World world, BlockPos pos, EntityPlayer player) {
         AtomicBoolean areAnyBlocked = new AtomicBoolean(false);
         BlockPos.getAllInBox(pos.up().east().north(), pos.up().west().south()).forEach((crop) -> {
-            if (world.getBlockState(crop).getBlock() instanceof GTFOBerryBush) {
+            if (crop.equals(pos.up()) || world.getBlockState(crop).getBlock() instanceof GTFOBerryBush) {
                 AtomicBoolean isBlocked = new AtomicBoolean(true);
                 BlockPos.getAllInBox(crop.east().north(), crop.west().south()).forEach((blockpos) -> {
                     if (!blockpos.equals(pos.up()) && world.getBlockState(blockpos).getBlock().isAir(world.getBlockState(blockpos), world, blockpos)) {

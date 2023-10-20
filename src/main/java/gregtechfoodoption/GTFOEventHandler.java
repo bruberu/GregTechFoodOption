@@ -252,7 +252,7 @@ public class GTFOEventHandler {
     public static void handleBerryGrowth(BlockEvent.CropGrowEvent.Post event) {
         if (event.getState().getBlock() instanceof GTFOBerryBush bush) {
             event.getWorld().setBlockState(event.getPos(),
-                    bush.withEfficiency(event.getState(), bush.getEfficiency(event.getWorld(), event.getPos(), event.getState())),
+                    bush.withEfficiency(event.getState(), bush.calcEfficiency(event.getWorld(), event.getPos())),
                     2);
         }
     }
