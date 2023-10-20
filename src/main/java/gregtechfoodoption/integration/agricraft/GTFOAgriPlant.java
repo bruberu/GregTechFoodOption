@@ -12,6 +12,7 @@ import com.infinityraider.agricraft.farming.growthrequirement.GrowthReqBuilder;
 import com.infinityraider.agricraft.renderers.PlantRenderer;
 import com.infinityraider.infinitylib.render.tessellation.ITessellator;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOBerryBush;
 import gregtechfoodoption.block.GTFOCrop;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -86,7 +87,7 @@ public class GTFOAgriPlant implements IAgriPlant {
 
     @Override
     public double getGrowthChanceBase() {
-        return 0.9;
+        return wrap instanceof GTFOBerryBush ? 0.05 : 0.9;
     }
 
     @Override
@@ -111,7 +112,7 @@ public class GTFOAgriPlant implements IAgriPlant {
 
     @Override
     public int getGrowthStages() {
-        return 6;
+        return wrap instanceof GTFOBerryBush ? 3 : 6;
     }
 
     @Override
@@ -136,6 +137,9 @@ public class GTFOAgriPlant implements IAgriPlant {
     @Override
     public IGrowthRequirement getGrowthRequirement() {
         IGrowthReqBuilder builder = new GrowthReqBuilder();
+        if (wrap instanceof GTFOBerryBush) {
+            builder.addSoil(AgriApi.getSoilRegistry().get(Blocks.GRASS.getDefaultState()).get());
+        }
         builder.addSoil(AgriApi.getSoilRegistry().get(Blocks.FARMLAND.getDefaultState()).get()); // How could this go wrong??? :troll:
         return builder.build();
     }
@@ -177,8 +181,12 @@ public class GTFOAgriPlant implements IAgriPlant {
     @Nullable
     @Override
     public ResourceLocation getPrimaryPlantTexture(int i) {
-        int possibleAge = Math.min(i, wrap.getMaxAge()); // Required for clippings to render correctly (they assume all crops have 7 stages... the fools)
-        return new ResourceLocation(GTFOValues.MODID, "crop/crop_" + this.wrap.getName() + "/stage" + possibleAge);
+        if (wrap instanceof GTFOBerryBush) {
+            return i < 3 ? new ResourceLocation(GTFOValues.MODID, "blocks/berry/ungrown") : new ResourceLocation(GTFOValues.MODID, "blocks/berry/" + this.wrap.getName() + "_ripe");
+        } else {
+            int possibleAge = Math.min(i, wrap.getMaxAge()); // Required for clippings to render correctly (they assume all crops have 7 stages... the fools)
+            return new ResourceLocation(GTFOValues.MODID, "crop/crop_" + this.wrap.getName() + "/stage" + possibleAge);
+        }
     }
 
     @Nullable

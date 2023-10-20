@@ -54,14 +54,8 @@ public class GTFOBerryBush extends GTFOCrop {
         Random rand = world instanceof World ? ((World) world).rand : new Random();
 
         if (age >= this.getMaxAge()) {
-            if (!seed.isEmpty()) {
-                drops.add(seed.copy());
-                if (rand.nextInt(9) == 0) {
-                    drops.add(seed.copy());
-                }
-            }
-
-            for (int i = 0; i < 3 + efficiency; ++i) {
+            drops.add(this.crop.copy());
+            for (int i = 0; i < 2 + efficiency; ++i) {
                 if (rand.nextInt(2) == 0) {
                     drops.add(this.crop.copy());
                 }
@@ -165,12 +159,31 @@ public class GTFOBerryBush extends GTFOCrop {
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (this.isMaxAge(state)) {
-            if (!playerIn.addItemStackToInventory(this.getCropStack())) {
-                playerIn.dropItem(this.getCropStack(), false);
-                worldIn.setBlockState(pos, state.withProperty(AGE_GTFO, Integer.valueOf(this.getMaxAge() - 1)), 3);
+            int berries = 1;
+            for (int i = 0; i < 2 + getEfficiency(state); ++i) {
+                if (worldIn.rand.nextInt(2) == 0) {
+                    berries++;
+                }
             }
+
+            ItemStack berryStack = this.getCropStack().copy();
+            berryStack.setCount(berries);
+            if (!playerIn.addItemStackToInventory(berryStack)) {
+                playerIn.dropItem(this.getCropStack(), false);
+            }
+            worldIn.setBlockState(pos, state.withProperty(AGE_GTFO, Integer.valueOf(this.getMaxAge() - 1)), 3);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.withAge(meta % 3).withProperty(EFFICIENCY_GTFO, Integer.valueOf(meta / 3));
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return this.getEfficiency(state) * 3 + this.getAge(state);
     }
 }
