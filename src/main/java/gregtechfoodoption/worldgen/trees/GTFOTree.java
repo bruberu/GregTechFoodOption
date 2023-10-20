@@ -1,4 +1,4 @@
-package gregtechfoodoption.block;
+package gregtechfoodoption.worldgen.trees;
 
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -7,13 +7,15 @@ import gregtech.api.util.function.TriConsumer;
 import gregtech.common.items.MetaItems;
 import gregtech.loaders.WoodTypeEntry;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.trees.condition.TreeCondition;
-import gregtechfoodoption.worldgen.trees.GTFOTreeGen;
+import gregtechfoodoption.worldgen.GTFOFeature;
+import gregtechfoodoption.worldgen.GTFOFeatureGen;
+import gregtechfoodoption.worldgen.condition.FeatureCondition;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
@@ -39,52 +41,27 @@ import static gregtechfoodoption.recipe.GTFORecipeMaps.GREENHOUSE_RECIPES;
 import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
 import static net.minecraft.block.BlockLeaves.DECAYABLE;
 
-public abstract class GTFOTree {
+public abstract class GTFOTree extends GTFOFeature {
     public final String name;
-    protected GTFOTreeGen TREE_GROW_INSTANCE;
-    protected GTFOTreeGen WORLD_GEN_INSTANCE;
-
-    private int totalChunksChecked;
-    private int totalChunksPlaced;
 
     public IBlockState logState;
     public IBlockState leavesState;
     public IBlockState saplingState;
 
-    private NoiseGeneratorSimplex generatorSimplex;
     private final int seed;
-    public final List<TreeCondition> treeConditions = new ArrayList<>();
 
     public static final List<GTFOTree> TREES = new ArrayList<>();
 
     public GTFOTree(String name, int seed) {
+        super(seed);
         this.name = name;
         this.seed = seed;
-        this.TREE_GROW_INSTANCE = new GTFOTreeGen(true, this);
+        this.FEATURE_GROW_INSTANCE = new GTFOTreeGen(true, this);
         this.WORLD_GEN_INSTANCE = new GTFOTreeGen(false, this);
         TREES.add(this);
     }
 
-    public void setWorld(World world) {
-        generatorSimplex = new NoiseGeneratorSimplex(new Random(world.getSeed() + seed));
-    }
-
-    public double getRandomStrength(int chunkX, int chunkZ) {
-        return generatorSimplex.getValue(chunkX * getPerlinScale(), chunkZ * getPerlinScale());
-    }
-
-    // For testing purposes only.
-    public void updatePlacePercentage(boolean didSucceed) {
-        totalChunksChecked++;
-        if (didSucceed) {
-            totalChunksPlaced++;
-        }
-        if (totalChunksChecked % 1000 == 0) {
-            GTFOLog.logger.info("Tree " + this.name + " has been placed successfully in chunks " + ((double) totalChunksPlaced / (totalChunksChecked / 100)) + " percent of the time out of " + totalChunksChecked + " chunks checked");
-        }
-    }
-
-    public boolean grow(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    public boolean generate(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
         int minHeight = getMinTrunkHeight(random);
 
         // Check if tree fits in world
@@ -106,18 +83,13 @@ public abstract class GTFOTree {
         return random.nextInt(3) + 5;
     }
 
-    public GTFOTreeGen getTreeGrowInstance() {
-        return TREE_GROW_INSTANCE;
+    public GTFOFeatureGen getTreeGrowInstance() {
+        return FEATURE_GROW_INSTANCE;
     }
 
-    public GTFOTreeGen getWorldGenInstance() {
-        return WORLD_GEN_INSTANCE;
-    }
 
-    public GTFOTree addCondition(TreeCondition condition) {
-        treeConditions.add(condition);
-        return this;
-    }
+
+
 
     public void setupBlocks() {
         GTFOBlockLeaves leaves = GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4);
@@ -282,10 +254,6 @@ public abstract class GTFOTree {
 
     protected IBlockState getNaturalLeavesState() {
         return this.leavesState.withProperty(DECAYABLE, true).withProperty(CHECK_DECAY, true);
-    }
-
-    public double getPerlinScale() {
-        return 0.04;
     }
 
     public ItemStack getApple() {

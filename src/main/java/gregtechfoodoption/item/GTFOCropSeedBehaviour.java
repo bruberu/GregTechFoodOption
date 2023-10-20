@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 // bri'ish class
 public class GTFOCropSeedBehaviour implements IItemBehaviour {
-    private final IBlockState placeState;
+    protected final IBlockState placeState;
 
     public GTFOCropSeedBehaviour(GTFOCrop cropBlock, ItemStack seed, ItemStack crop) {
         cropBlock.setSeed(seed);

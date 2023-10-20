@@ -1,8 +1,8 @@
-package gregtechfoodoption.worldgen.trees.condition;
+package gregtechfoodoption.worldgen.condition;
 
 import net.minecraft.world.biome.Biome;
 
-public class TemperatureRainfallCondition extends TreeCondition {
+public class TemperatureRainfallCondition extends FeatureCondition {
     private double optimalTemp;
     private double optimalRain;
     private double range;

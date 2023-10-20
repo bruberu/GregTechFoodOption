@@ -2,10 +2,9 @@ package gregtechfoodoption.worldgen.trees;
 
 import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.trees.condition.BiomeCondition;
-import gregtechfoodoption.worldgen.trees.condition.TemperatureRainfallCondition;
+import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
@@ -24,7 +23,7 @@ public class MangoTree extends GTFOTree {
     public MangoTree() {
         super("mango", 2);
         this.addCondition(new BiomeCondition(new Biome[]{Biomes.MUTATED_JUNGLE_EDGE, Biomes.JUNGLE_EDGE}, 4, 0.2));
-        this.addCondition(new TemperatureRainfallCondition(2, 0.5, 0.9, 0.9, 0.3));
+        this.addCondition(new TemperatureRainfallCondition(2, 1.5, 0.9, 0.9, 0.3));
     }
 
     @Override

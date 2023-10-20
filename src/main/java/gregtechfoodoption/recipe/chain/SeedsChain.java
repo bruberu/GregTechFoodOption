@@ -7,7 +7,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.block.GTFOCrop;
-import gregtechfoodoption.block.GTFOTrees;
+import gregtechfoodoption.worldgen.trees.GTFOTrees;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.item.ItemStack;

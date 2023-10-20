@@ -1,4 +1,4 @@
-package gregtechfoodoption.block;
+package gregtechfoodoption.worldgen.trees;
 
 import gregtechfoodoption.worldgen.trees.*;
 

@@ -12,9 +12,6 @@ public class GTFOConfig {
     @Config.Comment("Show tooltips always, regardless of what keys are held?")
     public static boolean showTooltipsAlways = true;
 
-    @Config.Comment("Turn on GTFO tree generation? Required for many mod features.")
-    public static boolean enableGTFOTrees = true;
-
     @Config.Comment("Chain Options")
     public static GTFOChainsConfig gtfoChainsConfig = new GTFOChainsConfig();
 
@@ -35,6 +32,10 @@ public class GTFOConfig {
 
     @Config.Comment("Effect options for GTFO. NOTE: None of these actually remove the appearance of the effects in-game, they just remove the functionality.")
     public static GTFOPotionConfig gtfoPotionConfig = new GTFOPotionConfig();
+
+    @Config.Comment("Worldgen Options")
+    public static GTFOWorldGenConfig gtfoWorldgenConfig = new GTFOWorldGenConfig();
+
 
     @Config.Comment("Miscellaneous features for GTFO.")
     public static GTFOMiscConfig gtfoMiscConfig = new GTFOMiscConfig();
@@ -221,5 +222,13 @@ public class GTFOConfig {
         @Config.Comment("Add GTFO foods laced with cyanide to dungeons?")
         @Config.RequiresMcRestart
         public boolean addLacedDungeonFoods = true;
+    }
+
+    public static class GTFOWorldGenConfig {
+        @Config.Comment("Turn on GTFO tree generation? Required for many mod features.")
+        public static boolean enableGTFOTrees = true;
+
+        @Config.Comment("Turn on GTFO berry generation? Required for some mod features.")
+        public static boolean enableGTFOBerries = true;
     }
 }

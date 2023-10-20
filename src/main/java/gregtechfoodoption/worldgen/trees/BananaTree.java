@@ -2,10 +2,9 @@ package gregtechfoodoption.worldgen.trees;
 
 import gregtech.api.util.function.TriConsumer;
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOTree;
 import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.trees.condition.BiomeCondition;
-import gregtechfoodoption.worldgen.trees.condition.TemperatureRainfallCondition;
+import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -31,7 +30,7 @@ public class BananaTree extends GTFOTree {
         this.addCondition(new BiomeCondition(Biomes.JUNGLE_HILLS, 5, 0.35));
         this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE, 5, 0.3));
         this.addCondition(new BiomeCondition(Biomes.MUTATED_JUNGLE_EDGE, 5, 0.15));
-        this.addCondition(new TemperatureRainfallCondition(5, 0.6, 0.8, 0.8, 0.4));
+        this.addCondition(new TemperatureRainfallCondition(5, 1.5, 0.8, 0.8, 0.4));
     }
 
     protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {

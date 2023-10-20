@@ -434,10 +434,30 @@ public class GTFOMaterialHandler {
             .color(0xCA190F)
             .build();
 
-    public static final Material SourCream = fluidBuilder(21612, "sour_cream")
+    public static final Material CranberryExtract = fluidBuilder(21612, "cranberry_extract")
+            .color(0x8C0D22)
+            .build();
+    public static final Material EtirpsCranberry = fluidBuilder(21613, "etirps_cranberry")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0xbbddbb))
+            .build();
+    public static final Material CranberrySludge = fluidBuilder(21614, "cranberry_sludge")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x222222))
+            .build();
+    public static final Material CranberrySodaSyrup = fluidBuilder(21615, "cranberry_soda_syrup")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x333333))
+            .build();
+
+    public static final Material LingonberryJam = fluidBuilder(21616, "lingonberry_jam")
+            .color(0x61262D)
+            .build();
+    public static final Material ElderberryJam = fluidBuilder(21617, "elderberry_jam")
+            .color(0x5F414F)
+            .build();
+
+    public static final Material SourCream = fluidBuilder(21618, "sour_cream")
             .color(0xe3de9d)
             .build();
-    public static final Material LacticAcidBacteria = fluidBuilder(21613, "lactic_acid_bacteria")
+    public static final Material LacticAcidBacteria = fluidBuilder(21619, "lactic_acid_bacteria")
             .color(0x371040)
             .build();
 

@@ -2,11 +2,14 @@ package gregtechfoodoption;
 
 import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
+import crazypants.enderio.base.integration.natura.NaturaBerryFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMaps;
+import gregtechfoodoption.block.GTFOBerryBush;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFORootCrop;
+import gregtechfoodoption.integration.enderio.GTFOBerryFarmer;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
@@ -158,7 +161,13 @@ public class CommonProxy {
                 event.getRegistry().register(new GTFORootCropFarmer(crop, crop.getSeedStack())
                         .setRegistryName(crop.getRegistryName()));
                 continue;
-            };
+            }
+            if (crop instanceof GTFOBerryBush) {
+                event.getRegistry().register(new GTFOBerryFarmer(crop, crop.getSeedStack())
+                        .setRegistryName(crop.getRegistryName()));
+
+                continue;
+            }
             event.getRegistry().register(new CustomSeedFarmer(crop, crop.getSeedStack())
                     .setRegistryName(crop.getRegistryName()));
         }
