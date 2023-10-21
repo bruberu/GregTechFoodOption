@@ -8,6 +8,7 @@ import net.minecraft.init.Items;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtech.common.items.MetaItems.SHAPE_MOLD_CYLINDER;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
@@ -133,29 +134,22 @@ public class CheeseChain {
                 .outputs(RICOTTA.getStackForm(2))
                 .fluidOutputs(Whey.getFluid(856))
                 .buildAndRegister();
-        /*
-        BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(360)
-                .inputs(CLEAN_CULTURE.getStackForm())
-                .input(dust, Calcite)
-                .fluidInputs(FungalGrowthMedium.getFluid(1000))
-                .outputs(PENICILLIUM_ROQUEFORTI_CULTURE.getStackForm())
+
+        FERMENTING_RECIPES.recipeBuilder().EUt(500).duration(1000)
+                .fluidInputs(ColdMoistAir.getFluid(8000))
+                .outputs(PenicilliumRoqueforti.getItemStack(1))
                 .buildAndRegister();
-        BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(200)
-                .inputs(PENICILLIUM_ROQUEFORTI_CULTURE.getStackForm())
-                .fluidInputs(FungalGrowthMedium.getFluid(1000))
-                .outputs(PenicilliumRoqueforti.getItemStack())
-                .outputs(CONTAMINATED_PETRI_DISH.getStackForm())
-                .fluidOutputs(DepletedGrowthMedium.getFluid(1000))
-                .buildAndRegister();
-        BIO_REACTOR_RECIPES.recipeBuilder().EUt(500).duration(50)
-                .inputs(PenicilliumRoqueforti.getItemStack())
-                .fluidInputs(FungalGrowthMedium.getFluid(250))
-                .outputs(PenicilliumRoqueforti.getItemStack(2))
-                .fluidOutputs(DepletedGrowthMedium.getFluid(250))
-                .buildAndRegister();
+
+        if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
+            ASSEMBLER_RECIPES.recipeBuilder().duration(1000).EUt(32)
+                    .inputs(GORGONZOLA_WHEEL.getStackForm())
+                    .notConsumable(stick, StainlessSteel)
+                    .outputs(PUNCTURED_GORGONZOLA_WHEEL.getStackForm())
+                    .buildAndRegister();
+        }
         MIXER_RECIPES.recipeBuilder().EUt(110).duration(120)
-                .inputs(Yeast.getItemStack())
                 .inputs(PenicilliumRoqueforti.getItemStack())
+                .fluidInputs(LacticAcidBacteria.getFluid(1))
                 .fluidInputs(CrudeRennetSolution.getFluid(250))
                 .fluidOutputs(FungalRennetSolution.getFluid(250))
                 .buildAndRegister();
@@ -173,7 +167,7 @@ public class CheeseChain {
                 .input(dust, Salt)
                 .outputs(SALTED_GORGONZOLA_WHEEL.getStackForm())
                 .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder().duration(460).EUt(24)
+        GTFOUtils.chemicalDehydratorProxy().recipeBuilder().duration(460).EUt(24)
                 .inputs(SALTED_GORGONZOLA_WHEEL.getStackForm())
                 .outputs(SLIGHTLY_AGED_GORGONZOLA_WHEEL.getStackForm())
                 .fluidOutputs(Whey.getFluid(35))
@@ -193,7 +187,6 @@ public class CheeseChain {
                 .notConsumable(SLICER_BLADE_OCTAGONAL)
                 .outputs(GORGONZOLA_TRIANGULAR_SLICE.getStackForm(16))
                 .buildAndRegister();
-         */
 
         LATHE_RECIPES.recipeBuilder().EUt(72).duration(360)
                 .input(block, StainlessSteel)

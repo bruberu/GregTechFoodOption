@@ -461,6 +461,11 @@ public class GTFOMaterialHandler {
             .color(0x371040)
             .build();
 
+    public static final Material FungalRennetSolution = fluidBuilder(21620, "fungal_rennet_solution")
+            .color(0x2a7b5a)
+            .build();
+
+
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
             .build();
