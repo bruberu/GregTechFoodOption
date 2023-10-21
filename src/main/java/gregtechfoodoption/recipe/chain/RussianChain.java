@@ -48,7 +48,7 @@ public class RussianChain {
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(100)
                 .inputs(GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(), GTFOMaterialHandler.GratedHorseradishRoot.getItemStack(), GTFOMaterialHandler.BlackPepper.getItemStack())
                 .fluidInputs(GTFOMaterialHandler.SourCream.getFluid(100))
-                .outputs(GTFOMetaItem.UNCOOKED_PELMENI.getStackForm())
+                .outputs(GTFOMetaItem.UNCOOKED_SEASONED_PELMENI.getStackForm())
                 .buildAndRegister();
 
         GTFORecipeMaps.MULTICOOKER_RECIPES.recipeBuilder().EUt(24).duration(2000)

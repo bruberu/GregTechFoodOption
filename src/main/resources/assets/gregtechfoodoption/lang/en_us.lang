@@ -1132,6 +1132,11 @@ metaitem.food.etirps_cranberry.name=Etirps Cranberry
 metaitem.food.berry_medley.name=Berry Medley
 gregtech.material.gtfo_lingonberry_jam=Lingonberry Jam
 gregtech.material.gtfo_elderberry_jam=Elderberry Jam
+gregtech.material.gtfo_cranberry_extract=Cranberry Extract
+gregtech.material.gtfo_etirps_cranberry=Etirps Cranberry
+gregtech.material.gtfo_cranberry_sludge=Cranberry Sludge
+gregtech.material.gtfo_cranberry_soda_syrup=Cranberry Soda Syrup
+
 
 gregtechfoodoption.berry.description.0=§4Grows very slowly by itself!
 gregtechfoodoption.berry.description.1=§bGrows faster in higher tiers
