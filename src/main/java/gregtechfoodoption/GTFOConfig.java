@@ -226,9 +226,9 @@ public class GTFOConfig {
 
     public static class GTFOWorldGenConfig {
         @Config.Comment("Turn on GTFO tree generation? Required for many mod features.")
-        public static boolean enableGTFOTrees = true;
+        public boolean enableGTFOTrees = true;
 
         @Config.Comment("Turn on GTFO berry generation? Required for some mod features.")
-        public static boolean enableGTFOBerries = true;
+        public boolean enableGTFOBerries = true;
     }
 }
