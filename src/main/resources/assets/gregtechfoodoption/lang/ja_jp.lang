@@ -1098,8 +1098,8 @@ gregtechfoodoption.potion.cyanidepoisoning=青酸中毒
 gregtechfoodoption.potion.antischizo=抗統合失調症
 eating.output.name=返却されるもの
 
-metaitem.component.pelmeni_uncooked.name=未加熱のペリメニ
-metaitem.component.pelmeni_uncooked_seasoned.name=味付けした未加熱のペリメニ
+metaitem.component.pelmeni_uncooked.name=未調理のペリメニ
+metaitem.component.pelmeni_uncooked_seasoned.name=未調理の味付けしたペリメニ
 metaitem.food.pelmeni.name=ペリメニ
 metaitem.food.pelmeni.tooltip=PelmeniCraftより良い
 metaitem.food.pelmeni_seasoned.name=味付けしたペリメニ
@@ -1107,8 +1107,8 @@ metaitem.food.pelmeni_seasoned.tooltip=サワークリームを添えて
 gregtech.material.gtfo_sour_cream=サワークリーム
 gregtech.material.gtfo_lactic_acid_bacteria=乳酸菌
 
-gregtechfoodoption.sprinkler.particles.on=スプリンクラーのパーティクルをONに
-gregtechfoodoption.sprinkler.particles.off=スプリンクラーのパーティクルをOFFに
+gregtechfoodoption.sprinkler.particles.on=スプリンクラーのパーティクルを表示
+gregtechfoodoption.sprinkler.particles.off=スプリンクラーのパーティクルを非表示
 
 gt.tool.class.rolling_pin=麺棒
 
@@ -1139,7 +1139,7 @@ gregtech.material.gtfo_elderberry_jam=ニワトコのジャム
 
 gregtechfoodoption.berry.description.0=§4成長が非常に遅い!
 gregtechfoodoption.berry.description.1=§b高ティアほど成長が早い
-gregtechfoodoption.berry.description.2=次のティアに進むためには、ベリーの茂みを§53つ§r、茂みを中心とした3x3に配置する。
-gregtechfoodoption.berry.description.3=§4茂みを中心とした3x3は埋めてはならない!
+gregtechfoodoption.berry.description.2=ティア上昇させるためには、前のティアのベリーの茂みを§53つ§r、ティアを上昇させたい茂みを中心とした3x3に配置する。
+gregtechfoodoption.berry.description.3=§4茂みを中心とした3x3は、最低1つは空気ブロックでなければならない!
 
-gregtechfoodoption.blocked=これは%sのベリーブッシュをブロックする!
+gregtechfoodoption.blocked=周囲をブロックで囲まれているため、%sにはベリーの茂みを設置できません!
