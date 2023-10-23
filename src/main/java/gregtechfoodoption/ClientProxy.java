@@ -6,14 +6,22 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.entity.GTFOEntities;
 import gregtechfoodoption.integration.appleskin.GTFOMetaHUDOverlay;
 import gregtechfoodoption.integration.appleskin.GTFOMetaTooltipOverlay;
+import gregtechfoodoption.potion.AntiSchizoPotion;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ChatType;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -48,7 +56,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void onLoad() {
         super.onLoad();
-        if(Loader.isModLoaded("appleskin")) {
+        if (Loader.isModLoaded("appleskin")) {
             GTFOMetaTooltipOverlay.init();
             GTFOMetaHUDOverlay.init();
         }
@@ -85,6 +93,27 @@ public class ClientProxy extends CommonProxy {
 
         if (itemStack.getItem().equals(Items.WATER_BUCKET)) {
             event.getToolTip().add(LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", 5));
+        }
+    }
+
+    @SubscribeEvent
+    public static void removeOtherPlayerMessages(ClientChatReceivedEvent event) {
+        if (Minecraft.getMinecraft().player.isPotionActive(AntiSchizoPotion.INSTANCE) && event.getType() == ChatType.CHAT) {
+            if (event.getMessage() instanceof TextComponentTranslation chatMessage
+                    && chatMessage.getFormatArgs()[0] instanceof TextComponentString nameWrapperString
+                    && nameWrapperString.getSiblings().get(0) instanceof TextComponentString nameString) {
+                if (nameString.getText().equals(Minecraft.getMinecraft().player.getName())) {
+                    return; // Allow the player to see their own messages
+                }
+            }
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPotionApplied(PotionEvent.PotionAddedEvent event) {
+        if (event.getPotionEffect().getPotion() == AntiSchizoPotion.INSTANCE && event.getEntity().isEntityEqual(Minecraft.getMinecraft().player)) {
+            Minecraft.getMinecraft().ingameGUI.getChatGUI().clearChatMessages(true);
         }
     }
 

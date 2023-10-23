@@ -45,7 +45,7 @@ public class GTFOCrop extends BlockCrops {
         return new GTFOCrop(name);
     }
 
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos){
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
         return CROPS_AABB;
     }
 
@@ -60,7 +60,7 @@ public class GTFOCrop extends BlockCrops {
 
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         int age = this.getAge(state);
-        Random rand = world instanceof World ? ((World)world).rand : new Random();
+        Random rand = world instanceof World ? ((World) world).rand : new Random();
 
         if (age >= this.getMaxAge()) {
             if (!seed.isEmpty()) {
@@ -69,9 +69,8 @@ public class GTFOCrop extends BlockCrops {
                     drops.add(seed.copy());
                 }
             }
-            int k = 3 + fortune;
 
-            for(int i = 0; i < 3 + fortune; ++i) {
+            for (int i = 0; i < 3 + fortune; ++i) {
                 if (rand.nextInt(2 * this.getMaxAge()) <= age) {
                     drops.add(this.crop.copy());
                 }
@@ -118,6 +117,7 @@ public class GTFOCrop extends BlockCrops {
     protected PropertyInteger getAgeProperty() {
         return AGE_GTFO == null ? AGE_TEMP : AGE_GTFO;
     }
+
     protected BlockStateContainer createBlockState() {
         return AGE_GTFO == null ? new BlockStateContainer(this, AGE_TEMP) : new BlockStateContainer(this, AGE_GTFO);
     }

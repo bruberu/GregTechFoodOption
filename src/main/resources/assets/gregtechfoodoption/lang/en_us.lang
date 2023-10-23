@@ -674,7 +674,7 @@ gregtechfoodoption.recipe.accepted_mobs_on_top=Requires a %s on top
 metaitem.seed.onion.name=Onion Seeds
 metaitem.component.soybean.name=Soybean
 metaitem.seed.unknown.name=Undetermined GTFO Seeds
-metaitem.seed.unknown.tooltip=§6Craft§r to get a Seed/n§cCrafted Seeds cannot be uprooted after planting (because Logic)
+metaitem.seed.unknown.tooltip=Found by breaking §2Grass/n§6Craft§r to get any Seed your Heart desires/n§cCrafted Seeds cannot be uprooted after planting (because Logic)
 metaitem.seed.soy.name=Soybean Seeds
 metaitem.seed.tomato.name=Tomato Seeds
 metaitem.seed.grape.name=Grape Seeds
@@ -693,7 +693,7 @@ gregtechfoodoption.machine.farmer.mv.name=Advanced Farmer
 gregtechfoodoption.machine.farmer.hv.name=Advanced Farmer II
 gregtechfoodoption.machine.farmer.ev.name=Advanced Farmer III
 gregtechfoodoption.machine.farmer.tooltip.flavor=Applies laser Technology to Farming
-gregtechfoodoption.machine.farmer.tooltip.consumption=While working, constantly consumes %,d EU/t
+gregtechfoodoption.machine.farmer.tooltip.consumption=While working, consumes %,d EU/t per operation
 gregtechfoodoption.machine.farmer.tooltip.working=Works on a 9x9 Farm in front
 gregtechfoodoption.machine.farmer.tooltip.speed=Works on one Block every %d Ticks
 
@@ -815,7 +815,7 @@ gregtech.material.gtfo_sodium_arsenite_solution=Sodium Arsenite Solution
 metaitem.arsenic_trioxide_dust.name=Arsenic Trioxide
 metaitem.cupric_hydrogen_arsenite_dust.name=Scheele's Green
 tile.transparent_casing.greenhouse_glass.name=Greenhouse Glass
-gregtech.multiblock.not_enough_sun=Warning: The Roof did not receive enough natural Sunlight for the recipe!
+gregtech.multiblock.not_enough_sun=The Roof is not getting enough Sunlight, and Recipes will run twice as slow
 
 gregtechfoodoption.machine.greenhouse.tooltip.1=Simulates the growth of Trees inside.
 gregtechfoodoption.machine.greenhouse.tooltip.2=Takes twice as long to run a Recipe if Any Part of the Roof is blocked, or it is Night.
@@ -855,7 +855,7 @@ gregtech.material.gtfo_hydrogen_cyanide=Hydrogen Cyanide
 
 gregtechfoodoption.fluid.fertilizer=§2%d%% effective as a Sprinkler Fertilizer
 metaitem.cover.sprinkler.name=Sprinkler
-metaitem.cover.sprinkler.tooltip=As a §4downwards-facing§7 Cover, Sprays Fluids onto a 9x9 Area of Crops (leave a §63-Block Space§7 between This and the Ground)
+metaitem.cover.sprinkler.tooltip=As a §4downwards-facing§7 Cover, Sprays Fluids onto a 9x9 Area of Crops/nLeave a §63-Block Space§7 between This and the Ground/nLeft click with a Soft Mallet to turn off Particles
 gregtech.material.gtfo_blue_vitriol=Blue Vitriol
 gregtech.material.gtfo_rubber_sap=Rubber Sap
 gregtech.material.gtfo_blood=Blood
@@ -1065,6 +1065,9 @@ recipemap.multicooker.name=Multicooker
 metaitem.food.emergency_rations.name=Emergency Rations
 metaitem.food.emergency_rations.tooltip=The seal is way too hard to open
 
+metaitem.lithium_oxide_dust.name=Lithium Oxide
+metaitem.lithium_carbonate_dust.name=Lithium Carbonate
+
 tile.gtfo_crop_coffee.name=Coffee
 tile.gtfo_crop_tomato.name=Tomato
 tile.gtfo_crop_onion.name=Onion
@@ -1083,3 +1086,56 @@ tile.gtfo_crop_artichoke.name=Artichoke
 tile.gtfo_crop_black_pepper.name=Black Pepper
 tile.gtfo_crop_rice.name=Rice
 tile.gtfo_crop_white_grape.name=White Grape
+
+lacing.item_list.name=Lacing Recipe
+gregtechfoodoption.lacing.info.1=Applies effect:
+gregtechfoodoption.lacing.info.2=Lasts %s ticks
+gregtechfoodoption.potion.cyanidepoisoning=Cyanide Poisoning
+gregtechfoodoption.potion.antischizo=Schizophrenia Meds
+eating.output.name=Eating Recipe
+
+metaitem.component.pelmeni_uncooked.name=Uncooked Pelmeni
+metaitem.component.pelmeni_uncooked_seasoned.name=Seasoned Uncooked Pelmeni
+metaitem.food.pelmeni.name=Pelmeni
+metaitem.food.pelmeni.tooltip=Better than PelmeniCraft
+metaitem.food.pelmeni_seasoned.name=Seasoned Pelmeni
+metaitem.food.pelmeni_seasoned.tooltip=With a side of Sour Cream
+gregtech.material.gtfo_sour_cream=Sour Cream
+gregtech.material.gtfo_lactic_acid_bacteria=Lactic Acid Bacteria
+
+gregtechfoodoption.sprinkler.particles.on=Sprinkler Particles turned on.
+gregtechfoodoption.sprinkler.particles.off=Sprinkler Particles turned off.
+
+gt.tool.class.rolling_pin=Rolling Pin
+
+metaitem.food.etirps_cranberry.tooltip=Wanna'n Etirps Cranberry?
+metaitem.food.berry_medley.tooltip=Just how Remy would have made it
+metaitem.food.berry.blueberry.name=Blueberry
+metaitem.food.berry.blueberry.tooltip=You see a Caracal's Face on one of them
+metaitem.food.berry.blackberry.name=Blackberry
+metaitem.food.berry.blackberry.tooltip=Would you eat a phone?
+metaitem.food.berry.raspberry.name=Raspberry
+metaitem.food.berry.raspberry.tooltip=Otherwise known as a Voiceless Linguolabial Trill
+metaitem.food.berry.strawberry.name=Strawberry
+metaitem.food.berry.strawberry.tooltip=Made of Straw
+metaitem.food.berry.red_currant.name=Red Currant
+metaitem.food.berry.white_currant.name=White Currant
+metaitem.food.berry.black_currant.name=Black Currant
+metaitem.food.berry.lingonberry.name=Lingonberry
+metaitem.food.berry.lingonberry.tooltip=Sponsored by IKEA
+metaitem.food.berry.elderberry.name=Elderberry
+metaitem.food.berry.elderberry.tooltip=For Confucians
+metaitem.food.berry.huckleberry.name=Huckleberry
+metaitem.food.berry.cranberry.name=Cranberry
+metaitem.food.berry.cranberry.tooltip=Tastes of holiday Cheer
+metaitem.food.etirps_cranberry.name=Etirps Cranberry
+metaitem.food.berry_medley.name=Berry Medley
+gregtech.material.gtfo_lingonberry_jam=Lingonberry Jam
+gregtech.material.gtfo_elderberry_jam=Elderberry Jam
+
+gregtechfoodoption.berry.description.0=§4Grows very slowly by itself!
+gregtechfoodoption.berry.description.1=§bGrows faster in higher tiers
+gregtechfoodoption.berry.description.2=Place §5three§r grown berry bushes of the previous tier in the 3x3 centered on the bush to get to the next tier
+gregtechfoodoption.berry.description.3=§4The 3x3 centered on the bush must not be filled!
+
+gregtechfoodoption.blocked=This blocks a berry bush at %s!

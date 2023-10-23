@@ -7,10 +7,14 @@ import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.ItemMaterialInfo;
 import gregtech.api.unification.stack.MaterialStack;
+import gregtech.common.ConfigHolder;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockPlanks;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
+import gregtechfoodoption.worldgen.berries.GTFOBerries;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
+import gregtechfoodoption.worldgen.trees.GTFOTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
@@ -48,6 +52,7 @@ public class GTFOMetaBlocks {
         GTFO_GLASS_CASING.setRegistryName("gtfo_glass_casing");
 
         GTFOTrees.init();
+        GTFOBerries.init();
         for (int i = 0; i <= (GTFOTree.TREES.size() - 1) / 4; i++) {
             GTFOBlockLeaves leaves = new GTFOBlockLeaves(i);
             leaves.setRegistryName("gtfo_leaves_" + i);
@@ -121,7 +126,9 @@ public class GTFOMetaBlocks {
         });
         GTFO_LOGS.forEach(log -> {
             OreDictUnifier.registerOre(new ItemStack(log, 1, GTValues.W), OrePrefix.log, Materials.Wood);
-            GameRegistry.addSmelting(new ItemStack(log, 1, GTValues.W), new ItemStack(Items.COAL, 1, 1), 0.15F);
+            if (!ConfigHolder.recipes.harderCharcoalRecipe) {
+                GameRegistry.addSmelting(new ItemStack(log, 1, GTValues.W), new ItemStack(Items.COAL, 1, 1), 0.15F);
+            }
         });
         GTFO_PLANKS.forEach(planks -> {
             OreDictUnifier.registerOre(new ItemStack(planks, 1, GTValues.W), OrePrefix.plank, Materials.Wood);

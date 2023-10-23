@@ -51,12 +51,12 @@ public class PlateChain {
                 .buildAndRegister();
         CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(16).duration(100)
                 .inputs(GTFOMetaItem.DIRTY_PLATE.getStackForm())
-                .fluidInputs(GTFOMaterialHandler.SodiumStearate.getFluid(100), Water.getFluid(500))
+                .fluidInputs(GTFOMaterialHandler.SodiumStearate.getFluid(100))
                 .outputs(GTFOMetaItem.PLATE.getStackForm())
                 .buildAndRegister();
         CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(16).duration(100)
                 .inputs(GTFOMetaItem.DIRTY_CERAMIC_BOWL.getStackForm())
-                .fluidInputs(GTFOMaterialHandler.SodiumStearate.getFluid(100), Water.getFluid(500))
+                .fluidInputs(GTFOMaterialHandler.SodiumStearate.getFluid(100))
                 .outputs(GTFOMetaItem.CERAMIC_BOWL.getStackForm())
                 .buildAndRegister();
     }

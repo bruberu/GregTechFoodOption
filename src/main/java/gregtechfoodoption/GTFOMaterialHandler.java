@@ -67,6 +67,7 @@ public class GTFOMaterialHandler {
             .color(0xffe3a1)
             .build();
     public static final Material HotFryingOil = fluidBuilder(21510, "hot_frying_oil")
+            .fluidTemp(483)
             .color(0xffd166)
             .build();
     public static final Material StarchFilledWater = fluidBuilder(21511, "starch_filled_water")
@@ -74,9 +75,11 @@ public class GTFOMaterialHandler {
             .build();
 
     public static final Material MushroomSoup = fluidBuilder(21512, "mushroom_soup")
+            .fluidTemp(343)
             .color(0xedcaaf)
             .build();
     public static final Material BeetrootSoup = fluidBuilder(21513, "beetroot_soup")
+            .fluidTemp(343)
             .color(0xc25132)
             .build();
 
@@ -96,6 +99,7 @@ public class GTFOMaterialHandler {
             .color(0xecfc7e)
             .build();
     public static final Material HeatedRicottaStarter = fluidBuilder(21519, "heated_ricotta_starter")
+            .fluidTemp(348)
             .color(0xdef72f)
             .build();
     public static final Material AcidicMilkSolution = fluidBuilder(21520, "acidic_milk_solution")
@@ -142,6 +146,7 @@ public class GTFOMaterialHandler {
             .color(0x82c8ff)
             .build();
     public static final Material ColdMoistAir = fluidBuilder(21532, "cold_moist_air")
+            .fluidTemp(243)
             .color(0x72a2ff)
             .build();
 
@@ -156,6 +161,7 @@ public class GTFOMaterialHandler {
             .build();
 
     public static final Material RabbitStew = fluidBuilder(21536, "rabbit_stew")
+            .fluidTemp(343)
             .color(0xe0c0a0)
             .build();
 
@@ -301,7 +307,7 @@ public class GTFOMaterialHandler {
             .color(0xe3bc20)
             .build();
     public static final Material XPhenothiazineIiPropylChloride = fluidBuilder(21573, "x_phenothiazine_ii_propyl_chloride")
-            .components(Carbon, 15, Hydrogen, 16, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
+            .components(Carbon, 15, Hydrogen, 14, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
             .flags(DISABLE_DECOMPOSITION)
             .build();
     public static final Material AppleSyrup = fluidBuilder(21574, "apple_syrup")
@@ -330,21 +336,22 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material Aniline = fluidBuilder(21582, "aniline")
             .color(0x4c911d)
-            .components(Carbon, 6, Hydrogen, 7, Nitrogen, 2)
+            .components(Carbon, 6, Hydrogen, 7, Nitrogen, 1)
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("C6H5NH2", true);
 
-    public static final Material HeatedWater = fluidBuilder(21583, "heated_water").fluidTemp(343)
+    public static final Material HeatedWater = fluidBuilder(21583, "heated_water")
+            .fluidTemp(343)
             .color(0x024B86)
             .build();
-    public static final Material GelatinSolution = fluidBuilder(21584, "gelatin_solution").fluidTemp(343)
+    public static final Material GelatinSolution = fluidBuilder(21584, "gelatin_solution")
             .color(0xD3D3D3)
             .build();
-    public static final Material AceticAnhydride = fluidBuilder(21585, "acetic_anhydride").fluidTemp(343)
+    public static final Material AceticAnhydride = fluidBuilder(21585, "acetic_anhydride")
             .components(Carbon, 4, Hydrogen, 6, Oxygen, 3)
             .build();
-    public static final Material Nitrophenols = fluidBuilder(21586, "nitrophenols").fluidTemp(343)
+    public static final Material Nitrophenols = fluidBuilder(21586, "nitrophenols")
             .color(0xFFFFFF)
             .build().setFormula("(C6H5NO3)(C6H5NO3)", true);
     public static final Material Egg = fluidBuilder(21587, "egg")
@@ -400,9 +407,11 @@ public class GTFOMaterialHandler {
             .color(0xCDAF44)
             .build();
     public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base")
+            .fluidTemp(343)
             .color(0xD4592F)
             .build();
     public static final Material MixedPastaEFagioli = fluidBuilder(21605, "mixed_pasta_e_fagioli")
+            .fluidTemp(343)
             .color(0xE48628)
             .build();
 
@@ -425,8 +434,32 @@ public class GTFOMaterialHandler {
             .color(0xCA190F)
             .build();
 
+    public static final Material CranberryExtract = fluidBuilder(21612, "cranberry_extract")
+            .color(0x8C0D22)
+            .build();
+    public static final Material EtirpsCranberry = fluidBuilder(21613, "etirps_cranberry")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0xbbddbb))
+            .build();
+    public static final Material CranberrySludge = fluidBuilder(21614, "cranberry_sludge")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x222222))
+            .build();
+    public static final Material CranberrySodaSyrup = fluidBuilder(21615, "cranberry_soda_syrup")
+            .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x333333))
+            .build();
 
+    public static final Material LingonberryJam = fluidBuilder(21616, "lingonberry_jam")
+            .color(0x61262D)
+            .build();
+    public static final Material ElderberryJam = fluidBuilder(21617, "elderberry_jam")
+            .color(0x5F414F)
+            .build();
 
+    public static final Material SourCream = fluidBuilder(21618, "sour_cream")
+            .color(0xe3de9d)
+            .build();
+    public static final Material LacticAcidBacteria = fluidBuilder(21619, "lactic_acid_bacteria")
+            .color(0x371040)
+            .build();
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
@@ -444,9 +477,11 @@ public class GTFOMaterialHandler {
             .build();
 
     public static final Material Coffee = fluidBuilder(21990, "coffee")
+            .fluidTemp(368)
             .color(0x36312e)
             .build();
     public static final Material EnergizedCoffee = fluidBuilder(21991, "energized_coffee")
+            .fluidTemp(368)
             .color(0x695934)
             .build();
 
@@ -538,7 +573,8 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addOreDictItem(1000, "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem SodiumCyanide = SHAPED_ITEM.addOreDictItem(1138, "sodium_cyanide", averageRGB(2, HydrogenCyanide.getMaterialRGB(), Sodium.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NaCN");
     public static final GTFOOredictItem.OreDictValueItem LithiumOxide = SHAPED_ITEM.addOreDictItem(1139, "lithium_oxide", averageRGB(2, Lithium.getMaterialRGB(), 0), MaterialIconSet.DULL, OrePrefix.dust, "Li2O");
-    public static final GTFOOredictItem.OreDictValueItem LithiumCarbonate = SHAPED_ITEM.addOreDictItem(1140, "lithium_carbonate", averageRGB(2, Lithium.getMaterialRGB(), CarbonDioxide.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "Li2CO3");
+    public static final GTFOProxyItem LithiumCarbonate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1140, "lithium_carbonate", averageRGB(2, Lithium.getMaterialRGB(), CarbonDioxide.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "Li2CO3"),
+            1140, "lithium_carbonate", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("lithium_carbonate")));
 
 
 

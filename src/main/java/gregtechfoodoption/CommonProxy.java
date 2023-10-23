@@ -2,17 +2,23 @@ package gregtechfoodoption;
 
 import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
+import crazypants.enderio.base.integration.natura.NaturaBerryFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMaps;
+import gregtechfoodoption.block.GTFOBerryBush;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFORootCrop;
+import gregtechfoodoption.integration.enderio.GTFOBerryFarmer;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityGreenhouse;
+import gregtechfoodoption.potion.AntiSchizoPotion;
+import gregtechfoodoption.potion.CyanidePoisoningPotion;
 import gregtechfoodoption.potion.GTFOPotions;
+import gregtechfoodoption.potion.LacingEntry;
 import gregtechfoodoption.recipe.GTFOOreDictRegistration;
 import gregtechfoodoption.recipe.GTFORecipeAddition;
 import gregtechfoodoption.recipe.GTFORecipeHandler;
@@ -22,6 +28,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
@@ -60,6 +67,14 @@ public class CommonProxy {
 
     public void onPostLoad() {
         MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
+
+        LacingEntry.LACING_REGISTRY.register(0, "cyanide", new LacingEntry(GTFOMaterialHandler.SodiumCyanide.getItemStack(),
+                new PotionEffect(CyanidePoisoningPotion.INSTANCE, 500, 0),
+                "5dkcap/2/4/"));
+        LacingEntry.LACING_REGISTRY.register(1, "antischizo", new LacingEntry(GTFOMaterialHandler.LithiumCarbonate.getItemStack(),
+                new PotionEffect(AntiSchizoPotion.INSTANCE, 1000, 0),
+                "14hez98zk7/2/3/5/9/10/"));
+
     }
 
     @SubscribeEvent
@@ -146,7 +161,13 @@ public class CommonProxy {
                 event.getRegistry().register(new GTFORootCropFarmer(crop, crop.getSeedStack())
                         .setRegistryName(crop.getRegistryName()));
                 continue;
-            };
+            }
+            if (crop instanceof GTFOBerryBush) {
+                event.getRegistry().register(new GTFOBerryFarmer(crop, crop.getSeedStack())
+                        .setRegistryName(crop.getRegistryName()));
+
+                continue;
+            }
             event.getRegistry().register(new CustomSeedFarmer(crop, crop.getSeedStack())
                     .setRegistryName(crop.getRegistryName()));
         }

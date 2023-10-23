@@ -5,9 +5,9 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemComponent;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
-import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.item.GTFOMetaItems;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.gem;
 import static gregtechfoodoption.GTFOMaterialHandler.FryingOil;
 import static gregtechfoodoption.GTFOMaterialHandler.OliveOil;
@@ -171,8 +172,20 @@ public class GTFOUtils {
     }
 
     public static RecipeMap<?> chemicalDehydratorProxy() {
-        return Loader.isModLoaded(GTFOValues.MODID_GCYS) ? RecipeMap.getByName("dryer_recipes") : RecipeMaps.CHEMICAL_RECIPES;
+        if (Loader.isModLoaded("supersymmetry")) {
+            return RecipeMap.getByName("dryer");
+        }
+        return RecipeMaps.CHEMICAL_RECIPES;
     }
+
+    public static RecipeMap<?> roasterProxy() {
+        if (Loader.isModLoaded("supersymmetry")) {
+            return RecipeMap.getByName("roaster");
+        }
+        return RecipeMaps.CHEMICAL_RECIPES;
+    }
+
+
 
     public static RecipeMap<?> stellarForgeProxy() {
         return RecipeMaps.FORMING_PRESS_RECIPES;
@@ -189,6 +202,10 @@ public class GTFOUtils {
         inputx4.setCount(input.getCount() * 4);
         ItemStack outputx4 = output.copy();
         outputx4.setCount(output.getCount() * 4);
+        ItemStack inputx8 = input.copy();
+        inputx8.setCount(input.getCount() * 8);
+        ItemStack outputx8 = output.copy();
+        outputx8.setCount(output.getCount() * 8);
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
                 .inputs(inputx4)
                 .input(gem, Coal, Math.max(fuelAmount, 1))
@@ -199,6 +216,28 @@ public class GTFOUtils {
                 .input(gem, Charcoal, Math.max(fuelAmount, 1))
                 .outputs(outputx4)
                 .buildAndRegister();
+        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
+                .inputs(inputx4)
+                .input(dust, Coal, Math.max(fuelAmount, 1))
+                .outputs(outputx4)
+                .buildAndRegister();
+        BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
+                .inputs(inputx4)
+                .input(dust, Charcoal, Math.max(fuelAmount, 1))
+                .outputs(outputx4)
+                .buildAndRegister();
+        if (!OreDictUnifier.get("dustAnthracite").isEmpty()) {
+            BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
+                    .inputs(inputx8)
+                    .input("gemAnthracite", Math.max(fuelAmount, 1))
+                    .outputs(outputx8)
+                    .buildAndRegister();
+            BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
+                    .inputs(inputx8)
+                    .input("dustAnthracite", Math.max(fuelAmount, 1))
+                    .outputs(outputx8)
+                    .buildAndRegister();
+        }
     }
 
     public static GTFOFoodStats getKebabFood(int hunger, float sat) {

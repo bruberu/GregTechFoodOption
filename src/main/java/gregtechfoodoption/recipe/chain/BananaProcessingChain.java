@@ -16,15 +16,14 @@ public class BananaProcessingChain {
         if (!Loader.isModLoaded(MODID_GCYS)) {
             ELECTROLYZER_RECIPES.recipeBuilder().EUt(30).duration(56)
                     .input(dust, Salt, 2)
-                    .circuitMeta(1)
                     .output(dust, Sodium)
                     .fluidOutputs(Chlorine.getFluid(1000))
                     .buildAndRegister();
             CHEMICAL_RECIPES.recipeBuilder().EUt(120).duration(400) // NaCl + 3H2O -> NaClO3 + 6H
                     .input(dust, Salt, 2)
-                    .circuitMeta(2)
+                    .circuitMeta(1)
                     .fluidInputs(Water.getFluid(3000))
-                    .outputs(SodiumChlorate.get(5))
+                    .outputs(SodiumChlorate.getItemStack(5))
                     .fluidOutputs(Hydrogen.getFluid(6000))
                     .buildAndRegister();
 
@@ -36,13 +35,13 @@ public class BananaProcessingChain {
                     .buildAndRegister();
         }
         ELECTROLYZER_RECIPES.recipeBuilder().EUt(60).duration(100)
-                .inputs(SodiumChlorate.get(5))
+                .inputs(SodiumChlorate.getItemStack(5))
                 .notConsumable(new IntCircuitIngredient(1))
                 .output(dust, Sodium)
                 .fluidOutputs(Chlorine.getFluid(1000), Oxygen.getFluid(3000))
                 .buildAndRegister();
         ELECTROLYZER_RECIPES.recipeBuilder().EUt(120).duration(100) // NaClO3 + H2O -> NaClO4 + 2H
-                .inputs(SodiumChlorate.get(5))
+                .inputs(SodiumChlorate.getItemStack(5))
                 .fluidInputs(Water.getFluid(1000))
                 .notConsumable(new IntCircuitIngredient(2))
                 .outputs(SodiumPerchlorate.getItemStack(6))

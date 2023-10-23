@@ -1,9 +1,11 @@
 package gregtechfoodoption;
 
+import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.unification.material.event.MaterialEvent;
 import gregtech.api.util.GregFakePlayer;
+import gregtechfoodoption.block.GTFOBerryBush;
 import gregtechfoodoption.entity.EntityStrongSnowman;
 import gregtechfoodoption.integration.GTFOGAMaterialHandler;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
@@ -32,9 +34,11 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.PotionColorCalculationEvent;
 import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
@@ -241,6 +245,22 @@ public class GTFOEventHandler {
             Potion type = event.getPotionEffect().getPotion();
             int newDuration = (int) (event.getPotionEffect().getAmplifier() * ((durationBonus * 0.5) + 1.5));
             event.getPotionEffect().combine(new PotionEffect(type, newDuration));
+        }
+    }
+
+    @SubscribeEvent
+    public static void handleBerryGrowth(BlockEvent.CropGrowEvent.Post event) {
+        if (event.getState().getBlock() instanceof GTFOBerryBush bush) {
+            event.getWorld().setBlockState(event.getPos(),
+                    bush.withEfficiency(event.getState(), bush.calcEfficiency(event.getWorld(), event.getPos())),
+                    2);
+        }
+    }
+
+    @SubscribeEvent
+    public static void handleBerryGrowth(BlockEvent.CropGrowEvent.Pre event) {
+        if (event.getState().getBlock() instanceof GTFOBerryBush bush) {
+            event.setResult(GTValues.RNG.nextInt(bush.getGrowthSlowdown(event.getWorld(), event.getPos(), event.getState())) == 0 ? Event.Result.ALLOW : Event.Result.DENY);
         }
     }
 }

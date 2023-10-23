@@ -1,12 +1,10 @@
 {
-  "package": "gregtechfoodoption.recipe.mixins",
+  "package": "gregtechfoodoption.mixins",
   "refmap": "mixins.gregtechfoodoption.refmap.json",
   "target": "@env(DEFAULT)",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "RecipeMapFluidCannerMixin"
-  ],
+  "mixins": [],
   "client": [],
   "server": []
 }

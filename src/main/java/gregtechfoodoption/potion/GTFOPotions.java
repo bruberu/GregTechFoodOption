@@ -24,6 +24,7 @@ public class GTFOPotions {
         new VentingPotion();
         new PotionAmplifierPotion();
         new PotionLengthenerPotion();
+        new AntiSchizoPotion();
     }
 
 

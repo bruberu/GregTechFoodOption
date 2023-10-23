@@ -1,6 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
-//Used for cross-chain materials.
+//Used for cross-chain materials, as well as smaller chains.
 
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.ModHandler;
@@ -105,7 +105,6 @@ public class CoreChain {
         CHEMICAL_RECIPES.recipeBuilder().duration(300).EUt(480)
                 .input(dust, Gold, 2)
                 .fluidInputs(HydrochloricAcid.getFluid(8000))
-                .circuitMeta(1)
                 .fluidOutputs(GTFOMaterialHandler.ChloroauricAcid.getFluid(2000), Hydrogen.getFluid(3000))
                 .buildAndRegister();
     }
@@ -157,7 +156,7 @@ public class CoreChain {
                 .buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
-                .inputs(TOMATO_SLICE.getStackForm(4))
+                .inputs(TOMATO_SLICE.getStackForm())
                 .fluidOutputs(GTFOMaterialHandler.TomatoSauce.getFluid(100))
                 .buildAndRegister();
 
@@ -167,13 +166,18 @@ public class CoreChain {
                 .buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
-                .inputs(APPLE_SLICE.getStackForm(4))
+                .inputs(APPLE_SLICE.getStackForm())
                 .fluidOutputs(AppleExtract.getFluid(100))
                 .buildAndRegister();
 
         EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
                 .input(Items.MELON)
                 .fluidOutputs(MelonExtract.getFluid(100))
+                .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
+                .inputs(CRANBERRY.getStackForm())
+                .fluidOutputs(CranberryExtract.getFluid(25))
                 .buildAndRegister();
 
         CANNER_RECIPES.recipeBuilder()

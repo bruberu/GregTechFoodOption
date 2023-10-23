@@ -18,12 +18,12 @@ public class DyeChain {
         ARC_FURNACE_RECIPES.recipeBuilder().EUt(30).duration(100)
                 .input(dust, Arsenic, 2)
                 .fluidInputs(Oxygen.getFluid(3000))
-                .outputs(ArsenicTrioxide.get(5))
+                .outputs(ArsenicTrioxide.getItemStack(5))
                 .buildAndRegister();
 
         // $stoik As2O3 + Na2CO3 + H2O-> 2NaAsO2(1/2H2O) + CO2
         CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(160)
-                .inputs(ArsenicTrioxide.get(5))
+                .inputs(ArsenicTrioxide.getItemStack(5))
                 .fluidInputs(SodiumCarbonateSolution.getFluid(1000))
                 .fluidOutputs(SodiumArseniteSolution.getFluid(2000), CarbonDioxide.getFluid(1000))
                 .buildAndRegister();

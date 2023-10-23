@@ -2,7 +2,7 @@ package gregtechfoodoption.recipe;
 
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOTree;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
 import gregtechfoodoption.recipe.chain.*;
 import gregtechfoodoption.tools.GTFOToolItems;
 import net.minecraftforge.fml.common.Loader;
@@ -33,6 +33,9 @@ public class GTFORecipeAddition {
         ItalianChain.init();
         PastaChain.init();
         PlateChain.init();
+        LithiumChain.init();
+        BerryChain.init();
+        RussianChain.init();
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();

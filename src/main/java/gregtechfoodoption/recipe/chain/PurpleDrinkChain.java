@@ -210,7 +210,7 @@ public class PurpleDrinkChain {
                 .EUt(240)
                 .duration(120)
                 .buildAndRegister();
-        LARGE_CHEMICAL_RECIPES.recipeBuilder()
+        CHEMICAL_RECIPES.recipeBuilder()
                 .inputs(Diphenylamine.getItemStack(24))
                 .input(dust, Sulfur, 2)
                 .outputs(Phenothiazine.getItemStack(23))

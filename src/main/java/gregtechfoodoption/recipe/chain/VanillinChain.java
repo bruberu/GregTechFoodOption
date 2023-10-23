@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class VanillinChain {
     public static void init() {
         GTRecipeHandler.removeRecipesByInputs(RecipeMaps.DISTILLATION_RECIPES, new ItemStack[]{}, new FluidStack[]{Materials.Creosote.getFluid(24)});
-        RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(24).duration(32)
+        RecipeMaps.DISTILLATION_RECIPES.recipeBuilder().EUt(96).duration(16)
                 .fluidInputs(Materials.Creosote.getFluid(24))
                 .fluidOutputs(Materials.Lubricant.getFluid(12), GTFOMaterialHandler.Guaiacol.getFluid(1))
                 .buildAndRegister();
