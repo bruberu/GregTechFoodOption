@@ -1,7 +1,7 @@
 # Japanese translate by MrKo_no
 # 翻訳担当 : MrKo_no
-# Corresponding Version: 1.10.0
-# 対応バージョン: 1.10.0
+# Corresponding Version: 1.10.0.2
+# 対応バージョン: 1.10.0.2
 
 metaitem.phycomyces.culture.name=ヒゲカビ菌床
 metaitem.component.corn.ear.name=トウモロコシ
@@ -1136,10 +1136,15 @@ metaitem.food.etirps_cranberry.name=エティルプス・クランベリー
 metaitem.food.berry_medley.name=ベリーメドレー
 gregtech.material.gtfo_lingonberry_jam=コケモモのジャム
 gregtech.material.gtfo_elderberry_jam=ニワトコのジャム
+gregtech.material.gtfo_cranberry_extract=クランベリー抽出物
+gregtech.material.gtfo_etirps_cranberry=エティルプス・クランベリー
+gregtech.material.gtfo_cranberry_sludge=濃縮したクランベリー抽出物
+gregtech.material.gtfo_cranberry_soda_syrup=クランベリーソーダシロップ
+
 
 gregtechfoodoption.berry.description.0=§4成長が非常に遅い!
 gregtechfoodoption.berry.description.1=§b高ティアほど成長が早い
-gregtechfoodoption.berry.description.2=ティア上昇させるためには、前のティアのベリーの茂みを§53つ§r、ティアを上昇させたい茂みを中心とした3x3に配置する。
+gregtechfoodoption.berry.description.2=ティア上昇させるためには、前のティアのベリーの茂みを§53つ§r、ティアを上昇させたい茂みを中心とした3x3の範囲内に配置する。
 gregtechfoodoption.berry.description.3=§4茂みを中心とした3x3は、最低1つは空気ブロックでなければならない!
 
 gregtechfoodoption.blocked=周囲をブロックで囲まれているため、%sにはベリーの茂みを設置できません!
