@@ -2,7 +2,6 @@ package gregtechfoodoption;
 
 import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
-import crazypants.enderio.base.integration.natura.NaturaBerryFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMaps;
 import gregtechfoodoption.block.GTFOBerryBush;

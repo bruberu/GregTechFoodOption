@@ -515,11 +515,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         SKEWER = addItem(135, "component.skewer");
 
-        //GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
-        //SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
-        //SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
-        //PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
-        //FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
+        GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
+        SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
+        SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
+        PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
+        FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
         //PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicillium");
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
 
