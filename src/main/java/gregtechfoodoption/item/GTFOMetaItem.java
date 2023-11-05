@@ -396,6 +396,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem PELMENI;
     public static MetaItem<?>.MetaValueItem SEASONED_PELMENI;
 
+    public static MetaItem<?>.MetaValueItem SCALLION;
+    public static MetaItem<?>.MetaValueItem SCALLION_SEED;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -970,6 +973,10 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         WHITE_GRAPES = addItem(320, "food.white_grapes").addComponents(new GTFOFoodStats(1, 1f));
         WHITE_GRAPE_SEED = addItem(321, "seed.white_grape");
         WHITE_GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_WHITE_GRAPE, WHITE_GRAPE_SEED.getStackForm(), WHITE_GRAPES.getStackForm()));
+        SCALLION = addItem(342, "crop.scallion");
+        SCALLION_SEED = addItem(343, "crop.scallion_seed");
+
+        SCALLION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_SCALLION, SCALLION_SEED.getStackForm(), SCALLION.getStackForm()));
 
 
         // 175-189 left blank for organic circuits
