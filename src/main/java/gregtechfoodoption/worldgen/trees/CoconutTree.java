@@ -1,6 +1,7 @@
 package gregtechfoodoption.worldgen.trees;
 
 import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.utils.GTFOUtils;
 import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 import net.minecraft.block.state.IBlockState;
@@ -11,6 +12,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.Random;
+
+import static gregtechfoodoption.item.GTFOMetaItem.COCONUT;
 
 public class CoconutTree extends GTFOTree {
     public static int LEAVES_COLOR = 0x657F1C;
@@ -78,5 +81,18 @@ public class CoconutTree extends GTFOTree {
             notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)), getNaturalLeavesState());
             notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)).offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
         }
+    }
+
+    @Override
+    public ItemStack getAppleDrop(int chance) {
+        if (GTFOValues.rand.nextInt(chance / 7) == 0) {
+            return COCONUT.getStackForm(GTFOValues.rand.nextInt(2));
+        }
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    public ItemStack getApple() {
+        return COCONUT.getStackForm();
     }
 }

@@ -26,6 +26,9 @@ public class GTFOBerryBush extends GTFOCrop {
     public static final PropertyInteger EFFICIENCY_GTFO = PropertyInteger.create("efficiency", 0, 4);
     private static final AxisAlignedBB SMALL_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5D, 0.75D);
     private static final AxisAlignedBB LARGE_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
+    private static final AxisAlignedBB STEM_AABB = new AxisAlignedBB(0.4325D, 0.0D, 0.4325D, 0.5675D, 0.25D, 0.5675D);
+
+
     private boolean isThorny = false;
 
     protected GTFOBerryBush(String name) {
@@ -134,6 +137,13 @@ public class GTFOBerryBush extends GTFOCrop {
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
         if (isThorny)
             entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
+        double distanceFromCenter = entityIn.getDistanceSq(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
+        distanceFromCenter += 0.5; // no singularity going on here
+        distanceFromCenter /= 4;
+        entityIn.stepHeight = 0.125F;
+        entityIn.motionX *= distanceFromCenter;
+        entityIn.motionY *= distanceFromCenter;
+        entityIn.motionZ *= distanceFromCenter;
     }
 
     public GTFOBerryBush setThorny(boolean thorny) {
@@ -144,7 +154,7 @@ public class GTFOBerryBush extends GTFOCrop {
     @Nullable
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-        return this.getBoundingBox(blockState, worldIn, pos);
+        return STEM_AABB;
     }
 
     @Override

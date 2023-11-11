@@ -57,8 +57,8 @@ public class MangoTree extends GTFOTree {
 
     @Override
     public ItemStack getAppleDrop(int chance) {
-        if (GTFOValues.rand.nextInt(chance / 15) == 0) {
-            return MANGO.getStackForm();
+        if (GTFOValues.rand.nextInt(chance / 10) == 0) {
+            return MANGO.getStackForm(GTFOValues.rand.nextInt(3));
         }
         return ItemStack.EMPTY;
     }
