@@ -396,6 +396,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem PELMENI;
     public static MetaItem<?>.MetaValueItem SEASONED_PELMENI;
 
+    public static MetaItem<?>.MetaValueItem COCONUT;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -607,6 +609,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         UNCOOKED_PELMENI = addItem(338, "component.pelmeni_uncooked");
         UNCOOKED_SEASONED_PELMENI = addItem(339, "component.pelmeni_uncooked_seasoned");
+
+        COCONUT = addItem(342, "component.coconut");
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));

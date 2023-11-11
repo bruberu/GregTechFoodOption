@@ -35,7 +35,7 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
     public GTFOBlockSapling(int offset) {
         super(Material.LEAVES);
         this.offset = offset;
-        setTranslationKey("gtfo_leaves_" + offset);
+        setTranslationKey("gtfo_sapling_" + offset);
         this.setTickRandomly(true);
         this.setHardness(0.0F);
         this.setLightOpacity(1);

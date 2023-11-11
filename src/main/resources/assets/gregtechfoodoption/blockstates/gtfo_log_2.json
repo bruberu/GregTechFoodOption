@@ -32,6 +32,10 @@
         }
       },
       "1": {
+        "textures": {
+          "end": "gregtechfoodoption:blocks/logs/coconut_top",
+          "side": "gregtechfoodoption:blocks/logs/coconut_side"
+        }
       },
       "2": {
       },
