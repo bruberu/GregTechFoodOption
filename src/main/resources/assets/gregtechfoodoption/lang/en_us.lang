@@ -1150,3 +1150,6 @@ gregtechfoodoption.blocked=This blocks a berry bush at %s!
 
 metaitem.component.coconut.name=Coconut
 metaitem.component.coconut.tooltip=A cold-blooded Killer
+
+gregtechfoodoption.seed.0=§bCan be used as a Seed
+gregtechfoodoption.seed.root_crop=§rThe Crop can §4only§r be harvested §4just before§r the Seed is harvestable!

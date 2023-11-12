@@ -24,14 +24,6 @@ public class GTFOBerrySeedBehaviour extends GTFOCropSeedBehaviour {
         super(cropBlock, seed, crop);
     }
 
-    public GTFOBerrySeedBehaviour(Block block) {
-        this(block.getDefaultState());
-    }
-
-    public GTFOBerrySeedBehaviour(IBlockState state) {
-        super(state);
-    }
-
     @Override
     public ActionResult<ItemStack> onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!isBlocked(world, pos, player)) {
