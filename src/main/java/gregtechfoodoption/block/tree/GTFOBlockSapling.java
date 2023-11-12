@@ -124,4 +124,19 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
     public int damageDropped(IBlockState state) {
         return state.getValue(VARIANT) << 1;
     }
+
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        if (!worldIn.isRemote)
+        {
+            super.updateTick(worldIn, pos, state, rand);
+
+            if (rand.nextInt(7) != 0) return; // Short-circuit the rest of this (looking at you, BlockSapling)
+            if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
+            if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
+            {
+                this.grow(worldIn, rand, pos, state);
+            }
+        }
+    }
 }

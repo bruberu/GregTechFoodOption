@@ -5,10 +5,6 @@ repositories {
         url "https://maven.shadowfacts.net/"
     }
     maven {
-        name = "ic2, forestry"
-        setUrl("https://maven.ic2.player.to/")
-    }
-    maven {
         name = "OpenComputers"
         url = "https://maven.cil.li/"
     }

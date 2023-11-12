@@ -26,7 +26,7 @@ dependencies {
     annotationProcessor "com.google.guava:guava:${guava_version}-jre"
     annotationProcessor "org.ow2.asm:asm-debug-all:${asm_debug_version}"
 
-    implementation 'zone.rong:mixinbooter:7.0'
+    implementation rfg.deobf("curse.maven:mixin-booter-419286:4828995")
 
     implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
     //implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4701483")
