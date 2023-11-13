@@ -48,7 +48,7 @@ public class BreadsChain {
                 .input(dust, Materials.Wheat, 4)
                 .fluidInputs(Water.getFluid(1000))
                 .outputs(DOUGH.getStackForm(4))
-                .notConsumable(IntCircuitIngredient.getIntegratedCircuit(3))
+                .circuitMeta(3)
                 .buildAndRegister();
 
         ModHandler.addShapelessRecipe("dough_2", DOUGH.getStackForm(2),

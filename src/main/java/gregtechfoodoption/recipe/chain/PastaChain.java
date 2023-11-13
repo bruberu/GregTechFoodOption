@@ -18,6 +18,7 @@ public class PastaChain {
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(120).duration(30)
                 .input(dust, Wheat, 1)
                 .fluidInputs(Water.getFluid(16))
+                .circuitMeta(4)
                 .outputs(PREMIXED_PASTA_DOUGH.getStackForm())
                 .buildAndRegister();
         MIXER_RECIPES.recipeBuilder().EUt(120).duration(600)
@@ -46,7 +47,7 @@ public class PastaChain {
                     .input(dust, Wheat, 1)
                     .fluidInputs(Water.getFluid(32))
                     .fluidInputs(Air.getFluid(1000))
-                    .circuitMeta(3)
+                    .circuitMeta(5)
                     .outputs(PASTA_DOUGH.getStackForm())
                     .buildAndRegister();
         }
