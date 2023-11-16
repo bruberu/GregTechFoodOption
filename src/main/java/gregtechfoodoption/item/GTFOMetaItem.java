@@ -398,6 +398,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     public static MetaItem<?>.MetaValueItem COCONUT;
 
+    public static MetaItem<?>.MetaValueItem KITCHEN_RECIPE;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -986,6 +988,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         RIGATONI_PASTA_DIE = addItem(250, "shape.pasta.rigatoni");
         LASAGNA_PASTA_DIE = addItem(251, "shape.pasta.lasagna");
 
+        KITCHEN_RECIPE = addItem(343, "utility.kitchen_recipe").addComponents(new GTFOKitchenRecipeBehaviour());
 
         {
             int heal = 44;
