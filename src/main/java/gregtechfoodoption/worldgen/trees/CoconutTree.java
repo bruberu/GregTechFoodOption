@@ -43,11 +43,11 @@ public class CoconutTree extends GTFOTree {
                 notifier.accept(world, posCopy, getNaturalLeavesState());
 
                 if (i == 1 || i == 2) {
-                    posCopy.move(EnumFacing.byHorizontalIndex(random.nextInt(sideVariance)));
+                    posCopy.move(EnumFacing.byHorizontalIndex(sideVariance));
                     notifier.accept(world, posCopy, getNaturalLeavesState());
                 }
             }
-            posCopy.move(EnumFacing.byHorizontalIndex(random.nextInt(sideVariance)));
+            posCopy.move(EnumFacing.byHorizontalIndex(sideVariance));
             notifier.accept(world, posCopy, getNaturalLeavesState());
         }
 
@@ -69,7 +69,7 @@ public class CoconutTree extends GTFOTree {
                         posCopy.move(EnumFacing.byHorizontalIndex(i).rotateY());
                         notifier.accept(world, posCopy, getNaturalLeavesState());
                     } else {
-                        posCopy.move(EnumFacing.byHorizontalIndex(i).rotateY());
+                        posCopy.move(EnumFacing.byHorizontalIndex(i).rotateYCCW());
                         notifier.accept(world, posCopy, getNaturalLeavesState());
                     }
                 }
