@@ -20,7 +20,7 @@ import stanhebben.zenscript.annotations.ZenProperty;
 public class GTFORecipeMaps {
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> SLICER_RECIPES = new RecipeMap<>("slicer",
-            1, 2, 1, 2, 0, 1, 0, 1, new SimpleRecipeBuilder(), false)
+            2, 2, 1, 1, new SimpleRecipeBuilder(), false)
             .setSound(GTSoundEvents.CUT)
             .setSlotOverlay(false, false, false, GTFOGuiTextures.SLICER_INPUT_OVERLAY)
             .setSlotOverlay(false, false, true, GTFOGuiTextures.SLICER_CUTTER_OVERLAY)
@@ -30,20 +30,20 @@ public class GTFORecipeMaps {
 
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> CUISINE_ASSEMBLER_RECIPES = new RecipeMap<>("cuisine_assembler",
-            0, 6, 0, 2, 0, 3, 0, 1, new SimpleRecipeBuilder(), false)
+            6, 2, 3, 1, new SimpleRecipeBuilder(), false)
             .setSound(GTSoundEvents.ASSEMBLER)
             .setSlotOverlay(false, false, true, GuiTextures.INT_CIRCUIT_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> MICROWAVE_RECIPES = new RecipeMap<>("microwave",
-            1, 1, 1, 1, 0, 0, 0, 0, new SimpleRecipeBuilder(), false)
+            1, 1, 0, 0, new SimpleRecipeBuilder(), false)
             .setSound(GTSoundEvents.ARC)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
     public static final RecipeMap<SimpleRecipeBuilder> MULTICOOKER_RECIPES = new RecipeMap<>("multicooker",
-            0, 6, 0, 3, 0, 3, 0, 2, new SimpleRecipeBuilder(), false)
+            6, 3, 3, 2, new SimpleRecipeBuilder(), false)
             .setSlotOverlay(false, true, GuiTextures.HEATING_OVERLAY_1)
             .setSound(GTSoundEvents.MIXER)
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
@@ -56,7 +56,7 @@ public class GTFORecipeMaps {
             .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
 
     @ZenProperty
-    public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 1, 2, 0, 1, 0, 0, 0, 0, new BakingOvenRecipeBuilder(), false)
+    public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 2, 1, 0, 0, new BakingOvenRecipeBuilder(), false)
             .setSound(GTSoundEvents.FURNACE)
             .onRecipeBuild(recipeBuilder -> {
                 if (recipeBuilder.getTemperature() != -1) {
@@ -72,12 +72,12 @@ public class GTFORecipeMaps {
             });
 
     @ZenProperty
-    public static final RecipeMap<MobProximityRecipeBuilder> MOB_EXTRACTOR_RECIPES = new RecipeMap<>("mob_extractor", 1, 1, 0, 1, 0, 0, 0, 1, new MobProximityRecipeBuilder(), false)
+    public static final RecipeMap<MobProximityRecipeBuilder> MOB_EXTRACTOR_RECIPES = new RecipeMap<>("mob_extractor", 1, 1, 0, 1, new MobProximityRecipeBuilder(), false)
             .setSlotOverlay(false, false, GuiTextures.INT_CIRCUIT_OVERLAY)
             .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressWidget.MoveType.HORIZONTAL)
             .setSound(GTSoundEvents.COMPRESSOR);
 
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMap<>("greenhouse", 2, 4, 1, 4, 0, 1, 0, 1, new SimpleRecipeBuilder(), false)
+    public static final RecipeMap<SimpleRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMap<>("greenhouse", 4, 4, 1, 1, new SimpleRecipeBuilder(), false)
             .setSound(GTSoundEvents.COOLING);
 }

@@ -88,15 +88,6 @@ public class ClientProxy extends CommonProxy {
     }
 
     @SubscribeEvent
-    public static void addWaterBucketFertilizerTooltip(@Nonnull ItemTooltipEvent event) {
-        ItemStack itemStack = event.getItemStack();
-
-        if (itemStack.getItem().equals(Items.WATER_BUCKET)) {
-            event.getToolTip().add(LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", 5));
-        }
-    }
-
-    @SubscribeEvent
     public static void removeOtherPlayerMessages(ClientChatReceivedEvent event) {
         if (Minecraft.getMinecraft().player.isPotionActive(AntiSchizoPotion.INSTANCE) && event.getType() == ChatType.CHAT) {
             if (event.getMessage() instanceof TextComponentTranslation chatMessage

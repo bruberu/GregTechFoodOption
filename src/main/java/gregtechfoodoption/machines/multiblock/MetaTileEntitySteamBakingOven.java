@@ -130,18 +130,20 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
         }
 
         @Override
-        public void writeInitialData(@Nonnull PacketBuffer buf) {
-            super.writeInitialData(buf);
+        public void writeInitialSyncData(@Nonnull PacketBuffer buf) {
+            super.writeInitialSyncData(buf);
             buf.writeInt(recipeSteamT);
         }
 
         @Override
-        public void receiveInitialData(@Nonnull PacketBuffer buf) {
-            super.receiveInitialData(buf);
+        public void receiveInitialSyncData(@Nonnull PacketBuffer buf) {
+            super.receiveInitialSyncData(buf);
             recipeSteamT = buf.readInt();
         }
 
-        protected long getMaxVoltage() {
+
+
+        public long getMaxVoltage() {
             return GTValues.V[4];
         }
 

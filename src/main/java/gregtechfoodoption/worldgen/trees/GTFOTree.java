@@ -196,34 +196,34 @@ public abstract class GTFOTree extends GTFOFeature {
                 .inputs(sapling)
                 .circuitMeta(1)
                 .fluidInputs(Materials.Water.getFluid(10000))
-                .outputs(GTUtility.copyAmount(6, log), sapling, getApple())
+                .outputs(GTUtility.copy(6, log), sapling, getApple())
                 .chancedOutput(sapling, 2000, 1000)
                 .buildAndRegister();
         GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)
                 .inputs(sapling)
                 .circuitMeta(2)
                 .fluidInputs(Materials.Water.getFluid(10000))
-                .outputs(GTUtility.copyAmount(5, log))
+                .outputs(GTUtility.copy(5, log))
                 .chancedOutput(sapling, 1000, 1000)
-                .outputs(GTUtility.copyAmount(20, leaves))
+                .outputs(GTUtility.copy(20, leaves))
                 .buildAndRegister();
         if (!this.getApple().isEmpty()) {
             GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(3000)
                     .inputs(sapling)
                     .circuitMeta(3)
                     .fluidInputs(Materials.Water.getFluid(20000))
-                    .outputs(GTUtility.copyAmount(5, log))
+                    .outputs(GTUtility.copy(5, log))
                     .chancedOutput(sapling, 8000, 200)
-                    .outputs(GTUtility.copyAmount(3, getApple()))
-                    .chancedOutput(GTUtility.copyAmount(2, getApple()), 4000, 500)
+                    .outputs(GTUtility.copy(3, getApple()))
+                    .chancedOutput(GTUtility.copy(2, getApple()), 4000, 500)
                     .buildAndRegister();
             GREENHOUSE_RECIPES.recipeBuilder().EUt(60).duration(2000)
                     .inputs(sapling, MetaItems.FERTILIZER.getStackForm(2))
                     .circuitMeta(4)
                     .fluidInputs(Materials.Water.getFluid(20000))
-                    .outputs(GTUtility.copyAmount(10, log), sapling)
+                    .outputs(GTUtility.copy(10, log), sapling)
                     .chancedOutput(sapling, 8000, 200)
-                    .outputs(GTUtility.copyAmount(3, getApple()))
+                    .outputs(GTUtility.copy(3, getApple()))
                     .buildAndRegister();
         }
         if (this.getSap() != null) {
@@ -232,7 +232,7 @@ public abstract class GTFOTree extends GTFOFeature {
                     .notConsumable(OrePrefix.toolHeadChainsaw, Steel)
                     .circuitMeta(5)
                     .fluidInputs(Materials.Water.getFluid(10000))
-                    .outputs(GTUtility.copyAmount(5, log))
+                    .outputs(GTUtility.copy(5, log))
                     .chancedOutput(sapling, 8000, 200)
                     .fluidOutputs(new FluidStack(this.getSap(), 4000))
                     .buildAndRegister();
@@ -241,7 +241,7 @@ public abstract class GTFOTree extends GTFOFeature {
                     .notConsumable(OrePrefix.toolHeadChainsaw, Steel)
                     .circuitMeta(6)
                     .fluidInputs(Materials.Water.getFluid(10000))
-                    .outputs(GTUtility.copyAmount(8, log))
+                    .outputs(GTUtility.copy(8, log))
                     .chancedOutput(sapling, 8000, 200)
                     .fluidOutputs(new FluidStack(this.getSap(), 16000))
                     .buildAndRegister();

@@ -2,9 +2,10 @@ package gregtechfoodoption;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
-import gregtech.api.fluids.MetaFluids;
-import gregtech.api.fluids.fluidType.FluidType;
-import gregtech.api.fluids.fluidType.FluidTypes;
+import gregtech.api.fluids.FluidBuilder;
+import gregtech.api.fluids.attribute.FluidAttribute;
+import gregtech.api.fluids.attribute.FluidAttributes;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -19,6 +20,8 @@ import gregtechfoodoption.item.GTFOProxyItem;
 import gregtechfoodoption.materials.FertilizerProperty;
 import gregtechfoodoption.materials.LacingProperty;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.Collections;
 
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.info.MaterialFlags.*;
@@ -66,20 +69,17 @@ public class GTFOMaterialHandler {
     public static final Material FryingOil = fluidBuilder(21509, "frying_oil")
             .color(0xffe3a1)
             .build();
-    public static final Material HotFryingOil = fluidBuilder(21510, "hot_frying_oil")
-            .fluidTemp(483)
+    public static final Material HotFryingOil = fluidBuilder(21510, "hot_frying_oil", 483)
             .color(0xffd166)
             .build();
     public static final Material StarchFilledWater = fluidBuilder(21511, "starch_filled_water")
             .color(0xd1cbbe)
             .build();
 
-    public static final Material MushroomSoup = fluidBuilder(21512, "mushroom_soup")
-            .fluidTemp(343)
+    public static final Material MushroomSoup = fluidBuilder(21512, "mushroom_soup", 343)
             .color(0xedcaaf)
             .build();
-    public static final Material BeetrootSoup = fluidBuilder(21513, "beetroot_soup")
-            .fluidTemp(343)
+    public static final Material BeetrootSoup = fluidBuilder(21513, "beetroot_soup", 343)
             .color(0xc25132)
             .build();
 
@@ -98,8 +98,7 @@ public class GTFOMaterialHandler {
     public static final Material WheySaltWaterMix = fluidBuilder(21518, "whey_salt_water_mix")
             .color(0xecfc7e)
             .build();
-    public static final Material HeatedRicottaStarter = fluidBuilder(21519, "heated_ricotta_starter")
-            .fluidTemp(348)
+    public static final Material HeatedRicottaStarter = fluidBuilder(21519, "heated_ricotta_starter", 348)
             .color(0xdef72f)
             .build();
     public static final Material AcidicMilkSolution = fluidBuilder(21520, "acidic_milk_solution")
@@ -134,19 +133,18 @@ public class GTFOMaterialHandler {
             .color(0x82661d)
             .build();
 
-    public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid", FluidTypes.ACID)
+    public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid", FluidAttributes.ACID)
             .components(Hydrogen, 1, Chlorine, 1, Oxygen, 4)
             .build();
     public static final Material ChloroauricAcid = GregTechAPI.materialManager.getMaterial("chloroauric_acid") != null ? GregTechAPI.materialManager.getMaterial("chloroauric_acid") :
-            fluidBuilder(21530, "chloroauric_acid", FluidTypes.ACID)
+            fluidBuilder(21530, "chloroauric_acid", FluidAttributes.ACID)
                     .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
                     .build();
 
-    public static final Material MoistAir = fluidBuilder(21531, "moist_air")
+    public static final Material MoistAir = gasBuilder(21531, "moist_air", 273)
             .color(0x82c8ff)
             .build();
-    public static final Material ColdMoistAir = fluidBuilder(21532, "cold_moist_air")
-            .fluidTemp(243)
+    public static final Material ColdMoistAir = gasBuilder(21532, "cold_moist_air", 243)
             .color(0x72a2ff)
             .build();
 
@@ -160,8 +158,7 @@ public class GTFOMaterialHandler {
             .color(0xffef82)
             .build();
 
-    public static final Material RabbitStew = fluidBuilder(21536, "rabbit_stew")
-            .fluidTemp(343)
+    public static final Material RabbitStew = fluidBuilder(21536, "rabbit_stew", 343)
             .color(0xe0c0a0)
             .build();
 
@@ -180,7 +177,7 @@ public class GTFOMaterialHandler {
             .flags(DISABLE_DECOMPOSITION)
             .build()
             .setFormula("C17H35COONa", true);
-    public static final Material CitricAcid = fluidBuilder(21540, "citric_acid", FluidTypes.ACID)
+    public static final Material CitricAcid = fluidBuilder(21540, "citric_acid", FluidAttributes.ACID)
             .color(0xccbd61)
             .components(Carbon, 5, Hydrogen, 7, Oxygen, 5)
             .build()
@@ -230,7 +227,7 @@ public class GTFOMaterialHandler {
             .color(0xc9c7ab)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 2)
             .build();
-    public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid", FluidTypes.ACID)
+    public static final Material GlyoxylicAcid = fluidBuilder(21554, "glyoxylic_acid", FluidAttributes.ACID)
             .color(0xd9d5a0)
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 3)
             .build();
@@ -239,20 +236,17 @@ public class GTFOMaterialHandler {
             .color(0xfc7996)
             .build();
 
-    public static final Material MoltenUnsweetenedChocolate = fluidBuilder(21556, "molten_unsweetened_chocolate")
+    public static final Material MoltenUnsweetenedChocolate = fluidBuilder(21556, "molten_unsweetened_chocolate", 370)
             .color(0x7b3f00)
-            .fluidTemp(370)
             .build();
     public static final Material CocoaButter = fluidBuilder(21557, "cocoa_butter")
             .color(0xe5dbce)
             .build();
-    public static final Material MoltenDarkChocolate = fluidBuilder(21558, "molten_dark_chocolate")
+    public static final Material MoltenDarkChocolate = fluidBuilder(21558, "molten_dark_chocolate", 360)
             .color(0x490206)
-            .fluidTemp(360)
             .build();
-    public static final Material MoltenMilkChocolate = fluidBuilder(21559, "molten_milk_chocolate")
+    public static final Material MoltenMilkChocolate = fluidBuilder(21559, "molten_milk_chocolate", 350)
             .color(0x84563c)
-            .fluidTemp(350)
             .build();
 
     public static final Material SodiumArseniteSolution = fluidBuilder(21560, "sodium_arsenite_solution")
@@ -263,7 +257,7 @@ public class GTFOMaterialHandler {
     public static final Material RubberSap = fluidBuilder(21561, "rubber_sap")
             .color(0xf7f6dc)
             .build();
-    public static final Material RainbowSap = fluidBuilder(21562, "rainbow_sap")
+    public static final Material RainbowSap = fluidBuilderCustom(21562, "rainbow_sap")
             .color(0xffffff)
             .build();
     public static final Material BlueVitriol = GregTechAPI.materialManager.getMaterial("blue_vitriol") != null ? GregTechAPI.materialManager.getMaterial("blue_vitriol") :
@@ -290,9 +284,8 @@ public class GTFOMaterialHandler {
             .components(Sodium, 2, Sulfur, 1, Oxygen, 4)
             .build();
 
-    public static final Material Blood = fluidBuilder(21569, "blood")
+    public static final Material Blood = fluidBuilder(21569, "blood", 310)
             .color(0x691a15)
-            .fluidTemp(310)
             .build();
 
     public static final Material FertilizerSolution = fluidBuilder(21570, "fertilizer_solution")
@@ -341,8 +334,7 @@ public class GTFOMaterialHandler {
             .build()
             .setFormula("C6H5NH2", true);
 
-    public static final Material HeatedWater = fluidBuilder(21583, "heated_water")
-            .fluidTemp(343)
+    public static final Material HeatedWater = fluidBuilder(21583, "heated_water", 343)
             .color(0x024B86)
             .build();
     public static final Material GelatinSolution = fluidBuilder(21584, "gelatin_solution")
@@ -406,12 +398,10 @@ public class GTFOMaterialHandler {
     public static final Material CarbonaraSauce = fluidBuilder(21603, "carbonara_sauce")
             .color(0xCDAF44)
             .build();
-    public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base")
-            .fluidTemp(343)
+    public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base", 343)
             .color(0xD4592F)
             .build();
-    public static final Material MixedPastaEFagioli = fluidBuilder(21605, "mixed_pasta_e_fagioli")
-            .fluidTemp(343)
+    public static final Material MixedPastaEFagioli = fluidBuilder(21605, "mixed_pasta_e_fagioli", 343)
             .color(0xE48628)
             .build();
 
@@ -481,12 +471,10 @@ public class GTFOMaterialHandler {
             .components(Water, 1, SodaAsh, 1)
             .build();
 
-    public static final Material Coffee = fluidBuilder(21990, "coffee")
-            .fluidTemp(368)
+    public static final Material Coffee = fluidBuilder(21990, "coffee", 368)
             .color(0x36312e)
             .build();
-    public static final Material EnergizedCoffee = fluidBuilder(21991, "energized_coffee")
-            .fluidTemp(368)
+    public static final Material EnergizedCoffee = fluidBuilder(21991, "energized_coffee", 368)
             .color(0x695934)
             .build();
 
@@ -617,30 +605,33 @@ public class GTFOMaterialHandler {
         Water.setProperty(FERTILIZER, new FertilizerProperty(5));
         Blood.setProperty(FERTILIZER, new FertilizerProperty(30));
         FertilizerSolution.setProperty(FERTILIZER, new FertilizerProperty(15));
-
-        HydrogenCyanide.setProperty(LACING, new LacingProperty());
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
-        return new Material.Builder(id, gtfoId("gtfo_" + name)).fluid();
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid();
+    }
+    public static Material.Builder fluidBuilderCustom(int id, String name) {
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().customStill());
+    }
+    public static Material.Builder gasBuilder(int id, String name, int temp) {
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).gas(new FluidBuilder().temperature(temp));
+    }
+    public static Material.Builder fluidBuilder(int id, String name, FluidAttribute attribute) {
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().attribute(attribute));
     }
 
-    public static Material.Builder fluidBuilder(int id, String name, FluidType type) {
-        return new Material.Builder(id, gtfoId("gtfo_" + name)).fluid(type);
-    }
-
-    public static void customFluidTextures() {
-        MetaFluids.setMaterialFluidTexture(GTFOMaterialHandler.RainbowSap, FluidTypes.LIQUID);
+    public static Material.Builder fluidBuilder(int id, String name, int temp) {
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().temperature(temp));
     }
 
     public static void registerFertilizerTooltips() {
         for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
             FertilizerProperty fertilizerProperty = material.getProperty(FERTILIZER);
             if (fertilizerProperty != null)
-                FluidTooltipUtil.registerTooltip(material.getFluid(), LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", fertilizerProperty.getBoostPercentage()));
+                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", fertilizerProperty.getBoostPercentage())));
             LacingProperty lacingProperty = material.getProperty(LACING);
             if (lacingProperty != null)
-                FluidTooltipUtil.registerTooltip(material.getFluid(), LocalizationUtils.format("gregtechfoodoption.fluid.lacing"));
+                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.lacing")));
         }
     }
 

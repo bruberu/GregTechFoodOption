@@ -33,7 +33,7 @@ public class GTFORootCrop extends GTFOCrop {
                 drops.add(this.crop.copy());
             }
         } else if (age >= this.getMaxAge()) {
-            drops.add(GTUtility.copyAmount(3 + fortune, this.seed));
+            drops.add(GTUtility.copy(3 + fortune, this.seed));
         }
 
     }
@@ -61,8 +61,8 @@ public class GTFORootCrop extends GTFOCrop {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (this.getAge(state) >= this.getMaxAge()) {
-            Random rand = world instanceof World ? ((World) world).rand : new Random();
-            spawnAsEntity(world, pos, GTUtility.copyAmount(rand.nextInt(2) + 1, this.seed));
+            Random rand = world.rand;
+            spawnAsEntity(world, pos, GTUtility.copy(rand.nextInt(2) + 1, this.seed));
             world.setBlockState(pos, this.withAge(this.getAge(state) - 1), 2);
         }
 

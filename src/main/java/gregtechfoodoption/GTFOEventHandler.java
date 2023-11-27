@@ -64,7 +64,6 @@ public class GTFOEventHandler {
             GTFOGAMaterialHandler gtfogaMaterials = new GTFOGAMaterialHandler();
             GTFOGAMaterialHandler.onMaterialsInit();
         }
-        GTFOMaterialHandler.customFluidTextures();
 
     }
 

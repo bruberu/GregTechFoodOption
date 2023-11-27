@@ -11,7 +11,7 @@ import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IActiveOutputSide;
 import gregtech.api.capability.IControllable;
 import gregtech.api.capability.impl.NotifiableItemStackHandler;
-import gregtech.api.cover.ICoverable;
+import gregtech.api.cover.CoverRayTracer;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.widgets.SlotWidget;
@@ -96,7 +96,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         if (this.getOffsetTimer() % ticksPerAction != 0 || !isWorking || !isWorkingEnabled)
             return;
         if (this.getWorld().isRemote) {
-            GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(getWorld(),
+            GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(this,
                     new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
                     new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
                     ticksPerAction * 3));
@@ -280,11 +280,11 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
 
 
     protected IItemHandlerModifiable createImportItemHandler() {
-        return new NotifiableItemStackHandler(9, this, false);
+        return new NotifiableItemStackHandler(this, 9, this, false);
     }
 
     protected IItemHandlerModifiable createExportItemHandler() {
-        return new NotifiableItemStackHandler(9, this, true);
+        return new NotifiableItemStackHandler(this,9, this, true);
     }
 
     @Override
@@ -427,7 +427,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
 
     @Override
     public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult) {
-        EnumFacing hitFacing = ICoverable.determineGridSideHit(hitResult);
+        EnumFacing hitFacing = CoverRayTracer.determineGridSideHit(hitResult);
         if (facing == getOutputFacing() || (hitFacing == getOutputFacing() && playerIn.isSneaking())) {
             if (!getWorld().isRemote) {
                 if (isAllowInputFromOutputSideItems()) {

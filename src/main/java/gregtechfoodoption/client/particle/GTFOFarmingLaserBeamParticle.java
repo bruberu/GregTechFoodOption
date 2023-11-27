@@ -1,20 +1,27 @@
 package gregtechfoodoption.client.particle;
 
 import codechicken.lib.vec.Vector3;
+import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.client.particle.GTLaserBeamParticle;
+import gregtech.client.utils.EffectRenderContext;
+import gregtechfoodoption.machines.farmer.MetaTileEntityFarmer;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class GTFOFarmingLaserBeamParticle extends GTLaserBeamParticle {
 
-    public GTFOFarmingLaserBeamParticle(World worldIn, Vector3 startPos, Vector3 endPos, int maxAge) {
-        super(worldIn, startPos, endPos);
+    private int particleAge;
+    private final int particleMaxAge;
+    public GTFOFarmingLaserBeamParticle(MetaTileEntity mte, Vector3 startPos, Vector3 endPos, int maxAge) {
+        super(mte, startPos, endPos);
         this.particleAge = 0;
         this.particleMaxAge = maxAge;
         this.setBody(new ResourceLocation("gregtech", "textures/fx/laser/laser.png"));
         this.setHead(new ResourceLocation("gregtech", "textures/fx/laser/laser_start.png"));
+        this.setEmit(1f);
     }
 
     @Override
@@ -25,14 +32,17 @@ public class GTFOFarmingLaserBeamParticle extends GTLaserBeamParticle {
     @Override
     public void onUpdate() {
         super.onUpdate();
-        if (!isExpired) {
-            this.setAlphaF(1f - ((float) particleAge / particleMaxAge));
+        if (particleAge != particleMaxAge) {
+            this.setAlpha(1f - ((float) particleAge / particleMaxAge));
+            particleAge++;
+        } else {
+            this.setExpired();
         }
     }
 
     @Override
-    public void renderParticle(BufferBuilder buffer, Entity entityIn, float partialTicks, float rotationX, float rotationZ, float rotationYZ, float rotationXY, float rotationXZ) {
+    public void renderParticle(@NotNull BufferBuilder buffer, @NotNull EffectRenderContext context) {
         this.setAlpha(1f - ((float) particleAge / particleMaxAge));
-        super.renderParticle(buffer, entityIn, partialTicks, rotationX, rotationZ, rotationYZ, rotationXY, rotationXZ);
+        super.renderParticle(buffer, context);
     }
 }

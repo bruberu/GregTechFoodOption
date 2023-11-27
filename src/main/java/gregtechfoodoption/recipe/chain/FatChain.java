@@ -10,6 +10,7 @@ import gregtech.common.items.MetaItems;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 
@@ -28,7 +29,7 @@ import static gregtechfoodoption.item.GTFOMetaItem.SCRAP_MEAT;
 
 public class FatChain {
     public static void init() {
-        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), new UnificationEntry(dust, Meat), new UnificationEntry(dust, Meat), FluidUtil.getFilledBucket(Water.getFluid(1000)));
+        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), new UnificationEntry(dust, Meat), new UnificationEntry(dust, Meat), FluidUtil.getFilledBucket(new FluidStack(FluidRegistry.WATER, 1000)));
         GTFOUtils.getMeat().forEach(itemStack -> {
             ArrayList<ItemStack> input = new ArrayList<>();
             input.add(itemStack);
