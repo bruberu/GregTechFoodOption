@@ -1,44 +1,31 @@
 package gregtechfoodoption.integration.jei;
 
-import gregtech.api.gui.impl.ModularUIContainer;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.category.GTRecipeCategory;
-import gregtech.api.recipes.machines.IScannerRecipeMap;
 import gregtech.common.metatileentities.MetaTileEntities;
-import gregtech.integration.jei.recipe.GTRecipeWrapper;
+import gregtech.integration.jei.utils.ModularUIGuiHandler;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.item.food.GTFOFoodUseManager;
 import gregtechfoodoption.potion.LacingEntry;
-import it.unimi.dsi.fastutil.objects.ObjectArrays;
-import it.unimi.dsi.fastutil.objects.ObjectSet;
 import it.unimi.dsi.fastutil.objects.ObjectSets;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
-import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
-import mezz.jei.api.recipe.transfer.IRecipeTransferError;
-import mezz.jei.api.recipe.transfer.IRecipeTransferHandler;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @JEIPlugin
 public class JEIGTFOPlugin implements IModPlugin {
@@ -54,10 +41,11 @@ public class JEIGTFOPlugin implements IModPlugin {
     @Override
     public void register(@Nonnull IModRegistry registry) {
         iRecipeTransferRegistry = registry.getRecipeTransferRegistry();
+        ModularUIGuiHandler kitchenGuiHandler = new ModularUIGuiHandler(registry.getJeiHelpers().recipeTransferHandlerHelper());
         for (RecipeMap<?> recipeMap : RecipeMap.getRecipeMaps()) {
             if (!recipeMap.isHidden) {
                 for (Map.Entry<GTRecipeCategory, List<Recipe>> entry : recipeMap.getRecipesByCategory().entrySet()) {
-                    iRecipeTransferRegistry.addRecipeTransferHandler(new GTFORecipeTransferHandler(), entry.getKey().getUniqueID());
+                    registry.getRecipeTransferRegistry().addRecipeTransferHandler(kitchenGuiHandler, entry.getKey().getUniqueID());
                 }
             }
         }
@@ -100,20 +88,6 @@ public class JEIGTFOPlugin implements IModPlugin {
                     }
                 }
             }
-        }
-    }
-
-    private class GTFORecipeTransferHandler implements IRecipeTransferHandler {
-
-        @Override
-        public Class getContainerClass() {
-            return ModularUIContainer.class;
-        }
-
-        @Nullable
-        @Override
-        public IRecipeTransferError transferRecipe(Container container, IRecipeLayout recipeLayout, EntityPlayer player, boolean maxTransfer, boolean doTransfer) {
-            return null;
         }
     }
 }

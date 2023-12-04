@@ -1,4 +1,4 @@
-package gregtechfoodoption.machines.multiblock;
+package gregtechfoodoption.machines.multiblock.kitchen;
 
 import gregtech.api.gui.ModularUI;
 import gregtech.api.metatileentity.MetaTileEntity;
