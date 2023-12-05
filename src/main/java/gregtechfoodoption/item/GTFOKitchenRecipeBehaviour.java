@@ -18,9 +18,9 @@ import net.minecraft.world.World;
 public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour {
     @Override
     public ModularUI createUI(PlayerInventoryHolder playerInventoryHolder, EntityPlayer entityPlayer) {
-        ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 186, 263);
+        ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 260, 140);
         ItemStack stack = playerInventoryHolder.getCurrentItem();
-        builder.widget(new KitchenRecipeWidget(10, 10, 166, 243,
+        builder.widget(new KitchenRecipeWidget(10, 10, 220, 243,
                 getRecipeCount(stack),
                 (tag) -> addRecipe(stack, tag),
                 (index) -> getRecipe(stack, index)));
@@ -45,7 +45,7 @@ public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour
             return null;
 
         if (stack.getTagCompound() == null)
-            throw new IllegalStateException("ItemStack has no NBT");
+            return null;
         return stack.getTagCompound().getCompoundTag("recipe" + index);
     }
 

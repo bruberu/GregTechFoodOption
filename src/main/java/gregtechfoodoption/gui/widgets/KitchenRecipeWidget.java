@@ -2,14 +2,12 @@ package gregtechfoodoption.gui.widgets;
 
 import gregtech.api.gui.impl.ModularUIContainer;
 import gregtech.api.gui.ingredient.IRecipeTransferHandlerWidget;
-import gregtech.api.gui.widgets.AbstractWidgetGroup;
-import gregtech.api.gui.widgets.ClickButtonWidget;
-import gregtech.api.gui.widgets.DynamicLabelWidget;
-import gregtech.api.gui.widgets.LabelWidget;
+import gregtech.api.gui.widgets.*;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.util.Position;
 import gregtech.api.util.Size;
 import gregtech.integration.jei.recipe.GTRecipeWrapper;
+import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.machines.multiblock.kitchen.FluidStackInfo;
@@ -36,17 +34,38 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
     private Function<Integer, NBTTagCompound> loadingFunction;
     private Consumer<NBTTagCompound> savingFunction;
     private int recipeCount;
+    private int recipeShown;
     private PhantomRecipeWidget recipeWidget;
     private ClickButtonWidget leftArrowWidget;
     private ClickButtonWidget rightArrowWidget;
-    private DynamicLabelWidget recipeCountLabel;
+    private SimpleTextWidget recipeCountLabel;
     public KitchenRecipeWidget(int x, int y, int width, int height, int recipeCount, Consumer<NBTTagCompound> savingFunction, Function<Integer, NBTTagCompound> loadingFunction) {
         super(new Position(x, y), new Size(width, height));
         recipeWidget = new PhantomRecipeWidget(x, y);
+
         addWidget(recipeWidget);
         this.savingFunction = savingFunction;
         this.loadingFunction = loadingFunction;
         this.recipeCount = recipeCount;
+
+        this.recipeWidget.deserializeNBT(loadingFunction.apply(0));
+
+        recipeShown = 0;
+
+        leftArrowWidget = new ClickButtonWidget(x, y + 100, 9, 9, "", (data) -> {
+            recipeShown = Math.max(recipeShown - 1, 0);
+            this.recipeWidget.deserializeNBT(loadingFunction.apply(recipeShown));
+            this.detectAndSendChanges();
+        }).setButtonTexture(GTFOGuiTextures.BUTTON_LEFT);
+        addWidget(leftArrowWidget);
+        rightArrowWidget = new ClickButtonWidget(x + width - 9, y + 100, 9, 9, "", (data) -> {
+            recipeShown = Math.min(recipeShown + 1, recipeCount - 1);
+            this.recipeWidget.deserializeNBT(loadingFunction.apply(recipeShown));
+            this.detectAndSendChanges();
+        }).setButtonTexture(GTFOGuiTextures.BUTTON_RIGHT);
+        addWidget(rightArrowWidget);
+        recipeCountLabel = new SimpleTextWidget(x + width / 2 - 20, y + 100, "", 0x666666, () -> "Recipe: " + (recipeShown + 1) + "/" + recipeCount);
+        addWidget(recipeCountLabel);
     }
 
     @Override
@@ -58,6 +77,7 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
                 this.recipeWidget.deserializeNBT(tag);
                 savingFunction.accept(tag);
                 recipeCount++;
+                recipeShown = recipeCount - 1;
             } catch (IOException e) {
                 GTFOLog.logger.warn("Failed to read recipe NBT for the kitchen", e);
             }
