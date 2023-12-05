@@ -42,6 +42,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nullable;
@@ -96,10 +98,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         if (this.getOffsetTimer() % ticksPerAction != 0 || !isWorking || !isWorkingEnabled)
             return;
         if (this.getWorld().isRemote) {
-            GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(this,
-                    new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
-                    new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
-                    ticksPerAction * 3));
+            operateClient();
             updateOperationPosition();
             return;
         }
@@ -109,6 +108,14 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         if (operationPosition == null || workingArea == null)
             setupWorkingArea();
         operateServer();
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void operateClient() {
+        GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(this,
+                new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
+                new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
+                ticksPerAction * 3));
     }
 
     public void operateServer() {
