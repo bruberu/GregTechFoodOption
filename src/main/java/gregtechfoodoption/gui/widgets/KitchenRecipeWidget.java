@@ -85,7 +85,7 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
     }
 
     @Override
-    public String transferRecipe(ModularUIContainer modularUIContainer, IRecipeLayout recipeLayout, EntityPlayer entityPlayer, boolean b, boolean b1) {
+    public String transferRecipe(ModularUIContainer modularUIContainer, IRecipeLayout recipeLayout, EntityPlayer entityPlayer, boolean maxTransfer, boolean doTransfer) {
         Recipe recipe; // Only way to get the wrapper :P
         if (recipeLayout instanceof RecipeLayout) {
             IRecipeWrapper recipeWrapper = ObfuscationReflectionHelper.getPrivateValue(RecipeLayout.class, (RecipeLayout) recipeLayout, "recipeWrapper");
@@ -96,16 +96,6 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
             }
         } else {
             return "Uh I don't know how you got here!";
-        }
-
-        List<ItemStackInfo> inputs = new ArrayList<>();
-        for (int i = 0; i < recipe.getInputs().size(); i++) {
-            inputs.add(new ItemStackInfo(recipeLayout.getItemStacks().getGuiIngredients().get(i).getDisplayedIngredient(), recipe.getInputs().get(i).isNonConsumable()));
-        }
-
-        List<FluidStackInfo> fluidInputs = new ArrayList<>();
-        for (int i = 0; i < recipe.getFluidInputs().size(); i++) {
-            fluidInputs.add(new FluidStackInfo(recipeLayout.getFluidStacks().getGuiIngredients().get(i).getDisplayedIngredient(), recipe.getFluidInputs().get(i).isNonConsumable()));
         }
 
         List<ItemStack> outputs = recipe.getOutputs(); // No need to worry about chanced outputs.
@@ -122,6 +112,20 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         if (!isGTFO) {
             return "Kitchens only process GTFO recipes!";
         }
+
+        if (!doTransfer)
+            return null;
+
+        List<ItemStackInfo> inputs = new ArrayList<>();
+        for (int i = 0; i < recipe.getInputs().size(); i++) {
+            inputs.add(new ItemStackInfo(recipeLayout.getItemStacks().getGuiIngredients().get(i).getDisplayedIngredient(), recipe.getInputs().get(i).isNonConsumable()));
+        }
+
+        List<FluidStackInfo> fluidInputs = new ArrayList<>();
+        for (int i = 0; i < recipe.getFluidInputs().size(); i++) {
+            fluidInputs.add(new FluidStackInfo(recipeLayout.getFluidStacks().getGuiIngredients().get(i).getDisplayedIngredient(), recipe.getFluidInputs().get(i).isNonConsumable()));
+        }
+
 
         writeClientAction(2, buf -> {
             NBTTagCompound tag = new NBTTagCompound();

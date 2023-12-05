@@ -5,7 +5,6 @@ import gregtech.api.gui.ModularUI;
 import gregtech.api.items.gui.ItemUIFactory;
 import gregtech.api.items.gui.PlayerInventoryHolder;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.common.items.MetaItems;
 import gregtechfoodoption.gui.widgets.KitchenRecipeWidget;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -68,7 +68,7 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
             this.nonConsumableItems[i] = inputs.getBoolean("nonConsumable" + i);
         }
         for (int i = 0; i < this.fluidInputs.length; ++i) {
-            this.fluidInputs[i] = new FluidTank(0).readFromNBT(fluidInputs.getCompoundTag("fluid" + i));
+            this.fluidInputs[i].readFromNBT(fluidInputs.getCompoundTag("fluid" + i));
             this.nonConsumableFluids[i] = fluidInputs.getBoolean("nonConsumable" + i);
         }
 
@@ -76,7 +76,7 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
             this.outputs.setStackInSlot(i, new ItemStack(outputs.getCompoundTag("item" + i)));
         }
         for (int i = 0; i < this.fluidOutputs.length; ++i) {
-            this.fluidOutputs[i] = new FluidTank(0).readFromNBT(fluidOutputs.getCompoundTag("fluid" + i));
+            this.fluidOutputs[i].readFromNBT(fluidOutputs.getCompoundTag("fluid" + i));
         }
 
     }
