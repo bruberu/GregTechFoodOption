@@ -22,6 +22,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.items.ItemStackHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,8 +40,12 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
     private ClickButtonWidget leftArrowWidget;
     private ClickButtonWidget rightArrowWidget;
     private SimpleTextWidget recipeCountLabel;
+    private PhantomSlotWidget finalResultSlot;
+    private ItemStackHandler finalResult = new ItemStackHandler(1);
     public KitchenRecipeWidget(int x, int y, int width, int height, int recipeCount, Consumer<NBTTagCompound> savingFunction, Function<Integer, NBTTagCompound> loadingFunction) {
         super(new Position(x, y), new Size(width, height));
+        finalResultSlot = new PhantomSlotWidget(finalResult, 0, 10, y + height / 2 - 10);
+        addWidget(finalResultSlot);
         recipeWidget = new PhantomRecipeWidget(x, y);
 
         addWidget(recipeWidget);

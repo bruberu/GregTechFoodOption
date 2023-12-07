@@ -29,7 +29,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:mixin-booter-419286:4828995")
 
     implementation "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
-    //implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4701483")
+    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:4924179")
     implementation "team.chisel.ctm:CTM:MC${project.minecraft.version}-1.0.2.31"
     //provided files("libs/gregicality-1.12.2-0.23.1.jar")
     implementation "codechicken:ChickenASM:1.12-1.0.2.9"

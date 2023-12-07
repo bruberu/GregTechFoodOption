@@ -23,6 +23,7 @@ public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour
                 getRecipeCount(stack),
                 (tag) -> addRecipe(stack, tag),
                 (index) -> getRecipe(stack, index)));
+        builder.bindPlayerInventory(entityPlayer.inventory);
         return builder.build(playerInventoryHolder, entityPlayer);
     }
 
