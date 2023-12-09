@@ -1,5 +1,6 @@
 package gregtechfoodoption.gui.widgets;
 
+import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.impl.ModularUIContainer;
 import gregtech.api.gui.ingredient.IRecipeTransferHandlerWidget;
 import gregtech.api.gui.widgets.*;
@@ -17,12 +18,15 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.gui.recipes.RecipeLayout;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ClickType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,13 +44,30 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
     private ClickButtonWidget leftArrowWidget;
     private ClickButtonWidget rightArrowWidget;
     private SimpleTextWidget recipeCountLabel;
-    private PhantomSlotWidget finalResultSlot;
-    private ItemStackHandler finalResult = new ItemStackHandler(1);
-    public KitchenRecipeWidget(int x, int y, int width, int height, int recipeCount, Consumer<NBTTagCompound> savingFunction, Function<Integer, NBTTagCompound> loadingFunction) {
+    private SlotWidget finalResultSlot;
+    private ItemStackHandler finalResult = new ItemStackHandler(1) {
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (stack.getItem() instanceof GTFOMetaItem || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM)) {
+                return super.insertItem(slot, stack, simulate);
+            }
+            return stack;
+        }
+    };
+
+    private List<ItemStack> neededInputs = new ArrayList<>();
+    private List<FluidStack> neededFluidInputs = new ArrayList<>();
+    public KitchenRecipeWidget(int x, int y, int width, int height, int recipeCount, Consumer<NBTTagCompound> savingFunction, Function<Integer, NBTTagCompound> loadingFunction, Consumer<ItemStack> resultItemConsumer, ItemStack finalResultStack) {
         super(new Position(x, y), new Size(width, height));
-        finalResultSlot = new PhantomSlotWidget(finalResult, 0, 10, y + height / 2 - 10);
+        if (finalResultStack != null) {
+            finalResult.setStackInSlot(0, finalResultStack);
+        }
+        finalResultSlot = new PhantomSlotWidget(finalResult, 0, x + 10, y).setTooltipText("gregtechfoodoption.kitchen.recipe.warn");
+        finalResultSlot.setChangeListener(() -> resultItemConsumer.accept(finalResult.getStackInSlot(0)));
+        finalResultSlot.setBackgroundTexture(GuiTextures.SLOT);
         addWidget(finalResultSlot);
-        recipeWidget = new PhantomRecipeWidget(x, y);
+        recipeWidget = new PhantomRecipeWidget(x, y + 10);
 
         addWidget(recipeWidget);
         this.savingFunction = savingFunction;
@@ -57,20 +78,21 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
 
         recipeShown = 0;
 
-        leftArrowWidget = new ClickButtonWidget(x, y + 100, 9, 9, "", (data) -> {
-            recipeShown = Math.max(recipeShown - 1, 0);
-            this.recipeWidget.deserializeNBT(loadingFunction.apply(recipeShown));
-            this.detectAndSendChanges();
-        }).setButtonTexture(GTFOGuiTextures.BUTTON_LEFT);
+        leftArrowWidget = new ClickButtonWidget(x, y + 120, 9, 9, "", (data) -> {
+            setRecipeShown(Math.max(getRecipeShown() - 1, 0));
+            this.recipeWidget.deserializeNBT(loadingFunction.apply(getRecipeShown()));
+        }).setButtonTexture(GTFOGuiTextures.BUTTON_LEFT).setShouldClientCallback(true);
         addWidget(leftArrowWidget);
-        rightArrowWidget = new ClickButtonWidget(x + width - 9, y + 100, 9, 9, "", (data) -> {
-            recipeShown = Math.min(recipeShown + 1, recipeCount - 1);
-            this.recipeWidget.deserializeNBT(loadingFunction.apply(recipeShown));
-            this.detectAndSendChanges();
-        }).setButtonTexture(GTFOGuiTextures.BUTTON_RIGHT);
+        rightArrowWidget = new ClickButtonWidget(x + width - 9, y + 120, 9, 9, "", (data) -> {
+            setRecipeShown(Math.min(getRecipeShown() + 1, getRecipeCount() - 1));
+            this.recipeWidget.deserializeNBT(loadingFunction.apply(getRecipeShown()));
+        }).setButtonTexture(GTFOGuiTextures.BUTTON_RIGHT).setShouldClientCallback(true);
         addWidget(rightArrowWidget);
-        recipeCountLabel = new SimpleTextWidget(x + width / 2 - 20, y + 100, "", 0x666666, () -> "Recipe: " + (recipeShown + 1) + "/" + recipeCount);
+        recipeCountLabel = new SimpleTextWidget(x + width / 2, y + 120, "", 0x666666, () -> "Recipe: " + (getRecipeShown() + 1) + "/" + getRecipeCount(), true);
         addWidget(recipeCountLabel);
+
+        getNeededInputs();
+        getNeededFluidInputs();
     }
 
     @Override
@@ -89,8 +111,48 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         }
     }
 
+    protected void getNeededInputs() {
+        neededInputs.clear();
+        for (int i = 0; i < recipeCount; i++) {
+            NBTTagCompound recipe = loadingFunction.apply(i);
+            NBTTagCompound inputs = recipe.getCompoundTag("inputs");
+            for (int item = 0; item < inputs.getInteger("size"); item++) {
+                ItemStack stack = new ItemStack(inputs.getCompoundTag("item" + item));
+                stack.setCount(1);
+                neededInputs.add(stack);
+            }
+        }
+        neededInputs.add(finalResult.getStackInSlot(0));
+    }
+
+    protected void getNeededFluidInputs() {
+        neededFluidInputs.clear();
+        for (int i = 0; i < recipeCount; i++) {
+            NBTTagCompound recipe = loadingFunction.apply(i);
+            NBTTagCompound fluidInputs = recipe.getCompoundTag("fluidInputs");
+            for (int item = 0; item < fluidInputs.getInteger("size"); item++) {
+                FluidStack stack = FluidStack.loadFluidStackFromNBT(fluidInputs.getCompoundTag("fluid" + item));
+                neededFluidInputs.add(stack);
+            }
+        }
+    }
+
+    public int getRecipeCount() {
+        return recipeCount;
+    }
+
+    public int getRecipeShown() {
+        return recipeShown;
+    }
+
+    public void setRecipeShown(int recipeShown) {
+        this.recipeShown = recipeShown;
+    }
+
     @Override
     public String transferRecipe(ModularUIContainer modularUIContainer, IRecipeLayout recipeLayout, EntityPlayer entityPlayer, boolean maxTransfer, boolean doTransfer) {
+        getNeededInputs();
+        getNeededFluidInputs();
         Recipe recipe; // Only way to get the wrapper :P
         if (recipeLayout instanceof RecipeLayout) {
             IRecipeWrapper recipeWrapper = ObfuscationReflectionHelper.getPrivateValue(RecipeLayout.class, (RecipeLayout) recipeLayout, "recipeWrapper");
@@ -100,22 +162,30 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
                 return "This only works on GTCEu recipes!";
             }
         } else {
-            return "Uh I don't know how you got here!";
+            return "Uh I don't know how you got here, but apparently you're not looking at a recipe?!";
         }
 
         List<ItemStack> outputs = recipe.getOutputs(); // No need to worry about chanced outputs.
 
         boolean isGTFO = false;
+        boolean isUseful = false; // Will be true if the recipe actually has an item in it that is in the current recipe list.
         if (outputs.stream().anyMatch(itemStack -> itemStack.getItem() instanceof GTFOMetaItem || itemStack.getItem().equals(GTFOMetaItems.SHAPED_ITEM))) {
             isGTFO = true;
         }
+        if (outputs.parallelStream().anyMatch(itemStack -> this.neededInputs.stream().anyMatch(itemStack::isItemEqual)))
+            isUseful = true;
 
         List<FluidStack> fluidOutputs = recipe.getFluidOutputs();
         if (fluidOutputs.stream().anyMatch(fluidStack -> fluidStack.getFluid().getName().startsWith("gtfo_"))) {
             isGTFO = true;
         }
+        if (fluidOutputs.parallelStream().anyMatch(fluidStack -> this.neededFluidInputs.stream().anyMatch(fluidStack1 -> fluidStack1.isFluidEqual(fluidStack))))
+            isUseful = true;
         if (!isGTFO) {
             return "Kitchens only process GTFO recipes!";
+        }
+        if (!isUseful) {
+            return "This doesn't output anything used in the target item or another recipe!";
         }
 
         if (!doTransfer)
@@ -131,49 +201,54 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
             fluidInputs.add(new FluidStackInfo(recipeLayout.getFluidStacks().getGuiIngredients().get(i).getDisplayedIngredient(), recipe.getFluidInputs().get(i).isNonConsumable()));
         }
 
+        NBTTagCompound tag = new NBTTagCompound();
+        NBTTagCompound inputTag = new NBTTagCompound();
+        inputTag.setInteger("size", inputs.size());
+
+        for (int i = 0; i < inputs.size(); i++) {
+            NBTTagCompound nbt = new NBTTagCompound();
+            inputs.get(i).itemStack.writeToNBT(nbt);
+            inputTag.setTag("item" + i, nbt);
+            inputTag.setBoolean("nonConsumable" + i, inputs.get(i).nonConsumable);
+        }
+
+        NBTTagCompound fluidInputTag = new NBTTagCompound();
+        fluidInputTag.setInteger("size", fluidInputs.size());
+
+        for (int i = 0; i < fluidInputs.size(); i++) {
+            NBTTagCompound nbt = new NBTTagCompound();
+            fluidInputs.get(i).fluidStack.writeToNBT(nbt);
+            fluidInputTag.setTag("fluid" + i, nbt);
+            fluidInputTag.setBoolean("nonConsumable" + i, fluidInputs.get(i).nonConsumable);
+        }
+
+        NBTTagCompound outputsTag = new NBTTagCompound();
+        outputsTag.setInteger("size", outputs.size());
+        for (int i = 0; i < outputs.size(); i++) {
+            NBTTagCompound nbt = new NBTTagCompound();
+            outputs.get(i).writeToNBT(nbt);
+            outputsTag.setTag("item" + i, nbt);
+        }
+
+        NBTTagCompound fluidOutputsTag = new NBTTagCompound();
+        fluidOutputsTag.setInteger("size", fluidOutputs.size());
+        for (int i = 0; i < fluidOutputs.size(); i++) {
+            NBTTagCompound nbt = new NBTTagCompound();
+            fluidOutputs.get(i).writeToNBT(nbt);
+            fluidOutputsTag.setTag("fluid" + i, nbt);
+        }
+
+        tag.setTag("inputs", inputTag);
+        tag.setTag("fluidInputs", fluidInputTag);
+        tag.setTag("outputs", outputsTag);
+        tag.setTag("fluidOutputs", fluidOutputsTag);
+
+        this.recipeWidget.deserializeNBT(tag);
+        savingFunction.accept(tag);
+        recipeCount++;
+        recipeShown = recipeCount - 1;
 
         writeClientAction(2, buf -> {
-            NBTTagCompound tag = new NBTTagCompound();
-            NBTTagCompound inputTag = new NBTTagCompound();
-            inputTag.setInteger("size", inputs.size());
-
-            for (int i = 0; i < inputs.size(); i++) {
-                NBTTagCompound nbt = new NBTTagCompound();
-                inputs.get(i).itemStack.writeToNBT(nbt);
-                inputTag.setTag("item" + i, nbt);
-                inputTag.setBoolean("nonConsumable" + i, inputs.get(i).nonConsumable);
-            }
-
-            NBTTagCompound fluidInputTag = new NBTTagCompound();
-            fluidInputTag.setInteger("size", fluidInputs.size());
-
-            for (int i = 0; i < fluidInputs.size(); i++) {
-                NBTTagCompound nbt = new NBTTagCompound();
-                fluidInputs.get(i).fluidStack.writeToNBT(nbt);
-                fluidInputTag.setTag("fluid" + i, nbt);
-                fluidInputTag.setBoolean("nonConsumable" + i, fluidInputs.get(i).nonConsumable);
-            }
-
-            NBTTagCompound outputsTag = new NBTTagCompound();
-            outputsTag.setInteger("size", outputs.size());
-            for (int i = 0; i < outputs.size(); i++) {
-                NBTTagCompound nbt = new NBTTagCompound();
-                outputs.get(i).writeToNBT(nbt);
-                outputsTag.setTag("item" + i, nbt);
-            }
-
-            NBTTagCompound fluidOutputsTag = new NBTTagCompound();
-            fluidOutputsTag.setInteger("size", fluidOutputs.size());
-            for (int i = 0; i < fluidOutputs.size(); i++) {
-                NBTTagCompound nbt = new NBTTagCompound();
-                fluidOutputs.get(i).writeToNBT(nbt);
-                fluidOutputsTag.setTag("fluid" + i, nbt);
-            }
-
-            tag.setTag("inputs", inputTag);
-            tag.setTag("fluidInputs", fluidInputTag);
-            tag.setTag("outputs", outputsTag);
-            tag.setTag("fluidOutputs", fluidOutputsTag);
             buf.writeCompoundTag(tag);
         });
         return null;

@@ -4,6 +4,7 @@ import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.AbstractWidgetGroup;
 import gregtech.api.gui.widgets.PhantomFluidWidget;
 import gregtech.api.gui.widgets.PhantomSlotWidget;
+import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.util.Position;
 import gregtechfoodoption.machines.multiblock.kitchen.FluidStackInfo;
 import gregtechfoodoption.machines.multiblock.kitchen.ItemStackInfo;
@@ -26,12 +27,12 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
     public PhantomRecipeWidget(int x, int y) {
         super(new Position(x, y));
         for (int i = 0; i < this.inputs.getSlots(); ++i) {
-            this.addWidget(new PhantomSlotWidget(this.inputs, i, this.getPosition().x + i * 18, this.getPosition().y)
-                    .setClearSlotOnRightClick(false).setBackgroundTexture(GuiTextures.SLOT));
+            this.addWidget(new SlotWidget(this.inputs, i, x + i * 18, y, false, false)
+                    .setBackgroundTexture(GuiTextures.SLOT));
         }
         for (int i = 0; i < this.fluidInputs.length; ++i) {
             fluidInputs[i] = new FluidTank(99999);
-            this.addWidget(new PhantomFluidWidget(this.getPosition().x + i * 18, this.getPosition().y + 20, 18, 18, this.fluidInputs[i]) {
+            this.addWidget(new PhantomFluidWidget(x + i * 18, y + 20, 18, 18, this.fluidInputs[i]) {
                 @Override
                 public void handleClientAction(int id, PacketBuffer buffer) {
                     // Doesn't clear, at least
@@ -39,12 +40,12 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
             });
         }
         for (int i = 0; i < this.outputs.getSlots(); ++i) {
-            this.addWidget(new PhantomSlotWidget(this.outputs, i, this.getPosition().x + i * 18, this.getPosition().y + 40)
-                    .setClearSlotOnRightClick(false).setBackgroundTexture(GuiTextures.SLOT));
+            this.addWidget(new SlotWidget(this.outputs, i, x + i * 18, y + 40, false, false)
+                    .setBackgroundTexture(GuiTextures.SLOT));
         }
         for (int i = 0; i < this.fluidOutputs.length; ++i) {
             fluidOutputs[i] = new FluidTank(99999);
-            this.addWidget(new PhantomFluidWidget(this.getPosition().x + i * 18, this.getPosition().y + 60, 18, 18, this.fluidOutputs[i]) {
+            this.addWidget(new PhantomFluidWidget(x + i * 18, y + 60, 18, 18, this.fluidOutputs[i]) {
                 @Override
                 public void handleClientAction(int id, PacketBuffer buffer) {
 
