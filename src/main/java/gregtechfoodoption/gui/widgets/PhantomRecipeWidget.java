@@ -1,10 +1,7 @@
 package gregtechfoodoption.gui.widgets;
 
 import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.widgets.AbstractWidgetGroup;
-import gregtech.api.gui.widgets.PhantomFluidWidget;
-import gregtech.api.gui.widgets.PhantomSlotWidget;
-import gregtech.api.gui.widgets.SlotWidget;
+import gregtech.api.gui.widgets.*;
 import gregtech.api.util.Position;
 import gregtechfoodoption.machines.multiblock.kitchen.FluidStackInfo;
 import gregtechfoodoption.machines.multiblock.kitchen.ItemStackInfo;
@@ -26,6 +23,7 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
 
     public PhantomRecipeWidget(int x, int y) {
         super(new Position(x, y));
+        this.addWidget(new LabelWidget(x - 16, y + 4, "IN:"));
         for (int i = 0; i < this.inputs.getSlots(); ++i) {
             this.addWidget(new SlotWidget(this.inputs, i, x + i * 18, y, false, false)
                     .setBackgroundTexture(GuiTextures.SLOT));
@@ -39,6 +37,8 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
                 }
             });
         }
+
+        this.addWidget(new LabelWidget(x - 24, y + 44, "OUT:"));
         for (int i = 0; i < this.outputs.getSlots(); ++i) {
             this.addWidget(new SlotWidget(this.outputs, i, x + i * 18, y + 40, false, false)
                     .setBackgroundTexture(GuiTextures.SLOT));

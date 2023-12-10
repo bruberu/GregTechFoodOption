@@ -63,7 +63,8 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         if (finalResultStack != null) {
             finalResult.setStackInSlot(0, finalResultStack);
         }
-        finalResultSlot = new PhantomSlotWidget(finalResult, 0, x + 10, y).setTooltipText("gregtechfoodoption.kitchen.recipe.warn");
+        this.addWidget(new LabelWidget(x, y + 5, "Recipe for:"));
+        finalResultSlot = new PhantomSlotWidget(finalResult, 0, x + 63, y).setTooltipText("gregtechfoodoption.kitchen.recipe.warn");
         finalResultSlot.setChangeListener(() -> resultItemConsumer.accept(finalResult.getStackInSlot(0)));
         finalResultSlot.setBackgroundTexture(GuiTextures.SLOT);
         addWidget(finalResultSlot);
