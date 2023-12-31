@@ -1,4 +1,4 @@
-//version: 1701739812
+//version: 1702805890
 /*
  * DO NOT CHANGE THIS FILE!
  * Also, you may replace this file at any time if there is an update available.
@@ -72,6 +72,7 @@ propertyDefaultIfUnset("usesShadowedDependencies", false)
 propertyDefaultIfUnset("minimizeShadowedDependencies", true)
 propertyDefaultIfUnset("relocateShadowedDependencies", true)
 propertyDefaultIfUnset("separateRunDirectories", false)
+propertyDefaultIfUnset("versionDisplayFormat", '$MOD_NAME \u2212 $VERSION')
 propertyDefaultIfUnsetWithEnvVar("modrinthProjectId", "", "MODRINTH_PROJECT_ID")
 propertyDefaultIfUnset("modrinthRelations", "")
 propertyDefaultIfUnsetWithEnvVar("curseForgeProjectId", "", "CURSEFORGE_PROJECT_ID")
@@ -79,6 +80,7 @@ propertyDefaultIfUnset("curseForgeRelations", "")
 propertyDefaultIfUnsetWithEnvVar("releaseType", "release", "RELEASE_TYPE")
 propertyDefaultIfUnset("generateDefaultChangelog", false)
 propertyDefaultIfUnset("customMavenPublishUrl", "")
+propertyDefaultIfUnset("mavenArtifactGroup", getDefaultArtifactGroup())
 propertyDefaultIfUnset("enableModernJavaSyntax", false)
 propertyDefaultIfUnset("enableSpotless", false)
 propertyDefaultIfUnset("enableJUnit", false)
@@ -888,7 +890,7 @@ if (cfApiKey.isPresent() || deploymentDebug.toBoolean()) {
             def changelogFile = getChangelog()
             def changelogRaw = changelogFile.exists() ? changelogFile.getText('UTF-8') : ""
 
-            mainFile.displayName = "${modName}: ${modVersion}"
+            mainFile.displayName = versionDisplayFormat.replace('$MOD_NAME', modName).replace('$VERSION', modVersion)
             mainFile.releaseType = getReleaseType()
             mainFile.changelog = changelogRaw
             mainFile.changelogType = 'markdown'
@@ -928,6 +930,7 @@ if (modrinthApiKey.isPresent() || deploymentDebug.toBoolean()) {
     modrinth {
         token = modrinthApiKey.getOrElse('debug_token')
         projectId = modrinthProjectId
+        versionName = versionDisplayFormat.replace('$MOD_NAME', modName).replace('$VERSION', modVersion)
         changelog = changelogFile.exists() ? changelogFile.getText('UTF-8') : ""
         versionType = getReleaseType()
         versionNumber = modVersion
@@ -984,8 +987,8 @@ if (customMavenPublishUrl) {
                 }
 
                 // providers is not available here, use System for getting env vars
-                groupId = System.getenv('ARTIFACT_GROUP_ID') ?: project.group
-                artifactId = System.getenv('ARTIFACT_ID') ?: project.name
+                groupId = System.getenv('ARTIFACT_GROUP_ID') ?: project.mavenArtifactGroup
+                artifactId = System.getenv('ARTIFACT_ID') ?: project.modArchivesBaseName
                 version = System.getenv('RELEASE_VERSION') ?: publishedVersion
             }
         }
@@ -1129,6 +1132,11 @@ tasks.register('faq') {
 
 
 // Helpers
+
+def getDefaultArtifactGroup() {
+    def lastIndex = project.modGroup.lastIndexOf('.')
+    return lastIndex < 0 ? project.modGroup : project.modGroup.substring(0, lastIndex)
+}
 
 def getFile(String relativePath) {
     return new File(projectDir, relativePath)
