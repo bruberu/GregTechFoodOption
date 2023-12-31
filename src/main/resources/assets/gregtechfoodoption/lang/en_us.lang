@@ -270,6 +270,7 @@ gregtechfoodoption.machine.baking_oven.name=Primitive Baking Oven
 gregtechfoodoption.machine.steam_baking_oven.name=Steam Baking Oven
 gregtechfoodoption.machine.steam_baking_oven.tooltip=Works twice as slowly as a normal baking oven, but does not require coal.
 gregtechfoodoption.machine.electric_baking_oven.name=Electric Baking Oven
+gregtechfoodoption.machine.kitchen.name=Kitchen
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
 tile.gtfo_casing.reinforced_adobe_bricks.name=Reinforced Adobe Bricks
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1=Temperature: §a%dK§7.

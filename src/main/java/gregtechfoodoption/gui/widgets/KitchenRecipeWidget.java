@@ -5,6 +5,8 @@ import gregtech.api.gui.impl.ModularUIContainer;
 import gregtech.api.gui.ingredient.IRecipeTransferHandlerWidget;
 import gregtech.api.gui.widgets.*;
 import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.category.GTRecipeCategory;
 import gregtech.api.util.Position;
 import gregtech.api.util.Size;
 import gregtech.integration.jei.recipe.GTRecipeWrapper;
@@ -155,10 +157,12 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         getNeededInputs();
         getNeededFluidInputs();
         Recipe recipe; // Only way to get the wrapper :P
+        String map;
         if (recipeLayout instanceof RecipeLayout) {
             IRecipeWrapper recipeWrapper = ObfuscationReflectionHelper.getPrivateValue(RecipeLayout.class, (RecipeLayout) recipeLayout, "recipeWrapper");
             if (recipeWrapper instanceof GTRecipeWrapper) {
                 recipe = ((GTRecipeWrapper) recipeWrapper).getRecipe();
+                map = GTRecipeCategory.getByName(recipeLayout.getRecipeCategory().getUid()).getRecipeMap().getUnlocalizedName();
             } else {
                 return "This only works on GTCEu recipes!";
             }
@@ -244,6 +248,8 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         tag.setTag("outputs", outputsTag);
         tag.setTag("fluidOutputs", fluidOutputsTag);
 
+        tag.setInteger("hash", recipe.hashCode());
+        tag.setString("map", map);
         this.recipeWidget.deserializeNBT(tag);
         savingFunction.accept(tag);
         recipeCount++;
