@@ -162,7 +162,8 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
             IRecipeWrapper recipeWrapper = ObfuscationReflectionHelper.getPrivateValue(RecipeLayout.class, (RecipeLayout) recipeLayout, "recipeWrapper");
             if (recipeWrapper instanceof GTRecipeWrapper) {
                 recipe = ((GTRecipeWrapper) recipeWrapper).getRecipe();
-                map = GTRecipeCategory.getByName(recipeLayout.getRecipeCategory().getUid()).getRecipeMap().getUnlocalizedName();
+                String uidString = recipeLayout.getRecipeCategory().getUid();
+                map = GTRecipeCategory.getByName(uidString.substring(uidString.indexOf(":") + 1)).getRecipeMap().getUnlocalizedName();
             } else {
                 return "This only works on GTCEu recipes!";
             }

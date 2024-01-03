@@ -66,16 +66,23 @@ public class KitchenLogic {
             }
         }
 
-        for (int i = 0; i < requestNodes.size(); i++) {
-            KitchenRequestNode node = requestNodes.get(i);
-            node.checkDependencies(controller.getImportItems(), controller.getImportFluids());
-            if (node.state == KitchenRequestNode.KitchenRequestState.RUNNABLE) {
-                MetaTileEntity mte = getMachineAtPos(node.machineRunning);
-                if (mte != null && mte.getRecipeLogic().getProgress() == 0) {
-                    if (getMachineAtPos(node.machineRunning).getRecipeLogic().prepareRecipe(node.recipe, controller.getImportItems(), controller.getImportFluids())) {
-                        node.state = KitchenRequestNode.KitchenRequestState.PROCESSING;
-                    } else {
-                        GTFOLog.logger.warn("Could not prepare recipe " + node.recipe.toString());
+        NBTTagCompound data = controller.getRecipeNBT();
+        if (data != null && !data.isEmpty()) {
+            ItemStack result = new ItemStack(data.getCompoundTag("finalresult"));
+            if (!result.isEmpty()) {
+                setNodes(new GTRecipeItemInput(result));
+                for (int i = 0; i < requestNodes.size(); i++) {
+                    KitchenRequestNode node = requestNodes.get(i);
+                    node.checkDependencies(controller.getInputInventory(), controller.getInputFluidInventory());
+                    if (node.state == KitchenRequestNode.KitchenRequestState.RUNNABLE) {
+                        MetaTileEntity mte = getMachineAtPos(node.machineRunning);
+                        if (mte != null && mte.getRecipeLogic().getProgress() == 0) {
+                            if (getMachineAtPos(node.machineRunning).getRecipeLogic().prepareRecipe(node.recipe, controller.getInputInventory(), controller.getInputFluidInventory())) {
+                                node.state = KitchenRequestNode.KitchenRequestState.PROCESSING;
+                            } else {
+                                GTFOLog.logger.warn("Could not prepare recipe " + node.recipe.toString());
+                            }
+                        }
                     }
                 }
             }
