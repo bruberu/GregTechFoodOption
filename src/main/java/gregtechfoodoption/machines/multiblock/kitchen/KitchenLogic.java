@@ -1,26 +1,21 @@
 package gregtechfoodoption.machines.multiblock.kitchen;
 
+import gregtech.api.capability.IControllable;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.metatileentity.WorkableTieredMetaTileEntity;
 import gregtech.api.metatileentity.multiblock.IMaintenance;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
-import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.recipes.ingredients.GTRecipeFluidInput;
 import gregtech.api.recipes.ingredients.GTRecipeInput;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.util.GTTransferUtils;
 import gregtech.common.ConfigHolder;
 import gregtechfoodoption.utils.GTFOLog;
-import it.unimi.dsi.fastutil.Stack;
-import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
@@ -29,7 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
-public class KitchenLogic {
+public class KitchenLogic implements IControllable {
     private final MetaTileEntityKitchen controller;
     private final boolean hasMaintenance;
     private final Set<WorkableTieredMetaTileEntity> controlledMTEs = new HashSet<>();
@@ -85,8 +80,11 @@ public class KitchenLogic {
                         }
                     }
                 }
+                return;
             }
         }
+        // The kitchen recipe was invalid or missing
+        requestNodes.clear();
     }
 
     public void slurpInventory(IItemHandler sourceInventory) {
@@ -194,6 +192,7 @@ public class KitchenLogic {
                 nodes.add(node);
             }
             this.leaves.put(input, nodes);
+            wasNotified = true;
         } else {
             for (KitchenRequestNode node : leaves.get(input)) {
                 node.state = KitchenRequestNode.KitchenRequestState.AWAITING_INGREDIENTS;
@@ -208,6 +207,16 @@ public class KitchenLogic {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean isWorkingEnabled() {
+        return false;
+    }
+
+    @Override
+    public void setWorkingEnabled(boolean b) {
+
     }
 
     private static class RecipeAndMap {

@@ -56,6 +56,16 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
             }
             return stack;
         }
+
+        @Override
+        protected int getStackLimit(int slot, @NotNull ItemStack stack) {
+            return 1;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return 1;
+        }
     };
 
     private List<ItemStack> neededInputs = new ArrayList<>();

@@ -7,7 +7,6 @@ import com.google.common.collect.Lists;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.IMultipleTankHandler;
-import gregtech.api.capability.IWorkable;
 import gregtech.api.capability.impl.EnergyContainerList;
 import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.ItemHandlerList;
@@ -19,23 +18,24 @@ import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity;
 import gregtech.api.metatileentity.WorkableTieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
-import gregtech.api.metatileentity.multiblock.*;
+import gregtech.api.metatileentity.multiblock.IMultiblockPart;
+import gregtech.api.metatileentity.multiblock.MultiblockAbility;
+import gregtech.api.metatileentity.multiblock.MultiblockDisplayText;
+import gregtech.api.metatileentity.multiblock.MultiblockWithDisplayBase;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
-import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockBoilerCasing;
-import gregtech.common.blocks.BlockCleanroomCasing;
-import gregtech.common.blocks.BlockGlassCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
@@ -44,12 +44,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
 import java.util.List;
 
 public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
@@ -249,6 +249,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         data.setInteger("sDist", this.sDist);
         data.setInteger("bDist", this.bDist);
+        writeRecipeItemToNBT(data);
         return super.writeToNBT(data);
     }
 
@@ -257,6 +258,9 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         super.readFromNBT(data);
         this.sDist = data.getInteger("sDist");
         this.bDist = data.getInteger("bDist");
+        if (data.hasKey("recipe")) {
+            this.recipeHolder.setStackInSlot(0, new ItemStack(data.getCompoundTag("recipe")));
+        }
         reinitializeStructurePattern();
     }
 
@@ -265,6 +269,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         super.writeInitialSyncData(buf);
         buf.writeInt(this.sDist);
         buf.writeInt(this.bDist);
+        buf.writeItemStack(this.recipeHolder.getStackInSlot(0));
     }
 
     @Override
@@ -272,6 +277,11 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         super.receiveInitialSyncData(buf);
         this.sDist = buf.readInt();
         this.bDist = buf.readInt();
+        try {
+            this.recipeHolder.setStackInSlot(0, buf.readItemStack());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         reinitializeStructurePattern();
     }
 
@@ -377,5 +387,13 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
             return recipeHolder.getStackInSlot(0).getTagCompound();
         }
         return null;
+    }
+
+    public void writeRecipeItemToNBT(NBTTagCompound tag) {
+        if (!recipeHolder.getStackInSlot(0).isEmpty()) {
+            NBTTagCompound item = new NBTTagCompound();
+            recipeHolder.getStackInSlot(0).writeToNBT(item);
+            tag.setTag("recipe", item);
+        }
     }
 }
