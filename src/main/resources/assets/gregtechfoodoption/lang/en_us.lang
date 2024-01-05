@@ -841,6 +841,7 @@ metaitem.food.toast.name=Toast
 metaitem.food.sandwich.toast.name=Toast Sandwich
 metaitem.food.fish_and_chips.name=Fish'n'Chips
 metaitem.food.full_breakfast.name=Full Breakfast
+metaitem.food.full_breakfast.tooltip=Actually just a half Breakfast
 metaitem.food.shepherds_pie.name=Shepherd's Pie
 metaitem.food.shepherds_pie.tooltip=Given what you put in It, probably an Industrialist's Pie
 metaitem.food.sausage_roll.name=Sausage Roll
