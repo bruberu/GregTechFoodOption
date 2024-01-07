@@ -98,7 +98,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
 
     @Override
     protected void updateFormedValid() {
-        kitchenLogic.updateLogic();
+
     }
 
     @NotNull

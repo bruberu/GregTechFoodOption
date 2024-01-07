@@ -1,6 +1,8 @@
 package gregtechfoodoption.machines.multiblock.kitchen;
 
+import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.GregtechDataCodes;
+import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
 import gregtech.api.metatileentity.MTETrait;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -34,7 +36,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
     private final List<KitchenRequestNode> requestNodes = new ObjectArrayList<>();
     final HashMap<GTRecipeInput, List<KitchenRequestNode>> leaves = new HashMap<>();
     public String info = "";
-    boolean wasNotified = false;
+    boolean wasNotified = true;
     private boolean workingEnabled;
 
     public KitchenLogic(MetaTileEntityKitchen controller) {
@@ -51,7 +53,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
         controlledMTEs.add(metaTileEntity);
     }
 
-    public void updateLogic() {
+    public void update() {
         if (!isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
 
         if (!getMetaTileEntity().getNotifiedItemInputList().isEmpty() || !getMetaTileEntity().getNotifiedFluidInputList().isEmpty()) {
@@ -224,7 +226,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
 
     @Override
     public void setWorkingEnabled(boolean b) {
-
+        workingEnabled = b;
     }
 
     @Override
@@ -237,11 +239,35 @@ public class KitchenLogic extends MTETrait implements IControllable {
             this.workingEnabled = buf.readBoolean();
             this.getMetaTileEntity().scheduleRenderUpdate();
         }
+    }
 
+    @Override
+    public @NotNull NBTTagCompound serializeNBT() {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setBoolean("WorkEnabled", this.workingEnabled);
+        return tag;
+    }
+
+    @Override
+    public void deserializeNBT(@NotNull NBTTagCompound compound) {
+        this.workingEnabled = compound.getBoolean("WorkEnabled");
+    }
+
+    @Override
+    public void writeInitialSyncData(@NotNull PacketBuffer buf) {
+        buf.writeBoolean(workingEnabled);
+    }
+
+    @Override
+    public void receiveInitialSyncData(@NotNull PacketBuffer buf) {
+        this.workingEnabled = buf.readBoolean();
     }
 
     @Override
     public <T> T getCapability(Capability<T> capability) {
+        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) {
+            return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
+        }
         return null;
     }
 
