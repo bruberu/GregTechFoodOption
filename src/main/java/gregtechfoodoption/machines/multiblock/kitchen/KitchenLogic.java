@@ -1,9 +1,9 @@
 package gregtechfoodoption.machines.multiblock.kitchen;
 
-import gregtech.api.capability.GregtechCapabilities;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
+import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.metatileentity.MTETrait;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.WorkableTieredMetaTileEntity;
@@ -26,6 +26,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -38,6 +39,8 @@ public class KitchenLogic extends MTETrait implements IControllable {
     public String info = "";
     boolean wasNotified = true;
     private boolean workingEnabled;
+    private ItemStack resultItem;
+    public KitchenLogicState state;
 
     public KitchenLogic(MetaTileEntityKitchen controller) {
         super(controller);
@@ -56,6 +59,22 @@ public class KitchenLogic extends MTETrait implements IControllable {
     public void update() {
         if (!isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
 
+        this.state = KitchenLogicState.PROBABLY_FINE; // The default.
+
+        controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
+        boolean areAnyRunning = false;
+        for (MetaTileEntity mte : controlledMTEs) {
+            if (mte.getRecipeLogic().getProgress() == 0) {
+                areAnyRunning |= slurpInventory(mte.getExportItems());
+                areAnyRunning |= slurpFluids(mte.getExportFluids());
+            } else {
+                areAnyRunning = true;
+            }
+        }
+        if (!areAnyRunning) {
+            state = KitchenLogicState.NO_INGREDIENTS; // Since nothing was actually happening in the machines and all the nodes have had their chance to make more progress, we can assume that we're out of ingredients
+        }
+
         if (!getMetaTileEntity().getNotifiedItemInputList().isEmpty() || !getMetaTileEntity().getNotifiedFluidInputList().isEmpty()) {
             this.getMetaTileEntity().getNotifiedItemInputList().clear();
             this.getMetaTileEntity().getNotifiedFluidInputList().clear();
@@ -63,19 +82,13 @@ public class KitchenLogic extends MTETrait implements IControllable {
         } else {
             wasNotified = false;
         }
-        controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
-        for (MetaTileEntity mte : controlledMTEs) {
-            if (mte.getRecipeLogic().getProgress() == 0) {
-                slurpInventory(mte.getExportItems());
-                slurpFluids(mte.getExportFluids());
-            }
-        }
 
         NBTTagCompound data = getMetaTileEntity().getRecipeNBT();
         if (data != null && !data.isEmpty()) {
-            ItemStack result = new ItemStack(data.getCompoundTag("finalresult"));
-            if (!result.isEmpty()) {
-                setNodes(new GTRecipeItemInput(result));
+            resultItem = new ItemStack(data.getCompoundTag("finalresult"));
+            if (!resultItem.isEmpty()) {
+                GTRecipeInput resultItemIn = new GTRecipeItemInput(resultItem);
+                setNodes(resultItemIn);
                 for (int i = 0; i < requestNodes.size(); i++) {
                     KitchenRequestNode node = requestNodes.get(i);
                     node.checkDependencies(getMetaTileEntity().getInputInventory(), getMetaTileEntity().getInputFluidInventory());
@@ -90,44 +103,73 @@ public class KitchenLogic extends MTETrait implements IControllable {
                         }
                     }
                 }
+                List<KitchenRequestNode> finalNodes = getNodes(resultItemIn);
+                boolean canRunAny = false;
+                for (KitchenRequestNode node : finalNodes) {
+                    if (node.state != KitchenRequestNode.KitchenRequestState.NOT_RUNNABLE) {
+                        canRunAny = true;
+                        break;
+                    }
+                }
+                if (!canRunAny) { // All of the nodes ended up not having the right machine.
+                    state = KitchenLogicState.BAD_MACHINES;
+                }
                 return;
             }
         }
         // The kitchen recipe was invalid or missing
+        this.state = KitchenLogicState.NO_RECIPE;
         requestNodes.clear();
     }
 
-    public void slurpInventory(IItemHandler sourceInventory) {
+    public boolean slurpInventory(IItemHandler sourceInventory) {
+        boolean didAnything = false;
         for (int srcIndex = 0; srcIndex < sourceInventory.getSlots(); ++srcIndex) {
             ItemStack sourceStack = sourceInventory.extractItem(srcIndex, Integer.MAX_VALUE, true);
             if (!sourceStack.isEmpty()) {
-                ItemStack remainder = GTTransferUtils.insertItem(getMetaTileEntity().getInputInventory(), sourceStack, true);
+                IItemHandlerModifiable inventory = getNodes(new GTRecipeItemInput(sourceStack)) == null ?
+                        getMetaTileEntity().getOutputInventory() : getMetaTileEntity().getInputInventory();
+                ItemStack remainder = GTTransferUtils.insertItem(inventory, sourceStack, true);
                 int amountToInsert = sourceStack.getCount() - remainder.getCount();
+                if (remainder.getCount() > 0) {
+                    this.state = KitchenLogicState.BUSES_FULL;
+                }
                 if (amountToInsert > 0) {
                     sourceStack = sourceInventory.extractItem(srcIndex, amountToInsert, false);
-                    GTTransferUtils.insertItem(getMetaTileEntity().getInputInventory(), sourceStack, false);
+                    GTTransferUtils.insertItem(inventory, sourceStack, false);
+                    didAnything = true;
                 }
             }
         }
+        return didAnything;
     }
 
-    public void slurpFluids(@NotNull IFluidHandler sourceHandler) {
+    public boolean slurpFluids(@NotNull IFluidHandler sourceHandler) {
+        boolean didAnything = false;
         for (IFluidTankProperties prop : sourceHandler.getTankProperties()) {
             FluidStack currentFluid = prop.getContents();
             if (currentFluid != null && currentFluid.amount != 0) {
                 FluidStack fluidStack = sourceHandler.drain(currentFluid, false);
                 if (fluidStack != null && fluidStack.amount != 0) {
-                    int canInsertAmount = getMetaTileEntity().getInputFluidInventory().fill(fluidStack, false);
+                    IMultipleTankHandler handler = getNodes(new GTRecipeFluidInput(fluidStack)) == null ?
+                            getMetaTileEntity().getOutputFluidInventory() : getMetaTileEntity().getInputFluidInventory();
+                    int canInsertAmount = handler.fill(fluidStack, false);
+
                     if (canInsertAmount > 0) {
                         fluidStack.amount = canInsertAmount;
                         fluidStack = sourceHandler.drain(fluidStack, true);
                         if (fluidStack != null && fluidStack.amount > 0) {
-                            getMetaTileEntity().getInputFluidInventory().fill(fluidStack, true);
+                            handler.fill(fluidStack, true);
                         }
+                        didAnything = true;
                     }
+                }
+                if (currentFluid.amount > 0) {
+                    this.state = KitchenLogicState.HATCHES_FULL;
                 }
             }
         }
+        return didAnything;
     }
 
     public BlockPos findRun(Recipe r, RecipeMap map) {
@@ -192,7 +234,8 @@ public class KitchenLogic extends MTETrait implements IControllable {
         return recipes;
     }
 
-    public void setNodes(GTRecipeInput input) {
+    public void setNodes(GTRecipeInput sizedInput) {
+        GTRecipeInput input = sizedInput.withAmount(1);
         if (leaves.get(input) == null) {
             List<KitchenRequestNode> nodes = new ArrayList<>();
             Collection<RecipeAndMap> rs = input instanceof GTRecipeItemInput ? getRecipesFor((GTRecipeItemInput) input, getMetaTileEntity().getRecipeNBT()) : getRecipesFor((GTRecipeFluidInput) input, getMetaTileEntity().getRecipeNBT());
@@ -205,9 +248,16 @@ public class KitchenLogic extends MTETrait implements IControllable {
             wasNotified = true;
         } else {
             for (KitchenRequestNode node : leaves.get(input)) {
-                node.state = KitchenRequestNode.KitchenRequestState.AWAITING_INGREDIENTS;
+                if (node.state != KitchenRequestNode.KitchenRequestState.NOT_RUNNABLE) {
+                    node.state = KitchenRequestNode.KitchenRequestState.AWAITING_INGREDIENTS;
+                }
             }
         }
+    }
+    
+    public List<KitchenRequestNode> getNodes(GTRecipeInput sizedInput) {
+        GTRecipeInput input = sizedInput.withAmount(1);
+        return leaves.get(input);
     }
 
     public WorkableTieredMetaTileEntity getMachineAtPos(BlockPos pos) {
@@ -279,5 +329,14 @@ public class KitchenLogic extends MTETrait implements IControllable {
             this.recipe = recipe;
             this.map = map;
         }
+    }
+
+    public enum KitchenLogicState {
+        NO_RECIPE,
+        NO_INGREDIENTS,
+        BAD_MACHINES,
+        PROBABLY_FINE,
+        BUSES_FULL,
+        HATCHES_FULL
     }
 }

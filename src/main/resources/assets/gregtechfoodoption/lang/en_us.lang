@@ -1154,3 +1154,10 @@ metaitem.component.coconut.tooltip=A cold-blooded Killer
 
 gregtechfoodoption.seed.0=§bCan be used as a Seed
 gregtechfoodoption.seed.root_crop=§rThe Crop can §4only§r be harvested §4just before§r the Seed is harvestable!
+
+gregtechfoodoption.multiblock.kitchen.no_recipe=The recipe Item is missing! (or it's not configured)
+gregtechfoodoption.multiblock.kitchen.buses_full=The item IO Buses are full!
+gregtechfoodoption.multiblock.kitchen.hatches_full=The fluid IO Hatches are full!
+gregtechfoodoption.multiblock.kitchen.bad_machines=There aren't Machines of the right Type/Tier to actually make the Item!
+gregtechfoodoption.multiblock.kitchen.no_ingredients=There are missing Ingredients!
+gregtechfoodoption.multiblock.kitchen.probably_fine=At least the Kitchen is working fine.

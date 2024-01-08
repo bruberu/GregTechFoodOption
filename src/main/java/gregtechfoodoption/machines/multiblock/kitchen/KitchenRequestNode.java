@@ -36,7 +36,7 @@ public class KitchenRequestNode {
         if (this.state == KitchenRequestState.PROCESSING) {
             WorkableTieredMetaTileEntity machine = logic.getMachineAtPos(machineRunning);
             if (machine == null) {
-                this.state = KitchenRequestState.NEEDS_PROCESSING;
+                this.state = KitchenRequestState.NOT_RUNNABLE;
             } else if (machine.getRecipeLogic().getProgress() == 0) {
                 this.state = KitchenRequestState.DONE;
             }
