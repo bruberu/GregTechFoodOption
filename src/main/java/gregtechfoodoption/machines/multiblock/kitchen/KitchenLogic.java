@@ -57,7 +57,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
     }
 
     public void update() {
-        if (!isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
+        if (this.metaTileEntity.getWorld().isRemote || !isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
 
         this.state = KitchenLogicState.PROBABLY_FINE; // The default.
 
@@ -120,6 +120,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
         // The kitchen recipe was invalid or missing
         this.state = KitchenLogicState.NO_RECIPE;
         requestNodes.clear();
+        leaves.clear();
     }
 
     public boolean slurpInventory(IItemHandler sourceInventory) {
@@ -183,7 +184,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
     }
 
     // Iterates through the recipes in recipeData to find ones that produce stack s.
-    public Collection<RecipeAndMap> getRecipesFor(GTRecipeItemInput s, @NotNull NBTTagCompound recipeData) {
+    protected Collection<RecipeAndMap> getRecipesFor(GTRecipeItemInput s, @NotNull NBTTagCompound recipeData) {
         List<RecipeAndMap> recipes = new ArrayList<>();
         int count = recipeData.getInteger("recipecount");
         for (int i = 0; i < count; i++) {
@@ -193,13 +194,13 @@ public class KitchenLogic extends MTETrait implements IControllable {
             for (int j = 0; j < outputSize; j++) {
                 ItemStack stack = new ItemStack(outputs.getCompoundTag("item" + j));
                 if (s.acceptsStack(stack)) {
-                    int hash = recipe.getInteger("hash");
+
                     RecipeMap map = RecipeMap.getByName(recipe.getString("map"));
-                    Optional<Recipe> actualRecipe = map.getRecipeList().stream().filter((r) -> r.hashCode() == hash).findFirst();
-                    if (actualRecipe.isPresent()) {
-                        recipes.add(new RecipeAndMap(actualRecipe.get(), map));
+                    Recipe actualRecipe = getRecipeFromMap(recipe, map);
+                    if (actualRecipe != null) {
+                        recipes.add(new RecipeAndMap(actualRecipe, map));
                     } else {
-                        GTFOLog.logger.warn("A recipe for " + s + " had an incorrect hash! Maybe it doesn't exist anymore?");
+                        GTFOLog.logger.warn("A recipe for " + s + " had bad NBT! Maybe it doesn't exist anymore?");
                     }
                 }
             }
@@ -208,8 +209,23 @@ public class KitchenLogic extends MTETrait implements IControllable {
         return recipes;
     }
 
+    protected Recipe getRecipeFromMap(NBTTagCompound tag, RecipeMap<?> map) {
+        List<ItemStack> inputs = new ArrayList<>();
+        List<FluidStack> fluidInputs = new ArrayList<>();
+        NBTTagCompound inputsTag = tag.getCompoundTag("inputs");
+        for (int i = 0; i < inputsTag.getInteger("size"); i++) {
+            inputs.add(new ItemStack(inputsTag.getCompoundTag("item" + i)));
+        }
+        NBTTagCompound fluidInputsTag = tag.getCompoundTag("fluidInputs");
+        for (int i = 0; i < fluidInputsTag.getInteger("size"); i++) {
+            fluidInputs.add(FluidStack.loadFluidStackFromNBT(fluidInputsTag.getCompoundTag("fluid" + i)));
+        }
+        int eut = tag.getInteger("EUt");
+        return map.findRecipe(eut, inputs, fluidInputs);
+    }
+
     // Iterates through the recipes in recipeData to find ones that produce fluid s.
-    public Collection<RecipeAndMap> getRecipesFor(GTRecipeFluidInput s, @NotNull NBTTagCompound recipeData) {
+    protected Collection<RecipeAndMap> getRecipesFor(GTRecipeFluidInput s, @NotNull NBTTagCompound recipeData) {
         List<RecipeAndMap> recipes = new ArrayList<>();
         int count = recipeData.getInteger("recipecount");
         for (int i = 0; i < count; i++) {
@@ -219,13 +235,12 @@ public class KitchenLogic extends MTETrait implements IControllable {
             for (int j = 0; j < outputSize; j++) {
                 FluidStack stack = FluidStack.loadFluidStackFromNBT(outputs.getCompoundTag("fluid" + j));
                 if (s.acceptsFluid(stack)) {
-                    int hash = recipe.getInteger("hash");
                     RecipeMap map = RecipeMap.getByName(recipe.getString("map"));
-                    Optional<Recipe> actualRecipe = map.getRecipeList().stream().filter((r) -> r.hashCode() == hash).findFirst();
-                    if (actualRecipe.isPresent()) {
-                        recipes.add(new RecipeAndMap(actualRecipe.get(), map));
+                    Recipe actualRecipe = getRecipeFromMap(recipe, map);
+                    if (actualRecipe != null) {
+                        recipes.add(new RecipeAndMap(actualRecipe, map));
                     } else {
-                        GTFOLog.logger.warn("A recipe for " + s + " had an incorrect hash! Maybe it doesn't exist anymore?");
+                        GTFOLog.logger.warn("A recipe for " + s + " had bad NBT! Maybe it doesn't exist anymore?");
                     }
                 }
             }

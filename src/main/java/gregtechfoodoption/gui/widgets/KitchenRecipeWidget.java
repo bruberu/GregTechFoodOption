@@ -258,8 +258,8 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         tag.setTag("fluidInputs", fluidInputTag);
         tag.setTag("outputs", outputsTag);
         tag.setTag("fluidOutputs", fluidOutputsTag);
+        tag.setInteger("EUt", recipe.getEUt());
 
-        tag.setInteger("hash", recipe.hashCode());
         tag.setString("map", map);
         this.recipeWidget.deserializeNBT(tag);
         savingFunction.accept(tag);
