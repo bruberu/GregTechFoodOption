@@ -12,7 +12,11 @@ import gregtech.api.capability.impl.FluidTankList;
 import gregtech.api.capability.impl.ItemHandlerList;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.gui.Widget;
 import gregtech.api.gui.resources.TextureArea;
+import gregtech.api.gui.widgets.ClickButtonWidget;
+import gregtech.api.gui.widgets.ImageWidget;
+import gregtech.api.gui.widgets.WidgetGroup;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
 import gregtech.api.metatileentity.SimpleGeneratorMetaTileEntity;
@@ -65,6 +69,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     protected IMultipleTankHandler outputFluidInventory;
     protected IEnergyContainer energyContainer;
     protected IItemHandlerModifiable recipeHolder = new ItemStackHandler(1);
+    protected int orderSize = 64;
 
     private int sDist = 0;
     private int bDist = 0;
@@ -362,9 +367,26 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         case HATCHES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.hatches_full");
                         case NO_INGREDIENTS -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_ingredients");
                         case PROBABLY_FINE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.probably_fine");
+                        case ORDER_COMPLETE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_complete");
                     }
                     list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
                 });
+    }
+
+    @Override
+    protected @NotNull Widget getFlexButton(int x, int y, int width, int height) {
+        WidgetGroup group = new WidgetGroup(x, y, width, height);
+        group.addWidget((new ClickButtonWidget(0, 0, 9, 18, "gregtechfoodoption.multiblock.kitchen.increase_order", this::decrementOrderSize)).setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS));
+        group.addWidget((new ClickButtonWidget(9, 0, 9, 18, "gregtechfoodoption.multiblock.kitchen.decrease_order", this::incrementOrderSize)).setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS));
+        return group;
+    }
+
+    private void incrementOrderSize(Widget.ClickData clickData) {
+        this.orderSize++;
+    }
+
+    private void decrementOrderSize(Widget.ClickData clickData) {
+        this.orderSize--;
     }
 
     public IItemHandlerModifiable getInputInventory() {
@@ -417,4 +439,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     public <T> T getCapability(Capability<T> capability, EnumFacing side) {
         return super.getCapability(capability, side);
     }
+
+
 }

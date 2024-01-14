@@ -12,10 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class KitchenRequestNode {
@@ -55,13 +53,15 @@ public class KitchenRequestNode {
                 this.state = KitchenRequestState.AWAITING_RESULTS;
                 for (GTRecipeItemInput item : missingItems) {
                     logic.setNodes(item);
-                    if (logic.leaves.get(item).isEmpty()) { // No recipes for this item, so we can't run it until we get said ingredients
+                    List<KitchenRequestNode> nodes = logic.getNodes(item);
+                    if (nodes == null || nodes.isEmpty()) { // No recipes for this item, so we can't run it until we get said ingredients
                         this.state = KitchenRequestState.AWAITING_INGREDIENTS;
                     }
                 }
                 for (GTRecipeFluidInput fluid : missingFluids) {
                     logic.setNodes(fluid);
-                    if (logic.leaves.get(fluid).isEmpty()) {
+                    List<KitchenRequestNode> nodes = logic.getNodes(fluid);
+                    if (nodes == null || nodes.isEmpty()) {
                         this.state = KitchenRequestState.AWAITING_INGREDIENTS;
                     }
                 }
