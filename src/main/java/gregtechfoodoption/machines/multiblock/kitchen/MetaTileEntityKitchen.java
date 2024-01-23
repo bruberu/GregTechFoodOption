@@ -361,24 +361,52 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, isStructureFormed())
+                .setWorkingStatus(this.kitchenLogic.isWorkingEnabled(), this.kitchenLogic.state == KitchenLogic.KitchenLogicState.PROBABLY_FINE)
                 .addWorkingStatusLine()
                 .addCustom((list) -> {
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
-                        case NO_RECIPE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_recipe");
-                        case BUSES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.buses_full");
-                        case BAD_MACHINES -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.bad_machines");
-                        case HATCHES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.hatches_full");
-                        case NO_INGREDIENTS -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_ingredients");
                         case PROBABLY_FINE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.probably_fine");
                         case ORDER_COMPLETE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_complete");
                     }
-                    list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
+                    if (comp != null) {
+                        list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
+                    }
                 })
                 .addCustom((list) -> {
                     list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_size", this.orderSize).setStyle((new Style()).setColor(TextFormatting.GOLD)));
                 });
     }
+
+    @Override
+    protected void addErrorText(List<ITextComponent> textList) {
+        MultiblockDisplayText.builder(textList, this.isStructureFormed(), true)
+                .addCustom((list) -> {
+                    ITextComponent comp = null;
+                    switch (this.kitchenLogic.state) {
+                        case NO_RECIPE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_recipe");
+                        case BAD_MACHINES -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.bad_machines");
+                        case NO_INGREDIENTS -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_ingredients");
+                    }
+                    if (comp != null) {
+                        list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
+                    }
+                });
+    }
+    protected void addWarningText(List<ITextComponent> textList) {
+        MultiblockDisplayText.builder(textList, this.isStructureFormed(), false).addMaintenanceProblemLines(this.getMaintenanceProblems())
+                .addCustom((list) -> {
+                    ITextComponent comp = null;
+                    switch (this.kitchenLogic.state) {
+                        case BUSES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.buses_full");
+                        case HATCHES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.hatches_full");
+                    }
+                    if (comp != null) {
+                        list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
+                    }
+                });
+    }
+
 
     @Override
     protected @NotNull Widget getFlexButton(int x, int y, int width, int height) {
