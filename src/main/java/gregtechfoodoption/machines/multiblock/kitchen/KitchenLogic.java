@@ -61,16 +61,25 @@ public class KitchenLogic extends MTETrait implements IControllable {
         if (this.metaTileEntity.getWorld().isRemote || !isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
 
         KitchenLogicState previousState = state;
-
-        this.state = KitchenLogicState.PROBABLY_FINE; // The default.
-
-        controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
+        wasNotified = false;
 
         // Check if order is fulfilled
         if (!getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
             this.getMetaTileEntity().getNotifiedItemOutputList().clear();
-
+            if (this.checkOrder()) {
+                state = KitchenLogicState.ORDER_COMPLETE;
+            }
+            this.wasNotified = true;
         }
+        if (this.state == KitchenLogicState.ORDER_COMPLETE) {
+            if (this.state == previousState) {
+                return;
+            }
+        } else {
+            this.state = KitchenLogicState.PROBABLY_FINE; // The default.
+        }
+
+        controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
 
         boolean areAnyRunning = false;
         for (MetaTileEntity mte : controlledMTEs) {
@@ -84,14 +93,13 @@ public class KitchenLogic extends MTETrait implements IControllable {
 
         if (!areAnyRunning && state == KitchenLogicState.PROBABLY_FINE) {
             state = KitchenLogicState.NO_INGREDIENTS; // Since nothing was actually happening in the machines and all the nodes have had their chance to make more progress, we can assume that we're out of ingredients
+            // If the order's complete, no one cares.
         }
 
         if (!getMetaTileEntity().getNotifiedItemInputList().isEmpty() || !getMetaTileEntity().getNotifiedFluidInputList().isEmpty()) {
             this.getMetaTileEntity().getNotifiedItemInputList().clear();
             this.getMetaTileEntity().getNotifiedFluidInputList().clear();
             wasNotified = true;
-        } else {
-            wasNotified = false;
         }
 
         handleNodes();
@@ -142,12 +150,27 @@ public class KitchenLogic extends MTETrait implements IControllable {
         leaves.clear();
     }
 
+    private boolean checkOrder() {
+        int countLeft = getMetaTileEntity().getOrderSize();
+
+        for (int i = 0; i < getMetaTileEntity().getOutputInventory().getSlots(); i++) {
+            ItemStack itemStack = getMetaTileEntity().getOutputInventory().getStackInSlot(i);
+            if (!itemStack.isEmpty() && itemStack.isItemEqual(resultItem) && ItemStack.areItemStackTagsEqual(itemStack, resultItem)) {
+                countLeft -= itemStack.getCount();
+            }
+            if (countLeft <= 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean slurpInventory(IItemHandler sourceInventory) {
         boolean didAnything = false;
         for (int srcIndex = 0; srcIndex < sourceInventory.getSlots(); ++srcIndex) {
             ItemStack sourceStack = sourceInventory.extractItem(srcIndex, Integer.MAX_VALUE, true);
             if (!sourceStack.isEmpty()) {
-                IItemHandlerModifiable inventory = getNodes(new GTRecipeItemInput(sourceStack)) == null && resultItem.isItemEqual(sourceStack) ?
+                IItemHandlerModifiable inventory = getNodes(new GTRecipeItemInput(sourceStack)) == null || resultItem.isItemEqual(sourceStack) ?
                         getMetaTileEntity().getOutputInventory() : getMetaTileEntity().getInputInventory();
                 ItemStack remainder = GTTransferUtils.insertItem(inventory, sourceStack, true);
                 int amountToInsert = sourceStack.getCount() - remainder.getCount();
@@ -323,7 +346,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
             this.workingEnabled = buf.readBoolean();
             this.getMetaTileEntity().scheduleRenderUpdate();
         } else if (dataId == GTFOValues.UPDATE_KITCHEN_STATUS) {
-            this.state = KitchenLogicState.values()[buf.readInt()];
+            this.state = KitchenLogicState.values()[buf.readByte()];
             this.getMetaTileEntity().scheduleRenderUpdate();
         }
     }

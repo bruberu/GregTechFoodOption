@@ -258,6 +258,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     public NBTTagCompound writeToNBT(NBTTagCompound data) {
         data.setInteger("sDist", this.sDist);
         data.setInteger("bDist", this.bDist);
+        data.setInteger("orderSize", this.orderSize);
         writeRecipeItemToNBT(data);
         return super.writeToNBT(data);
     }
@@ -267,6 +268,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         super.readFromNBT(data);
         this.sDist = data.getInteger("sDist");
         this.bDist = data.getInteger("bDist");
+        this.orderSize = data.getInteger("orderSize");
         if (data.hasKey("recipe")) {
             this.recipeHolder.setStackInSlot(0, new ItemStack(data.getCompoundTag("recipe")));
         }
@@ -278,6 +280,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         super.writeInitialSyncData(buf);
         buf.writeInt(this.sDist);
         buf.writeInt(this.bDist);
+        buf.writeInt(this.orderSize);
         buf.writeItemStack(this.recipeHolder.getStackInSlot(0));
     }
 
@@ -286,6 +289,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         super.receiveInitialSyncData(buf);
         this.sDist = buf.readInt();
         this.bDist = buf.readInt();
+        this.orderSize = buf.readInt();
         try {
             this.recipeHolder.setStackInSlot(0, buf.readItemStack());
         } catch (IOException e) {
@@ -370,23 +374,28 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         case ORDER_COMPLETE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_complete");
                     }
                     list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
+                })
+                .addCustom((list) -> {
+                    list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_size", this.orderSize).setStyle((new Style()).setColor(TextFormatting.GOLD)));
                 });
     }
 
     @Override
     protected @NotNull Widget getFlexButton(int x, int y, int width, int height) {
         WidgetGroup group = new WidgetGroup(x, y, width, height);
-        group.addWidget((new ClickButtonWidget(0, 0, 9, 18, "gregtechfoodoption.multiblock.kitchen.increase_order", this::decrementOrderSize)).setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS));
-        group.addWidget((new ClickButtonWidget(9, 0, 9, 18, "gregtechfoodoption.multiblock.kitchen.decrease_order", this::incrementOrderSize)).setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS));
+        group.addWidget((new ClickButtonWidget(0, 0, 9, 18, "", this::decrementOrderSize)).setTooltipText("gregtechfoodoption.multiblock.kitchen.decrement_order").setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS));
+        group.addWidget((new ClickButtonWidget(9, 0, 9, 18, "", this::incrementOrderSize)).setTooltipText("gregtechfoodoption.multiblock.kitchen.increment_order").setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS));
         return group;
     }
 
     private void incrementOrderSize(Widget.ClickData clickData) {
         this.orderSize++;
+        this.orderSize = Math.min(this.orderSize, 64);
     }
 
     private void decrementOrderSize(Widget.ClickData clickData) {
         this.orderSize--;
+        this.orderSize = Math.max(this.orderSize, 1);
     }
 
     public IItemHandlerModifiable getInputInventory() {
@@ -435,10 +444,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         }
     }
 
-    @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing side) {
-        return super.getCapability(capability, side);
+    public int getOrderSize() {
+        return orderSize;
     }
-
-
 }
