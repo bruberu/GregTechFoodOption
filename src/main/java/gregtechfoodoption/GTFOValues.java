@@ -26,6 +26,7 @@ public class GTFOValues {
     public static final int UPDATE_SPRINKLER_DATA = assignId();
     public static final int UPDATE_FARMER_OUTPUT_FACING = assignId();
     public static final int UPDATE_KITCHEN_STATUS = assignId();
+    public static final int UPDATE_KITCHEN_ORDER = assignId();
 
     public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.DOUGH.getStackForm(), true);
     public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food", () -> GTFOMetaItem.BANANA.getStackForm(), true);

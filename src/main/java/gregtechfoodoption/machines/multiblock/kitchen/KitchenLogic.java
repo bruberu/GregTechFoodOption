@@ -39,6 +39,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
     final HashMap<GTRecipeInput, List<KitchenRequestNode>> leaves = new HashMap<>();
     public String info = "";
     boolean wasNotified = true;
+    boolean recheckOutputs = true;
     private boolean workingEnabled;
     private ItemStack resultItem;
     public KitchenLogicState state;
@@ -61,20 +62,21 @@ public class KitchenLogic extends MTETrait implements IControllable {
         if (this.metaTileEntity.getWorld().isRemote || !isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
 
         KitchenLogicState previousState = state;
-        wasNotified = false;
 
         // Check if order is fulfilled
-        if (!getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
+        if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()/* || this.getMetaTileEntity().getOffsetTimer() % 20 == 0*/) {
             this.getMetaTileEntity().getNotifiedItemOutputList().clear();
             if (this.checkOrder()) {
                 state = KitchenLogicState.ORDER_COMPLETE;
+            } else {
+                state = KitchenLogicState.PROBABLY_FINE;
             }
             this.wasNotified = true;
         }
-        if (this.state == KitchenLogicState.ORDER_COMPLETE) {
-            if (this.state == previousState) {
-                return;
-            }
+        if (this.state == KitchenLogicState.ORDER_COMPLETE || previousState == KitchenLogicState.ORDER_COMPLETE) {
+            // We could also skip it if it was the previous state momentarily, given that when the world loads,
+            // the order completion check doesn't work the first time.
+            return;
         } else {
             this.state = KitchenLogicState.PROBABLY_FINE; // The default.
         }
@@ -107,6 +109,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
         if (previousState != state) {
             this.writeCustomData(GTFOValues.UPDATE_KITCHEN_STATUS, buf -> buf.writeByte(state.ordinal()));
         }
+        wasNotified = false;
     }
 
     public void handleNodes() {

@@ -34,6 +34,7 @@ import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockBoilerCasing;
 import gregtech.common.blocks.MetaBlocks;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOGuiTextures;
@@ -68,7 +69,12 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     protected IMultipleTankHandler inputFluidInventory;
     protected IMultipleTankHandler outputFluidInventory;
     protected IEnergyContainer energyContainer;
-    protected IItemHandlerModifiable recipeHolder = new ItemStackHandler(1);
+    protected IItemHandlerModifiable recipeHolder = new ItemStackHandler(1) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            kitchenLogic.recheckOutputs = true;
+        }
+    };
     protected int orderSize = 64;
 
     private int sDist = 0;
@@ -344,6 +350,9 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
             scheduleRenderUpdate();
         } else if (dataId == GregtechDataCodes.WORKING_ENABLED) {
             scheduleRenderUpdate();
+        } else if (dataId == GTFOValues.UPDATE_KITCHEN_ORDER) {
+            this.orderSize = buf.readInt();
+            kitchenLogic.recheckOutputs = true;
         }
     }
 
@@ -419,11 +428,16 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     private void incrementOrderSize(Widget.ClickData clickData) {
         this.orderSize++;
         this.orderSize = Math.min(this.orderSize, 64);
+        this.writeCustomData(GTFOValues.UPDATE_KITCHEN_ORDER, buf -> buf.writeInt(this.orderSize));
+        this.markDirty();
     }
+
 
     private void decrementOrderSize(Widget.ClickData clickData) {
         this.orderSize--;
         this.orderSize = Math.max(this.orderSize, 1);
+        this.writeCustomData(GTFOValues.UPDATE_KITCHEN_ORDER, buf -> buf.writeInt(this.orderSize));
+        this.markDirty();
     }
 
     public IItemHandlerModifiable getInputInventory() {
