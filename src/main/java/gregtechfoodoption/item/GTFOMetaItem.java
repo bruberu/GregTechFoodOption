@@ -399,7 +399,10 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem COCONUT;
 
     public static MetaItem<?>.MetaValueItem KITCHEN_RECIPE;
-
+    public static MetaItem<?>.MetaValueItem UNFIRED_PORCELAIN_TILE;
+    public static MetaItem<?>.MetaValueItem BISQUEWARE_PORCELAIN_TILE;
+    public static MetaItem<?>.MetaValueItem GLAZED_PORCELAIN_TILE;
+    public static MetaItem<?>.MetaValueItem WHITEWARE_PORCELAIN_TILE;
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -613,6 +616,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         UNCOOKED_SEASONED_PELMENI = addItem(339, "component.pelmeni_uncooked_seasoned");
 
         COCONUT = addItem(342, "component.coconut");
+        UNFIRED_PORCELAIN_TILE = addItem(344, "component.unfired_porcelain_tile");
+        BISQUEWARE_PORCELAIN_TILE = addItem(345, "component.bisqueware_porcelain_tile");
+        GLAZED_PORCELAIN_TILE = addItem(346, "component.glazed_porcelain_tile");
+        WHITEWARE_PORCELAIN_TILE = addItem(347, "component.whiteware_porcelain_tile");
+
 
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0)));
