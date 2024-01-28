@@ -4,9 +4,14 @@ import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.blocks.MetaBlocks;
+import gregtech.common.blocks.StoneVariantBlock;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.block.GTFOBlockCasing;
+import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.item.GTFOMetaItem;
+import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
@@ -41,6 +46,7 @@ public class PlateChain {
                         .input(Items.CLAY_BALL)
                         .input(feldspar)
                         .input(calcium)
+                        .circuitMeta(11)
                         .outputs(GTFOMaterialHandler.BoneChinaClay.getItemStack(1))
                         .buildAndRegister();
             }
@@ -90,10 +96,25 @@ public class PlateChain {
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(28).duration(160)
                 .inputs(GTFOMaterialHandler.BoneChinaClay.getItemStack(2))
                 .inputs(MetaItems.SHAPE_MOLD_PLATE.getStackForm())
-                .outputs(GTFOMetaItem.UNFIRED_PORCELAIN_TILE.getStackForm())
+                .outputs(GTFOMaterialHandler.UnfiredPorcelainTile.getItemStack())
                 .buildAndRegister();
 
+        BLAST_RECIPES.recipeBuilder().EUt(120).duration(1600).blastFurnaceTemp(1600)
+            .inputs(GTFOMaterialHandler.UnfiredPorcelainTile.getItemStack())
+            .outputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
+            .buildAndRegister();
+        BLAST_RECIPES.recipeBuilder().EUt(120).duration(1000).blastFurnaceTemp(1600)
+                .inputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
+                .input(dust, Glass)
+                .outputs(GTFOMaterialHandler.GlazedPorcelainTile.getItemStack())
+                .buildAndRegister();
 
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(8).duration(100)
+                .inputs(MetaBlocks.STONE_BLOCKS.get(StoneVariantBlock.StoneVariant.SMOOTH)
+                        .getItemVariant(StoneVariantBlock.StoneType.CONCRETE_LIGHT))
+                .inputs(GTFOMaterialHandler.GlazedPorcelainTile.getItemStack(6))
+                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.PORCELAIN_TILE))
+                .buildAndRegister();
     }
 
 }
