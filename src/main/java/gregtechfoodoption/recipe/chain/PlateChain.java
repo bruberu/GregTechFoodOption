@@ -99,11 +99,11 @@ public class PlateChain {
                 .outputs(GTFOMaterialHandler.UnfiredPorcelainTile.getItemStack())
                 .buildAndRegister();
 
-        BLAST_RECIPES.recipeBuilder().EUt(120).duration(1600).blastFurnaceTemp(1600)
+        BLAST_RECIPES.recipeBuilder().EUt(120).duration(800).blastFurnaceTemp(1600)
             .inputs(GTFOMaterialHandler.UnfiredPorcelainTile.getItemStack())
             .outputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
             .buildAndRegister();
-        BLAST_RECIPES.recipeBuilder().EUt(120).duration(1000).blastFurnaceTemp(1600)
+        BLAST_RECIPES.recipeBuilder().EUt(120).duration(500).blastFurnaceTemp(1600)
                 .inputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
                 .input(dust, Glass)
                 .outputs(GTFOMaterialHandler.GlazedPorcelainTile.getItemStack())

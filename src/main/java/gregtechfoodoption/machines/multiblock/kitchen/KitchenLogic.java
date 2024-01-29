@@ -40,7 +40,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
     public String info = "";
     boolean wasNotified = true;
     boolean recheckOutputs = true;
-    private boolean workingEnabled;
+    private boolean workingEnabled = true;
     private ItemStack resultItem;
     public KitchenLogicState state;
 
@@ -64,7 +64,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
         KitchenLogicState previousState = state;
 
         // Check if order is fulfilled
-        if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()/* || this.getMetaTileEntity().getOffsetTimer() % 20 == 0*/) {
+        if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
             this.getMetaTileEntity().getNotifiedItemOutputList().clear();
             if (this.checkOrder()) {
                 state = KitchenLogicState.ORDER_COMPLETE;
@@ -81,6 +81,19 @@ public class KitchenLogic extends MTETrait implements IControllable {
             this.state = KitchenLogicState.PROBABLY_FINE; // The default.
         }
 
+        if (this.getMetaTileEntity().drainEnergy(true)) {
+            if (this.getMetaTileEntity().getOffsetTimer() % Math.max(4, 20 / this.getMetaTileEntity().getEnergyTier()) == 0) {
+                operate();
+            }
+        }
+
+        if (previousState != state) {
+            this.writeCustomData(GTFOValues.UPDATE_KITCHEN_STATUS, buf -> buf.writeByte(state.ordinal()));
+        }
+        wasNotified = false;
+    }
+
+    public void operate() {
         controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
 
         boolean areAnyRunning = false;
@@ -105,11 +118,6 @@ public class KitchenLogic extends MTETrait implements IControllable {
         }
 
         handleNodes();
-
-        if (previousState != state) {
-            this.writeCustomData(GTFOValues.UPDATE_KITCHEN_STATUS, buf -> buf.writeByte(state.ordinal()));
-        }
-        wasNotified = false;
     }
 
     public void handleNodes() {

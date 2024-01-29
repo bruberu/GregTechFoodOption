@@ -4,6 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
 import com.google.common.collect.Lists;
+import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.IMultipleTankHandler;
@@ -30,6 +31,7 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.blocks.BlockBoilerCasing;
@@ -111,6 +113,22 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @Override
     protected void updateFormedValid() {
 
+    }
+
+    public boolean drainEnergy(boolean simulate) {
+        long energyToDrain = GTValues.VA[getEnergyTier()] / 2;
+        long resultEnergy = energyContainer.getEnergyStored() - energyToDrain;
+        if (resultEnergy >= 0L && resultEnergy <= energyContainer.getEnergyCapacity()) {
+            if (!simulate)
+                energyContainer.changeEnergy(-energyToDrain);
+            return true;
+        }
+        return false;
+    }
+
+    public int getEnergyTier() {
+        if (energyContainer == null) return GTValues.LV;
+        return Math.max(GTValues.LV, GTUtility.getFloorTierByVoltage(energyContainer.getInputVoltage()));
     }
 
     @NotNull
@@ -364,9 +382,13 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), isActive(), true);
-
+        this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), isActive(), kitchenLogic.isWorkingEnabled());
     }
+
+    public boolean isActive() {
+        return this.isStructureFormed() && this.drainEnergy(true) && kitchenLogic.isWorkingEnabled();
+    }
+
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, isStructureFormed())
@@ -403,7 +425,9 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                 });
     }
     protected void addWarningText(List<ITextComponent> textList) {
-        MultiblockDisplayText.builder(textList, this.isStructureFormed(), false).addMaintenanceProblemLines(this.getMaintenanceProblems())
+        MultiblockDisplayText.builder(textList, this.isStructureFormed(), false)
+                .addMaintenanceProblemLines(this.getMaintenanceProblems())
+                .addLowPowerLine(!drainEnergy(true))
                 .addCustom((list) -> {
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
