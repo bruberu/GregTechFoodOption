@@ -18,6 +18,8 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFOMetalCasing;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.machines.GTFOTileEntities;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.common.Loader;
 
@@ -115,6 +117,12 @@ public class GTFOMachineRecipes {
                 'I', new UnificationEntry(circuit, MarkerMaterials.Tier.MV),
                 'W', new UnificationEntry(cableGtQuadruple, AnnealedCopper),
                 'P', new UnificationEntry(plate, BismuthBronze));
+
+        ModHandler.addShapelessRecipe("kitchen_recipe_pencil", GTFOMetaItem.KITCHEN_RECIPE.getStackForm(),
+                Items.PAPER, "dustGraphite");
+
+        ModHandler.addShapelessRecipe("kitchen_recipe_pen", GTFOMetaItem.KITCHEN_RECIPE.getStackForm(),
+                Items.PAPER, MetaItems.DYE_ONLY_ITEMS[0]);
 
         Arrays.stream(GTFOMetalCasing.CasingType.values()).forEach(casing -> {
             registerMetalCasingRecipe(casing.getMaterial(), GTFOMetaBlocks.GTFO_METAL_CASING, casing);

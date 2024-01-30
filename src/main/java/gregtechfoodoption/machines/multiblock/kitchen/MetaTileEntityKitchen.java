@@ -134,7 +134,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @NotNull
     @Override
     protected BlockPattern createStructurePattern() {
-        if (getWorld() != null) updateStructureDimensions();
+        if (getWorld() != null && !getWorld().isRemote) updateStructureDimensions();
         // these can sometimes get set to 0 when loading the game, breaking JEI
         if (sDist < MIN_RADIUS) sDist = MIN_RADIUS;
         if (bDist < MIN_RADIUS * 2) bDist = MIN_RADIUS * 2;
@@ -174,7 +174,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
 
         return FactoryBlockPattern.start()
                 .aisle(borderBuilder.toString(), emptyBuilder.toString())
-                .aisle(centerBuilder.toString(), topBuilder.toString()).setRepeatable(1, bDist)
+                .aisle(centerBuilder.toString(), topBuilder.toString()).setRepeatable(MIN_RADIUS * 2, bDist)
                 .aisle(frontBuilder.toString(), emptyBuilder.toString())
                 .where('S', selfPredicate())
                 .where('B', basePredicate.or(states(getCasingState())))
@@ -392,9 +392,13 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @Override
     protected void addDisplayText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, isStructureFormed())
-                .setWorkingStatus(this.kitchenLogic.isWorkingEnabled(), this.kitchenLogic.state == KitchenLogic.KitchenLogicState.PROBABLY_FINE)
+                .setWorkingStatus(this.kitchenLogic.isWorkingEnabled(), this.isActive())
                 .addWorkingStatusLine()
+                .addEnergyUsageLine(this.energyContainer)
+                .addEnergyTierLine(this.getEnergyTier())
                 .addCustom((list) -> {
+                    if (!this.isActive())
+                        return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
                         case PROBABLY_FINE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.probably_fine");
@@ -405,6 +409,8 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                     }
                 })
                 .addCustom((list) -> {
+                    if (!this.isActive())
+                        return;
                     list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_size", this.orderSize).setStyle((new Style()).setColor(TextFormatting.GOLD)));
                 });
     }
@@ -413,6 +419,8 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     protected void addErrorText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, this.isStructureFormed(), true)
                 .addCustom((list) -> {
+                    if (!this.isActive())
+                        return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
                         case NO_RECIPE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_recipe");
@@ -429,6 +437,8 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                 .addMaintenanceProblemLines(this.getMaintenanceProblems())
                 .addLowPowerLine(!drainEnergy(true))
                 .addCustom((list) -> {
+                    if (!this.isActive())
+                        return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
                         case BUSES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.buses_full");

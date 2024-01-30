@@ -1160,7 +1160,7 @@ gregtechfoodoption.multiblock.kitchen.buses_full=The item IO Buses are full!
 gregtechfoodoption.multiblock.kitchen.hatches_full=The fluid IO Hatches are full!
 gregtechfoodoption.multiblock.kitchen.bad_machines=There aren't Machines of the right Type/Tier to actually make the Item!
 gregtechfoodoption.multiblock.kitchen.no_ingredients=There are missing Ingredients!
-gregtechfoodoption.multiblock.kitchen.probably_fine=At least the Kitchen is working fine.
+gregtechfoodoption.multiblock.kitchen.probably_fine=Running recipes...
 gregtechfoodoption.multiblock.kitchen.order_complete=Order completed!
 
 gregtechfoodoption.multiblock.kitchen.order_size=Order size: %s items

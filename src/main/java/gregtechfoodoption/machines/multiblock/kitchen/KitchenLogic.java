@@ -63,26 +63,25 @@ public class KitchenLogic extends MTETrait implements IControllable {
 
         KitchenLogicState previousState = state;
 
-        // Check if order is fulfilled
-        if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
-            this.getMetaTileEntity().getNotifiedItemOutputList().clear();
-            if (this.checkOrder()) {
-                state = KitchenLogicState.ORDER_COMPLETE;
-            } else {
-                state = KitchenLogicState.PROBABLY_FINE;
-            }
-            this.wasNotified = true;
-        }
-        if (this.state == KitchenLogicState.ORDER_COMPLETE || previousState == KitchenLogicState.ORDER_COMPLETE) {
-            // We could also skip it if it was the previous state momentarily, given that when the world loads,
-            // the order completion check doesn't work the first time.
-            return;
-        } else {
-            this.state = KitchenLogicState.PROBABLY_FINE; // The default.
-        }
-
         if (this.getMetaTileEntity().drainEnergy(true)) {
             if (this.getMetaTileEntity().getOffsetTimer() % Math.max(4, 20 / this.getMetaTileEntity().getEnergyTier()) == 0) {
+                // Check if order is fulfilled
+                if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
+                    this.getMetaTileEntity().getNotifiedItemOutputList().clear();
+                    if (this.checkOrder()) {
+                        state = KitchenLogicState.ORDER_COMPLETE;
+                    } else {
+                        state = KitchenLogicState.PROBABLY_FINE;
+                    }
+                    this.wasNotified = true;
+                }
+                if (this.state == KitchenLogicState.ORDER_COMPLETE || previousState == KitchenLogicState.ORDER_COMPLETE) {
+                    // We could also skip it if it was the previous state momentarily, given that when the world loads,
+                    // the order completion check doesn't work the first time.
+                    return;
+                } else {
+                    this.state = KitchenLogicState.PROBABLY_FINE; // The default.
+                }
                 operate();
             }
         }
@@ -94,6 +93,8 @@ public class KitchenLogic extends MTETrait implements IControllable {
     }
 
     public void operate() {
+
+
         controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
 
         boolean areAnyRunning = false;
