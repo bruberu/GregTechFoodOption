@@ -42,6 +42,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
     boolean recheckOutputs = true;
     private boolean workingEnabled = true;
     private ItemStack resultItem;
+    private int dirtiness;
     public KitchenLogicState state;
 
     public KitchenLogic(MetaTileEntityKitchen controller) {
@@ -62,8 +63,10 @@ public class KitchenLogic extends MTETrait implements IControllable {
         if (this.metaTileEntity.getWorld().isRemote || !isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
 
         KitchenLogicState previousState = state;
+        controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
 
         if (this.getMetaTileEntity().drainEnergy(true)) {
+            this.getMetaTileEntity().drainEnergy(false);
             if (this.getMetaTileEntity().getOffsetTimer() % Math.max(4, 20 / this.getMetaTileEntity().getEnergyTier()) == 0) {
                 // Check if order is fulfilled
                 if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
@@ -85,7 +88,11 @@ public class KitchenLogic extends MTETrait implements IControllable {
                 operate();
             }
         }
-
+        for (MetaTileEntity mte : controlledMTEs) {
+            if (mte.getRecipeLogic().getProgress() > 0) {
+                dirtiness ++; // Maybe use voltage instead?
+            }
+        }
         if (previousState != state) {
             this.writeCustomData(GTFOValues.UPDATE_KITCHEN_STATUS, buf -> buf.writeByte(state.ordinal()));
         }
@@ -93,9 +100,6 @@ public class KitchenLogic extends MTETrait implements IControllable {
     }
 
     public void operate() {
-
-
-        controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
 
         boolean areAnyRunning = false;
         for (MetaTileEntity mte : controlledMTEs) {

@@ -18,6 +18,7 @@ import gregtech.api.util.FluidTooltipUtil;
 import gregtech.api.util.LocalizationUtils;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.item.GTFOProxyItem;
+import gregtechfoodoption.materials.CleanerProperty;
 import gregtechfoodoption.materials.FertilizerProperty;
 import gregtechfoodoption.materials.LacingProperty;
 import net.minecraft.util.ResourceLocation;
@@ -34,6 +35,7 @@ import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 public class GTFOMaterialHandler {
     public static final PropertyKey<FertilizerProperty> FERTILIZER = new PropertyKey<>("gtfo_fertilizer", FertilizerProperty.class);
     public static final PropertyKey<LacingProperty> LACING = new PropertyKey<>("gtfo_lacing", LacingProperty.class);
+    public static final PropertyKey<CleanerProperty> CLEANER = new PropertyKey<>("gtfo_cleaner", CleanerProperty.class);
 
     // 21500 - 21999
 
@@ -609,6 +611,9 @@ public class GTFOMaterialHandler {
         Water.setProperty(FERTILIZER, new FertilizerProperty(5));
         Blood.setProperty(FERTILIZER, new FertilizerProperty(30));
         FertilizerSolution.setProperty(FERTILIZER, new FertilizerProperty(15));
+
+        DistilledWater.setProperty(CLEANER, new CleanerProperty(1));
+        SodiumStearate.setProperty(CLEANER, new CleanerProperty(8));
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
