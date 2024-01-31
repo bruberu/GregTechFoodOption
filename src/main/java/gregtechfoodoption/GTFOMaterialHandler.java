@@ -5,13 +5,11 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.attribute.FluidAttribute;
 import gregtech.api.fluids.attribute.FluidAttributes;
-import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialIconSet;
-import gregtech.api.unification.material.properties.FluidProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.FluidTooltipUtil;
@@ -633,7 +631,7 @@ public class GTFOMaterialHandler {
         return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().temperature(temp));
     }
 
-    public static void registerFertilizerTooltips() {
+    public static void registerPropertyTooltips() {
         for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
             FertilizerProperty fertilizerProperty = material.getProperty(FERTILIZER);
             if (fertilizerProperty != null)
@@ -641,6 +639,9 @@ public class GTFOMaterialHandler {
             LacingProperty lacingProperty = material.getProperty(LACING);
             if (lacingProperty != null)
                 FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.lacing")));
+            CleanerProperty cleanerProperty = material.getProperty(CLEANER);
+            if (cleanerProperty != null)
+                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.cleaning", cleanerProperty.getCleaningPower())));
         }
     }
 

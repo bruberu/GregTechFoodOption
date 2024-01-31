@@ -1,5 +1,6 @@
 package gregtechfoodoption.machines.multiblock.kitchen;
 
+import gregtech.api.GregTechAPI;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
@@ -13,9 +14,14 @@ import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.ingredients.GTRecipeFluidInput;
 import gregtech.api.recipes.ingredients.GTRecipeInput;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
+import gregtech.api.unification.material.Material;
 import gregtech.api.util.GTTransferUtils;
+import gregtech.api.util.GTUtility;
 import gregtech.common.ConfigHolder;
+import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.materials.CleanerProperty;
+import gregtechfoodoption.materials.FertilizerProperty;
 import gregtechfoodoption.utils.GTFOLog;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.item.ItemStack;
@@ -60,37 +66,38 @@ public class KitchenLogic extends MTETrait implements IControllable {
     }
 
     public void update() {
-        if (this.metaTileEntity.getWorld().isRemote || !isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5) return;
+        if (this.metaTileEntity.getWorld().isRemote || !isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5)
+            return;
 
         KitchenLogicState previousState = state;
         controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
 
-        if (this.getMetaTileEntity().drainEnergy(true)) {
+        boolean consumedEnergy = this.getMetaTileEntity().drainEnergy(true);
+        if (consumedEnergy) {
             this.getMetaTileEntity().drainEnergy(false);
-            if (this.getMetaTileEntity().getOffsetTimer() % Math.max(4, 20 / this.getMetaTileEntity().getEnergyTier()) == 0) {
-                // Check if order is fulfilled
-                if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
-                    this.getMetaTileEntity().getNotifiedItemOutputList().clear();
-                    if (this.checkOrder()) {
-                        state = KitchenLogicState.ORDER_COMPLETE;
-                    } else {
-                        state = KitchenLogicState.PROBABLY_FINE;
-                    }
-                    this.wasNotified = true;
-                }
-                if (this.state == KitchenLogicState.ORDER_COMPLETE || previousState == KitchenLogicState.ORDER_COMPLETE) {
-                    // We could also skip it if it was the previous state momentarily, given that when the world loads,
-                    // the order completion check doesn't work the first time.
-                    return;
+        }
+
+        if (this.getMetaTileEntity().getOffsetTimer() % Math.max(4, operationSlowdown()) == 0) {
+            // Check if order is fulfilled
+            if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
+                this.getMetaTileEntity().getNotifiedItemOutputList().clear();
+                if (this.checkOrder()) {
+                    state = KitchenLogicState.ORDER_COMPLETE;
                 } else {
-                    this.state = KitchenLogicState.PROBABLY_FINE; // The default.
+                    state = KitchenLogicState.PROBABLY_FINE;
                 }
-                operate();
+                this.wasNotified = true;
+            }
+            if (this.state != KitchenLogicState.ORDER_COMPLETE && previousState != KitchenLogicState.ORDER_COMPLETE) {
+                this.state = KitchenLogicState.PROBABLY_FINE; // The default.
+                if (consumedEnergy) {
+                    operate();
+                }
             }
         }
         for (MetaTileEntity mte : controlledMTEs) {
             if (mte.getRecipeLogic().getProgress() > 0) {
-                dirtiness ++; // Maybe use voltage instead?
+                dirtiness += GTUtility.getFloorTierByVoltage(mte.getRecipeLogic().getProgress());
             }
         }
         if (previousState != state) {
@@ -99,8 +106,11 @@ public class KitchenLogic extends MTETrait implements IControllable {
         wasNotified = false;
     }
 
-    public void operate() {
+    private int operationSlowdown() {
+        return 20 / this.getMetaTileEntity().getEnergyTier() + (int) Math.ceil(Math.log(dirtiness));
+    }
 
+    public void operate() {
         boolean areAnyRunning = false;
         for (MetaTileEntity mte : controlledMTEs) {
             if (mte.getRecipeLogic().getProgress() == 0) {
@@ -123,6 +133,8 @@ public class KitchenLogic extends MTETrait implements IControllable {
         }
 
         handleNodes();
+
+        cleanSelf();
     }
 
     public void handleNodes() {
@@ -166,6 +178,22 @@ public class KitchenLogic extends MTETrait implements IControllable {
         leaves.clear();
     }
 
+    public void cleanSelf() {
+        for (IMultipleTankHandler.MultiFluidTankEntry tank : this.getMetaTileEntity().getInputFluidInventory().getFluidTanks()) {
+            FluidStack fluid = tank.getFluid();
+            if (fluid.amount <= 0) {
+                continue;
+            }
+            Material mat = GregTechAPI.materialManager.getMaterial(fluid.getFluid().getName());
+            if (mat != null) {
+                CleanerProperty property = mat.getProperty(GTFOMaterialHandler.CLEANER);
+                if (property != null) {
+                    tank.drain(property.getCleaningPower(), true);
+                }
+            }
+        }
+    }
+
     private boolean checkOrder() {
         int countLeft = getMetaTileEntity().getOrderSize();
 
@@ -181,241 +209,241 @@ public class KitchenLogic extends MTETrait implements IControllable {
         return false;
     }
 
-    public boolean slurpInventory(IItemHandler sourceInventory) {
-        boolean didAnything = false;
-        for (int srcIndex = 0; srcIndex < sourceInventory.getSlots(); ++srcIndex) {
-            ItemStack sourceStack = sourceInventory.extractItem(srcIndex, Integer.MAX_VALUE, true);
-            if (!sourceStack.isEmpty()) {
-                IItemHandlerModifiable inventory = getNodes(new GTRecipeItemInput(sourceStack)) == null || resultItem.isItemEqual(sourceStack) ?
-                        getMetaTileEntity().getOutputInventory() : getMetaTileEntity().getInputInventory();
-                ItemStack remainder = GTTransferUtils.insertItem(inventory, sourceStack, true);
-                int amountToInsert = sourceStack.getCount() - remainder.getCount();
-                if (remainder.getCount() > 0) {
-                    this.state = KitchenLogicState.BUSES_FULL;
-                }
-                if (amountToInsert > 0) {
-                    sourceStack = sourceInventory.extractItem(srcIndex, amountToInsert, false);
-                    GTTransferUtils.insertItem(inventory, sourceStack, false);
-                    didAnything = true;
-                }
-            }
-        }
-        return didAnything;
-    }
-
-    public boolean slurpFluids(@NotNull IFluidHandler sourceHandler) {
-        boolean didAnything = false;
-        for (IFluidTankProperties prop : sourceHandler.getTankProperties()) {
-            FluidStack currentFluid = prop.getContents();
-            if (currentFluid != null && currentFluid.amount != 0) {
-                FluidStack fluidStack = sourceHandler.drain(currentFluid, false);
-                if (fluidStack != null && fluidStack.amount != 0) {
-                    IMultipleTankHandler handler = getNodes(new GTRecipeFluidInput(fluidStack)) == null ?
-                            getMetaTileEntity().getOutputFluidInventory() : getMetaTileEntity().getInputFluidInventory();
-                    int canInsertAmount = handler.fill(fluidStack, false);
-
-                    if (canInsertAmount > 0) {
-                        fluidStack.amount = canInsertAmount;
-                        fluidStack = sourceHandler.drain(fluidStack, true);
-                        if (fluidStack != null && fluidStack.amount > 0) {
-                            handler.fill(fluidStack, true);
-                        }
+        public boolean slurpInventory(IItemHandler sourceInventory){
+            boolean didAnything = false;
+            for (int srcIndex = 0; srcIndex < sourceInventory.getSlots(); ++srcIndex) {
+                ItemStack sourceStack = sourceInventory.extractItem(srcIndex, Integer.MAX_VALUE, true);
+                if (!sourceStack.isEmpty()) {
+                    IItemHandlerModifiable inventory = getNodes(new GTRecipeItemInput(sourceStack)) == null || resultItem.isItemEqual(sourceStack) ?
+                            getMetaTileEntity().getOutputInventory() : getMetaTileEntity().getInputInventory();
+                    ItemStack remainder = GTTransferUtils.insertItem(inventory, sourceStack, true);
+                    int amountToInsert = sourceStack.getCount() - remainder.getCount();
+                    if (remainder.getCount() > 0) {
+                        this.state = KitchenLogicState.BUSES_FULL;
+                    }
+                    if (amountToInsert > 0) {
+                        sourceStack = sourceInventory.extractItem(srcIndex, amountToInsert, false);
+                        GTTransferUtils.insertItem(inventory, sourceStack, false);
                         didAnything = true;
                     }
                 }
-                if (currentFluid.amount > 0) {
-                    this.state = KitchenLogicState.HATCHES_FULL;
-                }
             }
+            return didAnything;
         }
-        return didAnything;
-    }
 
-    public BlockPos findRun(Recipe r, RecipeMap map) {
-        BlockPos result = null;
-        for (WorkableTieredMetaTileEntity mte : controlledMTEs) {
-            if ((mte.getRecipeLogic().getProgress() == 0 || result == null) && mte.getRecipeLogic().getRecipeMap().equals(map) && mte.getRecipeLogic().getMaxVoltage() >= r.getEUt()) {
-                result = mte.getPos();
-            }
-        }
-        return result;
-    }
+        public boolean slurpFluids (@NotNull IFluidHandler sourceHandler){
+            boolean didAnything = false;
+            for (IFluidTankProperties prop : sourceHandler.getTankProperties()) {
+                FluidStack currentFluid = prop.getContents();
+                if (currentFluid != null && currentFluid.amount != 0) {
+                    FluidStack fluidStack = sourceHandler.drain(currentFluid, false);
+                    if (fluidStack != null && fluidStack.amount != 0) {
+                        IMultipleTankHandler handler = getNodes(new GTRecipeFluidInput(fluidStack)) == null ?
+                                getMetaTileEntity().getOutputFluidInventory() : getMetaTileEntity().getInputFluidInventory();
+                        int canInsertAmount = handler.fill(fluidStack, false);
 
-    // Iterates through the recipes in recipeData to find ones that produce stack s.
-    protected Collection<RecipeAndMap> getRecipesFor(GTRecipeItemInput s, @NotNull NBTTagCompound recipeData) {
-        List<RecipeAndMap> recipes = new ArrayList<>();
-        int count = recipeData.getInteger("recipecount");
-        for (int i = 0; i < count; i++) {
-            NBTTagCompound recipe = recipeData.getCompoundTag("recipe" + i);
-            NBTTagCompound outputs = recipe.getCompoundTag("outputs");
-            int outputSize = outputs.getInteger("size");
-            for (int j = 0; j < outputSize; j++) {
-                ItemStack stack = new ItemStack(outputs.getCompoundTag("item" + j));
-                if (s.acceptsStack(stack)) {
-
-                    RecipeMap map = RecipeMap.getByName(recipe.getString("map"));
-                    Recipe actualRecipe = getRecipeFromMap(recipe, map);
-                    if (actualRecipe != null) {
-                        recipes.add(new RecipeAndMap(actualRecipe, map));
-                    } else {
-                        GTFOLog.logger.warn("A recipe for " + s + " had bad NBT! Maybe it doesn't exist anymore?");
+                        if (canInsertAmount > 0) {
+                            fluidStack.amount = canInsertAmount;
+                            fluidStack = sourceHandler.drain(fluidStack, true);
+                            if (fluidStack != null && fluidStack.amount > 0) {
+                                handler.fill(fluidStack, true);
+                            }
+                            didAnything = true;
+                        }
+                    }
+                    if (currentFluid.amount > 0) {
+                        this.state = KitchenLogicState.HATCHES_FULL;
                     }
                 }
             }
-
+            return didAnything;
         }
-        return recipes;
-    }
 
-    protected Recipe getRecipeFromMap(NBTTagCompound tag, RecipeMap<?> map) {
-        List<ItemStack> inputs = new ArrayList<>();
-        List<FluidStack> fluidInputs = new ArrayList<>();
-        NBTTagCompound inputsTag = tag.getCompoundTag("inputs");
-        for (int i = 0; i < inputsTag.getInteger("size"); i++) {
-            inputs.add(new ItemStack(inputsTag.getCompoundTag("item" + i)));
+        public BlockPos findRun (Recipe r, RecipeMap map){
+            BlockPos result = null;
+            for (WorkableTieredMetaTileEntity mte : controlledMTEs) {
+                if ((mte.getRecipeLogic().getProgress() == 0 || result == null) && mte.getRecipeLogic().getRecipeMap().equals(map) && mte.getRecipeLogic().getMaxVoltage() >= r.getEUt()) {
+                    result = mte.getPos();
+                }
+            }
+            return result;
         }
-        NBTTagCompound fluidInputsTag = tag.getCompoundTag("fluidInputs");
-        for (int i = 0; i < fluidInputsTag.getInteger("size"); i++) {
-            fluidInputs.add(FluidStack.loadFluidStackFromNBT(fluidInputsTag.getCompoundTag("fluid" + i)));
-        }
-        int eut = tag.getInteger("EUt");
-        return map.findRecipe(eut, inputs, fluidInputs);
-    }
 
-    // Iterates through the recipes in recipeData to find ones that produce fluid s.
-    protected Collection<RecipeAndMap> getRecipesFor(GTRecipeFluidInput s, @NotNull NBTTagCompound recipeData) {
-        List<RecipeAndMap> recipes = new ArrayList<>();
-        int count = recipeData.getInteger("recipecount");
-        for (int i = 0; i < count; i++) {
-            NBTTagCompound recipe = recipeData.getCompoundTag("recipe" + i);
-            NBTTagCompound outputs = recipe.getCompoundTag("fluidOutputs");
-            int outputSize = outputs.getInteger("size");
-            for (int j = 0; j < outputSize; j++) {
-                FluidStack stack = FluidStack.loadFluidStackFromNBT(outputs.getCompoundTag("fluid" + j));
-                if (s.acceptsFluid(stack)) {
-                    RecipeMap map = RecipeMap.getByName(recipe.getString("map"));
-                    Recipe actualRecipe = getRecipeFromMap(recipe, map);
-                    if (actualRecipe != null) {
-                        recipes.add(new RecipeAndMap(actualRecipe, map));
-                    } else {
-                        GTFOLog.logger.warn("A recipe for " + s + " had bad NBT! Maybe it doesn't exist anymore?");
+        // Iterates through the recipes in recipeData to find ones that produce stack s.
+        protected Collection<RecipeAndMap> getRecipesFor (GTRecipeItemInput s, @NotNull NBTTagCompound recipeData){
+            List<RecipeAndMap> recipes = new ArrayList<>();
+            int count = recipeData.getInteger("recipecount");
+            for (int i = 0; i < count; i++) {
+                NBTTagCompound recipe = recipeData.getCompoundTag("recipe" + i);
+                NBTTagCompound outputs = recipe.getCompoundTag("outputs");
+                int outputSize = outputs.getInteger("size");
+                for (int j = 0; j < outputSize; j++) {
+                    ItemStack stack = new ItemStack(outputs.getCompoundTag("item" + j));
+                    if (s.acceptsStack(stack)) {
+
+                        RecipeMap map = RecipeMap.getByName(recipe.getString("map"));
+                        Recipe actualRecipe = getRecipeFromMap(recipe, map);
+                        if (actualRecipe != null) {
+                            recipes.add(new RecipeAndMap(actualRecipe, map));
+                        } else {
+                            GTFOLog.logger.warn("A recipe for " + s + " had bad NBT! Maybe it doesn't exist anymore?");
+                        }
+                    }
+                }
+
+            }
+            return recipes;
+        }
+
+        protected Recipe getRecipeFromMap (NBTTagCompound tag, RecipeMap < ?>map){
+            List<ItemStack> inputs = new ArrayList<>();
+            List<FluidStack> fluidInputs = new ArrayList<>();
+            NBTTagCompound inputsTag = tag.getCompoundTag("inputs");
+            for (int i = 0; i < inputsTag.getInteger("size"); i++) {
+                inputs.add(new ItemStack(inputsTag.getCompoundTag("item" + i)));
+            }
+            NBTTagCompound fluidInputsTag = tag.getCompoundTag("fluidInputs");
+            for (int i = 0; i < fluidInputsTag.getInteger("size"); i++) {
+                fluidInputs.add(FluidStack.loadFluidStackFromNBT(fluidInputsTag.getCompoundTag("fluid" + i)));
+            }
+            int eut = tag.getInteger("EUt");
+            return map.findRecipe(eut, inputs, fluidInputs);
+        }
+
+        // Iterates through the recipes in recipeData to find ones that produce fluid s.
+        protected Collection<RecipeAndMap> getRecipesFor (GTRecipeFluidInput s, @NotNull NBTTagCompound recipeData){
+            List<RecipeAndMap> recipes = new ArrayList<>();
+            int count = recipeData.getInteger("recipecount");
+            for (int i = 0; i < count; i++) {
+                NBTTagCompound recipe = recipeData.getCompoundTag("recipe" + i);
+                NBTTagCompound outputs = recipe.getCompoundTag("fluidOutputs");
+                int outputSize = outputs.getInteger("size");
+                for (int j = 0; j < outputSize; j++) {
+                    FluidStack stack = FluidStack.loadFluidStackFromNBT(outputs.getCompoundTag("fluid" + j));
+                    if (s.acceptsFluid(stack)) {
+                        RecipeMap map = RecipeMap.getByName(recipe.getString("map"));
+                        Recipe actualRecipe = getRecipeFromMap(recipe, map);
+                        if (actualRecipe != null) {
+                            recipes.add(new RecipeAndMap(actualRecipe, map));
+                        } else {
+                            GTFOLog.logger.warn("A recipe for " + s + " had bad NBT! Maybe it doesn't exist anymore?");
+                        }
+                    }
+                }
+
+            }
+            return recipes;
+        }
+
+        public void setNodes (GTRecipeInput sizedInput){
+            GTRecipeInput input = sizedInput.copyWithAmount(1);
+            if (leaves.get(input) == null) {
+                List<KitchenRequestNode> nodes = new ArrayList<>();
+                Collection<RecipeAndMap> rs = input instanceof GTRecipeItemInput ? getRecipesFor((GTRecipeItemInput) input, getMetaTileEntity().getRecipeNBT()) : getRecipesFor((GTRecipeFluidInput) input, getMetaTileEntity().getRecipeNBT());
+                for (RecipeAndMap recipeAndMap : rs) {
+                    KitchenRequestNode node = new KitchenRequestNode(recipeAndMap.recipe, recipeAndMap.map, this);
+                    this.requestNodes.add(node);
+                    nodes.add(node);
+                }
+                this.leaves.put(input, nodes);
+                wasNotified = true;
+            } else {
+                for (KitchenRequestNode node : leaves.get(input)) {
+                    if (node.state != KitchenRequestNode.KitchenRequestState.NOT_RUNNABLE) {
+                        node.state = KitchenRequestNode.KitchenRequestState.AWAITING_INGREDIENTS;
                     }
                 }
             }
-
         }
-        return recipes;
-    }
 
-    public void setNodes(GTRecipeInput sizedInput) {
-        GTRecipeInput input = sizedInput.copyWithAmount(1);
-        if (leaves.get(input) == null) {
-            List<KitchenRequestNode> nodes = new ArrayList<>();
-            Collection<RecipeAndMap> rs = input instanceof GTRecipeItemInput ? getRecipesFor((GTRecipeItemInput) input, getMetaTileEntity().getRecipeNBT()) : getRecipesFor((GTRecipeFluidInput) input, getMetaTileEntity().getRecipeNBT());
-            for (RecipeAndMap recipeAndMap : rs) {
-                KitchenRequestNode node = new KitchenRequestNode(recipeAndMap.recipe, recipeAndMap.map, this);
-                this.requestNodes.add(node);
-                nodes.add(node);
-            }
-            this.leaves.put(input, nodes);
-            wasNotified = true;
-        } else {
-            for (KitchenRequestNode node : leaves.get(input)) {
-                if (node.state != KitchenRequestNode.KitchenRequestState.NOT_RUNNABLE) {
-                    node.state = KitchenRequestNode.KitchenRequestState.AWAITING_INGREDIENTS;
+        public List<KitchenRequestNode> getNodes (GTRecipeInput sizedInput){
+            GTRecipeInput input = sizedInput.copyWithAmount(1);
+            return leaves.get(input);
+        }
+
+        public WorkableTieredMetaTileEntity getMachineAtPos (BlockPos pos){
+            for (WorkableTieredMetaTileEntity mte : controlledMTEs) {
+                if (mte.getPos().equals(pos)) {
+                    return mte;
                 }
             }
+            return null;
         }
-    }
-    
-    public List<KitchenRequestNode> getNodes(GTRecipeInput sizedInput) {
-        GTRecipeInput input = sizedInput.copyWithAmount(1);
-        return leaves.get(input);
-    }
 
-    public WorkableTieredMetaTileEntity getMachineAtPos(BlockPos pos) {
-        for (WorkableTieredMetaTileEntity mte : controlledMTEs) {
-            if (mte.getPos().equals(pos)) {
-                return mte;
+        @Override
+        public boolean isWorkingEnabled () {
+            return this.workingEnabled;
+        }
+
+        @Override
+        public void setWorkingEnabled ( boolean b){
+            workingEnabled = b;
+        }
+
+        @Override
+        public @NotNull String getName () {
+            return "ExternalMachineRecipeLogic";
+        }
+
+        public void receiveCustomData ( int dataId, @NotNull PacketBuffer buf){
+            if (dataId == GregtechDataCodes.WORKING_ENABLED) {
+                this.workingEnabled = buf.readBoolean();
+                this.getMetaTileEntity().scheduleRenderUpdate();
+            } else if (dataId == GTFOValues.UPDATE_KITCHEN_STATUS) {
+                this.state = KitchenLogicState.values()[buf.readByte()];
+                this.getMetaTileEntity().scheduleRenderUpdate();
             }
         }
-        return null;
-    }
 
-    @Override
-    public boolean isWorkingEnabled() {
-        return this.workingEnabled;
-    }
+        @Override
+        public @NotNull NBTTagCompound serializeNBT () {
+            NBTTagCompound tag = new NBTTagCompound();
+            tag.setBoolean("WorkEnabled", this.workingEnabled);
+            tag.setInteger("Status", this.state.ordinal());
+            return tag;
+        }
 
-    @Override
-    public void setWorkingEnabled(boolean b) {
-        workingEnabled = b;
-    }
+        @Override
+        public void deserializeNBT (@NotNull NBTTagCompound compound){
+            this.workingEnabled = compound.getBoolean("WorkEnabled");
+            this.state = KitchenLogicState.values()[compound.getInteger("Status")];
+        }
 
-    @Override
-    public @NotNull String getName() {
-        return "ExternalMachineRecipeLogic";
-    }
+        @Override
+        public void writeInitialSyncData (@NotNull PacketBuffer buf){
+            buf.writeBoolean(workingEnabled);
+        }
 
-    public void receiveCustomData(int dataId, @NotNull PacketBuffer buf) {
-        if (dataId == GregtechDataCodes.WORKING_ENABLED) {
+        @Override
+        public void receiveInitialSyncData (@NotNull PacketBuffer buf){
             this.workingEnabled = buf.readBoolean();
-            this.getMetaTileEntity().scheduleRenderUpdate();
-        } else if (dataId == GTFOValues.UPDATE_KITCHEN_STATUS) {
-            this.state = KitchenLogicState.values()[buf.readByte()];
-            this.getMetaTileEntity().scheduleRenderUpdate();
+        }
+
+        @Override
+        public <T > T getCapability(Capability < T > capability) {
+            if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) {
+                return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
+            }
+            return null;
+        }
+
+        private static class RecipeAndMap {
+            Recipe recipe;
+            RecipeMap map;
+
+            public RecipeAndMap(Recipe recipe, RecipeMap map) {
+                this.recipe = recipe;
+                this.map = map;
+            }
+        }
+
+        public enum KitchenLogicState {
+            NO_RECIPE,
+            NO_INGREDIENTS,
+            BAD_MACHINES,
+            PROBABLY_FINE,
+            BUSES_FULL,
+            HATCHES_FULL,
+            ORDER_COMPLETE
         }
     }
-
-    @Override
-    public @NotNull NBTTagCompound serializeNBT() {
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setBoolean("WorkEnabled", this.workingEnabled);
-        tag.setInteger("Status", this.state.ordinal());
-        return tag;
-    }
-
-    @Override
-    public void deserializeNBT(@NotNull NBTTagCompound compound) {
-        this.workingEnabled = compound.getBoolean("WorkEnabled");
-        this.state = KitchenLogicState.values()[compound.getInteger("Status")];
-    }
-
-    @Override
-    public void writeInitialSyncData(@NotNull PacketBuffer buf) {
-        buf.writeBoolean(workingEnabled);
-    }
-
-    @Override
-    public void receiveInitialSyncData(@NotNull PacketBuffer buf) {
-        this.workingEnabled = buf.readBoolean();
-    }
-
-    @Override
-    public <T> T getCapability(Capability<T> capability) {
-        if (capability == GregtechTileCapabilities.CAPABILITY_CONTROLLABLE) {
-            return GregtechTileCapabilities.CAPABILITY_CONTROLLABLE.cast(this);
-        }
-        return null;
-    }
-
-    private static class RecipeAndMap {
-        Recipe recipe;
-        RecipeMap map;
-
-        public RecipeAndMap(Recipe recipe, RecipeMap map) {
-            this.recipe = recipe;
-            this.map = map;
-        }
-    }
-
-    public enum KitchenLogicState {
-        NO_RECIPE,
-        NO_INGREDIENTS,
-        BAD_MACHINES,
-        PROBABLY_FINE,
-        BUSES_FULL,
-        HATCHES_FULL,
-        ORDER_COMPLETE
-    }
-}

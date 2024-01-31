@@ -21,4 +21,7 @@ public class CleanerProperty implements IMaterialProperty {
         properties.ensureSet(PropertyKey.FLUID, true);
     }
 
+    public int getCleaningPower() {
+        return cleaningPower;
+    }
 }
