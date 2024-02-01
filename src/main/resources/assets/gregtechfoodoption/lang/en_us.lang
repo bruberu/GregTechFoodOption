@@ -1163,4 +1163,8 @@ gregtechfoodoption.multiblock.kitchen.no_ingredients=There are missing Ingredien
 gregtechfoodoption.multiblock.kitchen.probably_fine=Running recipes...
 gregtechfoodoption.multiblock.kitchen.order_complete=Order completed!
 
+gregtechfoodoption.multiblock.kitchen.very_dirty=The Kitchen could really use a Cleaning!
 gregtechfoodoption.multiblock.kitchen.order_size=Order size: %s items
+gregtechfoodoption.multiblock.kitchen.dirtiness=Dirtiness: %s DU
+
+gregtechfoodoption.fluid.cleaning=Cleans §2%s§r DU/L!

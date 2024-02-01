@@ -412,6 +412,22 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                     if (!this.isActive())
                         return;
                     list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_size", this.orderSize).setStyle((new Style()).setColor(TextFormatting.GOLD)));
+                })
+                .addCustom((list) -> {
+                    if (!this.isActive())
+                        return;
+
+                    TextFormatting color = TextFormatting.GRAY;
+                    if (kitchenLogic.dirtiness > 100) {
+                        color = TextFormatting.RED;
+                    } else if (kitchenLogic.dirtiness > 50) {
+                        color = TextFormatting.YELLOW;
+                    } else if (kitchenLogic.dirtiness > 10) {
+                        color = TextFormatting.WHITE;
+                    }
+
+                    list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.dirtiness", this.kitchenLogic.dirtiness).setStyle(
+                            (new Style()).setColor(color)));
                 });
     }
 
@@ -446,6 +462,9 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                     }
                     if (comp != null) {
                         list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
+                    }
+                    if (this.kitchenLogic.dirtiness > 100) {
+                        list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.very_dirty").setStyle(new Style().setColor(TextFormatting.RED)));
                     }
                 });
     }

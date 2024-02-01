@@ -610,8 +610,8 @@ public class GTFOMaterialHandler {
         Blood.setProperty(FERTILIZER, new FertilizerProperty(30));
         FertilizerSolution.setProperty(FERTILIZER, new FertilizerProperty(15));
 
-        DistilledWater.setProperty(CLEANER, new CleanerProperty(1));
-        SodiumStearate.setProperty(CLEANER, new CleanerProperty(8));
+        DistilledWater.setProperty(CLEANER, new CleanerProperty(2));
+        SodiumStearate.setProperty(CLEANER, new CleanerProperty(16));
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
