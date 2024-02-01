@@ -273,6 +273,8 @@ gregtechfoodoption.machine.electric_baking_oven.name=Electric Baking Oven
 gregtechfoodoption.machine.kitchen.name=Kitchen
 tile.gtfo_casing.adobe_bricks.name=Adobe Bricks
 tile.gtfo_casing.reinforced_adobe_bricks.name=Reinforced Adobe Bricks
+tile.gtfo_casing.porcelain_tile.name=Porcelain Tile
+tile.gtfo_casing.black_porcelain_tile.name=Black Porcelain Tile
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1=Temperature: §a%dK§7.
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=Not enough energy can be inputted to reach the target!
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=Set target temperature:
@@ -1168,3 +1170,19 @@ gregtechfoodoption.multiblock.kitchen.order_size=Order size: %s items
 gregtechfoodoption.multiblock.kitchen.dirtiness=Dirtiness: %s DU
 
 gregtechfoodoption.fluid.cleaning=Cleans §2%s§r DU/L!
+
+gregtechfoodoption.kitchen.recipe.warn=Only food-related items may be placed here!
+
+metaitem.bone_ash_dust.name=Bone Ash
+metaitem.unfired_porcelain_tile_plate.name=Unfired Porcelain Tile
+metaitem.bisque_porcelain_tile_plate.name=Bisque Porcelain Tile
+metaitem.glazed_porcelain_tile_plate.name=Glazed Porcelain Tile
+metaitem.utility.kitchen_recipe.name=Kitchen Recipe
+metaitem.utility.kitchen_recipe.tooltip=Right-click to add GTFO Recipes through JEI! Works with the Kitchen multiblock.
+gregtechfoodoption.kitchen_recipe.final_result=§3Produces %s
+
+gregtechfoodoption.machine.kitchen.tooltip.1=§4Only can be used with JEI
+gregtechfoodoption.machine.kitchen.tooltip.2=Runs food-related Recipes through a Kitchen Recipe
+gregtechfoodoption.machine.kitchen.tooltip.3=Place singleblock Machines on the porcelain tile!
+gregtechfoodoption.machine.kitchen.tooltip.4=Any size larger than the Preview is fine.
+gregtechfoodoption.machine.kitchen.tooltip.5=§4Requires cleaning Products to remain efficient!

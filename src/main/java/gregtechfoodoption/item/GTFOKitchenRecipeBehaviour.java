@@ -6,6 +6,7 @@ import gregtech.api.items.gui.ItemUIFactory;
 import gregtech.api.items.gui.PlayerInventoryHolder;
 import gregtech.api.items.metaitem.stats.IItemBehaviour;
 import gregtechfoodoption.gui.widgets.KitchenRecipeWidget;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,6 +14,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour {
     @Override
@@ -83,5 +86,13 @@ public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour
             holder.openUI();
         }
         return ActionResult.newResult(EnumActionResult.SUCCESS, heldItem);
+    }
+
+    @Override
+    public void addInformation(ItemStack itemStack, List<String> lines) {
+        ItemStack finalItem = getFinalResult(itemStack);
+        if (finalItem != null && !finalItem.isEmpty()) {
+            lines.add(I18n.format("gregtechfoodoption.kitchen_recipe.final_result", finalItem.getDisplayName()));
+        }
     }
 }

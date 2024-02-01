@@ -51,7 +51,7 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         @NotNull
         @Override
         public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            if (stack.getItem() instanceof GTFOMetaItem || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM)) {
+            if (isAcceptableItem(stack)) {
                 return super.insertItem(slot, stack, simulate);
             }
             return stack;
@@ -185,7 +185,7 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
 
         boolean isGTFO = false;
         boolean isUseful = false; // Will be true if the recipe actually has an item in it that is in the current recipe list.
-        if (outputs.stream().anyMatch(itemStack -> itemStack.getItem() instanceof GTFOMetaItem || itemStack.getItem().equals(GTFOMetaItems.SHAPED_ITEM))) {
+        if (outputs.stream().anyMatch(this::isAcceptableItem)) {
             isGTFO = true;
         }
         if (outputs.parallelStream().anyMatch(itemStack -> this.neededInputs.stream().anyMatch(itemStack::isItemEqual)))
@@ -270,5 +270,9 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
             buf.writeCompoundTag(tag);
         });
         return null;
+    }
+
+    private boolean isAcceptableItem(ItemStack stack) {
+        return stack.getItem() instanceof GTFOMetaItem || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM);
     }
 }

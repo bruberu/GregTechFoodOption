@@ -41,6 +41,7 @@ import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -60,6 +61,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.List;
 
@@ -218,6 +220,16 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
             return true;
         });
     }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, player, tooltip, advanced);
+
+        for (int i = 1; i < 6; i++) {
+            tooltip.add(I18n.format("gregtechfoodoption.machine.kitchen.tooltip." + i));
+        }
+    }
+
 
 
     @Override

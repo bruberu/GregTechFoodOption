@@ -979,16 +979,16 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
 
         // 175-189 left blank for organic circuits
-        SPRINKLER_COVER = addItem(224, "cover.sprinkler");
+        SPRINKLER_COVER = addItem(224, "cover.sprinkler").blacklistKitchen();
 
-        BLANK_PASTA_DIE = addItem(246, "shape.pasta.blank");
-        TAGLIATELLE_PASTA_DIE = addItem(247, "shape.pasta.tagliatelle");
-        SPAGHETTI_PASTA_DIE = addItem(248, "shape.pasta.spaghetti");
-        DITALINI_PASTA_DIE = addItem(249, "shape.pasta.ditalini");
-        RIGATONI_PASTA_DIE = addItem(250, "shape.pasta.rigatoni");
-        LASAGNA_PASTA_DIE = addItem(251, "shape.pasta.lasagna");
+        BLANK_PASTA_DIE = addItem(246, "shape.pasta.blank").blacklistKitchen();
+        TAGLIATELLE_PASTA_DIE = addItem(247, "shape.pasta.tagliatelle").blacklistKitchen();
+        SPAGHETTI_PASTA_DIE = addItem(248, "shape.pasta.spaghetti").blacklistKitchen();
+        DITALINI_PASTA_DIE = addItem(249, "shape.pasta.ditalini").blacklistKitchen();
+        RIGATONI_PASTA_DIE = addItem(250, "shape.pasta.rigatoni").blacklistKitchen();
+        LASAGNA_PASTA_DIE = addItem(251, "shape.pasta.lasagna").blacklistKitchen();
 
-        KITCHEN_RECIPE = addItem(343, "utility.kitchen_recipe").addComponents(new GTFOKitchenRecipeBehaviour());
+        KITCHEN_RECIPE = addItem(343, "utility.kitchen_recipe").blacklistKitchen().addComponents(new GTFOKitchenRecipeBehaviour());
 
         {
             int heal = 44;
@@ -1068,10 +1068,15 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     public class GTFOMetaValueItem extends MetaItem<?>.MetaValueItem {
 
+        private boolean kitchenBlacklisted;
         protected GTFOMetaValueItem(int metaValue, String unlocalizedName) {
             super(metaValue, unlocalizedName);
         }
 
+        protected GTFOMetaValueItem blacklistKitchen() {
+            kitchenBlacklisted = true;
+            return this;
+        }
 
         protected void addItemComponentsInternal(IItemComponent... stats) {
             super.addItemComponentsInternal(stats);
@@ -1091,6 +1096,5 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         }
 
     }
-
 
 }
