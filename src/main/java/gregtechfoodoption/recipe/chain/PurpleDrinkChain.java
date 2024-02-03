@@ -221,7 +221,7 @@ public class PurpleDrinkChain {
         CHEMICAL_RECIPES.recipeBuilder()
                 .fluidInputs(Aniline.getFluid(2000), HydrochloricAcid.getFluid(1000))
                 .outputs(Diphenylamine.getItemStack(24))
-                .output(dust, AmmoniumChloride, 6)
+                .output(dust, AmmoniumChloride, 2)
                 .EUt(480)
                 .duration(120)
                 .buildAndRegister();

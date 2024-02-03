@@ -96,7 +96,7 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
             canAchieveTargetTemp = true;
         }
 
-        if (isActive())
+        if (!isActive())
             canRunRecipe = false;
     }
 
