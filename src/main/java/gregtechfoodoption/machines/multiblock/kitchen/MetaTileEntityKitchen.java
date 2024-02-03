@@ -31,6 +31,7 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
 import gregtech.api.util.GTUtility;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
@@ -48,6 +49,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
@@ -56,6 +58,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
@@ -63,6 +66,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
@@ -76,9 +80,17 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     protected IItemHandlerModifiable recipeHolder = new ItemStackHandler(1) {
         @Override
         protected void onContentsChanged(int slot) {
-            kitchenLogic.recheckOutputs = true;
+            kitchenLogic.reset();
         }
     };
+    protected IItemHandlerModifiable allCircuits = new ItemStackHandler(32) {
+        @NotNull
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return IntCircuitIngredient.getIntegratedCircuit(slot);
+        }
+    };
+
     protected int orderSize = 64;
 
     private int sDist = 0;
@@ -91,7 +103,9 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     }
 
     protected void initializeAbilities() {
-        this.inputInventory = new ItemHandlerList(getAbilities(MultiblockAbility.IMPORT_ITEMS));
+        List<IItemHandlerModifiable> inputs = new ArrayList<>(getAbilities(MultiblockAbility.IMPORT_ITEMS));
+        inputs.add(allCircuits);
+        this.inputInventory = new ItemHandlerList(inputs);
         this.inputFluidInventory = new FluidTankList(true, getAbilities(MultiblockAbility.IMPORT_FLUIDS));
         this.outputInventory = new ItemHandlerList(getAbilities(MultiblockAbility.EXPORT_ITEMS));
         this.outputFluidInventory = new FluidTankList(true, getAbilities(MultiblockAbility.EXPORT_FLUIDS));
@@ -115,6 +129,12 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @Override
     protected void updateFormedValid() {
 
+    }
+
+    @Override
+    public void getDrops(NonNullList<ItemStack> dropsList, @org.jetbrains.annotations.Nullable EntityPlayer harvester) {
+        super.getDrops(dropsList, harvester);
+        dropsList.add(recipeHolder.getStackInSlot(0));
     }
 
     public boolean drainEnergy(boolean simulate) {
@@ -398,7 +418,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     }
 
     public boolean isActive() {
-        return this.isStructureFormed() && this.drainEnergy(true) && kitchenLogic.isWorkingEnabled();
+        return this.isStructureFormed() && kitchenLogic.state == KitchenLogic.KitchenLogicState.PROBABLY_FINE && kitchenLogic.isWorkingEnabled();
     }
 
     @Override

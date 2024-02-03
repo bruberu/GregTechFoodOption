@@ -1,5 +1,6 @@
 package gregtechfoodoption.gui.widgets;
 
+import gregtech.api.fluids.GTFluid;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.impl.ModularUIContainer;
 import gregtech.api.gui.ingredient.IRecipeTransferHandlerWidget;
@@ -7,31 +8,43 @@ import gregtech.api.gui.widgets.*;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.category.GTRecipeCategory;
+import gregtech.api.unification.material.registry.MaterialRegistry;
 import gregtech.api.util.Position;
 import gregtech.api.util.Size;
 import gregtech.integration.jei.recipe.GTRecipeWrapper;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.client.GTFOGuiTextures;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.machines.multiblock.kitchen.FluidStackInfo;
 import gregtechfoodoption.machines.multiblock.kitchen.ItemStackInfo;
 import gregtechfoodoption.utils.GTFOLog;
+import mezz.jei.api.gui.IGhostIngredientHandler;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import mezz.jei.gui.recipes.RecipeCatalysts;
 import mezz.jei.gui.recipes.RecipeLayout;
+import mezz.jei.runtime.JeiHelpers;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ClickType;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.FoodStats;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -76,7 +89,12 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
             finalResult.setStackInSlot(0, finalResultStack);
         }
         this.addWidget(new LabelWidget(x, y + 5, "Recipe for:"));
-        finalResultSlot = new PhantomSlotWidget(finalResult, 0, x + 63, y).setTooltipText("gregtechfoodoption.kitchen.recipe.warn");
+        finalResultSlot = new PhantomSlotWidget(finalResult, 0, x + 63, y) {
+            @Override
+            public List<IGhostIngredientHandler.Target<?>> getPhantomTargets(Object ingredient) {
+                return Collections.emptyList();
+            }
+        }.setTooltipText("gregtechfoodoption.kitchen.recipe.warn");
         finalResultSlot.setChangeListener(() -> resultItemConsumer.accept(finalResult.getStackInSlot(0)));
         finalResultSlot.setBackgroundTexture(GuiTextures.SLOT);
         addWidget(finalResultSlot);
@@ -175,7 +193,7 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
                 String uidString = recipeLayout.getRecipeCategory().getUid();
                 map = GTRecipeCategory.getByName(uidString.substring(uidString.indexOf(":") + 1)).getRecipeMap().getUnlocalizedName();
             } else {
-                return "This only works on GTCEu recipes!";
+                return "This only works on GTCEu singleblock recipes!";
             }
         } else {
             return "Uh I don't know how you got here, but apparently you're not looking at a recipe?!";
@@ -192,13 +210,13 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
             isUseful = true;
 
         List<FluidStack> fluidOutputs = recipe.getFluidOutputs();
-        if (fluidOutputs.stream().anyMatch(fluidStack -> fluidStack.getFluid().getName().startsWith("gtfo_"))) {
+        if (fluidOutputs.stream().anyMatch(this::isAcceptableFluid)) {
             isGTFO = true;
         }
         if (fluidOutputs.parallelStream().anyMatch(fluidStack -> this.neededFluidInputs.stream().anyMatch(fluidStack1 -> fluidStack1.isFluidEqual(fluidStack))))
             isUseful = true;
         if (!isGTFO) {
-            return "Kitchens only process GTFO recipes!";
+            return "Kitchens only process food-related recipes!";
         }
         if (!isUseful) {
             return "This doesn't output anything used in the target item or another recipe!";
@@ -274,6 +292,17 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
 
     private boolean isAcceptableItem(ItemStack stack) {
         return (stack.getItem() instanceof GTFOMetaItem && !((GTFOMetaItem) stack.getItem()).getItem(stack).isKitchenBlacklisted())
-                || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM) && GTFOMetaItems.SHAPED_ITEM.isFoodRelated(stack);
+                || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM) && GTFOMetaItems.SHAPED_ITEM.isFoodRelated(stack)
+                || stack.getItem() instanceof ItemFood
+                || Loader.isModLoaded(GTFOValues.MODID_AP) && GTFOAppleCoreCompat.isAppleCoreEdible(stack);
+    }
+
+    private boolean isAcceptableFluid(FluidStack stack) {
+        Fluid fluid = stack.getFluid();
+        if (fluid instanceof GTFluid.GTMaterialFluid) {
+            return GTFOMaterialHandler.isFoodRelated(((GTFluid.GTMaterialFluid) fluid).getMaterial());
+        } else {
+            return false;
+        }
     }
 }

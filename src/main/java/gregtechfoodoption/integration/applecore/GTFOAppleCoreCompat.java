@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.food.FoodValues;
+import squeek.applecore.api.food.IEdible;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.*;
@@ -110,5 +111,9 @@ public class GTFOAppleCoreCompat {
     @Optional.Method(modid = GTFOValues.MODID_AP)
     public static void sendEatenEvent(EntityPlayer player, ItemStack itemStack, int hunger, float sat) {
         MinecraftForge.EVENT_BUS.post(new FoodEvent.FoodEaten(player, itemStack, new FoodValues(hunger, sat), hunger, sat));
+    }
+
+    public static boolean isAppleCoreEdible(ItemStack stack) {
+        return stack.getItem() instanceof IEdible;
     }
 }

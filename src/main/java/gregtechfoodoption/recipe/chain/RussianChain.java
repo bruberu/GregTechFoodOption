@@ -32,14 +32,14 @@ public class RussianChain {
                 .outputs(GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(3))
                 .buildAndRegister();
 
-        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(16).duration(1600)
+        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(16).duration(400)
                 .fluidInputs(Materials.Milk.getFluid(8000))
                 .circuitMeta(2)
                 .fluidOutputs(GTFOMaterialHandler.LacticAcidBacteria.getFluid(2))
                 .buildAndRegister();
 
 
-        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(4).duration(12000)
+        RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(4).duration(3000)
                 .fluidInputs(GTFOMaterialHandler.PasteurizedMilk.getFluid(8000))
                 .notConsumable(GTFOMaterialHandler.LacticAcidBacteria.getFluid(8))
                 .fluidOutputs(GTFOMaterialHandler.SourCream.getFluid(8000))

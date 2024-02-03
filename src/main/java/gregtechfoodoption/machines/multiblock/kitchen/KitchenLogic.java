@@ -79,7 +79,6 @@ public class KitchenLogic extends MTETrait implements IControllable {
             this.getMetaTileEntity().drainEnergy(false);
             cleanSelf();
         }
-
         if (this.getMetaTileEntity().getOffsetTimer() % Math.max(4, operationSlowdown()) == 0) {
             // Check if order is fulfilled
             if (recheckOutputs || !getMetaTileEntity().getNotifiedItemOutputList().isEmpty()) {
@@ -182,14 +181,20 @@ public class KitchenLogic extends MTETrait implements IControllable {
             }
         }
         // The kitchen recipe was invalid or missing
-        this.state = KitchenLogicState.NO_RECIPE;
+        state = KitchenLogicState.NO_RECIPE;
+        reset();
+    }
+
+    public void reset() {
+        this.resultItem = null;
         requestNodes.clear();
         leaves.clear();
+        recheckOutputs = true;
     }
 
     public void cleanSelf() {
         for (IMultipleTankHandler.MultiFluidTankEntry tank : this.getMetaTileEntity().getInputFluidInventory().getFluidTanks()) {
-            if (dirtiness == 0)
+            if (dirtiness <= 0)
                 continue;
             FluidStack fluid = tank.getFluid();
             if (fluid == null || fluid.amount <= 0) {
@@ -201,7 +206,6 @@ public class KitchenLogic extends MTETrait implements IControllable {
                 if (property != null) {
                     tank.drain(1, true);
                     dirtiness -= property.getCleaningPower();
-                    dirtiness = Math.max(0, dirtiness);
                 }
             }
         }
