@@ -6,6 +6,8 @@ import gregtechfoodoption.item.GTFOMetaItem;
 
 import java.util.Random;
 
+import static gregtech.api.capability.GregtechDataCodes.assignId;
+
 public class GTFOValues {
     public static final String MODID = "gregtechfoodoption",
             MODID_GCYS = "gcys",
@@ -20,9 +22,11 @@ public class GTFOValues {
 
     public static final MaterialIconSet Organic = new MaterialIconSet("organic");
 
-    public static final int UPDATE_OPERATION_POS = 97800;
-    public static final int UPDATE_SPRINKLER_DATA = 97801;
-    public static final int UPDATE_FARMER_OUTPUT_FACING = 97802;
+    public static final int UPDATE_OPERATION_POS = assignId();
+    public static final int UPDATE_SPRINKLER_DATA = assignId();
+    public static final int UPDATE_FARMER_OUTPUT_FACING = assignId();
+    public static final int UPDATE_KITCHEN_STATUS = assignId();
+    public static final int UPDATE_KITCHEN_ORDER = assignId();
 
     public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.DOUGH.getStackForm(), true);
     public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food", () -> GTFOMetaItem.BANANA.getStackForm(), true);

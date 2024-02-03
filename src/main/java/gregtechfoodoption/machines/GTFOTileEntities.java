@@ -12,6 +12,7 @@ import gregtechfoodoption.machines.multiblock.MetaTileEntityBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityGreenhouse;
 import gregtechfoodoption.machines.multiblock.MetaTileEntitySteamBakingOven;
+import gregtechfoodoption.machines.multiblock.kitchen.MetaTileEntityKitchen;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.util.ResourceLocation;
 
@@ -35,7 +36,7 @@ public class GTFOTileEntities {
     public static MetaTileEntityElectricBakingOven ELECTRIC_BAKING_OVEN;
     public static MetaTileEntitySteamBakingOven STEAM_BAKING_OVEN;
     public static MetaTileEntityGreenhouse GREENHOUSE;
-
+    public static MetaTileEntityKitchen KITCHEN;
 
     public static void init() {
 /*
@@ -98,6 +99,8 @@ public class GTFOTileEntities {
         GREENHOUSE = registerMetaTileEntity(8565, new MetaTileEntityGreenhouse(location("greenhouse")));
 
         registerGTFOSimpleMetaTileEntity(MULTICOOKER, 8566, "multicooker", GTFORecipeMaps.MULTICOOKER_RECIPES, GTFOClientHandler.MULTICOOKER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
+
+        KITCHEN = registerMetaTileEntity(8581, new MetaTileEntityKitchen(location("kitchen")));
     }
 
     private static ResourceLocation location(String name) {

@@ -14,6 +14,11 @@
         "textures": {
           "all": "gregtech:blocks/casings/solid/reinforced_adobe_bricks"
         }
+      },
+      "porcelain_tile": {
+        "textures": {
+          "all": "gregtech:blocks/casings/solid/porcelain_tile"
+        }
       }
     }
   }

@@ -8,6 +8,7 @@ import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.blocks.BlockMetalCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtech.common.metatileentities.MetaTileEntities;
@@ -17,6 +18,9 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFOMetalCasing;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.machines.GTFOTileEntities;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.common.Loader;
 
@@ -106,6 +110,20 @@ public class GTFOMachineRecipes {
                 'I', new UnificationEntry(circuit, MarkerMaterials.Tier.MV),
                 'W', new UnificationEntry(wireGtQuadruple, Cupronickel),
                 'A', MetaBlocks.WIRE_COIL.getItemVariant(CUPRONICKEL));
+
+        ModHandler.addShapedRecipe("kitchen", GTFOTileEntities.KITCHEN.getStackForm(),
+                "PIP", "ICI", "RWR",
+                'C', MetaBlocks.METAL_CASING.getItemVariant(BlockMetalCasing.MetalCasingType.STEEL_SOLID),
+                'R', MetaItems.ROBOT_ARM_MV,
+                'I', new UnificationEntry(circuit, MarkerMaterials.Tier.MV),
+                'W', new UnificationEntry(cableGtQuadruple, AnnealedCopper),
+                'P', new UnificationEntry(plate, BismuthBronze));
+
+        ModHandler.addShapelessRecipe("kitchen_recipe_pencil", GTFOMetaItem.KITCHEN_RECIPE.getStackForm(),
+                Items.PAPER, "dustGraphite");
+
+        ModHandler.addShapelessRecipe("kitchen_recipe_pen", GTFOMetaItem.KITCHEN_RECIPE.getStackForm(),
+                Items.PAPER, MetaItems.DYE_ONLY_ITEMS[EnumDyeColor.BLACK.ordinal()]);
 
         Arrays.stream(GTFOMetalCasing.CasingType.values()).forEach(casing -> {
             registerMetalCasingRecipe(casing.getMaterial(), GTFOMetaBlocks.GTFO_METAL_CASING, casing);

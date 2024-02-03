@@ -80,7 +80,7 @@ public class GregTechFoodOption {
         }
         GTFOCoverBehaviors.init();
         GameRegistry.registerWorldGenerator(GTFOWorldGenerator.INSTANCE, 1);
-        GTFOMaterialHandler.registerFertilizerTooltips();
+        GTFOMaterialHandler.registerPropertyTooltips();
 
         GTFODungeonLootLoader.init();
     }

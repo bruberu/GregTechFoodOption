@@ -5,7 +5,6 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.attribute.FluidAttribute;
 import gregtech.api.fluids.attribute.FluidAttributes;
-import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
@@ -17,8 +16,13 @@ import gregtech.api.util.FluidTooltipUtil;
 import gregtech.api.util.LocalizationUtils;
 import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.item.GTFOProxyItem;
+import gregtechfoodoption.materials.CleanerProperty;
 import gregtechfoodoption.materials.FertilizerProperty;
 import gregtechfoodoption.materials.LacingProperty;
+import it.unimi.dsi.fastutil.ints.Int2BooleanArrayMap;
+import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
+import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
+import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Collections;
@@ -33,6 +37,8 @@ import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 public class GTFOMaterialHandler {
     public static final PropertyKey<FertilizerProperty> FERTILIZER = new PropertyKey<>("gtfo_fertilizer", FertilizerProperty.class);
     public static final PropertyKey<LacingProperty> LACING = new PropertyKey<>("gtfo_lacing", LacingProperty.class);
+    public static final PropertyKey<CleanerProperty> CLEANER = new PropertyKey<>("gtfo_cleaner", CleanerProperty.class);
+    private static final Int2BooleanMap FOOD_RELATED_MATERIALS = new Int2BooleanArrayMap();
 
     // 21500 - 21999
 
@@ -40,46 +46,46 @@ public class GTFOMaterialHandler {
             .components(Carbon, 3, Hydrogen, 7, Chlorine, 1)
             .build()
             .setFormula("(CH3)2CHCl", true);
-    public static final Material LemonExtract = fluidBuilder(21501, "lemon_extract")
+    public static final Material LemonExtract = fluidBuilderFood(21501, "lemon_extract")
             .color(0xfce80a)
             .build();
-    public static final Material LimeExtract = fluidBuilder(21502, "lime_extract")
+    public static final Material LimeExtract = fluidBuilderFood(21502, "lime_extract")
             .color(0x85f218)
             .build();
-    public static final Material OrangeExtract = fluidBuilder(21503, "orange_extract")
+    public static final Material OrangeExtract = fluidBuilderFood(21503, "orange_extract")
             .color(0xff6100)
             .build();
-    public static final Material AppleExtract = fluidBuilder(21504, "apple_extract")
+    public static final Material AppleExtract = fluidBuilderFood(21504, "apple_extract")
             .color(0xe9ba58)
             .build();
 
-    public static final Material AppleCider = fluidBuilder(21505, "apple_cider")
+    public static final Material AppleCider = fluidBuilderFood(21505, "apple_cider")
             .color(averageRGB(2, 0xE9BA58, FermentedBiomass.getMaterialRGB()))
             .build();
-    public static final Material UnheatedCaneSyrup = fluidBuilder(21506, "unheated_cane_syrup")
+    public static final Material UnheatedCaneSyrup = fluidBuilderFood(21506, "unheated_cane_syrup")
             .color(0xf0efe4)
             .build();
-    public static final Material CaneSyrup = fluidBuilder(21507, "cane_syrup")
+    public static final Material CaneSyrup = fluidBuilderFood(21507, "cane_syrup")
             .color(0xf2f1dc)
             .build();
-    public static final Material PurpleDrink = fluidBuilder(21508, "purple_drink")
+    public static final Material PurpleDrink = fluidBuilderFood(21508, "purple_drink")
             .color(0xb405ff)
             .build();
 
-    public static final Material FryingOil = fluidBuilder(21509, "frying_oil")
+    public static final Material FryingOil = fluidBuilderFood(21509, "frying_oil")
             .color(0xffe3a1)
             .build();
-    public static final Material HotFryingOil = fluidBuilder(21510, "hot_frying_oil", 483)
+    public static final Material HotFryingOil = fluidBuilderFood(21510, "hot_frying_oil", 483)
             .color(0xffd166)
             .build();
     public static final Material StarchFilledWater = fluidBuilder(21511, "starch_filled_water")
             .color(0xd1cbbe)
             .build();
 
-    public static final Material MushroomSoup = fluidBuilder(21512, "mushroom_soup", 343)
+    public static final Material MushroomSoup = fluidBuilderFood(21512, "mushroom_soup", 343)
             .color(0xedcaaf)
             .build();
-    public static final Material BeetrootSoup = fluidBuilder(21513, "beetroot_soup", 343)
+    public static final Material BeetrootSoup = fluidBuilderFood(21513, "beetroot_soup", 343)
             .color(0xc25132)
             .build();
 
@@ -108,10 +114,10 @@ public class GTFOMaterialHandler {
             .color(0xeff5c9)
             .build();
 
-    public static final Material TomatoSauce = fluidBuilder(21522, "tomato_sauce")
+    public static final Material TomatoSauce = fluidBuilderFood(21522, "tomato_sauce")
             .color(0xfc2217)
             .build();
-    public static final Material OliveOil = fluidBuilder(21523, "olive_oil")
+    public static final Material OliveOil = fluidBuilderFood(21523, "olive_oil")
             .color(0xd1db5a)
             .build();
 
@@ -129,7 +135,7 @@ public class GTFOMaterialHandler {
     public static final Material Vodka = fluidBuilder(21527, "vodka")
             .color(0x7d6933)
             .build();
-    public static final Material Leninade = fluidBuilder(21528, "leninade")
+    public static final Material Leninade = fluidBuilderFood(21528, "leninade")
             .color(0x82661d)
             .build();
 
@@ -148,17 +154,17 @@ public class GTFOMaterialHandler {
             .color(0x72a2ff)
             .build();
 
-    public static final Material Albumen = fluidBuilder(21533, "albumen")
+    public static final Material Albumen = fluidBuilderFood(21533, "albumen")
             .color(0xfffef7)
             .build();
-    public static final Material Yolk = fluidBuilder(21534, "yolk")
+    public static final Material Yolk = fluidBuilderFood(21534, "yolk")
             .color(0xffdf00)
             .build();
-    public static final Material Butter = fluidBuilder(21535, "butter")
+    public static final Material Butter = fluidBuilderFood(21535, "butter")
             .color(0xffef82)
             .build();
 
-    public static final Material RabbitStew = fluidBuilder(21536, "rabbit_stew", 343)
+    public static final Material RabbitStew = fluidBuilderFood(21536, "rabbit_stew", 343)
             .color(0xe0c0a0)
             .build();
 
@@ -187,10 +193,10 @@ public class GTFOMaterialHandler {
             .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
             .build();
 
-    public static final Material Cream = fluidBuilder(21542, "cream")
+    public static final Material Cream = fluidBuilderFood(21542, "cream")
             .color(0xced2d9)
             .build();
-    public static final Material SkimmedMilk = fluidBuilder(21543, "skimmed_milk")
+    public static final Material SkimmedMilk = fluidBuilderFood(21543, "skimmed_milk")
             .color(0xf7ffe3)
             .build();
     public static final Material SoyLecithin = fluidBuilder(21544, "soy_lecithin")
@@ -205,13 +211,13 @@ public class GTFOMaterialHandler {
     public static final Material SoybeanOil = fluidBuilder(21547, "soybean_oil")
             .color(0xe8e4a9)
             .build();
-    public static final Material PasteurizedMilk = fluidBuilder(21548, "pasteurized_milk")
+    public static final Material PasteurizedMilk = fluidBuilderFood(21548, "pasteurized_milk")
             .color(0xfefdf3)
             .build();
-    public static final Material MilkColloid = fluidBuilder(21549, "milk_colloid")
+    public static final Material MilkColloid = fluidBuilderFood(21549, "milk_colloid")
             .color(0xe0d7bf)
             .build();
-    public static final Material IceCreamMixture = fluidBuilder(21550, "ice_cream_mixture")
+    public static final Material IceCreamMixture = fluidBuilderFood(21550, "ice_cream_mixture")
             .color(0xdebd80)
             .build();
 
@@ -232,20 +238,20 @@ public class GTFOMaterialHandler {
             .components(Carbon, 2, Hydrogen, 2, Oxygen, 3)
             .build();
 
-    public static final Material MelonExtract = fluidBuilder(21555, "melon_extract")
+    public static final Material MelonExtract = fluidBuilderFood(21555, "melon_extract")
             .color(0xfc7996)
             .build();
 
-    public static final Material MoltenUnsweetenedChocolate = fluidBuilder(21556, "molten_unsweetened_chocolate", 370)
+    public static final Material MoltenUnsweetenedChocolate = fluidBuilderFood(21556, "molten_unsweetened_chocolate", 370)
             .color(0x7b3f00)
             .build();
-    public static final Material CocoaButter = fluidBuilder(21557, "cocoa_butter")
+    public static final Material CocoaButter = fluidBuilderFood(21557, "cocoa_butter")
             .color(0xe5dbce)
             .build();
-    public static final Material MoltenDarkChocolate = fluidBuilder(21558, "molten_dark_chocolate", 360)
+    public static final Material MoltenDarkChocolate = fluidBuilderFood(21558, "molten_dark_chocolate", 360)
             .color(0x490206)
             .build();
-    public static final Material MoltenMilkChocolate = fluidBuilder(21559, "molten_milk_chocolate", 350)
+    public static final Material MoltenMilkChocolate = fluidBuilderFood(21559, "molten_milk_chocolate", 350)
             .color(0x84563c)
             .build();
 
@@ -270,13 +276,13 @@ public class GTFOMaterialHandler {
             .components(SodiumBicarbonate, 1, Water, 1)
             .flags(DECOMPOSITION_BY_CENTRIFUGING)
             .build();
-    public static final Material BeerBatter = fluidBuilder(21565, "beer_batter")
+    public static final Material BeerBatter = fluidBuilderFood(21565, "beer_batter")
             .color(0xe4cfc0)
             .build();
-    public static final Material WheatyJuice = fluidBuilder(21566, "wheaty_juice")
+    public static final Material WheatyJuice = fluidBuilderFood(21566, "wheaty_juice")
             .color(0xa87b58)
             .build();
-    public static final Material PoorQualityBeer = fluidBuilder(21567, "poor_quality_beer")
+    public static final Material PoorQualityBeer = fluidBuilderFood(21567, "poor_quality_beer")
             .color(0xa87b58)
             .build();
     public static final Material SodiumSulfate = new Material.Builder(21568, gtfoId("sodium_sulfate"))
@@ -292,7 +298,7 @@ public class GTFOMaterialHandler {
             .color(0x947760)
             .build();
 
-    public static final Material Nilk = fluidBuilder(21571, "nilk")
+    public static final Material Nilk = fluidBuilderFood(21571, "nilk")
             .color(0x252626)
             .build();
 
@@ -303,28 +309,28 @@ public class GTFOMaterialHandler {
             .components(Carbon, 15, Hydrogen, 14, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
             .flags(DISABLE_DECOMPOSITION)
             .build();
-    public static final Material AppleSyrup = fluidBuilder(21574, "apple_syrup")
+    public static final Material AppleSyrup = fluidBuilderFood(21574, "apple_syrup")
             .color(0xf2e1ac)
             .build();
-    public static final Material AppleCandySyrup = fluidBuilder(21575, "apple_candy_syrup")
+    public static final Material AppleCandySyrup = fluidBuilderFood(21575, "apple_candy_syrup")
             .color(0xe7f5ae)
             .build();
-    public static final Material Etirps = fluidBuilder(21576, "etirps")
+    public static final Material Etirps = fluidBuilderFood(21576, "etirps")
             .color(0xb0ff73)
             .build();
-    public static final Material LemonLimeSodaSyrup = fluidBuilder(21577, "lemon_lime_soda_syrup")
+    public static final Material LemonLimeSodaSyrup = fluidBuilderFood(21577, "lemon_lime_soda_syrup")
             .color(0x76ff0d)
             .build();
-    public static final Material CarbonatedWater = fluidBuilder(21578, "carbonated_water")
+    public static final Material CarbonatedWater = fluidBuilderFood(21578, "carbonated_water")
             .color(0xf5ffff)
             .build();
     public static final Material CoughSyrup = fluidBuilder(21579, "cough_syrup")
             .color(0x5c1b5e)
             .build();
-    public static final Material LemonLimeSolution = fluidBuilder(21580, "lemon_lime_solution")
+    public static final Material LemonLimeSolution = fluidBuilderFood(21580, "lemon_lime_solution")
             .color(0xbddb5a)
             .build();
-    public static final Material LemonLimeSludge = fluidBuilder(21581, "lemon_lime_sludge")
+    public static final Material LemonLimeSludge = fluidBuilderFood(21581, "lemon_lime_sludge")
             .color(0x779906)
             .build();
     public static final Material Aniline = fluidBuilder(21582, "aniline")
@@ -334,10 +340,10 @@ public class GTFOMaterialHandler {
             .build()
             .setFormula("C6H5NH2", true);
 
-    public static final Material HeatedWater = fluidBuilder(21583, "heated_water", 343)
+    public static final Material HeatedWater = fluidBuilderFood(21583, "heated_water", 343)
             .color(0x024B86)
             .build();
-    public static final Material GelatinSolution = fluidBuilder(21584, "gelatin_solution")
+    public static final Material GelatinSolution = fluidBuilderFood(21584, "gelatin_solution")
             .color(0xD3D3D3)
             .build();
     public static final Material AceticAnhydride = fluidBuilder(21585, "acetic_anhydride")
@@ -346,10 +352,10 @@ public class GTFOMaterialHandler {
     public static final Material Nitrophenols = fluidBuilder(21586, "nitrophenols")
             .color(0xFFFFFF)
             .build().setFormula("(C6H5NO3)(C6H5NO3)", true);
-    public static final Material Egg = fluidBuilder(21587, "egg")
+    public static final Material Egg = fluidBuilderFood(21587, "egg")
             .color(0xFFFF0F)
             .build();
-    public static final Material UnpasteurizedSkimmedMilk = fluidBuilder(21588, "unpasteurized_skimmed_milk")
+    public static final Material UnpasteurizedSkimmedMilk = fluidBuilderFood(21588, "unpasteurized_skimmed_milk")
             .color(0xfcfcf0)
             .build();
     public static final Material ParmigianoReggianoStarter = fluidBuilder(21589, "parmigiano_reggiano_starter")
@@ -358,22 +364,22 @@ public class GTFOMaterialHandler {
     public static final Material CurdlingParmigianoReggiano = fluidBuilder(21590, "curdling_parmigiano_reggiano")
             .color(0xfff4ab)
             .build();
-    public static final Material Agrodolce = fluidBuilder(21591, "agrodolce")
+    public static final Material Agrodolce = fluidBuilderFood(21591, "agrodolce")
             .color(0xba1430)
             .build();
-    public static final Material Polenta = fluidBuilder(21592, "polenta")
+    public static final Material Polenta = fluidBuilderFood(21592, "polenta")
             .color(0xBBA844)
             .build();
-    public static final Material Pesto = fluidBuilder(21593, "pesto")
+    public static final Material Pesto = fluidBuilderFood(21593, "pesto")
             .color(0x309027)
             .build();
-    public static final Material BechamelSauce = fluidBuilder(21594, "bechamel_sauce")
+    public static final Material BechamelSauce = fluidBuilderFood(21594, "bechamel_sauce")
             .color(0xD1B7AC)
             .build();
-    public static final Material ChickenBroth = fluidBuilder(21595, "chicken_broth")
+    public static final Material ChickenBroth = fluidBuilderFood(21595, "chicken_broth")
             .color(0xA4600D)
             .build();
-    public static final Material VitelloTonnatoSauce = fluidBuilder(21596, "vitello_tonnato_sauce")
+    public static final Material VitelloTonnatoSauce = fluidBuilderFood(21596, "vitello_tonnato_sauce")
             .color(0xC6BABE)
             .build();
     public static final Material WhiteWine = fluidBuilder(21597, "white_wine")
@@ -389,19 +395,19 @@ public class GTFOMaterialHandler {
     public static final Material ClarifiedWhiteWort = fluidBuilder(21600, "clarified_white_wort")
             .color(0xD8E4A4)
             .build();
-    public static final Material VitelloTonnatoFlavorant = fluidBuilder(21601, "vitello_tonnato_flavorant")
+    public static final Material VitelloTonnatoFlavorant = fluidBuilderFood(21601, "vitello_tonnato_flavorant")
             .color(0xC2ACB0)
             .build();
-    public static final Material RafanataMixture = fluidBuilder(21602, "rafanata_mixture")
+    public static final Material RafanataMixture = fluidBuilderFood(21602, "rafanata_mixture")
             .color(0xDCB239)
             .build();
-    public static final Material CarbonaraSauce = fluidBuilder(21603, "carbonara_sauce")
+    public static final Material CarbonaraSauce = fluidBuilderFood(21603, "carbonara_sauce")
             .color(0xCDAF44)
             .build();
-    public static final Material PastaEFagioliBase = fluidBuilder(21604, "pasta_e_fagioli_base", 343)
+    public static final Material PastaEFagioliBase = fluidBuilderFood(21604, "pasta_e_fagioli_base", 343)
             .color(0xD4592F)
             .build();
-    public static final Material MixedPastaEFagioli = fluidBuilder(21605, "mixed_pasta_e_fagioli", 343)
+    public static final Material MixedPastaEFagioli = fluidBuilderFood(21605, "mixed_pasta_e_fagioli", 343)
             .color(0xE48628)
             .build();
 
@@ -417,34 +423,34 @@ public class GTFOMaterialHandler {
     public static final Material RedWine = fluidBuilder(21609, "red_wine")
             .color(0x641126)
             .build();
-    public static final Material BologneseSauce = fluidBuilder(21610, "bolognese_sauce")
+    public static final Material BologneseSauce = fluidBuilderFood(21610, "bolognese_sauce")
             .color(0x782A14)
             .build();
-    public static final Material TomatoBologneseSauce = fluidBuilder(21611, "tomato_bolognese_sauce")
+    public static final Material TomatoBologneseSauce = fluidBuilderFood(21611, "tomato_bolognese_sauce")
             .color(0xCA190F)
             .build();
 
-    public static final Material CranberryExtract = fluidBuilder(21612, "cranberry_extract")
+    public static final Material CranberryExtract = fluidBuilderFood(21612, "cranberry_extract")
             .color(0x8C0D22)
             .build();
-    public static final Material EtirpsCranberry = fluidBuilder(21613, "etirps_cranberry")
+    public static final Material EtirpsCranberry = fluidBuilderFood(21613, "etirps_cranberry")
             .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0xbbddbb))
             .build();
-    public static final Material CranberrySludge = fluidBuilder(21614, "cranberry_sludge")
+    public static final Material CranberrySludge = fluidBuilderFood(21614, "cranberry_sludge")
             .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x222222))
             .build();
-    public static final Material CranberrySodaSyrup = fluidBuilder(21615, "cranberry_soda_syrup")
+    public static final Material CranberrySodaSyrup = fluidBuilderFood(21615, "cranberry_soda_syrup")
             .color(averageRGB(2, CranberryExtract.getMaterialRGB(), 0x333333))
             .build();
 
-    public static final Material LingonberryJam = fluidBuilder(21616, "lingonberry_jam")
+    public static final Material LingonberryJam = fluidBuilderFood(21616, "lingonberry_jam")
             .color(0x61262D)
             .build();
-    public static final Material ElderberryJam = fluidBuilder(21617, "elderberry_jam")
+    public static final Material ElderberryJam = fluidBuilderFood(21617, "elderberry_jam")
             .color(0x5F414F)
             .build();
 
-    public static final Material SourCream = fluidBuilder(21618, "sour_cream")
+    public static final Material SourCream = fluidBuilderFood(21618, "sour_cream")
             .color(0xe3de9d)
             .build();
     public static final Material LacticAcidBacteria = fluidBuilder(21619, "lactic_acid_bacteria")
@@ -471,10 +477,10 @@ public class GTFOMaterialHandler {
             .components(Water, 1, SodaAsh, 1)
             .build();
 
-    public static final Material Coffee = fluidBuilder(21990, "coffee", 368)
+    public static final Material Coffee = fluidBuilderFood(21990, "coffee", 368)
             .color(0x36312e)
             .build();
-    public static final Material EnergizedCoffee = fluidBuilder(21991, "energized_coffee", 368)
+    public static final Material EnergizedCoffee = fluidBuilderFood(21991, "energized_coffee", 368)
             .color(0x695934)
             .build();
 
@@ -494,7 +500,7 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem LARGE_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1029, "basic_coffee_large", 0x3b220d, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem UNSORTED_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1030, "basic_coffee_unsorted", 0x422003, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
 
-    public static final MetaOreDictItem.OreDictValueItem HotAppleHardCandy = SHAPED_ITEM.addOreDictItem(1084, "hot_apple_hard_candy", 0x78e32b, MaterialIconSet.DULL, OrePrefix.plate);
+    public static final MetaOreDictItem.OreDictValueItem HotAppleHardCandy = SHAPED_ITEM.addFoodOreDictItem(1084, "hot_apple_hard_candy", 0x78e32b, MaterialIconSet.DULL, OrePrefix.plate);
     /*
         public static final GTFOOredictItem.OreDictItem BacillusSubtilis = new GTFOOredictItem.OreDictItem(1085, "bacillus_subtilis", 0xe0386b, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
         public static final GTFOOredictItem.OreDictItem LactobacillusPentosis = new GTFOOredictItem.OreDictItem(1086, "lactobacillus_pentosis", 0x87316f, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
@@ -504,17 +510,17 @@ public class GTFOMaterialHandler {
         public static final GTFOOredictItem.OreDictItem GammaAmylase = new GTFOOredictItem.OreDictItem(1090, "gamma_amylase", 0x4FCE67, MaterialIconSet.SAND, OrePrefix.dust);
         public static final GTFOOredictItem.OreDictItem CornStarch = new GTFOOredictItem.OreDictItem(1091, "corn_starch", 0xfff5f5, MaterialIconSet.ROUGH, OrePrefix.dust);
     */
-    public static final GTFOOredictItem.OreDictValueItem CrushedHardCandy = SHAPED_ITEM.addOreDictItem(1093, "crushed_hard_candy", 0x52a302, MaterialIconSet.DULL, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem CrushedHardCandy = SHAPED_ITEM.addFoodOreDictItem(1093, "crushed_hard_candy", 0x52a302, MaterialIconSet.DULL, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictValueItem Promethazine = SHAPED_ITEM.addOreDictItem(1094, "promethazine", 0xf8fade, MaterialIconSet.SAND, OrePrefix.dust, "C17H20N2S");
     public static final GTFOOredictItem.OreDictValueItem Codeine = SHAPED_ITEM.addOreDictItem(1095, "codeine", 0xfadef2, MaterialIconSet.SAND, OrePrefix.dust, "C18H21NO3");
     public static final GTFOOredictItem.OreDictValueItem Phenothiazine = SHAPED_ITEM.addOreDictItem(1096, "phenothiazine", 0x67735c, MaterialIconSet.SAND, OrePrefix.dust, "C12H9NS");
     public static final GTFOOredictItem.OreDictValueItem Diphenylamine = SHAPED_ITEM.addOreDictItem(1097, "diphenylamine", 0xe3932b, MaterialIconSet.SAND, OrePrefix.dust, "C12H11N");
     public static final GTFOOredictItem.OreDictValueItem CrushedPoppy = SHAPED_ITEM.addOreDictItem(1098, "crushed_poppy", 0x940801, MaterialIconSet.ROUGH, OrePrefix.dust, "You monster.");
-    public static final GTFOOredictItem.OreDictValueItem HardCandyPlate = SHAPED_ITEM.addOreDictItem(1099, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plate);
-    public static final GTFOOredictItem.OreDictValueItem HardCandyResin = SHAPED_ITEM.addOreDictItem(1100, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plateDense);
+    public static final GTFOOredictItem.OreDictValueItem HardCandyPlate = SHAPED_ITEM.addFoodOreDictItem(1099, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plate);
+    public static final GTFOOredictItem.OreDictValueItem HardCandyResin = SHAPED_ITEM.addFoodOreDictItem(1100, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plateDense);
 
-    public static final GTFOOredictItem.OreDictValueItem Zest = SHAPED_ITEM.addOreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, dust);
-    public static final GTFOOredictItem.OreDictValueItem PotatoStarch = SHAPED_ITEM.addOreDictItem(1101, "potato_starch", 0xdedcb1, MaterialIconSet.ROUGH, dust);
+    public static final GTFOOredictItem.OreDictValueItem Zest = SHAPED_ITEM.addFoodOreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, dust);
+    public static final GTFOOredictItem.OreDictValueItem PotatoStarch = SHAPED_ITEM.addFoodOreDictItem(1101, "potato_starch", 0xdedcb1, MaterialIconSet.ROUGH, dust);
 
     public static final GTFOOredictItem.OreDictValueItem LargeMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1102, "large_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
     public static final GTFOOredictItem.OreDictValueItem SmallMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1103, "small_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
@@ -531,15 +537,15 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem AmmoniumPerchlorate = SHAPED_ITEM.addOreDictItem(1113, "ammonium_perchlorate", averageRGB(4, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB(), Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, dust, "NH4ClO4");
     public static final GTFOOredictItem.OreDictValueItem PotassiumPerchlorate = SHAPED_ITEM.addOreDictItem(1114, "potassium_perchlorate", averageRGB(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "KClO4");
 
-    public static final GTFOOredictItem.OreDictValueItem MashedPotato = SHAPED_ITEM.addOreDictItem(1115, "mashed_potato", 0xf5d89f, MaterialIconSet.FINE, dust);
+    public static final GTFOOredictItem.OreDictValueItem MashedPotato = SHAPED_ITEM.addFoodOreDictItem(1115, "mashed_potato", 0xf5d89f, MaterialIconSet.FINE, dust);
 
-    public static final GTFOOredictItem.OreDictValueItem ToughMeat = SHAPED_ITEM.addOreDictItem(1116, "tough_meat", 0xa63028, MaterialIconSet.ROUGH, dust);
+    public static final GTFOOredictItem.OreDictValueItem ToughMeat = SHAPED_ITEM.addFoodOreDictItem(1116, "tough_meat", 0xa63028, MaterialIconSet.ROUGH, dust);
 
     public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117, "kubide_meat", 0x9B0600, Organic, dust);
-    public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addOreDictItem(1118, "barg_meat", 0x7F0000, Organic, dust);
-    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addOreDictItem(1119, "fat", 0xFFF200, Organic, ingot, "C57H110O6"); // yea Fat is much more complicated, but I just stick to this formula...
+    public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addFoodOreDictItem(1118, "barg_meat", 0x7F0000, Organic, dust);
+    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addFoodOreDictItem(1119, "fat", 0xFFF200, Organic, ingot, "C57H110O6"); // yea Fat is much more complicated, but I just stick to this formula...
 
-    public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addOreDictItem(1120, "cooked_meat", 0xa63028, MaterialIconSet.ROUGH, ingot);
+    public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addFoodOreDictItem(1120, "cooked_meat", 0xa63028, MaterialIconSet.ROUGH, ingot);
     //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
 
     public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121, "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF), MaterialIconSet.ROUGH, dust, "NaClO4");
@@ -551,25 +557,28 @@ public class GTFOMaterialHandler {
 
     public static final GTFOProxyItem ArsenicTrioxide = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1126, "arsenic_trioxide", averageRGB(2, Arsenic.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "As2O3"), 1126, "arsenic_trioxide", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("arsenic_trioxide")));
     public static final GTFOOredictItem.OreDictValueItem CupricHydrogenArsenite = SHAPED_ITEM.addOreDictItem(1127, "cupric_hydrogen_arsenite", 0x0fff00, MaterialIconSet.SHINY, OrePrefix.dust, "CuHAsO3");
-    public static final GTFOOredictItem.OreDictValueItem LaminatedDough = SHAPED_ITEM.addOreDictItem(1128, "laminated_dough", 0xc6b4bb, MaterialIconSet.DULL, plate);
-    public static final MetaOreDictItem.OreDictValueItem CookedMinceMeat = SHAPED_ITEM.addOreDictItem(1129, "cooked_mince_meat", 0x462b25, MaterialIconSet.ROUGH, dust);
+    public static final GTFOOredictItem.OreDictValueItem LaminatedDough = SHAPED_ITEM.addFoodOreDictItem(1128, "laminated_dough", 0xc6b4bb, MaterialIconSet.DULL, plate);
+    public static final MetaOreDictItem.OreDictValueItem CookedMinceMeat = SHAPED_ITEM.addFoodOreDictItem(1129, "cooked_mince_meat", 0x462b25, MaterialIconSet.ROUGH, dust);
     public static final MetaOreDictItem.OreDictValueItem Aminophenol = SHAPED_ITEM.addOreDictItem(1130, "aminophenol", 0xFFFFFF, MaterialIconSet.SHINY, dust, "C6H7NO");
     public static final MetaOreDictItem.OreDictValueItem IVNitrophenol = SHAPED_ITEM.addOreDictItem(1131, "ivnitrophenol", 0xFFFFE0, MaterialIconSet.SHINY, dust, "C6H5NO3");
     public static final MetaOreDictItem.OreDictValueItem IINitrophenol = SHAPED_ITEM.addOreDictItem(1132, "iinitrophenol", 0xFFFF00, MaterialIconSet.SHINY, dust, "C6H5NO3");
-    public static final MetaOreDictItem.OreDictValueItem ShreddedParmesan = SHAPED_ITEM.addOreDictItem(1133, "shredded_parmesan", 0xdbd6b4, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem BlackPepper = SHAPED_ITEM.addOreDictItem(1134, "black_pepper", 0x02030f, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem Nutmeg = SHAPED_ITEM.addOreDictItem(1135, "nutmeg", 0x391A0C, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem GratedHorseradishRoot = SHAPED_ITEM.addOreDictItem(1136, "grated_horseradish_root", 0xE5D2C1, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem BoneChinaClay = SHAPED_ITEM.addOreDictItem(1137, "bone_china_clay", 0xEEC1C1, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem ShreddedParmesan = SHAPED_ITEM.addFoodOreDictItem(1133, "shredded_parmesan", 0xdbd6b4, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem BlackPepper = SHAPED_ITEM.addFoodOreDictItem(1134, "black_pepper", 0x02030f, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem Nutmeg = SHAPED_ITEM.addFoodOreDictItem(1135, "nutmeg", 0x391A0C, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem GratedHorseradishRoot = SHAPED_ITEM.addFoodOreDictItem(1136, "grated_horseradish_root", 0xE5D2C1, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem BoneChinaClay = SHAPED_ITEM.addFoodOreDictItem(1137, "bone_china_clay", 0xEEC1C1, MaterialIconSet.DULL, dust);
 
-    public static final GTFOOredictItem.OreDictValueItem BareCornKernel = SHAPED_ITEM.addOreDictItem(1001, "corn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addOreDictItem(1000, "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem BareCornKernel = SHAPED_ITEM.addFoodOreDictItem(1001, "corn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addFoodOreDictItem(1000, "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem SodiumCyanide = SHAPED_ITEM.addOreDictItem(1138, "sodium_cyanide", averageRGB(2, HydrogenCyanide.getMaterialRGB(), Sodium.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NaCN");
     public static final GTFOOredictItem.OreDictValueItem LithiumOxide = SHAPED_ITEM.addOreDictItem(1139, "lithium_oxide", averageRGB(2, Lithium.getMaterialRGB(), 0), MaterialIconSet.DULL, OrePrefix.dust, "Li2O");
     public static final GTFOProxyItem LithiumCarbonate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1140, "lithium_carbonate", averageRGB(2, Lithium.getMaterialRGB(), CarbonDioxide.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "Li2CO3"),
             1140, "lithium_carbonate", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("lithium_carbonate")));
 
-
+    public static final GTFOOredictItem.OreDictValueItem BoneAsh = SHAPED_ITEM.addOreDictItem(1141, "bone_ash", 0xFEFDFE, MaterialIconSet.DULL, OrePrefix.dust);
+    public static final MetaOreDictItem.OreDictValueItem UnfiredPorcelainTile = SHAPED_ITEM.addOreDictItem(1142, "unfired_porcelain_tile", 0xC2C2C4, MaterialIconSet.ROUGH, plate);
+    public static final MetaOreDictItem.OreDictValueItem BiscuitPorcelainTile = SHAPED_ITEM.addOreDictItem(1143, "bisque_porcelain_tile", 0xFEFEE8, MaterialIconSet.ROUGH, plate);
+    public static final MetaOreDictItem.OreDictValueItem GlazedPorcelainTile = SHAPED_ITEM.addOreDictItem(1144, "glazed_porcelain_tile", 0xEEEEEE, MaterialIconSet.SHINY, plate);
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem COCOA_NIB = SHAPED_ITEM.addOreDictItem(1036, "cocoa_nib", 0x635943, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
@@ -605,10 +614,23 @@ public class GTFOMaterialHandler {
         Water.setProperty(FERTILIZER, new FertilizerProperty(5));
         Blood.setProperty(FERTILIZER, new FertilizerProperty(30));
         FertilizerSolution.setProperty(FERTILIZER, new FertilizerProperty(15));
+
+        DistilledWater.setProperty(CLEANER, new CleanerProperty(2));
+        SodiumStearate.setProperty(CLEANER, new CleanerProperty(16));
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
         return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid();
+    }
+
+    public static Material.Builder fluidBuilderFood(int id, String name) {
+        FOOD_RELATED_MATERIALS.put(id, true);
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid();
+    }
+
+    public static Material.Builder fluidBuilderFood(int id, String name, int temp) {
+        FOOD_RELATED_MATERIALS.put(id, true);
+        return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().temperature(temp));
     }
     public static Material.Builder fluidBuilderCustom(int id, String name) {
         return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().customStill());
@@ -624,7 +646,7 @@ public class GTFOMaterialHandler {
         return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().temperature(temp));
     }
 
-    public static void registerFertilizerTooltips() {
+    public static void registerPropertyTooltips() {
         for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
             FertilizerProperty fertilizerProperty = material.getProperty(FERTILIZER);
             if (fertilizerProperty != null)
@@ -632,10 +654,17 @@ public class GTFOMaterialHandler {
             LacingProperty lacingProperty = material.getProperty(LACING);
             if (lacingProperty != null)
                 FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.lacing")));
+            CleanerProperty cleanerProperty = material.getProperty(CLEANER);
+            if (cleanerProperty != null)
+                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.cleaning", cleanerProperty.getCleaningPower())));
         }
     }
 
     public static ResourceLocation gtfoId(String path) {
         return new ResourceLocation(GTValues.MODID, path);
+    }
+
+    public static boolean isFoodRelated(Material material) {
+        return FOOD_RELATED_MATERIALS.containsKey(material.getId());
     }
 }
