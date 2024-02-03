@@ -273,6 +273,7 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
     }
 
     private boolean isAcceptableItem(ItemStack stack) {
-        return stack.getItem() instanceof GTFOMetaItem || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM);
+        return (stack.getItem() instanceof GTFOMetaItem && !((GTFOMetaItem) stack.getItem()).getItem(stack).isKitchenBlacklisted())
+                || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM) && GTFOMetaItems.SHAPED_ITEM.isFoodRelated(stack);
     }
 }

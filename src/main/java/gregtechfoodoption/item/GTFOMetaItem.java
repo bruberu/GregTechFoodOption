@@ -413,7 +413,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public void registerSubItems() {
         IItemContainerItemProvider selfContainerItemProvider = itemStack -> itemStack;
 
-        PAPER_BAG = addItem(1, "component.bag");
+        PAPER_BAG = addItem(1, "component.bag").blacklistKitchen();
         FLAVORED_POPCORN_FLAKE = addItem(2, "component.corn.flavored_flake");
         CORN_COB = addItem(3, "component.corn.cob");
         DRIED_CORN_EAR = addItem(4, "component.corn.dried_ear");
@@ -421,19 +421,19 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         CORN_EAR.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CORN, BareCornKernel.getItemStack(), CORN_EAR.getStackForm()));
         //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
 
-        THERMOS = addItem(7, "component.thermos.new");
-        USED_THERMOS = addItem(8, "component.thermos.used");
-        LEACHED_THERMOS_CASING = addItem(9, "component.thermos.casing_leached");
-        THERMOS_CAP = addItem(10, "component.thermos.cap");
-        THERMOS_CASING = addItem(11, "component.thermos.casing");
+        THERMOS = addItem(7, "component.thermos.new").blacklistKitchen();
+        USED_THERMOS = addItem(8, "component.thermos.used").blacklistKitchen();
+        LEACHED_THERMOS_CASING = addItem(9, "component.thermos.casing_leached").blacklistKitchen();
+        THERMOS_CAP = addItem(10, "component.thermos.cap").blacklistKitchen();
+        THERMOS_CASING = addItem(11, "component.thermos.casing").blacklistKitchen();
 
         CORED_APPLE = addItem(13, "component.cored_apple");
-        PLASTIC_BOTTLE = addItem(15, "component.plastic_bottle");
+        PLASTIC_BOTTLE = addItem(15, "component.plastic_bottle").blacklistKitchen();
         //LACTOBACILLUS_PENTOSIS_CULTURE = addItem(20, "culture.lactobacillus");
         //BACILLUS_SUBTILIS_CULTURE = addItem(21, "culture.bacillus");
 
-        SLICER_BLADE_FLAT = addItem(23, "config.slicer_blade.flat");
-        SLICER_BLADE_STRIPES = addItem(24, "config.slicer_blade.stripes");
+        SLICER_BLADE_FLAT = addItem(23, "config.slicer_blade.flat").blacklistKitchen();
+        SLICER_BLADE_STRIPES = addItem(24, "config.slicer_blade.stripes").blacklistKitchen();
 
         PEELED_POTATO = addItem(25, "component.potato.peeled");
         POTATO_STRIP = addItem(26, "component.potato.strip");
@@ -448,20 +448,20 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         FRIED_POTATO_STRIP = addItem(35, "component.potato.fried_strip");
         USED_PAPER_BAG = addItem(36, "component.bag_used");
 
-        MUD_BRICK = addItem(43, "brick.adobe").addComponents(new GTFOFoodStats(0, 0, false, true).setEatingDuration(100)
+        MUD_BRICK = addItem(43, "brick.adobe").blacklistKitchen().addComponents(new GTFOFoodStats(0, 0, false, true).setEatingDuration(100)
                 .setPotionEffects(new RandomPotionEffect(MobEffects.POISON, 400, 0, 100 - 50)));
-        ADOBE_BRICK = addItem(44, "brick.adobe_fired")
+        ADOBE_BRICK = addItem(44, "brick.adobe_fired").blacklistKitchen()
                 .addComponents(new GTFOFoodStats(0, 0, false, true).setEatingDuration(400));
 
-        WOODEN_FORM_BREAD = addItem(45, "wooden_form.bread").addComponents(selfContainerItemProvider);
-        WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").addComponents(selfContainerItemProvider);
+        WOODEN_FORM_BREAD = addItem(45, "wooden_form.bread").blacklistKitchen().addComponents(selfContainerItemProvider);
+        WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").blacklistKitchen().addComponents(selfContainerItemProvider);
         UNCOOKED_BREAD = addItem(47, "component.bread");
         UNCOOKED_BAGUETTE = addItem(48, "component.baguette");
         DOUGH = addItem(50, "component.dough")
                 .addOreDict("foodDough");
 
-        CARROT_STRUCTURAL_MESH = addItem(52, "component.structural_mesh.carrot");
-        APPLE_STRUCTURAL_MESH = addItem(53, "component.structural_mesh.apple");
+        CARROT_STRUCTURAL_MESH = addItem(52, "component.structural_mesh.carrot").blacklistKitchen();
+        APPLE_STRUCTURAL_MESH = addItem(53, "component.structural_mesh.apple").blacklistKitchen();
         SUGARY_DOUGH = addItem(55, "component.sugary_dough");
         PIE_CRUST = addItem(58, "component.pie_crust");
 
@@ -491,7 +491,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                         .setEatingDuration(64));
         CUCUMBER.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
 
-        WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").addComponents(selfContainerItemProvider);
+        WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").blacklistKitchen().addComponents(selfContainerItemProvider);
         UNCOOKED_BUN = addItem(83, "component.bun");
 
         PRESLICED_BUN = addItem(84, "component.buns")
@@ -505,8 +505,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                         .setEatingDuration(20));
 
         BEEF_SLICE = addItem(91, "component.beef_slice");
-        CHEDDAR_CURD_MOLD = addItem(92, "component.cheddar_curd_mold");
-        AGED_CHEDDAR_MOLD = addItem(93, "component.aged_cheddar_mold");
+        CHEDDAR_CURD_MOLD = addItem(92, "component.cheddar_curd_mold").blacklistKitchen();
+        AGED_CHEDDAR_MOLD = addItem(93, "component.aged_cheddar_mold").blacklistKitchen();
         MOZZARELLA_SLICE = addItem(94, "component.mozzarella_slice")
                 .addOreDict("foodCheese");
         RICOTTA = addItem(95, "component.ricotta_piece")
@@ -517,27 +517,27 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         UNCOOKED_BACON = addItem(108, "component.bacon");
 
-        SKEWER = addItem(135, "component.skewer");
+        SKEWER = addItem(135, "component.skewer").blacklistKitchen();
 
-        GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel");
-        SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel");
-        SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel");
-        PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel");
-        FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel");
+        GORGONZOLA_WHEEL = addItem(109, "component.gorgonzola_wheel").blacklistKitchen();
+        SALTED_GORGONZOLA_WHEEL = addItem(110, "component.salted_gorgonzola_wheel").blacklistKitchen();
+        SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel").blacklistKitchen();
+        PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel").blacklistKitchen();
+        FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel").blacklistKitchen();
         //PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicillium");
-        SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal");
+        SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal").blacklistKitchen();
 
         BANANA_PEEL = addItem(127, "component.banana_peel");
 
         SCRAP_MEAT = addItem(134, "component.scrap_meat");
 
-        GELATIN = addItem(196, "component.gelatin");
+        GELATIN = addItem(196, "component.gelatin").blacklistKitchen();
         ROASTED_COCOA_BEANS = addItem(197, "component.roasted_beans");
         COCOA_NIBS = addItem(198, "component.cocoa_nibs");
-        EMPTY_CUP = addItem(199, "component.empty_cup");
-        PAPER_CONE = addItem(200, "component.paper_cone");
+        EMPTY_CUP = addItem(199, "component.empty_cup").blacklistKitchen();
+        PAPER_CONE = addItem(200, "component.paper_cone").blacklistKitchen();
         COFFEE_CHERRY = addItem(201, "crop.coffee");
-        UNFIRED_CUP = addItem(205, "component.unfired_cup");
+        UNFIRED_CUP = addItem(205, "component.unfired_cup").blacklistKitchen();
 
         KEBAB_KUBIDEH = addItem(136, "component.kebab.kubide");
         KEBAB_BARG = addItem(138, "component.kebab.barg");
@@ -557,9 +557,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         BASIL = addItem(234, "component.basil");
         OREGANO = addItem(235, "component.oregano");
 
-        CAPLET_CAP = addItem(227, "component.caplet_cap");
-        CAPLET_BODY = addItem(228, "component.caplet_body");
-        IV_BAG = addItem(232, "component.iv_bag");
+        CAPLET_CAP = addItem(227, "component.caplet_cap").blacklistKitchen();
+        CAPLET_BODY = addItem(228, "component.caplet_body").blacklistKitchen();
+        IV_BAG = addItem(232, "component.iv_bag").blacklistKitchen();
 
         PASTA_DOUGH = addItem(243, "component.dough.pasta");
         EGG_PASTA_DOUGH = addItem(244, "component.dough.egg_pasta");
@@ -582,11 +582,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         TORTELLINI = addItem(266, "component.pasta.tortellini");
 
-        PLATE = addItem(291, "component.plate");
-        DIRTY_PLATE = addItem(292, "component.dirty_plate");
-        CERAMIC_BOWL = addItem(293, "component.ceramic_bowl");
-        DIRTY_CERAMIC_BOWL = addItem(294, "component.dirty_bowl");
-        BAKING_TRAY = addItem(302, "component.baking_tray");
+        PLATE = addItem(291, "component.plate").blacklistKitchen();
+        DIRTY_PLATE = addItem(292, "component.dirty_plate").blacklistKitchen();
+        CERAMIC_BOWL = addItem(293, "component.ceramic_bowl").blacklistKitchen();
+        DIRTY_CERAMIC_BOWL = addItem(294, "component.dirty_bowl").blacklistKitchen();
+        BAKING_TRAY = addItem(302, "component.baking_tray").blacklistKitchen();
 
         LASAGNA_CHUM_RAW = addItem(296, "component.pasta.lasagna.raw.chum");
         LASAGNA_NAPOLETANA_RAW = addItem(297, "component.pasta.lasagna.raw.napoletana");
@@ -598,16 +598,16 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         PORCHETTA = addItem(310, "component.porchetta")
                 .addComponents(new GTFOFoodStats(7, 0.7f).setEatingDuration(50));
 
-        AGED_PARMIGIANO_ROLL = addItem(312, "component.aged_parmigiano_roll");
-        BRINED_PARMIGIANO = addItem(313, "component.brined_parmigiano");
-        BRINED_PARMIGIANO_ROLL = addItem(314, "component.brined_parmigiano_roll");
-        CURDLING_PARMIGIANO = addItem(315, "component.curdling_parmigiano");
-        CHEESE_ROLL_FORM = addItem(316, "component.cheese_form");
+        AGED_PARMIGIANO_ROLL = addItem(312, "component.aged_parmigiano_roll").blacklistKitchen();
+        BRINED_PARMIGIANO = addItem(313, "component.brined_parmigiano").blacklistKitchen();
+        BRINED_PARMIGIANO_ROLL = addItem(314, "component.brined_parmigiano_roll").blacklistKitchen();
+        CURDLING_PARMIGIANO = addItem(315, "component.curdling_parmigiano").blacklistKitchen();
+        CHEESE_ROLL_FORM = addItem(316, "component.cheese_form").blacklistKitchen();
 
         SEASONED_PORK = addItem(318, "component.seasoned_pork");
 
-        UNFIRED_PLATE = addItem(322, "component.unfired_plate");
-        UNFIRED_BOWL = addItem(323, "component.unfired_bowl");
+        UNFIRED_PLATE = addItem(322, "component.unfired_plate").blacklistKitchen();
+        UNFIRED_BOWL = addItem(323, "component.unfired_bowl").blacklistKitchen();
 
         UNCOOKED_PELMENI = addItem(338, "component.pelmeni_uncooked");
         UNCOOKED_SEASONED_PELMENI = addItem(339, "component.pelmeni_uncooked_seasoned");
@@ -836,7 +836,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 new RandomPotionEffect(MobEffects.NAUSEA, 1000, 0, 100 - 80),
                 new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 100 - 60)));
 
-        GEL_CAPLET = addItem(229, "food.gel_caplet");
+        GEL_CAPLET = addItem(229, "food.gel_caplet").blacklistKitchen().addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY));
         PARACETAMOL_CAPLET = addItem(230, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
         PLUTONIUM_241_CAPLET = addItem(231, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
 
@@ -1076,6 +1076,10 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         protected GTFOMetaValueItem blacklistKitchen() {
             kitchenBlacklisted = true;
             return this;
+        }
+
+        public boolean isKitchenBlacklisted() {
+            return kitchenBlacklisted;
         }
 
         protected void addItemComponentsInternal(IItemComponent... stats) {
