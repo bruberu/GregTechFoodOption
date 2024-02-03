@@ -19,6 +19,11 @@
         "textures": {
           "all": "gregtech:blocks/casings/solid/porcelain_tile"
         }
+      },
+      "dark_porcelain_tile": {
+        "textures": {
+          "all": "gregtech:blocks/casings/solid/dark_porcelain_tile"
+        }
       }
     }
   }

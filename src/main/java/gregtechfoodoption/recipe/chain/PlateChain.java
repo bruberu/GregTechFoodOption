@@ -17,8 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
 import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.Glass;
-import static gregtech.api.unification.material.Materials.Water;
+import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class PlateChain {
@@ -105,8 +104,15 @@ public class PlateChain {
             .buildAndRegister();
         BLAST_RECIPES.recipeBuilder().EUt(120).duration(500).blastFurnaceTemp(1600)
                 .inputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
+                .circuitMeta(1)
                 .input(dust, Glass)
                 .outputs(GTFOMaterialHandler.GlazedPorcelainTile.getItemStack())
+                .buildAndRegister();
+        BLAST_RECIPES.recipeBuilder().EUt(120).duration(500).blastFurnaceTemp(1600)
+                .inputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
+                .input(dust, Glass)
+                .fluidInputs(DyeBlack.getFluid(100))
+                .outputs(GTFOMaterialHandler.BlackGlazedPorcelainTile.getItemStack())
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().EUt(8).duration(100)
@@ -114,6 +120,12 @@ public class PlateChain {
                         .getItemVariant(StoneVariantBlock.StoneType.CONCRETE_LIGHT))
                 .inputs(GTFOMaterialHandler.GlazedPorcelainTile.getItemStack(6))
                 .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.PORCELAIN_TILE))
+                .buildAndRegister();
+        ASSEMBLER_RECIPES.recipeBuilder().EUt(8).duration(100)
+                .inputs(MetaBlocks.STONE_BLOCKS.get(StoneVariantBlock.StoneVariant.SMOOTH)
+                        .getItemVariant(StoneVariantBlock.StoneType.CONCRETE_LIGHT))
+                .inputs(GTFOMaterialHandler.BlackGlazedPorcelainTile.getItemStack(6))
+                .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.DARK_PORCELAIN_TILE))
                 .buildAndRegister();
     }
 

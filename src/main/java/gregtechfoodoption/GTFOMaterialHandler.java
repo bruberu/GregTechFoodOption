@@ -579,6 +579,7 @@ public class GTFOMaterialHandler {
     public static final MetaOreDictItem.OreDictValueItem UnfiredPorcelainTile = SHAPED_ITEM.addOreDictItem(1142, "unfired_porcelain_tile", 0xC2C2C4, MaterialIconSet.ROUGH, plate);
     public static final MetaOreDictItem.OreDictValueItem BiscuitPorcelainTile = SHAPED_ITEM.addOreDictItem(1143, "bisque_porcelain_tile", 0xFEFEE8, MaterialIconSet.ROUGH, plate);
     public static final MetaOreDictItem.OreDictValueItem GlazedPorcelainTile = SHAPED_ITEM.addOreDictItem(1144, "glazed_porcelain_tile", 0xEEEEEE, MaterialIconSet.SHINY, plate);
+    public static final MetaOreDictItem.OreDictValueItem BlackGlazedPorcelainTile = SHAPED_ITEM.addOreDictItem(1145, "black_glazed_porcelain_tile", 0x111111, MaterialIconSet.SHINY, plate);
 
     public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
     public static final GTFOOredictItem.OreDictValueItem COCOA_NIB = SHAPED_ITEM.addOreDictItem(1036, "cocoa_nib", 0x635943, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);

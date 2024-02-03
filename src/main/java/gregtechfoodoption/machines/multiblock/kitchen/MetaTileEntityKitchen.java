@@ -200,7 +200,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                 .aisle(frontBuilder.toString(), emptyBuilder.toString())
                 .where('S', selfPredicate())
                 .where('B', basePredicate.or(states(getCasingState())))
-                .where('F', states(getFloorState()))
+                .where('F', states(getFloorState(), getFloorState2()))
                 .where('I', innerPredicate())
                 .where(' ', any())
                 .build();
@@ -376,10 +376,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         return world.getBlockState(pos.move(direction)) == getCasingState() || world.getTileEntity(pos) instanceof MetaTileEntityHolder;
     }
 
-    public boolean isBlockFloor(@Nonnull World world, @Nonnull BlockPos.MutableBlockPos pos, @Nonnull EnumFacing direction) {
-        return world.getBlockState(pos.move(direction)) == getFloorState();
-    }
-
     @Nonnull
     protected IBlockState getCasingState() {
         return MetaBlocks.BOILER_CASING.getState(BlockBoilerCasing.BoilerCasingType.STEEL_PIPE);
@@ -388,6 +384,11 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @Nonnull
     protected IBlockState getFloorState() {
         return GTFOMetaBlocks.GTFO_CASING.getState(GTFOBlockCasing.CasingType.PORCELAIN_TILE);
+    }
+
+    @Nonnull
+    protected IBlockState getFloorState2() {
+        return GTFOMetaBlocks.GTFO_CASING.getState(GTFOBlockCasing.CasingType.DARK_PORCELAIN_TILE);
     }
 
     @Override

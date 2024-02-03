@@ -35,8 +35,8 @@ public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
 
         ADOBE_BRICKS("adobe_bricks"),
         REINFORCED_ADOBE_BRICKS("reinforced_adobe_bricks"),
-        PORCELAIN_TILE("porcelain_tile");
-
+        PORCELAIN_TILE("porcelain_tile"),
+        DARK_PORCELAIN_TILE("dark_porcelain_tile");
 
         private final String name;
 
