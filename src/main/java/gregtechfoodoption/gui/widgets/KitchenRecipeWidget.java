@@ -5,6 +5,8 @@ import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.impl.ModularUIContainer;
 import gregtech.api.gui.ingredient.IRecipeTransferHandlerWidget;
 import gregtech.api.gui.widgets.*;
+import gregtech.api.items.metaitem.FoodUseManager;
+import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.category.GTRecipeCategory;
@@ -294,6 +296,7 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         return (stack.getItem() instanceof GTFOMetaItem && !((GTFOMetaItem) stack.getItem()).getItem(stack).isKitchenBlacklisted())
                 || stack.getItem().equals(GTFOMetaItems.SHAPED_ITEM) && GTFOMetaItems.SHAPED_ITEM.isFoodRelated(stack)
                 || stack.getItem() instanceof ItemFood
+                || (stack.getItem() instanceof MetaItem<?> && ((MetaItem<?>) stack.getItem()).getItem(stack).getUseManager() instanceof FoodUseManager)
                 || Loader.isModLoaded(GTFOValues.MODID_AP) && GTFOAppleCoreCompat.isAppleCoreEdible(stack);
     }
 
