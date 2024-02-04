@@ -306,18 +306,18 @@ public class BreadsChain {
                 .outputs(SANDWICH_LARGE_CHEESE.getStackForm())
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)
-                .inputs(PRESLICED_BAGUETTE.getStackForm(2), BACON.getStackForm(10))
-                .outputs(SANDWICH_LARGE_BACON.getStackForm(2))
+                .inputs(PRESLICED_BAGUETTE.getStackForm(1), BACON.getStackForm(5))
+                .outputs(SANDWICH_LARGE_BACON.getStackForm(1))
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)
-                .inputs(PRESLICED_BAGUETTE.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))
-                .inputs(GTFOMaterialHandler.MeatIngot.getItemStack(3))
-                .outputs(SANDWICH_LARGE_STEAK.getStackForm(3))
+                .inputs(PRESLICED_BAGUETTE.getStackForm(1), CHEDDAR_SLICE.getStackForm(1))
+                .inputs(GTFOMaterialHandler.MeatIngot.getItemStack(1))
+                .outputs(SANDWICH_LARGE_STEAK.getStackForm(1))
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)
-                .inputs(PRESLICED_BAGUETTE.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))
-                .input("cookedMeat", 3)
-                .outputs(SANDWICH_LARGE_STEAK.getStackForm(3))
+                .inputs(PRESLICED_BAGUETTE.getStackForm(1), CHEDDAR_SLICE.getStackForm(1))
+                .input("cookedMeat", 1)
+                .outputs(SANDWICH_LARGE_STEAK.getStackForm(1))
                 .buildAndRegister();
 
 
