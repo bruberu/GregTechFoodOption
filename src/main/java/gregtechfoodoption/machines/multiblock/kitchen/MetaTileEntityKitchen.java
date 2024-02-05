@@ -156,7 +156,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @NotNull
     @Override
     protected BlockPattern createStructurePattern() {
-        if (getWorld() != null && !getWorld().isRemote) updateStructureDimensions();
+        if (getWorld() != null) updateStructureDimensions();
         // these can sometimes get set to 0 when loading the game, breaking JEI
         if (sDist < MIN_RADIUS) sDist = MIN_RADIUS;
         if (bDist < MIN_RADIUS * 2) bDist = MIN_RADIUS * 2;
@@ -280,12 +280,19 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         int bDist = 0;
 
         // find the left, right, back, and front distances for the structure pattern
-        // maximum size is 15x15 including walls, so check 7 block radius around the controller for blocks
-        for (int i = 1; i < 8; i++) {
-            if (sDist == 0 && isBlockEdge(world, lPos, left) & isBlockEdge(world, rPos, right))
+        // maximum size is 15x15 including walls, so check the back
+        for (int i = 0; i < 15; i++) {
+            if (isBlockEdge(world, bPos, back)) {
+                bDist = i;
+                break;
+            }
+        }
+
+        for (int i = 1; i < 9; i++) { // start at 1 for an off-by-one error
+            if (isBlockEdge(world, lPos, left) & isBlockEdge(world, rPos, right)) {
                 sDist = i; // The & is absolutely *essential* here.
-            if (bDist == 0 && isBlockEdge(world, bPos, back)) bDist = i;
-            if (sDist != 0 && bDist != 0) break;
+                break;
+            }
         }
 
 
@@ -297,10 +304,12 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         this.sDist = sDist;
         this.bDist = bDist;
 
-        writeCustomData(GregtechDataCodes.UPDATE_STRUCTURE_SIZE, buf -> {
-            buf.writeInt(this.sDist);
-            buf.writeInt(this.bDist);
-        });
+        if (!this.getWorld().isRemote) {
+            writeCustomData(GregtechDataCodes.UPDATE_STRUCTURE_SIZE, buf -> {
+                buf.writeInt(this.sDist);
+                buf.writeInt(this.bDist);
+            });
+        }
         return true;
     }
 
