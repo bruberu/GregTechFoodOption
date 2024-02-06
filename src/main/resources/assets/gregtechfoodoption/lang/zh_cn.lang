@@ -1162,6 +1162,7 @@ gregtechfoodoption.multiblock.kitchen.no_recipe=缺少食谱！（或食谱未�
 gregtechfoodoption.multiblock.kitchen.buses_full=物品总线已满！
 gregtechfoodoption.multiblock.kitchen.hatches_full=流体仓已满！
 gregtechfoodoption.multiblock.kitchen.bad_machines=缺少处理配方所需种类/电压等级的机器！
+gregtechfoodoption.multiblock.kitchen.machines_not_working=所需机器无法运行！
 gregtechfoodoption.multiblock.kitchen.no_ingredients=缺少原料！
 gregtechfoodoption.multiblock.kitchen.probably_fine=配方处理中……
 gregtechfoodoption.multiblock.kitchen.order_complete=订单已完成！
@@ -1183,7 +1184,7 @@ metaitem.bisque_porcelain_tile_plate.name=素瓷片
 metaitem.glazed_porcelain_tile_plate.name=釉瓷片
 metaitem.black_glazed_porcelain_tile_plate.name=黑釉瓷片
 metaitem.utility.kitchen_recipe.name=厨房食谱
-metaitem.utility.kitchen_recipe.tooltip=右键以通过 JEI 添加 GTFO 配方！与多方块厨房一同处理§4单方块机器§r配方。
+metaitem.utility.kitchen_recipe.tooltip=右键以通过 JEI 添加 GTFO 配方！与多方块厨房一同处理§4单方块机器§7配方。
 gregtechfoodoption.kitchen_recipe.final_result=§3产品：%s
 
 gregtechfoodoption.machine.kitchen.tooltip.1=§4仅能与 JEI 一同使用！
