@@ -197,3 +197,6 @@ gregtechfoodoption.sapling.lemon.name=Саженец лимона
 gregtechfoodoption.sapling.mango.name=Саженец манго
 gregtechfoodoption.sapling.nutmeg.name=Саженец мускатного ореха
 gregtechfoodoption.log.lemon.name=Лимонное дерево
+metaitem.food.ice_cream.chocolate.name=Шоколадное мороженое
+metaitem.food.ice_cream.vanilla.tooltip=Версия 1.12.2
+metaitem.food.ice_cream.chocolate.tooltip=Ваш обычный шоколадный шарик
