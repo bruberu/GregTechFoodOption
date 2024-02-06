@@ -99,7 +99,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
         }
         for (MetaTileEntity mte : controlledMTEs) {
             if (mte.getRecipeLogic().getProgress() > 0) {
-                dirtiness += GTUtility.getFloorTierByVoltage(mte.getRecipeLogic().getProgress());
+                dirtiness += GTUtility.getFloorTierByVoltage(mte.getRecipeLogic().getProgress()) + 1;
             }
         }
         if (previousState != state) {
