@@ -1162,6 +1162,7 @@ gregtechfoodoption.multiblock.kitchen.no_recipe=The recipe Item is missing! (or 
 gregtechfoodoption.multiblock.kitchen.buses_full=The item IO Buses are full!
 gregtechfoodoption.multiblock.kitchen.hatches_full=The fluid IO Hatches are full!
 gregtechfoodoption.multiblock.kitchen.bad_machines=There aren't Machines of the right Type/Tier to actually make the Item!
+gregtechfoodoption.multiblock.kitchen.machines_not_working=Required Machines are not functioning!
 gregtechfoodoption.multiblock.kitchen.no_ingredients=There are missing Ingredients!
 gregtechfoodoption.multiblock.kitchen.probably_fine=Running recipes...
 gregtechfoodoption.multiblock.kitchen.order_complete=Order completed!
@@ -1183,7 +1184,7 @@ metaitem.bisque_porcelain_tile_plate.name=Bisque Porcelain Tile
 metaitem.glazed_porcelain_tile_plate.name=Glazed Porcelain Tile
 metaitem.black_glazed_porcelain_tile_plate.name=Black Glazed Porcelain Tile
 metaitem.utility.kitchen_recipe.name=Kitchen Recipe
-metaitem.utility.kitchen_recipe.tooltip=Right-click to add GTFO Recipes through JEI! Works with the Kitchen multiblock on §4singleblock§r recipes.
+metaitem.utility.kitchen_recipe.tooltip=Right-click to add GTFO Recipes through JEI! Works with the Kitchen multiblock on §4singleblock§7 recipes.
 gregtechfoodoption.kitchen_recipe.final_result=§3Produces %s
 
 gregtechfoodoption.machine.kitchen.tooltip.1=§4Only can be used with JEI

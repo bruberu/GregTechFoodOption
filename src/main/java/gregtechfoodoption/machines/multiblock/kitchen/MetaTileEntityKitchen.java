@@ -132,9 +132,9 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     }
 
     @Override
-    public void getDrops(NonNullList<ItemStack> dropsList, @org.jetbrains.annotations.Nullable EntityPlayer harvester) {
-        super.getDrops(dropsList, harvester);
-        dropsList.add(recipeHolder.getStackInSlot(0));
+    public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
+        super.clearMachineInventory(itemBuffer);
+        itemBuffer.add(recipeHolder.getStackInSlot(0));
     }
 
     public boolean drainEnergy(boolean simulate) {
@@ -237,6 +237,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
 
             // slurp
             this.kitchenLogic.giveMetaTileEntity((WorkableTieredMetaTileEntity) metaTileEntity);
+            this.kitchenLogic.wasNotified = true;
             return true;
         });
     }
@@ -456,9 +457,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                     list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_size", this.orderSize).setStyle((new Style()).setColor(TextFormatting.GOLD)));
                 })
                 .addCustom((list) -> {
-                    if (!this.isActive())
-                        return;
-
                     TextFormatting color = TextFormatting.GRAY;
                     if (kitchenLogic.dirtiness > 100) {
                         color = TextFormatting.RED;
@@ -477,12 +475,13 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     protected void addErrorText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, this.isStructureFormed(), true)
                 .addCustom((list) -> {
-                    if (!this.isActive())
+                    if (!this.isStructureFormed() || !this.kitchenLogic.isWorkingEnabled())
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
                         case NO_RECIPE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_recipe");
                         case BAD_MACHINES -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.bad_machines");
+                        case MACHINES_NOT_WORKING -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.machines_not_working");
                         case NO_INGREDIENTS -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_ingredients");
                     }
                     if (comp != null) {
@@ -495,7 +494,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                 .addMaintenanceProblemLines(this.getMaintenanceProblems())
                 .addLowPowerLine(!drainEnergy(true))
                 .addCustom((list) -> {
-                    if (!this.isActive())
+                    if (!this.isStructureFormed() || !this.kitchenLogic.isWorkingEnabled())
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
