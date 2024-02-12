@@ -177,6 +177,7 @@ public class CoreChain {
 
         EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
                 .inputs(CRANBERRY.getStackForm())
+                .circuitMeta(1)
                 .fluidOutputs(CranberryExtract.getFluid(25))
                 .buildAndRegister();
 
