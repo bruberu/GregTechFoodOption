@@ -90,7 +90,7 @@ public class GTFOBerryBush extends GTFOCrop {
     public int calcEfficiency(World worldIn, BlockPos pos) {
         int[] efficiencies = new int[EFFICIENCY_GTFO.getAllowedValues().stream().max(Integer::compare).get() + 1];
         BlockPos.getAllInBox(pos.east().north(), pos.west().south()).forEach((blockpos) -> {
-            if (!blockpos.equals(pos))
+            if (!blockpos.equals(pos) && getEfficiency(worldIn.getBlockState(blockpos)) + 1 < efficiencies.length)
                 efficiencies[getEfficiency(worldIn.getBlockState(blockpos)) + 1]++;
         });
         for (int i = efficiencies.length - 1; i >= 0; --i) {
