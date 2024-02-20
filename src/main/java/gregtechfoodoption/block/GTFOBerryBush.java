@@ -6,6 +6,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -135,7 +136,7 @@ public class GTFOBerryBush extends GTFOCrop {
 
     @Override
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        if (isThorny)
+        if (isThorny && entityIn instanceof EntityLiving)
             entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         double distanceFromCenter = entityIn.getDistanceSq(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
         distanceFromCenter += 0.5; // no singularity going on here
