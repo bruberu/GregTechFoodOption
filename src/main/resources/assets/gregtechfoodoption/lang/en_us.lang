@@ -826,6 +826,7 @@ gregtech.multiblock.not_enough_sun=The Roof is not getting enough Sunlight, and 
 
 gregtechfoodoption.machine.greenhouse.tooltip.1=Simulates the growth of Trees inside.
 gregtechfoodoption.machine.greenhouse.tooltip.2=Takes twice as long to run a Recipe if Any Part of the Roof is blocked, or it is Night.
+gregtechfoodoption.machine.greenhouse.tooltip.3=This is weather-resistant!
 
 gregtech.material.gtfo_beer_batter=Beer Batter
 metaitem.puff_pastry_plate.name=Puff Pastry
