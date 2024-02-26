@@ -26,7 +26,9 @@ public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour
                 getRecipeCount(stack),
                 (tag) -> addRecipe(stack, tag),
                 (index) -> getRecipe(stack, index),
-                (finalResult) -> setFinalResult(stack, finalResult), getFinalResult(stack)));
+                (finalResult) -> setFinalResult(stack, finalResult),
+                (index) -> deleteRecipe(stack, index),
+                getFinalResult(stack)));
         builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 30, 155);
         return builder.build(playerInventoryHolder, entityPlayer);
     }
@@ -51,6 +53,24 @@ public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour
         if (stack.getTagCompound() == null)
             return null;
         return stack.getTagCompound().getCompoundTag("recipe" + index);
+    }
+
+    private static void deleteRecipe(ItemStack stack, int location) {
+        if (!GTFOMetaItem.KITCHEN_RECIPE.isItemEqual(stack))
+            return;
+        NBTTagCompound tag = stack.getTagCompound();
+        if (stack.getTagCompound() == null)
+            return;
+        int count = tag.getInteger("recipecount");
+        if (location >= count)
+            return;
+        tag.removeTag("recipe" + location);
+        for (int i = location; i < count - 1; i++) {
+            tag.setTag("recipe" + i, tag.getCompoundTag("recipe" + (i + 1)));
+        }
+        tag.setInteger("recipecount", count - 1);
+
+        stack.setTagCompound(tag);
     }
 
     private static int getRecipeCount(ItemStack stack) {

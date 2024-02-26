@@ -55,11 +55,13 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
 
     private Function<Integer, NBTTagCompound> loadingFunction;
     private Consumer<NBTTagCompound> savingFunction;
+    private Consumer<NBTTagCompound> deletingFunction;
     private int recipeCount;
     private int recipeShown;
     private PhantomRecipeWidget recipeWidget;
     private ClickButtonWidget leftArrowWidget;
     private ClickButtonWidget rightArrowWidget;
+    private ClickButtonWidget deleteButtonWidget;
     private SimpleTextWidget recipeCountLabel;
     private SlotWidget finalResultSlot;
     private ItemStackHandler finalResult = new ItemStackHandler(1) {
@@ -85,7 +87,12 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
 
     private List<ItemStack> neededInputs = new ArrayList<>();
     private List<FluidStack> neededFluidInputs = new ArrayList<>();
-    public KitchenRecipeWidget(int x, int y, int width, int height, int recipeCount, Consumer<NBTTagCompound> savingFunction, Function<Integer, NBTTagCompound> loadingFunction, Consumer<ItemStack> resultItemConsumer, ItemStack finalResultStack) {
+    public KitchenRecipeWidget(int x, int y, int width, int height, int recipeCount,
+                               Consumer<NBTTagCompound> savingFunction,
+                               Function<Integer, NBTTagCompound> loadingFunction,
+                               Consumer<ItemStack> resultItemConsumer,
+                               Consumer<Integer> deletingFunction,
+                               ItemStack finalResultStack) {
         super(new Position(x, y), new Size(width, height));
         if (finalResultStack != null) {
             finalResult.setStackInSlot(0, finalResultStack);
@@ -123,7 +130,11 @@ public class KitchenRecipeWidget extends AbstractWidgetGroup implements IRecipeT
         addWidget(rightArrowWidget);
         recipeCountLabel = new SimpleTextWidget(x + width / 2, y + 120, "", 0x666666, () -> "Recipe: " + (getRecipeShown() + 1) + "/" + getRecipeCount(), true);
         addWidget(recipeCountLabel);
-
+        deleteButtonWidget = new ClickButtonWidget(x + width - 50, y + 120, 9, 9, "", (data) -> {
+            deletingFunction.accept(getRecipeShown());
+            this.recipeWidget.deserializeNBT(loadingFunction.apply(getRecipeShown()));
+        }).setButtonTexture(GuiTextures.BUTTON_CLEAR_GRID).setShouldClientCallback(true);
+        addWidget(deleteButtonWidget);
         getNeededInputs();
         getNeededFluidInputs();
     }
