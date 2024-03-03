@@ -91,7 +91,7 @@ public class ItalianChain {
                 .fluidInputs(TomatoSauce.getFluid(500))
                 .outputs(GTFOMetaItem.PASTA_ALLAMOGUS.getStackForm())
                 .buildAndRegister();
-        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(64).duration(400)
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(400)
                 .inputs(GTFOMetaItem.RIGATONI.getStackForm(), GTFOMetaItem.PLATE.getStackForm(), GTFOMetaItem.EGGPLANT_SLICE.getStackForm(3), GTFOMetaItem.BASIL.getStackForm())
                 .fluidInputs(TomatoSauce.getFluid(200))
                 .outputs(GTFOMetaItem.PASTA_ALLA_NORMA.getStackForm())

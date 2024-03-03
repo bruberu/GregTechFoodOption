@@ -18,8 +18,8 @@ public class GTFOConfig {
     @Config.Comment("Vanilla Overrides Options")
     public static GTFOVanillaOverridesConfig gtfoVanillaOverridesConfig = new GTFOVanillaOverridesConfig();
 
-    @Config.Comment("AppleCore compatibility")
-    public static GTFOAppleCoreConfig gtfoAppleCoreConfig = new GTFOAppleCoreConfig();
+    @Config.Comment("Other food mod compatibilities")
+    public static GTFOOtherFoodModConfig gtfoOtherFoodModConfig = new GTFOOtherFoodModConfig();
 
     @Config.Comment("NuclearCraft compatibility")
     public static GTFONCConfig gtfoncConfig = new GTFONCConfig();
@@ -68,7 +68,7 @@ public class GTFOConfig {
         public boolean useRollingPinForPaper = false;
     }
 
-    public static class GTFOAppleCoreConfig {
+    public static class GTFOOtherFoodModConfig {
         @Config.Comment("Should AppleCore compatibility be turned on?")
         public boolean appleCoreCompat = false;
 
@@ -80,6 +80,9 @@ public class GTFOConfig {
 
         @Config.Comment("If the above is false, you can set this to divide all vanilla food items by some value.")
         public int constantFoodStatsDivisor = 1;
+
+        @Config.Comment("Turn on default GTFO compat for Nutrition: Unofficial Extended Life?")
+        public boolean enableGTFONutrition = true;
 
         public void setAllToFalse() {
             appleCoreCompat = false;
@@ -110,8 +113,6 @@ public class GTFOConfig {
         @Config.Comment("Disable AA Coffee Maker's recipe?")
         public boolean disableCoffeeMaker = true;
 
-        @Config.Comment("Add AA Coffee Chain?")
-        public boolean coffeeChain = true;
 
         public void setAllToFalse() {
             actuallyCompat = false;
@@ -181,13 +182,6 @@ public class GTFOConfig {
 
         @Config.Comment("Baguette saturation")
         public float baguetteSaturation = 1f;
-
-
-        @Config.Comment("Return bag after eating popcorn?")
-        public boolean popcornReturnsContainer = true;
-
-        @Config.Comment("Return used thermos after drinking mineral water?")
-        public boolean mineralWaterReturnsContainer = true;
     }
 
     public static class GTFOPotionConfig {

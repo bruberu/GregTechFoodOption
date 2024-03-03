@@ -47,7 +47,7 @@ public class GTFOAppleCoreCompat {
                 return sparedItemsFoodValues.get(sparedFood);
             return originalValues;
         }
-        if (GTFOConfig.gtfoAppleCoreConfig.reduceForeignFoodStats) {
+        if (GTFOConfig.gtfoOtherFoodModConfig.reduceForeignFoodStats) {
             ItemStack actualFood = food;
 
             float modifier = this.getFoodModifier(player, actualFood);
@@ -65,10 +65,10 @@ public class GTFOAppleCoreCompat {
     }
 
     private float getForeignFoodDivisor(EntityPlayer player) {
-        if (GTFOConfig.gtfoAppleCoreConfig.useDefaultForeignFoodStatsReduction) {
+        if (GTFOConfig.gtfoOtherFoodModConfig.useDefaultForeignFoodStatsReduction) {
             return clientDivisorsMap.get(player.getUniqueID());
         } else
-            return GTFOConfig.gtfoAppleCoreConfig.constantFoodStatsDivisor;
+            return GTFOConfig.gtfoOtherFoodModConfig.constantFoodStatsDivisor;
     }
 
     public static float advancementLookup(EntityPlayer player) {
@@ -104,7 +104,7 @@ public class GTFOAppleCoreCompat {
     @ZenMethod
     public static void addToSparedItems(Item item, int hunger, float saturation) {
         sparedItems.add(item);
-        if (GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
+        if (GTFOConfig.gtfoOtherFoodModConfig.appleCoreCompat)
             sparedItemsFoodValues.put(item, new FoodValues(hunger, saturation));
     }
 

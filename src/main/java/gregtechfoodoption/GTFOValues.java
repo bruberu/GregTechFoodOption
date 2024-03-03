@@ -16,7 +16,9 @@ public class GTFOValues {
             MODID_GF = "gregification",
             MODID_TFC = "tfc",
             MODID_AC = "agricraft",
-            MODID_AP = "applecore";
+            MODID_AP = "applecore",
+            MODID_NU = "nutrition",
+            MODID_NUGT = "nutrition_gtceu";
 
     public static final String craftingToolRollingPin = "craftingToolRollingPin";
 

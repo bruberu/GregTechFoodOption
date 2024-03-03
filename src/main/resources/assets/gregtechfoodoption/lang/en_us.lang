@@ -851,6 +851,7 @@ metaitem.food.shepherds_pie.tooltip=Given what you put in It, probably an Indust
 metaitem.food.sausage_roll.name=Sausage Roll
 metaitem.food.baked_beans.name=Baked Beans
 metaitem.food.beans_on_toast.name=Beans on Toast
+metaitem.food.beans_on_toast.tooltip="It's like Polenta, but worse"
 metaitem.food.fried_fish.name=Fried Fish
 metaitem.food.battered_fish.name=Battered Fish
 metaitem.food.beer.name=Beer

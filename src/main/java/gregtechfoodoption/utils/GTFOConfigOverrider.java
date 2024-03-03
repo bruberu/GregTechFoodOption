@@ -28,10 +28,10 @@ public class GTFOConfigOverrider {
         if (Loader.isModLoaded(GTFOValues.MODID_AA)) {
             ConfigBoolValues.DO_COFFEE_GEN.currentValue = false;
         }
-        if (GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat) {
+        if (GTFOConfig.gtfoOtherFoodModConfig.appleCoreCompat) {
             if (!Loader.isModLoaded("applecore")) {
                 GTFOLog.logger.warn("It appears you don't have AppleCore installed, but you still have the config option for compatibility with it on. Consider turning it off, or installing AppleCore.");
-                GTFOConfig.gtfoAppleCoreConfig.setAllToFalse();
+                GTFOConfig.gtfoOtherFoodModConfig.setAllToFalse();
             }
         }
     }

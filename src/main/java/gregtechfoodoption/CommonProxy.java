@@ -10,6 +10,7 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.GTFORootCrop;
 import gregtechfoodoption.integration.enderio.GTFOBerryFarmer;
 import gregtechfoodoption.integration.enderio.GTFORootCropFarmer;
+import gregtechfoodoption.integration.nutrition.GTFONutritionCompatibility;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
@@ -33,6 +34,7 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -74,6 +76,9 @@ public class CommonProxy {
                 new PotionEffect(AntiSchizoPotion.INSTANCE, 1000, 0),
                 "14hez98zk7/2/3/5/9/10/"));
 
+        if (Loader.isModLoaded(GTFOValues.MODID_NUGT) && GTFOConfig.gtfoOtherFoodModConfig.enableGTFONutrition) {
+            GTFONutritionCompatibility.init();
+        }
     }
 
     @SubscribeEvent
