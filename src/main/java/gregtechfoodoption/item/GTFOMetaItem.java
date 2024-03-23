@@ -453,8 +453,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         ADOBE_BRICK = addItem(44, "brick.adobe_fired").blacklistKitchen()
                 .addComponents(new GTFOFoodStats(0, 0, false, true).setEatingDuration(400));
 
-        WOODEN_FORM_BREAD = addItem(45, "wooden_form.bread").blacklistKitchen().addComponents(selfContainerItemProvider);
-        WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").blacklistKitchen().addComponents(selfContainerItemProvider);
+        WOODEN_FORM_BREAD = addItem(45, "wooden_form.bread").blacklistKitchen().addComponents(selfContainerItemProvider).setMaxStackSize(1);
+        WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").blacklistKitchen().addComponents(selfContainerItemProvider).setMaxStackSize(1);
         UNCOOKED_BREAD = addItem(47, "component.bread");
         UNCOOKED_BAGUETTE = addItem(48, "component.baguette");
         DOUGH = addItem(50, "component.dough")
@@ -497,7 +497,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                         .nutrients(0, 0, 0, 0, 1f));
         CUCUMBER.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
 
-        WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").blacklistKitchen().addComponents(selfContainerItemProvider);
+        WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").blacklistKitchen().addComponents(selfContainerItemProvider).setMaxStackSize(1);
         UNCOOKED_BUN = addItem(83, "component.bun");
 
         PRESLICED_BUN = addItem(84, "component.buns")
@@ -988,7 +988,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .setPotionEffects(new RandomPotionEffect(MobEffects.JUMP_BOOST, 500, 0, 100 - 80))
                 .nutrients(0f, 0f, 1f, 0.5f, 0.75f));
         RISOTTO = addItem(283, "food.risotto").addComponents(new GTFOFoodStats(10, 0.8f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.SPEED, 8000, 1, 100))
+                .setPotionEffects(new RandomPotionEffect(MobEffects.SPEED, 8000, 1, 100 - 100))
                 .nutrients(1f, 0.25f, 1f, 0.75f, 0.75f));
         SPAGHETTI_ALLASSASSINA = addItem(284, "food.spaghetti_all'assassina").addComponents(new GTFOFoodStats(6, 0.8f).setReturnStack(DIRTY_PLATE.getStackForm())
                 .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 60, 10, 100 - 60))
