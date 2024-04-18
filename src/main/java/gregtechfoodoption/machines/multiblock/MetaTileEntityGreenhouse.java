@@ -10,6 +10,7 @@ import gregtech.api.metatileentity.multiblock.RecipeMapMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.RecipeMap;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.client.renderer.texture.Textures;
 import gregtech.common.ConfigHolder;
@@ -97,7 +98,7 @@ public class MetaTileEntityGreenhouse extends RecipeMapMultiblockController {
     }
 
     public MetaTileEntityGreenhouse(ResourceLocation metaTileEntityId) {
-        super(metaTileEntityId, GTFORecipeMaps.GREENHOUSE_RECIPES);
+        super(metaTileEntityId, RecipeMap.getByName("greenhouse")); // Use Nomi Labs recipes if the mod is installed
         this.recipeMapWorkable = new GreenhouseWorkable(this);
     }
 
