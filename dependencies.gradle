@@ -62,6 +62,7 @@ dependencies {
     compileOnly files("libs/NuclearCraft-2o.6.0-1.12.2.jar")
     implementation("com.cleanroommc:modularui:2.4.1") { transitive = false }
 
+    implementation rfg.deobf("curse.maven:serene-seasons-291874:2799213")
     implementation rfg.deobf("curse.maven:nutrition-gtceu-964594:5047422")
     implementation rfg.deobf("curse.maven:nutrition-unofficial-extended-life-964516:5049991")
     testImplementation 'junit:junit:4.13.2'

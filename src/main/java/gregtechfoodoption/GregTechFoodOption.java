@@ -2,6 +2,7 @@ package gregtechfoodoption;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
+import gregtech.api.util.Mods;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.covers.GTFOCoverBehaviors;
@@ -69,7 +70,7 @@ public class GregTechFoodOption {
             proxy.onLoad();
         } catch (Exception e) {
         }
-        if (Loader.isModLoaded(GTValues.MODID_TOP)) {
+        if (Loader.isModLoaded(Mods.Names.THE_ONE_PROBE)) {
             GTFOTOPCompatibility.registerCompatibility();
         }
         if (Loader.isModLoaded(GTFOValues.MODID_GF) && Loader.isModLoaded(GTFOValues.MODID_TFC)) {
