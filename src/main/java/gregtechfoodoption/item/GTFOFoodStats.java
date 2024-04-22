@@ -7,6 +7,7 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 import gregtechfoodoption.potion.LacingEntry;
 import gregtechfoodoption.utils.GTFOUtils;
+import it.unimi.dsi.fastutil.objects.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.Loader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Supplier;
 
 public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These names suck
@@ -27,6 +29,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     protected boolean alwaysEdible;
     public RandomPotionEffect[] potionEffects;
     public Supplier<ItemStack> stackSupplier;
+    public Object2FloatMap<String> nutrients = new Object2FloatArrayMap<>();
     protected int eatingDuration = 32;
 
 
@@ -146,5 +149,24 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
 
     public Supplier<ItemStack> getStackSupplier() {
         return stackSupplier;
+    }
+
+    public GTFOFoodStats nutrients(float dairy, float fruit, float grain, float protein, float vegetable) {
+        if (dairy > 0) {
+            this.nutrients.put("dairy", dairy);
+        }
+        if (fruit > 0) {
+            this.nutrients.put("fruit", fruit);
+        }
+        if (grain > 0) {
+            this.nutrients.put("grain", grain);
+        }
+        if (protein > 0) {
+            this.nutrients.put("protein", protein);
+        }
+        if (vegetable > 0) {
+            this.nutrients.put("vegetable", vegetable);
+        }
+        return this;
     }
 }

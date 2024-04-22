@@ -28,7 +28,7 @@ dependencies {
 
     implementation rfg.deobf("curse.maven:mixin-booter-419286:4828995")
     compileOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.554"
-    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5050979")
+    implementation rfg.deobf("curse.maven:gregtech-ce-unofficial-557242:5121638")
     implementation rfg.deobf("curse.maven:groovyscript-687577:4991701")
 
     implementation "team.chisel.ctm:CTM:MC${project.minecraft.version}-1.0.2.31"
@@ -55,14 +55,16 @@ dependencies {
     implementation "info.loenwind.autoconfig:AutoConfig:${project.minecraft.version}-1.0.2"
     implementation "info.loenwind.autosave:AutoSave:${project.minecraft.version}-1.0.11"
 
-    //compile "curse.maven:spiceoflife-220811:2571951"
+    implementation rfg.deobf("curse.maven:spiceoflife-220811:2571951")
 
     implementation files("libs/AppleSkin-mc1.12-1.0.9.jar")
 
-    implementation files("libs/NuclearCraft-2o.6.0-1.12.2.jar")
+    compileOnly files("libs/NuclearCraft-2o.6.0-1.12.2.jar")
     implementation("com.cleanroommc:modularui:2.4.1") { transitive = false }
 
-
+    implementation rfg.deobf("curse.maven:serene-seasons-291874:2799213")
+    implementation rfg.deobf("curse.maven:nutrition-gtceu-964594:5047422")
+    implementation rfg.deobf("curse.maven:nutrition-unofficial-extended-life-964516:5049991")
     testImplementation 'junit:junit:4.13.2'
     implementation 'org.projectlombok:lombok:1.18.24'
 }

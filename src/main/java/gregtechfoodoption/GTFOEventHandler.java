@@ -200,7 +200,7 @@ public class GTFOEventHandler {
 
     @SubscribeEvent
     public static void onAdvancement(AdvancementEvent event) {
-        if (GTFOConfig.gtfoAppleCoreConfig.reduceForeignFoodStats) {
+        if (GTFOConfig.gtfoOtherFoodModConfig.reduceForeignFoodStats) {
             float divisorObtained = GTFOAppleCoreCompat.getDivisorOnAdvancement(event.getAdvancement());
             if (divisorObtained > 1 && GTFOAppleCoreCompat.advancementLookup(event.getEntityPlayer()) == divisorObtained) {
                 GregTechAPI.networkHandler.sendToAll(new PacketAppleCoreFoodDivisorUpdate(

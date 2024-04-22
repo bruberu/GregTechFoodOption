@@ -45,8 +45,12 @@ public class KitchenRequestNode {
             List<GTRecipeFluidInput> missingFluids = missingFluids(GTUtility.fluidHandlerToList(fluidInputs));
             if (missingItems.isEmpty() && missingFluids.isEmpty()) {
                 // Run our recipe!
-                this.state = KitchenRequestState.RUNNABLE;
                 this.machineRunning = logic.findRun(recipe, map);
+                if (machineRunning == null) {
+                    this.state = KitchenRequestState.NOT_RUNNABLE;
+                } else {
+                    this.state = KitchenRequestState.RUNNABLE;
+                }
             } else {
                 dependencies.addAll(missingItems);
                 dependencies.addAll(missingFluids);

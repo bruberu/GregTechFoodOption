@@ -6,6 +6,7 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -90,7 +91,7 @@ public class GTFOBerryBush extends GTFOCrop {
     public int calcEfficiency(World worldIn, BlockPos pos) {
         int[] efficiencies = new int[EFFICIENCY_GTFO.getAllowedValues().stream().max(Integer::compare).get() + 1];
         BlockPos.getAllInBox(pos.east().north(), pos.west().south()).forEach((blockpos) -> {
-            if (!blockpos.equals(pos))
+            if (!blockpos.equals(pos) && getEfficiency(worldIn.getBlockState(blockpos)) + 1 < efficiencies.length)
                 efficiencies[getEfficiency(worldIn.getBlockState(blockpos)) + 1]++;
         });
         for (int i = efficiencies.length - 1; i >= 0; --i) {
@@ -135,7 +136,7 @@ public class GTFOBerryBush extends GTFOCrop {
 
     @Override
     public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-        if (isThorny)
+        if (isThorny && entityIn instanceof EntityLiving)
             entityIn.attackEntityFrom(DamageSource.CACTUS, 1.0F);
         double distanceFromCenter = entityIn.getDistanceSq(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D);
         distanceFromCenter += 0.5; // no singularity going on here

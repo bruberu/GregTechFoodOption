@@ -10,12 +10,15 @@ import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IActiveOutputSide;
 import gregtech.api.capability.IControllable;
+import gregtech.api.capability.impl.EnergyContainerHandler;
 import gregtech.api.capability.impl.NotifiableItemStackHandler;
 import gregtech.api.cover.CoverRayTracer;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
+import gregtech.api.gui.widgets.ImageWidget;
 import gregtech.api.gui.widgets.SlotWidget;
 import gregtech.api.gui.widgets.ToggleButtonWidget;
+import gregtech.api.items.itemhandlers.GTItemStackHandler;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.TieredMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
@@ -73,12 +76,14 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     private boolean allowInputFromOutputSide = false;
 
     private static final int BASE_EU_CONSUMPTION = 16;
+    protected final GTItemStackHandler chargerInventory;
 
 
     public MetaTileEntityFarmer(ResourceLocation metaTileEntityId, int tier, int ticksPerAction) {
         super(metaTileEntityId, tier);
         this.ticksPerAction = ticksPerAction;
         this.initializeInventory();
+        this.chargerInventory = new GTItemStackHandler(this, 1);
         cachedMode = FarmerModeRegistry.getAnyMode();
     }
 
@@ -90,6 +95,9 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     @Override
     public void update() {
         super.update();
+        if (!getWorld().isRemote) {
+            ((EnergyContainerHandler) this.energyContainer).dischargeOrRechargeEnergyContainers(chargerInventory, 0);
+        }
         boolean isWorkingNow = energyContainer.getEnergyStored() >= getEnergyConsumedPerTick();
         if (!getWorld().isRemote && isWorkingNow != isWorking) {
             writeCustomData(IS_WORKING, buffer -> buffer.writeBoolean(isWorkingNow));
@@ -296,8 +304,10 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
 
     @Override
     protected ModularUI createUI(EntityPlayer entityPlayer) {
-        ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 166)
-                .label(10, 5, this.getMetaFullName());
+        ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 183)
+                .label(10, 5, this.getMetaFullName()).widget(new SlotWidget(chargerInventory, 0, 79, 80, true, true, false)
+                        .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.CHARGER_OVERLAY)
+                        .setTooltipText("gregtech.gui.charger_slot.tooltip", GTValues.VNF[getTier()], GTValues.VNF[getTier()]));
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int index = i * 3 + j;
@@ -306,11 +316,15 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
             }
         }
 
-        builder.widget(new ToggleButtonWidget(7, 53, 18, 18,
+        builder.widget(new ToggleButtonWidget(7, 80, 18, 18,
                 GuiTextures.BUTTON_ITEM_OUTPUT, this::isAutoOutputItems, this::setAutoOutputItems).shouldUseBaseBackground()
                 .setTooltipText("gregtech.gui.item_auto_output.tooltip"));
 
-        builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 7, 84);
+        builder.widget(new ImageWidget(152, 80, 17, 17,
+                GTValues.XMAS.get() ? GTFOGuiTextures.GTFO_LOGO_XMAS : GTFOGuiTextures.GTFO_LOGO)
+                .setIgnoreColor(true));
+
+        builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 7, 101);
         return builder.build(this.getHolder(), entityPlayer);
     }
 
@@ -357,6 +371,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         data.setInteger("OutputFacing", getOutputFacing().getIndex());
         data.setBoolean("AutoOutputItems", autoOutputItems);
         data.setBoolean("AllowInputFromOutputSide", allowInputFromOutputSide);
+        data.setTag("ChargerInventory", chargerInventory.serializeNBT());
+
         return data;
     }
 
@@ -368,6 +384,7 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         this.outputFacing = EnumFacing.VALUES[data.getInteger("OutputFacing")];
         this.autoOutputItems = data.getBoolean("AutoOutputItems");
         this.allowInputFromOutputSide = data.getBoolean("AllowInputFromOutputSide");
+        chargerInventory.deserializeNBT(data.getCompoundTag("ChargerInventory"));
     }
 
     private boolean isOperationPositionInsideWorkingArea() {
@@ -493,5 +510,11 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         tooltip.add(I18n.format("gregtech.tool_action.screwdriver.access_covers"));
         tooltip.add(I18n.format("gregtech.tool_action.wrench.set_facing"));
         super.addToolUsages(stack, world, tooltip, advanced);
+    }
+
+    @Override
+    public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
+        super.clearMachineInventory(itemBuffer);
+        clearInventory(itemBuffer, chargerInventory);
     }
 }

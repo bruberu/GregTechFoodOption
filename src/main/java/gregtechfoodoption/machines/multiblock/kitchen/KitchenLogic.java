@@ -99,7 +99,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
         }
         for (MetaTileEntity mte : controlledMTEs) {
             if (mte.getRecipeLogic().getProgress() > 0) {
-                dirtiness += GTUtility.getFloorTierByVoltage(mte.getRecipeLogic().getProgress());
+                dirtiness += GTUtility.getFloorTierByVoltage(mte.getRecipeLogic().getProgress()) + 1;
             }
         }
         if (previousState != state) {
@@ -158,7 +158,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
                                 if (getMachineAtPos(node.machineRunning).getRecipeLogic().prepareRecipe(node.recipe, getMetaTileEntity().getInputInventory(), getMetaTileEntity().getInputFluidInventory())) {
                                     node.state = KitchenRequestNode.KitchenRequestState.PROCESSING;
                                 } else {
-                                    GTFOLog.logger.warn("Could not prepare recipe " + node.recipe.toString());
+                                    this.state = KitchenLogicState.MACHINES_NOT_WORKING;
                                 }
                             }
                         } else {
@@ -461,6 +461,7 @@ public class KitchenLogic extends MTETrait implements IControllable {
         NO_RECIPE,
         NO_INGREDIENTS,
         BAD_MACHINES,
+        MACHINES_NOT_WORKING,
         PROBABLY_FINE,
         BUSES_FULL,
         HATCHES_FULL,

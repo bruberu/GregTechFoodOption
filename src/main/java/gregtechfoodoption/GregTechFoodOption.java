@@ -2,6 +2,7 @@ package gregtechfoodoption;
 
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
+import gregtech.api.util.Mods;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.covers.GTFOCoverBehaviors;
@@ -19,14 +20,11 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLConstructionEvent;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
-        dependencies = "required-after:gregtech@[2.8.0-beta,);" + "after:gcy_science")
+        dependencies = "required-after:gregtech@[2.8.0-beta,);" + "after:gcy_science;after:" + GTFOValues.MODID_NU)
 public class GregTechFoodOption {
     public static final String MODID = "gregtechfoodoption";
     public static final String NAME = "GregTech Food Option";
@@ -57,7 +55,7 @@ public class GregTechFoodOption {
 
         MinecraftForge.EVENT_BUS.register(new GTFOEntities()); // For entity registration through EntityEntries!
 
-        if(GTFOConfig.gtfoAppleCoreConfig.appleCoreCompat)
+        if(GTFOConfig.gtfoOtherFoodModConfig.appleCoreCompat)
             MinecraftForge.EVENT_BUS.register(new GTFOAppleCoreCompat());
 
         GTFOClientHandler.registerSounds();
@@ -72,7 +70,7 @@ public class GregTechFoodOption {
             proxy.onLoad();
         } catch (Exception e) {
         }
-        if (Loader.isModLoaded(GTValues.MODID_TOP)) {
+        if (Loader.isModLoaded(Mods.Names.THE_ONE_PROBE)) {
             GTFOTOPCompatibility.registerCompatibility();
         }
         if (Loader.isModLoaded(GTFOValues.MODID_GF) && Loader.isModLoaded(GTFOValues.MODID_TFC)) {
@@ -89,4 +87,5 @@ public class GregTechFoodOption {
     public void postInit(FMLPostInitializationEvent event) {
         proxy.onPostLoad();
     }
+
 }
