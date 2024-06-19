@@ -1194,3 +1194,5 @@ gregtechfoodoption.machine.kitchen.tooltip.2=Runs food-related Recipes through a
 gregtechfoodoption.machine.kitchen.tooltip.3=Place singleblock Machines on the porcelain tile!
 gregtechfoodoption.machine.kitchen.tooltip.4=Any size larger than the Preview up to 15x15 is fine.
 gregtechfoodoption.machine.kitchen.tooltip.5=§4Requires cleaning Products to remain efficient!
+
+gregtechfoodoption.seed.water_crop=Must be placed in one block of water

@@ -5,6 +5,7 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFORootCrop;
 import gregtechfoodoption.integration.sereneseasons.GTFOSSTooltipHandler;
+import gregtechfoodoption.block.GTFOWaterCrop;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -36,6 +37,15 @@ public class GTFOCropSeedBehaviour implements IItemBehaviour {
 
     @Override
     public ActionResult<ItemStack> onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (crop instanceof GTFOWaterCrop) {
+            if (world.isAirBlock(pos.up(2)) && this.crop.getDefaultState().getBlock().canPlaceBlockAt(world, pos.up(2))) {
+                world.setBlockState(pos.up(2), this.crop.getDefaultState());
+                ItemStack heldItem = player.getHeldItem(hand);
+                heldItem.shrink(1);
+                return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+            }
+        }
+
         if (world.isAirBlock(pos.up()) && this.crop.getDefaultState().getBlock().canPlaceBlockAt(world, pos.up())) {
             world.setBlockState(pos.up(), this.crop.getDefaultState());
             ItemStack heldItem = player.getHeldItem(hand);
@@ -50,7 +60,8 @@ public class GTFOCropSeedBehaviour implements IItemBehaviour {
         lines.add(I18n.format("gregtechfoodoption.seed.0"));
         if (crop instanceof GTFORootCrop)
             lines.add(I18n.format("gregtechfoodoption.seed.root_crop"));
-
+        if (crop instanceof GTFOWaterCrop)
+            lines.add(I18n.format("gregtechfoodoption.seed.water_crop"));
         if (Loader.isModLoaded(GTFOValues.MODID_SS)) {
             GTFOSSTooltipHandler.addTooltip(crop, lines);
         }
