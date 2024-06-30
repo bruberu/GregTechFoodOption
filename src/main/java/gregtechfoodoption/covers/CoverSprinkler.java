@@ -216,7 +216,6 @@ public class CoverSprinkler extends CoverBase implements ITickable {
         this.wasWorking = tagCompound.getBoolean("wasWorking");
         this.sprinkleColor = tagCompound.getInteger("sprinkleColor");
         this.showsSprinkles = tagCompound.getBoolean("showsSprinkles");
-        this.scheduleRenderUpdate();
     }
 
     @Override
