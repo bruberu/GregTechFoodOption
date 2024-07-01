@@ -94,7 +94,7 @@ public class PlateChain {
 
         FORMING_PRESS_RECIPES.recipeBuilder().EUt(28).duration(160)
                 .inputs(GTFOMaterialHandler.BoneChinaClay.getItemStack(2))
-                .inputs(MetaItems.SHAPE_MOLD_PLATE.getStackForm())
+                .notConsumable(MetaItems.SHAPE_MOLD_PLATE.getStackForm())
                 .outputs(GTFOMaterialHandler.UnfiredPorcelainTile.getItemStack())
                 .buildAndRegister();
 
