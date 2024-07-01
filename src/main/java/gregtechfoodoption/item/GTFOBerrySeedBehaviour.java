@@ -1,8 +1,6 @@
 package gregtechfoodoption.item;
 
 import gregtechfoodoption.block.GTFOBerryBush;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,6 +14,8 @@ import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 
 // bri'ish class
 public class GTFOBerrySeedBehaviour extends GTFOCropSeedBehaviour {
@@ -33,7 +33,8 @@ public class GTFOBerrySeedBehaviour extends GTFOCropSeedBehaviour {
     }
 
     private boolean isBlocked(World world, BlockPos pos, EntityPlayer player) {
-        AtomicBoolean areAnyBlocked = new AtomicBoolean(false);
+        AtomicInteger areAnyBlocked = new AtomicInteger(0);
+        AtomicReference<BlockPos> blockedCrop = new AtomicReference<>();
         BlockPos.getAllInBox(pos.up().east().north(), pos.up().west().south()).forEach((crop) -> {
             if (crop.equals(pos.up()) || world.getBlockState(crop).getBlock() instanceof GTFOBerryBush) {
                 AtomicBoolean isBlocked = new AtomicBoolean(true);
@@ -43,13 +44,16 @@ public class GTFOBerrySeedBehaviour extends GTFOCropSeedBehaviour {
                     }
                 });
                 if (isBlocked.get()) {
-                    if (world.isRemote)
-                        player.sendMessage(new TextComponentTranslation("gregtechfoodoption.blocked", crop));
-                    areAnyBlocked.set(true);
+                    blockedCrop.set(crop);
+                    areAnyBlocked.set(areAnyBlocked.get() + 1);
                 }
             }
         });
-        return areAnyBlocked.get();
+        if (world.isRemote && areAnyBlocked.get() > 0) {
+            String posString = "(" + blockedCrop.get().getX() + ", " + blockedCrop.get().getY() + ", " + blockedCrop.get().getZ() + ")";
+            player.sendMessage(new TextComponentTranslation("gregtechfoodoption.blocked", posString, areAnyBlocked.get()));
+        }
+        return areAnyBlocked.get() > 0;
     }
 
     @Override
