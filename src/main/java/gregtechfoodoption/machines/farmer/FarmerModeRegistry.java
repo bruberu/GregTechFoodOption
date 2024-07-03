@@ -76,6 +76,7 @@ public class FarmerModeRegistry {
         registerFarmerMode(new GroundClearingFarmerMode(Blocks.BROWN_MUSHROOM));
         registerFarmerMode(new GroundClearingFarmerMode(Blocks.SNOW_LAYER));
         registerFarmerMode(new GroundClearingFarmerMode(Blocks.DOUBLE_PLANT));
+        registerFarmerMode(new ChorusFarmerMode());
         registerFarmerMode(new GTFORootCropFarmerMode());
         registerFarmerMode(new GTFOBerryFarmerMode());
         registerFarmerMode(new GTFOCropFarmerMode());
