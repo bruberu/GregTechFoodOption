@@ -1204,11 +1204,29 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         }
     }
 
+    @SideOnly(Side.CLIENT)
+    public boolean hasEffect(ItemStack stack) {
+        GTFOMetaValueItem item = this.getItem(stack);
+        if (item != null) {
+            return this.getItem(stack).hasEnchantmentSheen();
+        }
+        return false;
+    }
+
     public class GTFOMetaValueItem extends MetaItem<?>.MetaValueItem {
 
         private boolean kitchenBlacklisted;
         protected GTFOMetaValueItem(int metaValue, String unlocalizedName) {
             super(metaValue, unlocalizedName);
+        }
+        private boolean hasEnchantmentSheen;
+
+        public void setHasEnchantmentSheen(boolean hasEnchantmentSheen) {
+            this.hasEnchantmentSheen = hasEnchantmentSheen;
+        }
+
+        public boolean hasEnchantmentSheen() {
+            return hasEnchantmentSheen;
         }
 
         protected GTFOMetaValueItem blacklistKitchen() {
