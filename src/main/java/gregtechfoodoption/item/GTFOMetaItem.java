@@ -400,6 +400,18 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     public static MetaItem<?>.MetaValueItem KITCHEN_RECIPE;
 
+    public static MetaItem<?>.MetaValueItem SORBET_PLAIN;
+    public static MetaItem<?>.MetaValueItem SORBET_APPLE;
+    public static MetaItem<?>.MetaValueItem SORBET_APRICOT;
+    public static MetaItem<?>.MetaValueItem SORBET_CHORUS;
+    public static MetaItem<?>.MetaValueItem SORBET_GRAPE;
+    public static MetaItem<?>.MetaValueItem SORBET_LIME;
+    public static MetaItem<?>.MetaValueItem SORBET_VIBRANT;
+
+    public static MetaItem<?>.MetaValueItem ANTAF;
+
+    public static MetaItem<?>.MetaValueItem FERMENTED_CHORUS;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -1072,6 +1084,27 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0f, 0f, 1f, 1f, 0.125f));
         SEASONED_PELMENI = addItem(341, "food.pelmeni_seasoned").addComponents(new GTFOFoodStats(7, 1f).setEatingDuration(24)
                 .nutrients(0.5f, 0f, 1f, 1f, 1f));
+
+        ANTAF = addItem(344, "food.antaf").addComponents(new GTFOFoodStats(5, 0.5f, true, true, PLASTIC_BOTTLE.getStackForm())
+                .nutrients(0, 0.5f, 0f, 0f, 0f));
+
+        SORBET_PLAIN = addItem(345, "food.sorbet_plain").addComponents(new GTFOFoodStats(0, 0f, false, true)
+                .nutrients(0, 0f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_APPLE = addItem(346, "food.sorbet_apple").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_APRICOT = addItem(347, "food.sorbet_apricot").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_CHORUS = addItem(348, "food.sorbet_chorus").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 0f, 0f, 0f, 1f).setEatingDuration(12));
+        SORBET_GRAPE = addItem(349, "food.sorbet_grape").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_LIME = addItem(350, "food.sorbet_lime").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_VIBRANT = addItem(351, "food.sorbet_vibrant").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 2f, 0f, 0f, 2f).setEatingDuration(12));
+
+        FERMENTED_CHORUS = addItem(352, "food.fermented_chorus").addComponents(new GTFOFoodStats(0, 0f, false, true)
+                .nutrients(0, 0f, 0f, 0f, 2f).setEatingDuration(60));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");

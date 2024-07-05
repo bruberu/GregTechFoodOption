@@ -461,6 +461,27 @@ public class GTFOMaterialHandler {
             .color(0x2a7b5a)
             .build();
 
+    public static final Material EnderPearlSolution = fluidBuilder(21621, "ender_pearl_solution")
+            .components(EnderPearl, 1, Water, 1)
+            .color(EnderPearl.getMaterialRGB())
+            .build();
+    public static final Material EnderSugarSolution = fluidBuilder(21622, "ender_sugar_solution")
+            .components(Beryllium, 1, Nitrogen, 2, Potassium, 1, Water, 1)
+            .color(averageRGB(2, EnderPearlSolution.getMaterialRGB(), Beryllium.getMaterialRGB()))
+            .build();
+    public static final Material ChorusJuice = fluidBuilder(21623, "chorus_juice")
+            .color(0xa670e0)
+            .build();
+    public static final Material FermentedChorusJuice = fluidBuilder(21624, "fermented_chorus_juice")
+            .color(0xb5e8e6)
+            .build();
+    public static final Material Antaf = fluidBuilder(21625, "antaf")
+            .color(0xd4b5e8)
+            .build();
+    public static final Material VibrantExtract = fluidBuilder(21626, "vibrant_extract")
+            .color(0x3dfff7)
+            .build();
+
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
             .color(0xdedcc8)
@@ -618,6 +639,8 @@ public class GTFOMaterialHandler {
 
         DistilledWater.setProperty(CLEANER, new CleanerProperty(2));
         SodiumStearate.setProperty(CLEANER, new CleanerProperty(16));
+
+        ChorusJuice.setFormula("(C6H12O6)?", true);
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
