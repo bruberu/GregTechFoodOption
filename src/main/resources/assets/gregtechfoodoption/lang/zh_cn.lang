@@ -84,11 +84,11 @@ gregtech.material.gtfo_energized_coffee=提神咖啡
 
 metaitem.food.mineral_water.name=矿泉水
 metaitem.food.mineral_water.tooltip=认输吧，无神论者。
-metaitem.component.thermos.casing.name=膳魔师保温杯身
-metaitem.component.thermos.cap.name=膳魔师保温杯盖
-metaitem.component.thermos.casing_leached.name=使用过的膳魔师保温杯身
-metaitem.component.thermos.used.name=使用过的膳魔师保温杯
-metaitem.component.thermos.new.name=膳魔师保温杯
+metaitem.component.dewar_flask.casing.name=膳魔师保温杯身
+metaitem.component.dewar_flask.cap.name=膳魔师保温杯盖
+metaitem.component.dewar_flask.casing_leached.name=使用过的膳魔师保温杯身
+metaitem.component.dewar_flask.used.name=使用过的膳魔师保温杯
+metaitem.component.dewar_flask.new.name=膳魔师保温杯
 metaitem.lithium_bromide_dust.name=溴化锂
 metaitem.titanium_dichloride_dust.name=二氯化钛
 metaitem.nontoxic_polymoscovium_pentahalide_plate_curved.name=无毒多聚五氯化镆弯曲板

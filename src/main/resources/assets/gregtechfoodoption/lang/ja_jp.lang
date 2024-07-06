@@ -89,11 +89,11 @@ gregtech.material.gtfo_energized_coffee=エナジャイズドコーヒー
 
 metaitem.food.mineral_water.name=ミネラルウォーター
 metaitem.food.mineral_water.tooltip=チェックメイトだよ、無神論者。
-metaitem.component.thermos.casing.name=魔法瓶の容器
-metaitem.component.thermos.cap.name=魔法瓶の蓋
-metaitem.component.thermos.casing_leached.name=ひび割れた魔法瓶の容器
-metaitem.component.thermos.used.name=中古の魔法瓶
-metaitem.component.thermos.new.name=魔法瓶
+metaitem.component.dewar_flask.casing.name=魔法瓶の容器
+metaitem.component.dewar_flask.cap.name=魔法瓶の蓋
+metaitem.component.dewar_flask.casing_leached.name=ひび割れた魔法瓶の容器
+metaitem.component.dewar_flask.used.name=中古の魔法瓶
+metaitem.component.dewar_flask.new.name=魔法瓶
 metaitem.lithium_bromide_dust.name=臭化リチウム
 metaitem.titanium_dichloride_dust.name=二塩化チタニウム
 metaitem.nontoxic_polymoscovium_pentahalide_plate_curved.name=無毒性ポリモスコビウムペンタハライドの曲げ板
