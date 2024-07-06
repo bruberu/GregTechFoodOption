@@ -84,11 +84,11 @@ gregtech.material.gtfo_energized_coffee=Energizing Coffee
 
 metaitem.food.mineral_water.name=Mineral Water
 metaitem.food.mineral_water.tooltip=Checkmate, atheists.
-metaitem.component.thermos.casing.name=Thermos Casing
-metaitem.component.thermos.cap.name=Thermos Cap
-metaitem.component.thermos.casing_leached.name=Leached Thermos Casing
-metaitem.component.thermos.used.name=Used Thermos
-metaitem.component.thermos.new.name=Thermos
+metaitem.component.dewar_flask.casing.name=Dewar Flask Casing
+metaitem.component.dewar_flask.cap.name=Dewar Flask Cap
+metaitem.component.dewar_flask.casing_leached.name=Leached Dewar Flask Casing
+metaitem.component.dewar_flask.used.name=Used Dewar Flask
+metaitem.component.dewar_flask.new.name=Dewar Flask
 metaitem.lithium_bromide_dust.name=Lithium Bromide
 metaitem.titanium_dichloride_dust.name=Titanium Dichloride
 metaitem.nontoxic_polymoscovium_pentahalide_plate_curved.name=Nontoxic Polymoscovium Pentahalide Curved Plate
