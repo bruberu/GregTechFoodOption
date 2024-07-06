@@ -68,7 +68,9 @@ public class RecipeMapFluidCannerMixin {
         if (inputStack.isEmpty()) {
             return;
         }
-        FluidStack potentialFluid = fluidInputs.get(0);
+        FluidStack potentialFluid = null;
+        if (!fluidInputs.isEmpty())
+            potentialFluid = fluidInputs.get(0);
         if (potentialFluid != null && potentialFluid.amount != 0) {
             inputFluid = potentialFluid.copy();
             if (inputFluid.amount < 100)
