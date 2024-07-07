@@ -19,17 +19,15 @@ import java.util.List;
 import java.util.Random;
 
 public class GTFOCrop extends BlockCrops {
-    protected final PropertyInteger AGE_GTFO;
 
     public static final PropertyInteger DEFAULT_AGE = PropertyInteger.create("age", 0, 5);
     private static final AxisAlignedBB CROPS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
     protected ItemStack seed;
     protected ItemStack crop;
     public static List<GTFOCrop> CROP_BLOCKS = new ArrayList<>();
-    private String name;
+    private final String name;
 
-    protected GTFOCrop(String name, PropertyInteger age) {
-        AGE_GTFO = age;
+    protected GTFOCrop(String name) {
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
         this.setRegistryName(GregTechFoodOption.MODID, "crop_" + name);
         CROP_BLOCKS.add(this);
@@ -37,16 +35,8 @@ public class GTFOCrop extends BlockCrops {
         this.setTranslationKey("gtfo_crop_" + name);
     }
 
-    protected GTFOCrop(String name) {
-        this(name, DEFAULT_AGE);
-    }
-
     public static GTFOCrop create(String name) {
         return new GTFOCrop(name);
-    }
-
-    public static GTFOCrop create(String name, int min, int max) {
-        return new GTFOCrop(name, PropertyInteger.create("age", min, max));
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -126,7 +116,7 @@ public class GTFOCrop extends BlockCrops {
 
     @Override
     public PropertyInteger getAgeProperty() {
-        return AGE_GTFO;
+        return DEFAULT_AGE;
     }
 
     protected BlockStateContainer createBlockState() {

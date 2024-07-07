@@ -34,7 +34,7 @@ public class GTFOBerryBush extends GTFOCrop {
     private boolean isThorny = false;
 
     protected GTFOBerryBush(String name) {
-        super(name, DEFAULT_AGE_BUSH);
+        super(name);
         this.setTranslationKey("gtfo_berry_bush_" + name);
         this.setHardness(1F);
     }
@@ -209,5 +209,10 @@ public class GTFOBerryBush extends GTFOCrop {
             worldIn.setBlockState(pos, state.withProperty(EFFICIENCY_GTFO, newEfficiency), 3);
         }
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
+    }
+
+    @Override
+    public PropertyInteger getAgeProperty() {
+       return DEFAULT_AGE_BUSH;
     }
 }

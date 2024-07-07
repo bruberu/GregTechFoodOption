@@ -1189,17 +1189,15 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     @Nonnull
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD};
+        return new CreativeTabs[]{CreativeTabs.SEARCH, GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD};
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {
-        if (tab == GTFOValues.TAB_GTFO || tab == GTFOValues.TAB_GTFO_FOOD) {
-            for (MetaItem.MetaValueItem item : this.getAllItems()) {
-                if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) || ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) || tab == CreativeTabs.SEARCH)) {
-                    ItemStack itemStack = item.getStackForm();
-                    item.getSubItemHandler().getSubItems(itemStack, tab, subItems);
-                }
+        for (MetaItem.MetaValueItem item : this.getAllItems()) {
+            if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) || ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) || tab == CreativeTabs.SEARCH)) {
+                ItemStack itemStack = item.getStackForm();
+                item.getSubItemHandler().getSubItems(itemStack, tab, subItems);
             }
         }
     }
