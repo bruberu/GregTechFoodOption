@@ -1,7 +1,5 @@
 package gregtechfoodoption.block;
 
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -13,11 +11,10 @@ public class GTFOWaterCrop extends GTFOCrop {
     protected static final AxisAlignedBB WATER_CROP_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.09375D, 0.9375D);
 
     protected GTFOWaterCrop(String name) {
-        super(name, 5);
+        super(name);
     }
 
     public static GTFOWaterCrop create(String name) {
-        AGE_TEMP = PropertyInteger.create("age", 0, 5);
         return new GTFOWaterCrop(name);
     }
     @Override
