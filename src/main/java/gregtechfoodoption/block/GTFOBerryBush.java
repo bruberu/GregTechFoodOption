@@ -29,11 +29,12 @@ public class GTFOBerryBush extends GTFOCrop {
     private static final AxisAlignedBB LARGE_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
     private static final AxisAlignedBB STEM_AABB = new AxisAlignedBB(0.4325D, 0.0D, 0.4325D, 0.5675D, 0.25D, 0.5675D);
 
+    protected static final PropertyInteger DEFAULT_AGE_BUSH = PropertyInteger.create("age", 0, 2);
 
     private boolean isThorny = false;
 
     protected GTFOBerryBush(String name) {
-        super(name, 2);
+        super(name, DEFAULT_AGE_BUSH);
         this.setTranslationKey("gtfo_berry_bush_" + name);
         this.setHardness(1F);
     }
@@ -44,12 +45,11 @@ public class GTFOBerryBush extends GTFOCrop {
     }
 
     public static GTFOBerryBush create(String name) {
-        AGE_TEMP = PropertyInteger.create("age", 0, 2);
         return new GTFOBerryBush(name);
     }
 
     protected BlockStateContainer createBlockState() {
-        return AGE_GTFO == null ? new BlockStateContainer(this, AGE_TEMP, EFFICIENCY_GTFO) : new BlockStateContainer(this, AGE_GTFO, EFFICIENCY_GTFO);
+        return new BlockStateContainer(this, getAgeProperty(), EFFICIENCY_GTFO);
     }
 
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -58,14 +58,17 @@ public class GTFOBerryBush extends GTFOCrop {
         Random rand = world instanceof World ? ((World) world).rand : new Random();
 
         if (age >= this.getMaxAge()) {
-            drops.add(this.crop.copy());
+            int cropCount = 1;
             for (int i = 0; i < 2 + efficiency; ++i) {
                 if (rand.nextInt(2) == 0) {
-                    drops.add(this.crop.copy());
+                    cropCount++;
                 }
             }
-        }
 
+            ItemStack crop = this.crop.copy();
+            crop.setCount(cropCount);
+            drops.add(crop);
+        }
     }
 
     public int getEfficiency(IBlockState state) {
@@ -182,7 +185,7 @@ public class GTFOBerryBush extends GTFOCrop {
             if (!playerIn.addItemStackToInventory(berryStack)) {
                 playerIn.dropItem(this.getCropStack(), false);
             }
-            worldIn.setBlockState(pos, state.withProperty(AGE_GTFO, Integer.valueOf(this.getMaxAge() - 1)), 3);
+            worldIn.setBlockState(pos, state.withProperty(getAgeProperty(), this.getMaxAge() - 1), 3);
             return true;
         }
         return false;
@@ -190,7 +193,7 @@ public class GTFOBerryBush extends GTFOCrop {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.withAge(meta % 3).withProperty(EFFICIENCY_GTFO, Integer.valueOf(meta / 3));
+        return this.withAge(meta % 3).withProperty(EFFICIENCY_GTFO, meta / 3);
     }
 
     @Override

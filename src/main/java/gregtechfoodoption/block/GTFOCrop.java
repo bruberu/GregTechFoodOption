@@ -1,5 +1,6 @@
 package gregtechfoodoption.block;
 
+import gregtechfoodoption.GregTechFoodOption;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -20,29 +21,32 @@ import java.util.Random;
 public class GTFOCrop extends BlockCrops {
     public final PropertyInteger AGE_GTFO;
 
-    public static PropertyInteger AGE_TEMP;
+    public static final PropertyInteger DEFAULT_AGE = PropertyInteger.create("age", 0, 5);
     private static final AxisAlignedBB CROPS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
     protected ItemStack seed;
     protected ItemStack crop;
     public static List<GTFOCrop> CROP_BLOCKS = new ArrayList<>();
     private String name;
 
-    protected GTFOCrop(String name, int age) {
-        AGE_GTFO = PropertyInteger.create("age", 0, age);
+    protected GTFOCrop(String name, PropertyInteger age) {
+        AGE_GTFO = age;
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), 0));
-        this.setRegistryName("gregtechfoodoption", "crop_" + name);
+        this.setRegistryName(GregTechFoodOption.MODID, "crop_" + name);
         CROP_BLOCKS.add(this);
         this.name = name;
         this.setTranslationKey("gtfo_crop_" + name);
     }
 
     protected GTFOCrop(String name) {
-        this(name, 5);
+        this(name, DEFAULT_AGE);
     }
 
     public static GTFOCrop create(String name) {
-        AGE_TEMP = PropertyInteger.create("age", 0, 5);
         return new GTFOCrop(name);
+    }
+
+    public static GTFOCrop create(String name, int min, int max) {
+        return new GTFOCrop(name, PropertyInteger.create("age", min, max));
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
@@ -64,16 +68,23 @@ public class GTFOCrop extends BlockCrops {
 
         if (age >= this.getMaxAge()) {
             if (!seed.isEmpty()) {
-                drops.add(seed.copy());
-                if (rand.nextInt(9) == 0) {
-                    drops.add(seed.copy());
-                }
+                ItemStack seedStack = seed.copy();
+                if (rand.nextInt(9) == 0) seedStack.setCount(seedStack.getCount() + 1);
+                drops.add(seedStack);
             }
+
+            int cropCount = 0;
 
             for (int i = 0; i < 3 + fortune; ++i) {
                 if (rand.nextInt(2 * this.getMaxAge()) <= age) {
-                    drops.add(this.crop.copy());
+                    cropCount++;
                 }
+            }
+
+            if (cropCount > 0) {
+                ItemStack crop = this.crop.copy();
+                crop.setCount(cropCount);
+                drops.add(crop);
             }
         }
 
@@ -110,16 +121,16 @@ public class GTFOCrop extends BlockCrops {
     }
 
     public ItemStack getSeedStack() {
-        return this.seed.copy();
+        return this.seed;
     }
 
     @Override
     protected PropertyInteger getAgeProperty() {
-        return AGE_GTFO == null ? AGE_TEMP : AGE_GTFO;
+        return AGE_GTFO;
     }
 
     protected BlockStateContainer createBlockState() {
-        return AGE_GTFO == null ? new BlockStateContainer(this, AGE_TEMP) : new BlockStateContainer(this, AGE_GTFO);
+        return new BlockStateContainer(this, getAgeProperty());
     }
 
     public String getName() {
