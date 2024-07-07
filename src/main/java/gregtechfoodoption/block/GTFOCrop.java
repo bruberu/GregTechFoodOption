@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GTFOCrop extends BlockCrops {
-    public final PropertyInteger AGE_GTFO;
+    protected final PropertyInteger AGE_GTFO;
 
     public static final PropertyInteger DEFAULT_AGE = PropertyInteger.create("age", 0, 5);
     private static final AxisAlignedBB CROPS_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
@@ -125,7 +125,7 @@ public class GTFOCrop extends BlockCrops {
     }
 
     @Override
-    protected PropertyInteger getAgeProperty() {
+    public PropertyInteger getAgeProperty() {
         return AGE_GTFO;
     }
 

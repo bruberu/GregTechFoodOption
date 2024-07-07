@@ -21,6 +21,6 @@ public class GTFOBerryFarmerMode implements FarmerMode {
     @Override
     public void harvest(IBlockState state, World world, BlockPos.MutableBlockPos pos, MetaTileEntityFarmer farmer) {
         GTFOCrop crop = (GTFOCrop) state.getBlock();
-        world.setBlockState(pos, state.withProperty(crop.AGE_GTFO, Integer.valueOf(crop.getMaxAge() - 1)), 3);
+        world.setBlockState(pos, state.withProperty(crop.getAgeProperty(), Integer.valueOf(crop.getMaxAge() - 1)), 3);
     }
 }
