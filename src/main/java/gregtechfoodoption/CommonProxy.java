@@ -4,6 +4,9 @@ import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.block.GTFOBerryBush;
 import gregtechfoodoption.block.GTFOCrop;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -15,10 +18,7 @@ import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.item.GTFOSpecialVariantItemBlock;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityGreenhouse;
-import gregtechfoodoption.potion.AntiSchizoPotion;
-import gregtechfoodoption.potion.CyanidePoisoningPotion;
-import gregtechfoodoption.potion.GTFOPotions;
-import gregtechfoodoption.potion.LacingEntry;
+import gregtechfoodoption.potion.*;
 import gregtechfoodoption.recipe.GTFOOreDictRegistration;
 import gregtechfoodoption.recipe.GTFORecipeAddition;
 import gregtechfoodoption.recipe.GTFORecipeHandler;
@@ -75,6 +75,10 @@ public class CommonProxy {
         LacingEntry.LACING_REGISTRY.register(1, "antischizo", new LacingEntry(GTFOMaterialHandler.LithiumCarbonate.getItemStack(),
                 new PotionEffect(AntiSchizoPotion.INSTANCE, 1000, 0),
                 "14hez98zk7/2/3/5/9/10/"));
+        LacingEntry.LACING_REGISTRY.register(2, "lungcancer", new LacingEntry(OreDictUnifier.get(OrePrefix.dust, Materials.Asbestos),
+                new PotionEffect(LungCancerPotion.INSTANCE, 99999999, 0),
+                "17aaqe0i1q/1/2/3/7/10/"));
+
 
         if (Loader.isModLoaded(GTFOValues.MODID_NUGT) && GTFOConfig.gtfoOtherFoodModConfig.enableGTFONutrition) {
             GTFONutritionCompatibility.init();

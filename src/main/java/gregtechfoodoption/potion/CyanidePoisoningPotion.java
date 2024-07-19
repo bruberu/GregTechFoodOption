@@ -8,6 +8,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextComponentTranslation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CyanidePoisoningPotion extends GTFOPotion {
@@ -57,6 +58,6 @@ public class CyanidePoisoningPotion extends GTFOPotion {
 
     @Override
     public List<ItemStack> getCurativeItems() {
-        return new ArrayList<>(); // Nothing :)
+        return Collections.emptyList(); // Nothing :)
     }
 }

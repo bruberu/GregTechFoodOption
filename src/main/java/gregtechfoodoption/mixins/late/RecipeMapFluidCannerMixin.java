@@ -1,5 +1,6 @@
 package gregtechfoodoption.mixins.late;
 
+import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.machines.RecipeMapFluidCanner;
@@ -61,7 +62,7 @@ public class RecipeMapFluidCannerMixin {
                 inputStack.setCount(1);
                 continue;
             }
-            if (input.getItem() instanceof GTFOOredictItem) { // Hoping there's only one
+            if (input.getItem() instanceof MetaItem<?>) { // Hoping there's only one
                 lacingWith = input.copy();
             }
         }

@@ -1102,6 +1102,7 @@ gregtechfoodoption.lacing.info.1=Applies effect:
 gregtechfoodoption.lacing.info.2=Lasts %s ticks
 gregtechfoodoption.potion.cyanidepoisoning=Cyanide Poisoning
 gregtechfoodoption.potion.antischizo=Schizophrenia Meds
+gregtechfoodoption.potion.lungcancer=Lung Cancer
 eating.output.name=Eating Recipe
 
 metaitem.component.pelmeni_uncooked.name=Uncooked Pelmeni
