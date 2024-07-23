@@ -26,6 +26,7 @@ public class GTFOPotions {
         new PotionLengthenerPotion();
         new AntiSchizoPotion();
         new LungCancerPotion();
+        new EnhancedChorusPotion();
     }
 
 

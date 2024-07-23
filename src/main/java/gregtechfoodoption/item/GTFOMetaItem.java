@@ -1104,7 +1104,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0, 2f, 0f, 0f, 2f).setEatingDuration(12));
 
         FERMENTED_CHORUS = addItem(352, "food.fermented_chorus").addComponents(new GTFOFoodStats(0, 0f, false, true)
-                .nutrients(0, 0f, 0f, 0f, 2f).setEatingDuration(60));
+                .nutrients(0, 0f, 0f, 0f, 2f).setEatingDuration(60)
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 100, 0, 100 - 80)));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
