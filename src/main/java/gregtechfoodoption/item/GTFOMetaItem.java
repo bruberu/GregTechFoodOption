@@ -411,6 +411,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem ANTAF;
 
     public static MetaItem<?>.MetaValueItem FERMENTED_CHORUS;
+    public static MetaItem<?>.MetaValueItem FERMENTED_CHORUS_PIE;
+
+    public static MetaItem<?>.MetaValueItem NAQUADAH_CHIPS;
 
     public GTFOMetaItem() {
         super((short) 0);
@@ -1104,9 +1107,16 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         SORBET_VIBRANT = addItem(351, "food.sorbet.vibrant").addComponents(new GTFOFoodStats(0, 0f)
                 .nutrients(0, 2f, 0f, 0f, 2f).setEatingDuration(12));
 
-        FERMENTED_CHORUS = addItem(352, "food.fermented_chorus").addComponents(new GTFOFoodStats(0, 0f, false, true)
+        FERMENTED_CHORUS = addItem(352, "food.fermented_chorus").addComponents(new GTFOFoodStats(2, 0.5f, false, true)
                 .nutrients(0, 0f, 0f, 0f, 2f).setEatingDuration(60)
                 .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 100, 0, 100 - 80)));
+        FERMENTED_CHORUS_PIE = addItem(353, "food.pie.fermented_chorus").addComponents(new GTFOFoodStats(6, 1f, false, true)
+                .nutrients(0, 0f, 2f, 0f, 2f)
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 200, 0, 100 - 100)));
+
+        NAQUADAH_CHIPS = addItem(354, "food.naquadah_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, true, () -> OreDictUnifier.get(OrePrefix.foil, RhodiumPlatedPalladium))
+                .nutrients(0, 0f, 1f, 0f, 1f)
+                .setPotionEffects(new RandomPotionEffect(MobEffects.BLINDNESS, 500, 0, 100 - 100)));
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");

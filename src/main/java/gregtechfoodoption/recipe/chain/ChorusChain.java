@@ -4,6 +4,7 @@ import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
 import net.minecraft.init.Items;
 
 import static gregtech.api.GTValues.*;
@@ -53,6 +54,12 @@ public class ChorusChain {
                 .inputs(GTFOMetaItem.FERMENTED_CHORUS.getStackForm())
                 .fluidOutputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(50))
                 .buildAndRegister();
+        GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(300)
+                .inputs(PIE_CRUST.getStackForm())
+                .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(1000))
+                .outputs(FERMENTED_CHORUS_PIE.getStackForm())
+                .buildAndRegister();
+
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(60).duration(20)
                 .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(1000))
                 .input(Items.SUGAR, 9)
