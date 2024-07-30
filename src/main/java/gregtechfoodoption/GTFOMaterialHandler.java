@@ -481,6 +481,12 @@ public class GTFOMaterialHandler {
     public static final Material VibrantExtract = fluidBuilder(21626, "vibrant_extract")
             .color(0x3dfff7)
             .build();
+    public static final Material ApricotExtract = fluidBuilder(21627, "apricot_extract")
+            .color(0xe3de9d)
+            .build();
+    public static final Material GrapeExtract = fluidBuilder(21628, "grape_extract")
+            .color(0xa83351)
+            .build();
 
 
     public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")

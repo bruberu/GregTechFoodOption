@@ -181,6 +181,24 @@ public class CoreChain {
                 .fluidOutputs(CranberryExtract.getFluid(25))
                 .buildAndRegister();
 
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
+                .inputs(GRAPES.getStackForm())
+                .circuitMeta(1)
+                .fluidOutputs(GrapeExtract.getFluid(25))
+                .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(2).duration(10)
+                .inputs(WHITE_GRAPES.getStackForm())
+                .circuitMeta(1)
+                .fluidOutputs(GrapeExtract.getFluid(25))
+                .buildAndRegister();
+
+        EXTRACTOR_RECIPES.recipeBuilder().EUt(8).duration(40)
+                .inputs(APRICOT.getStackForm())
+                .circuitMeta(1)
+                .fluidOutputs(ApricotExtract.getFluid(100))
+                .buildAndRegister();
+
         CANNER_RECIPES.recipeBuilder()
                 .inputs(APPLE_JUICE.getStackForm())
                 .fluidOutputs(AppleExtract.getFluid(100))
@@ -213,7 +231,7 @@ public class CoreChain {
                 .duration(30)
                 .buildAndRegister();
 
-        // the distillation are temporary
+        // the distillation is temporary
         DISTILLATION_RECIPES.recipeBuilder().EUt(120).duration(40)
                 .fluidInputs(AppleExtract.getFluid(1000))
                 .fluidOutputs(Biomass.getFluid(200))
