@@ -1099,20 +1099,23 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
         SORBET_CHORUS = addItem(348, "food.sorbet.chorus").addComponents(new GTFOFoodStats(0, 0f)
                 .nutrients(0, 0f, 0f, 0f, 1f).setEatingDuration(12)
-                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 100, 0, 100 - 40)));
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 600, 0, 100 - 80)));
         SORBET_GRAPE = addItem(349, "food.sorbet.grape").addComponents(new GTFOFoodStats(0, 0f)
                 .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
         SORBET_LIME = addItem(350, "food.sorbet.lime").addComponents(new GTFOFoodStats(0, 0f)
                 .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
         SORBET_VIBRANT = addItem(351, "food.sorbet.vibrant").addComponents(new GTFOFoodStats(0, 0f)
-                .nutrients(0, 2f, 0f, 0f, 2f).setEatingDuration(12));
+                .nutrients(0, 2f, 0f, 0f, 2f).setEatingDuration(12)
+                .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 1200, 0, 100 - 80),
+                        new RandomPotionEffect(MobEffects.POISON, 1200, 2, 100 - 100),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 1200, 1, 100 - 40)));
 
         FERMENTED_CHORUS = addItem(352, "food.fermented_chorus").addComponents(new GTFOFoodStats(2, 0.5f, false, true)
                 .nutrients(0, 0f, 0f, 0f, 2f).setEatingDuration(60)
-                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 100, 0, 100 - 80)));
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 300, 0, 100 - 80)));
         FERMENTED_CHORUS_PIE = addItem(353, "food.pie.fermented_chorus").addComponents(new GTFOFoodStats(6, 1f, false, true)
                 .nutrients(0, 0f, 2f, 0f, 2f)
-                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 200, 0, 100 - 100)));
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 1200, 0, 100 - 100)));
 
         NAQUADAH_CHIPS = addItem(354, "food.naquadah_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, true, () -> OreDictUnifier.get(OrePrefix.foil, RhodiumPlatedPalladium))
                 .nutrients(0, 0f, 1f, 0f, 1f)

@@ -1,5 +1,6 @@
 package gregtechfoodoption.potion;
 
+import gregtechfoodoption.utils.GTFODamageSources;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
@@ -39,6 +40,9 @@ public class LungCancerPotion extends GTFOPotion {
         if (phase % 600 == 0) {
             IAttributeInstance attr = entity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH);
             attr.setBaseValue(attr.getBaseValue() - 1);
+            if (attr.getBaseValue() <= 0) {
+                entity.onDeath(GTFODamageSources.LUNG_CANCER);
+            }
             entity.setHealth((float) attr.getBaseValue());
         }
     }

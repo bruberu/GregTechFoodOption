@@ -688,6 +688,7 @@ metaitem.seed.onion.tooltip=For growing YoungOnions
 death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
 death.attack.cyanide=%s smelled some almonds
+death.attack.lung_cancer=%s died of lung cancer
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
 
 # Farmer
@@ -1197,3 +1198,16 @@ gregtechfoodoption.machine.kitchen.tooltip.4=Any size larger than the Preview up
 gregtechfoodoption.machine.kitchen.tooltip.5=§4Requires cleaning Products to remain efficient!
 
 gregtechfoodoption.seed.water_crop=Must be placed in one block of water
+
+metaitem.food.pie.fermented_chorus.name=Fermented Chorus Pie
+gregtechfoodoption.potion.enhancedchorus=Enhanced Chorus
+metaitem.food.sorbet.apple=Apple Sorbet
+metaitem.food.sorbet.apricot=Apricot Sorbet
+metaitem.food.sorbet.chorus=Chorus Sorbet
+metaitem.food.sorbet.grape=Grape Sorbet
+metaitem.food.sorbet.lime=Lime Sorbet
+metaitem.food.sorbet.vibrant=Vibrant Sorbet
+metaitem.food.fermented_chorus.name=Fermented Chorus
+
+metaitem.food.naquadah_chips.name=Naquadah Chips
+metaitem.food.naquadah_chips.tooltip=Your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.
