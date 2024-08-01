@@ -22,6 +22,7 @@ import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.common.items.MetaItems.SHAPE_MOLD_CYLINDER;
 import static gregtechfoodoption.GTFOMaterialHandler.TomatoSauce;
+import static gregtechfoodoption.GTFOMaterialHandler.VibrantExtract;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.*;
 
@@ -273,6 +274,11 @@ public class BreadsChain {
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(), BACON.getStackForm(4))
                 .outputs(SANDWICH_BACON.getStackForm())
+                .buildAndRegister();
+        CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(120).duration(120)
+                .inputs(SANDWICH_BACON.getStackForm())
+                .fluidInputs(VibrantExtract.getFluid(100))
+                .outputs(SANDWICH_VIBRANT.getStackForm())
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
                 .inputs(PRESLICED_BREAD.getStackForm(3), CHEDDAR_SLICE.getStackForm(3))

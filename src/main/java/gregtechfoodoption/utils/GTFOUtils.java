@@ -5,6 +5,9 @@ import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IItemComponent;
 import gregtech.api.recipes.RecipeMap;
 import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.recipes.ingredients.GTRecipeItemInput;
+import gregtech.api.recipes.ingredients.nbtmatch.NBTCondition;
+import gregtech.api.recipes.ingredients.nbtmatch.NBTMatcher;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
@@ -194,7 +197,7 @@ public class GTFOUtils {
 
     public static void addBakingOvenRecipes(ItemStack input, ItemStack output, int duration, int temperature, int fuelAmount) {
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration).temperature(temperature)
-                .inputs(input)
+                .inputNBT(new GTRecipeItemInput(input), NBTMatcher.ANY, NBTCondition.ANY)
                 .input(OrePrefix.plank, Wood, fuelAmount * 2)
                 .outputs(output)
                 .buildAndRegister();
@@ -207,33 +210,33 @@ public class GTFOUtils {
         ItemStack outputx8 = output.copy();
         outputx8.setCount(output.getCount() * 8);
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                .inputs(inputx4)
+                .inputNBT(new GTRecipeItemInput(inputx4), NBTMatcher.ANY, NBTCondition.ANY)
                 .input(gem, Coal, Math.max(fuelAmount, 1))
                 .outputs(outputx4)
                 .buildAndRegister();
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                .inputs(inputx4)
+                .inputNBT(new GTRecipeItemInput(inputx4), NBTMatcher.ANY, NBTCondition.ANY)
                 .input(gem, Charcoal, Math.max(fuelAmount, 1))
                 .outputs(outputx4)
                 .buildAndRegister();
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                .inputs(inputx4)
+                .inputNBT(new GTRecipeItemInput(inputx4), NBTMatcher.ANY, NBTCondition.ANY)
                 .input(dust, Coal, Math.max(fuelAmount, 1))
                 .outputs(outputx4)
                 .buildAndRegister();
         BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                .inputs(inputx4)
+                .inputNBT(new GTRecipeItemInput(inputx4), NBTMatcher.ANY, NBTCondition.ANY)
                 .input(dust, Charcoal, Math.max(fuelAmount, 1))
                 .outputs(outputx4)
                 .buildAndRegister();
         if (!OreDictUnifier.get("dustAnthracite").isEmpty()) {
             BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                    .inputs(inputx8)
+                    .inputNBT(new GTRecipeItemInput(inputx8), NBTMatcher.ANY, NBTCondition.ANY)
                     .input("gemAnthracite", Math.max(fuelAmount, 1))
                     .outputs(outputx8)
                     .buildAndRegister();
             BAKING_OVEN_RECIPES.recipeBuilder().duration(duration)
-                    .inputs(inputx8)
+                    .inputNBT(new GTRecipeItemInput(inputx8), NBTMatcher.ANY, NBTCondition.ANY)
                     .input("dustAnthracite", Math.max(fuelAmount, 1))
                     .outputs(outputx8)
                     .buildAndRegister();

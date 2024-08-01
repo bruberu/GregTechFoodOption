@@ -400,6 +400,25 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     public static MetaItem<?>.MetaValueItem KITCHEN_RECIPE;
 
+    public static MetaItem<?>.MetaValueItem SORBET_PLAIN;
+    public static MetaItem<?>.MetaValueItem SORBET_APPLE;
+    public static MetaItem<?>.MetaValueItem SORBET_APRICOT;
+    public static MetaItem<?>.MetaValueItem SORBET_CHORUS;
+    public static MetaItem<?>.MetaValueItem SORBET_GRAPE;
+    public static MetaItem<?>.MetaValueItem SORBET_LIME;
+    public static MetaItem<?>.MetaValueItem SORBET_VIBRANT;
+
+    public static MetaItem<?>.MetaValueItem ANTAF;
+
+    public static MetaItem<?>.MetaValueItem FERMENTED_CHORUS;
+    public static MetaItem<?>.MetaValueItem FERMENTED_CHORUS_PIE;
+
+    public static MetaItem<?>.MetaValueItem NAQUADAH_CHIPS;
+
+    public static MetaItem<?>.MetaValueItem CHORUS_CAPLET;
+    public static MetaItem<?>.MetaValueItem VIBRANT_CAPLET;
+    public static MetaItem<?>.MetaValueItem SANDWICH_VIBRANT;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -606,7 +625,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         PORCHETTA = addItem(310, "component.porchetta")
                 .addComponents(new GTFOFoodStats(7, 0.7f).setEatingDuration(50)
-                        .nutrients(0, 0,  0, 0.5f, 0.1f));
+                        .nutrients(0, 0, 0, 0.5f, 0.1f));
 
         AGED_PARMIGIANO_ROLL = addItem(312, "component.aged_parmigiano_roll").blacklistKitchen();
         BRINED_PARMIGIANO = addItem(313, "component.brined_parmigiano").blacklistKitchen();
@@ -1073,6 +1092,51 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         SEASONED_PELMENI = addItem(341, "food.pelmeni_seasoned").addComponents(new GTFOFoodStats(7, 1f).setEatingDuration(24)
                 .nutrients(0.5f, 0f, 1f, 1f, 1f));
 
+        ANTAF = addItem(344, "food.antaf").addComponents(new GTFOFoodStats(5, 0.5f, true, true, PLASTIC_BOTTLE.getStackForm())
+                .nutrients(0, 0.5f, 0f, 0f, 0f));
+
+        SORBET_PLAIN = addItem(345, "food.sorbet.plain").addComponents(new GTFOFoodStats(0, 0f, false, true)
+                .nutrients(0, 0f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_APPLE = addItem(346, "food.sorbet.apple").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_APRICOT = addItem(347, "food.sorbet.apricot").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_CHORUS = addItem(348, "food.sorbet.chorus").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 0f, 0f, 0f, 1f).setEatingDuration(12)
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 600, 0, 100 - 80)));
+        SORBET_GRAPE = addItem(349, "food.sorbet.grape").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_LIME = addItem(350, "food.sorbet.lime").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
+        SORBET_VIBRANT = addItem(351, "food.sorbet.vibrant").addComponents(new GTFOFoodStats(0, 0f)
+                .nutrients(0, 2f, 0f, 0f, 2f).setEatingDuration(12)
+                .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 1200, 0, 100 - 80),
+                        new RandomPotionEffect(MobEffects.POISON, 1200, 2, 100 - 100),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 1200, 1, 100 - 40)));
+
+        FERMENTED_CHORUS = addItem(352, "food.fermented_chorus").addComponents(new GTFOFoodStats(2, 0.5f, false, true)
+                .nutrients(0, 0f, 0f, 0f, 2f).setEatingDuration(60)
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 300, 0, 100 - 80)));
+        FERMENTED_CHORUS_PIE = addItem(353, "food.pie.fermented_chorus").addComponents(new GTFOFoodStats(6, 1f, false, true)
+                .nutrients(0, 0f, 2f, 0f, 2f)
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 1200, 0, 100 - 100)));
+
+        NAQUADAH_CHIPS = addItem(354, "food.naquadah_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, true, () -> OreDictUnifier.get(OrePrefix.foil, RhodiumPlatedPalladium))
+                .nutrients(0, 0f, 1f, 0f, 1f)
+                .setPotionEffects(new RandomPotionEffect(MobEffects.BLINDNESS, 500, 0, 100 - 100)));
+
+        CHORUS_CAPLET = addItem(355, "food.caplet.chorus").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 300, 0, 100 - 100)));
+        VIBRANT_CAPLET = addItem(356, "food.caplet.vibrant").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
+                .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 600, 0, 100 - 60),
+                        new RandomPotionEffect(MobEffects.POISON, 600, 2, 100 - 90)));
+
+        SANDWICH_VIBRANT = addItem(357, "food.sandwich.vibrant").addComponents(new GTFOFoodStats(7, 0.8f)
+                .setEatingDuration(40)
+                .nutrients(0f, 1f, 1f, 1f, 0f)
+                .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 1200, 0, 100 - 80),
+                        new RandomPotionEffect(MobEffects.POISON, 1200, 2, 100 - 100)));
+
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
         ONION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
@@ -1214,9 +1278,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public class GTFOMetaValueItem extends MetaItem<?>.MetaValueItem {
 
         private boolean kitchenBlacklisted;
+
         protected GTFOMetaValueItem(int metaValue, String unlocalizedName) {
             super(metaValue, unlocalizedName);
         }
+
         private boolean hasEnchantmentSheen;
 
         public void setHasEnchantmentSheen(boolean hasEnchantmentSheen) {

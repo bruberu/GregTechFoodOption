@@ -2,6 +2,7 @@ package gregtechfoodoption.recipe;
 
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.integration.enderio.GTFOEIORecipeHandler;
 import gregtechfoodoption.worldgen.trees.GTFOTree;
 import gregtechfoodoption.recipe.chain.*;
 import gregtechfoodoption.tools.GTFOToolItems;
@@ -36,6 +37,8 @@ public class GTFORecipeAddition {
         LithiumChain.init();
         BerryChain.init();
         RussianChain.init();
+        ChorusChain.init();
+        SorbetChain.init();
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
@@ -52,5 +55,8 @@ public class GTFORecipeAddition {
             VanillaOverrideChain.init();
         CoffeeChain.init();
         SmogusChain.init();
+        if (Loader.isModLoaded(GTFOValues.MODID_EIO)) {
+            GTFOEIORecipeHandler.enderios();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
+import gregtech.api.unification.material.Materials;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtech.api.recipes.ModHandler;
 import gregtechfoodoption.utils.GTFOUtils;
@@ -92,6 +93,13 @@ public class PotatoProcessingChain {
                 .inputs(REDUCED_FAT_POTATO_SLICE.getStackForm(40))
                 .input(foil, StainlessSteel)
                 .outputs(REDUCED_FAT_CHIPS.getStackForm())
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder().EUt(64).duration(100)
+                .fluidInputs(Naquadah.getFluid(10))
+                .inputs(REDUCED_FAT_POTATO_SLICE.getStackForm(40))
+                .input(foil, RhodiumPlatedPalladium)
+                .outputs(NAQUADAH_CHIPS.getStackForm())
                 .buildAndRegister();
         CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(60).duration(1000)
                 .inputs(POTATO_STRIP.getStackForm(40))

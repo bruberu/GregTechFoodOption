@@ -2,8 +2,10 @@ package gregtechfoodoption.potion;
 
 import gregtechfoodoption.client.GTFOClientHandler;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 public class VentingPotion extends GTFOPotion {
     public static final String TAG_NAME = "gregtechfoodoption - venting";
@@ -32,7 +34,6 @@ public class VentingPotion extends GTFOPotion {
 
                 if (entityLiving.attemptTeleport(newX, newY, newZ)) {
                     entityLiving.getEntityWorld().playSound(null, playerX, playerY, playerZ, GTFOClientHandler.AMOGUS_VENT, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    entityLiving.playSound(GTFOClientHandler.AMOGUS_VENT, 1.0F, 1.0F);
                     break;
                 }
             }
