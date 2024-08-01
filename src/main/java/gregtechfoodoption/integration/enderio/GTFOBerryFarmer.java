@@ -60,7 +60,7 @@ public class GTFOBerryFarmer extends CustomSeedFarmer {
             res.addDrop(pos, drop.copy());
         });
 
-        world.setBlockState(pos, state.withProperty(crop.AGE_GTFO, Integer.valueOf(crop.getMaxAge() - 1)), 3);
+        world.setBlockState(pos, state.withProperty(crop.getAgeProperty(), Integer.valueOf(crop.getMaxAge() - 1)), 3);
         return res;
     }
 

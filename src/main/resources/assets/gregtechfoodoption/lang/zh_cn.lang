@@ -84,11 +84,11 @@ gregtech.material.gtfo_energized_coffee=提神咖啡
 
 metaitem.food.mineral_water.name=矿泉水
 metaitem.food.mineral_water.tooltip=认输吧，无神论者。
-metaitem.component.thermos.casing.name=膳魔师保温杯身
-metaitem.component.thermos.cap.name=膳魔师保温杯盖
-metaitem.component.thermos.casing_leached.name=使用过的膳魔师保温杯身
-metaitem.component.thermos.used.name=使用过的膳魔师保温杯
-metaitem.component.thermos.new.name=膳魔师保温杯
+metaitem.component.dewar_flask.casing.name=膳魔师保温杯身
+metaitem.component.dewar_flask.cap.name=膳魔师保温杯盖
+metaitem.component.dewar_flask.casing_leached.name=使用过的膳魔师保温杯身
+metaitem.component.dewar_flask.used.name=使用过的膳魔师保温杯
+metaitem.component.dewar_flask.new.name=膳魔师保温杯
 metaitem.lithium_bromide_dust.name=溴化锂
 metaitem.titanium_dichloride_dust.name=二氯化钛
 metaitem.nontoxic_polymoscovium_pentahalide_plate_curved.name=无毒多聚五氯化镆弯曲板
@@ -826,6 +826,7 @@ gregtech.multiblock.not_enough_sun=光照不足，运行速度减半
 
 gregtechfoodoption.machine.greenhouse.tooltip.1=在内部模拟树木生长。
 gregtechfoodoption.machine.greenhouse.tooltip.2=在夜间或顶部被遮挡时，运行速度将减半。
+gregtechfoodoption.machine.greenhouse.tooltip.3=此机器具有耐候性！
 
 gregtech.material.gtfo_beer_batter=啤酒面糊
 metaitem.puff_pastry_plate.name=千层酥
@@ -850,6 +851,7 @@ metaitem.food.shepherds_pie.tooltip=鉴于你往里边放的东西，叫工业�
 metaitem.food.sausage_roll.name=香肠卷
 metaitem.food.baked_beans.name=焗豆
 metaitem.food.beans_on_toast.name=焗豆吐司
+metaitem.food.beans_on_toast.tooltip=“就像意式玉米糊，但是更糟。”
 metaitem.food.fried_fish.name=炸鱼
 metaitem.food.battered_fish.name=面糊鱼
 metaitem.food.beer.name=啤酒
@@ -1187,8 +1189,8 @@ metaitem.utility.kitchen_recipe.name=厨房食谱
 metaitem.utility.kitchen_recipe.tooltip=右键以通过 JEI 添加 GTFO 配方！与多方块厨房一同处理§4单方块机器§7配方。
 gregtechfoodoption.kitchen_recipe.final_result=§3产品：%s
 
-gregtechfoodoption.machine.kitchen.tooltip.1=§4仅能与 JEI 一同使用！
+gregtechfoodoption.machine.kitchen.tooltip.1=§4需要 JEI 才能使用！
 gregtechfoodoption.machine.kitchen.tooltip.2=按照厨房食谱处理食物相关的配方
 gregtechfoodoption.machine.kitchen.tooltip.3=将单方块机器放置在瓷砖上！
 gregtechfoodoption.machine.kitchen.tooltip.4=可以搭建大于预览所示尺寸的厨房
-gregtechfoodoption.machine.kitchen.tooltip.5=§4需要清洁用品来保持运行效率！
+gregtechfoodoption.machine.kitchen.tooltip.5=§4需要清洁剂来保持运行效率！

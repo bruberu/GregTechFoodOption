@@ -46,11 +46,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem DRIED_CORN_EAR;
     public static MetaItem<?>.MetaValueItem CORN_EAR;
     public static MetaItem<?>.MetaValueItem PHYCOMYCES_BLAKESLEEANUS_CULTURE;
-    public static MetaItem<?>.MetaValueItem THERMOS;
-    public static MetaItem<?>.MetaValueItem THERMOS_CASING;
-    public static MetaItem<?>.MetaValueItem THERMOS_CAP;
-    public static MetaItem<?>.MetaValueItem LEACHED_THERMOS_CASING;
-    public static MetaItem<?>.MetaValueItem USED_THERMOS;
+    public static MetaItem<?>.MetaValueItem DEWAR_FLASK;
+    public static MetaItem<?>.MetaValueItem DEWAR_FLASK_CASING;
+    public static MetaItem<?>.MetaValueItem DEWAR_FLASK_CAP;
+    public static MetaItem<?>.MetaValueItem LEACHED_DEWAR_FLASK_CASING;
+    public static MetaItem<?>.MetaValueItem USED_DEWAR_FLASK;
     public static MetaItem<?>.MetaValueItem MINERAL_WATER;
     public static MetaItem<?>.MetaValueItem CORED_APPLE;
     public static MetaItem<?>.MetaValueItem APPLE_HARD_CANDY;
@@ -440,11 +440,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         CORN_EAR.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CORN, BareCornKernel.getItemStack(), CORN_EAR.getStackForm()));
         //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
 
-        THERMOS = addItem(7, "component.thermos.new").blacklistKitchen();
-        USED_THERMOS = addItem(8, "component.thermos.used").blacklistKitchen();
-        LEACHED_THERMOS_CASING = addItem(9, "component.thermos.casing_leached").blacklistKitchen();
-        THERMOS_CAP = addItem(10, "component.thermos.cap").blacklistKitchen();
-        THERMOS_CASING = addItem(11, "component.thermos.casing").blacklistKitchen();
+        DEWAR_FLASK = addItem(7, "component.dewar_flask.new").blacklistKitchen();
+        USED_DEWAR_FLASK = addItem(8, "component.dewar_flask.used").blacklistKitchen();
+        LEACHED_DEWAR_FLASK_CASING = addItem(9, "component.dewar_flask.casing_leached").blacklistKitchen();
+        DEWAR_FLASK_CAP = addItem(10, "component.dewar_flask.cap").blacklistKitchen();
+        DEWAR_FLASK_CASING = addItem(11, "component.dewar_flask.casing").blacklistKitchen();
 
         CORED_APPLE = addItem(13, "component.cored_apple");
         PLASTIC_BOTTLE = addItem(15, "component.plastic_bottle").blacklistKitchen();
@@ -646,7 +646,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
                 new RandomPotionEffect(getPotionById(10), 300, 1, 0))
                 .nutrients(0, 0, 0.5f, 0, 0));
-        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_THERMOS.getStackForm(1),
+        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_DEWAR_FLASK.getStackForm(1),
                 new RandomPotionEffect(CreativityPotion.INSTANCE, 5000, 0, 0)));
         APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger, GTFOConfig.gtfoFoodConfig.hardCandySaturation, true, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50))
@@ -1253,17 +1253,15 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     @Nonnull
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD};
+        return new CreativeTabs[]{CreativeTabs.SEARCH, GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD};
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {
-        if (tab == GTFOValues.TAB_GTFO || tab == GTFOValues.TAB_GTFO_FOOD) {
-            for (MetaItem.MetaValueItem item : this.getAllItems()) {
-                if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) || ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) || tab == CreativeTabs.SEARCH)) {
-                    ItemStack itemStack = item.getStackForm();
-                    item.getSubItemHandler().getSubItems(itemStack, tab, subItems);
-                }
+        for (MetaItem.MetaValueItem item : this.getAllItems()) {
+            if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) || ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) || tab == CreativeTabs.SEARCH)) {
+                ItemStack itemStack = item.getStackForm();
+                item.getSubItemHandler().getSubItems(itemStack, tab, subItems);
             }
         }
     }

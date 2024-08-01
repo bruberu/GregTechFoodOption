@@ -15,12 +15,13 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class GTFORootCrop extends GTFOCrop {
+    protected static final PropertyInteger DEFAULT_AGE_ROOT = PropertyInteger.create("age", 0, 7);
+
     protected GTFORootCrop(String name) {
-        super(name, 7);
+        super(name);
     }
 
     public static GTFORootCrop create(String name) {
-        AGE_TEMP = PropertyInteger.create("age", 0, 7);
         return new GTFORootCrop(name);
     }
 
@@ -67,5 +68,10 @@ public class GTFORootCrop extends GTFOCrop {
         }
 
         return super.onBlockActivated(world, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    }
+
+    @Override
+    public PropertyInteger getAgeProperty() {
+       return DEFAULT_AGE_ROOT;
     }
 }

@@ -1,0 +1,55 @@
+metaitem.component.corn.ear.name=Maize Ear
+metaitem.component.corn.dried_ear.name=Dried Maize Ear
+metaitem.component.corn.cob.name=Maize Cob
+metaitem.component.corn.flavored_flake.name=Flavoured Popcorn Flake
+metaitem.corn_kernel_gem_chipped.name=Maize Seeds
+metaitem.corn_kernel_bare_gem_chipped.name=Maize Kernel
+metaitem.corn_kernel_graded_gem_chipped.name=Acceptable Maize Kernel
+
+gregtech.material.gtfo_popcorn_flavoring_mixture=Popcorn Flavouring Mixture
+
+gregtech.material.gtfo_energized_coffee=Energising Coffee
+
+metaitem.oligopolymerized_moscovium_pentahalides_dust.name=Oligo-Polymerised Moscovium Pentahalides
+
+gregtech.material.gtfo_highly_polymerized_moscovium_pentahalides=Highly Polymerised Moscovium Pentahalides
+
+metaitem.food.apple_hard_candy.name=Apple Boiled Sweet
+metaitem.hard_candy_plate_dense.name=Boiled Sweet Resin
+metaitem.hard_candy_plate.name=Boiled Sweet Sheet
+metaitem.crushed_hard_candy_crushed.name=Crushed Boiled Sweet
+metaitem.corn_starch_dust.name=Corn Flour
+metaitem.hot_apple_hard_candy_plate.name=Hot Apple Boiled Sweet
+gregtech.material.gtfo_apple_candy_syrup=Apple Sweet Syrup
+
+metaitem.food.reduced_fat_chips.name=Bay Salmon Reduced Fat Crisps
+metaitem.food.kettle_chips.name=Kettle Crisps
+metaitem.food.bag_of_chips.name=Bag O' Crisps
+metaitem.component.partially_filled_chip_bag.name=Partially Filled Bag of Crisps
+metaitem.component.potato.reduced_fat_slice.name=Reduced Fat Potato Crisps
+
+metaitem.food.sandwich.bacon.name=Rasher Sandwich
+metaitem.food.sandwich.bacon.large.name=Large Rasher Sandwich
+
+metaitem.crop.cucumber.tooltip=Not a Gherkin (yet).
+
+metaitem.component.bacon.name=Uncooked Rasher of Bacon
+metaitem.food.bacon.name=Rasher of Bacon
+
+item.gt.tool.butchery_knife.hv.tooltip=§9Mob Deliviniser §c4000
+
+metaitem.food.ice_cream.chip.name=Potato Crisp Ice Cream
+metaitem.food.ice_cream.chip.tooltip=https://tenor.com/view/cat-swim-in-milk-cat-kitty-milk-milk-cat-gif-23473453
+
+gregtech.material.gtfo_pasteurized_milk=Pasteurised Milk
+
+metaitem.food.coffee.energized.name=Energised Coffee Cup
+
+gregtechfoodoption.fluid.fertilizer=§2%d%% effective as a Sprinkler Fertiliser
+gregtech.material.gtfo_fertilizer_solution=Fertiliser Solution
+
+metaitem.food.lasagna.pesto.tooltip=Italians only capitalise the first letter of the first word/proper nouns of titles
+
+gregtech.material.gtfo_unpasteurized_skimmed_milk=Unpasteurised Skimmed Milk
+
+tile.gtfo_crop_corn.name=Maize
