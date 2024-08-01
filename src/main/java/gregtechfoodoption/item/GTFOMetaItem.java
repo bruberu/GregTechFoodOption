@@ -415,6 +415,10 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     public static MetaItem<?>.MetaValueItem NAQUADAH_CHIPS;
 
+    public static MetaItem<?>.MetaValueItem CHORUS_CAPLET;
+    public static MetaItem<?>.MetaValueItem VIBRANT_CAPLET;
+    public static MetaItem<?>.MetaValueItem SANDWICH_VIBRANT;
+
     public GTFOMetaItem() {
         super((short) 0);
     }
@@ -621,7 +625,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         PORCHETTA = addItem(310, "component.porchetta")
                 .addComponents(new GTFOFoodStats(7, 0.7f).setEatingDuration(50)
-                        .nutrients(0, 0,  0, 0.5f, 0.1f));
+                        .nutrients(0, 0, 0, 0.5f, 0.1f));
 
         AGED_PARMIGIANO_ROLL = addItem(312, "component.aged_parmigiano_roll").blacklistKitchen();
         BRINED_PARMIGIANO = addItem(313, "component.brined_parmigiano").blacklistKitchen();
@@ -1121,6 +1125,18 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0, 0f, 1f, 0f, 1f)
                 .setPotionEffects(new RandomPotionEffect(MobEffects.BLINDNESS, 500, 0, 100 - 100)));
 
+        CHORUS_CAPLET = addItem(355, "food.caplet.chorus").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
+                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 300, 0, 100 - 100)));
+        VIBRANT_CAPLET = addItem(356, "food.caplet.vibrant").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
+                .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 600, 0, 100 - 60),
+                        new RandomPotionEffect(MobEffects.POISON, 600, 2, 100 - 90)));
+
+        SANDWICH_VIBRANT = addItem(357, "food.sandwich.vibrant").addComponents(new GTFOFoodStats(7, 0.8f)
+                .setEatingDuration(40)
+                .nutrients(0f, 1f, 1f, 1f, 0f)
+                .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 1200, 0, 100 - 80),
+                        new RandomPotionEffect(MobEffects.POISON, 1200, 2, 100 - 100)));
+
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
         ONION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
@@ -1264,9 +1280,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public class GTFOMetaValueItem extends MetaItem<?>.MetaValueItem {
 
         private boolean kitchenBlacklisted;
+
         protected GTFOMetaValueItem(int metaValue, String unlocalizedName) {
             super(metaValue, unlocalizedName);
         }
+
         private boolean hasEnchantmentSheen;
 
         public void setHasEnchantmentSheen(boolean hasEnchantmentSheen) {

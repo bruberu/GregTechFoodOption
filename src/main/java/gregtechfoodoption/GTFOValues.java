@@ -19,7 +19,8 @@ public class GTFOValues {
             MODID_AP = "applecore",
             MODID_NU = "nutrition",
             MODID_NUGT = "nutrition_gtceu",
-            MODID_SS = "sereneseasons";
+            MODID_SS = "sereneseasons",
+            MODID_EIO = "enderio";
 
     public static final String craftingToolRollingPin = "craftingToolRollingPin";
 

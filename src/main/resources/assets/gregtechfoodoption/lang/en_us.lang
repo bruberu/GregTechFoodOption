@@ -896,6 +896,11 @@ metaitem.aminophenol_dust.name=p-Aminophenol
 metaitem.iinitrophenol_dust.name=2-Nitrophenol
 metaitem.ivnitrophenol_dust.name=4-Nitrophenol
 metaitem.plutonium_241_caplet.name=Plutonium-241 Caplet
+metaitem.food.caplet.chorus.name=Fermented Chorus Caplet
+metaitem.food.caplet.chorus.tooltip=Did the color just change?
+metaitem.food.caplet.vibrant.name=Vibrant Caplet
+metaitem.food.caplet.vibrant.tooltip=It just doesn't have that same polymoscovium pentahalide flavor
+
 metaitem.iv_bag.name=IV Bag
 
 gregtech.material.gtfo_acetic_anhydride=Acetic Anhydride
@@ -1201,13 +1206,27 @@ gregtechfoodoption.seed.water_crop=Must be placed in one block of water
 
 metaitem.food.pie.fermented_chorus.name=Fermented Chorus Pie
 gregtechfoodoption.potion.enhancedchorus=Enhanced Chorus
-metaitem.food.sorbet.apple=Apple Sorbet
-metaitem.food.sorbet.apricot=Apricot Sorbet
-metaitem.food.sorbet.chorus=Chorus Sorbet
-metaitem.food.sorbet.grape=Grape Sorbet
-metaitem.food.sorbet.lime=Lime Sorbet
-metaitem.food.sorbet.vibrant=Vibrant Sorbet
+metaitem.food.sorbet.apple.name=Apple Sorbet
+metaitem.food.sorbet.apricot.name=Apricot Sorbet
+metaitem.food.sorbet.chorus.name=Chorus Sorbet
+metaitem.food.sorbet.grape.name=Grape Sorbet
+metaitem.food.sorbet.lime.name=Lime Sorbet
+metaitem.food.sorbet.vibrant.name=Vibrant Sorbet
+metaitem.food.sorbet.plain.name=Plain Sorbet
+metaitem.food.sorbet.plain.tooltip=Very good for the teeth, totally
 metaitem.food.fermented_chorus.name=Fermented Chorus
+metaitem.food.antaf.name=Antaf™
 
 metaitem.food.naquadah_chips.name=Naquadah Chips
 metaitem.food.naquadah_chips.tooltip=Your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.
+metaitem.food.sandwich.vibrant.name=Vibrant Sandwich
+metaitem.food.sandwich.vibrant.tooltip=I guess it works decently as jelly.
+
+gregtech.material.gtfo_ender_pearl_solution=Ender Pearl Solution
+gregtech.material.gtfo_ender_sugar_solution=Ender Sugar Solution
+gregtech.material.gtfo_chorus_juice=Chorus Juice
+gregtech.material.gtfo_fermented_chorus_juice=Fermented Chorus Juice
+gregtech.material.gtfo_antaf=Antaf
+gregtech.material.gtfo_vibrant_extract=Vibrant Extract
+gregtech.material.gtfo_apricot_extract=Apricot Extract
+gregtech.material.gtfo_grape_extract=Grape Extract

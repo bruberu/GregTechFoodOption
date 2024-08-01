@@ -37,6 +37,8 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -83,6 +85,9 @@ public class CommonProxy {
         if (Loader.isModLoaded(GTFOValues.MODID_NUGT) && GTFOConfig.gtfoOtherFoodModConfig.enableGTFONutrition) {
             GTFONutritionCompatibility.init();
         }
+
+        GTFOLog.logger.info("Removing recipes during post init (thanks Ender IO!)");
+        GTFORecipeRemoval.init();
     }
 
     @SubscribeEvent
@@ -157,11 +162,11 @@ public class CommonProxy {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void registerRecipesLowest(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering recipe very low...");
-        GTFORecipeRemoval.init();
+
         GTFORecipeAddition.compatInit();
     }
 
-    @SubscribeEvent
+        @SubscribeEvent
     @Optional.Method(modid = "enderio")
     public static void registerEIOFarmerJoes(@Nonnull RegistryEvent.Register<IFarmerJoe> event) {
         for (GTFOCrop crop : CROP_BLOCKS) {
@@ -180,7 +185,6 @@ public class CommonProxy {
                     .setRegistryName(crop.getRegistryName()));
         }
     }
-
     // These recipes are generated at the beginning of the init() phase with the proper config set.
     // This is not great practice, but ensures that they are run AFTER CraftTweaker,
     // meaning they will follow the recipes in the map with CraftTweaker changes,

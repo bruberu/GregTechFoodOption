@@ -88,5 +88,18 @@ public class CapletChain {
                 .outputs(PLUTONIUM_241_CAPLET.getStackForm())
                 .buildAndRegister();
 
+        // Chorus
+        CANNER_RECIPES.recipeBuilder().EUt(30).duration(100)
+                .inputs(CAPLET_BODY.getStackForm())
+                .fluidInputs(FermentedChorusJuice.getFluid(100))
+                .inputs(CAPLET_CAP.getStackForm())
+                .outputs(CHORUS_CAPLET.getStackForm())
+                .buildAndRegister();
+        CANNER_RECIPES.recipeBuilder().EUt(30).duration(200)
+                .inputs(CAPLET_BODY.getStackForm())
+                .fluidInputs(VibrantExtract.getFluid(100))
+                .inputs(CAPLET_CAP.getStackForm())
+                .outputs(VIBRANT_CAPLET.getStackForm())
+                .buildAndRegister();
     }
 }
