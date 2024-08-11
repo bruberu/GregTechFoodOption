@@ -16,6 +16,13 @@ import static gregtechfoodoption.item.GTFOMetaItem.*;
 
 public class BritishChain {
     public static void init() {
+        RecipeMaps.CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(50)
+                .input(dust, SodaAsh)
+                .fluidInputs(CarbonDioxide.getFluid(144))
+                .fluidInputs(Water.getFluid(144))
+                .output(dust, SodiumBicarbonate, 2)
+                .buildAndRegister();
+
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(8).duration(60)
                 .input(dust, SodiumBicarbonate)
                 .fluidInputs(Water.getFluid(1000))
