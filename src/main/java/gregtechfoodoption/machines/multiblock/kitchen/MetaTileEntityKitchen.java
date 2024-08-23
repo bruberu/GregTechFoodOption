@@ -252,7 +252,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     }
 
 
-
     @Override
     public boolean allowsExtendedFacing() {
         return false;
@@ -444,8 +443,10 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
-                        case PROBABLY_FINE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.probably_fine");
-                        case ORDER_COMPLETE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_complete");
+                        case PROBABLY_FINE ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.probably_fine");
+                        case ORDER_COMPLETE ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_complete");
                     }
                     if (comp != null) {
                         list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
@@ -479,16 +480,27 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
-                        case NO_RECIPE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_recipe");
-                        case BAD_MACHINES -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.bad_machines");
-                        case MACHINES_NOT_WORKING -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.machines_not_working");
-                        case NO_INGREDIENTS -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_ingredients");
+                        case NO_RECIPE ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_recipe");
+                        case BAD_MACHINES ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.bad_machines");
+                        case MACHINES_NOT_WORKING ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.machines_not_working");
+                        case NO_INGREDIENTS ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_ingredients");
                     }
                     if (comp != null) {
                         list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
+                        if (this.kitchenLogic.state == KitchenLogic.KitchenLogicState.NO_INGREDIENTS ||
+                                this.kitchenLogic.state == KitchenLogic.KitchenLogicState.BAD_MACHINES) {
+                            for (String s : this.kitchenLogic.missing) {
+                                list.add(new TextComponentTranslation(s).setStyle((new Style()).setColor(TextFormatting.RED)));
+                            }
+                        }
                     }
                 });
     }
+
     protected void addWarningText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, this.isStructureFormed(), false)
                 .addMaintenanceProblemLines(this.getMaintenanceProblems())
@@ -498,8 +510,10 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
-                        case BUSES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.buses_full");
-                        case HATCHES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.hatches_full");
+                        case BUSES_FULL ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.buses_full");
+                        case HATCHES_FULL ->
+                                comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.hatches_full");
                     }
                     if (comp != null) {
                         list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));

@@ -45,12 +45,12 @@ public class KitchenLogic extends MTETrait implements IControllable {
     private final Set<WorkableTieredMetaTileEntity> controlledMTEs = new HashSet<>();
     private final List<KitchenRequestNode> requestNodes = new ObjectArrayList<>();
     final HashMap<GTRecipeInput, List<KitchenRequestNode>> leaves = new HashMap<>();
-    public String info = "";
+    public List<String> missing = new ArrayList<>();
     boolean wasNotified = true;
     boolean recheckOutputs = true;
     private boolean workingEnabled = true;
     private ItemStack resultItem;
-     int dirtiness;
+    int dirtiness;
     public KitchenLogicState state;
 
     public KitchenLogic(MetaTileEntityKitchen controller) {

@@ -48,8 +48,10 @@ public class KitchenRequestNode {
                 this.machineRunning = logic.findRun(recipe, map);
                 if (machineRunning == null) {
                     this.state = KitchenRequestState.NOT_RUNNABLE;
+                    logic.missing.add(map.unlocalizedName);
                 } else {
                     this.state = KitchenRequestState.RUNNABLE;
+                    logic.missing.remove(map.unlocalizedName);
                 }
             } else {
                 dependencies.addAll(missingItems);
@@ -123,8 +125,12 @@ public class KitchenRequestNode {
                 if (!ingredient.isNonConsumable()) itemAmountInSlot[j] -= itemAmountToConsume;
                 if (ingredientAmount == 0) break;
             }
-            if (ingredientAmount > 0)
+            if (ingredientAmount > 0) {
                 missing.add(new GTRecipeItemInput(ingredient, ingredientAmount));
+                logic.missing.add(ingredient.getInputStacks()[0].getTranslationKey());
+            } else {
+                logic.missing.remove(ingredient.getInputStacks()[0].getTranslationKey());
+            }
         }
 
         return missing;
@@ -153,8 +159,12 @@ public class KitchenRequestNode {
                 if (!fluid.isNonConsumable()) fluidAmountInTank[j] -= fluidAmountToConsume;
                 if (fluidAmount == 0) break;
             }
-            if (fluidAmount > 0)
+            if (fluidAmount > 0) {
                 missing.add(new GTRecipeFluidInput(fluid.getInputFluidStack(), fluidAmount));
+                logic.missing.add(fluid.getInputFluidStack().getUnlocalizedName());
+            } else {
+                logic.missing.remove(fluid.getInputFluidStack().getUnlocalizedName());
+            }
         }
 
         return missing;
