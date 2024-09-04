@@ -510,6 +510,35 @@ public class GTFOMaterialHandler {
     public static final Material EnergizedCoffee = fluidBuilderFood(21991, "energized_coffee", 368)
             .color(0x695934)
             .build();
+    public static final Material EthyleneOxide = fluidBuilderFood(21992, "Ethlylene_oxide")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material DiethylEther = fluidBuilderFood(21993, "Diethyl_Ether")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material BromoBenzene = fluidBuilderFood(21994, "Bromo_Benzene")
+            .color(0xFFFFE4)
+            .build();
+    public static final Material Acetylene = fluidBuilderFood(21995, "Acetylene")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Formaldehyde = fluidBuilderFood(21996, "Formaldehyde")
+            .color(0x00B140)
+            .build();
+    public static final Material onefourButynediol = fluidBuilderFood(21997, "onefourButynediol")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material onefourButanediol = fluidBuilderFood(21998, "onefourButanediol")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material gammabutyrolacetone = fluidBuilderFood(21999, "gammabutyrolacetone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Methylamine = fluidBuilderFood(22000, "Methylamine")
+            .color(0xFFFFFF)
+            .build();
+
+
 
 
     public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
@@ -625,11 +654,19 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CRACKER_GRAHAM_UNGRADED = SHAPED_ITEM.addOreDictItem(1049, "cracker_graham_ungraded", 0xf0c25d, MaterialIconSet.DULL, OrePrefix.plate);
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_PRESSED = SHAPED_ITEM.addOreDictItem(1050, "chocolate_liquor_pressed", 0xa6795a, GTFOValues.Organic, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = SHAPED_ITEM.addOreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, GTFOValues.Organic, OrePrefix.crushed);
-
     public static final Material Paracetamol = new Material.Builder(21900, gtfoId("paracetamol")).dust()
             .color(0x0045A0).iconSet(MaterialIconSet.SHINY)
             .components(Carbon, 8, Hydrogen, 9, Nitrogen, 1, Oxygen, 2)
             .build();
+    public static final Material PhenylmagnesiumBromide = new Material.Builder(21901, gtfoId("Phenylmagnesium_Bromide")).dust()
+            .color(0x964B00).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 6, Hydrogen, 5, Magnesium, 1, Bromine, 1)
+            .build();
+    public static final Material BenzoPhenone = new Material.Builder(21902, gtfoId("Benzo_Phenone")).dust()
+            .color(0xFFFFFF).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 13, Hydrogen, 10, Oxygen, 1)
+            .build();
+
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
