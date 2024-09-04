@@ -82,6 +82,7 @@ public class CommonProxy {
                 "17aaqe0i1q/1/2/3/7/10/"));
 
 
+
         if (Loader.isModLoaded(GTFOValues.MODID_NUGT) && GTFOConfig.gtfoOtherFoodModConfig.enableGTFONutrition) {
             GTFONutritionCompatibility.init();
         }

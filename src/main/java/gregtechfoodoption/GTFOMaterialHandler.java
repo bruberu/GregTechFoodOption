@@ -5,11 +5,13 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.attribute.FluidAttribute;
 import gregtech.api.fluids.attribute.FluidAttributes;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialIconSet;
+import gregtech.api.unification.material.properties.FluidProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.FluidTooltipUtil;
@@ -537,6 +539,61 @@ public class GTFOMaterialHandler {
     public static final Material Methylamine = fluidBuilderFood(22000, "Methylamine")
             .color(0xFFFFFF)
             .build();
+    public static final Material NphenethylFourpiperidone = fluidBuilderFood(22001, "NphenethylFourpiperidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material γButyrolactone = fluidBuilderFood(22002, "γButyrolactone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material γButyrolactoneammonia = fluidBuilderFood(22003, "γButyrolactoneammonia")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material cooledγButyrolactoneammonia = fluidBuilderFood(22004, "cooledγButyrolactoneammonia")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material twoPyrrolidone = fluidBuilderFood(22005, "twoPyrrolidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material aqueoustwoPyrrolidone = fluidBuilderFood(22006, "aqueoustwoPyrrolidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material acidicaqueoustwoPyrrolidone = fluidBuilderFood(22007, "acidicaqueoustwoPyrrolidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material cooledacidicaqueoustwoPyrrolidone = fluidBuilderFood(22008, "cooledacidicaqueoustwoPyrrolidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material fouraminobutyric = fluidBuilderFood(22009, "fouraminobutyric")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material acidicfouraminobutyric = fluidBuilderFood(22010, "acidicfouraminobutyric")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material fourpiperidone = fluidBuilderFood(22011, "fourpiperidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Benzylchloride = fluidBuilderFood(22012, "Benzylchloride")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Phenylacetonitrile = fluidBuilderFood(22013, "Phenylacetonitrile")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material dissolvedPhenylacetonitrile = fluidBuilderFood(22014, "dissolvedPhenylacetonitrile")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material phenethylamine = fluidBuilderFood(22015, "phenethylamine")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material crudeNphenethylfourpiperidone = fluidBuilderFood(22016, "crudeNphenethylfourpiperidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Nphenethylfourpiperidone = fluidBuilderFood(22017, "Nphenethylfourpiperidone")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Succinicacid = fluidBuilderFood(22018, "Succinicacid")
+            .color(0xFFFFFF)
+            .build();
+
 
 
 
@@ -666,7 +723,10 @@ public class GTFOMaterialHandler {
             .color(0xFFFFFF).iconSet(MaterialIconSet.SHINY)
             .components(Carbon, 13, Hydrogen, 10, Oxygen, 1)
             .build();
-
+    public static final Material Maleicanhydride = new Material.Builder(21902, gtfoId("Maleicanhydride")).dust()
+            .color(0xFFFFFF).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 4, Hydrogen, 2, Oxygen, 3)
+            .build();
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
@@ -675,6 +735,7 @@ public class GTFOMaterialHandler {
         Materials.StainlessSteel.addFlags(GENERATE_DENSE, GENERATE_SPRING_SMALL);
         Materials.Titanium.addFlags(GENERATE_DENSE);
         Materials.Aluminium.addFlags(GENERATE_DENSE);
+        Bromine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
 
         Water.setProperty(FERTILIZER, new FertilizerProperty(5));
         Blood.setProperty(FERTILIZER, new FertilizerProperty(30));
