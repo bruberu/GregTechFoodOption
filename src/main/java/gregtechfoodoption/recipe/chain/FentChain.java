@@ -20,7 +20,7 @@ public class FentChain {
     public static void init() {
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .notConsumable(OrePrefix.dust, Silver)
-                .fluidInputs(Oxygen.getFluid(144), Ethylene.getFluid(144))
+                .fluidInputs(Oxygen.getFluid(1000), Ethylene.getFluid(1000))
                 .fluidOutputs(EthyleneOxide.getFluid(144))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
@@ -86,7 +86,7 @@ public class FentChain {
                 .fluidOutputs(Chlorine.getFluid(12000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(NphenethylFourpiperidone.getFluid(1000))
+                .fluidInputs(SaltWater.getFluid(1000))
                 .fluidInputs(Chlorine.getFluid(12000))
                 .notConsumable(SulfuricAcid.getFluid(1000))
                 .fluidOutputs(Bromine.getFluid(1000))
@@ -95,22 +95,22 @@ public class FentChain {
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(onefourButanediol.getFluid(1000))
                 .fluidInputs(Chlorine.getFluid(1000))
-                .fluidOutputs(γButyrolactone.getFluid(1000))
+                .fluidOutputs(yButyrolactone.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(γButyrolactone.getFluid(1000))
+                .fluidInputs(yButyrolactone.getFluid(1000))
                 .fluidInputs(Ammonia.getFluid(1000))
-                .fluidOutputs(γButyrolactoneammonia.getFluid(1000))
+                .fluidOutputs(yButyrolactoneammonia.getFluid(1000))
                 .buildAndRegister();
         VACUUM_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(γButyrolactoneammonia.getFluid(1000))
-                .fluidOutputs(cooledγButyrolactoneammonia.getFluid(1000))
+                .fluidInputs(yButyrolactoneammonia.getFluid(1000))
+                .fluidOutputs(cooledyButyrolactoneammonia.getFluid(1000))
                 .buildAndRegister();
         DISTILLATION_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(cooledγButyrolactoneammonia.getFluid(1000))
+                .fluidInputs(cooledyButyrolactoneammonia.getFluid(1000))
                 .fluidOutputs(twoPyrrolidone.getFluid(100))
                 .buildAndRegister();
-        DISTILLATION_RECIPES.recipeBuilder().EUt(8).duration(1000)
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(twoPyrrolidone.getFluid(100))
                 .fluidInputs(Water.getFluid(1000))
                 .fluidOutputs(aqueoustwoPyrrolidone.getFluid(100))
@@ -187,5 +187,75 @@ public class FentChain {
                 .fluidInputs(Oxygen.getFluid(1000))
                 .fluidOutputs(Succinicacid.getFluid(1000))
                 .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(BenzoPhenone.getFluid(1000))
+                .fluidInputs(Nchlorosuccinimide.getFluid(1000))
+                .notConsumable(Chloroform.getFluid(1000))
+                .fluidOutputs(threefourDichlorobenzophenone.getFluid(1000))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(Succinicacid.getFluid(1000))
+                .fluidInputs(Ammonia.getFluid(1000))
+                .fluidOutputs(AmmoniumSuccinate.getFluid(1000))
+                .buildAndRegister();
+        FLUID_HEATER_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(AmmoniumSuccinate.getFluid(1000))
+                .fluidOutputs(Succinimide.getFluid(1000))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(Succinimide.getFluid(1000))
+                .fluidInputs(Chlorine.getFluid(1000))
+                .fluidOutputs(ChlorinatedSuccinimide.getFluid(1000))
+                .fluidOutputs(DilutedHydrochloricAcid.getFluid(1000))
+                .buildAndRegister();
+        DISTILLERY_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(ChlorinatedSuccinimide.getFluid(1000))
+                .fluidOutputs(Nchlorosuccinimide.getFluid(1000))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(Nchlorosuccinimide.getFluid(1000))
+                .fluidInputs(Nphenethylfourpiperidone.getFluid(1000))
+                .notConsumable(dust, Aluminium)
+                .fluidOutputs(ThreefourChlorobenzoylfourfourchlorophenylonephenethylpiperidinfourol.getFluid(1000))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(ThreefourChlorobenzoylfourfourchlorophenylonephenethylpiperidinfourol.getFluid(1000))
+                .fluidInputs(Nmethyltwopyrrolidinone.getFluid(1000)).notConsumable(dust, Aluminium)
+                .fluidOutputs(RNthreeaminopropylNonethreebenzylsevenchlorofouroxofourHchromentwoyltwomethylpropylfourmethylbenzamidehydrochloride.getFluid(1000))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(gammabutyrolacetone.getFluid(1000))
+                .fluidInputs(Methylamine.getFluid(1000))
+                .fluidOutputs(crudeNmethyltwopyrrolidinone.getFluid(1000))
+                .buildAndRegister();
+        FLUID_HEATER_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(crudeNmethyltwopyrrolidinone.getFluid(1000))
+                .fluidOutputs(hotNmethyltwopyrrolidinone.getFluid(1000))
+                .buildAndRegister();
+        VACUUM_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(hotNmethyltwopyrrolidinone.getFluid(1000))
+                .fluidOutputs(cooledNmethyltwopyrrolidinone.getFluid(100))
+                .buildAndRegister();
+        DISTILLATION_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(cooledNmethyltwopyrrolidinone.getFluid(1000))
+                .fluidOutputs(Nmethyltwopyrrolidinone.getFluid(100))
+                .fluidOutputs(Methylamine.getFluid(400))
+                .fluidOutputs(Ammonia.getFluid(400))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(RNthreeaminopropylNonethreebenzylsevenchlorofouroxofourHchromentwoyltwomethylpropylfourmethylbenzamidehydrochloride.getFluid(1000))
+                .fluidOutputs(Chloroform.getFluid(100))
+                .fluidOutputs(Crudefentanyl.getFluid(1000))
+                .buildAndRegister();
+        VACUUM_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(Crudefentanyl.getFluid(1000))
+                .fluidOutputs(UnrefinedFentanyl.getFluid(100))
+                .buildAndRegister();
+        AUTOCLAVE_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(UnrefinedFentanyl.getFluid(1000))
+                .output(dust, RecrystalizedFentanyl, 10)
+                .buildAndRegister();
+
+
     }
 }
