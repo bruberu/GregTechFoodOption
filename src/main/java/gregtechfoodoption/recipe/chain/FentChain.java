@@ -188,7 +188,7 @@ public class FentChain {
                 .fluidOutputs(Succinicacid.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(BenzoPhenone.getFluid(1000))
+                .input(dust, BenzoPhenone, 5)
                 .fluidInputs(Nchlorosuccinimide.getFluid(1000))
                 .notConsumable(Chloroform.getFluid(1000))
                 .fluidOutputs(threefourDichlorobenzophenone.getFluid(1000))
