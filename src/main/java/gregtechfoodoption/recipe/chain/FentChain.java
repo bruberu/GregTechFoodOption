@@ -30,9 +30,9 @@ public class FentChain {
                 .fluidOutputs(Water.getFluid(144))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(Benzene.getFluid(144))
-                .fluidInputs(Bromine.getFluid(144))
-                .fluidOutputs(BromoBenzene.getFluid(144))
+                .fluidInputs(Benzene.getFluid(1000))
+                .fluidInputs(Bromine.getFluid(1000))
+                .fluidOutputs(BromoBenzene.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .input(OrePrefix.dust, Magnesium)
