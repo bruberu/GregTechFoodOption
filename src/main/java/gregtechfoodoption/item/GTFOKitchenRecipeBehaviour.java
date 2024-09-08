@@ -1,5 +1,8 @@
 package gregtechfoodoption.item;
 
+import com.cleanroommc.modularui.factory.HandGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.items.gui.ItemUIFactory;
@@ -114,5 +117,10 @@ public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour
         if (finalItem != null && !finalItem.isEmpty()) {
             lines.add(I18n.format("gregtechfoodoption.kitchen_recipe.final_result", finalItem.getDisplayName()));
         }
+    }
+
+    @Override
+    public ModularPanel buildUI(HandGuiData data, PanelSyncManager syncManager) {
+        return null;
     }
 }

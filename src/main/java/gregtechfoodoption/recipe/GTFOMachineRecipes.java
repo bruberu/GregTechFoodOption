@@ -20,7 +20,6 @@ import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.machines.GTFOTileEntities;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.common.Loader;
 
@@ -99,7 +98,7 @@ public class GTFOMachineRecipes {
                 "dSG", "PAR", "fSG",
                 'S', new UnificationEntry(screw, Steel),
                 'P', GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.REINFORCED_ADOBE_BRICKS),
-                'R', new UnificationEntry(pipeSmallFluid, Bronze),
+                'R', new UnificationEntry(pipeSmall, Bronze),
                 'G', new UnificationEntry(gear, Invar),
                 'A', GTFOTileEntities.BAKING_OVEN.getStackForm());
 
@@ -140,14 +139,14 @@ public class GTFOMachineRecipes {
 
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(200)
                 .input(plate, Iron)
-                .input(pipeTinyFluid, Steel)
+                .input(pipeTiny, Steel)
                 .inputs(MetaItems.FLUID_FILTER.getStackForm())
                 .fluidInputs(Tin.getFluid(L))
                 .outputs(GTFOMetaItem.SPRINKLER_COVER.getStackForm())
                 .buildAndRegister();
         ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(200)
                 .input(plate, Iron)
-                .input(pipeTinyFluid, Steel)
+                .input(pipeTiny, Steel)
                 .inputs(MetaItems.FLUID_FILTER.getStackForm())
                 .fluidInputs(SolderingAlloy.getFluid(L / 2))
                 .outputs(GTFOMetaItem.SPRINKLER_COVER.getStackForm())

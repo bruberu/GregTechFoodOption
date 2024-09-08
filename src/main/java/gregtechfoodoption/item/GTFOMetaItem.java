@@ -1,5 +1,9 @@
 package gregtechfoodoption.item;
 
+import com.cleanroommc.modularui.factory.HandGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import gregtech.api.items.gui.ItemUIFactory;
 import gregtech.api.items.metaitem.FoodUseManager;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
@@ -37,7 +41,7 @@ import static net.minecraft.potion.Potion.getPotionById;
 
 
 @Optional.Interface(modid = GTFOValues.MODID_AP, iface = "squeek.applecore.api.food.IEdible")
-public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> implements IEdible {
+public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> implements IEdible, ItemUIFactory {
     //foods
     public static MetaItem<?>.MetaValueItem POPCORN_BAG;
     public static MetaItem<?>.MetaValueItem PAPER_BAG;
@@ -1273,6 +1277,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
             return this.getItem(stack).hasEnchantmentSheen();
         }
         return false;
+    }
+
+    @Override
+    public ModularPanel buildUI(HandGuiData data, PanelSyncManager syncManager) {
+        return null;
     }
 
     public class GTFOMetaValueItem extends MetaItem<?>.MetaValueItem {

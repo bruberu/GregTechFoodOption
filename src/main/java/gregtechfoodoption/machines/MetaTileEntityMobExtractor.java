@@ -3,7 +3,6 @@ package gregtechfoodoption.machines;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.RecipeLogicEnergy;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
@@ -20,6 +19,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -93,7 +93,7 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
         }
 
         @Override
-        protected boolean setupAndConsumeRecipeInputs(Recipe recipe, IItemHandlerModifiable importInventory) {
+        protected @Nullable Recipe setupAndConsumeRecipeInputs(Recipe recipe, IItemHandlerModifiable importInventory) {
             ((MetaTileEntityMobExtractor) metaTileEntity).damageEntity(recipe);
             return super.setupAndConsumeRecipeInputs(recipe, importInventory);
         }

@@ -3,6 +3,9 @@ package gregtechfoodoption.machines.multiblock;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
+import com.cleanroommc.modularui.factory.PosGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import gregtech.api.capability.GregtechTileCapabilities;
 import gregtech.api.capability.IControllable;
 import gregtech.api.capability.impl.MultiblockRecipeLogic;
@@ -19,6 +22,8 @@ import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.pattern.PatternMatchContext;
 import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.logic.OCParams;
+import gregtech.api.recipes.logic.OCResult;
 import gregtech.api.util.RelativeDirection;
 import gregtech.api.util.TextComponentUtil;
 import gregtech.client.renderer.ICubeRenderer;
@@ -352,6 +357,11 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         hoverList.add(new TextComponentTranslation("gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1", temp));
     }
 
+    @Override
+    public ModularPanel buildUI(PosGuiData data, PanelSyncManager syncManager) {
+        return null;
+    }
+
     private class ElectricBakingOvenLogic extends MultiblockRecipeLogic {
         public ElectricBakingOvenLogic(RecipeMapMultiblockController tileEntity) {
             super(tileEntity);
@@ -363,12 +373,13 @@ public class MetaTileEntityElectricBakingOven extends RecipeMapMultiblockControl
         }
 
         @Override
-        protected int[] calculateOverclock(Recipe recipe) {
-            return new int[]{0, recipe.getDuration()};
+        protected void performOverclocking(@NotNull Recipe recipe, @NotNull OCParams ocParams, @NotNull OCResult ocResult) {
+            super.performOverclocking(recipe, ocParams, ocResult);
+            ocResult.setEut(0);
         }
 
         @Override
-        public int getRecipeEUt() {
+        public long getRecipeEUt() {
             return temperatureEnergyCost(temp, size);
         }
 

@@ -1,5 +1,8 @@
 package gregtechfoodoption.machines.multiblock;
 
+import com.cleanroommc.modularui.factory.PosGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import gregtech.api.GTValues;
 import gregtech.api.capability.impl.SteamMultiWorkable;
 import gregtech.api.gui.resources.TextureArea;
@@ -11,6 +14,8 @@ import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.logic.OCParams;
+import gregtech.api.recipes.logic.OCResult;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.ConfigHolder;
 import gregtech.common.blocks.BlockGlassCasing;
@@ -70,6 +75,11 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
         return new MetaTileEntitySteamBakingOven(metaTileEntityId, getRecipeMap(), CONVERSION_RATE);
     }
 
+    @Override
+    public ModularPanel buildUI(PosGuiData data, PanelSyncManager syncManager) {
+        return null;
+    }
+
     public static class SteamBakingOvenWorkable extends SteamMultiWorkable {
 
         protected int recipeSteamT;
@@ -108,8 +118,9 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
         }
 
         @Override
-        protected int[] calculateOverclock(Recipe recipe) {
-            return new int[]{0, recipe.getDuration() * 4};
+        protected void performOverclocking(@NotNull Recipe recipe, @NotNull OCParams ocParams, @NotNull OCResult ocResult) {
+            super.performOverclocking(recipe, ocParams, ocResult);
+            ocResult.setDuration(ocResult.duration() * 4);
         }
 
         protected boolean drawEnergy(int recipeEUt, boolean simulate) {

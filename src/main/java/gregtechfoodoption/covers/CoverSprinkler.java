@@ -13,6 +13,9 @@ import gregtech.api.cover.CoverWithUI;
 import gregtech.api.cover.CoverableView;
 import gregtech.api.gui.ModularUI;
 import gregtech.api.unification.material.Material;
+import gregtech.client.renderer.pipe.cover.CoverRenderer;
+import gregtech.client.renderer.pipe.cover.CoverRendererBuilder;
+import gregtech.client.renderer.texture.Textures;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.client.particle.GTFOSprinkle;
@@ -28,6 +31,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fluids.FluidStack;
@@ -41,7 +45,6 @@ import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_DATA;
 import static net.minecraft.block.BlockFarmland.MOISTURE;
 
 public class CoverSprinkler extends CoverBase implements ITickable {
-    private int tier;
 
     public BlockPos.MutableBlockPos operationPosition;
     private int sprinkleColor;
@@ -53,9 +56,8 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     @SideOnly(Side.CLIENT)
     private GTFOSprinkleMaker sprinkleMaker;
 
-    public CoverSprinkler(CoverDefinition definition, CoverableView coverHolder, EnumFacing attachedSide, int tier) {
+    public CoverSprinkler(CoverDefinition definition, CoverableView coverHolder, EnumFacing attachedSide) {
         super(definition, coverHolder, attachedSide);
-        this.tier = tier;
     }
 
 
@@ -66,7 +68,6 @@ public class CoverSprinkler extends CoverBase implements ITickable {
             sprinkleMaker = new GTFOSprinkleMaker(this.getWorld(), this.getCoverableView().getPos().getX(), this.getCoverableView().getPos().getY(), this.getCoverableView().getPos().getZ(), this);
             Minecraft.getMinecraft().effectRenderer.addEffect(sprinkleMaker);
         }
-        GTFOClientHandler.SPRINKLER_OVERLAY.renderSided(this.getAttachedSide(), plateBox, renderState, pipeline, translation);
     }
 
     public boolean canShowSprinkles() {
@@ -219,13 +220,16 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     }
 
     @Override
-    public EnumActionResult onSoftMalletClick(EntityPlayer playerIn, EnumHand hand, CuboidRayTraceResult hitResult) {
+    public @NotNull EnumActionResult onSoftMalletClick(@NotNull EntityPlayer player, @NotNull EnumHand hand, @NotNull RayTraceResult hitResult) {
         this.showsSprinkles = !this.showsSprinkles;
         if (!this.getWorld().isRemote) {
-            playerIn.sendMessage(new TextComponentTranslation(showsSprinkles ? "gregtechfoodoption.sprinkler.particles.on" : "gregtechfoodoption.sprinkler.particles.off"));
+            player.sendMessage(new TextComponentTranslation(showsSprinkles ? "gregtechfoodoption.sprinkler.particles.on" : "gregtechfoodoption.sprinkler.particles.off"));
         }
         return EnumActionResult.SUCCESS;
     }
 
-
+    @Override
+    protected CoverRenderer buildRenderer() {
+        return new CoverRendererBuilder(GTFOClientHandler.SPRINKLER_OVERLAY).setPlateQuads(GTValues.LV).build();
+    }
 }

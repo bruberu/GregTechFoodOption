@@ -8,7 +8,6 @@ import static gregtech.common.covers.CoverBehaviors.registerBehavior;
 
 public class GTFOCoverBehaviors {
     public static void init() {
-        registerBehavior(new ResourceLocation(GTFOValues.MODID, "sprinkler"), GTFOMetaItem.SPRINKLER_COVER, (def, tile, side) ->
-                new CoverSprinkler(def, tile, side, 1));
+        registerBehavior(new ResourceLocation(GTFOValues.MODID, "sprinkler"), GTFOMetaItem.SPRINKLER_COVER, CoverSprinkler::new);
     }
 }

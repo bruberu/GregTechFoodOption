@@ -4,14 +4,16 @@ import gregtech.api.gui.GuiTextures;
 import gregtech.api.gui.widgets.ProgressWidget;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMap;
+import gregtech.api.recipes.RecipeMapBuilder;
 import gregtech.api.recipes.builders.SimpleRecipeBuilder;
 import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.builder.BakingOvenRecipeBuilder;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
 import gregtechfoodoption.recipe.builder.MobProximityRecipeBuilder;
-import gregtechfoodoption.recipe.maps.ElectricBakingOvenRecipeMap;
+import net.minecraft.util.ResourceLocation;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenProperty;
 
@@ -19,46 +21,67 @@ import stanhebben.zenscript.annotations.ZenProperty;
 
 public class GTFORecipeMaps {
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> SLICER_RECIPES = new RecipeMap<>("slicer",
-            2, 2, 1, 1, new SimpleRecipeBuilder(), false)
-            .setSound(GTSoundEvents.CUT)
-            .setSlotOverlay(false, false, false, GTFOGuiTextures.SLICER_INPUT_OVERLAY)
-            .setSlotOverlay(false, false, true, GTFOGuiTextures.SLICER_CUTTER_OVERLAY)
-            .setSlotOverlay(true, false, false, GTFOGuiTextures.SLICER_OUTPUT_OVERLAY)
-            .setSlotOverlay(true, false, true, GuiTextures.DUST_OVERLAY)
-            .setProgressBar(GTFOGuiTextures.PROGRESS_BAR_SLICER, ProgressWidget.MoveType.HORIZONTAL);
+    public static final RecipeMap<SimpleRecipeBuilder> SLICER_RECIPES = new RecipeMapBuilder<>("slicer", new SimpleRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(2)
+            .fluidInputs(1)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GTFOGuiTextures.SLICER_INPUT_OVERLAY, false, false)
+            .itemSlotOverlay(GTFOGuiTextures.SLICER_CUTTER_OVERLAY, false, true)
+            .itemSlotOverlay(GTFOGuiTextures.SLICER_OUTPUT_OVERLAY, true, false)
+            .itemSlotOverlay(GuiTextures.DUST_OVERLAY, true, true)
+            .progressBar(GTFOGuiTextures.PROGRESS_BAR_SLICER, ProgressWidget.MoveType.HORIZONTAL)
+            .build()
+            .setSound(GTSoundEvents.CUT);
 
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> CUISINE_ASSEMBLER_RECIPES = new RecipeMap<>("cuisine_assembler",
-            6, 2, 3, 1, new SimpleRecipeBuilder(), false)
-            .setSound(GTSoundEvents.ASSEMBLER)
-            .setSlotOverlay(false, false, true, GuiTextures.INT_CIRCUIT_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
+    public static final RecipeMap<SimpleRecipeBuilder> CUISINE_ASSEMBLER_RECIPES = new RecipeMapBuilder<>("cuisine_assembler", new SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(2)
+            .fluidInputs(3)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
+            .build()
+            .setSound(GTSoundEvents.ASSEMBLER);
 
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> MICROWAVE_RECIPES = new RecipeMap<>("microwave",
-            1, 1, 0, 0, new SimpleRecipeBuilder(), false)
-            .setSound(GTSoundEvents.ARC)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
+    public static final RecipeMap<SimpleRecipeBuilder> MICROWAVE_RECIPES = new RecipeMapBuilder<>("microwave", new SimpleRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .fluidInputs(0)
+            .fluidOutputs(0)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
+            .build()
+            .setSound(GTSoundEvents.ARC);
 
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> MULTICOOKER_RECIPES = new RecipeMap<>("multicooker",
-            6, 3, 3, 2, new SimpleRecipeBuilder(), false)
-            .setSlotOverlay(false, true, GuiTextures.HEATING_OVERLAY_1)
-            .setSound(GTSoundEvents.MIXER)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL);
-
+    public static final RecipeMap<SimpleRecipeBuilder> MULTICOOKER_RECIPES = new RecipeMapBuilder<>("multicooker", new SimpleRecipeBuilder())
+            .itemInputs(6)
+            .itemOutputs(3)
+            .fluidInputs(3)
+            .fluidOutputs(2)
+            .itemSlotOverlay(GuiTextures.HEATING_OVERLAY_1, false, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW, ProgressWidget.MoveType.HORIZONTAL)
+            .build()
+            .setSound(GTSoundEvents.MIXER);
 
     @ZenProperty
-    public static final ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder> ELECTRIC_BAKING_OVEN_RECIPES = (ElectricBakingOvenRecipeMap<ElectricBakingOvenRecipeBuilder>) new ElectricBakingOvenRecipeMap<>("electric_baking_oven", new ElectricBakingOvenRecipeBuilder())
+    public static final RecipeMap<ElectricBakingOvenRecipeBuilder> ELECTRIC_BAKING_OVEN_RECIPES = new RecipeMapBuilder<>("electric_baking_oven", new ElectricBakingOvenRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .itemSlotOverlay(GuiTextures.FURNACE_OVERLAY_1, false, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL)
+            .build()
+            .setSound(GTSoundEvents.FURNACE);
+
+    @ZenProperty
+    public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMapBuilder<>("baking_oven", new BakingOvenRecipeBuilder())
+            .itemInputs(2)
+            .itemOutputs(1)
+            .build()
             .setSound(GTSoundEvents.FURNACE)
-            .setSlotOverlay(false, false, true, GuiTextures.FURNACE_OVERLAY_1)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_ARROW_MULTIPLE, ProgressWidget.MoveType.HORIZONTAL);
-
-    @ZenProperty
-    public static final RecipeMap<BakingOvenRecipeBuilder> BAKING_OVEN_RECIPES = new RecipeMap<>("baking_oven", 2, 1, 0, 0, new BakingOvenRecipeBuilder(), false)
-            .setSound(GTSoundEvents.FURNACE)
-            .onRecipeBuild(recipeBuilder -> {
+            .onRecipeBuild(new ResourceLocation(GTFOValues.MODID, "baking_oven"), recipeBuilder -> {
                 if (recipeBuilder.getTemperature() != -1) {
                     ELECTRIC_BAKING_OVEN_RECIPES.recipeBuilder().setTemp(recipeBuilder.getTemperature())
                             .duration(recipeBuilder.getDuration() / 4)
@@ -72,12 +95,21 @@ public class GTFORecipeMaps {
             });
 
     @ZenProperty
-    public static final RecipeMap<MobProximityRecipeBuilder> MOB_EXTRACTOR_RECIPES = new RecipeMap<>("mob_extractor", 1, 1, 0, 1, new MobProximityRecipeBuilder(), false)
-            .setSlotOverlay(false, false, GuiTextures.INT_CIRCUIT_OVERLAY)
-            .setProgressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressWidget.MoveType.HORIZONTAL)
+    public static final RecipeMap<MobProximityRecipeBuilder> MOB_EXTRACTOR_RECIPES = new RecipeMapBuilder<>("mob_extractor", new MobProximityRecipeBuilder())
+            .itemInputs(1)
+            .itemOutputs(1)
+            .fluidOutputs(1)
+            .itemSlotOverlay(GuiTextures.INT_CIRCUIT_OVERLAY, false, true)
+            .progressBar(GuiTextures.PROGRESS_BAR_EXTRACT, ProgressWidget.MoveType.HORIZONTAL)
+            .build()
             .setSound(GTSoundEvents.COMPRESSOR);
 
     @ZenProperty
-    public static final RecipeMap<SimpleRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMap<>("greenhouse", 4, 4, 1, 1, new SimpleRecipeBuilder(), false)
+    public static final RecipeMap<SimpleRecipeBuilder> GREENHOUSE_RECIPES = new RecipeMapBuilder<>("greenhouse", new SimpleRecipeBuilder())
+            .itemInputs(4)
+            .itemOutputs(4)
+            .fluidInputs(1)
+            .fluidOutputs(1)
+            .build()
             .setSound(GTSoundEvents.COOLING);
 }
