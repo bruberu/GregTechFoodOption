@@ -5,6 +5,7 @@ import gregtechfoodoption.entity.EntityItalianBuffalo;
 import net.minecraft.entity.passive.*;
 import net.minecraft.util.ResourceLocation;
 
+import static gregtech.api.unification.material.Materials.Glue;
 import static gregtech.api.unification.material.Materials.Milk;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.MOB_EXTRACTOR_RECIPES;
@@ -80,6 +81,15 @@ public class MobExtractionChain {
                 .duration(20)
                 .fluidOutputs(Blood.getFluid(200))
                 .causeDamage(1.5f)
+                .buildAndRegister();
+
+        MOB_EXTRACTOR_RECIPES.recipeBuilder()
+                .circuitMeta(10)
+                .mob(EntityHorse.class)
+                .EUt(24)
+                .duration(80)
+                .fluidOutputs(Glue.getFluid(100))
+                .causeDamage(1f)
                 .buildAndRegister();
     }
 }
