@@ -10,12 +10,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(value = RenderManager.class, priority = 500, remap = false)
 public class RenderManagerMixin {
-    @Inject(method = "renderEntity", at = @At("HEAD"),
-            locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
+    @Inject(method = "renderEntity", at = @At("HEAD"), cancellable = true)
     public void removePlayerRender(Entity entityIn, double x, double y, double z, float yaw, float partialTicks, boolean mojangBrainFart, CallbackInfo ci) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         if (player != null && player.isPotionActive(AntiSchizoPotion.INSTANCE) && entityIn instanceof EntityPig && !entityIn.isEntityEqual(player)) {
