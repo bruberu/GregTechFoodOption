@@ -771,7 +771,7 @@ public class GTFOMaterialHandler {
             .build();
     public static final Material RecrystalizedFentanyl = new Material.Builder(21904, gtfoId("RecrystalizedFentanyl")).dust()
             .color(0xFFFFFF).iconSet(MaterialIconSet.SHINY)
-            .components(Carbon, 4, Hydrogen, 2, Oxygen, 3)
+            .components(Carbon, 22, Hydrogen, 28, Oxygen, 1, Nitrogen, 2)
             .build();
 
     public static void onMaterialsInit() {

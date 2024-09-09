@@ -32,6 +32,7 @@ public class FentChain {
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(Benzene.getFluid(1000))
                 .fluidInputs(Bromine.getFluid(1000))
+                .notConsumable(OrePrefix.dust, Aluminium)
                 .fluidOutputs(BromoBenzene.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
