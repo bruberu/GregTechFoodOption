@@ -72,7 +72,7 @@ public class CommonProxy {
         MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
 
         LacingEntry.LACING_REGISTRY.register(0, "cyanide", new LacingEntry(GTFOMaterialHandler.SodiumCyanide.getItemStack(),
-                new PotionEffect(CyanidePoisoningPotion.INSTANCE, 500, 0),
+                new PotionEffect(CyanidePoisoningPotion.INSTANCE, 1200, 0),
                 "5dkcap/2/4/"));
         LacingEntry.LACING_REGISTRY.register(1, "antischizo", new LacingEntry(GTFOMaterialHandler.LithiumCarbonate.getItemStack(),
                 new PotionEffect(AntiSchizoPotion.INSTANCE, 1000, 0),
