@@ -28,10 +28,11 @@ public class CyanidePoisoningPotion extends GTFOPotion {
     public void performEffect(EntityLivingBase entity, int amplifier) {
         int phase = entity.getActivePotionEffect(this).getDuration();
 
-        if (phase == 400) {
+        if (phase == 1200) {
             if (entity.world.isRemote)
                 entity.sendMessage(new TextComponentTranslation("gregtechfoodoption.cyanide.1"));
-            entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1000, 9));
+                entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1000, 9));
+                entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 1000, 3));
         } else if (phase == 300) {
             if (entity.world.isRemote)
                 entity.sendMessage(new TextComponentTranslation("gregtechfoodoption.cyanide.2"));
@@ -39,7 +40,7 @@ public class CyanidePoisoningPotion extends GTFOPotion {
             entity.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 1000, 0));
         } else if (phase < 200 && phase % 5 == 0) {
             entity.attackEntityFrom(GTFODamageSources.CYANIDE, (float) Math.pow((double) (200 - phase) / 80, 2));
-            entity.hurtResistantTime = 0; // No saving you :)
+            entity.hurtResistantTime = 0; // No saving you :) idk they might you dont know - lrdmtns
         } else if (phase < 100) {
             if (entity.world.isRemote && entity.isEntityAlive())
                 entity.sendMessage(new TextComponentTranslation("gregtechfoodoption.cyanide.3"));
