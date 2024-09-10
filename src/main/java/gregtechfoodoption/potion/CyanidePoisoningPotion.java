@@ -31,8 +31,8 @@ public class CyanidePoisoningPotion extends GTFOPotion {
         if (phase == 1200) {
             if (entity.world.isRemote)
                 entity.sendMessage(new TextComponentTranslation("gregtechfoodoption.cyanide.1"));
-                entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1000, 9));
-                entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 1000, 3));
+            entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 1000, 9));
+            entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 1000, 3));
         } else if (phase == 300) {
             if (entity.world.isRemote)
                 entity.sendMessage(new TextComponentTranslation("gregtechfoodoption.cyanide.2"));
