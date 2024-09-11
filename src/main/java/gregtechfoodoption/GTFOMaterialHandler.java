@@ -512,9 +512,6 @@ public class GTFOMaterialHandler {
     public static final Material EnergizedCoffee = fluidBuilderFood(21991, "energized_coffee", 368)
             .color(0x695934)
             .build();
-    public static final Material EthyleneOxide = fluidBuilder(21992, "Ethlylene_oxide")
-            .color(0xFFFFFF)
-            .build();
     public static final Material DiethylEther = fluidBuilder(21993, "Diethyl_Ether")
             .color(0xFFFFFF)
             .build();
@@ -533,13 +530,7 @@ public class GTFOMaterialHandler {
     public static final Material onefourButanediol = fluidBuilder(21998, "onefourButanediol")
             .color(0xFFFFFF)
             .build();
-    public static final Material gammabutyrolacetone = fluidBuilder(21999, "gammabutyrolacetone")
-            .color(0xFFFFFF)
-            .build();
     public static final Material Methylamine = fluidBuilder(22000, "Methylamine")
-            .color(0xFFFFFF)
-            .build();
-    public static final Material NphenethylFourpiperidone = fluidBuilder(22001, "NphenethylFourpiperidone")
             .color(0xFFFFFF)
             .build();
     public static final Material yButyrolactone = fluidBuilder(22002, "γButyrolactone")
@@ -631,6 +622,9 @@ public class GTFOMaterialHandler {
             .color(0xFFFFFF)
             .build();
     public static final Material UnrefinedFentanyl = fluidBuilder(22032, "UnrefinedFentanyl")
+            .color(0xFFFFFF)
+            .build();
+    public static final Material Nphenethylfourpiperidoneintermediate = fluidBuilder(22033, "Nphenethylfourpiperidoneintermediate")
             .color(0xFFFFFF)
             .build();
 
@@ -772,6 +766,10 @@ public class GTFOMaterialHandler {
     public static final Material RecrystalizedFentanyl = new Material.Builder(21904, gtfoId("RecrystalizedFentanyl")).dust()
             .color(0xFFFFFF).iconSet(MaterialIconSet.SHINY)
             .components(Carbon, 22, Hydrogen, 28, Oxygen, 1, Nitrogen, 2)
+            .build();
+    public static final Material sodiumborohydride = new Material.Builder(21905, gtfoId("sodiumborohydride")).dust()
+            .color(0xFFFFFF).iconSet(MaterialIconSet.SHINY)
+            .components(Sodium, 1, Hydrogen, 4, Boron, 1)
             .build();
 
     public static void onMaterialsInit() {

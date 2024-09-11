@@ -19,11 +19,6 @@ import static gregtechfoodoption.item.GTFOMetaItem.*;
 public class FentChain {
     public static void init() {
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .notConsumable(OrePrefix.dust, Silver)
-                .fluidInputs(Oxygen.getFluid(1000), Ethylene.getFluid(1000))
-                .fluidOutputs(EthyleneOxide.getFluid(144))
-                .buildAndRegister();
-        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .input(OrePrefix.dust, Aluminium)
                 .fluidInputs(Ethanol.getFluid(2000))
                 .fluidOutputs(DiethylEther.getFluid(1000))
@@ -71,7 +66,7 @@ public class FentChain {
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(onefourButanediol.getFluid(144))
                 .notConsumable(OrePrefix.wireGtSingle, Copper)
-                .fluidOutputs(gammabutyrolacetone.getFluid(144))
+                .fluidOutputs(yButyrolactone.getFluid(144))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(Ammonia.getFluid(144))
@@ -173,10 +168,22 @@ public class FentChain {
                 .fluidOutputs(Nphenethylfourpiperidone.getFluid(100))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(Nphenethylfourpiperidone.getFluid(1000))
+                .fluidInputs(phenethylamine.getFluid(1000))
                 .fluidInputs(fourpiperidone.getFluid(1000))
                 .fluidInputs(Ethanol.getFluid(1000))
-                .fluidOutputs(crudeNphenethylfourpiperidone.getFluid(1000))
+                .fluidOutputs(Nphenethylfourpiperidoneintermediate.getFluid(1000))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .fluidInputs(Nphenethylfourpiperidoneintermediate.getFluid(1000))
+                .input(dust, sodiumborohydride)
+                .fluidInputs(Ethanol.getFluid(1000))
+                .fluidOutputs(Nphenethylfourpiperidone.getFluid(1000))
+                .buildAndRegister();
+        CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
+                .input(dust, Sodium, 16)
+                .input(dust, Borax)
+                .fluidInputs(Hydrogen.getFluid(16000))
+                .output(dust, sodiumborohydride, 4)
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(Butene.getFluid(1000))
@@ -214,7 +221,7 @@ public class FentChain {
                 .fluidOutputs(Nchlorosuccinimide.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(Nchlorosuccinimide.getFluid(1000))
+                .fluidInputs(threefourDichlorobenzophenone.getFluid(1000))
                 .fluidInputs(Nphenethylfourpiperidone.getFluid(1000))
                 .notConsumable(dust, Aluminium)
                 .fluidOutputs(ThreefourChlorobenzoylfourfourchlorophenylonephenethylpiperidinfourol.getFluid(1000))
@@ -225,7 +232,7 @@ public class FentChain {
                 .fluidOutputs(RNthreeaminopropylNonethreebenzylsevenchlorofouroxofourHchromentwoyltwomethylpropylfourmethylbenzamidehydrochloride.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
-                .fluidInputs(gammabutyrolacetone.getFluid(1000))
+                .fluidInputs(yButyrolactone.getFluid(1000))
                 .fluidInputs(Methylamine.getFluid(1000))
                 .fluidOutputs(crudeNmethyltwopyrrolidinone.getFluid(1000))
                 .buildAndRegister();
