@@ -101,5 +101,14 @@ public class CapletChain {
                 .inputs(CAPLET_CAP.getStackForm())
                 .outputs(VIBRANT_CAPLET.getStackForm())
                 .buildAndRegister();
+        /*
+        // Fent
+        CANNER_RECIPES.recipeBuilder().EUt(30).duration(200)
+                .inputs(CAPLET_BODY.getStackForm())
+                .input(dust, RecrystalizedFentanyl, 1)
+                .inputs(CAPLET_CAP.getStackForm())
+                .outputs(FENT_CAPLET.getStackForm())
+                .buildAndRegister();
+         */
     }
 }

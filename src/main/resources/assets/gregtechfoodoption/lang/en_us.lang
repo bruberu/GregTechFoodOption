@@ -689,6 +689,7 @@ death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
 death.attack.cyanide=%s smelled some almonds
 death.attack.lung_cancer=%s died of lung cancer
+death.attack.asphyxiation=%s Was a victim of the opioid epidemic...
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
 
 # Farmer
@@ -882,6 +883,7 @@ gregtechfoodoption.fluid.lacing=§2Can be used to lace items with 100 mB in the 
 gregtechfoodoption.cyanide.1=§cYou feel really nauseous...
 gregtechfoodoption.cyanide.2=§cYou can't breathe anymore...
 gregtechfoodoption.cyanide.3=§cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+gregtechfoodoption.asphyxiation.1=§l§4Officer I can't breathe
 metaitem.food.gel_caplet.name=Gel Caplet
 metaitem.food.gel_caplet.tooltip=For performing Placebo-controlled Tests on Cyanide Poisoning
 metaitem.component.caplet_cap.name=Caplet Cap
@@ -1109,6 +1111,7 @@ gregtechfoodoption.lacing.info.2=Lasts %s ticks
 gregtechfoodoption.potion.cyanidepoisoning=Cyanide Poisoning
 gregtechfoodoption.potion.antischizo=Schizophrenia Meds
 gregtechfoodoption.potion.lungcancer=Lung Cancer
+gregtechfoodoption.potion.asphyxiation=Asphyxiation
 eating.output.name=Eating Recipe
 
 metaitem.component.pelmeni_uncooked.name=Uncooked Pelmeni
@@ -1230,3 +1233,6 @@ gregtech.material.gtfo_antaf=Antaf
 gregtech.material.gtfo_vibrant_extract=Vibrant Extract
 gregtech.material.gtfo_apricot_extract=Apricot Extract
 gregtech.material.gtfo_grape_extract=Grape Extract
+
+//Fent shit
+gregtech.material.recrystalizedfentanyl=Fentanyl

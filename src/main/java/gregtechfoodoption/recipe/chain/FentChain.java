@@ -25,9 +25,9 @@ public class FentChain {
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .input(OrePrefix.dust, Aluminium)
-                .fluidInputs(Ethylene.getFluid(288))
-                .fluidOutputs(DiethylEther.getFluid(144))
-                .fluidOutputs(Water.getFluid(144))
+                .fluidInputs(Ethanol.getFluid(2000))
+                .fluidOutputs(DiethylEther.getFluid(1000))
+                .fluidOutputs(Water.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(Benzene.getFluid(1000))
@@ -58,10 +58,10 @@ public class FentChain {
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .notConsumable(OrePrefix.dust, Silver)
-                .fluidInputs(Methanol.getFluid(288))
-                .fluidInputs(Oxygen.getFluid(288))
-                .fluidOutputs(Formaldehyde.getFluid(288))
-                .fluidOutputs(Water.getFluid(288))
+                .fluidInputs(Methanol.getFluid(1000))
+                .fluidInputs(Oxygen.getFluid(1000))
+                .fluidOutputs(Formaldehyde.getFluid(1000))
+                .fluidOutputs(Water.getFluid(1000))
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(onefourButynediol.getFluid(144))
