@@ -48,7 +48,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtechfoodoption.GTFOMaterialHandler.RecrystalizedFentanyl;
+import static gregtechfoodoption.GTFOMaterialHandler.RecrystalizedLurdmanine;
 import static gregtechfoodoption.block.GTFOCrop.CROP_BLOCKS;
 
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
@@ -82,7 +82,7 @@ public class CommonProxy {
         LacingEntry.LACING_REGISTRY.register(2, "lungcancer", new LacingEntry(OreDictUnifier.get(dust, Materials.Asbestos),
                 new PotionEffect(LungCancerPotion.INSTANCE, 99999999, 0),
                 "17aaqe0i1q/1/2/3/7/10/"));
-        LacingEntry.LACING_REGISTRY.register(3, "asphyxiation", new LacingEntry(OreDictUnifier.get(dust, RecrystalizedFentanyl),
+        LacingEntry.LACING_REGISTRY.register(3, "asphyxiation", new LacingEntry(OreDictUnifier.get(dust, RecrystalizedLurdmanine),
                 new PotionEffect(asphyxiationpotion.INSTANCE, 100, 0),
                 "fsdfdss/1/"));
 

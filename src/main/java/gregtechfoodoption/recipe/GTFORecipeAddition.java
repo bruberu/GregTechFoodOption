@@ -39,7 +39,7 @@ public class GTFORecipeAddition {
         RussianChain.init();
         ChorusChain.init();
         SorbetChain.init();
-        FentChain.init();
+        LurdmanineChain.init();
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
