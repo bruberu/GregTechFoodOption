@@ -434,7 +434,7 @@ gregtechfoodoption.machine.cuisine_assembler.uxv.name=High-Tech Cuisine Assemble
 gregtechfoodoption.machine.cuisine_assembler.opv.name=Legendary Cuisine Assembler
 gregtechfoodoption.machine.cuisine_assembler.lv.tooltip=Industrial Sandwich Maker
 gregtechfoodoption.machine.cuisine_assembler.mv.tooltip=Industrial Sandwich Maker
-gregtechfoodoption.machine.cuisine_assembler.hv.tooltip=Industrial Sandwich Maker
+gregtechfoodoption.machine.cuisine_assembler.hv.tooltip=Planetme weeps
 gregtechfoodoption.machine.cuisine_assembler.ev.tooltip=Industrial Sandwich Maker
 gregtechfoodoption.machine.cuisine_assembler.iv.tooltip=Chef-Bot 3000
 gregtechfoodoption.machine.cuisine_assembler.luv.tooltip=Chef-Bot 5000
@@ -528,6 +528,10 @@ gregtechfoodoption.machine.microwave.uiv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.uxv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.opv.tooltip=Insert Ingot for free Doge Coin
 
+gregtechfoodoption.machine.freezedryer.lv.name=Basic Freeze Dryer
+gregtechfoodoption.machine.freezedryer.mv.name=Advanced Freeze Dryer
+gregtechfoodoption.machine.freezedryer.hv.name=Advanced Freeze Dryer II
+gregtechfoodoption.machine.freezedryer.ev.name=Advanced Freeze Dryer III
 
 recipemap.microwave.name=Microwave
 metaitem.food.mushroom_stew.hot.name=Hot Mushroom Stew

@@ -27,6 +27,8 @@ public class GTFOTileEntities {
     public static GTFOSimpleMachineMetaTileEntity[] CUISINE_ASSEMBLER = new GTFOSimpleMachineMetaTileEntity[GTValues.V.length - 1];
     public static MetaTileEntityMicrowave[] MICROWAVE = new MetaTileEntityMicrowave[GTValues.V.length - 1];
     public static GTFOSimpleMachineMetaTileEntity[] MULTICOOKER = new GTFOSimpleMachineMetaTileEntity[GTValues.V.length - 1];
+    public static MetaTileEntityFreezedryer[] FREEZEDRYER = new MetaTileEntityFreezedryer[GTValues.V.length - 1];
+
 
     public static final MetaTileEntityMobAgeSorter[] MOB_AGE_SORTER = new MetaTileEntityMobAgeSorter[4];
     public static final MetaTileEntityMobExterminator[] MOB_EXTERMINATOR = new MetaTileEntityMobExterminator[4];
@@ -101,6 +103,13 @@ public class GTFOTileEntities {
         registerGTFOSimpleMetaTileEntity(MULTICOOKER, 8566, "multicooker", GTFORecipeMaps.MULTICOOKER_RECIPES, GTFOClientHandler.MULTICOOKER_OVERLAY, true, GTFOTileEntities::location, GTUtility.hvCappedTankSizeFunction);
 
         KITCHEN = registerMetaTileEntity(8581, new MetaTileEntityKitchen(location("kitchen")));
+
+        //Freeze Dryer, IDS 8582-8585
+        FREEZEDRYER[1] = registerMetaTileEntity(8582, new MetaTileEntityFreezedryer(location("freezedryer.lv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.FREEZEDRYER_OVERLAY, 1));
+        FREEZEDRYER[2] = registerMetaTileEntity(8583, new MetaTileEntityFreezedryer(location("freezedryer.mv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.FREEZEDRYER_OVERLAY, 2));
+        FREEZEDRYER[3] = registerMetaTileEntity(8584, new MetaTileEntityFreezedryer(location("freezedryer.hv"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.FREEZEDRYER_OVERLAY, 3));
+        FREEZEDRYER[4] = registerMetaTileEntity(8585, new MetaTileEntityFreezedryer(location("freezedryer.ev"), GTFORecipeMaps.MICROWAVE_RECIPES, GTFOClientHandler.FREEZEDRYER_OVERLAY, 4));
+
     }
 
     private static ResourceLocation location(String name) {
