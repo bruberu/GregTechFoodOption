@@ -245,7 +245,7 @@ public class LurdmanineChain {
                 .buildAndRegister();
         CHEMICAL_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .fluidInputs(LurdmaninePrecursorDimer.getFluid(1000))
-                .fluidOutputs(Chloroform.getFluid(100))
+                .fluidInputs(Chloroform.getFluid(100))
                 .fluidOutputs(CrudeLurdmanine.getFluid(1000))
                 .buildAndRegister();
         VACUUM_RECIPES.recipeBuilder().EUt(8).duration(1000)

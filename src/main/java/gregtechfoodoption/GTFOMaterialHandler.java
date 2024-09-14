@@ -632,6 +632,22 @@ public class GTFOMaterialHandler {
     public static final Material NPhenethylIVPiperidoneIntermediate = fluidBuilder(22033, "n_phenethyl_iv_piperidone_intermediate")
             .color(0xE4EEDA)
             .build();
+    public static final Material EmulsifiedYolk = fluidBuilder(22034, "emulsified_yolk")
+            .color(0xFFD700)
+            .build();
+    public static final Material yolkethanol = fluidBuilder(22035, "yolk_ethanol_solution")
+            .color(0xE4EEDA)
+            .build();
+    public static final Material lipidsolvent = fluidBuilder(22036, "lipid_solvent_solution")
+            .color(0xE4EEDA)
+            .build();
+    public static final Material lipidsolution = fluidBuilder(22037, "lipid_solution")
+            .color(0xE4EEDA)
+            .build();
+    public static final Material Cholesterol = fluidBuilder(22038, "cholesterol")
+            .color(0xE4EEDA)
+            .build();
+
 
 
 

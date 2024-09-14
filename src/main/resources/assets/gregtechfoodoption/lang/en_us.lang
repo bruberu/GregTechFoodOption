@@ -1284,6 +1284,14 @@ gregtech.material.gtfo_hot_n_methyl_ii_pyrrolidinone=Hot N-Methyl-2-Pyrrolidinon
 gregtech.material.gtfo_cooled_n_methyl_ii_pyrrolidinone=Cooled N-Methyl-2-Pyrrolidinone
 gregtech.material.gtfo_n_phenethyl_iv_piperidone_intermediate=N-Phenethyl-4-piperidone Intermediate
 
+//Steroids
+gregtech.material.gtfo_emulsified_yolk=Emulsified Yolk
+gregtech.material.gtfo_yolk_ethanol_solution=Yolk Ethanol Solution
+gregtech.material.gtfo_lipid_solvent_solution=Lipid Solvent Solution
+gregtech.material.gtfo_lipid_solution=Lipid Solution
+gregtech.material.gtfo_cholesterol=Cholesterol
+
+
 
 
 

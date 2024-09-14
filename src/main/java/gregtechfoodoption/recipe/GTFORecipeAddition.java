@@ -40,6 +40,7 @@ public class GTFORecipeAddition {
         ChorusChain.init();
         SorbetChain.init();
         LurdmanineChain.init();
+        Cholesterolchain.init();
 
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
