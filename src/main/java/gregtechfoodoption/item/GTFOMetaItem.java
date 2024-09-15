@@ -371,6 +371,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem WHITE_GRAPES;
     public static MetaItem<?>.MetaValueItem WHITE_GRAPE_SEED;
 
+    public static MetaItem<?>.MetaValueItem COTTON;
+    public static MetaItem<?>.MetaValueItem COTTON_SEED;
+
     public static MetaItem<?>.MetaValueItem UNFIRED_PLATE;
     public static MetaItem<?>.MetaValueItem UNFIRED_BOWL;
 
@@ -1178,6 +1181,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         WHITE_GRAPES = addItem(320, "food.white_grapes").addComponents(new GTFOFoodStats(1, 1f).nutrients(0f, 1f, 0f, 0f, 0f));
         WHITE_GRAPE_SEED = addItem(321, "seed.white_grape");
         WHITE_GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_WHITE_GRAPE, WHITE_GRAPE_SEED.getStackForm(), WHITE_GRAPES.getStackForm()));
+        COTTON = addItem(9001, "component.cotton");
+        COTTON_SEED = addItem(9000, "seed.cotton");
+        COTTON_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_COTTON, COTTON_SEED.getStackForm(), COTTON.getStackForm()));
 
 
         // 175-189 left blank for organic circuits
