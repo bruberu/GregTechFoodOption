@@ -647,6 +647,22 @@ public class GTFOMaterialHandler {
     public static final Material Cholesterol = fluidBuilder(22038, "cholesterol")
             .color(0xE4EEDA)
             .build();
+    public static final Material Ozone = fluidBuilder(22039, "ozone")
+            .color(0xE4EEDA)
+            .build();
+    public static final Material Pregnenoloneintermediate = fluidBuilder(22040, "pregnenolone_intermediate")
+            .color(0xE4EEDA)
+            .build();
+    public static final Material Pregnenolone = fluidBuilder(22041, "pregnenolone")
+            .color(0xE4EEDA)
+            .build();
+    public static final Material hydrogenperoxide = fluidBuilder(22042, "hydrogenperoxide")
+            .color(0xE4EEDA)
+            .components(Hydrogen, 2, Oxygen, 2)
+            .build();
+
+
+
 
 
 
@@ -792,6 +808,11 @@ public class GTFOMaterialHandler {
             .color(0xF7F4B9).iconSet(MaterialIconSet.SHINY)
             .components(Sodium, 1, Hydrogen, 4, Boron, 1)
             .build();
+    public static final Material PhthalicAnhydride = new Material.Builder(21906, gtfoId("phthalic_anhydride")).dust()
+            .color(0xF7F4B9).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 8, Hydrogen, 4, Oxygen, 3)
+            .build();
+
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
