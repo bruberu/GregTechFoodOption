@@ -995,6 +995,8 @@ metaitem.component.rice.name=Rice
 metaitem.component.rice.tooltip=Also works as a Seed
 metaitem.component.nutmeg.name=Nutmeg Seeds
 metaitem.seed.white_grape.name=White Grape Seeds
+metaitem.component.cotton.name=Cotton
+metaitem.seed.cotton.name=Cotton Seeds
 metaitem.shape.pasta.blank.name=Blank Pasta Extruder Shape
 metaitem.shape.pasta.tagliatelle.name=Tagliatelle Pasta Extruder Shape
 metaitem.shape.pasta.spaghetti.name=Spaghetti Pasta Extruder Shape
@@ -1108,6 +1110,7 @@ tile.gtfo_crop_artichoke.name=Artichoke
 tile.gtfo_crop_black_pepper.name=Black Pepper
 tile.gtfo_crop_rice.name=Rice
 tile.gtfo_crop_white_grape.name=White Grape
+tile.gtfo_crop_cotton.name=Cotton
 
 lacing.item_list.name=Lacing Recipe
 gregtechfoodoption.lacing.info.1=Applies effect:
