@@ -41,7 +41,9 @@ public class GTFORecipeAddition {
         SorbetChain.init();
         LurdmanineChain.init();
         Cholesterolchain.init();
-
+        Testosteronechain.init();
+        Trenchain.init();
+        Superdrolchain.init();
         if (Loader.isModLoaded(GTFOValues.MODID_GCYS)) {
             PopcornChain.init();
             MineralWaterChain.init();
