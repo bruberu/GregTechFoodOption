@@ -15,6 +15,7 @@ import gregtech.api.metatileentity.multiblock.IMultiblockPart;
 import gregtech.api.metatileentity.multiblock.RecipeMapPrimitiveMultiblockController;
 import gregtech.api.pattern.BlockPattern;
 import gregtech.api.pattern.FactoryBlockPattern;
+import gregtech.api.pattern.TraceabilityPredicate;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtech.common.blocks.MetaBlocks;
 import gregtechfoodoption.block.GTFOBlockCasing;
@@ -27,6 +28,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.ItemStackHandler;
 
+import static gregtech.api.unification.material.Materials.Bronze;
 import static gregtech.api.unification.material.Materials.Iron;
 
 public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockController {
@@ -44,8 +46,9 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
         return GTFOMetaBlocks.GTFO_CASING.getState(GTFOBlockCasing.CasingType.ADOBE_BRICKS);
     }
 
-    protected IBlockState getFrameState() {
-        return MetaBlocks.FRAMES.get(Iron).getBlock(Iron);
+    protected TraceabilityPredicate getFrameState() {
+        return states(MetaBlocks.FRAMES.get(Iron).getBlock(Iron),
+                MetaBlocks.FRAMES.get(Bronze).getBlock(Bronze));
     }
 
     @Override
@@ -79,7 +82,7 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
                 .aisle("XFX", "X#X")
                 .aisle("XYX", "XXX")
                 .where('X', states(getCasingState()))
-                .where('F', states(getFrameState()))
+                .where('F', getFrameState())
                 .where('#', air())
                 .where(' ', any())
                 .where('Y', selfPredicate())

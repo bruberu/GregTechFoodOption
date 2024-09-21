@@ -37,7 +37,7 @@ public class PastaChain {
 
         if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
             MIXER_RECIPES.recipeBuilder().EUt(30).duration(1200)
-                    .inputs(EGG_PASTA_DOUGH.getStackForm())
+                    .input(dust, Wheat, 2)
                     .fluidInputs(GTFOMaterialHandler.Egg.getFluid(400))
                     .fluidInputs(Air.getFluid(600))
                     .circuitMeta(2)
