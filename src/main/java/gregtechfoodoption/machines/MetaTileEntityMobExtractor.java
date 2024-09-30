@@ -48,18 +48,22 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
 
     protected boolean checkRecipe(@Nonnull Recipe recipe) {
         ResourceLocation entityRequired = recipe.getProperty(MobOnTopProperty.getInstance(), null);
-        if (this.nearbyEntities == null || this.getOffsetTimer() % 5 == 0)
+        if (entityRequired == null)
+            return true;
+
+        if (this.attackableTarget == null || this.getOffsetTimer() % 5 == 0) {
             this.nearbyEntities = getEntitiesInProximity();
-        for (Entity entity : nearbyEntities) {
-            if (EntityList.isMatchingName(entity, entityRequired)) {
-                if (entity instanceof EntityLivingBase) // Prepare to cause damage if needed.
-                    attackableTarget = (EntityLivingBase) entity;
-                else
-                    attackableTarget = null;
-                return true;
+            for (Entity entity : nearbyEntities) {
+                if (EntityList.isMatchingName(entity, entityRequired)) {
+                    if (entity instanceof EntityLivingBase) // Prepare to cause damage if needed.
+                        attackableTarget = (EntityLivingBase) entity;
+                    else
+                        attackableTarget = null;
+                    return true;
+                }
             }
         }
-        return false;
+        return attackableTarget != null;
     }
 
     protected List<Entity> getEntitiesInProximity() {
@@ -73,6 +77,9 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
             float damage = recipe.getProperty(CauseDamageProperty.getInstance(), 0f);
             if (damage > 0) {
                 attackableTarget.attackEntityFrom(GTFODamageSources.EXTRACTION, damage);
+                if (attackableTarget.isDead) {
+                    attackableTarget = null;
+                }
             }
         }
     }
