@@ -434,7 +434,7 @@ gregtechfoodoption.machine.cuisine_assembler.uxv.name=High-Tech Cuisine Assemble
 gregtechfoodoption.machine.cuisine_assembler.opv.name=Legendary Cuisine Assembler
 gregtechfoodoption.machine.cuisine_assembler.lv.tooltip=Industrial Sandwich Maker
 gregtechfoodoption.machine.cuisine_assembler.mv.tooltip=Industrial Sandwich Maker
-gregtechfoodoption.machine.cuisine_assembler.hv.tooltip=Industrial Sandwich Maker
+gregtechfoodoption.machine.cuisine_assembler.hv.tooltip=Planetme weeps
 gregtechfoodoption.machine.cuisine_assembler.ev.tooltip=Industrial Sandwich Maker
 gregtechfoodoption.machine.cuisine_assembler.iv.tooltip=Chef-Bot 3000
 gregtechfoodoption.machine.cuisine_assembler.luv.tooltip=Chef-Bot 5000
@@ -528,6 +528,10 @@ gregtechfoodoption.machine.microwave.uiv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.uxv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.opv.tooltip=Insert Ingot for free Doge Coin
 
+gregtechfoodoption.machine.freezedryer.lv.name=Basic Freeze Dryer
+gregtechfoodoption.machine.freezedryer.mv.name=Advanced Freeze Dryer
+gregtechfoodoption.machine.freezedryer.hv.name=Advanced Freeze Dryer II
+gregtechfoodoption.machine.freezedryer.ev.name=Advanced Freeze Dryer III
 
 recipemap.microwave.name=Microwave
 metaitem.food.mushroom_stew.hot.name=Hot Mushroom Stew
@@ -689,6 +693,7 @@ death.attack.extermination=%s was exterminated
 death.attack.extraction=%s's internal organs were harvested
 death.attack.cyanide=%s smelled some almonds
 death.attack.lung_cancer=%s died of lung cancer
+death.attack.asphyxiation=%s Was a victim of the opioid epidemic...
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cThis can easily kill You as well!
 
 # Farmer
@@ -882,6 +887,7 @@ gregtechfoodoption.fluid.lacing=§2Can be used to lace items with 100 mB in the 
 gregtechfoodoption.cyanide.1=§cYou feel really nauseous...
 gregtechfoodoption.cyanide.2=§cYou can't breathe anymore...
 gregtechfoodoption.cyanide.3=§cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+gregtechfoodoption.asphyxiation.1=§4You feel a shortage of Oxygen
 metaitem.food.gel_caplet.name=Gel Caplet
 metaitem.food.gel_caplet.tooltip=For performing Placebo-controlled Tests on Cyanide Poisoning
 metaitem.component.caplet_cap.name=Caplet Cap
@@ -1112,6 +1118,7 @@ gregtechfoodoption.lacing.info.2=Lasts %s ticks
 gregtechfoodoption.potion.cyanidepoisoning=Cyanide Poisoning
 gregtechfoodoption.potion.antischizo=Schizophrenia Meds
 gregtechfoodoption.potion.lungcancer=Lung Cancer
+gregtechfoodoption.potion.asphyxiation=Asphyxiation
 eating.output.name=Eating Recipe
 
 metaitem.component.pelmeni_uncooked.name=Uncooked Pelmeni
@@ -1233,3 +1240,62 @@ gregtech.material.gtfo_antaf=Antaf
 gregtech.material.gtfo_vibrant_extract=Vibrant Extract
 gregtech.material.gtfo_apricot_extract=Apricot Extract
 gregtech.material.gtfo_grape_extract=Grape Extract
+
+// Lurdmanine materials :D
+gregtech.material.recrystalized_lurdmanine=Lurdmanine
+gregtech.material.maleic_anhydride=Maleic Anhydride
+gregtech.material.benzophenone=BenzoPhenone
+gregtech.material.phenylmagnesium_bromide=PhenylMagnesium Bromide
+gregtech.material.sodium_borohydride=Sodium Borohydride
+gregtech.material.gtfo_formaldehyde=Formaldehyde
+gregtech.material.gtfo_ethylene_oxide=Ethylene Oxide
+gregtech.material.gtfo_diethyl_ether=Diethyl Ether
+gregtech.material.gtfo_bromobenzene=Bromobenzene
+gregtech.material.gtfo_acetylene=Acetylene
+gregtech.material.gtfo_crude_lurdmanine=Crude Lurdmanine
+gregtech.material.gtfo_unrefined_lurdmanine=Unrefined Lurdmanine
+gregtech.material.gtfo_lurdmanine_precursor_base=3-(4-Chlorobenzoyl)-4-(4-chlorophenyl)-1-phenethylpiperidin-4-ol
+gregtech.material.gtfo_lurdmanine_precursor_dimer=(R)-N-(3-aminopropyl)-N-(1-(3-benzyl-7-chloro-4-oxo-4H-chromen-2-yl)-2-methylpropyl)-4-methylbenzamide hydrochloride
+gregtech.material.gtfo_i_iv_butynediol=1,4-Butynediol
+gregtech.material.gtfo_i_iv_butanediol=1,4-Butanediol
+gregtech.material.gtfo_methylamine=Methylamine
+gregtech.material.gtfo_n_phenethyl_iv_piperidone=N-Phenethyl-4-Piperidone
+gregtech.material.gtfo_gamma_butyrolactone=γ-Butyrolactone
+gregtech.material.gtfo_ammonium_gamma_butyrolactone=Ammonium γ=Butyrolactone
+gregtech.material.gtfo_cooled_ammonium_gamma_butyrolactone=Cooled Ammonium γ-Butyrolactone
+gregtech.material.gtfo_ii_pyrrolidone=2-Pyrrolidone
+gregtech.material.gtfo_aqueous_ii_pyrrolidone=Aqueous 2-Pyrrolidone
+gregtech.material.gtfo_acidic_aqueous_ii_pyrrolidone=Acidic Aqueous 2-Pyrrolidone
+gregtech.material.gtfo_cooled_acidic_aqueous_ii_pyrrolidone=Cooled Acidic Aqueous 2-Pyrrolidone
+gregtech.material.gtfo_iv_aminobutyric_acid=4-Aminobutyric Acid
+gregtech.material.gtfo_acidic_iv_amino_butyric_acid_solution=Acidic 4-Aminobutyric Acid Solution
+gregtech.material.gtfo_iv_piperidone=4-Piperidone
+gregtech.material.gtfo_benzyl_chloride=Benzyl Chloride
+gregtech.material.gtfo_phenylacetonitrile=Phenylacetonitrile
+gregtech.material.gtfo_dissolved_phenylacetonitrile=Dissolved Phenylacetonitrile
+gregtech.material.gtfo_phenethylamine=Phenethylamine
+gregtech.material.gtfo_crude_n_phenethyl_iv_piperidone=Crude N-Phenethyl-4-piperidone
+gregtech.material.gtfo_succinic_acid=Succinic Acid
+gregtech.material.gtfo_n_chlorosuccinimide=N-Chlorosuccinimide
+gregtech.material.gtfo_iii_iv_dichlorobenzophenone=3-4-Dichlorobenzophenone
+gregtech.material.gtfo_ammonium_succinate=Ammonium Succinate
+gregtech.material.gtfo_succinimide=Succinimide
+gregtech.material.gtfo_chlorinated_succinimide=Chlorinated Succinimide
+gregtech.material.gtfo_n_methyl_ii_pyrrolidinone=N-Methyl-2-Pyrrolidinone
+gregtech.material.gtfo_crude_n_methyl_ii_pyrrolidinone=Crude N-Methyl-2-pyrrolidinone
+gregtech.material.gtfo_hot_n_methyl_ii_pyrrolidinone=Hot N-Methyl-2-Pyrrolidinone
+gregtech.material.gtfo_cooled_n_methyl_ii_pyrrolidinone=Cooled N-Methyl-2-Pyrrolidinone
+gregtech.material.gtfo_n_phenethyl_iv_piperidone_intermediate=N-Phenethyl-4-piperidone Intermediate
+
+//Steroids
+gregtech.material.gtfo_emulsified_yolk=Emulsified Yolk
+gregtech.material.gtfo_yolk_ethanol_solution=Yolk Ethanol Solution
+gregtech.material.gtfo_lipid_solvent_solution=Lipid Solvent Solution
+gregtech.material.gtfo_lipid_solution=Lipid Solution
+gregtech.material.gtfo_cholesterol=Cholesterol
+
+
+
+
+
+

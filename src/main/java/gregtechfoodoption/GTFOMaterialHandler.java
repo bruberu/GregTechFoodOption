@@ -5,11 +5,13 @@ import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.FluidBuilder;
 import gregtech.api.fluids.attribute.FluidAttribute;
 import gregtech.api.fluids.attribute.FluidAttributes;
+import gregtech.api.fluids.store.FluidStorageKeys;
 import gregtech.api.items.metaitem.MetaOreDictItem;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Material;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.material.info.MaterialIconSet;
+import gregtech.api.unification.material.properties.FluidProperty;
 import gregtech.api.unification.material.properties.PropertyKey;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.FluidTooltipUtil;
@@ -21,8 +23,6 @@ import gregtechfoodoption.materials.FertilizerProperty;
 import gregtechfoodoption.materials.LacingProperty;
 import it.unimi.dsi.fastutil.ints.Int2BooleanArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
-import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
-import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.Collections;
@@ -510,6 +510,235 @@ public class GTFOMaterialHandler {
     public static final Material EnergizedCoffee = fluidBuilderFood(21991, "energized_coffee", 368)
             .color(0x695934)
             .build();
+    public static final Material DiethylEther = fluidBuilder(21993, "diethyl_ether")
+            .color(0xF1F2A2)
+            .build();
+    public static final Material Bromobenzene = fluidBuilder(21994, "bromobenzene")
+            .color(0xF1F0F3)
+            .build();
+    public static final Material Acetylene = fluidBuilder(21995, "acetylene")
+            .components(Carbon, 2, Hydrogen, 2)
+            .color(0xF1F7DD)
+            .build();
+    public static final Material Formaldehyde = fluidBuilder(21996, "formaldehyde")
+            .components(Carbon, 1, Hydrogen, 2, Oxygen, 1)
+            .color(0x00B140)
+            .build();
+    public static final Material I_IVButynediol = fluidBuilder(21997, "i_iv_butynediol")
+            .components(Carbon, 4, Hydrogen, 6, Oxygen, 2)
+            .color(0xF0FE8A)
+            .build();
+    public static final Material I_IVButanediol = fluidBuilder(21998, "i_iv_butanediol")
+            .components(Carbon, 4, Hydrogen, 10, Oxygen, 2)
+            .color(0xF4FCFC)
+            .build();
+    public static final Material Methylamine = fluidBuilder(22000, "methylamine")
+            .components(Carbon, 1, Nitrogen, 1, Hydrogen, 5)
+            .color(0xF0F5C2)
+            .build();
+    public static final Material GammaButyrolactone = fluidBuilder(22002, "gamma_butyrolactone")
+            .color(0xF4FB91)
+            .build();
+    public static final Material AmmoniumGammaButyrolactone = fluidBuilder(22003, "ammonium_gamma_butyrolactone")
+            .color(0xFAF29C)
+            .build();
+    public static final Material CooledAmmoniumGammaButyrolactone = fluidBuilder(22004, "cooled_ammonium_gamma_butyrolactone")
+            .color(0xF9FCC2)
+            .build();
+    public static final Material IIPyrrolidone = fluidBuilder(22005, "ii_pyrrolidone")
+            .color(0xF9F1B3)
+            .build();
+    public static final Material AqueousIIPyrrolidone = fluidBuilder(22006, "aqueous_ii_pyrrolidone")
+            .color(0xF2F98E)
+            .build();
+    public static final Material AcidicAqueousIIPyrrolidone = fluidBuilder(22007, "acidic_aqueous_ii_pyrrolidone")
+            .color(0xF6FDE2)
+            .build();
+    public static final Material CooledAcidicAqueousIIPyrrolidone = fluidBuilder(22008, "cooled_acidic_aqueous_ii_pyrrolidone")
+            .color(0xF7FAF9)
+            .build();
+    public static final Material IVAminoButyricAcid = fluidBuilder(22009, "iv_aminobutyric_acid")
+            .color(0xF4FAAA)
+            .build();
+    public static final Material AcidicIVAminoButyricAcidSolution = fluidBuilder(22010, "acidic_iv_amino_butyric_acid_solution")
+            .color(0xFCFB8F)
+            .build();
+    public static final Material IVPiperidone = fluidBuilder(22011, "iv_piperidone")
+            .color(0xFEFDCA)
+            .build();
+    public static final Material BenzylChloride = fluidBuilder(22012, "benzyl_chloride")
+            .components(Carbon, 7, Hydrogen, 7, Chlorine, 1)
+            .color(0xF3F9BE)
+            .build();
+    public static final Material Phenylacetonitrile = fluidBuilder(22013, "phenylacetonitrile")
+            .color(0xF0F0CC)
+            .build();
+    public static final Material DissolvedPhenylacetonitrile = fluidBuilder(22014, "dissolved_phenylacetonitrile")
+            .color(0xF0F9E3)
+            .build();
+    public static final Material Phenethylamine = fluidBuilder(22015, "phenethylamine")
+            .color(0xF3FEF1)
+            .build();
+    public static final Material CrudeNPhenethylIVPiperidone = fluidBuilder(22016, "crude_n_phenethyl_iv_piperidone")
+            .color(0xF7F58B)
+            .build();
+    public static final Material NPhenethylIVPiperidone = fluidBuilder(22017, "n_phenethyl_iv_piperidone")
+            .color(0xFDF283)
+            .build();
+    public static final Material SuccinicAcid = fluidBuilder(22018, "succinic_acid")
+            .components(Carbon, 4, Hydrogen, 6, Oxygen, 2)
+            .color(0xFFF7A9)
+            .build();
+    public static final Material NChlorosuccinimide = fluidBuilder(22019, "n_chlorosuccinimide")
+            .color(0xF9F7F2)
+            .build();
+    public static final Material III_IVDichlorobenzophenone = fluidBuilder(22020, "iii_iv_dichlorobenzophenone")
+            .color(0xFAFED0)
+            .build();
+    public static final Material AmmoniumSuccinate = fluidBuilder(22021, "ammonium_succinate")
+            .color(0xD3DAAC)
+            .build();
+    public static final Material Succinimide = fluidBuilder(22022, "succinimide")
+            .color(0xC9D39C)
+            .build();
+//22023
+    public static final Material ChlorinatedSuccinimide = fluidBuilder(22024, "chlorinated_succinimide")
+            .color(0xE3CDDE)
+            .build();
+    public static final Material LurdmaninePrecursorBase = fluidBuilder(22025, "lurdmanine_precursor_base")
+            .color(0xFBEE9C)
+            .build();
+    public static final Material LurdmaninePrecursorDimer = fluidBuilder(22026, "lurdmanine_precursor_dimer")
+            .color(0xFBEE9C)
+            .build();
+    public static final Material NMethylIIPyrrolidinone = fluidBuilder(22027, "n_methyl_ii_pyrrolidinone")
+            .color(0xF9DAF9)
+            .build();
+    public static final Material CrudeNMethylIIPyrrolidinone = fluidBuilder(22028, "crude_n_methyl_ii_pyrrolidinone")
+            .color(0xDEDDF1)
+            .build();
+    public static final Material HotNMethylIIPyrrolidinone = fluidBuilder(22029, "hot_n_methyl_ii_pyrrolidinone")
+            .color(0xFDDBDF)
+            .build();
+    public static final Material CooledNMethylIIPyrrolidinone = fluidBuilder(22030, "cooled_n_methyl_ii_pyrrolidinone")
+            .color(0xFDDBDF)
+            .build();
+    public static final Material CrudeLurdmanine = fluidBuilder(22031, "crude_lurdmanine")
+            .color(0xFBEE9C)
+            .build();
+    public static final Material UnrefinedLurdmanine = fluidBuilder(22032, "unrefined_lurdmanine")
+            .color(0xFBEE9C)
+            .build();
+    public static final Material NPhenethylIVPiperidoneIntermediate = fluidBuilder(22033, "n_phenethyl_iv_piperidone_intermediate")
+            .color(0xE4EEDA)
+            .build();
+    public static final Material EmulsifiedYolk = fluidBuilder(22034, "emulsified_yolk")
+            .color(0xFFD700)
+            .build();
+    public static final Material yolkethanol = fluidBuilder(22035, "yolk_ethanol_solution")
+            .color(0x876c41)
+            .build();
+    public static final Material lipidsolvent = fluidBuilder(22036, "lipid_solvent_solution")
+            .color(0x9c9488)
+            .build();
+    public static final Material lipidsolution = fluidBuilder(22037, "lipid_solution")
+            .color(0x817a6f)
+            .build();
+    public static final Material Cholesterol = fluidBuilder(22038, "cholesterol")
+            .color(0xa87e3c)
+            .build();
+    public static final Material Ozone = fluidBuilder(22039, "ozone")
+            .color(0x3ca896)
+            .build();
+    public static final Material Pregnenoloneintermediate = fluidBuilder(22040, "pregnenolone_intermediate")
+            .color(0x4b1cc9)
+            .build();
+    public static final Material Pregnenolone = fluidBuilder(22041, "pregnenolone")
+            .color(0x4b1cc9)
+            .build();
+    public static final Material hydrogenperoxide = fluidBuilder(22042, "hydrogen_peroxide")
+            .color(0x1cc9ad)
+            .components(Hydrogen, 2, Oxygen, 2)
+            .build();
+    public static final Material anthraquinone = fluidBuilder(22043, "anthraquinone")
+            .color(0x878541)
+            .build();
+    public static final Material anthrahydroquinone = fluidBuilder(22044, "anthrahydroquinone")
+            .color(0x878541)
+            .build();
+    public static final Material Chromicacid = fluidBuilder(22045, "chromic_acid")
+            .color(0xf1f0da)
+            .build();
+    public static final Material Progesterone = fluidBuilder(22046, "progesterone")
+            .color(0xecff00)
+            .build();
+    public static final Material Androstenedioneintermediate = fluidBuilder(22047, "androstenedione_intermediate")
+            .color(0x10b1ac)
+            .build();
+    public static final Material Androstenedione = fluidBuilder(22048, "androstenedione")
+            .color(0x10b1ac)
+            .build();
+    public static final Material Testosterone = fluidBuilder(22049, "testosterone")
+            .color(0xb18a10)
+            .build();
+    public static final Material heatedPhthalicAcid = fluidBuilder(22050, "heated_phthalic_Acid")
+            .color(0x88b110)
+            .build();
+    public static final Material TrenboloneAcetate = fluidBuilder(22051, "trenbolone_acetate")
+            .color(0xaf1212)
+            .build();
+    public static final Material TestosteroneEnoneIntermediate = fluidBuilder(22052, "testosterone_enone_intermediate")
+            .color(0x1012b1)
+            .build();
+    public static final Material Dienedione = fluidBuilder(22053, "dienedione")
+            .color(0x000154)
+            .build();
+    public static final Material DienoloneIntermediate = fluidBuilder(22054, "dienolone_intermediate")
+            .color(0x000154)
+            .build();
+    public static final Material Trenbolone = fluidBuilder(22055, "trenbolone")
+            .color(0x921e1e)
+            .build();
+    public static final Material PurifiedTrenbolone = fluidBuilder(22056, "purified_trenbolone")
+            .color(0xc94a4a)
+            .build();
+    public static final Material Dimethylformamide = fluidBuilder(22057, "dimethylformamide")
+            .color(0x2d5400)
+            .build();
+    public static final Material Methyltestosterone = fluidBuilder(22058, "methyl_testosterone")
+            .color(0x99cba3)
+            .build();
+    public static final Material SuperdrolSolution = fluidBuilder(22059, "superdrol_solution")
+            .color(0xFF3300)
+            .build();
+    public static final Material PurifiedSuperdrolSolution = fluidBuilder(22060, "purified_superdrol_solution")
+            .color(0xFF3300)
+            .build();
+    public static final Material FormicAcid = fluidBuilder(22061, "formic_acid")
+            .color(0xc4cb99)
+            .build();
+    public static final Material PotassiumCarbonate = fluidBuilder(22062, "potassium_carbonate")
+            .color(0xc399cb)
+            .build();
+    public static final Material PurifiedDianabolSolution = fluidBuilder(22063, "purified_dianabol_solution")
+            .color(0x8b378e)
+            .build();
+    public static final Material DianabolSolution = fluidBuilder(22064, "dianabol_solution")
+            .color(0x8b378e)
+            .build();
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
@@ -625,11 +854,52 @@ public class GTFOMaterialHandler {
     public static final GTFOOredictItem.OreDictValueItem CRACKER_GRAHAM_UNGRADED = SHAPED_ITEM.addOreDictItem(1049, "cracker_graham_ungraded", 0xf0c25d, MaterialIconSet.DULL, OrePrefix.plate);
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_PRESSED = SHAPED_ITEM.addOreDictItem(1050, "chocolate_liquor_pressed", 0xa6795a, GTFOValues.Organic, OrePrefix.crushed);
     public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = SHAPED_ITEM.addOreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, GTFOValues.Organic, OrePrefix.crushed);
-
     public static final Material Paracetamol = new Material.Builder(21900, gtfoId("paracetamol")).dust()
             .color(0x0045A0).iconSet(MaterialIconSet.SHINY)
             .components(Carbon, 8, Hydrogen, 9, Nitrogen, 1, Oxygen, 2)
             .build();
+    public static final Material PhenylmagnesiumBromide = new Material.Builder(21901, gtfoId("phenylmagnesium_bromide")).dust()
+            .color(0x964B00).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 6, Hydrogen, 5, Magnesium, 1, Bromine, 1)
+            .build();
+    public static final Material Benzophenone = new Material.Builder(21902, gtfoId("benzophenone")).dust()
+            .color(0xFFFED0).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 13, Hydrogen, 10, Oxygen, 1)
+            .build();
+    public static final Material MaleicAnhydride = new Material.Builder(21903, gtfoId("maleic_anhydride")).dust()
+            .color(0xF2F2BB).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 4, Hydrogen, 2, Oxygen, 3)
+            .build();
+    public static final Material RecrystalizedLurdmanine = new Material.Builder(21904, gtfoId("recrystalized_lurdmanine")).dust()
+            .color(0xF4F5B2).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 22, Hydrogen, 28, Oxygen, 1, Nitrogen, 2)
+            .build();
+    public static final Material SodiumBorohydride = new Material.Builder(21905, gtfoId("sodium_borohydride")).dust()
+            .color(0xF7F4B9).iconSet(MaterialIconSet.SHINY)
+            .components(Sodium, 1, Hydrogen, 4, Boron, 1)
+            .build();
+    public static final Material PhthalicAnhydride = new Material.Builder(21906, gtfoId("phthalic_anhydride")).dust()
+            .color(0x5d3983).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 8, Hydrogen, 4, Oxygen, 3)
+            .build();
+    public static final Material PotassiumHydroxide = new Material.Builder(21907, gtfoId("potassium_hydroxide")).dust()
+            .color(0x8b6f8c).iconSet(MaterialIconSet.SHINY)
+            .components(Potassium, 1, Hydrogen, 1, Oxygen, 1)
+            .build();
+    public static final Material MethylIodide = new Material.Builder(21908, gtfoId("methyl_iodide")).dust()
+            .color(0x5e1360).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 1, Hydrogen, 3, Iodine, 1)
+            .build();
+    public static final Material Superdrol = new Material.Builder(21909, gtfoId("superdrol")).dust()
+            .color(0xFF3300).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 20, Hydrogen, 30, Oxygen, 2)
+            .build();
+    public static final Material Dianabol = new Material.Builder(21910, gtfoId("dianabol")).dust()
+            .color(0x8b378e).iconSet(MaterialIconSet.SHINY)
+            .components(Carbon, 20, Hydrogen, 30, Oxygen, 2)
+            .build();
+
+
 
     public static void onMaterialsInit() {
         Materials.Iron.addFlags(GENERATE_FRAME);
@@ -638,6 +908,8 @@ public class GTFOMaterialHandler {
         Materials.StainlessSteel.addFlags(GENERATE_DENSE, GENERATE_SPRING_SMALL);
         Materials.Titanium.addFlags(GENERATE_DENSE);
         Materials.Aluminium.addFlags(GENERATE_DENSE);
+        Bromine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
+        Iodine.setProperty(PropertyKey.FLUID, new FluidProperty(FluidStorageKeys.LIQUID, new FluidBuilder()));
 
         Water.setProperty(FERTILIZER, new FertilizerProperty(5));
         Blood.setProperty(FERTILIZER, new FertilizerProperty(30));
