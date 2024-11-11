@@ -7,6 +7,7 @@ import gregtech.api.items.metaitem.stats.IItemComponent;
 import gregtech.api.items.metaitem.stats.IItemContainerItemProvider;
 import gregtech.api.items.toolitem.IGTTool;
 import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.RandomPotionEffect;
 import gregtech.common.items.MetaItems;
@@ -1124,7 +1125,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0, 0f, 2f, 0f, 2f)
                 .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 1200, 0, 100 - 100)));
 
-        NAQUADAH_CHIPS = addItem(354, "food.naquadah_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, true, () -> OreDictUnifier.get(OrePrefix.foil, RhodiumPlatedPalladium))
+        NAQUADAH_CHIPS = addItem(354, "food.naquadah_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, true, () -> OreDictUnifier.get(OrePrefix.foil, Materials.TungstenSteel))
                 .nutrients(0, 0f, 1f, 0f, 1f)
                 .setPotionEffects(new RandomPotionEffect(MobEffects.BLINDNESS, 500, 0, 100 - 100)));
 

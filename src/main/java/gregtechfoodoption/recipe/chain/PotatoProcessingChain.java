@@ -98,7 +98,7 @@ public class PotatoProcessingChain {
         CANNER_RECIPES.recipeBuilder().EUt(64).duration(100)
                 .fluidInputs(Naquadah.getFluid(10))
                 .inputs(REDUCED_FAT_POTATO_SLICE.getStackForm(40))
-                .input(foil, RhodiumPlatedPalladium)
+                .input(foil, TungstenSteel)
                 .outputs(NAQUADAH_CHIPS.getStackForm())
                 .buildAndRegister();
         CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(60).duration(1000)
