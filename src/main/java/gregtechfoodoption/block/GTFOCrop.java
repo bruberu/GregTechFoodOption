@@ -5,8 +5,11 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -125,5 +128,42 @@ public class GTFOCrop extends BlockCrops {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        Random rand = world instanceof World ? world.rand : new Random();
+        int age = this.getAge(state);
+
+        if (this.isMaxAge(state)) {
+            List<ItemStack> drops = new ArrayList<>();
+            if (!seed.isEmpty() && rand.nextInt(9) == 0) {
+                ItemStack seedStack = seed.copy();
+                drops.add(seedStack);
+            }
+
+            int cropCount = 0;
+
+            for (int i = 0; i < 3; ++i) {
+                if (rand.nextInt(2 * this.getMaxAge()) <= age) {
+                    cropCount++;
+                }
+            }
+
+            if (cropCount > 0) {
+                ItemStack crop = this.crop.copy();
+                crop.setCount(cropCount);
+                drops.add(crop);
+            }
+            for (ItemStack drop : drops) {
+                if (!playerIn.addItemStackToInventory(drop)) {
+                    playerIn.dropItem(drop, false);
+                }
+            }
+            world.setBlockState(pos, state.withProperty(getAgeProperty(), 0), 3);
+
+            return true;
+        }
+        return false;
     }
 }
