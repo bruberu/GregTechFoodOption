@@ -44,10 +44,6 @@ repositories {
         url = "https://modmaven.dev"
     }
     maven {
-        name = "Ellpeck's Maven"
-        url = "https://maven.ellpeck.de"
-    }
-    maven {
         url = "https://www.cursemaven.com"
     }
     maven {

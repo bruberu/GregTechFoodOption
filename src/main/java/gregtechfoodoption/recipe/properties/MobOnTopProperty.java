@@ -1,12 +1,15 @@
 package gregtechfoodoption.recipe.properties;
 
-import gregtech.api.recipes.recipeproperties.RecipeProperty;
+import gregtech.api.recipes.properties.RecipeProperty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityList;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.jetbrains.annotations.NotNull;
 
 public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
     public static final ResourceLocation PLAYER = new ResourceLocation("player");
@@ -21,6 +24,16 @@ public class MobOnTopProperty extends RecipeProperty<ResourceLocation> {
 
     private MobOnTopProperty() {
         super(KEY, ResourceLocation.class);
+    }
+
+    @Override
+    public @NotNull NBTBase serialize(@NotNull Object value) {
+        return new NBTTagString(castValue(value).toString());
+    }
+
+    @Override
+    public @NotNull Object deserialize(@NotNull NBTBase nbtBase) {
+        return new ResourceLocation(((NBTTagString) nbtBase).getString());
     }
 
     @Override

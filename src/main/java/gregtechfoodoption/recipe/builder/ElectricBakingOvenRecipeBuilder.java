@@ -1,13 +1,16 @@
 package gregtechfoodoption.recipe.builder;
 
 import gregtech.api.recipes.RecipeBuilder;
-import gregtech.api.recipes.recipeproperties.RecipeProperty;
+import gregtech.api.recipes.properties.RecipeProperty;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagInt;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
@@ -29,25 +32,17 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
 
     public ElectricBakingOvenRecipeBuilder setTemp(int temperature) {
         this.temp = temperature;
+        if (this.temp <= 300) {
+            GTLog.logger.error("Temperature cannot be less or equal to 300", new IllegalArgumentException());
+            this.recipeStatus = EnumValidationResult.INVALID;
+            return this;
+        }
         this.applyProperty(TemperatureProperty.getInstance(), temperature);
         return this;
     }
 
     @Override
-    public boolean applyProperty(@Nonnull String key, Object value) {
-        if (key.equals(TemperatureProperty.KEY)) {
-            this.setTemp(((Number) value).intValue());
-            return true;
-        }
-        return super.applyProperty(key, value);
-    }
-
-    @Override
-    protected EnumValidationResult finalizeAndValidate() {
-        if (this.temp <= 300) {
-            GTLog.logger.error("Temperature cannot be less or equal to 300", new IllegalArgumentException());
-            this.recipeStatus = EnumValidationResult.INVALID;
-        }
+    protected EnumValidationResult validate() {
         this.EUt(MetaTileEntityElectricBakingOven.temperatureEnergyCost(this.temp, 1));
         return this.recipeStatus;
     }
@@ -77,6 +72,16 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
             }
 
             return INSTANCE;
+        }
+
+        @Override
+        public @NotNull NBTBase serialize(@NotNull Object value) {
+            return new NBTTagInt(castValue(value));
+        }
+
+        @Override
+        public @NotNull Object deserialize(@NotNull NBTBase nbtBase) {
+            return ((NBTTagInt) nbtBase).getInt();
         }
 
         @Override

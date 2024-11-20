@@ -13,7 +13,7 @@ public class IVBagChain {
         //IV Bag
         ASSEMBLER_RECIPES.recipeBuilder().EUt(30).duration(100)
                 .input(OrePrefix.foil, PolyvinylChloride)
-                .input(OrePrefix.pipeSmall, PolyvinylChloride)
+                .input(OrePrefix.pipeSmallFluid, PolyvinylChloride)
                 .input(OrePrefix.bolt, StainlessSteel)
                 .outputs(IV_BAG.getStackForm(1))
                 .buildAndRegister();

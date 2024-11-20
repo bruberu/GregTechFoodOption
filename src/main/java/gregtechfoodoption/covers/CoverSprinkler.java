@@ -9,16 +9,10 @@ import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverBase;
 import gregtech.api.cover.CoverDefinition;
-import gregtech.api.cover.CoverWithUI;
 import gregtech.api.cover.CoverableView;
-import gregtech.api.gui.ModularUI;
 import gregtech.api.unification.material.Material;
-import gregtech.client.renderer.pipe.cover.CoverRenderer;
-import gregtech.client.renderer.pipe.cover.CoverRendererBuilder;
-import gregtech.client.renderer.texture.Textures;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.client.particle.GTFOSprinkle;
 import gregtechfoodoption.client.particle.GTFOSprinkleMaker;
 import gregtechfoodoption.materials.FertilizerProperty;
 import net.minecraft.block.BlockFarmland;
@@ -31,7 +25,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fluids.FluidStack;
@@ -64,6 +57,9 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     @SideOnly(Side.CLIENT)
     @Override
     public void renderCover(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline, Cuboid6 plateBox, BlockRenderLayer blockRenderLayer) {
+        GTFOClientHandler.SPRINKLER_OVERLAY.renderSided(getAttachedSide(), plateBox, renderState, pipeline,
+                translation);
+
         if (sprinkleMaker == null || !sprinkleMaker.isAlive()) {
             sprinkleMaker = new GTFOSprinkleMaker(this.getWorld(), this.getCoverableView().getPos().getX(), this.getCoverableView().getPos().getY(), this.getCoverableView().getPos().getZ(), this);
             Minecraft.getMinecraft().effectRenderer.addEffect(sprinkleMaker);
@@ -220,7 +216,7 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     }
 
     @Override
-    public @NotNull EnumActionResult onSoftMalletClick(@NotNull EntityPlayer player, @NotNull EnumHand hand, @NotNull RayTraceResult hitResult) {
+    public @NotNull EnumActionResult onSoftMalletClick(@NotNull EntityPlayer player, @NotNull EnumHand hand, @NotNull CuboidRayTraceResult hitResult) {
         this.showsSprinkles = !this.showsSprinkles;
         if (!this.getWorld().isRemote) {
             player.sendMessage(new TextComponentTranslation(showsSprinkles ? "gregtechfoodoption.sprinkler.particles.on" : "gregtechfoodoption.sprinkler.particles.off"));
@@ -228,8 +224,4 @@ public class CoverSprinkler extends CoverBase implements ITickable {
         return EnumActionResult.SUCCESS;
     }
 
-    @Override
-    protected CoverRenderer buildRenderer() {
-        return new CoverRendererBuilder(GTFOClientHandler.SPRINKLER_OVERLAY).setPlateQuads(GTValues.LV).build();
-    }
 }

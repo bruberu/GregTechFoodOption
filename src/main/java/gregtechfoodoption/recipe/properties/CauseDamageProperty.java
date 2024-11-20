@@ -1,8 +1,11 @@
 package gregtechfoodoption.recipe.properties;
 
-import gregtech.api.recipes.recipeproperties.RecipeProperty;
+import gregtech.api.recipes.properties.RecipeProperty;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagFloat;
+import org.jetbrains.annotations.NotNull;
 
 public class CauseDamageProperty extends RecipeProperty<Float> {
 
@@ -21,6 +24,16 @@ public class CauseDamageProperty extends RecipeProperty<Float> {
 
     protected CauseDamageProperty(String key, Class<Float> type) {
         super(key, type);
+    }
+
+    @Override
+    public @NotNull NBTBase serialize(@NotNull Object value) {
+        return new NBTTagFloat(castValue(value));
+    }
+
+    @Override
+    public @NotNull Object deserialize(@NotNull NBTBase nbtBase) {
+        return ((NBTTagFloat) nbtBase).getFloat();
     }
 
     @Override

@@ -28,19 +28,6 @@ public class MobProximityRecipeBuilder extends RecipeBuilder<MobProximityRecipeB
         return new MobProximityRecipeBuilder(this);
     }
 
-    @Override
-    public boolean applyProperty(String key, Object value) {
-        if (key.equals(MobOnTopProperty.KEY)) {
-            this.mob((ResourceLocation) value);
-            return true;
-        }
-        if (key.equals(CauseDamageProperty.KEY)) {
-            this.causeDamage(((Number) value).floatValue());
-            return true;
-        }
-        return true;
-    }
-
     public MobProximityRecipeBuilder mob(ResourceLocation entityID) {
         this.applyProperty(MobOnTopProperty.getInstance(), entityID);
         return this;
@@ -67,11 +54,11 @@ public class MobProximityRecipeBuilder extends RecipeBuilder<MobProximityRecipeB
 
     public ResourceLocation getEntityID() {
         return this.recipePropertyStorage == null ? new ResourceLocation("lightning_bolt") :
-                this.recipePropertyStorage.getRecipePropertyValue(MobOnTopProperty.getInstance(), new ResourceLocation("lightning_bolt"));
+                this.recipePropertyStorage.get(MobOnTopProperty.getInstance(), new ResourceLocation("lightning_bolt"));
     }
 
     public float getDamage() {
         return this.recipePropertyStorage == null ? 0 :
-                this.recipePropertyStorage.getRecipePropertyValue(CauseDamageProperty.getInstance(), 0f);
+                this.recipePropertyStorage.get(CauseDamageProperty.getInstance(), 0f);
     }
 }

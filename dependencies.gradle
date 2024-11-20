@@ -37,7 +37,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:groovyscript-687577:5507936")
 
     //deobfCompile "nuclearcraft-overhauled:NuclearCraft:2o.6.0:1.12.2"
-    implementation "de.ellpeck.actuallyadditions:ActuallyAdditions:${project.minecraft.version}-r144"
+    implementation rfg.deobf("curse.maven:actually-additions-228404:3117927")
     //provided files("libs/AppleCore-mc1.12.2-3.4.0.jar")
     implementation "applecore:AppleCore:${project.minecraft.version}-3.1.5:deobf"
 
@@ -57,7 +57,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:spiceoflife-220811:2571951")
 
     implementation files("libs/AppleSkin-mc1.12-1.0.9.jar")
-    implementation files("libs/gregtech-1.12.2-2.8.10-beta-dev.jar")
+    implementation files("libs/gregtech-1.12.2-2.9.0-beta-dev.jar")
     implementation files("libs/modularui-2.5.0-rc1-dev.jar")
 
     compileOnly files("libs/NuclearCraft-2o.6.0-1.12.2.jar")
