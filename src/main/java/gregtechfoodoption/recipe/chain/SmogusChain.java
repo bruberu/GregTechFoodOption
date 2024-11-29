@@ -112,9 +112,9 @@ public class SmogusChain {
 
         ASSEMBLER_RECIPES.recipeBuilder()
                 .inputs(GTFOMaterialHandler.CRACKER_GRAHAM_UNGRADED.getItemStack())
-                .notConsumable(MetaItems.SENSOR_HV.getStackForm())
+                .notConsumable(MetaItems.SENSOR_LV.getStackForm())
                 .chancedOutput(GRAHAM_CRACKER.getStackForm(), 7500, 100)
-                .EUt(340)
+                .EUt(30)
                 .duration(40)
                 .buildAndRegister();
 
@@ -145,7 +145,7 @@ public class SmogusChain {
                 .fluidInputs(GTFOMaterialHandler.MoltenDarkChocolate.getFluid(864))
                 .fluidInputs(Milk.getFluid(288))
                 .fluidOutputs(GTFOMaterialHandler.MoltenMilkChocolate.getFluid(1152))
-                .EUt(500)
+                .EUt(120)
                 .duration(280)
                 .buildAndRegister();
 
@@ -162,7 +162,7 @@ public class SmogusChain {
                 .fluidInputs(GTFOMaterialHandler.MarshmallowSyrupMixture.getFluid(1000))
                 .circuitMeta(1)
                 .fluidOutputs(GTFOMaterialHandler.MarshmallowFoam.getFluid(5000))
-                .EUt(240)
+                .EUt(30)
                 .duration(300)
                 .buildAndRegister();
 
@@ -176,7 +176,7 @@ public class SmogusChain {
         EXTRACTOR_RECIPES.recipeBuilder()
                 .input(OrePrefix.dust, Materials.Cocoa)
                 .fluidOutputs(GTFOMaterialHandler.MoltenUnsweetenedChocolate.getFluid(144))
-                .EUt(180)
+                .EUt(30)
                 .duration(20)
                 .buildAndRegister();
 
@@ -305,7 +305,7 @@ public class SmogusChain {
                 .fluidInputs(Water.getFluid(1000))
                 .input(OrePrefix.dust, SodaAsh)
                 .fluidOutputs(GTFOMaterialHandler.SodiumCarbonateSolution.getFluid(1000))
-                .EUt(30)
+                .EUt(8)
                 .duration(40)
                 .buildAndRegister();
 

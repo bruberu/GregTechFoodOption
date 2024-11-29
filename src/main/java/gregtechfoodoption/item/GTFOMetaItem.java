@@ -1101,16 +1101,16 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         SORBET_PLAIN = addItem(345, "food.sorbet.plain").addComponents(new GTFOFoodStats(0, 0f, false, true)
                 .nutrients(0, 0f, 0f, 0f, 0f).setEatingDuration(12));
-        SORBET_APPLE = addItem(346, "food.sorbet.apple").addComponents(new GTFOFoodStats(0, 0f)
+        SORBET_APPLE = addItem(346, "food.sorbet.apple").addComponents(new GTFOFoodStats(4, 0.5f)
                 .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
-        SORBET_APRICOT = addItem(347, "food.sorbet.apricot").addComponents(new GTFOFoodStats(0, 0f)
+        SORBET_APRICOT = addItem(347, "food.sorbet.apricot").addComponents(new GTFOFoodStats(4, 0.5f)
                 .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
-        SORBET_CHORUS = addItem(348, "food.sorbet.chorus").addComponents(new GTFOFoodStats(0, 0f)
+        SORBET_CHORUS = addItem(348, "food.sorbet.chorus").addComponents(new GTFOFoodStats(4, 0.5f)
                 .nutrients(0, 0f, 0f, 0f, 1f).setEatingDuration(12)
                 .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 600, 0, 100 - 80)));
-        SORBET_GRAPE = addItem(349, "food.sorbet.grape").addComponents(new GTFOFoodStats(0, 0f)
+        SORBET_GRAPE = addItem(349, "food.sorbet.grape").addComponents(new GTFOFoodStats(4, 0.5f)
                 .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
-        SORBET_LIME = addItem(350, "food.sorbet.lime").addComponents(new GTFOFoodStats(0, 0f)
+        SORBET_LIME = addItem(350, "food.sorbet.lime").addComponents(new GTFOFoodStats(4, 0.5f)
                 .nutrients(0, 1f, 0f, 0f, 0f).setEatingDuration(12));
         SORBET_VIBRANT = addItem(351, "food.sorbet.vibrant").addComponents(new GTFOFoodStats(0, 0f)
                 .nutrients(0, 2f, 0f, 0f, 2f).setEatingDuration(12)
