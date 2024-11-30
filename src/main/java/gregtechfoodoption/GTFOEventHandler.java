@@ -13,6 +13,7 @@ import gregtechfoodoption.item.food.GTFOFoodDurationSetter;
 import gregtechfoodoption.network.PacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.potion.*;
 import gregtechfoodoption.utils.GTFODamageSources;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +30,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.PotionColorCalculationEvent;
@@ -41,6 +43,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -260,6 +264,17 @@ public class GTFOEventHandler {
     public static void handleBerryGrowth(BlockEvent.CropGrowEvent.Pre event) {
         if (event.getState().getBlock() instanceof GTFOBerryBush bush) {
             event.setResult(GTValues.RNG.nextInt(bush.getGrowthSlowdown(event.getWorld(), event.getPos(), event.getState())) == 0 ? Event.Result.ALLOW : Event.Result.DENY);
+        }
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void handlePlayerRender(RenderPlayerEvent.Pre event) {
+        EntityPlayer player = event.getEntityPlayer();
+
+        if (!player.isUser() && Minecraft.getMinecraft().player.isPotionActive(AntiSchizoPotion.INSTANCE)) {
+            event.setCanceled(true);
+            Minecraft.getMinecraft().getRenderManager().setRenderShadow(false);
         }
     }
 }
