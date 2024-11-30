@@ -16,7 +16,7 @@ public class RenderManagerMixin {
     @Inject(method = "renderEntity", at = @At("HEAD"), cancellable = true)
     public void removePlayerRender(Entity entityIn, double x, double y, double z, float yaw, float partialTicks, boolean mojangBrainFart, CallbackInfo ci) {
         EntityPlayer player = Minecraft.getMinecraft().player;
-        if (player != null && player.isPotionActive(AntiSchizoPotion.INSTANCE) && entityIn instanceof EntityPig && !entityIn.isEntityEqual(player)) {
+        if (player != null && player.isPotionActive(AntiSchizoPotion.INSTANCE) && entityIn instanceof EntityPlayer && !entityIn.isEntityEqual(player)) {
             ci.cancel();
         }
     }
