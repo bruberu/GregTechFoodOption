@@ -521,12 +521,12 @@ gregtechfoodoption.machine.microwave.ev.tooltip=Мгновенно превра�
 gregtechfoodoption.machine.microwave.iv.tooltip=Мгновенно превращает слитки в энергию
 gregtechfoodoption.machine.microwave.luv.tooltip=Мгновенно превращает слитки в энергию
 gregtechfoodoption.machine.microwave.zpm.tooltip=Мгновенно превращает слитки в энергию
-gregtechfoodoption.machine.microwave.uv.tooltip=Вставьте Ingot бесплатно Dogecoin
-gregtechfoodoption.machine.microwave.uhv.tooltip=Вставьте Ingot бесплатно Dogecoin
-gregtechfoodoption.machine.microwave.uev.tooltip=Вставьте Ingot бесплатно Dogecoin
-gregtechfoodoption.machine.microwave.uiv.tooltip=Вставьте Ingot бесплатно Dogecoin
-gregtechfoodoption.machine.microwave.uxv.tooltip=Вставьте Ingot бесплатно Dogecoin
-gregtechfoodoption.machine.microwave.opv.tooltip=Вставьте Ingot бесплатно Dogecoin
+gregtechfoodoption.machine.microwave.uv.tooltip=Превратит ваш слиток в Dogecoin
+gregtechfoodoption.machine.microwave.uhv.tooltip=Превратит ваш слиток в Dogecoin
+gregtechfoodoption.machine.microwave.uev.tooltip=Превратит ваш слиток в Dogecoin
+gregtechfoodoption.machine.microwave.uiv.tooltip=Превратит ваш слиток в Dogecoin
+gregtechfoodoption.machine.microwave.uxv.tooltip=Превратит ваш слиток в Dogecoin
+gregtechfoodoption.machine.microwave.opv.tooltip=Превратит ваш слиток в Dogecoin
 
 
 recipemap.microwave.name=Микроволновая печь
