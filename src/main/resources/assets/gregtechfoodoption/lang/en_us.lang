@@ -446,7 +446,6 @@ gregtechfoodoption.machine.cuisine_assembler.uiv.tooltip=Aggressively Makes Pizz
 gregtechfoodoption.machine.cuisine_assembler.uxv.tooltip=Aggressively Makes Pizza
 gregtechfoodoption.machine.cuisine_assembler.opv.tooltip=Aggressively Makes Pizza
 
-
 metaitem.component.bacon.name=Uncooked Bacon
 metaitem.food.bacon.name=Bacon
 metaitem.food.bacon.tooltip=Has been Roasted
@@ -500,7 +499,6 @@ gregtechfoodoption.machine.electric_baking_oven.tooltip.1=Only runs recipes if t
 gregtechfoodoption.machine.electric_baking_oven.tooltip.2=The §aEU§7 per tick required is exponentially related to the current temperature.
 gregtechfoodoption.machine.electric_baking_oven.tooltip.3=Extend the multiblock out by §a1§7 block to run an extra recipe in parallel.
 
-
 gregtechfoodoption.machine.microwave.lv.name=Basic Microwave
 gregtechfoodoption.machine.microwave.mv.name=Advanced Microwave
 gregtechfoodoption.machine.microwave.hv.name=Advanced Microwave II
@@ -527,7 +525,6 @@ gregtechfoodoption.machine.microwave.uev.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.uiv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.uxv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.opv.tooltip=Insert Ingot for free Doge Coin
-
 
 recipemap.microwave.name=Microwave
 metaitem.food.mushroom_stew.hot.name=Hot Mushroom Stew
@@ -609,7 +606,6 @@ metaitem.food.juice.apple.name=Apple Juice
 metaitem.food.juice.orange.name=Orange Juice
 metaitem.food.juice.apple.tooltip=cause Minecraft apples are yellow
 metaitem.food.juice.orange.tooltip=WaterPortuguese
-
 
 gregtech.material.gtfo_stearin=Liquid Fat (Stearin)
 gregtech.material.gtfo_stearic_acid=Stearic Acid
@@ -1184,7 +1180,6 @@ gregtechfoodoption.multiblock.kitchen.order_size=Order size: %s items
 gregtechfoodoption.multiblock.kitchen.dirtiness=Dirtiness: %s DU
 gregtechfoodoption.multiblock.kitchen.increment_order=Increase order size by 1
 gregtechfoodoption.multiblock.kitchen.decrement_order=Decrease order size by 1
-
 
 gregtechfoodoption.fluid.cleaning=Cleans §2%s§r DU/L!
 
