@@ -652,7 +652,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0, 0, 0.5f, 0, 0));
         MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_DEWAR_FLASK.getStackForm(1),
                 new RandomPotionEffect(CreativityPotion.INSTANCE, 5000, 0, 0)));
-        APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger, GTFOConfig.gtfoFoodConfig.hardCandySaturation, true, false, ItemStack.EMPTY,
+        APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger, GTFOConfig.gtfoFoodConfig.hardCandySaturation, false, false, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50))
                 .setEatingDuration(24)
                 .nutrients(0, 0.5f, 0, 0, 0));
