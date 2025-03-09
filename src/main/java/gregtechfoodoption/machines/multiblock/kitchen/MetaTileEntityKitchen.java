@@ -429,7 +429,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     }
 
     public boolean isActive() {
-        return this.isStructureFormed() && kitchenLogic.state == KitchenLogic.KitchenLogicState.PROBABLY_FINE && kitchenLogic.isWorkingEnabled();
+        return this.isStructureFormed() && kitchenLogic.isWorkingEnabled();
     }
 
     @Override
