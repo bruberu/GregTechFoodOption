@@ -51,7 +51,7 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
         if (entityRequired == null)
             return true;
 
-        if (this.attackableTarget == null || this.getOffsetTimer() % 5 == 0) {
+        if (this.getOffsetTimer() % 5 == 0) {
             this.nearbyEntities = getEntitiesInProximity();
             for (Entity entity : nearbyEntities) {
                 if (EntityList.isMatchingName(entity, entityRequired)) {
@@ -100,10 +100,11 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
         }
 
         @Override
-        protected boolean setupAndConsumeRecipeInputs(Recipe recipe, IItemHandlerModifiable importInventory) {
-            ((MetaTileEntityMobExtractor) metaTileEntity).damageEntity(recipe);
-            return super.setupAndConsumeRecipeInputs(recipe, importInventory);
+        protected void setupRecipe(@Nonnull Recipe recipe) {
+        ((MetaTileEntityMobExtractor) metaTileEntity).damageEntity(recipe);
+        super.setupRecipe(recipe);
         }
+
     }
 
 }
