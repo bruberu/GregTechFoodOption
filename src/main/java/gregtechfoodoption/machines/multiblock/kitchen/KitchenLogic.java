@@ -68,8 +68,9 @@ public class KitchenLogic extends MTETrait implements IControllable {
     }
 
     public void update() {
-        if (FMLLaunchHandler.side() == Side.CLIENT || !isWorkingEnabled() || (hasMaintenance && getMetaTileEntity().getNumMaintenanceProblems() > 5))
+        if (getMetaTileEntity().getWorld().isRemote || !isWorkingEnabled() || (hasMaintenance && getMetaTileEntity().getNumMaintenanceProblems() > 5))
             return;
+
 
         KitchenLogicState previousState = state;
         controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
