@@ -3,10 +3,17 @@ package gregtechfoodoption.client;
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.GregTechFoodOption;
+import gregtechfoodoption.potion.AntiSchizoPotion;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+@Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOClientHandler {
     public static OrientedOverlayRenderer SLICER_OVERLAY = new OrientedOverlayRenderer("machines/slicer");
     public static OrientedOverlayRenderer BAKING_OVEN_OVERLAY = new OrientedOverlayRenderer("machines/baking_oven");
@@ -41,4 +48,15 @@ public class GTFOClientHandler {
         ForgeRegistries.SOUND_EVENTS.register(event);
         return event;
     }
+
+    public static void renderPlayerList(RenderGameOverlayEvent.Pre event) {
+        if (!Minecraft.getMinecraft().player.isPotionActive(AntiSchizoPotion.INSTANCE)) {
+            return;
+        }
+        if (event.getType() == RenderGameOverlayEvent.ElementType.PLAYER_LIST) {
+            event.setCanceled(true);
+        }
+    }
+
+
 }
