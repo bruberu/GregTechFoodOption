@@ -121,7 +121,7 @@ public class GTFOBerryBush extends GTFOCrop {
         if (getAge(state) == 0) {
             return 4; // Usual value for growing crops
         }
-        int growthSlowdown = 320 << getEfficiency(state);
+        int growthSlowdown = 320 >> getEfficiency(state);
         if (!world.isDaytime()) {
             growthSlowdown *= 2;
         }
