@@ -66,4 +66,7 @@ dependencies {
     implementation rfg.deobf("curse.maven:nutrition-unofficial-extended-life-964516:5049991")
     testImplementation 'junit:junit:4.13.2'
     implementation 'org.projectlombok:lombok:1.18.24'
+
+    // SussyPatches 0.3.3
+    compileOnly rfg.deobf("curse.maven:sussypatches-1319894:6849902")
 }
