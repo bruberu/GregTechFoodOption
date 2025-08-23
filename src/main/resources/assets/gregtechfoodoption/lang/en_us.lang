@@ -1155,8 +1155,9 @@ gregtech.material.gtfo_cranberry_soda_syrup=Cranberry Soda Syrup
 
 gregtechfoodoption.berry.description.0=§4Grows very slowly by itself!
 gregtechfoodoption.berry.description.1=§bGrows faster in higher tiers
-gregtechfoodoption.berry.description.2=Place §5three§r grown berry bushes of the previous tier in the 3x3 centered on the bush to get to the next tier
-gregtechfoodoption.berry.description.3=§4The 3x3 centered on the bush must not be filled!
+
+gregtechfoodoption.berry.description.2=§bGrow next to three already-grown bushes of the previous tier to get to the next tier (3x3 area)
+gregtechfoodoption.berry.description.3=§4The 3x3 centered on the bush must not be entirely filled!
 
 gregtechfoodoption.blocked=This blocks a berry bush at %s (%s in total).
 
