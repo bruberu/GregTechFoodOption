@@ -25,7 +25,8 @@ public class StepAssistPotion extends GTFOPotion {
                 entity.stepHeight = 0.9F;
             }
             else {
-                entity.stepHeight = amplifier + (1F / 16F);//PATH BLOCKS etc are 1/16th downif MY feature turns this on, then do it
+                entity.stepHeight = amplifier + (1F / 16F);//PATH BLOCKS etc are 1/16th down
+                // if MY feature turns this on, then do it
             }
         }
     }

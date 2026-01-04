@@ -21,9 +21,9 @@ public class VanillinChain {
                 .fluidInputs(Materials.Ethylene.getFluid(1000), Materials.Oxygen.getFluid(1000))
                 .fluidOutputs(GTFOMaterialHandler.Acetaldehyde.getFluid(1000))
                 .buildAndRegister();
-        RecipeMaps.LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(60).duration(120) // 2C2H4O + 2HNO3 -> 2C2H2O2 + N2O + 3H2O
-                .fluidInputs(GTFOMaterialHandler.Acetaldehyde.getFluid(2000), Materials.NitricAcid.getFluid(2000))
-                .fluidOutputs(GTFOMaterialHandler.Glyoxal.getFluid(2000), Materials.NitrogenDioxide.getFluid(1000), Materials.Water.getFluid(3000))
+        RecipeMaps.LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(60).duration(120) // C2H4O + 4 HNO3 = C2H2O2 + 4 NO2 + 3 H2O
+                .fluidInputs(GTFOMaterialHandler.Acetaldehyde.getFluid(1000), Materials.NitricAcid.getFluid(4000))
+                .fluidOutputs(GTFOMaterialHandler.Glyoxal.getFluid(1000), Materials.NitrogenDioxide.getFluid(4000), Materials.Water.getFluid(1000), Materials.Water.getFluid(3000))
                 .buildAndRegister();
         RecipeMaps.LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(240).duration(30) // 2C2H2O2 + 2HNO3 -> 2C2H2O3 + H2O + NO2 + NO
                 .fluidInputs(GTFOMaterialHandler.Glyoxal.getFluid(2000), Materials.NitricAcid.getFluid(2000))

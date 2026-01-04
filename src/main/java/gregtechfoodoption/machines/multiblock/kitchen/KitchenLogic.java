@@ -50,13 +50,13 @@ public class KitchenLogic extends MTETrait implements IControllable {
     boolean recheckOutputs = true;
     private boolean workingEnabled = true;
     private ItemStack resultItem;
-     int dirtiness;
-    public KitchenLogicState state;
+    public int dirtiness;
+    public KitchenLogicState state = KitchenLogicState.PROBABLY_FINE;
 
     public KitchenLogic(MetaTileEntityKitchen controller) {
         super(controller);
 
-        this.hasMaintenance = ConfigHolder.machines.enableMaintenance && ((IMaintenance) controller).hasMaintenanceMechanics();
+        this.hasMaintenance = ConfigHolder.machines.enableMaintenance && controller.hasMaintenanceMechanics();
     }
 
     public @NotNull MetaTileEntityKitchen getMetaTileEntity() {
@@ -68,8 +68,9 @@ public class KitchenLogic extends MTETrait implements IControllable {
     }
 
     public void update() {
-        if (FMLLaunchHandler.side() != Side.CLIENT || !isWorkingEnabled() || hasMaintenance && ((IMaintenance) getMetaTileEntity()).getNumMaintenanceProblems() > 5)
+        if (getMetaTileEntity().getWorld().isRemote || !isWorkingEnabled() || (hasMaintenance && getMetaTileEntity().getNumMaintenanceProblems() > 5))
             return;
+
 
         KitchenLogicState previousState = state;
         controlledMTEs.removeIf(metaTileEntity -> !metaTileEntity.isValid());
@@ -125,6 +126,11 @@ public class KitchenLogic extends MTETrait implements IControllable {
             } else {
                 areAnyRunning = true;
             }
+        }
+
+        // If the buses/hatches are clogged, we can't do anything
+        if (this.state == KitchenLogicState.HATCHES_FULL || this.state == KitchenLogicState.BUSES_FULL) {
+            return;
         }
 
         if (!areAnyRunning && state == KitchenLogicState.PROBABLY_FINE) {
@@ -430,12 +436,14 @@ public class KitchenLogic extends MTETrait implements IControllable {
     @Override
     public void writeInitialSyncData(@NotNull PacketBuffer buf) {
         buf.writeBoolean(workingEnabled);
+        buf.writeInt(state.ordinal());
         buf.writeInt(dirtiness);
     }
 
     @Override
     public void receiveInitialSyncData(@NotNull PacketBuffer buf) {
         this.workingEnabled = buf.readBoolean();
+        this.state = KitchenLogicState.values()[buf.readInt()];
         this.dirtiness = buf.readInt();
     }
 

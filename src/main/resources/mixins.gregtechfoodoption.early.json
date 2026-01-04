@@ -6,8 +6,6 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [],
   "client": [
-    "GuiPlayerTabOverlayMixin",
-    "RenderManagerMixin"
   ],
   "server": []
 }

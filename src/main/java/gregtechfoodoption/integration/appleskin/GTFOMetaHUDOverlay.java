@@ -85,6 +85,8 @@ public class GTFOMetaHUDOverlay {
         }
     }
 
+
+
     @SubscribeEvent
     public void onClientTick(TickEvent.ClientTickEvent event)
     {

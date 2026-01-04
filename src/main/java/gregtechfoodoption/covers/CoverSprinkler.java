@@ -38,6 +38,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_DATA;
+import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_EXISTENCE;
 import static net.minecraft.block.BlockFarmland.MOISTURE;
 
 public class CoverSprinkler extends CoverBase implements ITickable {
@@ -67,6 +68,21 @@ public class CoverSprinkler extends CoverBase implements ITickable {
             Minecraft.getMinecraft().effectRenderer.addEffect(sprinkleMaker);
         }
         GTFOClientHandler.SPRINKLER_OVERLAY.renderSided(this.getAttachedSide(), plateBox, renderState, pipeline, translation);
+    }
+
+    @Override
+    public void onRemoval() {
+        super.onRemoval();
+        writeCustomData(UPDATE_SPRINKLER_EXISTENCE, packetBuffer -> {
+            packetBuffer.writeBoolean(false);
+        });
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void turnOffParticles() {
+        if (sprinkleMaker != null) {
+            sprinkleMaker.setExpired();
+        }
     }
 
     public boolean canShowSprinkles() {
@@ -171,12 +187,18 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     @Override
     public void readCustomData(int id, PacketBuffer packetBuffer) {
         super.readCustomData(id, packetBuffer);
-        if (id == UPDATE_SPRINKLER_DATA && this.getWorld().isRemote) {
-            this.operationPosition = new BlockPos.MutableBlockPos(packetBuffer.readBlockPos());
-            this.sprinkleColor = packetBuffer.readInt();
-            this.wasWorking = packetBuffer.readBoolean();
-            this.showsSprinkles = packetBuffer.readBoolean();
-            this.scheduleRenderUpdate();
+        if (this.getWorld().isRemote) {
+            if (id == UPDATE_SPRINKLER_DATA) {
+                this.operationPosition = new BlockPos.MutableBlockPos(packetBuffer.readBlockPos());
+                this.sprinkleColor = packetBuffer.readInt();
+                this.wasWorking = packetBuffer.readBoolean();
+                this.showsSprinkles = packetBuffer.readBoolean();
+                this.scheduleRenderUpdate();
+            } else if (id == UPDATE_SPRINKLER_EXISTENCE) {
+                if (!packetBuffer.readBoolean()) {
+                    turnOffParticles();
+                }
+            }
         }
     }
 

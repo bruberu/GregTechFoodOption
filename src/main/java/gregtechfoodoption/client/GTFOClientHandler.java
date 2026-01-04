@@ -1,12 +1,18 @@
 package gregtechfoodoption.client;
 
 import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
-import gregtech.client.renderer.texture.cube.SimpleOverlayRenderer;
+import gregtech.client.renderer.texture.cube.SimpleCubeRenderer;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.GregTechFoodOption;
+import gregtechfoodoption.potion.AntiSchizoPotion;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+@Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class GTFOClientHandler {
     public static OrientedOverlayRenderer SLICER_OVERLAY = new OrientedOverlayRenderer("machines/slicer");
     public static OrientedOverlayRenderer BAKING_OVEN_OVERLAY = new OrientedOverlayRenderer("machines/baking_oven");
@@ -20,9 +26,9 @@ public class GTFOClientHandler {
     public static final OrientedOverlayRenderer SPRINKLER_OVERLAY = new OrientedOverlayRenderer("machines/sprinkler");
 
 
-    public static SimpleOverlayRenderer ADOBE_BRICKS = new SimpleOverlayRenderer("casings/solid/adobe_bricks");
-    public static SimpleOverlayRenderer REINFORCED_ADOBE_BRICKS = new SimpleOverlayRenderer("casings/solid/reinforced_adobe_bricks");
-    public static SimpleOverlayRenderer BISMUTH_BRONZE_CASING = new SimpleOverlayRenderer("casings/solid/bismuth_bronze");
+    public static SimpleCubeRenderer ADOBE_BRICKS = new SimpleCubeRenderer("blocks/casings/solid/adobe_bricks");
+    public static SimpleCubeRenderer REINFORCED_ADOBE_BRICKS = new SimpleCubeRenderer("blocks/casings/solid/reinforced_adobe_bricks");
+    public static SimpleCubeRenderer BISMUTH_BRONZE_CASING = new SimpleCubeRenderer("blocks/casings/solid/bismuth_bronze");
 
     public static SoundEvent MICROWAVE_FINISH;
     public static SoundEvent FARMER_LASER;
@@ -41,4 +47,15 @@ public class GTFOClientHandler {
         ForgeRegistries.SOUND_EVENTS.register(event);
         return event;
     }
+
+    public static void renderPlayerList(RenderGameOverlayEvent.Pre event) {
+        if (!Minecraft.getMinecraft().player.isPotionActive(AntiSchizoPotion.INSTANCE)) {
+            return;
+        }
+        if (event.getType() == RenderGameOverlayEvent.ElementType.PLAYER_LIST) {
+            event.setCanceled(true);
+        }
+    }
+
+
 }

@@ -446,7 +446,6 @@ gregtechfoodoption.machine.cuisine_assembler.uiv.tooltip=Aggressively Makes Pizz
 gregtechfoodoption.machine.cuisine_assembler.uxv.tooltip=Aggressively Makes Pizza
 gregtechfoodoption.machine.cuisine_assembler.opv.tooltip=Aggressively Makes Pizza
 
-
 metaitem.component.bacon.name=Uncooked Bacon
 metaitem.food.bacon.name=Bacon
 metaitem.food.bacon.tooltip=Has been Roasted
@@ -500,7 +499,6 @@ gregtechfoodoption.machine.electric_baking_oven.tooltip.1=Only runs recipes if t
 gregtechfoodoption.machine.electric_baking_oven.tooltip.2=The §aEU§7 per tick required is exponentially related to the current temperature.
 gregtechfoodoption.machine.electric_baking_oven.tooltip.3=Extend the multiblock out by §a1§7 block to run an extra recipe in parallel.
 
-
 gregtechfoodoption.machine.microwave.lv.name=Basic Microwave
 gregtechfoodoption.machine.microwave.mv.name=Advanced Microwave
 gregtechfoodoption.machine.microwave.hv.name=Advanced Microwave II
@@ -527,7 +525,6 @@ gregtechfoodoption.machine.microwave.uev.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.uiv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.uxv.tooltip=Insert Ingot for free Doge Coin
 gregtechfoodoption.machine.microwave.opv.tooltip=Insert Ingot for free Doge Coin
-
 
 recipemap.microwave.name=Microwave
 metaitem.food.mushroom_stew.hot.name=Hot Mushroom Stew
@@ -609,7 +606,6 @@ metaitem.food.juice.apple.name=Apple Juice
 metaitem.food.juice.orange.name=Orange Juice
 metaitem.food.juice.apple.tooltip=cause Minecraft apples are yellow
 metaitem.food.juice.orange.tooltip=WaterPortuguese
-
 
 gregtech.material.gtfo_stearin=Liquid Fat (Stearin)
 gregtech.material.gtfo_stearic_acid=Stearic Acid
@@ -989,6 +985,8 @@ metaitem.component.rice.name=Rice
 metaitem.component.rice.tooltip=Also works as a Seed
 metaitem.component.nutmeg.name=Nutmeg Seeds
 metaitem.seed.white_grape.name=White Grape Seeds
+metaitem.component.cotton.name=Cotton
+metaitem.seed.cotton.name=Cotton Seeds
 metaitem.shape.pasta.blank.name=Blank Pasta Extruder Shape
 metaitem.shape.pasta.tagliatelle.name=Tagliatelle Pasta Extruder Shape
 metaitem.shape.pasta.spaghetti.name=Spaghetti Pasta Extruder Shape
@@ -1102,6 +1100,7 @@ tile.gtfo_crop_artichoke.name=Artichoke
 tile.gtfo_crop_black_pepper.name=Black Pepper
 tile.gtfo_crop_rice.name=Rice
 tile.gtfo_crop_white_grape.name=White Grape
+tile.gtfo_crop_cotton.name=Cotton
 
 lacing.item_list.name=Lacing Recipe
 gregtechfoodoption.lacing.info.1=Applies effect:
@@ -1156,8 +1155,9 @@ gregtech.material.gtfo_cranberry_soda_syrup=Cranberry Soda Syrup
 
 gregtechfoodoption.berry.description.0=§4Grows very slowly by itself!
 gregtechfoodoption.berry.description.1=§bGrows faster in higher tiers
-gregtechfoodoption.berry.description.2=Place §5three§r grown berry bushes of the previous tier in the 3x3 centered on the bush to get to the next tier
-gregtechfoodoption.berry.description.3=§4The 3x3 centered on the bush must not be filled!
+
+gregtechfoodoption.berry.description.2=§bGrow next to three already-grown bushes of the previous tier to get to the next tier (3x3 area)
+gregtechfoodoption.berry.description.3=§4The 3x3 centered on the bush must not be entirely filled!
 
 gregtechfoodoption.blocked=This blocks a berry bush at %s (%s in total).
 
@@ -1181,7 +1181,6 @@ gregtechfoodoption.multiblock.kitchen.order_size=Order size: %s items
 gregtechfoodoption.multiblock.kitchen.dirtiness=Dirtiness: %s DU
 gregtechfoodoption.multiblock.kitchen.increment_order=Increase order size by 1
 gregtechfoodoption.multiblock.kitchen.decrement_order=Decrease order size by 1
-
 
 gregtechfoodoption.fluid.cleaning=Cleans §2%s§r DU/L!
 
