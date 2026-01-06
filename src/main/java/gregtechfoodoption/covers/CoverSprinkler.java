@@ -30,6 +30,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -125,8 +126,12 @@ public class CoverSprinkler extends CoverBase implements ITickable {
             syncAllData();
         }
         IBlockState cropState = this.getCoverableView().getWorld().getBlockState(operationPosition);
-        if (cropState.getBlock() instanceof IGrowable && GTValues.RNG.nextInt(100) < percentageChance && ((IGrowable) cropState.getBlock()).canGrow(this.getCoverableView().getWorld(), operationPosition, cropState, false)) {
-            ((IGrowable) cropState.getBlock()).grow(this.getCoverableView().getWorld(), GTValues.RNG, operationPosition, cropState);
+        if (GTValues.RNG.nextInt(100) < percentageChance) {
+            if (cropState.getBlock() instanceof IGrowable && ((IGrowable) cropState.getBlock()).canGrow(this.getCoverableView().getWorld(), operationPosition, cropState, false)) {
+                ((IGrowable) cropState.getBlock()).grow(this.getCoverableView().getWorld(), GTValues.RNG, operationPosition, cropState);
+            } else if (cropState.getBlock() instanceof IPlantable) {
+                (cropState.getBlock()).updateTick(getWorld(), operationPosition, cropState, GTValues.RNG);
+            }
         }
 
         IBlockState farmlandState = this.getCoverableView().getWorld().getBlockState(operationPosition.down());
