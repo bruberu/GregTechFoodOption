@@ -3,6 +3,7 @@ package gregtechfoodoption.block;
 import gregtech.api.block.VariantBlock;
 import gregtech.api.unification.material.Material;
 import gregtech.client.renderer.ICubeRenderer;
+import gregtechfoodoption.GTFOValues;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
@@ -21,6 +22,7 @@ public class GTFOMetalCasing extends VariantBlock<GTFOMetalCasing.CasingType> {
         setResistance(10.0f);
         setSoundType(SoundType.METAL);
         setHarvestLevel("wrench", 2);
+        setCreativeTab(GTFOValues.TAB_GTFO_BLOCKS);
         setDefaultState(getState(CasingType.BISMUTH_BRONZE_CASING));
     }
 

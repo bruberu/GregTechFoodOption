@@ -704,8 +704,14 @@ gregtechfoodoption.machine.farmer.tooltip.speed=Работает с одним �
 metaitem.sodium_perchlorate_dust.name=Перхлорат натрия
 metaitem.sodium_chlorate_dust.name=Хлорат натрия
 
-itemGroup.gregtechfoodoption.main=Вариант питания GregTech
-itemGroup.gregtechfoodoption.food=GregTech Food Option Продукты питания
+itemGroup.gregtechfoodoption.main=GTFO
+itemGroup.gregtechfoodoption.food=GTFO Еда
+itemGroup.gregtechfoodoption.crops=GTFO Семена
+itemGroup.gregtechfoodoption.blocks=GTFO Блоки
+itemGroup.gregtechfoodoption.tools=GTFO Инструменты
+itemGroup.gregtechfoodoption.funnystuff=GTFO Бухлишко и таблетки
+itemGroup.gregtechfoodoption.drinks=GTFO Безалкогольные напитки
+itemGroup.gregtechfoodoption.fruitsvegetables=GTFO Фрукты и овощи
 
 gregtechfoodoption.leaves.banana.name=Банановые листья
 gregtechfoodoption.log.banana.name=Банановый псевдостебель

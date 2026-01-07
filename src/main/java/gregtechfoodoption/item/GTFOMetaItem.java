@@ -1259,17 +1259,92 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     @Nonnull
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{CreativeTabs.SEARCH, GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD};
+        return new CreativeTabs[]{CreativeTabs.SEARCH, GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD, GTFOValues.TAB_GTFO_CROPS, GTFOValues.TAB_GTFO_DRUGSALCOHOL};
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {
         for (MetaItem.MetaValueItem item : this.getAllItems()) {
-            if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) || ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) || tab == CreativeTabs.SEARCH)) {
+            if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && !isSeedItem(item) && !isDrugOrAlcohol(item) && tab == GTFOValues.TAB_GTFO)
+                    || ((item.getUseManager() instanceof FoodUseManager) && !isDrugOrAlcohol(item) && !isNonAlcoholDrink(item) && !isFruitItem(item) && tab == GTFOValues.TAB_GTFO_FOOD)
+                    || (isSeedItem(item) && tab == GTFOValues.TAB_GTFO_CROPS)
+                    || (isDrugOrAlcohol(item) && tab == GTFOValues.TAB_GTFO_DRUGSALCOHOL)
+                    || (isNonAlcoholDrink(item) && tab == GTFOValues.TAB_GTFO_DRINKS)
+                    || (isFruitItem(item) && tab == GTFOValues.TAB_GTFO_FRUITSVEGETABLES)
+                    || tab == CreativeTabs.SEARCH)) {
                 ItemStack itemStack = item.getStackForm();
                 item.getSubItemHandler().getSubItems(itemStack, tab, subItems);
             }
         }
+    }
+    private boolean isSeedItem(MetaItem.MetaValueItem item) {
+        if (item instanceof GTFOMetaValueItem) {
+            String name = ((GTFOMetaValueItem) item).unlocalizedName;
+            return name != null && name.startsWith("seed.");
+        }
+        return false;
+    }
+
+    private boolean isDrugOrAlcohol(MetaItem.MetaValueItem item) {
+        if (item instanceof GTFOMetaValueItem) {
+            String name = ((GTFOMetaValueItem) item).unlocalizedName;
+            if (name == null) {
+                return false;
+            }
+            return name.equals("food.vodka")
+                    || name.equals("food.leninade")
+                    || name.equals("food.beer")
+                    || name.equals("food.white_wine")
+                    || name.equals("food.red_wine")
+                    || name.startsWith("food.gel_caplet")
+                    || name.startsWith("food.paracetamol_caplet")
+                    || name.startsWith("food.plutonium_241_caplet")
+                    || name.startsWith("food.caplet.");
+        }
+        return false;
+    }
+    private boolean isNonAlcoholDrink(MetaItem.MetaValueItem item) {
+        if (item instanceof GTFOMetaValueItem) {
+            String name = ((GTFOMetaValueItem) item).unlocalizedName;
+            if (name == null) {
+                return false;
+            }
+            return name.equals("food.mineral_water")
+                    || name.equals("food.sparkling_water")
+                    || name.equals("food.juice.apple")
+                    || name.equals("food.juice.orange")
+                    || name.equals("food.etrips")
+                    || name.equals("food.etrips_cranberry")
+                    || name.equals("food.etrips_antaf")
+                    || name.equals("food.coffee.normal")
+                    || name.equals("food.coffee.energized");
+        }
+        return false;
+    }
+
+    private boolean isFruitItem(MetaItem.MetaValueItem item) {
+        if (item instanceof GTFOMetaValueItem) {
+            String name = ((GTFOMetaValueItem) item).unlocalizedName;
+            if (name == null) {
+                return false;
+            }
+            return name.equals("food.banana")
+                    || name.equals("food.orange")
+                    || name.equals("food.grapes")
+                    || name.equals("food.white_grapes")
+                    || name.equals("food.mango")
+                    || name.equals("food.apricot")
+                    || name.equals("food.lemon")
+                    || name.equals("food.lime")
+                    || name.startsWith("food.berry.")
+                    || name.equals("crop.olive")
+                    || name.equals("crop.tomato")
+                    || name.equals("crop.onion")
+                    || name.equals("crop.cucumber")
+                    || name.equals("crop.coffee")
+                    || name.equals("crop.aubergine");
+        }
+        return false;
     }
 
     @SideOnly(Side.CLIENT)

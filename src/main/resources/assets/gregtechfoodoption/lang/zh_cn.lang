@@ -705,6 +705,12 @@ metaitem.sodium_chlorate_dust.name=氯酸钠
 
 itemGroup.gregtechfoodoption.main=格雷科技食物优选
 itemGroup.gregtechfoodoption.food=格雷科技食物优选 | 食物
+itemGroup.gregtechfoodoption.crops=格雷科技食物优选 | 农作物
+itemGroup.gregtechfoodoption.blocks=格雷科技食物优选 | 方块
+itemGroup.gregtechfoodoption.tools=格雷科技食物优选 | 工具
+itemGroup.gregtechfoodoption.funnystuff=格雷科技食物优选 | 酒精与药丸
+itemGroup.gregtechfoodoption.drinks=格雷科技食物优选 | 饮品
+itemGroup.gregtechfoodoption.fruits=格雷科技食物优选 | 水果
 
 gregtechfoodoption.leaves.banana.name=香蕉叶
 gregtechfoodoption.log.banana.name=香蕉假茎
