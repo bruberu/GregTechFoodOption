@@ -12,7 +12,7 @@ metaitem.beta_carotene_dust.name=β-胡萝卜素
 metaitem.phycomyces_blakesleeanus_dust.name=布拉克须霉
 metaitem.phycomyces_blakesleeanus_dust.tooltip=真菌
 metaitem.corn_kernel_gem_chipped.name=玉米籽
-//metaitem.corn_kernel_gem_chipped.tooltip=此种子只能种植在温室中。
+//metaitem.corn_kernel_gem_chipped.tooltip=This seed can only be grown in the Green House.
 metaitem.corn_kernel_bare_gem_chipped.name=玉米粒
 metaitem.corn_kernel_graded_gem_chipped.name=合格级玉米粒
 gregtech.material.gtfo_peptone_mixture=蛋白胨混合物
@@ -446,7 +446,6 @@ gregtechfoodoption.machine.cuisine_assembler.uiv.tooltip=激进地制造披萨�
 gregtechfoodoption.machine.cuisine_assembler.uxv.tooltip=激进地制造披萨（小心意大利人）
 gregtechfoodoption.machine.cuisine_assembler.opv.tooltip=激进地制造披萨（小心意大利人）
 
-
 metaitem.component.bacon.name=生培根
 metaitem.food.bacon.name=培根
 metaitem.food.bacon.tooltip=烤过了
@@ -500,7 +499,6 @@ gregtechfoodoption.machine.electric_baking_oven.tooltip.1=仅在达到所需温�
 gregtechfoodoption.machine.electric_baking_oven.tooltip.2=每 tick 消耗的 §aEU§7 与当前温度呈指数关系。
 gregtechfoodoption.machine.electric_baking_oven.tooltip.3=多方块长度每增加 §a1§7 格，最大并行数加一。
 
-
 gregtechfoodoption.machine.microwave.lv.name=基础微波炉
 gregtechfoodoption.machine.microwave.mv.name=进阶微波炉
 gregtechfoodoption.machine.microwave.hv.name=进阶微波炉 II
@@ -527,7 +525,6 @@ gregtechfoodoption.machine.microwave.uev.tooltip=放入锭以获取免费狗狗�
 gregtechfoodoption.machine.microwave.uiv.tooltip=放入锭以获取免费狗狗币！
 gregtechfoodoption.machine.microwave.uxv.tooltip=放入锭以获取免费狗狗币！
 gregtechfoodoption.machine.microwave.opv.tooltip=放入锭以获取免费狗狗币！
-
 
 recipemap.microwave.name=微波炉
 metaitem.food.mushroom_stew.hot.name=热蘑菇煲
@@ -610,7 +607,6 @@ metaitem.food.juice.orange.name=橙汁
 metaitem.food.juice.apple.tooltip=一定是因为Minecraft苹果是黄色的
 metaitem.food.juice.orange.tooltip=喝橙汁的葡萄牙人.mp4
 
-
 gregtech.material.gtfo_stearin=液态脂肪（硬脂精）
 gregtech.material.gtfo_stearic_acid=硬脂酸
 gregtech.material.gtfo_sodium_stearate=硬脂酸钠（肥皂）
@@ -688,6 +684,7 @@ metaitem.seed.onion.tooltip=用于种植青年洋葱/为了成长中的YoungOnio
 death.attack.extermination=%s被消灭了
 death.attack.extraction=%s的内脏被抽了出来
 death.attack.cyanide=%s闻到了一丝苦杏仁味
+death.attack.lung_cancer=%s 死于肺癌
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§c这也可以轻易地杀死你自己！
 
 # Farmer
@@ -710,7 +707,7 @@ itemGroup.gregtechfoodoption.blocks=格雷科技食物优选 | 方块
 itemGroup.gregtechfoodoption.tools=格雷科技食物优选 | 工具
 itemGroup.gregtechfoodoption.funnystuff=格雷科技食物优选 | 酒精与药丸
 itemGroup.gregtechfoodoption.drinks=格雷科技食物优选 | 饮品
-itemGroup.gregtechfoodoption.fruits=格雷科技食物优选 | 水果
+itemGroup.gregtechfoodoption.fruitsvegetables=GTFO 水果和蔬菜
 
 gregtechfoodoption.leaves.banana.name=香蕉叶
 gregtechfoodoption.log.banana.name=香蕉假茎
@@ -901,6 +898,11 @@ metaitem.aminophenol_dust.name=对氨基苯酚
 metaitem.iinitrophenol_dust.name=2-硝基苯酚
 metaitem.ivnitrophenol_dust.name=4-硝基苯酚
 metaitem.plutonium_241_caplet.name=钚-241胶囊
+metaitem.food.caplet.chorus.name=发酵合唱胶囊
+metaitem.food.caplet.chorus.tooltip=刚刚颜色变了吗？
+metaitem.food.caplet.vibrant.name=充满活力的囊片
+metaitem.food.caplet.vibrant.tooltip=它只是没有相同的五卤化物味道
+
 metaitem.iv_bag.name=静脉注射(IV)袋
 
 gregtech.material.gtfo_acetic_anhydride=乙酸酐
@@ -989,6 +991,8 @@ metaitem.component.rice.name=大米
 metaitem.component.rice.tooltip=可作为种子使用
 metaitem.component.nutmeg.name=肉桂果
 metaitem.seed.white_grape.name=白葡萄种子
+metaitem.component.cotton.name=棉
+metaitem.seed.cotton.name=棉花种子
 metaitem.shape.pasta.blank.name=空青铜模板
 metaitem.shape.pasta.tagliatelle.name=青铜模头（意式干面）
 metaitem.shape.pasta.spaghetti.name=青铜模头（意式直面）
@@ -1102,12 +1106,14 @@ tile.gtfo_crop_artichoke.name=洋蓟
 tile.gtfo_crop_black_pepper.name=黑胡椒
 tile.gtfo_crop_rice.name=大米
 tile.gtfo_crop_white_grape.name=白葡萄
+tile.gtfo_crop_cotton.name=棉
 
 lacing.item_list.name=掺药
 gregtechfoodoption.lacing.info.1=施加效果：
 gregtechfoodoption.lacing.info.2=持续 %s ticks
 gregtechfoodoption.potion.cyanidepoisoning=氰化物中毒
 gregtechfoodoption.potion.antischizo=抗精神分裂
+gregtechfoodoption.potion.lungcancer=肺癌
 eating.output.name=食用
 
 metaitem.component.pelmeni_uncooked.name=生俄式饺子
@@ -1155,6 +1161,7 @@ gregtech.material.gtfo_cranberry_soda_syrup=蔓越莓苏打水糖浆
 
 gregtechfoodoption.berry.description.0=§4单独种植时生长极慢！
 gregtechfoodoption.berry.description.1=§b初始等级为 0。等级越高，生长越快
+
 gregtechfoodoption.berry.description.2=§r若周围的 8 格内存在§5两§r丛与自身等级相同的浆果，则等级加 1
 gregtechfoodoption.berry.description.3=§4周围 8 格内至少需要一格空气！
 
@@ -1181,7 +1188,6 @@ gregtechfoodoption.multiblock.kitchen.dirtiness=脏污程度：%s DU
 gregtechfoodoption.multiblock.kitchen.increment_order=订单物品数增加 1
 gregtechfoodoption.multiblock.kitchen.decrement_order=订单物品数减少 1
 
-
 gregtechfoodoption.fluid.cleaning=清洁 §2%s§r DU/L！
 
 gregtechfoodoption.kitchen.recipe.warn=此处只能放置与食品相关的物品！
@@ -1200,3 +1206,32 @@ gregtechfoodoption.machine.kitchen.tooltip.2=按照厨房食谱处理食物相�
 gregtechfoodoption.machine.kitchen.tooltip.3=将单方块机器放置在瓷砖上！
 gregtechfoodoption.machine.kitchen.tooltip.4=可以搭建大于预览所示尺寸的厨房
 gregtechfoodoption.machine.kitchen.tooltip.5=§4需要清洁剂来保持运行效率！
+
+gregtechfoodoption.seed.water_crop=必须放置在一整块水中
+
+metaitem.food.pie.fermented_chorus.name=发酵合唱团馅饼
+gregtechfoodoption.potion.enhancedchorus=增强合唱
+metaitem.food.sorbet.apple.name=苹果冰糕
+metaitem.food.sorbet.apricot.name=杏冰糕
+metaitem.food.sorbet.chorus.name=合唱冰糕
+metaitem.food.sorbet.grape.name=葡萄冰糕
+metaitem.food.sorbet.lime.name=青柠冰糕
+metaitem.food.sorbet.vibrant.name=充满活力的冰糕
+metaitem.food.sorbet.plain.name=原味冰糕
+metaitem.food.sorbet.plain.tooltip=对牙齿非常好，完全
+metaitem.food.fermented_chorus.name=发酵合唱团
+metaitem.food.antaf.name=安塔夫™
+
+metaitem.food.naquadah_chips.name=纳夸达薯片
+metaitem.food.naquadah_chips.tooltip=你们的科学家们如此全神贯注于他们是否可以，他们没有停下来思考他们是否应该这样做。
+metaitem.food.sandwich.vibrant.name=充满活力的三明治
+metaitem.food.sandwich.vibrant.tooltip=我想它像果冻一样有效。
+
+gregtech.material.gtfo_ender_pearl_solution=末影珍珠解决方案
+gregtech.material.gtfo_ender_sugar_solution=安德糖溶液
+gregtech.material.gtfo_chorus_juice=合唱汁
+gregtech.material.gtfo_fermented_chorus_juice=发酵合唱汁
+gregtech.material.gtfo_antaf=安塔夫
+gregtech.material.gtfo_vibrant_extract=活力提取物
+gregtech.material.gtfo_apricot_extract=杏提取物
+gregtech.material.gtfo_grape_extract=葡萄提取物

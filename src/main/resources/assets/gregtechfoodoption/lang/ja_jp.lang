@@ -1,8 +1,3 @@
-# Japanese translate by MrKo_no
-# 翻訳担当 : MrKo_no
-# Corresponding Version: 1.10.0.2
-# 対応バージョン: 1.10.0.2
-
 metaitem.phycomyces.culture.name=ヒゲカビ菌床
 metaitem.component.corn.ear.name=トウモロコシ
 metaitem.component.corn.dried_ear.name=乾燥トウモロコシ
@@ -17,7 +12,7 @@ metaitem.beta_carotene_dust.name=β-カロテン
 metaitem.phycomyces_blakesleeanus_dust.name=ヒゲカビ
 metaitem.phycomyces_blakesleeanus_dust.tooltip=真菌
 metaitem.corn_kernel_gem_chipped.name=トウモロコシの種
-//metaitem.corn_kernel_gem_chipped.tooltip=温室でのみ育成できる
+//metaitem.corn_kernel_gem_chipped.tooltip=This seed can only be grown in the Green House.
 metaitem.corn_kernel_bare_gem_chipped.name=トウモロコシ穀粒
 metaitem.corn_kernel_graded_gem_chipped.name=許容できるトウモロコシ穀粒
 gregtech.material.gtfo_peptone_mixture=ペプトン混合物
@@ -275,8 +270,11 @@ gregtechfoodoption.machine.baking_oven.name=初歩的なオーブン
 gregtechfoodoption.machine.steam_baking_oven.name=蒸気式食物用オーブン
 gregtechfoodoption.machine.steam_baking_oven.tooltip=通常のオーブンよりも2倍時間がかかるが、燃料を必要としない。
 gregtechfoodoption.machine.electric_baking_oven.name=電気式オーブン
+gregtechfoodoption.machine.kitchen.name=キッチン
 tile.gtfo_casing.adobe_bricks.name=アドベレンガ
 tile.gtfo_casing.reinforced_adobe_bricks.name=強化アドベレンガ
+tile.gtfo_casing.porcelain_tile.name=磁器タイル
+tile.gtfo_casing.dark_porcelain_tile.name=ダーク磁器タイル
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.1=温度: §a%dK§7
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.2=設定温度に達するためのエネルギーが足りません!
 gregtechfoodoption.multiblock.electric_baking_oven.tooltip.3=温度設定:
@@ -287,6 +285,7 @@ gregtechfoodoption.multiblock.electric_baking_oven.temp_increment=設定温度�
 gregtechfoodoption.multiblock.electric_baking_oven.temp_decrement=設定温度を§c-5K§r/n§7電気式オーブンの消費電力は温度に応じて上昇します/n§c自動温度調整がOFFの時のみ有効です
 gregtechfoodoption.multiblock.electric_baking_oven.adaptable_on=自動温度調整を§coff§rに/n自動温度調整時は、オーブンが使われていない場合に自動的に電源を切りますが、実行時に温度を上昇させるために時間がかかります/nOFFにすると手動で温度を設定できます
 gregtechfoodoption.multiblock.electric_baking_oven.adaptable_off=自動温度調整を§aon§rに/n自動温度調整時は、オーブンが使われていない場合に自動的に電源を切りますが、実行時に温度を上昇させるために時間がかかります/nOFFにすると手動で温度を設定できます
+gregtechfoodoption.recipe.baking_oven_temperature=温度: %dK
 recipemap.baking_oven.name=初歩的なオーブン
 recipemap.electric_baking_oven.name=電気式オーブン
 recipemap.steam_baking_oven.name=蒸気式食物用オーブン
@@ -447,7 +446,6 @@ gregtechfoodoption.machine.cuisine_assembler.uiv.tooltip=積極的なピザ作�
 gregtechfoodoption.machine.cuisine_assembler.uxv.tooltip=積極的なピザ作り
 gregtechfoodoption.machine.cuisine_assembler.opv.tooltip=積極的なピザ作り
 
-
 metaitem.component.bacon.name=焼いていないベーコン
 metaitem.food.bacon.name=ベーコン
 metaitem.food.bacon.tooltip=焼いてあるよ
@@ -501,7 +499,6 @@ gregtechfoodoption.machine.electric_baking_oven.tooltip.1=必要な温度が設�
 gregtechfoodoption.machine.electric_baking_oven.tooltip.2=1tickあたりの要求§aEU§7は、現在の温度に指数関数的に関係する。
 gregtechfoodoption.machine.electric_baking_oven.tooltip.3=構成を§a1§7ブロック拡張するごとに並列処理を行う。
 
-
 gregtechfoodoption.machine.microwave.lv.name=基本型電子レンジ
 gregtechfoodoption.machine.microwave.mv.name=発展型電子レンジ
 gregtechfoodoption.machine.microwave.hv.name=発展型電子レンジ II
@@ -528,7 +525,6 @@ gregtechfoodoption.machine.microwave.uev.tooltip=インゴットを入れると�
 gregtechfoodoption.machine.microwave.uiv.tooltip=インゴットを入れるとドージコインが無料に
 gregtechfoodoption.machine.microwave.uxv.tooltip=インゴットを入れるとドージコインが無料に
 gregtechfoodoption.machine.microwave.opv.tooltip=インゴットを入れるとドージコインが無料に
-
 
 recipemap.microwave.name=電子レンジ
 metaitem.food.mushroom_stew.hot.name=熱したキノコシチュー
@@ -611,7 +607,6 @@ metaitem.food.juice.orange.name=オレンジジュース
 metaitem.food.juice.apple.tooltip=Minecraftのリンゴは黄色だから
 metaitem.food.juice.orange.tooltip=オレンジジュースはポルトガル水
 
-
 gregtech.material.gtfo_stearin=液体油脂 (ステアリン)
 gregtech.material.gtfo_stearic_acid=ステアリン酸
 gregtech.material.gtfo_sodium_stearate=ステアリン酸ナトリウム (石鹸)
@@ -689,6 +684,7 @@ metaitem.seed.onion.tooltip=ヤングオニオンの育成に
 death.attack.extermination=%s は安全確認を怠った
 death.attack.extraction=%s は内臓を摘出された
 death.attack.cyanide=%s からアーモンド臭がする
+death.attack.lung_cancer=%s は肺がんで亡くなりました
 gregtechfoodoption.machine.mob_exterminator.tooltip.warning=§cこれは容易にあなたを傷つけるでしょう!
 
 # Farmer
@@ -711,7 +707,7 @@ itemGroup.gregtechfoodoption.blocks=GTFO ブロック
 itemGroup.gregtechfoodoption.tools=GTFO ツール
 itemGroup.gregtechfoodoption.funnystuff=GTFO アルコール・錠剤
 itemGroup.gregtechfoodoption.drinks=GTFO 飲み物
-itemGroup.gregtechfoodoption.fruits=GTFO 果実
+itemGroup.gregtechfoodoption.fruitsvegetables=GTFO 果物と野菜
 
 gregtechfoodoption.leaves.banana.name=バナナの葉
 gregtechfoodoption.log.banana.name=バナナの幹
@@ -749,6 +745,10 @@ gregtechfoodoption.leaves.nutmeg.name=ナツメグの葉
 gregtechfoodoption.log.nutmeg.name=ナツメグの原木
 gregtechfoodoption.sapling.nutmeg.name=ナツメグの苗木
 gregtechfoodoption.planks.nutmeg.name=ナツメグの木材
+gregtechfoodoption.leaves.coconut.name=ココナッツの葉
+gregtechfoodoption.log.coconut.name=ココナッツウッド
+gregtechfoodoption.sapling.coconut.name=ココナッツの苗木
+gregtechfoodoption.planks.coconut.name=ココナッツの板
 
 metaitem.food.ice_cream.plain.name=プレーンアイスクリーム
 metaitem.food.ice_cream.plain.tooltip=アイスのような味、かな?
@@ -829,6 +829,7 @@ gregtech.multiblock.not_enough_sun=屋根に十分な自然光が当たってい
 
 gregtechfoodoption.machine.greenhouse.tooltip.1=内部で植林をシミュレートする。
 gregtechfoodoption.machine.greenhouse.tooltip.2=夜間または屋根の一部が塞がれている場合、動作時間が2倍になる。
+gregtechfoodoption.machine.greenhouse.tooltip.3=これなら耐候性もバッチリ！
 
 gregtech.material.gtfo_beer_batter=ビール入りの衣
 metaitem.puff_pastry_plate.name=パフペストリー
@@ -847,11 +848,13 @@ metaitem.food.toast.name=トースト
 metaitem.food.sandwich.toast.name=トーストサンドイッチ
 metaitem.food.fish_and_chips.name=フィッシュアンドチップス
 metaitem.food.full_breakfast.name=満腹朝食
+metaitem.food.full_breakfast.tooltip=実際には朝食の半分だけです
 metaitem.food.shepherds_pie.name=シェパーズパイ
 metaitem.food.shepherds_pie.tooltip=中身を考えると、おそらくインダストリアル・パイでしょう。
 metaitem.food.sausage_roll.name=ソーセージロール
 metaitem.food.baked_beans.name=炒り豆
 metaitem.food.beans_on_toast.name=豆トースト
+metaitem.food.beans_on_toast.tooltip=「ポレンタに似ていますが、それよりも悪いです」
 metaitem.food.fried_fish.name=魚フライ
 metaitem.food.battered_fish.name=魚のバターソテー
 metaitem.food.beer.name=ビール
@@ -895,6 +898,11 @@ metaitem.aminophenol_dust.name=p-アミノフェノール
 metaitem.iinitrophenol_dust.name=2-ニトロフェノール
 metaitem.ivnitrophenol_dust.name=4-ニトロフェノール
 metaitem.plutonium_241_caplet.name=プルトニウム241カプレット
+metaitem.food.caplet.chorus.name=発酵コーラスカプレット
+metaitem.food.caplet.chorus.tooltip=色が変わっただけですか？
+metaitem.food.caplet.vibrant.name=鮮やかなカプレット
+metaitem.food.caplet.vibrant.tooltip=同じポリモスコビウム・ペンタハライドの風味がないだけです
+
 metaitem.iv_bag.name=IVバッグ
 
 gregtech.material.gtfo_acetic_anhydride=無水酢酸
@@ -983,6 +991,8 @@ metaitem.component.rice.name=米
 metaitem.component.rice.tooltip=種としても使える
 metaitem.component.nutmeg.name=ナツメグの種
 metaitem.seed.white_grape.name=白ブドウの種
+metaitem.component.cotton.name=コットン
+metaitem.seed.cotton.name=綿の種
 metaitem.shape.pasta.blank.name=未設定のパスタ用押出形成金型
 metaitem.shape.pasta.tagliatelle.name=タリアテッレのパスタ用押出形成金型
 metaitem.shape.pasta.spaghetti.name=スパゲッティのパスタ用押出形成金型
@@ -1096,12 +1106,14 @@ tile.gtfo_crop_artichoke.name=アーティチョーク
 tile.gtfo_crop_black_pepper.name=コショウ
 tile.gtfo_crop_rice.name=米
 tile.gtfo_crop_white_grape.name=白ブドウ
+tile.gtfo_crop_cotton.name=コットン
 
 lacing.item_list.name=異物混入情報
 gregtechfoodoption.lacing.info.1=発現効果:
 gregtechfoodoption.lacing.info.2=が%s ticks持続する
 gregtechfoodoption.potion.cyanidepoisoning=青酸中毒
 gregtechfoodoption.potion.antischizo=抗統合失調症
+gregtechfoodoption.potion.lungcancer=肺がん
 eating.output.name=返却されるもの
 
 metaitem.component.pelmeni_uncooked.name=未調理のペリメニ
@@ -1147,10 +1159,79 @@ gregtech.material.gtfo_etirps_cranberry=エティルプス・クランベリー
 gregtech.material.gtfo_cranberry_sludge=濃縮したクランベリー抽出物
 gregtech.material.gtfo_cranberry_soda_syrup=クランベリーソーダシロップ
 
-
 gregtechfoodoption.berry.description.0=§4成長が非常に遅い!
 gregtechfoodoption.berry.description.1=§b高ティアほど成長が早い
+
 gregtechfoodoption.berry.description.2=ティア上昇させるためには、前のティアのベリーの茂みを§53つ§r、ティアを上昇させたい茂みを中心とした3x3の範囲内に配置する。
 gregtechfoodoption.berry.description.3=§4茂みを中心とした3x3は、最低1つは空気ブロックでなければならない!
 
 gregtechfoodoption.blocked=周囲をブロックで囲まれているため、%sにはベリーの茂みを設置できません!
+
+metaitem.component.coconut.name=ココナッツ
+metaitem.component.coconut.tooltip=冷血な殺人者
+
+gregtechfoodoption.seed.0=§bシードとして使用可能
+gregtechfoodoption.seed.root_crop=§r作物は§4種が収穫可能になる直前§rにのみ収穫できます!
+
+gregtechfoodoption.multiblock.kitchen.no_recipe=レシピのアイテムがありません! (または設定されていません)
+gregtechfoodoption.multiblock.kitchen.buses_full=アイテムIOバスがいっぱいです！
+gregtechfoodoption.multiblock.kitchen.hatches_full=流体 IO ハッチがいっぱいです。
+gregtechfoodoption.multiblock.kitchen.bad_machines=実際にアイテムを作成するのに適切なタイプ/Tier のマシンがありません。
+gregtechfoodoption.multiblock.kitchen.machines_not_working=必要なマシンが機能していません。
+gregtechfoodoption.multiblock.kitchen.no_ingredients=材料が足りない！
+gregtechfoodoption.multiblock.kitchen.probably_fine=レシピを実行中...
+gregtechfoodoption.multiblock.kitchen.order_complete=注文完了！
+
+gregtechfoodoption.multiblock.kitchen.very_dirty=キッチンには本当に掃除が必要です！
+gregtechfoodoption.multiblock.kitchen.order_size=注文サイズ: %s アイテム
+gregtechfoodoption.multiblock.kitchen.dirtiness=汚れ: %s DU
+gregtechfoodoption.multiblock.kitchen.increment_order=注文サイズを 1 つ増やします
+gregtechfoodoption.multiblock.kitchen.decrement_order=注文サイズを 1 つ減らします
+
+gregtechfoodoption.fluid.cleaning=§2%s§r DU/L をクリーンアップ!
+
+gregtechfoodoption.kitchen.recipe.warn=ここには食品関連のアイテムのみを置くことができます。
+
+metaitem.bone_ash_dust.name=ボーンアッシュ
+metaitem.unfired_porcelain_tile_plate.name=未焼成磁器タイル
+metaitem.bisque_porcelain_tile_plate.name=素焼き磁器タイル
+metaitem.glazed_porcelain_tile_plate.name=施釉磁器タイル
+metaitem.black_glazed_porcelain_tile_plate.name=黒釉磁器タイル
+metaitem.utility.kitchen_recipe.name=キッチンレシピ
+metaitem.utility.kitchen_recipe.tooltip=右クリックして、JEI を通じて GTFO レシピを追加してください。 §4シングルブロック§7 レシピのキッチン マルチブロックで動作します。
+gregtechfoodoption.kitchen_recipe.final_result=§3%s を生成します
+
+gregtechfoodoption.machine.kitchen.tooltip.1=§4JEIでのみ使用可能
+gregtechfoodoption.machine.kitchen.tooltip.2=キッチンレシピを通じて食品関連のレシピを実行します
+gregtechfoodoption.machine.kitchen.tooltip.3=シングルブロックマシンを磁器タイルの上に配置しましょう！
+gregtechfoodoption.machine.kitchen.tooltip.4=プレビューより大きい 15x15 までのサイズであれば問題ありません。
+gregtechfoodoption.machine.kitchen.tooltip.5=§4効率を維持するには製品の洗浄が必要です。
+
+gregtechfoodoption.seed.water_crop=1ブロックの水の中に置く必要があります
+
+metaitem.food.pie.fermented_chorus.name=発酵コーラスパイ
+gregtechfoodoption.potion.enhancedchorus=強化されたコーラス
+metaitem.food.sorbet.apple.name=アップルシャーベット
+metaitem.food.sorbet.apricot.name=アプリコットシャーベット
+metaitem.food.sorbet.chorus.name=コーラスシャーベット
+metaitem.food.sorbet.grape.name=ぶどうシャーベット
+metaitem.food.sorbet.lime.name=ライムシャーベット
+metaitem.food.sorbet.vibrant.name=鮮やかなシャーベット
+metaitem.food.sorbet.plain.name=プレーンシャーベット
+metaitem.food.sorbet.plain.tooltip=歯にとても良いです、まったく
+metaitem.food.fermented_chorus.name=発酵コーラス
+metaitem.food.antaf.name=アンタフ™
+
+metaitem.food.naquadah_chips.name=ナクアダチップス
+metaitem.food.naquadah_chips.tooltip=科学者たちは、それができるかどうかにばかり気をとられて、やるべきかどうかを考えるために立ち止まりませんでした。
+metaitem.food.sandwich.vibrant.name=鮮やかなサンドイッチ
+metaitem.food.sandwich.vibrant.tooltip=ゼリーとしては十分使えると思います。
+
+gregtech.material.gtfo_ender_pearl_solution=エンダーパールソリューション
+gregtech.material.gtfo_ender_sugar_solution=エンダーシュガーソリューション
+gregtech.material.gtfo_chorus_juice=コーラスジュース
+gregtech.material.gtfo_fermented_chorus_juice=発酵コーラスジュース
+gregtech.material.gtfo_antaf=アンタフ
+gregtech.material.gtfo_vibrant_extract=鮮やかなエキス
+gregtech.material.gtfo_apricot_extract=アプリコットエキス
+gregtech.material.gtfo_grape_extract=ブドウエキス
