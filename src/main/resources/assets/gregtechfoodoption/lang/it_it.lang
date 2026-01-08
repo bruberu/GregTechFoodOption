@@ -12,7 +12,7 @@ metaitem.beta_carotene_dust.name=β-Carotene
 metaitem.phycomyces_blakesleeanus_dust.name=Phycomyces Blakesleeanus
 metaitem.phycomyces_blakesleeanus_dust.tooltip=Fungo
 metaitem.corn_kernel_gem_chipped.name=Semi di mais
-//metaitem.corn_kernel_gem_chipped.tooltip=Può crescere solo nella Serra.
+//metaitem.corn_kernel_gem_chipped.tooltip=This seed can only be grown in the Green House.
 metaitem.corn_kernel_bare_gem_chipped.name=Chicco di mais
 metaitem.corn_kernel_graded_gem_chipped.name=Chicco di mais decente
 gregtech.material.gtfo_peptone_mixture=Miscelta di Peptone
@@ -707,7 +707,7 @@ itemGroup.gregtechfoodoption.blocks=GTFO Blocchi
 itemGroup.gregtechfoodoption.tools=GTFO Strumenti
 itemGroup.gregtechfoodoption.funnystuff=GTFO Alcolici e Pillole
 itemGroup.gregtechfoodoption.drinks=GTFO Bevande
-itemGroup.gregtechfoodoption.fruits=GTFO Frutti
+itemGroup.gregtechfoodoption.fruitsvegetables=Frutta e verdura
 
 gregtechfoodoption.leaves.banana.name=Foglie di Banano  
 gregtechfoodoption.log.banana.name=Fusto di Banano  
@@ -1161,6 +1161,7 @@ gregtech.material.gtfo_cranberry_soda_syrup=Sciroppo per Soda al Mirtillo Rosso 
 
 gregtechfoodoption.berry.description.0=§4Cresce molto lentamente da solo!
 gregtechfoodoption.berry.description.1=§bCresce più velocemente nei livelli più alti
+
 gregtechfoodoption.berry.description.2=Posiziona §5tre§r cespugli di bacche mature del livello precedente nel 3x3 centrato sul cespuglio per passare al livello successivo
 gregtechfoodoption.berry.description.3=§4Il 3x3 centrato sul cespuglio non deve essere riempito!
 

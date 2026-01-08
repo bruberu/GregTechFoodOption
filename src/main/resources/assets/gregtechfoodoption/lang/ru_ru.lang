@@ -12,7 +12,7 @@ metaitem.beta_carotene_dust.name=β-каротин
 metaitem.phycomyces_blakesleeanus_dust.name=Фикомицес Блейкслианус
 metaitem.phycomyces_blakesleeanus_dust.tooltip=Грибок
 metaitem.corn_kernel_gem_chipped.name=Семена кукурузы
-//metaitem.corn_kernel_gem_chipped.tooltip=Это семя можно вырастить только в теплице.
+//metaitem.corn_kernel_gem_chipped.tooltip=This seed can only be grown in the Green House.
 metaitem.corn_kernel_bare_gem_chipped.name=Кукурузное ядро
 metaitem.corn_kernel_graded_gem_chipped.name=Приемлемое ядро ​​кукурузы
 gregtech.material.gtfo_peptone_mixture=Пептонная смесь
@@ -84,11 +84,11 @@ gregtech.material.gtfo_energized_coffee=Бодрящий кофе
 
 metaitem.food.mineral_water.name=Минеральная вода
 metaitem.food.mineral_water.tooltip=Мат, атеисты.
-metaitem.component.thermos.casing.name=Корпус термоса
-metaitem.component.thermos.cap.name=Крышка термоса
-metaitem.component.thermos.casing_leached.name=Выщелоченный корпус термоса
-metaitem.component.thermos.used.name=Подержанный термос
-metaitem.component.thermos.new.name=Термос
+metaitem.component.dewar_flask.casing.name=Корпус колбы Дьюара
+metaitem.component.dewar_flask.cap.name=Крышка колбы Дьюара
+metaitem.component.dewar_flask.casing_leached.name=Выщелоченный корпус колбы Дьюара
+metaitem.component.dewar_flask.used.name=Использованная колба Дьюара
+metaitem.component.dewar_flask.new.name=Колба Дьюара
 metaitem.lithium_bromide_dust.name=Бромид лития
 metaitem.titanium_dichloride_dust.name=Дихлорид титана
 metaitem.nontoxic_polymoscovium_pentahalide_plate_curved.name=Нетоксичная изогнутая пластина пентагалогенида полимосковия
@@ -446,7 +446,6 @@ gregtechfoodoption.machine.cuisine_assembler.uiv.tooltip=Агрессивно г
 gregtechfoodoption.machine.cuisine_assembler.uxv.tooltip=Агрессивно готовит пиццу
 gregtechfoodoption.machine.cuisine_assembler.opv.tooltip=Агрессивно готовит пиццу
 
-
 metaitem.component.bacon.name=Сырой бекон
 metaitem.food.bacon.name=Бекон
 metaitem.food.bacon.tooltip=Был поджарен
@@ -500,7 +499,6 @@ gregtechfoodoption.machine.electric_baking_oven.tooltip.1=Запускает р�
 gregtechfoodoption.machine.electric_baking_oven.tooltip.2=Требуемое §aEU§7 на tick экспоненциально связано с текущей температурой.
 gregtechfoodoption.machine.electric_baking_oven.tooltip.3=Расширьте мультиблок блоком §a1§7, чтобы параллельно запустить дополнительный рецепт.
 
-
 gregtechfoodoption.machine.microwave.lv.name=Базовая микроволновая печь
 gregtechfoodoption.machine.microwave.mv.name=Улучшеная микроволновая печь
 gregtechfoodoption.machine.microwave.hv.name=Улучшеная микроволновая печь II
@@ -527,7 +525,6 @@ gregtechfoodoption.machine.microwave.uev.tooltip=Превратит ваш сл�
 gregtechfoodoption.machine.microwave.uiv.tooltip=Превратит ваш слиток в Dogecoin
 gregtechfoodoption.machine.microwave.uxv.tooltip=Превратит ваш слиток в Dogecoin
 gregtechfoodoption.machine.microwave.opv.tooltip=Превратит ваш слиток в Dogecoin
-
 
 recipemap.microwave.name=Микроволновая печь
 metaitem.food.mushroom_stew.hot.name=Горячее грибное рагу
@@ -609,7 +606,6 @@ metaitem.food.juice.apple.name=Яблочный сок
 metaitem.food.juice.orange.name=Апельсиновый сок
 metaitem.food.juice.apple.tooltip=потому что яблоки в Майнкрафте желтые
 metaitem.food.juice.orange.tooltip=Аж глаза смыкаются
-
 
 gregtech.material.gtfo_stearin=Жидкий жир (стеарин)
 gregtech.material.gtfo_stearic_acid=Стеариновая кислота
@@ -1165,6 +1161,7 @@ gregtech.material.gtfo_cranberry_soda_syrup=Клюквенный содовый 
 
 gregtechfoodoption.berry.description.0=§4Сам по себе растет очень медленно!
 gregtechfoodoption.berry.description.1=§bРастет быстрее на более высоких уровнях
+
 gregtechfoodoption.berry.description.2=Поместите §5три§r выращенных ягодных куста предыдущего яруса в клетку 3х3 по центру куста, чтобы перейти на следующий ярус.
 gregtechfoodoption.berry.description.3=§4Квадрат 3x3 по центру куста не должен быть заполнен!
 
@@ -1190,7 +1187,6 @@ gregtechfoodoption.multiblock.kitchen.order_size=Размер заказа: %s �
 gregtechfoodoption.multiblock.kitchen.dirtiness=Загрязнение: %s DU
 gregtechfoodoption.multiblock.kitchen.increment_order=Увеличить размер заказа на 1
 gregtechfoodoption.multiblock.kitchen.decrement_order=Уменьшить размер заказа на 1
-
 
 gregtechfoodoption.fluid.cleaning=Очищает §2%s§r DU/L!
 
