@@ -3,6 +3,7 @@ package gregtechfoodoption.recipe.chain;
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
+import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
@@ -248,6 +249,22 @@ public class ItalianChain {
         MULTICOOKER_RECIPES.recipeBuilder().EUt(64).duration(3000)
                 .inputs(ARTICHOKE_HEART.getStackForm(), GARLIC_CLOVE.getStackForm(), PLATE.getStackForm())
                 .outputs(CARCIOFI_ALLA_ROMANA.getStackForm())
+                .buildAndRegister();
+
+        PACKER_RECIPES.recipeBuilder().EUt(16).duration(80)
+                .inputs(PIZZA_MINCE_MEAT.getStackForm())
+                .input(Items.PAPER, 4)
+                .outputs(new net.minecraft.item.ItemStack(GTFOMetaBlocks.PIZZA_BOX_MINCEMEAT))
+                .buildAndRegister();
+        PACKER_RECIPES.recipeBuilder().EUt(16).duration(80)
+                .inputs(PIZZA_CHEESE.getStackForm())
+                .input(Items.PAPER, 4)
+                .outputs(new net.minecraft.item.ItemStack(GTFOMetaBlocks.PIZZA_BOX_CHEESE))
+                .buildAndRegister();
+        PACKER_RECIPES.recipeBuilder().EUt(16).duration(80)
+                .inputs(PIZZA_VEGGIE.getStackForm())
+                .input(Items.PAPER, 4)
+                .outputs(new net.minecraft.item.ItemStack(GTFOMetaBlocks.PIZZA_BOX_VEGGIE))
                 .buildAndRegister();
     }
 }

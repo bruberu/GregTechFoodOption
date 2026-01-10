@@ -35,6 +35,12 @@ public class GTFOMetaBlocks {
     public static GTFOBlockCasing GTFO_CASING;
     public static GTFOMetalCasing GTFO_METAL_CASING;
     public static GTFOGlassCasing GTFO_GLASS_CASING;
+    public static GTFOPizza PIZZA_MINCEMEAT;
+    public static GTFOPizza PIZZA_CHEESE;
+    public static GTFOPizza PIZZA_VEGGIE;
+    public static GTFOPizzaBox PIZZA_BOX_MINCEMEAT;
+    public static GTFOPizzaBox PIZZA_BOX_CHEESE;
+    public static GTFOPizzaBox PIZZA_BOX_VEGGIE;
 
     public static List<GTFOBlockLeaves> GTFO_LEAVES = new ArrayList<>();
     public static List<GTFOBlockLog> GTFO_LOGS = new ArrayList<>();
@@ -50,6 +56,23 @@ public class GTFOMetaBlocks {
 
         GTFO_GLASS_CASING = new GTFOGlassCasing();
         GTFO_GLASS_CASING.setRegistryName("gtfo_glass_casing");
+
+        PIZZA_MINCEMEAT = new GTFOPizza("pizza_mincemeat");
+        PIZZA_MINCEMEAT.setRegistryName("pizza_mincemeat");
+
+        PIZZA_CHEESE = new GTFOPizza("pizza_cheese");
+        PIZZA_CHEESE.setRegistryName("pizza_cheese");
+
+        PIZZA_VEGGIE = new GTFOPizza("pizza_veggie");
+        PIZZA_VEGGIE.setRegistryName("pizza_veggie");
+        PIZZA_BOX_MINCEMEAT = new GTFOPizzaBox("pizza_box_mincemeat", PIZZA_MINCEMEAT);
+        PIZZA_BOX_MINCEMEAT.setRegistryName("pizza_box_mincemeat");
+
+        PIZZA_BOX_CHEESE = new GTFOPizzaBox("pizza_box_cheese", PIZZA_CHEESE);
+        PIZZA_BOX_CHEESE.setRegistryName("pizza_box_cheese");
+
+        PIZZA_BOX_VEGGIE = new GTFOPizzaBox("pizza_box_veggie", PIZZA_VEGGIE);
+        PIZZA_BOX_VEGGIE.setRegistryName("pizza_box_veggie");
 
         GTFOTrees.init();
         GTFOBerries.init();
@@ -79,6 +102,9 @@ public class GTFOMetaBlocks {
         registerItemModel(GTFO_CASING);
         registerItemModel(GTFO_METAL_CASING);
         registerItemModel(GTFO_GLASS_CASING);
+        registerItemModel(PIZZA_BOX_MINCEMEAT);
+        registerItemModel(PIZZA_BOX_CHEESE);
+        registerItemModel(PIZZA_BOX_VEGGIE);
         GTFO_LEAVES.forEach(GTFOMetaBlocks::registerItemModel);
         GTFO_SAPLINGS.forEach(GTFOMetaBlocks::registerItemModel);
         for (GTFOBlockSapling sapling : GTFO_SAPLINGS) {

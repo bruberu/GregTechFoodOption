@@ -1235,3 +1235,10 @@ gregtech.material.gtfo_antaf=Antaf
 gregtech.material.gtfo_vibrant_extract=Vibrant Extract
 gregtech.material.gtfo_apricot_extract=Apricot Extract
 gregtech.material.gtfo_grape_extract=Grape Extract
+
+tile.pizza_box_mincemeat.name=Pizza Box (Mincemeat)
+tile.pizza_box_cheese.name=Pizza Box (Cheese)
+tile.pizza_box_veggie.name=Pizza Box (Veggie)
+tile.pizza_mincemeat.name=Pizza (Mincemeat)
+tile.pizza_cheese.name=Pizza (Cheese)
+tile.pizza_veggie.name=Pizza (Veggie)
