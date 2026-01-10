@@ -1,6 +1,7 @@
 package gregtechfoodoption.block;
 
 import gregtech.api.block.VariantActiveBlock;
+import gregtechfoodoption.GTFOValues;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,6 +27,7 @@ public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingTy
         setResistance(5.0F);
         setSoundType(SoundType.GLASS);
         setHarvestLevel("pickaxe", 1);
+        setCreativeTab(GTFOValues.TAB_GTFO_BLOCKS);
         setDefaultState(getState(CasingType.GREENHOUSE_GLASS));
     }
 

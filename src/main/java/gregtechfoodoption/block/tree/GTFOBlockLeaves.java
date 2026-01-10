@@ -45,7 +45,7 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
                 .withProperty(DECAYABLE, true)
                 .withProperty(VARIANT, 0));
         GTFOMetaBlocks.GTFO_LEAVES.add(this);
-        this.setCreativeTab(GTFOValues.TAB_GTFO);
+        this.setCreativeTab(GTFOValues.TAB_GTFO_BLOCKS);
         Blocks.FIRE.setFireInfo(this, 30, 60);
     }
 

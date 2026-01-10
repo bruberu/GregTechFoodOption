@@ -27,7 +27,7 @@ public class GTFOBlockLog extends BlockLog implements IVariantNamed {
                 .withProperty(LOG_AXIS, EnumAxis.Y));
         GTFOMetaBlocks.GTFO_LOGS.add(this);
         Blocks.FIRE.setFireInfo(this, 5, 5);
-        this.setCreativeTab(GTFOValues.TAB_GTFO);
+        this.setCreativeTab(GTFOValues.TAB_GTFO_BLOCKS);
         setHarvestLevel("axe", 0);
     }
 

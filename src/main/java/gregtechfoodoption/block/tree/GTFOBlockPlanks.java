@@ -28,7 +28,7 @@ public class GTFOBlockPlanks extends Block implements IVariantNamed {
         setHarvestLevel("axe", 0);
         Blocks.FIRE.setFireInfo(this, 5, 20);
         GTFOMetaBlocks.GTFO_PLANKS.add(this);
-        this.setCreativeTab(GTFOValues.TAB_GTFO);
+        this.setCreativeTab(GTFOValues.TAB_GTFO_BLOCKS);
     }
 
     @Override

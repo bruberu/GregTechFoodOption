@@ -41,7 +41,7 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);
         GTFOMetaBlocks.GTFO_SAPLINGS.add(this);
-        this.setCreativeTab(GTFOValues.TAB_GTFO);
+        this.setCreativeTab(GTFOValues.TAB_GTFO_CROPS);
     }
 
     @Nonnull

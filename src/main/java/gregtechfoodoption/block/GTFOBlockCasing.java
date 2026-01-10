@@ -1,6 +1,7 @@
 package gregtechfoodoption.block;
 
 import gregtech.api.block.VariantBlock;
+import gregtechfoodoption.GTFOValues;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,6 +19,7 @@ public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
         setResistance(10.0f);
         setSoundType(SoundType.STONE);
         setHarvestLevel("wrench", 2);
+        setCreativeTab(GTFOValues.TAB_GTFO_BLOCKS);
         setDefaultState(getState(CasingType.ADOBE_BRICKS));
     }
 
