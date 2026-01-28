@@ -69,7 +69,10 @@ public class CommonProxy {
     }
 
     public void onPostLoad() {
-        MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
+        if (GTFOConfig.gtfoMiscConfig.unknownSeedsWeight > 0) {
+            MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(),
+                    GTFOConfig.gtfoMiscConfig.unknownSeedsWeight);
+        }
 
         LacingEntry.LACING_REGISTRY.register(0, "cyanide", new LacingEntry(GTFOMaterialHandler.SodiumCyanide.getItemStack(),
                 new PotionEffect(CyanidePoisoningPotion.INSTANCE, 1300, 0),

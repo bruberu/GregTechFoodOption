@@ -216,6 +216,10 @@ public class GTFOConfig {
         @Config.Comment("Add GTFO foods laced with cyanide to dungeons?")
         @Config.RequiresMcRestart
         public boolean addLacedDungeonFoods = true;
+
+        @Config.Comment("Weight of unknown seeds from grass drops (based on the grass loot table)")
+        @Config.RequiresMcRestart
+        public int unknownSeedsWeight = 5;
     }
 
     public static class GTFOWorldGenConfig {
