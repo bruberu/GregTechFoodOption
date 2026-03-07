@@ -4,6 +4,7 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFORootCrop;
 import mcjty.theoneprobe.api.*;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
@@ -21,15 +22,19 @@ public class GTFORootCropProvider implements IProbeInfoProvider {
             GTFORootCrop crop = (GTFORootCrop) blockState.getBlock();
 
             if (crop.cropHarvestable(blockState)) {
-                probeInfo.text(TextStyleClass.OK + "Crop may be harvested");
+                probeInfo.text(TextStyleClass.OK +
+                        I18n.format("gregtechfoodoption.top.crop_harvestable"));
             } else {
-                probeInfo.text(TextStyleClass.ERROR + "Crop cannot be harvested");
+                probeInfo.text(TextStyleClass.ERROR +
+                        I18n.format("gregtechfoodoption.top.crop_unharvestable"));
             }
 
             if (crop.seedHarvestable(blockState)) {
-                probeInfo.text(TextStyleClass.OK + "Seed may be harvested");
+                probeInfo.text(TextStyleClass.OK +
+                        I18n.format("gregtechfoodoption.top.seed_harvestable"));
             } else {
-                probeInfo.text(TextStyleClass.ERROR + "Seed cannot be harvested");
+                probeInfo.text(TextStyleClass.ERROR +
+                        I18n.format("gregtechfoodoption.top.seed_unharvestable"));
             }
         }
     }

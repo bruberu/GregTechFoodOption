@@ -1234,3 +1234,9 @@ gregtech.material.gtfo_antaf=Antaf
 gregtech.material.gtfo_vibrant_extract=ヴァイブラント抽出物
 gregtech.material.gtfo_apricot_extract=アプリコット汁
 gregtech.material.gtfo_grape_extract=ブドウ汁
+
+# TOP
+gregtechfoodoption.top.crop_harvestable=収穫できそう
+gregtechfoodoption.top.crop_unharvestable=収穫できなさそう
+gregtechfoodoption.top.seed_harvestable=種を採取できそう
+gregtechfoodoption.top.seed_unharvestable=種は採取できなさそう
