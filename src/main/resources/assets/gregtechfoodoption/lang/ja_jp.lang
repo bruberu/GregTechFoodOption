@@ -744,10 +744,10 @@ gregtechfoodoption.leaves.nutmeg.name=ナツメグの葉
 gregtechfoodoption.log.nutmeg.name=ナツメグの原木
 gregtechfoodoption.sapling.nutmeg.name=ナツメグの苗木
 gregtechfoodoption.planks.nutmeg.name=ナツメグの木材
-gregtechfoodoption.leaves.coconut.name=ココナツの葉
-gregtechfoodoption.log.coconut.name=ココナツの原木
-gregtechfoodoption.sapling.coconut.name=ココナツの苗木
-gregtechfoodoption.planks.coconut.name=ココナツの木材
+gregtechfoodoption.leaves.coconut.name=ココナッツの葉
+gregtechfoodoption.log.coconut.name=ココナッツの原木
+gregtechfoodoption.sapling.coconut.name=ココナッツの苗木
+gregtechfoodoption.planks.coconut.name=ココナッツの木材
 
 metaitem.food.ice_cream.plain.name=プレーンアイスクリーム
 metaitem.food.ice_cream.plain.tooltip=アイスのような味、かな?
