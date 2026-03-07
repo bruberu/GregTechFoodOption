@@ -158,7 +158,7 @@ public class CoffeeChain {
         GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOMaterialHandler.LARGE_WET_COFFEE.getItemStack(32))
                 .outputs(GTFOMaterialHandler.LARGE_DRIED_COFFEE.getItemStack(32))
-                .fluidOutputs(Water.getFluid(16000))
+                .fluidOutputs(Water.getFluid(8000))
                 .EUt(30)
                 .duration(3600)
                 .buildAndRegister();
@@ -166,7 +166,7 @@ public class CoffeeChain {
         GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOMaterialHandler.SMALL_WET_COFFEE.getItemStack(64))
                 .outputs(GTFOMaterialHandler.SMALL_DRIED_COFFEE.getItemStack(64))
-                .fluidOutputs(Water.getFluid(16000))
+                .fluidOutputs(Water.getFluid(8000))
                 .EUt(30)
                 .duration(1800)
                 .buildAndRegister();
@@ -174,7 +174,7 @@ public class CoffeeChain {
         CHEMICAL_BATH_RECIPES.recipeBuilder()
                 .inputs(GTFOMaterialHandler.LARGE_BASIC_COFFEE.getItemStack(32))
                 .outputs(GTFOMaterialHandler.LARGE_WET_COFFEE.getItemStack(32))
-                .fluidInputs(Water.getFluid(16000))
+                .fluidInputs(Water.getFluid(8000))
                 .EUt(60)
                 .duration(3600)
                 .buildAndRegister();
@@ -182,7 +182,7 @@ public class CoffeeChain {
         CHEMICAL_BATH_RECIPES.recipeBuilder()
                 .inputs(GTFOMaterialHandler.SMALL_BASIC_COFFEE.getItemStack(64))
                 .outputs(GTFOMaterialHandler.SMALL_WET_COFFEE.getItemStack(64))
-                .fluidInputs(Water.getFluid(16000))
+                .fluidInputs(Water.getFluid(8000))
                 .EUt(60)
                 .duration(3600)
                 .buildAndRegister();

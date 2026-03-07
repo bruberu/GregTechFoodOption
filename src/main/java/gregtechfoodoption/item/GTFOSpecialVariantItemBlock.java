@@ -23,6 +23,9 @@ public class GTFOSpecialVariantItemBlock<T extends Block & IVariantNamed> extend
 
     @SuppressWarnings("deprecation")
     public IBlockState getBlockState(ItemStack stack) {
+        if (stack.getItemDamage() > 15) {
+            return block.getStateFromMeta(0);
+        }
         return block.getStateFromMeta(stack.getItemDamage());
     }
 

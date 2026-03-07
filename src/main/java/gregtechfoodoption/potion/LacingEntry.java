@@ -23,7 +23,7 @@ public class LacingEntry {
     }
 
     public PotionEffect getAppliedEffect() {
-        return appliedEffect;
+        return new PotionEffect(appliedEffect);
     }
 
     public String getNbtKey() {

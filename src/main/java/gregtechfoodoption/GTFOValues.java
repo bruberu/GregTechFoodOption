@@ -28,6 +28,7 @@ public class GTFOValues {
 
     public static final int UPDATE_OPERATION_POS = assignId();
     public static final int UPDATE_SPRINKLER_DATA = assignId();
+    public static final int UPDATE_SPRINKLER_EXISTENCE = assignId();
     public static final int UPDATE_FARMER_OUTPUT_FACING = assignId();
     public static final int UPDATE_KITCHEN_STATUS = assignId();
     public static final int UPDATE_KITCHEN_ORDER = assignId();

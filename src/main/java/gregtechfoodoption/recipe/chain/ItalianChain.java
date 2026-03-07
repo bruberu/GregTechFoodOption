@@ -2,6 +2,7 @@ package gregtechfoodoption.recipe.chain;
 
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
@@ -22,6 +23,7 @@ public class ItalianChain {
     public static void init() {
         MIXER_RECIPES.recipeBuilder().EUt(24).duration(100)
                 .inputs(GTFOMaterialHandler.ShreddedParmesan.getItemStack(), GTFOMetaItem.BASIL.getStackForm(3), GTFOMetaItem.GARLIC_CLOVE.getStackForm())
+                .input(dustTiny, Salt)
                 .fluidInputs(GTFOMaterialHandler.OliveOil.getFluid(500))
                 .fluidOutputs(GTFOMaterialHandler.Pesto.getFluid(500))
                 .buildAndRegister();

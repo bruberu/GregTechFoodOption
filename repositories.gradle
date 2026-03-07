@@ -37,7 +37,7 @@ repositories {
     }
     maven {
         name = "mcmoddev"
-        url = "https://maven.mcmoddev.com"
+        url = "https://mcmoddev.com"
     }
     maven {
         name = "ModMaven"

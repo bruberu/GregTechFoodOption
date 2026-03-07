@@ -299,7 +299,7 @@ public class BreadsChain {
                 .outputs(SANDWICH_STEAK.getStackForm(3))
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(120)
-                .inputs(PRESLICED_BREAD.getStackForm(2), TOAST.getStackForm(1))
+                .inputs(BREAD_SLICE.getStackForm(2), TOAST.getStackForm(1))
                 .outputs(SANDWICH_TOAST.getStackForm())
                 .buildAndRegister();
         CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(75).duration(180)

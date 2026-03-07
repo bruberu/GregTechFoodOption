@@ -50,7 +50,7 @@ public class GTFORecipeHandler {
                         'H', new UnificationEntry(prefix, material),
                         'U', powerUnits[i],
                         'M', MetaItems.ELECTRIC_MOTOR_HV,
-                        'W', new UnificationEntry(OrePrefix.wireGtDouble, Materials.MercuryBariumCalciumCuprate));
+                        'W', new UnificationEntry(OrePrefix.cableGtDouble, Materials.Gold));
             }
 
         }

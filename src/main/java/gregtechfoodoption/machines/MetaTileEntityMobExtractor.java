@@ -3,7 +3,6 @@ package gregtechfoodoption.machines;
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.RecipeLogicEnergy;
 import gregtech.api.metatileentity.MetaTileEntity;
-import gregtech.api.metatileentity.SimpleMachineMetaTileEntity;
 import gregtech.api.metatileentity.interfaces.IGregTechTileEntity;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeMap;
@@ -17,9 +16,9 @@ import gregtechfoodoption.utils.GTFODamageSources;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraftforge.items.IItemHandlerModifiable;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -28,7 +27,7 @@ import java.util.function.Supplier;
 
 public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity {
     private AxisAlignedBB boundingBox;
-    private EntityLivingBase attackableTarget;
+    private Entity attackableTarget;
     private List<Entity> nearbyEntities;
 
     public MetaTileEntityMobExtractor(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier, boolean hasFrontFacing,
@@ -48,24 +47,26 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
 
     protected boolean checkRecipe(@Nonnull Recipe recipe) {
         ResourceLocation entityRequired = recipe.getProperty(MobOnTopProperty.getInstance(), null);
-        if (this.nearbyEntities == null || this.getOffsetTimer() % 5 == 0)
-            this.nearbyEntities = getEntitiesInProximity();
+        if (entityRequired == null)
+            return true;
+
+        this.nearbyEntities = getEntitiesInProximity();
+        if (attackableTarget != null && this.nearbyEntities.contains(attackableTarget)) {
+            return true;
+        }
+        this.attackableTarget = null;
         for (Entity entity : nearbyEntities) {
             if (EntityList.isMatchingName(entity, entityRequired)) {
-                if (entity instanceof EntityLivingBase) // Prepare to cause damage if needed.
-                    attackableTarget = (EntityLivingBase) entity;
-                else
-                    attackableTarget = null;
-                return true;
+                attackableTarget = entity;
             }
         }
-        return false;
+        return attackableTarget != null;
     }
 
     protected List<Entity> getEntitiesInProximity() {
         if (boundingBox == null)
             boundingBox = new AxisAlignedBB(this.getPos().up());
-        return this.getWorld().getEntitiesWithinAABB(Entity.class, boundingBox);
+        return this.getWorld().getEntitiesWithinAABB(Entity.class, boundingBox, EntitySelectors.IS_ALIVE);
     }
 
     protected void damageEntity(Recipe recipe) {
@@ -93,10 +94,11 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
         }
 
         @Override
-        protected boolean setupAndConsumeRecipeInputs(Recipe recipe, IItemHandlerModifiable importInventory) {
+        protected void setupRecipe(@Nonnull Recipe recipe) {
             ((MetaTileEntityMobExtractor) metaTileEntity).damageEntity(recipe);
-            return super.setupAndConsumeRecipeInputs(recipe, importInventory);
+            super.setupRecipe(recipe);
         }
+
     }
 
 }

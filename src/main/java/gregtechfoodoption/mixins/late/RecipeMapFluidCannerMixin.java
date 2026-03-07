@@ -5,21 +5,17 @@ import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.recipes.machines.RecipeMapFluidCanner;
 import gregtechfoodoption.item.GTFOFoodStats;
-import gregtechfoodoption.item.GTFOOredictItem;
 import gregtechfoodoption.potion.LacingEntry;
-import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
-import java.util.Iterator;
 import java.util.List;
 
 import static gregtech.api.recipes.RecipeMaps.CANNER_RECIPES;
@@ -33,9 +29,8 @@ public class RecipeMapFluidCannerMixin {
             at = /*@At(value = "JUMP",
                     opcode = Opcodes.GOTO,
                     ordinal = 0),*/
-            @At(value = "RETURN", ordinal = 1),
-            locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void checkLacingRecipes(long voltage, List inputs, List fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe, Iterator var7, ItemStack input, ItemStack inputStack, ItemStack fluidHandlerItemStack, IFluidHandlerItem fluidHandlerItem) {
+            @At(value = "RETURN", ordinal = 1), cancellable = true)
+    private void checkLacingRecipes(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir) {
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
@@ -43,12 +38,12 @@ public class RecipeMapFluidCannerMixin {
             at = /*@At(value = "JUMP",
                     opcode = Opcodes.GOTO,
                     ordinal = 0),*/
-            @At(value = "RETURN", ordinal = 4),
-            locals = LocalCapture.CAPTURE_FAILHARD, cancellable = true)
-    private void checkLacingRecipes2(long voltage, List inputs, List fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir, Recipe recipe) {
+            @At(value = "RETURN", ordinal = 4), cancellable = true)
+    private void checkLacingRecipes2(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir) {
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
+    @Unique
     public void findLacingRecipe(List<ItemStack> inputs, List<FluidStack> fluidInputs, CallbackInfoReturnable<Recipe> cir) {
         ItemStack inputStack = ItemStack.EMPTY;
         ItemStack lacingWith = ItemStack.EMPTY;

@@ -132,6 +132,9 @@ public class SeedsChain {
         ModHandler.addShapedRecipe("gtfo_seed_white_grapes_ungenerify", WHITE_GRAPE_SEED.getStackForm(2),
                 "  S", " S ", "   ",
                 'S', GTFOMetaItem.UNKNOWN_SEED);
+        ModHandler.addShapedRecipe("gtfo_seed_cotton_ungenerify", COTTON_SEED.getStackForm(2),
+                "   ", "   ", " SS",
+                'S', GTFOMetaItem.UNKNOWN_SEED);
 
 
         ModHandler.addShapelessRecipe("gtfo_seed_soy_extraction", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),

@@ -37,7 +37,7 @@ public class PastaChain {
 
         if (!GTFOConfig.gtfoChainsConfig.makeChainsHarder) {
             MIXER_RECIPES.recipeBuilder().EUt(30).duration(1200)
-                    .inputs(EGG_PASTA_DOUGH.getStackForm())
+                    .input(dust, Wheat, 2)
                     .fluidInputs(GTFOMaterialHandler.Egg.getFluid(400))
                     .fluidInputs(Air.getFluid(600))
                     .circuitMeta(2)
@@ -68,22 +68,22 @@ public class PastaChain {
                 .outputs(RAW_TAGLIATELLE.getStackForm())
                 .buildAndRegister();
         EXTRUDER_RECIPES.recipeBuilder().EUt(16).duration(300)
-                .inputs(EGG_PASTA_DOUGH.getStackForm())
+                .inputs(PASTA_DOUGH.getStackForm())
                 .notConsumable(SPAGHETTI_PASTA_DIE.getStackForm())
                 .outputs(RAW_SPAGHETTI.getStackForm())
                 .buildAndRegister();
         EXTRUDER_RECIPES.recipeBuilder().EUt(16).duration(300)
-                .inputs(EGG_PASTA_DOUGH.getStackForm())
+                .inputs(PASTA_DOUGH.getStackForm())
                 .notConsumable(LASAGNA_PASTA_DIE.getStackForm())
                 .outputs(RAW_LASAGNA.getStackForm())
                 .buildAndRegister();
         EXTRUDER_RECIPES.recipeBuilder().EUt(16).duration(300)
-                .inputs(EGG_PASTA_DOUGH.getStackForm())
+                .inputs(PASTA_DOUGH.getStackForm())
                 .notConsumable(RIGATONI_PASTA_DIE.getStackForm())
                 .outputs(RAW_RIGATONI.getStackForm())
                 .buildAndRegister();
         EXTRUDER_RECIPES.recipeBuilder().EUt(16).duration(300)
-                .inputs(EGG_PASTA_DOUGH.getStackForm())
+                .inputs(PASTA_DOUGH.getStackForm())
                 .notConsumable(DITALINI_PASTA_DIE.getStackForm())
                 .outputs(RAW_DITALINI.getStackForm())
                 .buildAndRegister();

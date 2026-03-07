@@ -123,7 +123,7 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         if (this.potionEffects.length > 0) {
             GTFOUtils.addPotionTooltip(Arrays.asList(potionEffects), list);
         }
-        list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.lacing").getFormattedText());
+        // list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.lacing").getFormattedText());
         if (this.eatingDuration != 32) {
             list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.duration", this.eatingDuration).getFormattedText());
         }

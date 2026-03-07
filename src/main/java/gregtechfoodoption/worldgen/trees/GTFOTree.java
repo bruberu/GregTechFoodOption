@@ -87,10 +87,6 @@ public abstract class GTFOTree extends GTFOFeature {
         return FEATURE_GROW_INSTANCE;
     }
 
-
-
-
-
     public void setupBlocks() {
         GTFOBlockLeaves leaves = GTFOMetaBlocks.GTFO_LEAVES.get(seed / 4);
         this.leavesState = leaves.getStateFromMeta(seed % 4 << 2);

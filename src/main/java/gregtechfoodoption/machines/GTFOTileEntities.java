@@ -103,7 +103,7 @@ public class GTFOTileEntities {
         KITCHEN = registerMetaTileEntity(8581, new MetaTileEntityKitchen(location("kitchen")));
     }
 
-    private static ResourceLocation location(String name) {
+    public static ResourceLocation location(String name) {
         return new ResourceLocation(GregTechFoodOption.MODID, name);
     }
 

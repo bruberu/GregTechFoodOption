@@ -35,17 +35,17 @@ public class ChorusChain {
                 .buildAndRegister();
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(VA[HV]).duration(400)
                 .fluidInputs(GTFOMaterialHandler.EnderSugarSolution.getFluid(1000))
-                .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(1000))
+                .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(25))
                 .fluidOutputs(GTFOMaterialHandler.VibrantExtract.getFluid(1000))
                 .buildAndRegister();
 
         RecipeMaps.FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(1000)
-                .fluidInputs(GTFOMaterialHandler.LacticAcidBacteria.getFluid(1000))
+                .notConsumable(GTFOMaterialHandler.LacticAcidBacteria.getFluid(1))
                 .input(Items.CHORUS_FRUIT)
                 .outputs(GTFOMetaItem.FERMENTED_CHORUS.getStackForm())
                 .buildAndRegister();
         RecipeMaps.FERMENTING_RECIPES.recipeBuilder().EUt(2).duration(800)
-                .fluidInputs(GTFOMaterialHandler.LacticAcidBacteria.getFluid(1000))
+                .notConsumable(GTFOMaterialHandler.LacticAcidBacteria.getFluid(1))
                 .input(Items.CHORUS_FRUIT_POPPED)
                 .outputs(GTFOMetaItem.FERMENTED_CHORUS.getStackForm())
                 .buildAndRegister();
@@ -56,12 +56,12 @@ public class ChorusChain {
                 .buildAndRegister();
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(16).duration(300)
                 .inputs(PIE_CRUST.getStackForm())
-                .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(1000))
+                .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(25))
                 .outputs(FERMENTED_CHORUS_PIE.getStackForm())
                 .buildAndRegister();
 
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(60).duration(20)
-                .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(1000))
+                .fluidInputs(GTFOMaterialHandler.FermentedChorusJuice.getFluid(50))
                 .input(Items.SUGAR, 9)
                 .fluidInputs(GTFOMaterialHandler.CarbonatedWater.getFluid(1000))
                 .fluidOutputs(GTFOMaterialHandler.Antaf.getFluid(2000))

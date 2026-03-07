@@ -46,7 +46,10 @@ public class CoreChain {
         slicingRecipes();
         corn();
         lithiumCarbonate();
+        cotton();
     }
+
+
 
     public static void zest() {
         EXTRACTOR_RECIPES.recipeBuilder()
@@ -611,5 +614,10 @@ public class CoreChain {
 
     public static void lithiumCarbonate() {
 
+    }
+
+    public static void cotton() {
+        ModHandler.addShapelessRecipe("gtfo_cotton_to_string", new ItemStack(Items.STRING, 1), COTTON.getStackForm(), COTTON.getStackForm(), COTTON.getStackForm());
+        ModHandler.addShapelessRecipe("gtfo_hand_cotton_seed", COTTON_SEED.getStackForm(), COTTON.getStackForm());
     }
 }

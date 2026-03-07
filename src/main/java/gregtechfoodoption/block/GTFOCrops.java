@@ -19,6 +19,7 @@ public class GTFOCrops {
     public static GTFOCrop CROP_BLACK_PEPPER = GTFOCrop.create("black_pepper");
     public static GTFOCrop CROP_RICE = GTFOCrop.create("rice");
     public static GTFOCrop CROP_WHITE_GRAPE = GTFOCrop.create("white_grape");
+    public static GTFOCrop CROP_COTTON = GTFOCrop.create("cotton");
 
     public static GTFOBerryBush BUSH_BLUEBERRY = GTFOBerryBush.create("blueberry");
     public static GTFOBerryBush BUSH_BLACKBERRY = GTFOBerryBush.create("blackberry").setThorny(true);
