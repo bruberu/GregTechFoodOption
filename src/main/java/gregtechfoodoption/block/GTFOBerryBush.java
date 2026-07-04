@@ -208,8 +208,8 @@ public class GTFOBerryBush extends GTFOCrop {
             // We don't want crops transmuting to higher efficiencies.
             int newEfficiency = Math.min(calcEfficiency(worldIn, pos), getEfficiency(state));
             worldIn.setBlockState(pos, state.withProperty(EFFICIENCY_GTFO, newEfficiency), 3);
+            super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
         }
-        super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
     }
 
     @Override
