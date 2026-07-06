@@ -91,12 +91,25 @@ public class ClientProxy extends CommonProxy {
     @SubscribeEvent
     public static void removeOtherPlayerMessages(ClientChatReceivedEvent event) {
         if (Minecraft.getMinecraft().player.isPotionActive(AntiSchizoPotion.INSTANCE) && event.getType() == ChatType.CHAT) {
-            if (event.getMessage() instanceof TextComponentTranslation chatMessage
-                    && chatMessage.getFormatArgs()[0] instanceof TextComponentString nameWrapperString
-                    && nameWrapperString.getSiblings().get(0) instanceof TextComponentString nameString) {
-                if (nameString.getText().equals(Minecraft.getMinecraft().player.getName())) {
-                    return; // Allow the player to see their own messages
+            try {
+                if (event.getMessage() instanceof TextComponentTranslation chatMessage
+                        && chatMessage.getFormatArgs()[0] instanceof TextComponentString nameWrapperString
+                        && nameWrapperString.getSiblings().get(0) instanceof TextComponentString nameString) {
+                    if (nameString.getText().equals(Minecraft.getMinecraft().player.getName())) {
+                        return; // Allow the player to see their own messages
+                    }
+                // Special handling for Supersymmetry
+                } else if (event.getMessage() instanceof TextComponentString root
+                        && root.getSiblings().get(0) instanceof TextComponentString messagePrefix
+                        && messagePrefix.getSiblings().get(1) instanceof TextComponentString nameWrapperString
+                        && nameWrapperString.getSiblings().get(0) instanceof  TextComponentString nameString) {
+                    if (nameString.getText().equals(Minecraft.getMinecraft().player.getName())) {
+                        return; // Allow the player to see their own messages
+                    }
                 }
+            }
+            catch (IndexOutOfBoundsException _unused) {
+                // Default to canceling
             }
             event.setCanceled(true);
         }
