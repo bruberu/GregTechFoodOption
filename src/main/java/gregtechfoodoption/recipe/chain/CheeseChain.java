@@ -213,7 +213,7 @@ public class CheeseChain {
             FLUID_SOLIDFICATION_RECIPES.recipeBuilder().EUt(16).duration(150)
                     .fluidInputs(ParmigianoReggianoStarter.getFluid(1000))
                     .inputs(CHEESE_ROLL_FORM.getStackForm())
-                    .outputs(BRINED_PARMIGIANO_ROLL.getStackForm())
+                    .outputs(BRINED_PARMIGIANO.getStackForm())
                     .buildAndRegister();
         }
         FLUID_HEATER_RECIPES.recipeBuilder().EUt(48).duration(300)
