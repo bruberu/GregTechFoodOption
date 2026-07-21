@@ -19,6 +19,7 @@ import gregtechfoodoption.item.GTFOProxyItem;
 import gregtechfoodoption.materials.CleanerProperty;
 import gregtechfoodoption.materials.FertilizerProperty;
 import gregtechfoodoption.materials.LacingProperty;
+import gregtechfoodoption.utils.GTFOFireSuppressantProperty;
 import it.unimi.dsi.fastutil.ints.Int2BooleanArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
 import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
@@ -647,6 +648,8 @@ public class GTFOMaterialHandler {
         SodiumStearate.setProperty(CLEANER, new CleanerProperty(16));
 
         ChorusJuice.setFormula("(C6H12O6)?", true);
+
+        Water.setProperty(GTFOFireSuppressantProperty.FIRE_SUPPRESSANT, new GTFOFireSuppressantProperty());
     }
 
     public static Material.Builder fluidBuilder(int id, String name) {
