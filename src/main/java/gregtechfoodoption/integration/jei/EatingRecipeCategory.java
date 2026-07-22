@@ -40,7 +40,7 @@ public class EatingRecipeCategory implements IRecipeCategory<EatingRecipeInfo> {
 
     @Override
     public String getModName() {
-        return Tags.MODNAME;
+        return GTFOValues.MODID;
     }
 
     @Override

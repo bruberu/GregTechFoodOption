@@ -7,6 +7,7 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import gregtech.integration.jei.basic.BasicRecipeCategory;
 import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.GregTechFoodOption;
 import gregtechfoodoption.Tags;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -60,7 +61,7 @@ public class LacingCategory implements IRecipeCategory<LacingInfo> {
 
     @Override
     public String getModName() {
-        return Tags.MODNAME;
+        return GTFOValues.MODID;
     }
 
     @Override
