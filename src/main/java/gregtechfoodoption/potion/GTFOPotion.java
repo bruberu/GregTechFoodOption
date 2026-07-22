@@ -1,7 +1,5 @@
 package gregtechfoodoption.potion;
 
-import gregtechfoodoption.GregTechFoodOption;
-import gregtechfoodoption.utils.GTFOLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -14,14 +12,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import gregtechfoodoption.GregTechFoodOption;
+import gregtechfoodoption.utils.GTFOLog;
+
 /*
-
-GTFOPotion is a class made by Vazkii (with a few alterations here and there)
-
+ * 
+ * GTFOPotion is a class made by Vazkii (with a few alterations here and there)
+ * 
  */
 
 public abstract class GTFOPotion extends Potion {
-    private static final ResourceLocation resource = new ResourceLocation(GregTechFoodOption.MODID, "textures/gui/potions.png");
+
+    private static final ResourceLocation resource = new ResourceLocation(GregTechFoodOption.MODID,
+            "textures/gui/potions.png");
     private final int iconIndex;
 
     public GTFOPotion(String name, boolean badEffect, int color, int iconIndex) {
@@ -30,7 +33,8 @@ public abstract class GTFOPotion extends Potion {
         try {
             setPotionName(GregTechFoodOption.MODID + ".potion." + name);
         } catch (Exception e) {
-            GTFOLog.logger.error("You are currently using the wrong type of jar of GTFO. This usually means that I, bruberu, accidentally released the wrong version. Report this immediately!");
+            GTFOLog.logger.error(
+                    "You are currently using the wrong type of jar of GTFO. This usually means that I, bruberu, accidentally released the wrong version. Report this immediately!");
             throw e;
         }
         this.iconIndex = iconIndex;
@@ -95,6 +99,4 @@ public abstract class GTFOPotion extends Potion {
 
     @SideOnly(Side.CLIENT)
     protected abstract boolean canRender();
-
-
 }

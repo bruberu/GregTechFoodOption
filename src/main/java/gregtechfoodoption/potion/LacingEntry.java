@@ -1,14 +1,15 @@
 package gregtechfoodoption.potion;
 
-import gregtech.api.util.GTControlledRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 
+import gregtech.api.util.GTControlledRegistry;
+
 public class LacingEntry {
+
     private ItemStack lacingItem;
     private PotionEffect appliedEffect;
     private String nbtKey;
-
 
     public static GTControlledRegistry<String, LacingEntry> LACING_REGISTRY = new GTControlledRegistry<>(255);
 

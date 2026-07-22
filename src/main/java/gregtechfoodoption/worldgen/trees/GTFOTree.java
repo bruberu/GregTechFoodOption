@@ -1,5 +1,29 @@
 package gregtechfoodoption.worldgen.trees;
 
+import static gregtech.api.unification.material.Materials.Steel;
+import static gregtech.loaders.recipe.WoodRecipeLoader.registerWoodTypeRecipe;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.GREENHOUSE_RECIPES;
+import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
+import static net.minecraft.block.BlockLeaves.DECAYABLE;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
 import gregtech.api.util.GTUtility;
@@ -11,37 +35,12 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.block.tree.GTFOBlockLeaves;
 import gregtechfoodoption.block.tree.GTFOBlockLog;
 import gregtechfoodoption.block.tree.GTFOBlockSapling;
-import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
 import gregtechfoodoption.worldgen.GTFOFeature;
 import gregtechfoodoption.worldgen.GTFOFeatureGen;
-import gregtechfoodoption.worldgen.condition.FeatureCondition;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.NoiseGeneratorSimplex;
-import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import static gregtech.api.unification.material.Materials.Steel;
-import static gregtech.loaders.recipe.WoodRecipeLoader.registerWoodTypeRecipe;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.GREENHOUSE_RECIPES;
-import static net.minecraft.block.BlockLeaves.CHECK_DECAY;
-import static net.minecraft.block.BlockLeaves.DECAYABLE;
 
 public abstract class GTFOTree extends GTFOFeature {
+
     public final String name;
 
     public IBlockState logState;
@@ -61,14 +60,16 @@ public abstract class GTFOTree extends GTFOFeature {
         TREES.add(this);
     }
 
-    public boolean generate(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    public boolean generate(World world, BlockPos.MutableBlockPos pos, Random random,
+                            TriConsumer<World, BlockPos, IBlockState> notifier) {
         int minHeight = getMinTrunkHeight(random);
 
         // Check if tree fits in world
         if (pos.getY() >= 1 && pos.getY() + minHeight + 1 <= world.getHeight()) {
             if (isSuitableLocation(world, pos, minHeight)) {
                 IBlockState state = world.getBlockState(pos.down());
-                if (state.getBlock().canSustainPlant(state, world, pos.down(), EnumFacing.UP, this.getPlantableSapling()) && pos.getY() < world.getHeight() - minHeight - 1) {
+                if (state.getBlock().canSustainPlant(state, world, pos.down(), EnumFacing.UP,
+                        this.getPlantableSapling()) && pos.getY() < world.getHeight() - minHeight - 1) {
                     state.getBlock().onPlantGrow(state, world, pos.down(), pos);
                     generateLeaves(world, pos, minHeight, random, notifier);
                     generateTrunk(world, pos, minHeight, random, notifier);
@@ -101,6 +102,7 @@ public abstract class GTFOTree extends GTFOFeature {
     }
 
     public abstract int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex);
+
     public abstract int getItemColor(ItemStack stack, int tintIndex);
 
     public boolean isReplaceable(World world, BlockPos pos) {
@@ -110,26 +112,34 @@ public abstract class GTFOTree extends GTFOFeature {
 
     protected boolean canGrowInto(Block blockType) {
         Material material = blockType.getDefaultState().getMaterial();
-        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS || blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 || blockType == Blocks.SAPLING || blockType == Blocks.VINE;
+        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS ||
+                blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 ||
+                blockType == Blocks.SAPLING || blockType == Blocks.VINE;
     }
 
-    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random,
+                                  TriConsumer<World, BlockPos, IBlockState> notifier) {
         for (int foliageY = pos.getY() - 3 + height; foliageY <= pos.getY() + height; ++foliageY) {
             int foliageLayer = foliageY - (pos.getY() + height);
             int foliageLayerRadius = 1 - foliageLayer / 2;
 
-            for (int foliageX = pos.getX() - foliageLayerRadius; foliageX <= pos.getX() + foliageLayerRadius; ++foliageX) {
+            for (int foliageX = pos.getX() - foliageLayerRadius; foliageX <=
+                    pos.getX() + foliageLayerRadius; ++foliageX) {
                 int foliageRelativeX = foliageX - pos.getX();
 
-                for (int foliageZ = pos.getZ() - foliageLayerRadius; foliageZ <= pos.getZ() + foliageLayerRadius; ++foliageZ) {
+                for (int foliageZ = pos.getZ() - foliageLayerRadius; foliageZ <=
+                        pos.getZ() + foliageLayerRadius; ++foliageZ) {
                     int foliageRelativeZ = foliageZ - pos.getZ();
 
                     // Fill in layer with some randomness
-                    if (Math.abs(foliageRelativeX) != foliageLayerRadius || Math.abs(foliageRelativeZ) != foliageLayerRadius || random.nextInt(2) != 0 && foliageLayer != 0) {
+                    if (Math.abs(foliageRelativeX) != foliageLayerRadius ||
+                            Math.abs(foliageRelativeZ) != foliageLayerRadius ||
+                            random.nextInt(2) != 0 && foliageLayer != 0) {
                         BlockPos newLeavesPos = new BlockPos(foliageX, foliageY, foliageZ);
                         IBlockState state = world.getBlockState(newLeavesPos);
 
-                        if (state.getBlock().isReplaceable(world, pos) || state.getBlock().canBeReplacedByLeaves(state, world, pos)) {
+                        if (state.getBlock().isReplaceable(world, pos) ||
+                                state.getBlock().canBeReplacedByLeaves(state, world, pos)) {
                             notifier.accept(world, newLeavesPos, this.leavesState);
                         }
                     }
@@ -138,7 +148,8 @@ public abstract class GTFOTree extends GTFOFeature {
         }
     }
 
-    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random,
+                                 TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos upN = GTFOUtils.copy(pos);
         for (int height = 0; height < maxHeight; ++height) {
             IBlockState state = world.getBlockState(upN);
@@ -169,7 +180,8 @@ public abstract class GTFOTree extends GTFOFeature {
     }
 
     /**
-     * @param height An integer representing the block height at which this radius is being taken (starting from 0).
+     * @param height      An integer representing the block height at which this radius is being taken (starting from
+     *                    0).
      * @param trunkHeight An integer representing the height of the trunk.
      * @return The maximum radius outside the center block that the tree can take up at this height value.
      */

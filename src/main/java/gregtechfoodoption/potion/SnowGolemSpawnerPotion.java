@@ -1,6 +1,7 @@
 package gregtechfoodoption.potion;
 
 public class SnowGolemSpawnerPotion extends GTFOPotion {
+
     public static final String TAG_NAME = "gregtechfoodoption - snowgolemspawnerpotion";
     public static SnowGolemSpawnerPotion INSTANCE = null;
 

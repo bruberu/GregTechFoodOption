@@ -1,18 +1,20 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.common.items.MetaItems;
-import gregtechfoodoption.GTFOConfig;
-import net.minecraft.init.Items;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.Biomass;
 import static gregtech.api.unification.material.Materials.Water;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
+import net.minecraft.init.Items;
+
+import gregtech.api.unification.material.Materials;
+import gregtech.api.unification.ore.OrePrefix;
+import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOConfig;
+
 public class AlcoholChain {
+
     public static void init() {
         FERMENTING_RECIPES.recipeBuilder().EUt(8).duration(1000)
                 .input(Items.POTATO)
@@ -24,7 +26,6 @@ public class AlcoholChain {
                 .fluidInputs(Water.getFluid(1000))
                 .fluidOutputs(WheatyJuice.getFluid(1000))
                 .buildAndRegister();
-
 
         FERMENTING_RECIPES.recipeBuilder().EUt(8).duration(3000)
                 .fluidInputs(PotatoJuice.getFluid(2000))
@@ -120,6 +121,5 @@ public class AlcoholChain {
                 .fluidInputs(RedWine.getFluid(200))
                 .outputs(RED_WINE.getStackForm())
                 .buildAndRegister();
-
     }
 }

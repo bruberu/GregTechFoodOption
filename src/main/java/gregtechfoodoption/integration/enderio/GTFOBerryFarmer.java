@@ -1,17 +1,8 @@
 package gregtechfoodoption.integration.enderio;
 
-import com.enderio.core.common.util.NNList;
-import crazypants.enderio.api.farm.FarmNotification;
-import crazypants.enderio.api.farm.FarmingAction;
-import crazypants.enderio.api.farm.IFarmer;
-import crazypants.enderio.api.farm.IHarvestResult;
-import crazypants.enderio.base.farming.FarmingTool;
-import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
-import crazypants.enderio.base.farming.farmers.HarvestResult;
-import crazypants.enderio.util.Prep;
-import gregtechfoodoption.block.GTFOBerryBush;
-import gregtechfoodoption.block.GTFOCrop;
-import gregtechfoodoption.block.GTFORootCrop;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -19,12 +10,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
+
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import com.enderio.core.common.util.NNList;
+
+import crazypants.enderio.api.farm.FarmingAction;
+import crazypants.enderio.api.farm.IFarmer;
+import crazypants.enderio.api.farm.IHarvestResult;
+import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
+import crazypants.enderio.base.farming.farmers.HarvestResult;
+import gregtechfoodoption.block.GTFOCrop;
 
 public class GTFOBerryFarmer extends CustomSeedFarmer {
+
     public GTFOBerryFarmer(@NotNull Block plantedBlock, @NotNull ItemStack seeds) {
         super(plantedBlock, seeds);
     }

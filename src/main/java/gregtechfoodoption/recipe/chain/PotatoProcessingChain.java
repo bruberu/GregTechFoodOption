@@ -1,34 +1,35 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.unification.material.Materials;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtech.api.recipes.ModHandler;
-import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.foil;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import gregtech.api.recipes.ModHandler;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.utils.GTFOUtils;
 
 public class PotatoProcessingChain {
+
     public static void init() {
         SLICER_RECIPES.recipeBuilder().EUt(8).duration(40)
                 .input(Items.POTATO)
                 .fluidInputs(Water.getFluid(500))
                 .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(PEELED_POTATO.getStackForm())
-                //.fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(500))
+                // .fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(500))
                 .buildAndRegister();
         SLICER_RECIPES.recipeBuilder().EUt(20).duration(80)
                 .inputs(PEELED_POTATO.getStackForm())
                 .fluidInputs(Water.getFluid(200))
                 .notConsumable(SLICER_BLADE_FLAT.getStackForm())
                 .outputs(POTATO_SLICE.getStackForm(10))
-                //.fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(200))
+                // .fluidOutputs(GTFOMaterialHandler.StarchFilledWater.getFluid(200))
                 .buildAndRegister();
         GTFOUtils.chemicalDehydratorProxy().recipeBuilder().EUt(16).duration(20)
                 .fluidInputs(GTFOMaterialHandler.StarchFilledWater.getFluid(1000))
@@ -122,7 +123,8 @@ public class PotatoProcessingChain {
                 .chancedOutput(GTFOMaterialHandler.PotatoStarch.getItemStack(), 2000, 150)
                 .fluidOutputs(SeedOil.getFluid(300))
                 .buildAndRegister();
-        ModHandler.addShapelessRecipe("potato_on_a_stick", POTATO_ON_A_STICK.getStackForm(), new ItemStack(Items.BAKED_POTATO), new ItemStack(Items.STICK));
+        ModHandler.addShapelessRecipe("potato_on_a_stick", POTATO_ON_A_STICK.getStackForm(),
+                new ItemStack(Items.BAKED_POTATO), new ItemStack(Items.STICK));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(4).duration(5)
                 .input(Items.STICK)
                 .input(Items.BAKED_POTATO)

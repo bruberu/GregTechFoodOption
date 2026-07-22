@@ -1,5 +1,17 @@
 package gregtechfoodoption.recipe.chain;
 
+import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.MICROWAVE_RECIPES;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
+
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.recipes.ingredients.IntCircuitIngredient;
@@ -11,20 +23,9 @@ import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.nc.GTFONCRecipeHandler;
 import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
-
-import static gregtech.api.recipes.GTRecipeHandler.removeRecipesByInputs;
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtechfoodoption.GTFOMaterialHandler.CaneSyrup;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.MICROWAVE_RECIPES;
-
 
 public class SmogusChain {
+
     public static void init() {
         if (Loader.isModLoaded(GTFOValues.MODID_NC)) {
             GTFONCRecipeHandler.initSmingotRemoval();
@@ -42,7 +43,7 @@ public class SmogusChain {
                 SMOGUS.getStackForm(),
                 MORE_SMOGUS.getStackForm(),
                 FOUR_SMOGUS.getStackForm(),
-                HEART_SMOGUS.getStackForm()};
+                HEART_SMOGUS.getStackForm() };
         ItemStack[] smoresin = {
                 GRAHAM_CRACKER.getStackForm(2),
                 SMORE_SMINGOT.getStackForm(2),
@@ -54,7 +55,7 @@ public class SmogusChain {
                 SIXTY_FOUR_SMORE.getStackForm(2),
                 SMOGUS.getStackForm(2),
                 MORE_SMOGUS.getStackForm(2),
-                FOUR_SMOGUS.getStackForm(2)};
+                FOUR_SMOGUS.getStackForm(2) };
         int euPerTick = 1920;
         int ticks = 25;
         for (int i = 0; i < 3 + 8 * GTFOUtils.boolToInt(GTFOConfig.gtfoncConfig.addSmogus); i++) {
@@ -92,7 +93,6 @@ public class SmogusChain {
                 .EUt(120)
                 .duration(100)
                 .buildAndRegister();
-
 
         BLAST_RECIPES.recipeBuilder()
                 .inputs(MILK_CHOCOLATE.getStackForm())
@@ -237,11 +237,13 @@ public class SmogusChain {
                 .duration(100)
                 .buildAndRegister();
 
-        GTFOUtils.addBakingOvenRecipes(GTFOMaterialHandler.MATTER_GRAHAM.getItemStack(), GTFOMaterialHandler.MATTER_GRAHAM_HOT.getItemStack(), 400, 450, 3);
+        GTFOUtils.addBakingOvenRecipes(GTFOMaterialHandler.MATTER_GRAHAM.getItemStack(),
+                GTFOMaterialHandler.MATTER_GRAHAM_HOT.getItemStack(), 400, 450, 3);
 
-        Item[] gelatins = {Items.BONE, Items.LEATHER, Items.PORKCHOP, Items.BEEF, Items.CHICKEN, Items.RABBIT, Items.MUTTON};
+        Item[] gelatins = { Items.BONE, Items.LEATHER, Items.PORKCHOP, Items.BEEF, Items.CHICKEN, Items.RABBIT,
+                Items.MUTTON };
 
-        for (Item gelatinProducer : gelatins){
+        for (Item gelatinProducer : gelatins) {
             EXTRACTOR_RECIPES.recipeBuilder()
                     .input(gelatinProducer)
                     .outputs(GELATIN.getStackForm())
@@ -355,5 +357,4 @@ public class SmogusChain {
                 .duration(30)
                 .buildAndRegister();
     }
-
 }

@@ -1,27 +1,26 @@
 package gregtechfoodoption.integration.sereneseasons;
 
-import gregtechfoodoption.block.GTFOCrop;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import sereneseasons.config.FertilityConfig;
-import sereneseasons.core.SereneSeasons;
-import sereneseasons.init.ModFertility;
-
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import gregtechfoodoption.block.GTFOCrop;
+import sereneseasons.config.FertilityConfig;
+import sereneseasons.init.ModFertility;
+
 public class GTFOSSTooltipHandler {
+
     @SideOnly(Side.CLIENT)
     public static void addTooltip(GTFOCrop crop, List<String> tooltip) {
         try {
             Field seedSeasons = ModFertility.class.getDeclaredField("seedSeasons");
             seedSeasons.setAccessible(true);
-            HashMap<String, Integer> map = (HashMap<String, Integer>) seedSeasons.get(FertilityConfig.seasonal_fertility);
+            HashMap<String, Integer> map = (HashMap<String, Integer>) seedSeasons
+                    .get(FertilityConfig.seasonal_fertility);
             String name = crop.getRegistryName().toString();
             if (map.containsKey(name)) {
                 int mask = map.get(name);

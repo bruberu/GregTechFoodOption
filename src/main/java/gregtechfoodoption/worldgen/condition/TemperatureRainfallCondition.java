@@ -3,12 +3,14 @@ package gregtechfoodoption.worldgen.condition;
 import net.minecraft.world.biome.Biome;
 
 public class TemperatureRainfallCondition extends FeatureCondition {
+
     private double optimalTemp;
     private double optimalRain;
     private double range;
     private double commonality;
 
-    public TemperatureRainfallCondition(int maxAmount, double commonality, double optimalTemp, double optimalRain, double range) {
+    public TemperatureRainfallCondition(int maxAmount, double commonality, double optimalTemp, double optimalRain,
+                                        double range) {
         super(maxAmount);
         this.optimalTemp = optimalTemp;
         this.optimalRain = optimalRain;
@@ -17,7 +19,8 @@ public class TemperatureRainfallCondition extends FeatureCondition {
     }
 
     private double getHabitation(Biome biome) {
-        return range - Math.sqrt(Math.pow(biome.getDefaultTemperature() - optimalTemp, 2) + Math.pow(biome.getRainfall() - optimalRain, 2));
+        return range - Math.sqrt(Math.pow(biome.getDefaultTemperature() - optimalTemp, 2) +
+                Math.pow(biome.getRainfall() - optimalRain, 2));
     }
 
     @Override

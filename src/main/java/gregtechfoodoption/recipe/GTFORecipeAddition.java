@@ -1,14 +1,16 @@
 package gregtechfoodoption.recipe;
 
+import net.minecraftforge.fml.common.Loader;
+
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.enderio.GTFOEIORecipeHandler;
-import gregtechfoodoption.worldgen.trees.GTFOTree;
 import gregtechfoodoption.recipe.chain.*;
 import gregtechfoodoption.tools.GTFOToolItems;
-import net.minecraftforge.fml.common.Loader;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
 
 public class GTFORecipeAddition {
+
     public static void init() {
         CoreChain.init();
         FatChain.init();
@@ -46,8 +48,7 @@ public class GTFORecipeAddition {
         }
     }
 
-    public static void lowInit() {
-    }
+    public static void lowInit() {}
 
     public static void compatInit() {
         BreadsChain.init();

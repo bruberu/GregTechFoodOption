@@ -1,19 +1,20 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.common.blocks.BlockGlassCasing;
-import gregtech.common.blocks.MetaBlocks;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.block.GTFOGlassCasing;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.GTFOMaterialHandler.ArsenicTrioxide;
 
+import gregtech.common.blocks.BlockGlassCasing;
+import gregtech.common.blocks.MetaBlocks;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.block.GTFOGlassCasing;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+
 // It's alive...
 public class DyeChain {
+
     public static void init() {
         ARC_FURNACE_RECIPES.recipeBuilder().EUt(30).duration(100)
                 .input(dust, Arsenic, 2)
@@ -45,7 +46,8 @@ public class DyeChain {
                 .buildAndRegister();
 
         ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(60)
-                .inputs(CupricHydrogenArsenite.getItemStack(), MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
+                .inputs(CupricHydrogenArsenite.getItemStack(),
+                        MetaBlocks.TRANSPARENT_CASING.getItemVariant(BlockGlassCasing.CasingType.TEMPERED_GLASS))
                 .outputs(GTFOMetaBlocks.GTFO_GLASS_CASING.getItemVariant(GTFOGlassCasing.CasingType.GREENHOUSE_GLASS))
                 .buildAndRegister();
     }

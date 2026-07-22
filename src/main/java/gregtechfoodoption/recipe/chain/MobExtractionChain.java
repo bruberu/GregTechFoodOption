@@ -1,16 +1,18 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtechfoodoption.entity.EntityItalianBuffalo;
-import net.minecraft.entity.passive.*;
-import net.minecraft.util.ResourceLocation;
-
 import static gregtech.api.unification.material.Materials.Glue;
 import static gregtech.api.unification.material.Materials.Milk;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.MOB_EXTRACTOR_RECIPES;
 
+import net.minecraft.entity.passive.*;
+import net.minecraft.util.ResourceLocation;
+
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtechfoodoption.entity.EntityItalianBuffalo;
+
 public class MobExtractionChain {
+
     public static void init() {
         MOB_EXTRACTOR_RECIPES.recipeBuilder()
                 .notConsumable(new IntCircuitIngredient(3))

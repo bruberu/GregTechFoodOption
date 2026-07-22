@@ -1,9 +1,9 @@
 package gregtechfoodoption.worldgen.trees;
 
-import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.condition.BiomeCondition;
-import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
+import static gregtechfoodoption.GTFOMaterialHandler.RainbowSap;
+
+import java.util.Random;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
@@ -13,11 +13,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
-import java.util.Random;
-
-import static gregtechfoodoption.GTFOMaterialHandler.RainbowSap;
+import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class RainbowwoodTree extends GTFOTree {
+
     public static final int[] RAINBOW_ARRAY = {
             0xff0000,
             0xff4000,
@@ -58,7 +60,8 @@ public class RainbowwoodTree extends GTFOTree {
     }
 
     @Override
-    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random,
+                                  TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos currentYPos = GTFOUtils.copy(pos);
         currentYPos.move(EnumFacing.UP, height - 3);
         for (int i = 0; i < 7; i++) {
@@ -67,7 +70,8 @@ public class RainbowwoodTree extends GTFOTree {
                     currentYPos.offset(EnumFacing.NORTH, layerSize).offset(EnumFacing.WEST, layerSize),
                     currentYPos.offset(EnumFacing.SOUTH, layerSize).offset(EnumFacing.EAST, layerSize));
             iterator.forEach(leavesPos -> {
-                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) < 6)
+                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <
+                        6)
                     notifier.accept(world, leavesPos, getNaturalLeavesState());
             });
             currentYPos.move(EnumFacing.UP);
@@ -76,7 +80,8 @@ public class RainbowwoodTree extends GTFOTree {
 
     @Override
     public int getBlockColor(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-        return RAINBOW_ARRAY[(Math.abs(pos.getX()) + Math.abs(pos.getY()) + Math.abs(pos.getZ())) % RAINBOW_ARRAY.length];
+        return RAINBOW_ARRAY[(Math.abs(pos.getX()) + Math.abs(pos.getY()) + Math.abs(pos.getZ())) %
+                RAINBOW_ARRAY.length];
     }
 
     @Override

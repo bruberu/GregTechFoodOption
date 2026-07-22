@@ -5,6 +5,7 @@ import gregtechfoodoption.worldgen.GTFOFeature;
 import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class GTFOBerries {
+
     public static GTFOFeature BUSH_BLUEBERRY = new GTFOBerry(1000, GTFOCrops.BUSH_BLUEBERRY)
             .addCondition(new TemperatureRainfallCondition(3, 1.2, 0.7, 0.5, 0.5));
     public static GTFOFeature BUSH_BLACKBERRY = new GTFOBerry(1001, GTFOCrops.BUSH_BLACKBERRY)
@@ -26,7 +27,5 @@ public class GTFOBerries {
     public static GTFOFeature BUSH_CRANBERRY = new GTFOBerry(1009, GTFOCrops.BUSH_CRANBERRY)
             .addCondition(new TemperatureRainfallCondition(3, 1.2, 0.2, 0.4, 0.6));
 
-    public static void init() {
-
-    }
+    public static void init() {}
 }

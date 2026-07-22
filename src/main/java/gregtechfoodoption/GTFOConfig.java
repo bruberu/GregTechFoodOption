@@ -36,19 +36,20 @@ public class GTFOConfig {
     @Config.Comment("Worldgen Options")
     public static GTFOWorldGenConfig gtfoWorldgenConfig = new GTFOWorldGenConfig();
 
-
     @Config.Comment("Miscellaneous features for GTFO.")
     public static GTFOMiscConfig gtfoMiscConfig = new GTFOMiscConfig();
 
     public static class GTFOChainsConfig {
-/*        @Config.Comment("Add Popcorn Chain?")
-        public boolean popcornChain = true;
-
-        @Config.Comment("Add Mineral Water Chain?")
-        public boolean mineralWaterChain = true;
-
-        @Config.Comment("Add Purple Drink Chain? (Note: also adds Etirps and Apple Hard Candy as sideproducts.)")
-        public boolean purpleDrinkChain = true;*/
+        /*
+         * @Config.Comment("Add Popcorn Chain?")
+         * public boolean popcornChain = true;
+         * 
+         * @Config.Comment("Add Mineral Water Chain?")
+         * public boolean mineralWaterChain = true;
+         * 
+         * @Config.Comment("Add Purple Drink Chain? (Note: also adds Etirps and Apple Hard Candy as sideproducts.)")
+         * public boolean purpleDrinkChain = true;
+         */
 
         @Config.Comment("Delete vanilla bread recipe?")
         public boolean deleteBreadRecipe = false;
@@ -58,6 +59,7 @@ public class GTFOConfig {
     }
 
     public static class GTFOVanillaOverridesConfig {
+
         @Config.Comment("Enable most GTFO Vanilla Overrides features, usually adding small chains to food items while removing normal recipes?")
         public boolean vanillaOverrideChain = false;
 
@@ -69,6 +71,7 @@ public class GTFOConfig {
     }
 
     public static class GTFOOtherFoodModConfig {
+
         @Config.Comment("Should AppleCore compatibility be turned on?")
         public boolean appleCoreCompat = false;
 
@@ -91,6 +94,7 @@ public class GTFOConfig {
     }
 
     public static class GTFONCConfig {
+
         @Config.Comment("Should NuclearCraft compatibility be turned on? (Note: only works for NuclearCraft:Overhauled)")
         public boolean nuclearCompat = true;
 
@@ -107,12 +111,12 @@ public class GTFOConfig {
     }
 
     public static class GTFOAAConfig {
+
         @Config.Comment("Should ActuallyAdditions compatibility be turned on?")
         public boolean actuallyCompat = true;
 
         @Config.Comment("Disable AA Coffee Maker's recipe?")
         public boolean disableCoffeeMaker = true;
-
 
         public void setAllToFalse() {
             actuallyCompat = false;
@@ -120,9 +124,8 @@ public class GTFOConfig {
         }
     }
 
-
-
     public static class GTFOFoodConfig {
+
         @Config.Comment("Popcorn hunger")
         public int popcornHunger = 5;
 
@@ -185,6 +188,7 @@ public class GTFOConfig {
     }
 
     public static class GTFOPotionConfig {
+
         @Config.Comment("Apply effects of Creativity?")
         public boolean creativity = true;
 
@@ -193,10 +197,10 @@ public class GTFOConfig {
 
         @Config.Comment("Apply effects of Snow Golem Spawner?")
         public boolean snowGolemSpawner = true;
-
     }
 
     public static class GTFOMiscConfig {
+
         @Config.Comment("Create methane centrifuging recipes for GTFO seeds?")
         @Config.RequiresMcRestart
         public boolean centrifugeSeeds = true;
@@ -223,6 +227,7 @@ public class GTFOConfig {
     }
 
     public static class GTFOWorldGenConfig {
+
         @Config.Comment("Turn on GTFO tree generation? Required for many mod features.")
         public boolean enableGTFOTrees = true;
 

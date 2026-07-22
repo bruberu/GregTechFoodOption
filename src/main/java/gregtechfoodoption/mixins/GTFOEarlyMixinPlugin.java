@@ -1,17 +1,20 @@
 package gregtechfoodoption.mixins;
 
-import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-import org.jetbrains.annotations.Nullable;
-import zone.rong.mixinbooter.IEarlyMixinLoader;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+
+import org.jetbrains.annotations.Nullable;
+
+import zone.rong.mixinbooter.IEarlyMixinLoader;
+
 public class GTFOEarlyMixinPlugin implements IEarlyMixinLoader, IFMLLoadingPlugin {
+
     @Override
     public List<String> getMixinConfigs() {
-        String[] configs = {"mixins.gregtechfoodoption.early.json"};
+        String[] configs = { "mixins.gregtechfoodoption.early.json" };
         return Arrays.asList(configs);
     }
 
@@ -32,9 +35,7 @@ public class GTFOEarlyMixinPlugin implements IEarlyMixinLoader, IFMLLoadingPlugi
     }
 
     @Override
-    public void injectData(Map<String, Object> data) {
-
-    }
+    public void injectData(Map<String, Object> data) {}
 
     @Override
     public String getAccessTransformerClass() {

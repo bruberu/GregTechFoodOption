@@ -1,6 +1,23 @@
 package gregtechfoodoption.block;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import com.google.common.collect.ImmutableMap;
+
 import gregtech.api.GTValues;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
@@ -15,23 +32,9 @@ import gregtechfoodoption.block.tree.GTFOBlockSapling;
 import gregtechfoodoption.worldgen.berries.GTFOBerries;
 import gregtechfoodoption.worldgen.trees.GTFOTree;
 import gregtechfoodoption.worldgen.trees.GTFOTrees;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class GTFOMetaBlocks {
+
     public static GTFOBlockCasing GTFO_CASING;
     public static GTFOMetalCasing GTFO_METAL_CASING;
     public static GTFOGlassCasing GTFO_GLASS_CASING;
@@ -85,7 +88,7 @@ public class GTFOMetaBlocks {
             registerItemModel(sapling);
             for (int v = 0; v < 8; v++)
                 ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(sapling), v << 1,
-                    new ModelResourceLocation(sapling.getRegistryName() + "_" + v, "inventory"));
+                        new ModelResourceLocation(sapling.getRegistryName() + "_" + v, "inventory"));
         }
         for (GTFOBlockLog log : GTFO_LOGS) {
             registerItemModelWithOverride(log, ImmutableMap.of(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y));
@@ -96,7 +99,7 @@ public class GTFOMetaBlocks {
     @SideOnly(Side.CLIENT)
     private static void registerItemModel(Block block) {
         for (IBlockState state : block.getBlockState().getValidStates()) {
-            //noinspection ConstantConditions
+            // noinspection ConstantConditions
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
                     block.getMetaFromState(state),
                     new ModelResourceLocation(block.getRegistryName(),
@@ -109,7 +112,7 @@ public class GTFOMetaBlocks {
         for (IBlockState state : block.getBlockState().getValidStates()) {
             HashMap<IProperty<?>, Comparable<?>> stringProperties = new HashMap<>(state.getProperties());
             stringProperties.putAll(stateOverrides);
-            //noinspection ConstantConditions
+            // noinspection ConstantConditions
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
                     block.getMetaFromState(state),
                     new ModelResourceLocation(block.getRegistryName(),
@@ -132,7 +135,8 @@ public class GTFOMetaBlocks {
         });
         GTFO_PLANKS.forEach(planks -> {
             OreDictUnifier.registerOre(new ItemStack(planks, 1, GTValues.W), OrePrefix.plank, Materials.Wood);
-            OreDictUnifier.registerOre(new ItemStack(planks, 1, GTValues.W), new ItemMaterialInfo(new MaterialStack(Materials.Wood, GTValues.M)));
+            OreDictUnifier.registerOre(new ItemStack(planks, 1, GTValues.W),
+                    new ItemMaterialInfo(new MaterialStack(Materials.Wood, GTValues.M)));
         });
     }
 
@@ -167,8 +171,7 @@ public class GTFOMetaBlocks {
     }
 
     @SideOnly(Side.CLIENT)
-    public static void registerStateMappers() {
-    }
+    public static void registerStateMappers() {}
 
     @SideOnly(Side.CLIENT)
     public static void registerColors() {

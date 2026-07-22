@@ -1,5 +1,17 @@
 package gregtechfoodoption.machines;
 
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
+import javax.annotation.Nonnull;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.util.EntitySelectors;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
+
 import gregtech.api.capability.IEnergyContainer;
 import gregtech.api.capability.impl.RecipeLogicEnergy;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -13,24 +25,15 @@ import gregtechfoodoption.recipe.GTFORecipeMaps;
 import gregtechfoodoption.recipe.properties.CauseDamageProperty;
 import gregtechfoodoption.recipe.properties.MobOnTopProperty;
 import gregtechfoodoption.utils.GTFODamageSources;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EntitySelectors;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity {
+
     private AxisAlignedBB boundingBox;
     private Entity attackableTarget;
     private List<Entity> nearbyEntities;
 
-    public MetaTileEntityMobExtractor(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer, int tier, boolean hasFrontFacing,
+    public MetaTileEntityMobExtractor(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, ICubeRenderer renderer,
+                                      int tier, boolean hasFrontFacing,
                                       Function<Integer, Integer> tankScalingFunction) {
         super(metaTileEntityId, recipeMap, renderer, tier, hasFrontFacing, tankScalingFunction);
     }
@@ -38,7 +41,8 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
     @Override
     public MetaTileEntity createMetaTileEntity(IGregTechTileEntity holder) {
         return new MetaTileEntityMobExtractor(this.metaTileEntityId, GTFORecipeMaps.MOB_EXTRACTOR_RECIPES,
-                GTFOClientHandler.MOB_EXTRACTOR_OVERLAY, this.getTier(), this.hasFrontFacing(), this.getTankScalingFunction());
+                GTFOClientHandler.MOB_EXTRACTOR_OVERLAY, this.getTier(), this.hasFrontFacing(),
+                this.getTankScalingFunction());
     }
 
     protected RecipeLogicEnergy createWorkable(RecipeMap<?> recipeMap) {
@@ -79,7 +83,9 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
     }
 
     private static class MobExtractorRecipeLogic extends RecipeLogicEnergy {
-        public MobExtractorRecipeLogic(MetaTileEntity metaTileEntity, RecipeMap<?> recipeMap, Supplier<IEnergyContainer> energyContainer) {
+
+        public MobExtractorRecipeLogic(MetaTileEntity metaTileEntity, RecipeMap<?> recipeMap,
+                                       Supplier<IEnergyContainer> energyContainer) {
             super(metaTileEntity, recipeMap, energyContainer);
         }
 
@@ -98,7 +104,5 @@ public class MetaTileEntityMobExtractor extends GTFOSimpleMachineMetaTileEntity 
             ((MetaTileEntityMobExtractor) metaTileEntity).damageEntity(recipe);
             super.setupRecipe(recipe);
         }
-
     }
-
 }

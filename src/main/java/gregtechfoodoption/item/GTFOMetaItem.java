@@ -1,5 +1,22 @@
 package gregtechfoodoption.item;
 
+import static gregtech.api.unification.material.Materials.*;
+import static gregtechfoodoption.GTFOMaterialHandler.BareCornKernel;
+import static net.minecraft.potion.Potion.getPotionById;
+
+import java.lang.reflect.Field;
+
+import javax.annotation.Nonnull;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import gregtech.api.items.metaitem.FoodUseManager;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
@@ -18,28 +35,13 @@ import gregtechfoodoption.item.food.GTFOFoodUseManager;
 import gregtechfoodoption.potion.*;
 import gregtechfoodoption.utils.GTFOLog;
 import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.food.IEdible;
 
-import javax.annotation.Nonnull;
-import java.lang.reflect.Field;
-
-import static gregtech.api.unification.material.Materials.*;
-import static gregtechfoodoption.GTFOMaterialHandler.BareCornKernel;
-import static net.minecraft.potion.Potion.getPotionById;
-
-
 @Optional.Interface(modid = GTFOValues.MODID_AP, iface = "squeek.applecore.api.food.IEdible")
 public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> implements IEdible {
-    //foods
+
+    // foods
     public static MetaItem<?>.MetaValueItem POPCORN_BAG;
     public static MetaItem<?>.MetaValueItem PAPER_BAG;
     public static MetaItem<?>.MetaValueItem FLAVORED_POPCORN_FLAKE;
@@ -182,22 +184,22 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem KEBAB_BARG;
     public static MetaItem<?>.MetaValueItem KEBAB_BARG_COOKED;
     public static MetaItem<?>.MetaValueItem KEBAB_SOLTANI;
-    //    public static MetaItem<?>.MetaValueItem KEBAB_DANDE;
-//    public static MetaItem<?>.MetaValueItem KEBAB_LIVER;
+    // public static MetaItem<?>.MetaValueItem KEBAB_DANDE;
+    // public static MetaItem<?>.MetaValueItem KEBAB_LIVER;
     public static MetaItem<?>.MetaValueItem KEBAB_ONION;
     public static MetaItem<?>.MetaValueItem KEBAB_ONION_COOKED;
     public static MetaItem<?>.MetaValueItem KEBAB_TOMATO;
     public static MetaItem<?>.MetaValueItem KEBAB_TOMATO_COOKED;
-    //    public static MetaItem<?>.MetaValueItem KEBAB_PEPPER;
-//    public static MetaItem<?>.MetaValueItem KEBAB_MUSHROOM;
-//    public static MetaItem<?>.MetaValueItem KEBAB_MIX;
+    // public static MetaItem<?>.MetaValueItem KEBAB_PEPPER;
+    // public static MetaItem<?>.MetaValueItem KEBAB_MUSHROOM;
+    // public static MetaItem<?>.MetaValueItem KEBAB_MIX;
     public static MetaItem<?>.MetaValueItem KEBAB_MEAT;
     public static MetaItem<?>.MetaValueItem KEBAB_MEAT_COOKED;
-    //    public static MetaItem<?>.MetaValueItem KEBAB_LAMB;
-//    public static MetaItem<?>.MetaValueItem KEBAB_CHICKEN;
+    // public static MetaItem<?>.MetaValueItem KEBAB_LAMB;
+    // public static MetaItem<?>.MetaValueItem KEBAB_CHICKEN;
     public static MetaItem<?>.MetaValueItem KEBAB_FAT;
     public static MetaItem<?>.MetaValueItem KEBAB_FAT_COOKED;
-    //    public static MetaItem<?>.MetaValueItem KEBAB_FISH;
+    // public static MetaItem<?>.MetaValueItem KEBAB_FISH;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM_COOKED;
     public static MetaItem<?>.MetaValueItem KEBAB_CHUM_BUCKET;
@@ -217,11 +219,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem COFFEE_CUP;
     public static MetaItem<?>.MetaValueItem PARACETAMOL_CAPLET;
 
-    //juice
+    // juice
     public static MetaItem<?>.MetaValueItem ORANGE_JUICE;
     public static MetaItem<?>.MetaValueItem APPLE_JUICE;
 
-    //seed
+    // seed
     public static MetaItem<?>.MetaValueItem UNKNOWN_SEED;
     public static MetaItem<?>.MetaValueItem ONION_SEED;
     public static MetaItem<?>.MetaValueItem SOYBEAN;
@@ -231,7 +233,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem CUCUMBER_SEED;
     public static MetaItem<?>.MetaValueItem COFFEE_SEED;
 
-    //ice cream
+    // ice cream
     public static MetaItem<?>.MetaValueItem ICE_CREAM_PLAIN;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_CHUM;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_VANILLA;
@@ -244,7 +246,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem ICE_CREAM_CHIP;
     public static MetaItem<?>.MetaValueItem ICE_CREAM_RAINBOW;
 
-    //misc items
+    // misc items
     public static MetaItem<?>.MetaValueItem GELATIN;
     public static MetaItem<?>.MetaValueItem ROASTED_COCOA_BEANS;
     public static MetaItem<?>.MetaValueItem PAPER_CONE;
@@ -394,7 +396,6 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem BERRY_MEDLEY;
     public static MetaItem<?>.MetaValueItem ETIRPS_CRANBERRY;
 
-
     public static MetaItem<?>.MetaValueItem UNCOOKED_PELMENI;
     public static MetaItem<?>.MetaValueItem UNCOOKED_SEASONED_PELMENI;
     public static MetaItem<?>.MetaValueItem PELMENI;
@@ -441,8 +442,9 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         CORN_COB = addItem(3, "component.corn.cob");
         DRIED_CORN_EAR = addItem(4, "component.corn.dried_ear");
         CORN_EAR = addItem(5, "component.corn.ear");
-        CORN_EAR.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CORN, BareCornKernel.getItemStack(), CORN_EAR.getStackForm()));
-        //PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
+        CORN_EAR.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_CORN, BareCornKernel.getItemStack(), CORN_EAR.getStackForm()));
+        // PHYCOMYCES_BLAKESLEEANUS_CULTURE = addItem(6, "culture.phycomyces");
 
         DEWAR_FLASK = addItem(7, "component.dewar_flask.new").blacklistKitchen();
         USED_DEWAR_FLASK = addItem(8, "component.dewar_flask.used").blacklistKitchen();
@@ -452,8 +454,8 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         CORED_APPLE = addItem(13, "component.cored_apple");
         PLASTIC_BOTTLE = addItem(15, "component.plastic_bottle").blacklistKitchen();
-        //LACTOBACILLUS_PENTOSIS_CULTURE = addItem(20, "culture.lactobacillus");
-        //BACILLUS_SUBTILIS_CULTURE = addItem(21, "culture.bacillus");
+        // LACTOBACILLUS_PENTOSIS_CULTURE = addItem(20, "culture.lactobacillus");
+        // BACILLUS_SUBTILIS_CULTURE = addItem(21, "culture.bacillus");
 
         SLICER_BLADE_FLAT = addItem(23, "config.slicer_blade.flat").blacklistKitchen();
         SLICER_BLADE_STRIPES = addItem(24, "config.slicer_blade.stripes").blacklistKitchen();
@@ -471,13 +473,16 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         FRIED_POTATO_STRIP = addItem(35, "component.potato.fried_strip");
         USED_PAPER_BAG = addItem(36, "component.bag_used");
 
-        MUD_BRICK = addItem(43, "brick.adobe").blacklistKitchen().addComponents(new GTFOFoodStats(0, 0, false, true).setEatingDuration(100)
-                .setPotionEffects(new RandomPotionEffect(MobEffects.POISON, 400, 0, 100 - 50)));
+        MUD_BRICK = addItem(43, "brick.adobe").blacklistKitchen()
+                .addComponents(new GTFOFoodStats(0, 0, false, true).setEatingDuration(100)
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.POISON, 400, 0, 100 - 50)));
         ADOBE_BRICK = addItem(44, "brick.adobe_fired").blacklistKitchen()
                 .addComponents(new GTFOFoodStats(0, 0, false, true).setEatingDuration(400));
 
-        WOODEN_FORM_BREAD = addItem(45, "wooden_form.bread").blacklistKitchen().addComponents(selfContainerItemProvider).setMaxStackSize(1);
-        WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").blacklistKitchen().addComponents(selfContainerItemProvider).setMaxStackSize(1);
+        WOODEN_FORM_BREAD = addItem(45, "wooden_form.bread").blacklistKitchen().addComponents(selfContainerItemProvider)
+                .setMaxStackSize(1);
+        WOODEN_FORM_BAGUETTE = addItem(46, "wooden_form.baguette").blacklistKitchen()
+                .addComponents(selfContainerItemProvider).setMaxStackSize(1);
         UNCOOKED_BREAD = addItem(47, "component.bread");
         UNCOOKED_BAGUETTE = addItem(48, "component.baguette");
         DOUGH = addItem(50, "component.dough")
@@ -518,23 +523,28 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .addComponents(new GTFOFoodStats(2, 0.5f)
                         .setEatingDuration(64)
                         .nutrients(0, 0, 0, 0, 1f));
-        CUCUMBER.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
+        CUCUMBER.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER.getStackForm(), CUCUMBER.getStackForm()));
 
-        WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").blacklistKitchen().addComponents(selfContainerItemProvider).setMaxStackSize(1);
+        WOODEN_FORM_BUN = addItem(82, "wooden_form.bun").blacklistKitchen().addComponents(selfContainerItemProvider)
+                .setMaxStackSize(1);
         UNCOOKED_BUN = addItem(83, "component.bun");
 
         PRESLICED_BUN = addItem(84, "component.buns")
-                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger / 3, GTFOConfig.gtfoFoodConfig.baguetteSaturation)
-                        .setEatingDuration(20)
-                        .nutrients(0, 0, 0.5f, 0, 0));
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger / 3,
+                        GTFOConfig.gtfoFoodConfig.baguetteSaturation)
+                                .setEatingDuration(20)
+                                .nutrients(0, 0, 0.5f, 0, 0));
         PRESLICED_BREAD = addItem(85, "component.breads")
-                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger * 2 / 3, GTFOConfig.gtfoFoodConfig.baguetteSaturation)
-                        .setEatingDuration(20)
-                        .nutrients(0, 0, 0.5f, 0, 0));
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger * 2 / 3,
+                        GTFOConfig.gtfoFoodConfig.baguetteSaturation)
+                                .setEatingDuration(20)
+                                .nutrients(0, 0, 0.5f, 0, 0));
         PRESLICED_BAGUETTE = addItem(86, "component.baguettes")
-                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger * 2 / 3, GTFOConfig.gtfoFoodConfig.baguetteSaturation)
-                        .setEatingDuration(20)
-                        .nutrients(0, 0, 0.5f, 0, 0));
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger * 2 / 3,
+                        GTFOConfig.gtfoFoodConfig.baguetteSaturation)
+                                .setEatingDuration(20)
+                                .nutrients(0, 0, 0.5f, 0, 0));
 
         BEEF_SLICE = addItem(91, "component.beef_slice");
         CHEDDAR_CURD_MOLD = addItem(92, "component.cheddar_curd_mold").blacklistKitchen();
@@ -556,7 +566,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         SLIGHTLY_AGED_GORGONZOLA_WHEEL = addItem(111, "component.slightly_aged_gorgonzola_wheel").blacklistKitchen();
         PUNCTURED_GORGONZOLA_WHEEL = addItem(112, "component.punctured_gorgonzola_wheel").blacklistKitchen();
         FULLY_CURED_GORGONZOLA_WHEEL = addItem(113, "component.fully_cured_gorgonzola_wheel").blacklistKitchen();
-        //PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicillium");
+        // PENICILLIUM_ROQUEFORTI_CULTURE = addItem(115, "culture.penicillium");
         SLICER_BLADE_OCTAGONAL = addItem(116, "config.slicer_blade.octagonal").blacklistKitchen();
 
         BANANA_PEEL = addItem(127, "component.banana_peel");
@@ -647,90 +657,120 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         COCONUT = addItem(342, "component.coconut");
 
-        POPCORN_BAG = addItem(0, "food.popcorn_bag").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger, GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
-                new RandomPotionEffect(getPotionById(10), 300, 1, 0))
-                .nutrients(0, 0, 0.5f, 0, 0));
-        MINERAL_WATER = addItem(12, "food.mineral_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger, GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_DEWAR_FLASK.getStackForm(1),
-                new RandomPotionEffect(CreativityPotion.INSTANCE, 5000, 0, 0)));
-        APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger, GTFOConfig.gtfoFoodConfig.hardCandySaturation, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50))
-                .setEatingDuration(24)
-                .nutrients(0, 0.5f, 0, 0, 0));
-        SPARKLING_WATER = addItem(16, "food.sparkling_water").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.sparklingWaterHunger, GTFOConfig.gtfoFoodConfig.sparklingWaterSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
-                new RandomPotionEffect(MobEffects.SPEED, 600, 1, 0)));
-        LEMON = addItem(17, "food.lemon").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.lemonHunger, GTFOConfig.gtfoFoodConfig.lemonSaturation)
+        POPCORN_BAG = addItem(0, "food.popcorn_bag")
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.popcornHunger,
+                        GTFOConfig.gtfoFoodConfig.popcornSaturation, false, true, PAPER_BAG.getStackForm(1),
+                        new RandomPotionEffect(getPotionById(10), 300, 1, 0))
+                                .nutrients(0, 0, 0.5f, 0, 0));
+        MINERAL_WATER = addItem(12, "food.mineral_water")
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.mineralWaterHunger,
+                        GTFOConfig.gtfoFoodConfig.mineralWaterSaturation, true, true, USED_DEWAR_FLASK.getStackForm(1),
+                        new RandomPotionEffect(CreativityPotion.INSTANCE, 5000, 0, 0)));
+        APPLE_HARD_CANDY = addItem(14, "food.apple_hard_candy")
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.hardCandyHunger,
+                        GTFOConfig.gtfoFoodConfig.hardCandySaturation, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.REGENERATION, 1200, 1, 50))
+                                .setEatingDuration(24)
+                                .nutrients(0, 0.5f, 0, 0, 0));
+        SPARKLING_WATER = addItem(16, "food.sparkling_water")
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.sparklingWaterHunger,
+                        GTFOConfig.gtfoFoodConfig.sparklingWaterSaturation, true, false, PLASTIC_BOTTLE.getStackForm(),
+                        new RandomPotionEffect(MobEffects.SPEED, 600, 1, 0)));
+        LEMON = addItem(17, "food.lemon").addComponents(
+                new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.lemonHunger, GTFOConfig.gtfoFoodConfig.lemonSaturation)
                         .nutrients(0, 1f, 0, 0, 0))
                 .addOreDict("cropLemon").addOreDict("listAllfruit");
-        LIME = addItem(18, "food.lime").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.limeHunger, GTFOConfig.gtfoFoodConfig.limeSaturation)
+        LIME = addItem(18, "food.lime").addComponents(
+                new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.limeHunger, GTFOConfig.gtfoFoodConfig.limeSaturation)
                         .nutrients(0, 1f, 0, 0, 0))
                 .addOreDict("cropLime").addOreDict("listAllfruit");
-        ETIRPS = addItem(19, "food.etirps").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger, GTFOConfig.gtfoFoodConfig.etirpsSaturation, true, true, PLASTIC_BOTTLE.getStackForm(),
+        ETIRPS = addItem(19, "food.etirps").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger,
+                GTFOConfig.gtfoFoodConfig.etirpsSaturation, true, true, PLASTIC_BOTTLE.getStackForm(),
                 new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0))
-                .nutrients(0, 0.5f, 0, 0, 0));
+                        .nutrients(0, 0.5f, 0, 0, 0));
 
-        MetaItems.BOTTLE_PURPLE_DRINK.addComponents(new GTFOFoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10),
-                new RandomPotionEffect(MobEffects.WITHER, 800, 5, 10))
-                .nutrients(0, 0.5f, 0, 0, 0));
+        MetaItems.BOTTLE_PURPLE_DRINK
+                .addComponents(new GTFOFoodStats(3, 0.2F, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.HASTE, 800, 1, 10),
+                        new RandomPotionEffect(MobEffects.WITHER, 800, 5, 10))
+                                .nutrients(0, 0.5f, 0, 0, 0));
 
         BACON = addItem(22, "food.bacon").addComponents(new GTFOFoodStats(2, 0.8f, false, true)
                 .setEatingDuration(24)
                 .nutrients(0, 0, 0, 1f, 0));
 
-        FRENCH_FRIES = addItem(37, "food.french_fries").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.friesHunger, GTFOConfig.gtfoFoodConfig.friesSaturation, false, false, USED_PAPER_BAG.getStackForm(),
+        FRENCH_FRIES = addItem(37, "food.french_fries")
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.friesHunger,
+                        GTFOConfig.gtfoFoodConfig.friesSaturation, false, false, USED_PAPER_BAG.getStackForm(),
                         new RandomPotionEffect(MobEffects.STRENGTH, 1200, 1, 0))
-                        .setEatingDuration(20)
-                        .nutrients(0, 0, 1f, 0, 0))
+                                .setEatingDuration(20)
+                                .nutrients(0, 0, 1f, 0, 0))
                 .addOreDict("foodFries");
-        SYALS = addItem(38, "food.syals").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger / 2, GTFOConfig.gtfoFoodConfig.chipSaturation / 2, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Tin),
+        SYALS = addItem(38, "food.syals").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger / 2,
+                GTFOConfig.gtfoFoodConfig.chipSaturation / 2, false, false,
+                () -> OreDictUnifier.get(OrePrefix.foil, Tin),
                 new RandomPotionEffect(MobEffects.LEVITATION, 300, 1, 0))
-                .nutrients(0, 0, 0.5f, 0, 0));
-        BAG_OF_CHIPS = addItem(39, "food.bag_of_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Steel),
-                new RandomPotionEffect(MobEffects.HASTE, 600, 1, 0))
-                .nutrients(0, 0, 0.5f, 0, 0));
-        KETTLE_FRIED_CHIPS = addItem(40, "food.kettle_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger + 1, GTFOConfig.gtfoFoodConfig.chipSaturation, false, false, () -> OreDictUnifier.get(OrePrefix.foil, Aluminium),
-                new RandomPotionEffect(MobEffects.HASTE, 900, 1, 0))
-                .nutrients(0, 0, 1f, 0, 0));
-        REDUCED_FAT_CHIPS = addItem(41, "food.reduced_fat_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation + 1, false, false, () -> OreDictUnifier.get(OrePrefix.foil, StainlessSteel),
-                new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0),
-                new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50))
-                .setEatingDuration(20)
-                .nutrients(0, 0, 1.5f, 0, 0));
-        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick").addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK))
+                        .nutrients(0, 0, 0.5f, 0, 0));
+        BAG_OF_CHIPS = addItem(39, "food.bag_of_chips").addComponents(
+                new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false,
+                        false, () -> OreDictUnifier.get(OrePrefix.foil, Steel),
+                        new RandomPotionEffect(MobEffects.HASTE, 600, 1, 0))
+                                .nutrients(0, 0, 0.5f, 0, 0));
+        KETTLE_FRIED_CHIPS = addItem(40, "food.kettle_chips").addComponents(
+                new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger + 1, GTFOConfig.gtfoFoodConfig.chipSaturation,
+                        false, false, () -> OreDictUnifier.get(OrePrefix.foil, Aluminium),
+                        new RandomPotionEffect(MobEffects.HASTE, 900, 1, 0))
+                                .nutrients(0, 0, 1f, 0, 0));
+        REDUCED_FAT_CHIPS = addItem(41, "food.reduced_fat_chips").addComponents(
+                new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation + 1,
+                        false, false, () -> OreDictUnifier.get(OrePrefix.foil, StainlessSteel),
+                        new RandomPotionEffect(MobEffects.HASTE, 1200, 1, 0),
+                        new RandomPotionEffect(MobEffects.HASTE, 1200, 2, 50))
+                                .setEatingDuration(20)
+                                .nutrients(0, 0, 1.5f, 0, 0));
+        POTATO_ON_A_STICK = addItem(42, "food.potato_on_a_stick")
+                .addComponents(new GTFOFoodStats(3, 0.8f, false, false, new ItemStack(Items.STICK))
                         .setEatingDuration(12)
                         .nutrients(0, 0, 1f, 0, 0))
                 .setMaxStackSize(16);
 
-        BAGUETTE = addItem(51, "food.baguette").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger, GTFOConfig.gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.HASTE, 1200, 0, 50))
-                .setEatingDuration(40)
-                .nutrients(0, 0, 1f, 0, 0));
-        TUNGSTENSTEEL_APPLE = addItem(54, "food.tungstensteel_apple").addComponents(new GTFOFoodStats(3, 1f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
-                new RandomPotionEffect(MobEffects.RESISTANCE, 1200, 3, 0),
-                new RandomPotionEffect(MobEffects.NIGHT_VISION, 3600, 2, 40),
-                new RandomPotionEffect(MobEffects.INSTANT_DAMAGE, 1, 1, 0))
-                .setEatingDuration(80)
-                .nutrients(0, 1f, 0, 0, 0));
-        CAKE_BOTTOM = addItem(56, "food.cake_bottom").addComponents(new GTFOFoodStats(2, 0.5f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.POISON, 200, 1, 80))
-                .setEatingDuration(60)
-                .nutrients(0, 0, 0.5f, 0, 0));
+        BAGUETTE = addItem(51, "food.baguette")
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger,
+                        GTFOConfig.gtfoFoodConfig.baguetteSaturation, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.HASTE, 1200, 0, 50))
+                                .setEatingDuration(40)
+                                .nutrients(0, 0, 1f, 0, 0));
+        TUNGSTENSTEEL_APPLE = addItem(54, "food.tungstensteel_apple")
+                .addComponents(new GTFOFoodStats(3, 1f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.SPEED, 1200, 2, 0),
+                        new RandomPotionEffect(MobEffects.RESISTANCE, 1200, 3, 0),
+                        new RandomPotionEffect(MobEffects.NIGHT_VISION, 3600, 2, 40),
+                        new RandomPotionEffect(MobEffects.INSTANT_DAMAGE, 1, 1, 0))
+                                .setEatingDuration(80)
+                                .nutrients(0, 1f, 0, 0, 0));
+        CAKE_BOTTOM = addItem(56, "food.cake_bottom")
+                .addComponents(new GTFOFoodStats(2, 0.5f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.POISON, 200, 1, 80))
+                                .setEatingDuration(60)
+                                .nutrients(0, 0, 0.5f, 0, 0));
         BAKED_CAKE_BOTTOM = addItem(57, "food.cake_bottom_baked").addComponents(new GTFOFoodStats(3, 0.5f)
                 .nutrients(0, 0, 1f, 0, 0));
 
-        PIZZA_CHEESE = addItem(62, "food.pizza.cheese").addComponents(new GTFOFoodStats(10, 0.8f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0))
-                .setEatingDuration(50)
-                .nutrients(1f, 0, 1f, 0, 1f));
-        PIZZA_VEGGIE = addItem(63, "food.pizza.veggie").addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(StepAssistPotion.INSTANCE, 2000, 1, 0))
-                .setEatingDuration(50)
-                .nutrients(0, 0, 1f, 0, 2f));
-        PIZZA_MINCE_MEAT = addItem(64, "food.pizza.mince_meat").addComponents(new GTFOFoodStats(11, 0.8f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.STRENGTH, 2000, 2, 0))
-                .setEatingDuration(50)
-                .nutrients(0, 0, 1f, 1f, 1f));
+        PIZZA_CHEESE = addItem(62, "food.pizza.cheese")
+                .addComponents(new GTFOFoodStats(10, 0.8f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.HASTE, 2000, 2, 0))
+                                .setEatingDuration(50)
+                                .nutrients(1f, 0, 1f, 0, 1f));
+        PIZZA_VEGGIE = addItem(63, "food.pizza.veggie")
+                .addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(StepAssistPotion.INSTANCE, 2000, 1, 0))
+                                .setEatingDuration(50)
+                                .nutrients(0, 0, 1f, 0, 2f));
+        PIZZA_MINCE_MEAT = addItem(64, "food.pizza.mince_meat")
+                .addComponents(new GTFOFoodStats(11, 0.8f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.STRENGTH, 2000, 2, 0))
+                                .setEatingDuration(50)
+                                .nutrients(0, 0, 1f, 1f, 1f));
 
         SANDWICH_VEGGIE = addItem(65, "food.sandwich.veggie").addComponents(new GTFOFoodStats(6, 0.6f)
                 .setEatingDuration(40)
@@ -751,17 +791,19 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         SANDWICH_LARGE_CHEESE = addItem(70, "food.sandwich.cheese.large").addComponents(new GTFOFoodStats(11, 0.6f)
                 .setEatingDuration(60)
                 .nutrients(2f, 0, 1f, 0f, 0f));
-        SANDWICH_LARGE_BACON = addItem(71, "food.sandwich.bacon.large").addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(StepAssistPotion.INSTANCE, 1200, 0, 0))
-                .setEatingDuration(60)
-                .nutrients(0f, 0, 1f, 2f, 0f));
+        SANDWICH_LARGE_BACON = addItem(71, "food.sandwich.bacon.large")
+                .addComponents(new GTFOFoodStats(10, 0.7f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(StepAssistPotion.INSTANCE, 1200, 0, 0))
+                                .setEatingDuration(60)
+                                .nutrients(0f, 0, 1f, 2f, 0f));
         SANDWICH_LARGE_STEAK = addItem(72, "food.sandwich.steak.large").addComponents(new GTFOFoodStats(13, 0.7f)
                 .setEatingDuration(60)
                 .nutrients(0f, 0, 1f, 2f, 0f));
 
-        BUN = addItem(87, "food.bun").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger / 3, GTFOConfig.gtfoFoodConfig.baguetteSaturation)
-                .setEatingDuration(25)
-                .nutrients(0, 0, 1f, 0, 0));
+        BUN = addItem(87, "food.bun").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.baguetteHunger / 3,
+                GTFOConfig.gtfoFoodConfig.baguetteSaturation)
+                        .setEatingDuration(25)
+                        .nutrients(0, 0, 1f, 0, 0));
 
         BURGER_VEGGIE = addItem(88, "food.burger.veggie").addComponents(new GTFOFoodStats(4, 0.6f)
                 .nutrients(0, 0, 1f, 0f, 1f));
@@ -771,74 +813,83 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0f, 0, 1f, 1f, 0f));
 
         CHEDDAR_SLICE = addItem(97, "food.cheddar_slice").addComponents(new GTFOFoodStats(2, 0.2f)
-                        .setEatingDuration(20)
-                        .nutrients(2f, 0, 0f, 0f, 0f))
+                .setEatingDuration(20)
+                .nutrients(2f, 0, 0f, 0f, 0f))
                 .addOreDict("foodCheese");
         MOZZARELLA_BALL = addItem(98, "food.mozzarella_ball").addComponents(new GTFOFoodStats(3, 0.6f)
-                        .nutrients(2f, 0, 0f, 0f, 0f))
+                .nutrients(2f, 0, 0f, 0f, 0f))
                 .addOreDict("foodCheese");
         GORGONZOLA_TRIANGULAR_SLICE = addItem(114, "food.gorgonzola_slice").addComponents(new GTFOFoodStats(3, 0.5f)
-                        .nutrients(2f, 0, 0f, 0f, 0f))
+                .nutrients(2f, 0, 0f, 0f, 0f))
                 .addOreDict("foodCheese");
 
-        ROTTEN_FISH = addItem(117, "food.fish_rotten").addComponents(new GTFOFoodStats(1, 0f, false, true, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.POISON, 500, 1, 0))
-                .setEatingDuration(100)
-                .nutrients(0f, 0, 0f, 0.5f, 0f));
-        ROTTEN_MEAT = addItem(118, "food.meat_rotten").addComponents(new GTFOFoodStats(1, 0f, false, true, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.POISON, 500, 1, 0))
-                .setEatingDuration(100)
-                .nutrients(0f, 0, 0f, 0.5f, 0f));
+        ROTTEN_FISH = addItem(117, "food.fish_rotten")
+                .addComponents(new GTFOFoodStats(1, 0f, false, true, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.POISON, 500, 1, 0))
+                                .setEatingDuration(100)
+                                .nutrients(0f, 0, 0f, 0.5f, 0f));
+        ROTTEN_MEAT = addItem(118, "food.meat_rotten")
+                .addComponents(new GTFOFoodStats(1, 0f, false, true, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.POISON, 500, 1, 0))
+                                .setEatingDuration(100)
+                                .nutrients(0f, 0, 0f, 0.5f, 0f));
         CHUM = addItem(119, "food.chum").addComponents(new GTFOFoodStats(3, 0f, false, true, ItemStack.EMPTY,
                 new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
-                .nutrients(0f, 0, 0f, 0.5f, 0f));
-        CHUM_ON_A_STICK = addItem(120, "food.chum_on_a_stick").addComponents(new GTFOFoodStats(3, 0f, false, true, new ItemStack(Items.STICK),
+                        .nutrients(0f, 0, 0f, 0.5f, 0f));
+        CHUM_ON_A_STICK = addItem(120, "food.chum_on_a_stick")
+                .addComponents(new GTFOFoodStats(3, 0f, false, true, new ItemStack(Items.STICK),
                         new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
-                        .setEatingDuration(16)
-                        .nutrients(0f, 0, 0f, 0.75f, 0f))
+                                .setEatingDuration(16)
+                                .nutrients(0f, 0, 0f, 0.75f, 0f))
                 .setMaxStackSize(16);
-        BURGER_CHUM = addItem(121, "food.burger.chum").addComponents(new GTFOFoodStats(4, 1f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
-                .nutrients(0f, 0, 1f, 0.5f, 0f));
+        BURGER_CHUM = addItem(121, "food.burger.chum")
+                .addComponents(new GTFOFoodStats(4, 1f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.NAUSEA, 500, 10, 99))
+                                .nutrients(0f, 0, 1f, 0.5f, 0f));
 
         BANANA = addItem(122, "food.banana").addComponents(new GTFOFoodStats(2, 1f)
-                        .setEatingDuration(60)
-                        .nutrients(0f, 1f, 0f, 0f, 0f))
+                .setEatingDuration(60)
+                .nutrients(0f, 1f, 0f, 0f, 0f))
                 .addOreDict("cropBanana").addOreDict("listAllfruit");
         ORANGE = addItem(123, "food.orange").addComponents(new GTFOFoodStats(2, 1f)
-                        .setEatingDuration(50)
-                        .nutrients(0f, 1f, 0f, 0f, 0f))
+                .setEatingDuration(50)
+                .nutrients(0f, 1f, 0f, 0f, 0f))
                 .addOreDict("cropOrange").addOreDict("listAllfruit");
         GRAPES = addItem(124, "food.grapes").addComponents(new GTFOFoodStats(1, 1f)
-                        .nutrients(0f, 1f, 0f, 0f, 0f))
+                .nutrients(0f, 1f, 0f, 0f, 0f))
                 .addOreDict("cropGrapes").addOreDict("listAllfruit");
         MANGO = addItem(125, "food.mango").addComponents(new GTFOFoodStats(2, 1f)
-                        .nutrients(0f, 1f, 0f, 0f, 0f))
+                .nutrients(0f, 1f, 0f, 0f, 0f))
                 .addOreDict("cropMango").addOreDict("listAllfruit");
         APRICOT = addItem(126, "food.apricot").addComponents(new GTFOFoodStats(2, 1f)
-                        .nutrients(0f, 1f, 0f, 0f, 0f))
+                .nutrients(0f, 1f, 0f, 0f, 0f))
                 .addOreDict("cropApricot").addOreDict("listAllfruit");
 
         PEELED_BANANA = addItem(128, "food.peeled_banana").addComponents(new GTFOFoodStats(2, 1f)
                 .setEatingDuration(12).nutrients(0f, 1f, 0f, 0f, 0f));
 
-        VODKA = addItem(129, "food.vodka").addComponents(new GTFOFoodStats(2, 0f, true, false, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.NAUSEA, 500, 1, 60))
-                .nutrients(0f, 0f, 0.5f, 0f, 0f));
-        LENINADE = addItem(130, "food.leninade").addComponents(new GTFOFoodStats(3, 1f, true, false, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.NAUSEA, 2000, 2, 70),
-                new RandomPotionEffect(MobEffects.SPEED, 2000, 2, 0))
-                .nutrients(0f, 1f, 0.5f, 0f, 0f));
+        VODKA = addItem(129, "food.vodka")
+                .addComponents(new GTFOFoodStats(2, 0f, true, false, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 500, 1, 60))
+                                .nutrients(0f, 0f, 0.5f, 0f, 0f));
+        LENINADE = addItem(130, "food.leninade")
+                .addComponents(new GTFOFoodStats(3, 1f, true, false, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 2000, 2, 70),
+                        new RandomPotionEffect(MobEffects.SPEED, 2000, 2, 0))
+                                .nutrients(0f, 1f, 0.5f, 0f, 0f));
 
-        HOT_MUSHROOM_STEW = addItem(131, "food.mushroom_stew.hot").setMaxStackSize(1).addComponents(new GTFOFoodStats(8, 1f, false, false, new ItemStack(Items.BOWL))
-                .setEatingDuration(60)
-                .nutrients(0.5f, 0f, 0.5f, 0.5f, 1f));
-        HOT_BEETROOT_SOUP = addItem(132, "food.beetroot_soup.hot").setMaxStackSize(1).addComponents(new GTFOFoodStats(7, 1f, false, false, new ItemStack(Items.BOWL))
-                .setEatingDuration(60)
-                .nutrients(0f, 0f, 0.5f, 0f, 1.5f));
-        HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").setMaxStackSize(1).addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
-                .setEatingDuration(60)
-                .nutrients(0f, 0f, 1f, 1.5f, 1f));
+        HOT_MUSHROOM_STEW = addItem(131, "food.mushroom_stew.hot").setMaxStackSize(1)
+                .addComponents(new GTFOFoodStats(8, 1f, false, false, new ItemStack(Items.BOWL))
+                        .setEatingDuration(60)
+                        .nutrients(0.5f, 0f, 0.5f, 0.5f, 1f));
+        HOT_BEETROOT_SOUP = addItem(132, "food.beetroot_soup.hot").setMaxStackSize(1)
+                .addComponents(new GTFOFoodStats(7, 1f, false, false, new ItemStack(Items.BOWL))
+                        .setEatingDuration(60)
+                        .nutrients(0f, 0f, 0.5f, 0f, 1.5f));
+        HOT_RABBIT_STEW = addItem(133, "food.rabbit_stew.hot").setMaxStackSize(1)
+                .addComponents(new GTFOFoodStats(9, 0.9f, false, false, new ItemStack(Items.BOWL))
+                        .setEatingDuration(60)
+                        .nutrients(0f, 0f, 1f, 1.5f, 1f));
 
         KEBAB_KUBIDEH_COOKED = addItem(137, "food.kebab.kubide").addComponents(GTFOUtils.getKebabFood(6, 0.8f)
                 .nutrients(0f, 0f, 0.5f, 1f, 0.75f));
@@ -850,17 +901,19 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0f, 0f, 0f, 0f, 1.25f));
         KEBAB_TOMATO_COOKED = addItem(144, "food.kebab.tomato").addComponents(GTFOUtils.getKebabFood(5, 0.3f)
                 .nutrients(0f, 1.25f, 0f, 0f, 0f));
-        KEBAB_CHUM_COOKED = addItem(146, "food.kebab.chum").addComponents(new GTFOFoodStats(6, 0.3f, false, true, SKEWER.getStackForm(1),
-                new RandomPotionEffect(MobEffects.NAUSEA, 100, 10, 100 - 10))
-                .setEatingDuration(12)
-                .nutrients(0f, 0f, 0.5f, 0.5f, 0f));
-        KEBAB_CHUM_BUCKET = addItem(147, "food.kebab.chum.bucket").addComponents(new GTFOFoodStats(16, 2f, false, true, new ItemStack(Items.BUCKET),
-                new RandomPotionEffect(MobEffects.NAUSEA, 1000, 10, 100 - 50),
-                new RandomPotionEffect(MobEffects.UNLUCK, 1000, 11, 100 - 50),
-                new RandomPotionEffect(MobEffects.SPEED, 1000, 3, 100 - 50),
-                new RandomPotionEffect(MobEffects.HEALTH_BOOST, 1000, 3, 100 - 50))
-                .setEatingDuration(60)
-                .nutrients(0f, 1f, 1.5f, 1.5f, 1f));
+        KEBAB_CHUM_COOKED = addItem(146, "food.kebab.chum")
+                .addComponents(new GTFOFoodStats(6, 0.3f, false, true, SKEWER.getStackForm(1),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 100, 10, 100 - 10))
+                                .setEatingDuration(12)
+                                .nutrients(0f, 0f, 0.5f, 0.5f, 0f));
+        KEBAB_CHUM_BUCKET = addItem(147, "food.kebab.chum.bucket")
+                .addComponents(new GTFOFoodStats(16, 2f, false, true, new ItemStack(Items.BUCKET),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 1000, 10, 100 - 50),
+                        new RandomPotionEffect(MobEffects.UNLUCK, 1000, 11, 100 - 50),
+                        new RandomPotionEffect(MobEffects.SPEED, 1000, 3, 100 - 50),
+                        new RandomPotionEffect(MobEffects.HEALTH_BOOST, 1000, 3, 100 - 50))
+                                .setEatingDuration(60)
+                                .nutrients(0f, 1f, 1.5f, 1.5f, 1f));
         KEBAB_CARROT_COOKED = addItem(154, "food.kebab.carrot").addComponents(GTFOUtils.getKebabFood(4, 0.5f)
                 .nutrients(0f, 0f, 0f, 0f, 1.25f));
         KEBAB_FAT_COOKED = addItem(151, "food.kebab.fat").addComponents(GTFOUtils.getKebabFood(4, 0.3f)
@@ -879,12 +932,14 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         EGGPLANT_SLICE = addItem(317, "component.eggplant_slice").addComponents(new GTFOFoodStats(1, 0.0f)
                 .nutrients(0f, 0f, 0f, 0f, 0.75f));
 
-        APPLE_JUICE = addItem(153, "food.juice.apple").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45))
-                .nutrients(0f, 1f, 0f, 0f, 0f));
-        ORANGE_JUICE = addItem(155, "food.juice.orange").addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45))
-                .nutrients(0f, 1f, 0f, 0f, 0f));
+        APPLE_JUICE = addItem(153, "food.juice.apple")
+                .addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45))
+                                .nutrients(0f, 1f, 0f, 0f, 0f));
+        ORANGE_JUICE = addItem(155, "food.juice.orange")
+                .addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45))
+                                .nutrients(0f, 1f, 0f, 0f, 0f));
         KEBAB_MEAT_COOKED = addItem(157, "food.kebab.meat").addComponents(GTFOUtils.getKebabFood(3, 0.6f)
                 .nutrients(0f, 0f, 0.25f, 1f, 0f));
 
@@ -896,22 +951,25 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(1f, 1f, 0f, 0f, 0f));
         ICE_CREAM_BACON = addItem(168, "food.ice_cream.bacon").addComponents(new GTFOFoodStats(6, 0.33f, false, true)
                 .nutrients(1f, 0f, 0f, 1f, 0f));
-        ICE_CREAM_VANILLA = addItem(169, "food.ice_cream.vanilla").addComponents(new GTFOFoodStats(9, 0.25f, false, true, ItemStack.EMPTY,
-                new RandomPotionEffect(SnowGolemSpawnerPotion.INSTANCE, 300, 0, 100 - 50))
-                .nutrients(1f, 0f, 0f, 0f, 0.25f));
+        ICE_CREAM_VANILLA = addItem(169, "food.ice_cream.vanilla")
+                .addComponents(new GTFOFoodStats(9, 0.25f, false, true, ItemStack.EMPTY,
+                        new RandomPotionEffect(SnowGolemSpawnerPotion.INSTANCE, 300, 0, 100 - 50))
+                                .nutrients(1f, 0f, 0f, 0f, 0.25f));
         ICE_CREAM_BEAR = addItem(170, "food.ice_cream.bear").addComponents(new GTFOFoodStats(7, 0.33f, false, true)
                 .nutrients(1f, 0f, 0f, 1f, 0f));
         ICE_CREAM_MELON = addItem(171, "food.ice_cream.melon").addComponents(new GTFOFoodStats(5, 0.33f, false, true)
                 .nutrients(1f, 1f, 0f, 0f, 0f));
-        ICE_CREAM_CHOCOLATE = addItem(172, "food.ice_cream.chocolate").addComponents(new GTFOFoodStats(9, 0.25f, false, true)
-                .nutrients(1f, 0f, 0f, 0.25f, 0.25f));
+        ICE_CREAM_CHOCOLATE = addItem(172, "food.ice_cream.chocolate")
+                .addComponents(new GTFOFoodStats(9, 0.25f, false, true)
+                        .nutrients(1f, 0f, 0f, 0.25f, 0.25f));
         ICE_CREAM_LEMON = addItem(173, "food.ice_cream.lemon").addComponents(new GTFOFoodStats(6, 0.33f, false, true)
                 .nutrients(1f, 1f, 0f, 0f, 0f));
         ICE_CREAM_CHIP = addItem(174, "food.ice_cream.chip").addComponents(new GTFOFoodStats(8, 0.33f, false, true)
                 .nutrients(1f, 0f, 0.5f, 0f, 0f));
-        ICE_CREAM_RAINBOW = addItem(225, "food.ice_cream.rainbow").addComponents(new GTFOFoodStats(6, 0.33f, false, true, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.NIGHT_VISION, 2000, 0, 100 - 50))
-                .nutrients(1.25f, 0.25f, 0f, 0f, 0.25f));
+        ICE_CREAM_RAINBOW = addItem(225, "food.ice_cream.rainbow")
+                .addComponents(new GTFOFoodStats(6, 0.33f, false, true, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.NIGHT_VISION, 2000, 0, 100 - 50))
+                                .nutrients(1.25f, 0.25f, 0f, 0f, 0.25f));
 
         MILK_CHOCOLATE = addItem(190, "food.chocolate").addComponents(new GTFOFoodStats(4, 1.25f)
                 .nutrients(1f, 0f, 0f, 0f, 0.5f));
@@ -926,16 +984,18 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         MARSHMALLOW = addItem(195, "food.marshmallow").addComponents(new GTFOFoodStats(1, 1f)
                 .nutrients(0f, 0f, 0.5f, 0.5f, 0f));
 
-        COFFEE_CUP = addItem(203, "food.coffee.normal").addComponents(new GTFOFoodStats(8, 0.4f, true, false, EMPTY_CUP.getStackForm(),
-                new RandomPotionEffect(MobEffects.REGENERATION, 60, 1, 0),
-                new RandomPotionEffect(MobEffects.SPEED, 1800, 2, 0))
-                .nutrients(0f, 0.5f, 0.5f, 0.5f, 0f));
-        ENERGIZING_COFFEE_CUP = addItem(204, "food.coffee.energized").addComponents(new GTFOFoodStats(8, 0.6f, true, false, EMPTY_CUP.getStackForm(),
-                new RandomPotionEffect(MobEffects.REGENERATION, 200, 3, 0),
-                new RandomPotionEffect(MobEffects.STRENGTH, 500, 1, 0),
-                new RandomPotionEffect(MobEffects.RESISTANCE, 500, 1, 0),
-                new RandomPotionEffect(MobEffects.SPEED, 2400, 3, 0))
-                .nutrients(0f, 0.5f, 1f, 0.5f, 0f));
+        COFFEE_CUP = addItem(203, "food.coffee.normal")
+                .addComponents(new GTFOFoodStats(8, 0.4f, true, false, EMPTY_CUP.getStackForm(),
+                        new RandomPotionEffect(MobEffects.REGENERATION, 60, 1, 0),
+                        new RandomPotionEffect(MobEffects.SPEED, 1800, 2, 0))
+                                .nutrients(0f, 0.5f, 0.5f, 0.5f, 0f));
+        ENERGIZING_COFFEE_CUP = addItem(204, "food.coffee.energized")
+                .addComponents(new GTFOFoodStats(8, 0.6f, true, false, EMPTY_CUP.getStackForm(),
+                        new RandomPotionEffect(MobEffects.REGENERATION, 200, 3, 0),
+                        new RandomPotionEffect(MobEffects.STRENGTH, 500, 1, 0),
+                        new RandomPotionEffect(MobEffects.RESISTANCE, 500, 1, 0),
+                        new RandomPotionEffect(MobEffects.SPEED, 2400, 3, 0))
+                                .nutrients(0f, 0.5f, 1f, 0.5f, 0f));
 
         MUSHY_PEAS = addItem(209, "food.mushy_peas").addComponents(new GTFOFoodStats(3, 1)
                 .nutrients(0f, 0f, 0f, 0f, 1f));
@@ -949,155 +1009,222 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 .nutrients(0f, 0f, 1f, 1f, 0.25f));
         FULL_BREAKFAST = addItem(214, "food.full_breakfast").addComponents(new GTFOFoodStats(10, 1.2f)
                 .nutrients(0f, 1f, 1f, 1.5f, 1f));
-        SHEPHERDS_PIE = addItem(215, "food.shepherds_pie").addComponents(new GTFOFoodStats(9, 1f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.ABSORPTION, 1000, 0, 100 - 50))
-                .nutrients(0f, 0f, 1f, 1f, 1f));
+        SHEPHERDS_PIE = addItem(215, "food.shepherds_pie")
+                .addComponents(new GTFOFoodStats(9, 1f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.ABSORPTION, 1000, 0, 100 - 50))
+                                .nutrients(0f, 0f, 1f, 1f, 1f));
         SAUSAGE_ROLL = addItem(216, "food.sausage_roll").addComponents(new GTFOFoodStats(7, 0.7f)
                 .nutrients(0f, 0f, 0.75f, 1f, 0f));
         BAKED_BEANS = addItem(217, "food.baked_beans").addComponents(new GTFOFoodStats(4, 1f)
                 .nutrients(0f, 0.5f, 0f, 0.5f, 0f));
-        BEANS_ON_TOAST = addItem(218, "food.beans_on_toast").addComponents(new GTFOFoodStats(7, 0.8f, false, false, ItemStack.EMPTY,
-                new RandomPotionEffect(MobEffects.SATURATION, 10, 0, 100 - 20))
-                .nutrients(0f, 0.25f, 0.75f, 0.5f, 0f));
+        BEANS_ON_TOAST = addItem(218, "food.beans_on_toast")
+                .addComponents(new GTFOFoodStats(7, 0.8f, false, false, ItemStack.EMPTY,
+                        new RandomPotionEffect(MobEffects.SATURATION, 10, 0, 100 - 20))
+                                .nutrients(0f, 0.25f, 0.75f, 0.5f, 0f));
         FRIED_FISH = addItem(219, "food.fried_fish").addComponents(new GTFOFoodStats(4, 0.3f)
                 .nutrients(0f, 0f, 0.5f, 1f, 0f));
-        BEER = addItem(220, "food.beer").addComponents(new GTFOFoodStats(2, 0.5f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.NAUSEA, 500, 0, 100 - 40))
-                .nutrients(0f, 0f, 0.5f, 0f, 0f));
+        BEER = addItem(220, "food.beer")
+                .addComponents(new GTFOFoodStats(2, 0.5f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 500, 0, 100 - 40))
+                                .nutrients(0f, 0f, 0.5f, 0f, 0f));
         SAUSAGE = addItem(222, "food.sausage").addComponents(new GTFOFoodStats(4, 0.7f)
                 .nutrients(0f, 0f, 0.25f, 1f, 0f));
 
-        NILK = addItem(226, "food.nilk").addComponents(new GTFOFoodStats(6, 4, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.NAUSEA, 1000, 0, 100 - 80),
-                new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 100 - 60))
-                .nutrients(3f, 0f, 0f, 1f, 0f));
+        NILK = addItem(226, "food.nilk")
+                .addComponents(new GTFOFoodStats(6, 4, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 1000, 0, 100 - 80),
+                        new RandomPotionEffect(MobEffects.REGENERATION, 200, 2, 100 - 60))
+                                .nutrients(3f, 0f, 0f, 1f, 0f));
 
-        GEL_CAPLET = addItem(229, "food.gel_caplet").blacklistKitchen().addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY));
-        PARACETAMOL_CAPLET = addItem(230, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
-        PLUTONIUM_241_CAPLET = addItem(231, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
+        GEL_CAPLET = addItem(229, "food.gel_caplet").blacklistKitchen()
+                .addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY));
+        PARACETAMOL_CAPLET = addItem(230, "food.paracetamol_caplet").addComponents(new GTFOFoodStats(0, 1f, false, true,
+                ItemStack.EMPTY, new RandomPotionEffect(MobEffects.REGENERATION, 400, 0, 0)).setEatingDuration(1));
+        PLUTONIUM_241_CAPLET = addItem(231, "food.plutonium_241_caplet").addComponents(new GTFOFoodStats(0, 1f, false,
+                true, ItemStack.EMPTY, new RandomPotionEffect(MobEffects.POISON, 7000, 0, 0)).setEatingDuration(1));
 
         BRUSCHETTA = addItem(272, "food.bruschetta").addComponents(new GTFOFoodStats(6, 0.5f)
                 .setPotionEffects(new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 400, 0, 100 - 75))
                 .nutrients(0f, 1f, 1f, 0.5f, 1f)); // I mean, you can technically hold this without a plate
-        CAPONATA = addItem(273, "food.caponata").addComponents(new GTFOFoodStats(6, 0.9f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(PotionLengthenerPotion.INSTANCE, 400, 0, 100 - 75))
-                .nutrients(0f, 0f, 0f, 0f, 2f));
-        CARBONARA = addItem(274, "food.carbonara").addComponents(new GTFOFoodStats(9, 0.8f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.HEALTH_BOOST, 2000, 0, 100 - 75))
-                .nutrients(0.5f, 0f, 1f, 1f, 0f));
-        CARCIOFI_ALLA_ROMANA = addItem(275, "food.carciofi_alla_romana").addComponents(new GTFOFoodStats(8, 1.3f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 2000, 1, 100 - 95))
-                .nutrients(0f, 0f, 0f, 0.5f, 1.5f));
-        FETTUCCINE_ALFREDO = addItem(276, "food.fettuccine_alfredo").addComponents(new GTFOFoodStats(8, 0.4f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.RESISTANCE, 2000, 1, 100 - 80))
-                .setEatingDuration(20)
-                .nutrients(0.75f, 0f, 1f, 0.5f, 0f));
-        PARMIGIANA = addItem(277, "food.parmigiana").addComponents(new GTFOFoodStats(8, 1.1f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.REGENERATION, 500, 0, 100 - 75))
-                .nutrients(1f, 0.5f, 0f, 0.25f, 1f));
-        PASTA_E_FAGIOLI = addItem(278, "food.pasta_e_fagioli").addComponents(new GTFOFoodStats(4, 2.5f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.HASTE, 6000, 2, 100 - 75))
-                .nutrients(0f, 0f, 1f, 1.5f, 1.5f));
-        PASTA_ALLA_NORMA = addItem(279, "food.pasta_alla_norma").addComponents(new GTFOFoodStats(12, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setEatingDuration(128)
-                .nutrients(0f, 1f, 1f, 0f, 1.25f));
-        PASTA_AL_POMODORO = addItem(280, "food.pasta_al_pomodoro").addComponents(new GTFOFoodStats(5, 0.5f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 320, 1, 100 - 50)).setEatingDuration(16)
-                .nutrients(0f, 1.25f, 1f, 0f, 0.75f));
-        POLENTA = addItem(281, "food.polenta").addComponents(new GTFOFoodStats(6, 0.4f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.SATURATION, 20, 0, 100 - 50))
-                .nutrients(0f, 0.75f, 0.75f, 0.75f, 0f));
-        RAFANATA = addItem(282, "food.rafanata").addComponents(new GTFOFoodStats(7, 1f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.JUMP_BOOST, 1000, 0, 100 - 80))
-                .nutrients(0f, 0f, 1f, 0.5f, 0.75f));
-        RISOTTO = addItem(283, "food.risotto").addComponents(new GTFOFoodStats(10, 0.8f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.SPEED, 10000, 1, 100 - 100))
-                .nutrients(1f, 0.25f, 1f, 0.75f, 0.75f));
-        SPAGHETTI_ALLASSASSINA = addItem(284, "food.spaghetti_all'assassina").addComponents(new GTFOFoodStats(6, 0.8f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 60, 10, 100 - 60))
-                .nutrients(0f, 0.75f, 1f, 0f, 0f));
-        TAGLIATELLE_AL_RAGU = addItem(285, "food.tagliatelle_al_ragu").addComponents(new GTFOFoodStats(14, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .nutrients(0.75f, 0.5f, 0f, 1.25f, 1f));
-        TORTELLINI_IN_BRODO = addItem(286, "food.tortellini_in_brodo").addComponents(new GTFOFoodStats(10, 0.5f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
-                .nutrients(0f, 0f, 0f, 1.75f, 1.75f));
-        VITELLO_TONNATO = addItem(287, "food.vitello_tonnato").addComponents(new GTFOFoodStats(10, 1f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(PotionLengthenerPotion.INSTANCE, 400, 1, 100 - 90), new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 400, 0, 100 - 90))
-                .nutrients(0f, 0f, 0f, 2.5f, 1.5f));
-        LASAGNA_CHUM = addItem(288, "food.lasagna.chum").addComponents(new GTFOFoodStats(9, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+        CAPONATA = addItem(273, "food.caponata")
+                .addComponents(new GTFOFoodStats(6, 0.9f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(PotionLengthenerPotion.INSTANCE, 400, 0, 100 - 75))
+                        .nutrients(0f, 0f, 0f, 0f, 2f));
+        CARBONARA = addItem(274, "food.carbonara")
+                .addComponents(new GTFOFoodStats(9, 0.8f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.HEALTH_BOOST, 2000, 0, 100 - 75))
+                        .nutrients(0.5f, 0f, 1f, 1f, 0f));
+        CARCIOFI_ALLA_ROMANA = addItem(275, "food.carciofi_alla_romana")
+                .addComponents(new GTFOFoodStats(8, 1.3f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 2000, 1, 100 - 95))
+                        .nutrients(0f, 0f, 0f, 0.5f, 1.5f));
+        FETTUCCINE_ALFREDO = addItem(276, "food.fettuccine_alfredo")
+                .addComponents(new GTFOFoodStats(8, 0.4f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.RESISTANCE, 2000, 1, 100 - 80))
+                        .setEatingDuration(20)
+                        .nutrients(0.75f, 0f, 1f, 0.5f, 0f));
+        PARMIGIANA = addItem(277, "food.parmigiana")
+                .addComponents(new GTFOFoodStats(8, 1.1f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.REGENERATION, 500, 0, 100 - 75))
+                        .nutrients(1f, 0.5f, 0f, 0.25f, 1f));
+        PASTA_E_FAGIOLI = addItem(278, "food.pasta_e_fagioli")
+                .addComponents(new GTFOFoodStats(4, 2.5f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.HASTE, 6000, 2, 100 - 75))
+                        .nutrients(0f, 0f, 1f, 1.5f, 1.5f));
+        PASTA_ALLA_NORMA = addItem(279, "food.pasta_alla_norma")
+                .addComponents(new GTFOFoodStats(12, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setEatingDuration(128)
+                        .nutrients(0f, 1f, 1f, 0f, 1.25f));
+        PASTA_AL_POMODORO = addItem(280, "food.pasta_al_pomodoro")
+                .addComponents(new GTFOFoodStats(5, 0.5f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 320, 1, 100 - 50))
+                        .setEatingDuration(16)
+                        .nutrients(0f, 1.25f, 1f, 0f, 0.75f));
+        POLENTA = addItem(281, "food.polenta")
+                .addComponents(new GTFOFoodStats(6, 0.4f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.SATURATION, 20, 0, 100 - 50))
+                        .nutrients(0f, 0.75f, 0.75f, 0.75f, 0f));
+        RAFANATA = addItem(282, "food.rafanata")
+                .addComponents(new GTFOFoodStats(7, 1f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.JUMP_BOOST, 1000, 0, 100 - 80))
+                        .nutrients(0f, 0f, 1f, 0.5f, 0.75f));
+        RISOTTO = addItem(283, "food.risotto")
+                .addComponents(new GTFOFoodStats(10, 0.8f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.SPEED, 10000, 1, 100 - 100))
+                        .nutrients(1f, 0.25f, 1f, 0.75f, 0.75f));
+        SPAGHETTI_ALLASSASSINA = addItem(284, "food.spaghetti_all'assassina")
+                .addComponents(new GTFOFoodStats(6, 0.8f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.STRENGTH, 60, 10, 100 - 60))
+                        .nutrients(0f, 0.75f, 1f, 0f, 0f));
+        TAGLIATELLE_AL_RAGU = addItem(285, "food.tagliatelle_al_ragu")
+                .addComponents(new GTFOFoodStats(14, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .nutrients(0.75f, 0.5f, 0f, 1.25f, 1f));
+        TORTELLINI_IN_BRODO = addItem(286, "food.tortellini_in_brodo")
+                .addComponents(new GTFOFoodStats(10, 0.5f).setReturnStack(DIRTY_CERAMIC_BOWL.getStackForm())
+                        .nutrients(0f, 0f, 0f, 1.75f, 1.75f));
+        VITELLO_TONNATO = addItem(287, "food.vitello_tonnato")
+                .addComponents(new GTFOFoodStats(10, 1f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(PotionLengthenerPotion.INSTANCE, 400, 1, 100 - 90),
+                                new RandomPotionEffect(PotionAmplifierPotion.INSTANCE, 400, 0, 100 - 90))
+                        .nutrients(0f, 0f, 0f, 2.5f, 1.5f));
+        LASAGNA_CHUM = addItem(288, "food.lasagna.chum").addComponents(new GTFOFoodStats(9, 0.7f)
+                .setReturnStack(DIRTY_PLATE.getStackForm())
                 .setPotionEffects(new RandomPotionEffect(MobEffects.LUCK, 6000, 0, 100 - 80)).setEatingDuration(64)
                 .nutrients(0.5f, 0.5f, 1f, 0.5f, 0f));
-        LASAGNA_NAPOLETANA = addItem(289, "food.lasagna.napoletana").addComponents(new GTFOFoodStats(11, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.NIGHT_VISION, 6000, 0, 100 - 90)).setEatingDuration(64)
-                .nutrients(0.5f, 0.75f, 1f, 1f, 0.25f));
-        LASAGNA_PESTO = addItem(290, "food.lasagna.pesto").addComponents(new GTFOFoodStats(15, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 6000, 0, 100 - 100)).setEatingDuration(64)
-                .nutrients(1f, 0f, 1f, 1f, 0.25f));
-        PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus").addComponents(new GTFOFoodStats(5, 0.1f).setReturnStack(DIRTY_PLATE.getStackForm())
-                .setPotionEffects(new RandomPotionEffect(VentingPotion.INSTANCE, 400, 0, 100 - 50))
-                .nutrients(0f, 0.75f, 1f, 0f, 0.5f));
+        LASAGNA_NAPOLETANA = addItem(289, "food.lasagna.napoletana")
+                .addComponents(new GTFOFoodStats(11, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.NIGHT_VISION, 6000, 0, 100 - 90))
+                        .setEatingDuration(64)
+                        .nutrients(0.5f, 0.75f, 1f, 1f, 0.25f));
+        LASAGNA_PESTO = addItem(290, "food.lasagna.pesto")
+                .addComponents(new GTFOFoodStats(15, 0.7f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(MobEffects.FIRE_RESISTANCE, 6000, 0, 100 - 100))
+                        .setEatingDuration(64)
+                        .nutrients(1f, 0f, 1f, 1f, 0.25f));
+        PASTA_ALLAMOGUS = addItem(295, "food.pasta_all'amogus")
+                .addComponents(new GTFOFoodStats(5, 0.1f).setReturnStack(DIRTY_PLATE.getStackForm())
+                        .setPotionEffects(new RandomPotionEffect(VentingPotion.INSTANCE, 400, 0, 100 - 50))
+                        .nutrients(0f, 0.75f, 1f, 0f, 0.5f));
 
-        PORCHETTA_SLICE = addItem(311, "food.porchetta_slice").addComponents(new GTFOFoodStats(2, 0.7f).setEatingDuration(5)
-                .nutrients(0f, 0f, 0f, 1f, 0.25f));
+        PORCHETTA_SLICE = addItem(311, "food.porchetta_slice")
+                .addComponents(new GTFOFoodStats(2, 0.7f).setEatingDuration(5)
+                        .nutrients(0f, 0f, 0f, 1f, 0.25f));
 
-        WHITE_WINE = addItem(319, "food.white_wine").addComponents(new GTFOFoodStats(6, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 40),
-                new RandomPotionEffect(MobEffects.ABSORPTION, 1200, 1, 100 - 60))
-                .setEatingDuration(96));
-        RED_WINE = addItem(324, "food.red_wine").addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
-                new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 40),
-                new RandomPotionEffect(MobEffects.RESISTANCE, 1200, 0, 100 - 60))
-                .setEatingDuration(96));
+        WHITE_WINE = addItem(319, "food.white_wine")
+                .addComponents(new GTFOFoodStats(6, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 40),
+                        new RandomPotionEffect(MobEffects.ABSORPTION, 1200, 1, 100 - 60))
+                                .setEatingDuration(96));
+        RED_WINE = addItem(324, "food.red_wine")
+                .addComponents(new GTFOFoodStats(4, 0.7f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.NAUSEA, 600, 0, 100 - 40),
+                        new RandomPotionEffect(MobEffects.RESISTANCE, 1200, 0, 100 - 60))
+                                .setEatingDuration(96));
 
         EMERGENCY_RATIONS = addItem(325, "food.emergency_rations").addComponents(new GTFOFoodStats(5, 1.0f, false, true)
                 .setPotionEffects(new RandomPotionEffect(MobEffects.NAUSEA, 400, 0, 100 - 10)).setEatingDuration(60)
                 .nutrients(0f, 0.5f, 0f, 1f, 0.5f));
 
-        BLUEBERRY = addItem(326, "food.berry.blueberry").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropBlueberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
-        BLUEBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_BLUEBERRY, BLUEBERRY.getStackForm(), BLUEBERRY.getStackForm()));
-        BLACKBERRY = addItem(327, "food.berry.blackberry").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropBlackberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
-        BLACKBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_BLACKBERRY, BLACKBERRY.getStackForm(), BLACKBERRY.getStackForm()));
-        RASPBERRY = addItem(328, "food.berry.raspberry").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropRaspberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
-        RASPBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_RASPBERRY, RASPBERRY.getStackForm(), RASPBERRY.getStackForm()));
-        STRAWBERRY = addItem(329, "food.berry.strawberry").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropStrawberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
-        STRAWBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_STRAWBERRY, STRAWBERRY.getStackForm(), STRAWBERRY.getStackForm()));
-        RED_CURRANT = addItem(330, "food.berry.red_currant").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropRedCurrant").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
-        RED_CURRANT.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_RED_CURRANT, RED_CURRANT.getStackForm(), RED_CURRANT.getStackForm()));
-        BLACK_CURRANT = addItem(331, "food.berry.black_currant").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropBlackCurrant").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
-        BLACK_CURRANT.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_BLACK_CURRANT, BLACK_CURRANT.getStackForm(), BLACK_CURRANT.getStackForm()));
-        WHITE_CURRANT = addItem(332, "food.berry.white_currant").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropWhiteCurrant").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
-        WHITE_CURRANT.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_WHITE_CURRANT, WHITE_CURRANT.getStackForm(), WHITE_CURRANT.getStackForm()));
-        LINGONBERRY = addItem(333, "food.berry.lingonberry").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropLingonberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrytart");
-        LINGONBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_LINGONBERRY, LINGONBERRY.getStackForm(), LINGONBERRY.getStackForm()));
-        ELDERBERRY = addItem(334, "food.berry.elderberry").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f).setPotionEffects(
+        BLUEBERRY = addItem(326, "food.berry.blueberry")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropBlueberry").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrysweet");
+        BLUEBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_BLUEBERRY, BLUEBERRY.getStackForm(),
+                BLUEBERRY.getStackForm()));
+        BLACKBERRY = addItem(327, "food.berry.blackberry")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropBlackberry").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrytart");
+        BLACKBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_BLACKBERRY, BLACKBERRY.getStackForm(),
+                BLACKBERRY.getStackForm()));
+        RASPBERRY = addItem(328, "food.berry.raspberry")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropRaspberry").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrysweet");
+        RASPBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_RASPBERRY, RASPBERRY.getStackForm(),
+                RASPBERRY.getStackForm()));
+        STRAWBERRY = addItem(329, "food.berry.strawberry")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropStrawberry").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrysweet");
+        STRAWBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_STRAWBERRY, STRAWBERRY.getStackForm(),
+                STRAWBERRY.getStackForm()));
+        RED_CURRANT = addItem(330, "food.berry.red_currant")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropRedCurrant").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrytart");
+        RED_CURRANT.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_RED_CURRANT, RED_CURRANT.getStackForm(),
+                RED_CURRANT.getStackForm()));
+        BLACK_CURRANT = addItem(331, "food.berry.black_currant")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropBlackCurrant").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrytart");
+        BLACK_CURRANT.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_BLACK_CURRANT,
+                BLACK_CURRANT.getStackForm(), BLACK_CURRANT.getStackForm()));
+        WHITE_CURRANT = addItem(332, "food.berry.white_currant")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropWhiteCurrant").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrytart");
+        WHITE_CURRANT.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_WHITE_CURRANT,
+                WHITE_CURRANT.getStackForm(), WHITE_CURRANT.getStackForm()));
+        LINGONBERRY = addItem(333, "food.berry.lingonberry")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropLingonberry").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrytart");
+        LINGONBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_LINGONBERRY, LINGONBERRY.getStackForm(),
+                LINGONBERRY.getStackForm()));
+        ELDERBERRY = addItem(334, "food.berry.elderberry")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f).setPotionEffects(
                         new RandomPotionEffect(MobEffects.NAUSEA, 400, 0, 100 - 4),
                         new RandomPotionEffect(MobEffects.POISON, 200, 0, 100 - 1)))
                 .addOreDict("cropElderberry").addOreDict("listAllfruit").addOreDict("listAllberry");
-        ELDERBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_ELDERBERRY, ELDERBERRY.getStackForm(), ELDERBERRY.getStackForm()));
-        CRANBERRY = addItem(335, "food.berry.cranberry").addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
-                .addOreDict("cropCranberry").addOreDict("listAllfruit").addOreDict("listAllberry").addOreDict("listAllberrysweet");
-        CRANBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_CRANBERRY, CRANBERRY.getStackForm(), CRANBERRY.getStackForm()));
+        ELDERBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_ELDERBERRY, ELDERBERRY.getStackForm(),
+                ELDERBERRY.getStackForm()));
+        CRANBERRY = addItem(335, "food.berry.cranberry")
+                .addComponents(new GTFOFoodStats(1, 0.5f).nutrients(0f, 1f, 0f, 0f, 0f))
+                .addOreDict("cropCranberry").addOreDict("listAllfruit").addOreDict("listAllberry")
+                .addOreDict("listAllberrysweet");
+        CRANBERRY.addComponents(new GTFOBerrySeedBehaviour(GTFOCrops.BUSH_CRANBERRY, CRANBERRY.getStackForm(),
+                CRANBERRY.getStackForm()));
 
-        BERRY_MEDLEY = addItem(336, "food.berry_medley").addComponents(new GTFOFoodStats(5, 0.5f, false, false, new ItemStack(Items.BOWL)).nutrients(0f, 1f, 0f, 0f, 0f));
-        ETIRPS_CRANBERRY = addItem(337, "food.etirps_cranberry").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger + 3, GTFOConfig.gtfoFoodConfig.etirpsSaturation + 0.3f, true, true, PLASTIC_BOTTLE.getStackForm(),
-                new RandomPotionEffect(MobEffects.SPEED, 2400, 2, 0),
-                new RandomPotionEffect(MobEffects.REGENERATION, 200, 1, 100 - 80))
-                .nutrients(0f, 0.5f, 0f, 0f, 0f));
+        BERRY_MEDLEY = addItem(336, "food.berry_medley").addComponents(
+                new GTFOFoodStats(5, 0.5f, false, false, new ItemStack(Items.BOWL)).nutrients(0f, 1f, 0f, 0f, 0f));
+        ETIRPS_CRANBERRY = addItem(337, "food.etirps_cranberry")
+                .addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.etirpsHunger + 3,
+                        GTFOConfig.gtfoFoodConfig.etirpsSaturation + 0.3f, true, true, PLASTIC_BOTTLE.getStackForm(),
+                        new RandomPotionEffect(MobEffects.SPEED, 2400, 2, 0),
+                        new RandomPotionEffect(MobEffects.REGENERATION, 200, 1, 100 - 80))
+                                .nutrients(0f, 0.5f, 0f, 0f, 0f));
 
         PELMENI = addItem(340, "food.pelmeni").addComponents(new GTFOFoodStats(5, 0.5f)
                 .nutrients(0f, 0f, 1f, 1f, 0.125f));
-        SEASONED_PELMENI = addItem(341, "food.pelmeni_seasoned").addComponents(new GTFOFoodStats(7, 1f).setEatingDuration(24)
-                .nutrients(0.5f, 0f, 1f, 1f, 1f));
+        SEASONED_PELMENI = addItem(341, "food.pelmeni_seasoned")
+                .addComponents(new GTFOFoodStats(7, 1f).setEatingDuration(24)
+                        .nutrients(0.5f, 0f, 1f, 1f, 1f));
 
-        ANTAF = addItem(344, "food.antaf").addComponents(new GTFOFoodStats(5, 0.5f, true, true, PLASTIC_BOTTLE.getStackForm())
-                .nutrients(0, 0.5f, 0f, 0f, 0f));
+        ANTAF = addItem(344, "food.antaf")
+                .addComponents(new GTFOFoodStats(5, 0.5f, true, true, PLASTIC_BOTTLE.getStackForm())
+                        .nutrients(0, 0.5f, 0f, 0f, 0f));
 
         SORBET_PLAIN = addItem(345, "food.sorbet.plain").addComponents(new GTFOFoodStats(0, 0f, false, true)
                 .nutrients(0, 0f, 0f, 0f, 0f).setEatingDuration(12));
@@ -1121,19 +1248,24 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         FERMENTED_CHORUS = addItem(352, "food.fermented_chorus").addComponents(new GTFOFoodStats(2, 0.5f, false, true)
                 .nutrients(0, 0f, 0f, 0f, 2f).setEatingDuration(60)
                 .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 300, 0, 100 - 80)));
-        FERMENTED_CHORUS_PIE = addItem(353, "food.pie.fermented_chorus").addComponents(new GTFOFoodStats(6, 1f, false, true)
-                .nutrients(0, 0f, 2f, 0f, 2f)
-                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 1200, 0, 100 - 100)));
+        FERMENTED_CHORUS_PIE = addItem(353, "food.pie.fermented_chorus")
+                .addComponents(new GTFOFoodStats(6, 1f, false, true)
+                        .nutrients(0, 0f, 2f, 0f, 2f)
+                        .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 1200, 0, 100 - 100)));
 
-        NAQUADAH_CHIPS = addItem(354, "food.naquadah_chips").addComponents(new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false, true, () -> OreDictUnifier.get(OrePrefix.foil, Materials.TungstenSteel))
-                .nutrients(0, 0f, 1f, 0f, 1f)
-                .setPotionEffects(new RandomPotionEffect(MobEffects.BLINDNESS, 500, 0, 100 - 100)));
+        NAQUADAH_CHIPS = addItem(354, "food.naquadah_chips").addComponents(
+                new GTFOFoodStats(GTFOConfig.gtfoFoodConfig.chipHunger, GTFOConfig.gtfoFoodConfig.chipSaturation, false,
+                        true, () -> OreDictUnifier.get(OrePrefix.foil, Materials.TungstenSteel))
+                                .nutrients(0, 0f, 1f, 0f, 1f)
+                                .setPotionEffects(new RandomPotionEffect(MobEffects.BLINDNESS, 500, 0, 100 - 100)));
 
-        CHORUS_CAPLET = addItem(355, "food.caplet.chorus").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
-                .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 300, 0, 100 - 100)));
-        VIBRANT_CAPLET = addItem(356, "food.caplet.vibrant").addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
-                .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 600, 0, 100 - 60),
-                        new RandomPotionEffect(MobEffects.POISON, 600, 2, 100 - 90)));
+        CHORUS_CAPLET = addItem(355, "food.caplet.chorus")
+                .addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
+                        .setPotionEffects(new RandomPotionEffect(EnhancedChorusPotion.INSTANCE, 300, 0, 100 - 100)));
+        VIBRANT_CAPLET = addItem(356, "food.caplet.vibrant")
+                .addComponents(new GTFOFoodStats(0, 1f, false, true, ItemStack.EMPTY)
+                        .setPotionEffects(new RandomPotionEffect(CreativityPotion.INSTANCE, 600, 0, 100 - 60),
+                                new RandomPotionEffect(MobEffects.POISON, 600, 2, 100 - 90)));
 
         SANDWICH_VIBRANT = addItem(357, "food.sandwich.vibrant").addComponents(new GTFOFoodStats(7, 0.8f)
                 .setEatingDuration(40)
@@ -1143,48 +1275,63 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
         UNKNOWN_SEED = addItem(158, "seed.unknown");
         ONION_SEED = addItem(159, "seed.onion");
-        ONION_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
+        ONION_SEED.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_ONION, ONION_SEED.getStackForm(), ONION.getStackForm()));
         SOYBEAN = addItem(160, "component.soybean");
         SOYBEAN_SEED = addItem(161, "seed.soy");
-        SOYBEAN_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_SOY, SOYBEAN_SEED.getStackForm(), SOYBEAN.getStackForm()));
+        SOYBEAN_SEED.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_SOY, SOYBEAN_SEED.getStackForm(), SOYBEAN.getStackForm()));
         TOMATO_SEED = addItem(162, "seed.tomato");
-        TOMATO_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO_SEED.getStackForm(), TOMATO.getStackForm()));
+        TOMATO_SEED.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_TOMATO, TOMATO_SEED.getStackForm(), TOMATO.getStackForm()));
         GRAPE_SEED = addItem(163, "seed.grape");
-        GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GRAPE, GRAPE_SEED.getStackForm(), GRAPES.getStackForm()));
+        GRAPE_SEED.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_GRAPE, GRAPE_SEED.getStackForm(), GRAPES.getStackForm()));
         CUCUMBER_SEED = addItem(164, "seed.cucumber");
-        CUCUMBER_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER_SEED.getStackForm(), CUCUMBER.getStackForm()));
+        CUCUMBER_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_CUCUMBER, CUCUMBER_SEED.getStackForm(),
+                CUCUMBER.getStackForm()));
         COFFEE_SEED = addItem(202, "seed.coffee");
-        COFFEE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_COFFEE, COFFEE_SEED.getStackForm(), COFFEE_CHERRY.getStackForm()));
+        COFFEE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_COFFEE, COFFEE_SEED.getStackForm(),
+                COFFEE_CHERRY.getStackForm()));
         PEA_POD = addItem(206, "component.pea_pod");
         PEAS = addItem(207, "seed.pea");
         PEAS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_PEA, PEAS.getStackForm(), PEA_POD.getStackForm()));
         BEANS = addItem(208, "seed.bean");
         BEANS.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BEAN, BEANS.getStackForm(), BEANS.getStackForm()));
         OREGANO_SEED = addItem(303, "seed.oregano");
-        OREGANO_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_OREGANO, OREGANO_SEED.getStackForm(), OREGANO.getStackForm()));
+        OREGANO_SEED.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_OREGANO, OREGANO_SEED.getStackForm(), OREGANO.getStackForm()));
         BASIL_SEED = addItem(304, "seed.basil");
-        BASIL_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BASIL, BASIL_SEED.getStackForm(), BASIL.getStackForm()));
+        BASIL_SEED.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_BASIL, BASIL_SEED.getStackForm(), BASIL.getStackForm()));
         AUBERGINE_SEED = addItem(305, "seed.aubergine");
-        AUBERGINE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_AUBERGINE, AUBERGINE_SEED.getStackForm(), AUBERGINE.getStackForm()));
+        AUBERGINE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_AUBERGINE, AUBERGINE_SEED.getStackForm(),
+                AUBERGINE.getStackForm()));
         HORSERADISH_SEED = addItem(306, "seed.horseradish");
-        HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH, HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
+        HORSERADISH_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_HORSERADISH,
+                HORSERADISH_SEED.getStackForm(), HORSERADISH.getStackForm()));
         GARLIC_CLOVE = addItem(307, "seed.garlic");
-        GARLIC_CLOVE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GARLIC, GARLIC_CLOVE.getStackForm(), GARLIC_BULB.getStackForm()));
+        GARLIC_CLOVE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_GARLIC, GARLIC_CLOVE.getStackForm(),
+                GARLIC_BULB.getStackForm()));
         ARTICHOKE_HEART = addItem(267, "component.artichoke");
         ARTICHOKE_SEED = addItem(268, "seed.artichoke");
-        ARTICHOKE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ARTICHOKE, ARTICHOKE_SEED.getStackForm(), ARTICHOKE_HEART.getStackForm()));
+        ARTICHOKE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_ARTICHOKE, ARTICHOKE_SEED.getStackForm(),
+                ARTICHOKE_HEART.getStackForm()));
         BLACK_PEPPERCORN = addItem(269, "component.black_pepper");
-        BLACK_PEPPERCORN.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BLACK_PEPPER, BLACK_PEPPERCORN.getStackForm(), BLACK_PEPPERCORN.getStackForm()));
+        BLACK_PEPPERCORN.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_BLACK_PEPPER,
+                BLACK_PEPPERCORN.getStackForm(), BLACK_PEPPERCORN.getStackForm()));
         RICE = addItem(270, "component.rice");
         RICE.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_RICE, RICE.getStackForm(), RICE.getStackForm()));
         NUTMEG_SEED = addItem(271, "component.nutmeg");
-        WHITE_GRAPES = addItem(320, "food.white_grapes").addComponents(new GTFOFoodStats(1, 1f).nutrients(0f, 1f, 0f, 0f, 0f));
+        WHITE_GRAPES = addItem(320, "food.white_grapes")
+                .addComponents(new GTFOFoodStats(1, 1f).nutrients(0f, 1f, 0f, 0f, 0f));
         WHITE_GRAPE_SEED = addItem(321, "seed.white_grape");
-        WHITE_GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_WHITE_GRAPE, WHITE_GRAPE_SEED.getStackForm(), WHITE_GRAPES.getStackForm()));
+        WHITE_GRAPE_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_WHITE_GRAPE,
+                WHITE_GRAPE_SEED.getStackForm(), WHITE_GRAPES.getStackForm()));
         COTTON = addItem(9001, "component.cotton");
         COTTON_SEED = addItem(9000, "seed.cotton");
-        COTTON_SEED.addComponents(new GTFOCropSeedBehaviour(GTFOCrops.CROP_COTTON, COTTON_SEED.getStackForm(), COTTON.getStackForm()));
-
+        COTTON_SEED.addComponents(
+                new GTFOCropSeedBehaviour(GTFOCrops.CROP_COTTON, COTTON_SEED.getStackForm(), COTTON.getStackForm()));
 
         // 175-189 left blank for organic circuits
         SPRINKLER_COVER = addItem(224, "cover.sprinkler").blacklistKitchen();
@@ -1196,15 +1343,18 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         RIGATONI_PASTA_DIE = addItem(250, "shape.pasta.rigatoni").blacklistKitchen();
         LASAGNA_PASTA_DIE = addItem(251, "shape.pasta.lasagna").blacklistKitchen();
 
-        KITCHEN_RECIPE = addItem(343, "utility.kitchen_recipe").blacklistKitchen().addComponents(new GTFOKitchenRecipeBehaviour());
+        KITCHEN_RECIPE = addItem(343, "utility.kitchen_recipe").blacklistKitchen()
+                .addComponents(new GTFOKitchenRecipeBehaviour());
 
         {
             int heal = 44;
             double saturation = 8.6;
             int potionDuration = 1200;
 
-            MetaItem<?>.MetaValueItem[] smores = {EIGHT_SMORE, SIXTEEN_SMORE, THIRTY_TWO_SMORE, SIXTY_FOUR_SMORE, SMOGUS, MORE_SMOGUS, FOUR_SMOGUS, HEART_SMOGUS};
-            String[] smoreStrings = {"eight", "sixteen", "thirtytwo", "sixtyfour", "gusone", "gustwo", "gusfour", "heartofthesmogus"};
+            MetaItem<?>.MetaValueItem[] smores = { EIGHT_SMORE, SIXTEEN_SMORE, THIRTY_TWO_SMORE, SIXTY_FOUR_SMORE,
+                    SMOGUS, MORE_SMOGUS, FOUR_SMOGUS, HEART_SMOGUS };
+            String[] smoreStrings = { "eight", "sixteen", "thirtytwo", "sixtyfour", "gusone", "gustwo", "gusfour",
+                    "heartofthesmogus" };
 
             for (int i = 0; i < smores.length; i++) {
                 heal = (heal * 2) + 4;
@@ -1212,13 +1362,14 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 potionDuration = (int) (((float) potionDuration) * 1.25);
                 int potionStrength = (int) ((int) (Math.pow(2, (((double) i) + 8))) / Math.pow((((double) i) + 8), 2));
 
-                smores[i] = addItem(100 + i, "food.smore." + smoreStrings[i]).addComponents(new GTFOFoodStats(heal, (float) saturation, false, true, ItemStack.EMPTY,
-                        new RandomPotionEffect(getPotionById(1), potionDuration, potionStrength, 2 * i),
-                        new RandomPotionEffect(getPotionById(22), potionDuration, potionStrength, 2 * i),
-                        new RandomPotionEffect(getPotionById(3), potionDuration, potionStrength, 2 * i),
-                        new RandomPotionEffect(getPotionById(23), potionDuration, potionStrength, 2 * i),
-                        new RandomPotionEffect(getPotionById(21), potionDuration, potionStrength, 2 * i))
-                        .setEatingDuration(32 + 10 * i).nutrients(0.5f, 0f, 1f, 0.5f, 0f));
+                smores[i] = addItem(100 + i, "food.smore." + smoreStrings[i])
+                        .addComponents(new GTFOFoodStats(heal, (float) saturation, false, true, ItemStack.EMPTY,
+                                new RandomPotionEffect(getPotionById(1), potionDuration, potionStrength, 2 * i),
+                                new RandomPotionEffect(getPotionById(22), potionDuration, potionStrength, 2 * i),
+                                new RandomPotionEffect(getPotionById(3), potionDuration, potionStrength, 2 * i),
+                                new RandomPotionEffect(getPotionById(23), potionDuration, potionStrength, 2 * i),
+                                new RandomPotionEffect(getPotionById(21), potionDuration, potionStrength, 2 * i))
+                                        .setEatingDuration(32 + 10 * i).nutrients(0.5f, 0f, 1f, 0.5f, 0f));
             }
 
             EIGHT_SMORE = smores[0];
@@ -1236,7 +1387,6 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public ItemStack getContainerItem(ItemStack stack) {
         return stack.copy();
     }
-
 
     protected String formatModelPath(GTFOMetaItem.GTFOMetaValueItem metaValueItem) {
         return "metaitems/" + metaValueItem.unlocalizedName.replace('.', '/');
@@ -1259,13 +1409,16 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
 
     @Nonnull
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{CreativeTabs.SEARCH, GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD};
+        return new CreativeTabs[] { CreativeTabs.SEARCH, GTFOValues.TAB_GTFO, GTFOValues.TAB_GTFO_FOOD };
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {
         for (MetaItem.MetaValueItem item : this.getAllItems()) {
-            if (item.isVisible() && ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) || ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) || tab == CreativeTabs.SEARCH)) {
+            if (item.isVisible() &&
+                    ((!(item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO) ||
+                            ((item.getUseManager() instanceof FoodUseManager) && tab == GTFOValues.TAB_GTFO_FOOD) ||
+                            tab == CreativeTabs.SEARCH)) {
                 ItemStack itemStack = item.getStackForm();
                 item.getSubItemHandler().getSubItems(itemStack, tab, subItems);
             }
@@ -1324,7 +1477,5 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
                 }
             }
         }
-
     }
-
 }

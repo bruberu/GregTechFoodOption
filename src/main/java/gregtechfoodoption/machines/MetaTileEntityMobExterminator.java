@@ -1,5 +1,27 @@
 package gregtechfoodoption.machines;
 
+import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
+import static gregtech.api.unification.material.Materials.NitrousOxide;
+
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Cuboid6;
@@ -16,26 +38,6 @@ import gregtech.client.renderer.texture.cube.OrientedOverlayRenderer;
 import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.utils.GTFODamageSources;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.List;
-
-import static gregtech.api.capability.GregtechDataCodes.IS_WORKING;
-import static gregtech.api.unification.material.Materials.NitrousOxide;
 
 public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
 
@@ -62,14 +64,16 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
         OrientedOverlayRenderer renderer = GTFOClientHandler.MOB_EXTERMINATOR_OVERLAY;
-        renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking, true);
+        renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking,
+                true);
     }
 
     @Override
     public void update() {
         super.update();
 
-        boolean isWorkingNow = energyContainer.getEnergyStored() >= getEnergyConsumedPerKill() && isBlockRedstonePowered();
+        boolean isWorkingNow = energyContainer.getEnergyStored() >= getEnergyConsumedPerKill() &&
+                isBlockRedstonePowered();
 
         if (getWorld().isRemote) {
             return;
@@ -87,13 +91,15 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
                 this.areaCenterPos = selfPos.offset(this.getFrontFacing(), 5);
                 this.areaBoundingBox = new AxisAlignedBB(areaCenterPos).grow(4, 0, 4);
             }
-            List<EntityLivingBase> mobs = this.getWorld().getEntitiesWithinAABB(EntityLivingBase.class, areaBoundingBox);
+            List<EntityLivingBase> mobs = this.getWorld().getEntitiesWithinAABB(EntityLivingBase.class,
+                    areaBoundingBox);
 
             if (!mobs.isEmpty()) {
                 int loopLength = Math.min(this.getMobsPerCycle(), mobs.size());
                 for (int i = 0; i < loopLength; i++) {
                     LOOTING_USED = this.getTier() - 1;
-                    // When the following function is called, ForgeHooks.getLootingLevel, by activating EventHandlers.onLootingLevel, will get LOOTING_USED.
+                    // When the following function is called, ForgeHooks.getLootingLevel, by activating
+                    // EventHandlers.onLootingLevel, will get LOOTING_USED.
                     // Race conditions probably won't happen, fortunately.
                     mobs.get(i).attackEntityFrom(GTFODamageSources.getExterminationDamage(this.getWorld()), 40);
                     if (i > 3) {
@@ -158,10 +164,13 @@ public class MetaTileEntityMobExterminator extends TieredMetaTileEntity {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip", getTier() - 1));
-        tooltip.add(I18n.format("gregtech.universal.tooltip.max_voltage_in", energyContainer.getInputVoltage(), GTValues.VNF[getTier()]));
-        tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.getEnergyCapacity()));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.max_voltage_in", energyContainer.getInputVoltage(),
+                GTValues.VNF[getTier()]));
+        tooltip.add(
+                I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.getEnergyCapacity()));
         tooltip.add(I18n.format("gregtech.universal.tooltip.requires_redstone"));
-        tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.consumption", getEnergyConsumedPerKill()));
+        tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.consumption",
+                getEnergyConsumedPerKill()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.nitrous"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.mob_exterminator.tooltip.warning"));
     }

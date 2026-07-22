@@ -1,19 +1,21 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.ModHandler;
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.plate;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import gregtech.api.recipes.ModHandler;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
+
 public class PastaChain {
+
     public static void init() {
         CENTRIFUGE_RECIPES.recipeBuilder().EUt(120).duration(30)
                 .input(dust, Wheat, 1)
@@ -56,11 +58,16 @@ public class PastaChain {
                 .circuitMeta(4)
                 .outputs(BLANK_PASTA_DIE.getStackForm())
                 .buildAndRegister();
-        ModHandler.addShapedRecipe("tagliatelle_pasta_die", TAGLIATELLE_PASTA_DIE.getStackForm(), "f  ", " S ", "   ", 'S', BLANK_PASTA_DIE.getStackForm());
-        ModHandler.addShapedRecipe("spaghetti_pasta_die", SPAGHETTI_PASTA_DIE.getStackForm(), " f ", " S ", "   ", 'S', BLANK_PASTA_DIE.getStackForm());
-        ModHandler.addShapedRecipe("lasagna_pasta_die", LASAGNA_PASTA_DIE.getStackForm(), "  f", " S ", "   ", 'S', BLANK_PASTA_DIE.getStackForm());
-        ModHandler.addShapedRecipe("rigatoni_pasta_die", RIGATONI_PASTA_DIE.getStackForm(), "   ", "fS ", "   ", 'S', BLANK_PASTA_DIE.getStackForm());
-        ModHandler.addShapedRecipe("ditalini_pasta_die", DITALINI_PASTA_DIE.getStackForm(), "   ", " Sf", "   ", 'S', BLANK_PASTA_DIE.getStackForm());
+        ModHandler.addShapedRecipe("tagliatelle_pasta_die", TAGLIATELLE_PASTA_DIE.getStackForm(), "f  ", " S ", "   ",
+                'S', BLANK_PASTA_DIE.getStackForm());
+        ModHandler.addShapedRecipe("spaghetti_pasta_die", SPAGHETTI_PASTA_DIE.getStackForm(), " f ", " S ", "   ", 'S',
+                BLANK_PASTA_DIE.getStackForm());
+        ModHandler.addShapedRecipe("lasagna_pasta_die", LASAGNA_PASTA_DIE.getStackForm(), "  f", " S ", "   ", 'S',
+                BLANK_PASTA_DIE.getStackForm());
+        ModHandler.addShapedRecipe("rigatoni_pasta_die", RIGATONI_PASTA_DIE.getStackForm(), "   ", "fS ", "   ", 'S',
+                BLANK_PASTA_DIE.getStackForm());
+        ModHandler.addShapedRecipe("ditalini_pasta_die", DITALINI_PASTA_DIE.getStackForm(), "   ", " Sf", "   ", 'S',
+                BLANK_PASTA_DIE.getStackForm());
 
         EXTRUDER_RECIPES.recipeBuilder().EUt(16).duration(300)
                 .inputs(EGG_PASTA_DOUGH.getStackForm())
@@ -108,7 +115,7 @@ public class PastaChain {
                 .inputs(RAW_DITALINI.getStackForm())
                 .outputs(DRIED_DITALINI.getStackForm())
                 .buildAndRegister();
-        
+
         CHEMICAL_BATH_RECIPES.recipeBuilder().EUt(16).duration(600)
                 .inputs(DRIED_TAGLIATELLE.getStackForm())
                 .fluidInputs(Water.getFluid(1000))
@@ -154,7 +161,8 @@ public class PastaChain {
         }
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(100)
-                .inputs(RAW_LASAGNA.getStackForm(), GTFOMaterialHandler.ShreddedParmesan.getItemStack(), GTFOMaterialHandler.Nutmeg.getItemStack())
+                .inputs(RAW_LASAGNA.getStackForm(), GTFOMaterialHandler.ShreddedParmesan.getItemStack(),
+                        GTFOMaterialHandler.Nutmeg.getItemStack())
                 .input(Items.PORKCHOP)
                 .outputs(TORTELLINI.getStackForm(8))
                 .buildAndRegister();

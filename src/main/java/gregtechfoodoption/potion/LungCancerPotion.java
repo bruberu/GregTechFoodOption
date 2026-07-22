@@ -1,16 +1,17 @@
 package gregtechfoodoption.potion;
 
-import gregtechfoodoption.utils.GTFODamageSources;
+import java.util.Collections;
+import java.util.List;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import gregtechfoodoption.utils.GTFODamageSources;
 
 public class LungCancerPotion extends GTFOPotion {
+
     public static LungCancerPotion INSTANCE = null;
 
     public LungCancerPotion() {

@@ -1,9 +1,11 @@
 package gregtechfoodoption.integration.appleskin;
 
+import static squeek.appleskin.client.HUDOverlayHandler.drawHungerOverlay;
+import static squeek.appleskin.client.HUDOverlayHandler.drawSaturationOverlay;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.player.EntityPlayer;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.FoodStats;
 import net.minecraftforge.client.GuiIngameForge;
@@ -13,34 +15,32 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+
 import squeek.appleskin.AppleSkin;
 import squeek.appleskin.ModConfig;
 import squeek.appleskin.helpers.AppleCoreHelper;
 import squeek.appleskin.helpers.FoodHelper;
 
-import static squeek.appleskin.client.HUDOverlayHandler.drawHungerOverlay;
-import static squeek.appleskin.client.HUDOverlayHandler.drawSaturationOverlay;
-
-
 public class GTFOMetaHUDOverlay {
+
     private float flashAlpha = 0f;
     private byte alphaDir = 1;
-
 
     protected int foodIconsOffset;
 
     public static void init() {
-        if(Loader.isModLoaded("appleskin"))
+        if (Loader.isModLoaded("appleskin"))
             MinecraftForge.EVENT_BUS.register(new GTFOMetaHUDOverlay());
     }
-    @SubscribeEvent(priority= EventPriority.LOW)
-    public void onPreRender(RenderGameOverlayEvent.Pre event)
-    {
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void onPreRender(RenderGameOverlayEvent.Pre event) {
         if (event.getType() != RenderGameOverlayEvent.ElementType.FOOD)
             return;
 
         foodIconsOffset = GuiIngameForge.right_height;
     }
+
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent event) {
         if (Loader.isModLoaded("appleskin")) {
@@ -53,7 +53,7 @@ public class GTFOMetaHUDOverlay {
             Minecraft mc = Minecraft.getMinecraft();
             EntityPlayer player = mc.player;
             ItemStack heldItem = player.getHeldItemMainhand();
-            if(!GTFOMetaFoodHelper.isFood(heldItem)) {
+            if (!GTFOMetaFoodHelper.isFood(heldItem)) {
                 flashAlpha = 0;
                 alphaDir = 1;
                 return;
@@ -76,31 +76,27 @@ public class GTFOMetaHUDOverlay {
                 foodValues = AppleCoreHelper.getFoodValuesForDisplay(foodValues, player);
             drawHungerOverlay(foodValues.hunger, stats.getFoodLevel(), mc, left, top, flashAlpha);
 
-            if (ModConfig.SHOW_SATURATION_OVERLAY)
-            {
+            if (ModConfig.SHOW_SATURATION_OVERLAY) {
                 int newFoodValue = stats.getFoodLevel() + foodValues.hunger;
                 float newSaturationValue = stats.getSaturationLevel() + foodValues.getSaturationIncrement();
-                drawSaturationOverlay(newSaturationValue > newFoodValue ? newFoodValue - stats.getSaturationLevel() : foodValues.getSaturationIncrement(), stats.getSaturationLevel(), mc, left, top, flashAlpha);
+                drawSaturationOverlay(
+                        newSaturationValue > newFoodValue ? newFoodValue - stats.getSaturationLevel() :
+                                foodValues.getSaturationIncrement(),
+                        stats.getSaturationLevel(), mc, left, top, flashAlpha);
             }
         }
     }
 
-
-
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
-    {
+    public void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END)
             return;
 
         flashAlpha += alphaDir * 0.25f;
-        if (flashAlpha >= 1.5f)
-        {
+        if (flashAlpha >= 1.5f) {
             flashAlpha = 1f;
             alphaDir = -1;
-        }
-        else if (flashAlpha <= -0.5f)
-        {
+        } else if (flashAlpha <= -0.5f) {
             flashAlpha = 0f;
             alphaDir = 1;
         }

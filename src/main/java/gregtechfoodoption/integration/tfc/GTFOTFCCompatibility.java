@@ -1,15 +1,17 @@
 package gregtechfoodoption.integration.tfc;
 
-import gregtech.api.items.metaitem.MetaItem;
-import gregtechfoodoption.GTFOValues;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+import static gregtechfoodoption.item.GTFOMetaItem.APPLE_SLICE;
+
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 
-import static gregtechfoodoption.item.GTFOMetaItem.*;
-import static gregtechfoodoption.item.GTFOMetaItem.APPLE_SLICE;
+import gregtech.api.items.metaitem.MetaItem;
+import gregtechfoodoption.GTFOValues;
 
 public class GTFOTFCCompatibility {
+
     public static void init() {
         new TFCComponentPreparer(POPCORN_BAG)
                 .setFoodData(0, 4, 0, 2, 0, 0).register();
@@ -184,14 +186,16 @@ public class GTFOTFCCompatibility {
     }
 
     private static class TFCComponentPreparer {
+
         NBTTagCompound comp = new NBTTagCompound();
 
         public TFCComponentPreparer(MetaItem.MetaValueItem item) {
             comp.setInteger("item", Item.getIdFromItem(item.getMetaItem()));
             comp.setShort("damage", (short) item.getMetaValue());
         }
-        
-        public TFCComponentPreparer setFoodData(float water, float grain, float fruit, float veg, float meat, float dairy) {
+
+        public TFCComponentPreparer setFoodData(float water, float grain, float fruit, float veg, float meat,
+                                                float dairy) {
             NBTTagCompound statsCompound = new NBTTagCompound();
             statsCompound.setFloat("water", water);
             statsCompound.setFloat("grain", grain);

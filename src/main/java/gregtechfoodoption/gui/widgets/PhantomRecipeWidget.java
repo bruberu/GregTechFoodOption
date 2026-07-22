@@ -1,19 +1,17 @@
 package gregtechfoodoption.gui.widgets;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.widgets.*;
-import gregtech.api.util.Position;
-import gregtechfoodoption.machines.multiblock.kitchen.FluidStackInfo;
-import gregtechfoodoption.machines.multiblock.kitchen.ItemStackInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.common.util.INBTSerializable;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
 
+import gregtech.api.gui.GuiTextures;
+import gregtech.api.gui.widgets.*;
+import gregtech.api.util.Position;
+
 public class PhantomRecipeWidget extends AbstractWidgetGroup {
+
     private ItemStackHandler inputs = new ItemStackHandler(9);
     private boolean[] nonConsumableItems = new boolean[9];
     private FluidTank[] fluidInputs = new FluidTank[9];
@@ -31,6 +29,7 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
         for (int i = 0; i < this.fluidInputs.length; ++i) {
             fluidInputs[i] = new FluidTank(99999);
             this.addWidget(new PhantomFluidWidget(x + i * 18, y + 20, 18, 18, this.fluidInputs[i]) {
+
                 @Override
                 public void handleClientAction(int id, PacketBuffer buffer) {
                     // Doesn't clear, at least
@@ -46,10 +45,9 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
         for (int i = 0; i < this.fluidOutputs.length; ++i) {
             fluidOutputs[i] = new FluidTank(99999);
             this.addWidget(new PhantomFluidWidget(x + i * 18, y + 60, 18, 18, this.fluidOutputs[i]) {
-                @Override
-                public void handleClientAction(int id, PacketBuffer buffer) {
 
-                }
+                @Override
+                public void handleClientAction(int id, PacketBuffer buffer) {}
             });
         }
     }
@@ -79,7 +77,6 @@ public class PhantomRecipeWidget extends AbstractWidgetGroup {
         for (int i = 0; i < this.fluidOutputs.length; ++i) {
             this.fluidOutputs[i].readFromNBT(fluidOutputs.getCompoundTag("fluid" + i));
         }
-
     }
 
     public void clearSlots() {

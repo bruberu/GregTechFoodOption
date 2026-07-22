@@ -1,17 +1,19 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.GTRecipeHandler;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtechfoodoption.item.GTFOMetaItem;
-import net.minecraftforge.fml.common.Loader;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.GTFOValues.MODID_GCYS;
 
+import net.minecraftforge.fml.common.Loader;
+
+import gregtech.api.recipes.GTRecipeHandler;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtechfoodoption.item.GTFOMetaItem;
+
 public class BananaProcessingChain {
+
     public static void init() {
         if (!Loader.isModLoaded(MODID_GCYS)) {
             ELECTROLYZER_RECIPES.recipeBuilder().EUt(30).duration(56)
@@ -55,13 +57,13 @@ public class BananaProcessingChain {
                 .fluidOutputs(PerchloricAcid.getFluid(1000))
                 .buildAndRegister();
 
-/*
-        CHEMICAL_RECIPES.recipeBuilder().EUt(1920).duration(200)
-                .notConsumable(dust, Platinum)
-                .fluidInputs(DilutedHydrochloricAcid.getFluid(2000), Oxygen.getFluid(4000)) // H3ClO + 4O -> H2O + HClO4
-                .fluidOutputs(PerchloricAcid.getFluid(1000), Water.getFluid(1000))
-                .buildAndRegister();
-*/
+        /*
+         * CHEMICAL_RECIPES.recipeBuilder().EUt(1920).duration(200)
+         * .notConsumable(dust, Platinum)
+         * .fluidInputs(DilutedHydrochloricAcid.getFluid(2000), Oxygen.getFluid(4000)) // H3ClO + 4O -> H2O + HClO4
+         * .fluidOutputs(PerchloricAcid.getFluid(1000), Water.getFluid(1000))
+         * .buildAndRegister();
+         */
 
         CHEMICAL_RECIPES.recipeBuilder().EUt(64).duration(300)
                 .fluidInputs(PerchloricAcid.getFluid(1000), Ammonia.getFluid(1000))
@@ -96,6 +98,5 @@ public class BananaProcessingChain {
                 .output(dust, RockSalt, 2)
                 .fluidOutputs(Oxygen.getFluid(4000))
                 .buildAndRegister();
-
     }
 }

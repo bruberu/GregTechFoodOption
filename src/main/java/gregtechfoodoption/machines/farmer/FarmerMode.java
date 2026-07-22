@@ -1,6 +1,7 @@
 package gregtechfoodoption.machines.farmer;
 
-import gregtech.api.util.GregFakePlayer;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
@@ -12,9 +13,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
+import gregtech.api.util.GregFakePlayer;
 
 public interface FarmerMode {
+
     boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer, BlockPos pos, World world);
 
     default void harvest(IBlockState state, World world, MutableBlockPos pos, MetaTileEntityFarmer farmer) {
@@ -24,7 +26,7 @@ public interface FarmerMode {
 
     default List<ItemStack> getDrops(IBlockState state, World world, MutableBlockPos pos, MetaTileEntityFarmer farmer) {
         NonNullList<ItemStack> drops = NonNullList.create();
-        state.getBlock().getDrops(drops, world, pos, state,0);
+        state.getBlock().getDrops(drops, world, pos, state, 0);
         return drops;
     }
 
@@ -32,7 +34,8 @@ public interface FarmerMode {
     boolean canPlaceItem(ItemStack stack);
 
     // If the farming mode can actually place something in this position.
-    default boolean canPlaceAt(MutableBlockPos operationPos, MutableBlockPos farmerPos, EnumFacing facing, World world) {
+    default boolean canPlaceAt(MutableBlockPos operationPos, MutableBlockPos farmerPos, EnumFacing facing,
+                               World world) {
         return true;
     }
 

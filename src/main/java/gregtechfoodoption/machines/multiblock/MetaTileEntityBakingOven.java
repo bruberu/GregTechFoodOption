@@ -1,5 +1,13 @@
 package gregtechfoodoption.machines.multiblock;
 
+import static gregtech.api.unification.material.Materials.Bronze;
+import static gregtech.api.unification.material.Materials.Iron;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.items.ItemStackHandler;
+
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
@@ -23,13 +31,6 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.items.ItemStackHandler;
-
-import static gregtech.api.unification.material.Materials.Bronze;
-import static gregtech.api.unification.material.Materials.Iron;
 
 public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockController {
 
@@ -61,11 +62,11 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
         return GTFOClientHandler.BAKING_OVEN_OVERLAY;
     }
 
-
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, this.getFrontFacing(), this.recipeMapWorkable.isActive(), this.recipeMapWorkable.isWorkingEnabled());
+        this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, this.getFrontFacing(),
+                this.recipeMapWorkable.isActive(), this.recipeMapWorkable.isWorkingEnabled());
     }
 
     @Override
@@ -102,7 +103,9 @@ public class MetaTileEntityBakingOven extends RecipeMapPrimitiveMultiblockContro
                         .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTFOGuiTextures.PRIMITIVE_FOOD_OVERLAY))
                 .widget(new SlotWidget(importItems, 1, 53, 38, true, true)
                         .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GuiTextures.PRIMITIVE_FURNACE_OVERLAY))
-                .progressBar(recipeMapWorkable::getProgressPercent, 78, 31, 20, 15, GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR, ProgressWidget.MoveType.HORIZONTAL, this.getRecipeMap())
+                .progressBar(recipeMapWorkable::getProgressPercent, 78, 31, 20, 15,
+                        GuiTextures.PRIMITIVE_BLAST_FURNACE_PROGRESS_BAR, ProgressWidget.MoveType.HORIZONTAL,
+                        this.getRecipeMap())
                 .widget(new SlotWidget(exportItems, 0, 105, 29, true, false)
                         .setBackgroundTexture(GuiTextures.PRIMITIVE_SLOT, GTFOGuiTextures.PRIMITIVE_FOOD_OVERLAY))
                 .bindPlayerInventory(entityPlayer.inventory, GuiTextures.PRIMITIVE_SLOT, 0)

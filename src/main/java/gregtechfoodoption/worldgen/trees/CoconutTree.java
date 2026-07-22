@@ -1,9 +1,9 @@
 package gregtechfoodoption.worldgen.trees;
 
-import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
+import static gregtechfoodoption.item.GTFOMetaItem.COCONUT;
+
+import java.util.Random;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -11,11 +11,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
-import static gregtechfoodoption.item.GTFOMetaItem.COCONUT;
+import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class CoconutTree extends GTFOTree {
+
     public static int LEAVES_COLOR = 0x657F1C;
 
     public CoconutTree() {
@@ -33,7 +35,8 @@ public class CoconutTree extends GTFOTree {
         return LEAVES_COLOR;
     }
 
-    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random,
+                                  TriConsumer<World, BlockPos, IBlockState> notifier) {
         // Generate top
         {
             BlockPos.MutableBlockPos posCopy = GTFOUtils.copy(pos.up(height - 1));
@@ -79,7 +82,8 @@ public class CoconutTree extends GTFOTree {
         // Generate ring at height - 3 for extra fullness
         for (int i = 0; i < 4; i++) {
             notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)), getNaturalLeavesState());
-            notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)).offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
+            notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i))
+                    .offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
         }
     }
 

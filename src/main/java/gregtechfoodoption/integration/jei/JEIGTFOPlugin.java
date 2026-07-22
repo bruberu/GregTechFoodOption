@@ -1,5 +1,14 @@
 package gregtechfoodoption.integration.jei;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Nonnull;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.recipes.Recipe;
@@ -19,13 +28,6 @@ import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.ingredients.IIngredientRegistry;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-
-import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @JEIPlugin
 public class JEIGTFOPlugin implements IModPlugin {
@@ -37,15 +39,16 @@ public class JEIGTFOPlugin implements IModPlugin {
     public static final List<FluidStack> fluidsToHide = new ArrayList<>();
     public static final List<ItemStack> FOOD_ITEMS = new ArrayList<>();
 
-
     @Override
     public void register(@Nonnull IModRegistry registry) {
         iRecipeTransferRegistry = registry.getRecipeTransferRegistry();
-        ModularUIGuiHandler kitchenGuiHandler = new ModularUIGuiHandler(registry.getJeiHelpers().recipeTransferHandlerHelper());
+        ModularUIGuiHandler kitchenGuiHandler = new ModularUIGuiHandler(
+                registry.getJeiHelpers().recipeTransferHandlerHelper());
         for (RecipeMap<?> recipeMap : RecipeMap.getRecipeMaps()) {
             if (!recipeMap.isHidden) {
                 for (Map.Entry<GTRecipeCategory, List<Recipe>> entry : recipeMap.getRecipesByCategory().entrySet()) {
-                    registry.getRecipeTransferRegistry().addRecipeTransferHandler(kitchenGuiHandler, entry.getKey().getUniqueID());
+                    registry.getRecipeTransferRegistry().addRecipeTransferHandler(kitchenGuiHandler,
+                            entry.getKey().getUniqueID());
                 }
             }
         }
@@ -54,8 +57,8 @@ public class JEIGTFOPlugin implements IModPlugin {
         itemStacksToHide.forEach(itemBlacklist::addIngredientToBlacklist);
         fluidsToHide.forEach(itemBlacklist::addIngredientToBlacklist);
 
-
-        LacingEntry.LACING_REGISTRY.forEach(entry -> registry.addRecipes(ObjectSets.singleton(new LacingInfo(entry)), GTFOValues.MODID + ":lacing_info"));
+        LacingEntry.LACING_REGISTRY.forEach(entry -> registry.addRecipes(ObjectSets.singleton(new LacingInfo(entry)),
+                GTFOValues.MODID + ":lacing_info"));
 
         for (MetaTileEntity cannerTier : MetaTileEntities.CANNER) {
             if (cannerTier != null)
@@ -65,12 +68,10 @@ public class JEIGTFOPlugin implements IModPlugin {
         initializeFoodItems(registry);
     }
 
-
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
         registry.addRecipeCategories(new LacingCategory(registry.getJeiHelpers().getGuiHelper()));
         registry.addRecipeCategories(new EatingRecipeCategory(registry.getJeiHelpers().getGuiHelper()));
-
     }
 
     public static void initializeFoodItems(IModRegistry registry) {
@@ -83,7 +84,7 @@ public class JEIGTFOPlugin implements IModPlugin {
                     if (manager.getFoodStats() instanceof GTFOFoodStats stats // A sanity check can't hurt
                             && stats.stackSupplier.get() != ItemStack.EMPTY) {
                         registry.addRecipes(ObjectSets.singleton(new EatingRecipeInfo(metaValueItem.getStackForm(),
-                                        stats.stackSupplier.get())),
+                                stats.stackSupplier.get())),
                                 GTFOValues.MODID + ":eating_recipe");
                     }
                 }

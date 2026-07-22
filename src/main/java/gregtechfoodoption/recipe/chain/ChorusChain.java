@@ -1,18 +1,20 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.item.GTFOMetaItem;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
-import net.minecraft.init.Items;
-
 import static gregtech.api.GTValues.*;
 import static gregtech.api.recipes.RecipeMaps.CANNER_RECIPES;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
+import net.minecraft.init.Items;
+
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.api.unification.ore.OrePrefix;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.item.GTFOMetaItem;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
+
 public class ChorusChain {
+
     public static void init() {
         RecipeMaps.EXTRACTOR_RECIPES.recipeBuilder().EUt(16).duration(200)
                 .input(Items.CHORUS_FRUIT)

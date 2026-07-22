@@ -8,6 +8,7 @@ import gregtechfoodoption.item.GTFOMetaItems;
 import gregtechfoodoption.utils.GTFOUtils;
 
 public class GTFONutritionCompatibility {
+
     public static void init() {
         for (GTFOMetaItem.GTFOMetaValueItem item : GTFOMetaItems.META_ITEM.getAllItems()) {
             GTFOFoodStats stats = GTFOUtils.getGTFOFoodStats(item.getStackForm());

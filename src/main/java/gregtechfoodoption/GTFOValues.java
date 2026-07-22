@@ -1,14 +1,15 @@
 package gregtechfoodoption;
 
+import static gregtech.api.capability.GregtechDataCodes.assignId;
+
+import java.util.Random;
+
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.util.BaseCreativeTab;
 import gregtechfoodoption.item.GTFOMetaItem;
 
-import java.util.Random;
-
-import static gregtech.api.capability.GregtechDataCodes.assignId;
-
 public class GTFOValues {
+
     public static final String MODID = "gregtechfoodoption",
             MODID_GCYS = "gcys",
             MODID_AA = "actuallyadditions",
@@ -33,8 +34,10 @@ public class GTFOValues {
     public static final int UPDATE_KITCHEN_STATUS = assignId();
     public static final int UPDATE_KITCHEN_ORDER = assignId();
 
-    public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.DOUGH.getStackForm(), true);
-    public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food", () -> GTFOMetaItem.BANANA.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main",
+            () -> GTFOMetaItem.DOUGH.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food",
+            () -> GTFOMetaItem.BANANA.getStackForm(), true);
 
     public static final Random rand = new Random();
 }

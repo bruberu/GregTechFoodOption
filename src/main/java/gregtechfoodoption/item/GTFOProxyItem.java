@@ -1,19 +1,22 @@
 package gregtechfoodoption.item;
 
-import gregtech.api.GregTechAPI;
-import gregtech.api.items.metaitem.MetaOreDictItem;
-import net.minecraft.item.ItemStack;
+import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
 
 import java.util.function.Supplier;
 
-import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
+import net.minecraft.item.ItemStack;
+
+import gregtech.api.GregTechAPI;
+import gregtech.api.items.metaitem.MetaOreDictItem;
 
 public class GTFOProxyItem {
+
     private final Supplier<ItemStack> itemPreparer;
     private ItemStack preferredItem;
     private final boolean isOverriden;
 
-    public GTFOProxyItem(Supplier<MetaOreDictItem.OreDictValueItem> gtfoItem, int gtfoItemID, String name, Supplier<ItemStack> otherItem) {
+    public GTFOProxyItem(Supplier<MetaOreDictItem.OreDictValueItem> gtfoItem, int gtfoItemID, String name,
+                         Supplier<ItemStack> otherItem) {
         isOverriden = GregTechAPI.materialManager.getMaterial(name) != null;
         if (isOverriden) {
             itemPreparer = otherItem;

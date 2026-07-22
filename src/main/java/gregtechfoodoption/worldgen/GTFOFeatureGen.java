@@ -1,7 +1,11 @@
 package gregtechfoodoption.worldgen;
 
-import gregtech.common.ConfigHolder;
-import gregtechfoodoption.worldgen.condition.FeatureCondition;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -9,12 +13,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import gregtech.common.ConfigHolder;
+import gregtechfoodoption.worldgen.condition.FeatureCondition;
 
 public abstract class GTFOFeatureGen extends WorldGenerator {
+
     public final GTFOFeature feature;
 
     protected GTFOFeatureGen(boolean notify, GTFOFeature feature) {
@@ -28,14 +31,28 @@ public abstract class GTFOFeatureGen extends WorldGenerator {
     }
 
     public void setBlockSafely(World worldIn, BlockPos pos, IBlockState state) {
-        if (worldIn.getBlockState(pos).getBlock().canBeReplacedByLeaves(worldIn.getBlockState(pos), worldIn, pos)) { // I assume here, for my sanity, that all wood blocks are already accounted for.
+        if (worldIn.getBlockState(pos).getBlock().canBeReplacedByLeaves(worldIn.getBlockState(pos), worldIn, pos)) { // I
+                                                                                                                     // assume
+                                                                                                                     // here,
+                                                                                                                     // for
+                                                                                                                     // my
+                                                                                                                     // sanity,
+                                                                                                                     // that
+                                                                                                                     // all
+                                                                                                                     // wood
+                                                                                                                     // blocks
+                                                                                                                     // are
+                                                                                                                     // already
+                                                                                                                     // accounted
+                                                                                                                     // for.
             setBlockAndNotifyAdequately(worldIn, pos, state);
         }
     }
 
     public int getAmountInChunk(List<FeatureCondition> conditions, int chunkX, int chunkZ, World world, BlockPos pos) {
         Biome biome = world.getBiome(pos);
-        Optional<FeatureCondition> relevantCondition = conditions.stream().filter(biomeCondition -> biomeCondition.isSatisfied(biome)).findFirst();
+        Optional<FeatureCondition> relevantCondition = conditions.stream()
+                .filter(biomeCondition -> biomeCondition.isSatisfied(biome)).findFirst();
         double treeStrength = feature.getRandomStrength(chunkX, chunkZ);
         if (!ConfigHolder.misc.debug) {
             if (relevantCondition.isPresent() && relevantCondition.get().getPerlinCutoff(biome) < treeStrength) {

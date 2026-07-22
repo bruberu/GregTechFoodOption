@@ -1,5 +1,13 @@
 package gregtechfoodoption.machines.multiblock.kitchen;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.items.IItemHandlerModifiable;
+
 import gregtech.api.capability.IMultipleTankHandler;
 import gregtech.api.metatileentity.WorkableTieredMetaTileEntity;
 import gregtech.api.recipes.Recipe;
@@ -8,15 +16,9 @@ import gregtech.api.recipes.ingredients.GTRecipeFluidInput;
 import gregtech.api.recipes.ingredients.GTRecipeInput;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.util.GTUtility;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.items.IItemHandlerModifiable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class KitchenRequestNode {
+
     final Recipe recipe;
     final RecipeMap map;
     final KitchenLogic logic;
@@ -24,6 +26,7 @@ public class KitchenRequestNode {
     BlockPos machineRunning;
     KitchenRequestState state = KitchenRequestState.NEEDS_PROCESSING;
     final List<GTRecipeInput> dependencies = new ArrayList<>();
+
     public KitchenRequestNode(Recipe recipe, RecipeMap map, KitchenLogic logic) {
         this.recipe = recipe;
         this.map = map;
@@ -39,7 +42,9 @@ public class KitchenRequestNode {
                 this.state = KitchenRequestState.DONE;
             }
         }
-        if (this.state == KitchenRequestState.NEEDS_PROCESSING || ((this.state == KitchenRequestState.AWAITING_RESULTS || this.state == KitchenRequestState.AWAITING_INGREDIENTS) && logic.wasNotified)) {
+        if (this.state == KitchenRequestState.NEEDS_PROCESSING ||
+                ((this.state == KitchenRequestState.AWAITING_RESULTS ||
+                        this.state == KitchenRequestState.AWAITING_INGREDIENTS) && logic.wasNotified)) {
             dependencies.clear();
             List<GTRecipeItemInput> missingItems = missingItems(GTUtility.itemHandlerToList(inputs));
             List<GTRecipeFluidInput> missingFluids = missingFluids(GTUtility.fluidHandlerToList(fluidInputs));
@@ -58,7 +63,8 @@ public class KitchenRequestNode {
                 for (GTRecipeItemInput item : missingItems) {
                     logic.setNodes(item);
                     List<KitchenRequestNode> nodes = logic.getNodes(item);
-                    if (nodes == null || nodes.isEmpty()) { // No recipes for this item, so we can't run it until we get said ingredients
+                    if (nodes == null || nodes.isEmpty()) { // No recipes for this item, so we can't run it until we get
+                                                            // said ingredients
                         this.state = KitchenRequestState.AWAITING_INGREDIENTS;
                     }
                 }
@@ -71,7 +77,8 @@ public class KitchenRequestNode {
                 }
             }
         } else if (this.state == KitchenRequestState.AWAITING_RESULTS) {
-            // We look through our dependencies to see if they are runnable, processing, or awaiting ingredients themselves. If a dependency's recipes are all not runnable, immediately exit.
+            // We look through our dependencies to see if they are runnable, processing, or awaiting ingredients
+            // themselves. If a dependency's recipes are all not runnable, immediately exit.
             boolean certainToRun = true; // Only activates when all dependencies have a running recipe
             for (GTRecipeInput dependency : dependencies) {
                 boolean isRunnable = false;

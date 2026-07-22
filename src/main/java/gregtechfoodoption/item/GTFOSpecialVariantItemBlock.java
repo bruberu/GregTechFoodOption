@@ -1,10 +1,11 @@
 package gregtechfoodoption.item;
 
-import gregtechfoodoption.block.IVariantNamed;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+
+import gregtechfoodoption.block.IVariantNamed;
 
 public class GTFOSpecialVariantItemBlock<T extends Block & IVariantNamed> extends ItemBlock {
 

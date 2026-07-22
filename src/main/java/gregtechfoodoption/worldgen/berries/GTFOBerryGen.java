@@ -1,15 +1,15 @@
 package gregtechfoodoption.worldgen.berries;
 
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.worldgen.GTFOFeatureGen;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Random;
 
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.worldgen.GTFOFeatureGen;
+
 public class GTFOBerryGen extends GTFOFeatureGen {
+
     public GTFOBerryGen(GTFOBerry berry) {
         super(true, berry);
     }

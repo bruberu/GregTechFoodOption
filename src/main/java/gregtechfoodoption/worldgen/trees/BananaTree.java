@@ -1,10 +1,9 @@
 package gregtechfoodoption.worldgen.trees;
 
-import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.condition.BiomeCondition;
-import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
+import static gregtechfoodoption.item.GTFOMetaItem.BANANA;
+
+import java.util.Random;
+
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -14,13 +13,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
-import static gregtechfoodoption.item.GTFOMetaItem.BANANA;
+import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class BananaTree extends GTFOTree {
 
-    //TODO: make the generation here use the actual trunk height rather than the overall height`
+    // TODO: make the generation here use the actual trunk height rather than the overall height`
     public static int LEAVES_COLOR = 0x396A2E;
 
     public BananaTree() {
@@ -33,7 +34,8 @@ public class BananaTree extends GTFOTree {
         this.addCondition(new TemperatureRainfallCondition(5, 1.5, 0.8, 0.8, 0.4));
     }
 
-    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int height, Random random,
+                                  TriConsumer<World, BlockPos, IBlockState> notifier) {
         // Generate top
         {
             BlockPos.MutableBlockPos posCopy = GTFOUtils.copy(pos.up(height - 1));
@@ -65,17 +67,20 @@ public class BananaTree extends GTFOTree {
         // Generate ring at height - 3 for extra fullness
         for (int i = 0; i < 4; i++) {
             notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)), getNaturalLeavesState());
-            notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i)).offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
+            notifier.accept(world, pos.up(height - 1).offset(EnumFacing.byHorizontalIndex(i))
+                    .offset(EnumFacing.byHorizontalIndex(i).rotateY()), getNaturalLeavesState());
         }
     }
 
-    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random,
+                                 TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos upN = GTFOUtils.copy(pos);
         for (int height = 0; height < maxHeight; ++height) {
             IBlockState state = world.getBlockState(upN);
 
             if (state.getBlock().isAir(state, world, upN) || state.getBlock().isLeaves(state, world, upN)) {
-                notifier.accept(world, pos.up(height), logState.withProperty(BlockLog.LOG_AXIS, height == maxHeight - 1 ? BlockLog.EnumAxis.NONE : BlockLog.EnumAxis.Y));
+                notifier.accept(world, pos.up(height), logState.withProperty(BlockLog.LOG_AXIS,
+                        height == maxHeight - 1 ? BlockLog.EnumAxis.NONE : BlockLog.EnumAxis.Y));
             }
             upN.move(EnumFacing.UP);
         }
@@ -88,7 +93,6 @@ public class BananaTree extends GTFOTree {
         }
         return ItemStack.EMPTY;
     }
-
 
     @Override
     public ItemStack getApple() {
@@ -109,5 +113,4 @@ public class BananaTree extends GTFOTree {
     public int getMinTrunkHeight(Random random) {
         return 3 + random.nextInt(1);
     }
-
 }

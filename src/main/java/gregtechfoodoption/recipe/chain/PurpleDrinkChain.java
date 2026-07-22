@@ -1,8 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -10,7 +7,11 @@ import static gregtech.common.items.MetaItems.*;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+
 public class PurpleDrinkChain {
+
     public static void init() {
         CANNER_RECIPES.recipeBuilder()
                 .fluidInputs(PurpleDrink.getFluid(500))
@@ -39,18 +40,20 @@ public class PurpleDrinkChain {
                 .EUt(30)
                 .duration(20)
                 .buildAndRegister();
-/*        MIXER_RECIPES.recipeBuilder()
-                .fluidInputs(LemonLimeSludge.getFluid(1000), HFCSLv.getFluid(166))
-                .fluidOutputs(LemonLimeSodaSyrup.getFluid(1000))
-                .EUt(60)
-                .duration(40)
-                .buildAndRegister();
-        MIXER_RECIPES.recipeBuilder()
-                .fluidInputs(LemonLimeSludge.getFluid(750), HFCSXlii.getFluid(375))
-                .fluidOutputs(LemonLimeSodaSyrup.getFluid(750))
-                .EUt(60)
-                .duration(40)
-                .buildAndRegister();*/
+        /*
+         * MIXER_RECIPES.recipeBuilder()
+         * .fluidInputs(LemonLimeSludge.getFluid(1000), HFCSLv.getFluid(166))
+         * .fluidOutputs(LemonLimeSodaSyrup.getFluid(1000))
+         * .EUt(60)
+         * .duration(40)
+         * .buildAndRegister();
+         * MIXER_RECIPES.recipeBuilder()
+         * .fluidInputs(LemonLimeSludge.getFluid(750), HFCSXlii.getFluid(375))
+         * .fluidOutputs(LemonLimeSodaSyrup.getFluid(750))
+         * .EUt(60)
+         * .duration(40)
+         * .buildAndRegister();
+         */
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(LemonLimeSludge.getFluid(500))
                 .input(Items.SUGAR, 9)
@@ -70,92 +73,98 @@ public class PurpleDrinkChain {
                 .EUt(30)
                 .duration(100)
                 .buildAndRegister();
-/*
-        RecipeUtils.addBioReactorRecipes(DistilledWater, LACTOBACILLUS_PENTOSIS_CULTURE, LactobacillusPentosis.getItemStack(), Milk);
-        RecipeUtils.addBioReactorRecipes(DistilledWater, BACILLUS_SUBTILIS_CULTURE, BacillusSubtilis.getItemStack(), new ItemStack(Items.WHEAT));
-*/
-/*        MIXER_RECIPES.recipeBuilder()
-                .fluidInputs(HFCSXlii.getFluid(771),HFCSXc.getFluid(229))
-                .fluidOutputs(HFCSLv.getFluid(1000))
-                .EUt(30)
-                .duration(80)
-                .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
-                .fluidInputs(HighFructoseCornSyrupSolution.getFluid(1000))
-                .fluidOutputs(HFCSXlii.getFluid(1000))
-                .EUt(120)
-                .duration(100)
-                .buildAndRegister();
-        CENTRIFUGE_RECIPES.recipeBuilder()
-                .fluidInputs(HighFructoseCornSyrupSolution.getFluid(1000))
-                .fluidOutputs(HFCSXc.getFluid(466))
-                .EUt(1920)
-                .duration(240)
-                .buildAndRegister();
-        BIO_REACTOR_RECIPES.recipeBuilder()
-                .fluidInputs(GlucoseSolution.getFluid(1000))
-                .notConsumable(FructoseConversionPlate.getItemStack())
-                .fluidOutputs(HighFructoseCornSyrupSolution.getFluid(1000))
-                .EUt(240)
-                .duration(125)
-                .buildAndRegister();
-        RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
-                .fluidInputs(GlucoseSolution.getFluid(1000))
-                .outputs(Glucose.getItemStack(24))
-                .EUt(480)
-                .duration(100)
-                .buildAndRegister();
-        ASSEMBLER_RECIPES.recipeBuilder()
-                .fluidInputs(Glue.getFluid(100))
-                .inputs(XyloseIsomerase.getItemStack())
-                .input(plate, Polytetrafluoroethylene)
-                .outputs(FructoseConversionPlate.getItemStack())
-                .EUt(40)
-                .duration(400)
-                .buildAndRegister();
-        BIO_REACTOR_RECIPES.recipeBuilder()
-                .inputs(LactobacillusPentosis.getItemStack())
-                .input(dustSmall, Sugar)
-                .outputs(XyloseIsomerase.getItemStack())
-                .EUt(480)
-                .duration(180)
-                .buildAndRegister();
-        BIO_REACTOR_RECIPES.recipeBuilder()
-                .inputs(GammaAmylase.getItemStack())
-                .fluidInputs(OligosaccharideSolution.getFluid(1000))
-                .fluidOutputs(GlucoseSolution.getFluid(1000))
-                .EUt(30)
-                .duration(400)
-                .buildAndRegister();
-        BIO_REACTOR_RECIPES.recipeBuilder()
-                .inputs(BacillusSubtilis.getItemStack())
-                .input(dustSmall, Wheat)
-                .chancedOutput(GammaAmylase.getItemStack(), 4000, 600)
-                .chancedOutput(AlphaAmylase.getItemStack(), 4000, 600)
-                .EUt(30)
-                .duration(400)
-                .buildAndRegister();
-        BIO_REACTOR_RECIPES.recipeBuilder()
-                .inputs(AlphaAmylase.getItemStack())
-                .fluidInputs(CornStarchSolution.getFluid(1000))
-                .fluidOutputs(OligosaccharideSolution.getFluid(1000))
-                .EUt(120)
-                .duration(100)
-                .buildAndRegister();*/
-/*        MIXER_RECIPES.recipeBuilder()
-                .inputs(CornStarch.getItemStack())
-                .fluidInputs(DistilledWater.getFluid(1000))
-                .fluidOutputs(CornStarchSolution.getFluid(1000))
-                .EUt(6)
-                .duration(60)
-                .buildAndRegister();
-        LATHE_RECIPES.recipeBuilder()
-                .inputs(PopcornKernel.getItemStack())
-                .outputs(CornStarch.getItemStack())
-                .output(dustSmall, Wood, 2)
-                .EUt(18)
-                .duration(200)
-                .buildAndRegister();*/
+        /*
+         * RecipeUtils.addBioReactorRecipes(DistilledWater, LACTOBACILLUS_PENTOSIS_CULTURE,
+         * LactobacillusPentosis.getItemStack(), Milk);
+         * RecipeUtils.addBioReactorRecipes(DistilledWater, BACILLUS_SUBTILIS_CULTURE, BacillusSubtilis.getItemStack(),
+         * new ItemStack(Items.WHEAT));
+         */
+        /*
+         * MIXER_RECIPES.recipeBuilder()
+         * .fluidInputs(HFCSXlii.getFluid(771),HFCSXc.getFluid(229))
+         * .fluidOutputs(HFCSLv.getFluid(1000))
+         * .EUt(30)
+         * .duration(80)
+         * .buildAndRegister();
+         * RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
+         * .fluidInputs(HighFructoseCornSyrupSolution.getFluid(1000))
+         * .fluidOutputs(HFCSXlii.getFluid(1000))
+         * .EUt(120)
+         * .duration(100)
+         * .buildAndRegister();
+         * CENTRIFUGE_RECIPES.recipeBuilder()
+         * .fluidInputs(HighFructoseCornSyrupSolution.getFluid(1000))
+         * .fluidOutputs(HFCSXc.getFluid(466))
+         * .EUt(1920)
+         * .duration(240)
+         * .buildAndRegister();
+         * BIO_REACTOR_RECIPES.recipeBuilder()
+         * .fluidInputs(GlucoseSolution.getFluid(1000))
+         * .notConsumable(FructoseConversionPlate.getItemStack())
+         * .fluidOutputs(HighFructoseCornSyrupSolution.getFluid(1000))
+         * .EUt(240)
+         * .duration(125)
+         * .buildAndRegister();
+         * RecipeUtils.chemicalDehydratorProxy().recipeBuilder()
+         * .fluidInputs(GlucoseSolution.getFluid(1000))
+         * .outputs(Glucose.getItemStack(24))
+         * .EUt(480)
+         * .duration(100)
+         * .buildAndRegister();
+         * ASSEMBLER_RECIPES.recipeBuilder()
+         * .fluidInputs(Glue.getFluid(100))
+         * .inputs(XyloseIsomerase.getItemStack())
+         * .input(plate, Polytetrafluoroethylene)
+         * .outputs(FructoseConversionPlate.getItemStack())
+         * .EUt(40)
+         * .duration(400)
+         * .buildAndRegister();
+         * BIO_REACTOR_RECIPES.recipeBuilder()
+         * .inputs(LactobacillusPentosis.getItemStack())
+         * .input(dustSmall, Sugar)
+         * .outputs(XyloseIsomerase.getItemStack())
+         * .EUt(480)
+         * .duration(180)
+         * .buildAndRegister();
+         * BIO_REACTOR_RECIPES.recipeBuilder()
+         * .inputs(GammaAmylase.getItemStack())
+         * .fluidInputs(OligosaccharideSolution.getFluid(1000))
+         * .fluidOutputs(GlucoseSolution.getFluid(1000))
+         * .EUt(30)
+         * .duration(400)
+         * .buildAndRegister();
+         * BIO_REACTOR_RECIPES.recipeBuilder()
+         * .inputs(BacillusSubtilis.getItemStack())
+         * .input(dustSmall, Wheat)
+         * .chancedOutput(GammaAmylase.getItemStack(), 4000, 600)
+         * .chancedOutput(AlphaAmylase.getItemStack(), 4000, 600)
+         * .EUt(30)
+         * .duration(400)
+         * .buildAndRegister();
+         * BIO_REACTOR_RECIPES.recipeBuilder()
+         * .inputs(AlphaAmylase.getItemStack())
+         * .fluidInputs(CornStarchSolution.getFluid(1000))
+         * .fluidOutputs(OligosaccharideSolution.getFluid(1000))
+         * .EUt(120)
+         * .duration(100)
+         * .buildAndRegister();
+         */
+        /*
+         * MIXER_RECIPES.recipeBuilder()
+         * .inputs(CornStarch.getItemStack())
+         * .fluidInputs(DistilledWater.getFluid(1000))
+         * .fluidOutputs(CornStarchSolution.getFluid(1000))
+         * .EUt(6)
+         * .duration(60)
+         * .buildAndRegister();
+         * LATHE_RECIPES.recipeBuilder()
+         * .inputs(PopcornKernel.getItemStack())
+         * .outputs(CornStarch.getItemStack())
+         * .output(dustSmall, Wood, 2)
+         * .EUt(18)
+         * .duration(200)
+         * .buildAndRegister();
+         */
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(Water.getFluid(1000), CarbonDioxide.getFluid(100))
                 .fluidOutputs(CarbonatedWater.getFluid(1050))

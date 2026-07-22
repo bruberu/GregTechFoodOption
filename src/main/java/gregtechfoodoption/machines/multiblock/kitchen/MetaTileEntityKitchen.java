@@ -1,9 +1,38 @@
 package gregtechfoodoption.machines.multiblock.kitchen;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.google.common.collect.Lists;
+
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
 import codechicken.lib.vec.Matrix4;
-import com.google.common.collect.Lists;
 import gregtech.api.GTValues;
 import gregtech.api.capability.GregtechDataCodes;
 import gregtech.api.capability.IEnergyContainer;
@@ -16,7 +45,6 @@ import gregtech.api.gui.ModularUI;
 import gregtech.api.gui.Widget;
 import gregtech.api.gui.resources.TextureArea;
 import gregtech.api.gui.widgets.ClickButtonWidget;
-import gregtech.api.gui.widgets.ImageWidget;
 import gregtech.api.gui.widgets.WidgetGroup;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.MetaTileEntityHolder;
@@ -41,35 +69,9 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOGuiTextures;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
+
     public static final int MIN_RADIUS = 2;
     private final KitchenLogic kitchenLogic;
     protected IItemHandlerModifiable inputInventory;
@@ -78,12 +80,14 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     protected IMultipleTankHandler outputFluidInventory;
     protected IEnergyContainer energyContainer;
     protected IItemHandlerModifiable recipeHolder = new ItemStackHandler(1) {
+
         @Override
         protected void onContentsChanged(int slot) {
             kitchenLogic.reset();
         }
     };
     protected IItemHandlerModifiable allCircuits = new ItemStackHandler(32) {
+
         @NotNull
         @Override
         public ItemStack getStackInSlot(int slot) {
@@ -127,9 +131,7 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     }
 
     @Override
-    protected void updateFormedValid() {
-
-    }
+    protected void updateFormedValid() {}
 
     @Override
     public void clearMachineInventory(NonNullList<ItemStack> itemBuffer) {
@@ -164,9 +166,8 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         StringBuilder borderBuilder = new StringBuilder();     // BBBBB
         StringBuilder centerBuilder = new StringBuilder();     // BFFFB
         StringBuilder frontBuilder = new StringBuilder();     // BBSBB
-        StringBuilder topBuilder = new StringBuilder(); //  III
+        StringBuilder topBuilder = new StringBuilder(); // III
         StringBuilder emptyBuilder = new StringBuilder();
-
 
         for (int i = 0; i < sDist; i++) {
             if (i == 0) {
@@ -189,7 +190,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         centerBuilder.insert(sDist, "F");
         topBuilder.append(new StringBuilder(topBuilder).reverse());
         topBuilder.insert(sDist, "I");
-
 
         TraceabilityPredicate basePredicate = autoAbilities().or(abilities(MultiblockAbility.INPUT_ENERGY)
                 .setMinGlobalLimited(1).setMaxGlobalLimited(3));
@@ -221,7 +221,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         return predicate;
     }
 
-
     @Nonnull
     protected TraceabilityPredicate innerPredicate() {
         return new TraceabilityPredicate(blockWorldState -> {
@@ -232,7 +231,8 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
             MetaTileEntity metaTileEntity = ((IGregTechTileEntity) tileEntity).getMetaTileEntity();
 
             // incompatible with the kitchen
-            if (!(metaTileEntity instanceof WorkableTieredMetaTileEntity) || metaTileEntity instanceof SimpleGeneratorMetaTileEntity)
+            if (!(metaTileEntity instanceof WorkableTieredMetaTileEntity) ||
+                    metaTileEntity instanceof SimpleGeneratorMetaTileEntity)
                 return true;
 
             // slurp
@@ -251,8 +251,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         }
     }
 
-
-
     @Override
     public boolean allowsExtendedFacing() {
         return false;
@@ -264,14 +262,16 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     }
 
     protected boolean updateStructureDimensions() {
-
         World world = getWorld();
         EnumFacing front = getFrontFacing();
         EnumFacing back = front.getOpposite();
         EnumFacing left = front.rotateYCCW();
         EnumFacing right = left.getOpposite();
 
-        BlockPos.MutableBlockPos lPos = new BlockPos.MutableBlockPos(getPos().offset(back)); // Can't have it looking the border to the left and right of the controller.
+        BlockPos.MutableBlockPos lPos = new BlockPos.MutableBlockPos(getPos().offset(back)); // Can't have it looking
+                                                                                             // the border to the left
+                                                                                             // and right of the
+                                                                                             // controller.
         BlockPos.MutableBlockPos rPos = new BlockPos.MutableBlockPos(getPos().offset(back));
         BlockPos.MutableBlockPos bPos = new BlockPos.MutableBlockPos(getPos());
 
@@ -295,7 +295,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                 break;
             }
         }
-
 
         if (sDist < MIN_RADIUS || bDist < MIN_RADIUS * 2) {
             invalidateStructure();
@@ -382,8 +381,10 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         return builder;
     }
 
-    public boolean isBlockEdge(@Nonnull World world, @Nonnull BlockPos.MutableBlockPos pos, @Nonnull EnumFacing direction) {
-        return world.getBlockState(pos.move(direction)) == getCasingState() || world.getTileEntity(pos) instanceof MetaTileEntityHolder;
+    public boolean isBlockEdge(@Nonnull World world, @Nonnull BlockPos.MutableBlockPos pos,
+                               @Nonnull EnumFacing direction) {
+        return world.getBlockState(pos.move(direction)) == getCasingState() ||
+                world.getTileEntity(pos) instanceof MetaTileEntityHolder;
     }
 
     @Nonnull
@@ -425,7 +426,8 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
     @Override
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
-        this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), isActive(), kitchenLogic.isWorkingEnabled());
+        this.getFrontOverlay().renderOrientedState(renderState, translation, pipeline, getFrontFacing(), isActive(),
+                kitchenLogic.isWorkingEnabled());
     }
 
     public boolean isActive() {
@@ -444,8 +446,10 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
-                        case PROBABLY_FINE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.probably_fine");
-                        case ORDER_COMPLETE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_complete");
+                        case PROBABLY_FINE -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.probably_fine");
+                        case ORDER_COMPLETE -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.order_complete");
                     }
                     if (comp != null) {
                         list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
@@ -454,7 +458,8 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                 .addCustom((list) -> {
                     if (!this.isActive())
                         return;
-                    list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_size", this.orderSize).setStyle((new Style()).setColor(TextFormatting.GOLD)));
+                    list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.order_size",
+                            this.orderSize).setStyle((new Style()).setColor(TextFormatting.GOLD)));
                 })
                 .addCustom((list) -> {
                     TextFormatting color = TextFormatting.GRAY;
@@ -466,8 +471,9 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         color = TextFormatting.WHITE;
                     }
 
-                    list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.dirtiness", this.kitchenLogic.dirtiness).setStyle(
-                            (new Style()).setColor(color)));
+                    list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.dirtiness",
+                            this.kitchenLogic.dirtiness).setStyle(
+                                    (new Style()).setColor(color)));
                 });
     }
 
@@ -479,16 +485,21 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
-                        case NO_RECIPE -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_recipe");
-                        case BAD_MACHINES -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.bad_machines");
-                        case MACHINES_NOT_WORKING -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.machines_not_working");
-                        case NO_INGREDIENTS -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.no_ingredients");
+                        case NO_RECIPE -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.no_recipe");
+                        case BAD_MACHINES -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.bad_machines");
+                        case MACHINES_NOT_WORKING -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.machines_not_working");
+                        case NO_INGREDIENTS -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.no_ingredients");
                     }
                     if (comp != null) {
                         list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
                     }
                 });
     }
+
     protected void addWarningText(List<ITextComponent> textList) {
         MultiblockDisplayText.builder(textList, this.isStructureFormed(), false)
                 .addMaintenanceProblemLines(this.getMaintenanceProblems())
@@ -498,24 +509,30 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
                         return;
                     ITextComponent comp = null;
                     switch (this.kitchenLogic.state) {
-                        case BUSES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.buses_full");
-                        case HATCHES_FULL -> comp = new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.hatches_full");
+                        case BUSES_FULL -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.buses_full");
+                        case HATCHES_FULL -> comp = new TextComponentTranslation(
+                                "gregtechfoodoption.multiblock.kitchen.hatches_full");
                     }
                     if (comp != null) {
                         list.add(comp.setStyle((new Style()).setColor(TextFormatting.AQUA)));
                     }
                     if (this.kitchenLogic.dirtiness > 100) {
-                        list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.very_dirty").setStyle(new Style().setColor(TextFormatting.RED)));
+                        list.add(new TextComponentTranslation("gregtechfoodoption.multiblock.kitchen.very_dirty")
+                                .setStyle(new Style().setColor(TextFormatting.RED)));
                     }
                 });
     }
 
-
     @Override
     protected @NotNull Widget getFlexButton(int x, int y, int width, int height) {
         WidgetGroup group = new WidgetGroup(x, y, width, height);
-        group.addWidget((new ClickButtonWidget(0, 0, 9, 18, "", this::decrementOrderSize)).setTooltipText("gregtechfoodoption.multiblock.kitchen.decrement_order").setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS));
-        group.addWidget((new ClickButtonWidget(9, 0, 9, 18, "", this::incrementOrderSize)).setTooltipText("gregtechfoodoption.multiblock.kitchen.increment_order").setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS));
+        group.addWidget((new ClickButtonWidget(0, 0, 9, 18, "", this::decrementOrderSize))
+                .setTooltipText("gregtechfoodoption.multiblock.kitchen.decrement_order")
+                .setButtonTexture(GuiTextures.BUTTON_THROTTLE_MINUS));
+        group.addWidget((new ClickButtonWidget(9, 0, 9, 18, "", this::incrementOrderSize))
+                .setTooltipText("gregtechfoodoption.multiblock.kitchen.increment_order")
+                .setButtonTexture(GuiTextures.BUTTON_THROTTLE_PLUS));
         return group;
     }
 
@@ -525,7 +542,6 @@ public class MetaTileEntityKitchen extends MultiblockWithDisplayBase {
         this.writeCustomData(GTFOValues.UPDATE_KITCHEN_ORDER, buf -> buf.writeInt(this.orderSize));
         this.markDirty();
     }
-
 
     private void decrementOrderSize(Widget.ClickData clickData) {
         this.orderSize--;

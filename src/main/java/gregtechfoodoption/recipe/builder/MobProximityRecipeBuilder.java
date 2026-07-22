@@ -1,19 +1,20 @@
 package gregtechfoodoption.recipe.builder;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.util.ResourceLocation;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.RecipeMap;
 import gregtechfoodoption.recipe.properties.CauseDamageProperty;
 import gregtechfoodoption.recipe.properties.MobOnTopProperty;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
-import net.minecraft.util.ResourceLocation;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class MobProximityRecipeBuilder extends RecipeBuilder<MobProximityRecipeBuilder> {
 
-    public MobProximityRecipeBuilder() {
-    }
+    public MobProximityRecipeBuilder() {}
 
     public MobProximityRecipeBuilder(Recipe recipe, RecipeMap<MobProximityRecipeBuilder> recipeMap) {
         super(recipe, recipeMap);
@@ -67,7 +68,8 @@ public class MobProximityRecipeBuilder extends RecipeBuilder<MobProximityRecipeB
 
     public ResourceLocation getEntityID() {
         return this.recipePropertyStorage == null ? new ResourceLocation("lightning_bolt") :
-                this.recipePropertyStorage.getRecipePropertyValue(MobOnTopProperty.getInstance(), new ResourceLocation("lightning_bolt"));
+                this.recipePropertyStorage.getRecipePropertyValue(MobOnTopProperty.getInstance(),
+                        new ResourceLocation("lightning_bolt"));
     }
 
     public float getDamage() {

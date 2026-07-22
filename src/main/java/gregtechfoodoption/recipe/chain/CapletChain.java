@@ -1,8 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.common.items.MetaItems;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
@@ -10,7 +7,11 @@ import static gregtech.api.unification.ore.OrePrefix.dustSmall;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.common.items.MetaItems;
+
 public class CapletChain {
+
     public static void init() {
         FLUID_HEATER_RECIPES.recipeBuilder().EUt(120).duration(540)
                 .fluidInputs(Water.getFluid(1000))

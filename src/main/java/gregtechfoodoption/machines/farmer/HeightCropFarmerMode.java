@@ -1,6 +1,7 @@
 package gregtechfoodoption.machines.farmer;
 
-import gregtechfoodoption.utils.GTFOUtils;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -11,7 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 
-import java.util.List;
+import gregtechfoodoption.utils.GTFOUtils;
 
 public class HeightCropFarmerMode extends CustomCropFarmerMode {
 
@@ -45,6 +46,5 @@ public class HeightCropFarmerMode extends CustomCropFarmerMode {
             world.playEvent(2001, reedTester, Block.getStateId(state));
             world.setBlockToAir(reedTester);
         }
-
     }
 }

@@ -1,5 +1,16 @@
 package gregtechfoodoption;
 
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.material.info.MaterialFlags.*;
+import static gregtech.api.unification.ore.OrePrefix.*;
+import static gregtechfoodoption.GTFOValues.Organic;
+import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
+import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
+
+import java.util.Collections;
+
+import net.minecraft.util.ResourceLocation;
+
 import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.fluids.FluidBuilder;
@@ -22,21 +33,11 @@ import gregtechfoodoption.materials.LacingProperty;
 import gregtechfoodoption.utils.GTFOFireSuppressantProperty;
 import it.unimi.dsi.fastutil.ints.Int2BooleanArrayMap;
 import it.unimi.dsi.fastutil.ints.Int2BooleanMap;
-import it.unimi.dsi.fastutil.objects.Object2BooleanMap;
-import it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap;
-import net.minecraft.util.ResourceLocation;
-
-import java.util.Collections;
-
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.material.info.MaterialFlags.*;
-import static gregtech.api.unification.ore.OrePrefix.*;
-import static gregtechfoodoption.GTFOValues.Organic;
-import static gregtechfoodoption.item.GTFOMetaItems.SHAPED_ITEM;
-import static gregtechfoodoption.utils.GTFOUtils.averageRGB;
 
 public class GTFOMaterialHandler {
-    public static final PropertyKey<FertilizerProperty> FERTILIZER = new PropertyKey<>("gtfo_fertilizer", FertilizerProperty.class);
+
+    public static final PropertyKey<FertilizerProperty> FERTILIZER = new PropertyKey<>("gtfo_fertilizer",
+            FertilizerProperty.class);
     public static final PropertyKey<LacingProperty> LACING = new PropertyKey<>("gtfo_lacing", LacingProperty.class);
     public static final PropertyKey<CleanerProperty> CLEANER = new PropertyKey<>("gtfo_cleaner", CleanerProperty.class);
     private static final Int2BooleanMap FOOD_RELATED_MATERIALS = new Int2BooleanArrayMap();
@@ -143,7 +144,8 @@ public class GTFOMaterialHandler {
     public static final Material PerchloricAcid = fluidBuilder(21529, "perchloric_acid", FluidAttributes.ACID)
             .components(Hydrogen, 1, Chlorine, 1, Oxygen, 4)
             .build();
-    public static final Material ChloroauricAcid = GregTechAPI.materialManager.getMaterial("chloroauric_acid") != null ? GregTechAPI.materialManager.getMaterial("chloroauric_acid") :
+    public static final Material ChloroauricAcid = GregTechAPI.materialManager.getMaterial("chloroauric_acid") != null ?
+            GregTechAPI.materialManager.getMaterial("chloroauric_acid") :
             fluidBuilder(21530, "chloroauric_acid", FluidAttributes.ACID)
                     .components(Hydrogen, 1, Gold, 1, Chlorine, 4)
                     .build();
@@ -174,11 +176,14 @@ public class GTFOMaterialHandler {
             .flags(DISABLE_DECOMPOSITION)
             .components(Carbon, 57, Hydrogen, 110, Oxygen, 6)
             .build();
-/*    public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid", FluidTypes.ACID).color(0xfff7e6)
-            .components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
-            .flags(DISABLE_DECOMPOSITION)
-            .build()
-            .setFormula("C17H35CO2H", true); // used as a food additive synthesized from Fat (Basically turning it into 3 parts)*/
+    /*
+     * public static final Material StearicAcid = fluidBuilder(21538, "stearic_acid", FluidTypes.ACID).color(0xfff7e6)
+     * .components(Carbon, 18, Hydrogen, 36, Oxygen, 2)
+     * .flags(DISABLE_DECOMPOSITION)
+     * .build()
+     * .setFormula("C17H35CO2H", true); // used as a food additive synthesized from Fat (Basically turning it into 3
+     * parts)
+     */
     public static final Material SodiumStearate = fluidBuilder(21539, "sodium_stearate")
             .components(Carbon, 18, Hydrogen, 35, Oxygen, 2, Sodium, 1)
             .flags(DISABLE_DECOMPOSITION)
@@ -188,11 +193,12 @@ public class GTFOMaterialHandler {
             .color(0xccbd61)
             .components(Carbon, 5, Hydrogen, 7, Oxygen, 5)
             .build()
-            .setFormula("HOC(CH2CO2H)2", true); //good for processing food
-    public static final Material HydrogenCyanide = GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") != null ? GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") : fluidBuilder(21541, "hydrogen_cyanide")
-            .color(0x6e6a5e)
-            .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
-            .build();
+            .setFormula("HOC(CH2CO2H)2", true); // good for processing food
+    public static final Material HydrogenCyanide = GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") != null ?
+            GregTechAPI.materialManager.getMaterial("hydrogen_cyanide") : fluidBuilder(21541, "hydrogen_cyanide")
+                    .color(0x6e6a5e)
+                    .components(Hydrogen, 1, Carbon, 1, Nitrogen, 1)
+                    .build();
 
     public static final Material Cream = fluidBuilderFood(21542, "cream")
             .color(0xced2d9)
@@ -243,9 +249,10 @@ public class GTFOMaterialHandler {
             .color(0xfc7996)
             .build();
 
-    public static final Material MoltenUnsweetenedChocolate = fluidBuilderFood(21556, "molten_unsweetened_chocolate", 370)
-            .color(0x7b3f00)
-            .build();
+    public static final Material MoltenUnsweetenedChocolate = fluidBuilderFood(21556, "molten_unsweetened_chocolate",
+            370)
+                    .color(0x7b3f00)
+                    .build();
     public static final Material CocoaButter = fluidBuilderFood(21557, "cocoa_butter")
             .color(0xe5dbce)
             .build();
@@ -267,7 +274,8 @@ public class GTFOMaterialHandler {
     public static final Material RainbowSap = fluidBuilderCustom(21562, "rainbow_sap")
             .color(0xffffff)
             .build();
-    public static final Material BlueVitriol = GregTechAPI.materialManager.getMaterial("blue_vitriol") != null ? GregTechAPI.materialManager.getMaterial("blue_vitriol") :
+    public static final Material BlueVitriol = GregTechAPI.materialManager.getMaterial("blue_vitriol") != null ?
+            GregTechAPI.materialManager.getMaterial("blue_vitriol") :
             fluidBuilder(21563, "blue_vitriol")
                     .color(0x4242DE)
                     .components(Copper, 1, Sulfur, 1, Oxygen, 4)
@@ -306,10 +314,11 @@ public class GTFOMaterialHandler {
     public static final Material HighFructoseCornSyrupSolution = fluidBuilder(21572, "hfcs_solution")
             .color(0xe3bc20)
             .build();
-    public static final Material XPhenothiazineIiPropylChloride = fluidBuilder(21573, "x_phenothiazine_ii_propyl_chloride")
-            .components(Carbon, 15, Hydrogen, 14, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
-            .flags(DISABLE_DECOMPOSITION)
-            .build();
+    public static final Material XPhenothiazineIiPropylChloride = fluidBuilder(21573,
+            "x_phenothiazine_ii_propyl_chloride")
+                    .components(Carbon, 15, Hydrogen, 14, Nitrogen, 1, Sulfur, 1, Chlorine, 1)
+                    .flags(DISABLE_DECOMPOSITION)
+                    .build();
     public static final Material AppleSyrup = fluidBuilderFood(21574, "apple_syrup")
             .color(0xf2e1ac)
             .build();
@@ -489,10 +498,10 @@ public class GTFOMaterialHandler {
             .color(0xa83351)
             .build();
 
-
-    public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970, "sweetened_diluted_cane_syrup_mixture")
-            .color(0xdedcc8)
-            .build();
+    public static final Material SweetenedDilutedCaneSyrupMixture = fluidBuilder(21970,
+            "sweetened_diluted_cane_syrup_mixture")
+                    .color(0xdedcc8)
+                    .build();
     public static final Material MarshmallowSyrupMixture = fluidBuilder(21971, "marshmallow_syrup_mixture")
             .color(0xe6e0dc)
             .build();
@@ -512,120 +521,231 @@ public class GTFOMaterialHandler {
             .color(0x695934)
             .build();
 
+    public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017,
+            "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
+    public static final GTFOOredictItem.OreDictValueItem SMALL_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1018,
+            "roasted_coffee_small", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem LARGE_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1019,
+            "roasted_coffee_large", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem SMALL_GRADED_COFFEE = SHAPED_ITEM.addOreDictItem(1020,
+            "graded_coffee_small", 0x635c55, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem LARGE_GRADED_COFFEE = SHAPED_ITEM.addOreDictItem(1021,
+            "graded_coffee_large", 0x635c55, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem SMALL_HULLED_COFFEE = SHAPED_ITEM.addOreDictItem(1022,
+            "hulled_coffee_small", 0x7d4b16, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem LARGE_HULLED_COFFEE = SHAPED_ITEM.addOreDictItem(1023,
+            "hulled_coffee_large", 0x7d4b16, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem SMALL_DRIED_COFFEE = SHAPED_ITEM.addOreDictItem(1024,
+            "dried_coffee_small", 0x8c6842, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem LARGE_DRIED_COFFEE = SHAPED_ITEM.addOreDictItem(1025,
+            "dried_coffee_large", 0x8c6842, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem SMALL_WET_COFFEE = SHAPED_ITEM.addOreDictItem(1026,
+            "wet_coffee_small", 0x756452, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem LARGE_WET_COFFEE = SHAPED_ITEM.addOreDictItem(1027,
+            "wet_coffee_large", 0x756452, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem SMALL_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1028,
+            "basic_coffee_small", 0x3b220d, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem LARGE_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1029,
+            "basic_coffee_large", 0x3b220d, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem UNSORTED_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1030,
+            "basic_coffee_unsorted", 0x422003, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
 
-    public static final GTFOOredictItem.OreDictValueItem COFFEE_GROUNDS = SHAPED_ITEM.addOreDictItem(1017, "coffee_grounds", 0x1a1612, MaterialIconSet.DULL, OrePrefix.dust);
-    public static final GTFOOredictItem.OreDictValueItem SMALL_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1018, "roasted_coffee_small", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem LARGE_ROASTED_COFFEE = SHAPED_ITEM.addOreDictItem(1019, "roasted_coffee_large", 0x1a1612, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem SMALL_GRADED_COFFEE = SHAPED_ITEM.addOreDictItem(1020, "graded_coffee_small", 0x635c55, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem LARGE_GRADED_COFFEE = SHAPED_ITEM.addOreDictItem(1021, "graded_coffee_large", 0x635c55, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem SMALL_HULLED_COFFEE = SHAPED_ITEM.addOreDictItem(1022, "hulled_coffee_small", 0x7d4b16, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem LARGE_HULLED_COFFEE = SHAPED_ITEM.addOreDictItem(1023, "hulled_coffee_large", 0x7d4b16, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem SMALL_DRIED_COFFEE = SHAPED_ITEM.addOreDictItem(1024, "dried_coffee_small", 0x8c6842, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem LARGE_DRIED_COFFEE = SHAPED_ITEM.addOreDictItem(1025, "dried_coffee_large", 0x8c6842, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem SMALL_WET_COFFEE = SHAPED_ITEM.addOreDictItem(1026, "wet_coffee_small", 0x756452, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem LARGE_WET_COFFEE = SHAPED_ITEM.addOreDictItem(1027, "wet_coffee_large", 0x756452, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem SMALL_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1028, "basic_coffee_small", 0x3b220d, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem LARGE_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1029, "basic_coffee_large", 0x3b220d, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem UNSORTED_BASIC_COFFEE = SHAPED_ITEM.addOreDictItem(1030, "basic_coffee_unsorted", 0x422003, MaterialIconSet.GEM_VERTICAL, OrePrefix.gemChipped);
-
-    public static final MetaOreDictItem.OreDictValueItem HotAppleHardCandy = SHAPED_ITEM.addFoodOreDictItem(1084, "hot_apple_hard_candy", 0x78e32b, MaterialIconSet.DULL, OrePrefix.plate);
+    public static final MetaOreDictItem.OreDictValueItem HotAppleHardCandy = SHAPED_ITEM.addFoodOreDictItem(1084,
+            "hot_apple_hard_candy", 0x78e32b, MaterialIconSet.DULL, OrePrefix.plate);
     /*
-        public static final GTFOOredictItem.OreDictItem BacillusSubtilis = new GTFOOredictItem.OreDictItem(1085, "bacillus_subtilis", 0xe0386b, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
-        public static final GTFOOredictItem.OreDictItem LactobacillusPentosis = new GTFOOredictItem.OreDictItem(1086, "lactobacillus_pentosis", 0x87316f, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
-        public static final GTFOOredictItem.OreDictItem FructoseConversionPlate = new GTFOOredictItem.OreDictItem(1087, "fructose_conversion_plate", 0xe0e0dc, MaterialIconSet.SHINY, OrePrefix.plate);
-        public static final GTFOOredictItem.OreDictItem XyloseIsomerase = new GTFOOredictItem.OreDictItem(1088, "xylose_isomerase", 0x9718ea, MaterialIconSet.SAND, OrePrefix.dust);
-        public static final GTFOOredictItem.OreDictItem AlphaAmylase = new GTFOOredictItem.OreDictItem(1089, "alpha_amylase", 0x69D992, MaterialIconSet.SAND, OrePrefix.dust);
-        public static final GTFOOredictItem.OreDictItem GammaAmylase = new GTFOOredictItem.OreDictItem(1090, "gamma_amylase", 0x4FCE67, MaterialIconSet.SAND, OrePrefix.dust);
-        public static final GTFOOredictItem.OreDictItem CornStarch = new GTFOOredictItem.OreDictItem(1091, "corn_starch", 0xfff5f5, MaterialIconSet.ROUGH, OrePrefix.dust);
-    */
-    public static final GTFOOredictItem.OreDictValueItem CrushedHardCandy = SHAPED_ITEM.addFoodOreDictItem(1093, "crushed_hard_candy", 0x52a302, MaterialIconSet.DULL, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem Promethazine = SHAPED_ITEM.addOreDictItem(1094, "promethazine", 0xf8fade, MaterialIconSet.SAND, OrePrefix.dust, "C17H20N2S");
-    public static final GTFOOredictItem.OreDictValueItem Codeine = SHAPED_ITEM.addOreDictItem(1095, "codeine", 0xfadef2, MaterialIconSet.SAND, OrePrefix.dust, "C18H21NO3");
-    public static final GTFOOredictItem.OreDictValueItem Phenothiazine = SHAPED_ITEM.addOreDictItem(1096, "phenothiazine", 0x67735c, MaterialIconSet.SAND, OrePrefix.dust, "C12H9NS");
-    public static final GTFOOredictItem.OreDictValueItem Diphenylamine = SHAPED_ITEM.addOreDictItem(1097, "diphenylamine", 0xe3932b, MaterialIconSet.SAND, OrePrefix.dust, "C12H11N");
-    public static final GTFOOredictItem.OreDictValueItem CrushedPoppy = SHAPED_ITEM.addOreDictItem(1098, "crushed_poppy", 0x940801, MaterialIconSet.ROUGH, OrePrefix.dust, "You monster.");
-    public static final GTFOOredictItem.OreDictValueItem HardCandyPlate = SHAPED_ITEM.addFoodOreDictItem(1099, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plate);
-    public static final GTFOOredictItem.OreDictValueItem HardCandyResin = SHAPED_ITEM.addFoodOreDictItem(1100, "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plateDense);
+     * public static final GTFOOredictItem.OreDictItem BacillusSubtilis = new GTFOOredictItem.OreDictItem(1085,
+     * "bacillus_subtilis", 0xe0386b, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
+     * public static final GTFOOredictItem.OreDictItem LactobacillusPentosis = new GTFOOredictItem.OreDictItem(1086,
+     * "lactobacillus_pentosis", 0x87316f, MaterialIconSet.ROUGH, OrePrefix.dust, "Bacteria");
+     * public static final GTFOOredictItem.OreDictItem FructoseConversionPlate = new GTFOOredictItem.OreDictItem(1087,
+     * "fructose_conversion_plate", 0xe0e0dc, MaterialIconSet.SHINY, OrePrefix.plate);
+     * public static final GTFOOredictItem.OreDictItem XyloseIsomerase = new GTFOOredictItem.OreDictItem(1088,
+     * "xylose_isomerase", 0x9718ea, MaterialIconSet.SAND, OrePrefix.dust);
+     * public static final GTFOOredictItem.OreDictItem AlphaAmylase = new GTFOOredictItem.OreDictItem(1089,
+     * "alpha_amylase", 0x69D992, MaterialIconSet.SAND, OrePrefix.dust);
+     * public static final GTFOOredictItem.OreDictItem GammaAmylase = new GTFOOredictItem.OreDictItem(1090,
+     * "gamma_amylase", 0x4FCE67, MaterialIconSet.SAND, OrePrefix.dust);
+     * public static final GTFOOredictItem.OreDictItem CornStarch = new GTFOOredictItem.OreDictItem(1091, "corn_starch",
+     * 0xfff5f5, MaterialIconSet.ROUGH, OrePrefix.dust);
+     */
+    public static final GTFOOredictItem.OreDictValueItem CrushedHardCandy = SHAPED_ITEM.addFoodOreDictItem(1093,
+            "crushed_hard_candy", 0x52a302, MaterialIconSet.DULL, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem Promethazine = SHAPED_ITEM.addOreDictItem(1094, "promethazine",
+            0xf8fade, MaterialIconSet.SAND, OrePrefix.dust, "C17H20N2S");
+    public static final GTFOOredictItem.OreDictValueItem Codeine = SHAPED_ITEM.addOreDictItem(1095, "codeine", 0xfadef2,
+            MaterialIconSet.SAND, OrePrefix.dust, "C18H21NO3");
+    public static final GTFOOredictItem.OreDictValueItem Phenothiazine = SHAPED_ITEM.addOreDictItem(1096,
+            "phenothiazine", 0x67735c, MaterialIconSet.SAND, OrePrefix.dust, "C12H9NS");
+    public static final GTFOOredictItem.OreDictValueItem Diphenylamine = SHAPED_ITEM.addOreDictItem(1097,
+            "diphenylamine", 0xe3932b, MaterialIconSet.SAND, OrePrefix.dust, "C12H11N");
+    public static final GTFOOredictItem.OreDictValueItem CrushedPoppy = SHAPED_ITEM.addOreDictItem(1098,
+            "crushed_poppy", 0x940801, MaterialIconSet.ROUGH, OrePrefix.dust, "You monster.");
+    public static final GTFOOredictItem.OreDictValueItem HardCandyPlate = SHAPED_ITEM.addFoodOreDictItem(1099,
+            "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plate);
+    public static final GTFOOredictItem.OreDictValueItem HardCandyResin = SHAPED_ITEM.addFoodOreDictItem(1100,
+            "hard_candy", 0x78e32b, MaterialIconSet.ROUGH, OrePrefix.plateDense);
 
-    public static final GTFOOredictItem.OreDictValueItem Zest = SHAPED_ITEM.addFoodOreDictItem(1092, "zest", 0xd8ff4a, MaterialIconSet.SAND, dust);
-    public static final GTFOOredictItem.OreDictValueItem PotatoStarch = SHAPED_ITEM.addFoodOreDictItem(1101, "potato_starch", 0xdedcb1, MaterialIconSet.ROUGH, dust);
+    public static final GTFOOredictItem.OreDictValueItem Zest = SHAPED_ITEM.addFoodOreDictItem(1092, "zest", 0xd8ff4a,
+            MaterialIconSet.SAND, dust);
+    public static final GTFOOredictItem.OreDictValueItem PotatoStarch = SHAPED_ITEM.addFoodOreDictItem(1101,
+            "potato_starch", 0xdedcb1, MaterialIconSet.ROUGH, dust);
 
-    public static final GTFOOredictItem.OreDictValueItem LargeMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1102, "large_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
-    public static final GTFOOredictItem.OreDictValueItem SmallMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1103, "small_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
-    public static final GTFOOredictItem.OreDictValueItem DriedMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1104, "dried_mozzarella_curd", 0xf5f4e4, MaterialIconSet.SHINY, OrePrefix.nugget);
-    public static final GTFOOredictItem.OreDictValueItem SolidifiedMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1105, "solidified_mozzarella_curd", 0xedebca, MaterialIconSet.SHINY, OrePrefix.nugget);
-    public static final GTFOOredictItem.OreDictValueItem CoagulatedMilkCurd = SHAPED_ITEM.addOreDictItem(1106, "coagulated_milk_curd", 0xede3cc, MaterialIconSet.SHINY, OrePrefix.nugget);
-    public static final GTFOOredictItem.OreDictValueItem CutCurd = SHAPED_ITEM.addOreDictItem(1107, "cut_curd", 0xede3cc, MaterialIconSet.SHINY, OrePrefix.round);
-    public static final GTFOOredictItem.OreDictValueItem CookedCurd = SHAPED_ITEM.addOreDictItem(1108, "cooked_curd", 0xffe8b3, MaterialIconSet.SHINY, OrePrefix.round);
-    public static final GTFOOredictItem.OreDictValueItem SaltedCurd = SHAPED_ITEM.addOreDictItem(1109, "salted_curd", 0xf7d68b, MaterialIconSet.SHINY, OrePrefix.round);
-    public static final GTFOOredictItem.OreDictValueItem GorgonzolaCurd = SHAPED_ITEM.addOreDictItem(1110, "gorgonzola_curd", 0xe5e5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
-    public static final GTFOOredictItem.OreDictValueItem PenicilliumRoqueforti = SHAPED_ITEM.addOreDictItem(1111, "penicillium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, dust, "Bacteria");
+    public static final GTFOOredictItem.OreDictValueItem LargeMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1102,
+            "large_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictValueItem SmallMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1103,
+            "small_mozzarella_curd", 0xf5f5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictValueItem DriedMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1104,
+            "dried_mozzarella_curd", 0xf5f4e4, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictValueItem SolidifiedMozzarellaCurd = SHAPED_ITEM.addOreDictItem(1105,
+            "solidified_mozzarella_curd", 0xedebca, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictValueItem CoagulatedMilkCurd = SHAPED_ITEM.addOreDictItem(1106,
+            "coagulated_milk_curd", 0xede3cc, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictValueItem CutCurd = SHAPED_ITEM.addOreDictItem(1107, "cut_curd",
+            0xede3cc, MaterialIconSet.SHINY, OrePrefix.round);
+    public static final GTFOOredictItem.OreDictValueItem CookedCurd = SHAPED_ITEM.addOreDictItem(1108, "cooked_curd",
+            0xffe8b3, MaterialIconSet.SHINY, OrePrefix.round);
+    public static final GTFOOredictItem.OreDictValueItem SaltedCurd = SHAPED_ITEM.addOreDictItem(1109, "salted_curd",
+            0xf7d68b, MaterialIconSet.SHINY, OrePrefix.round);
+    public static final GTFOOredictItem.OreDictValueItem GorgonzolaCurd = SHAPED_ITEM.addOreDictItem(1110,
+            "gorgonzola_curd", 0xe5e5f5, MaterialIconSet.SHINY, OrePrefix.nugget);
+    public static final GTFOOredictItem.OreDictValueItem PenicilliumRoqueforti = SHAPED_ITEM.addOreDictItem(1111,
+            "penicillium_roqueforti", 0x2a7b5a, MaterialIconSet.ROUGH, dust, "Bacteria");
 
-    public static final GTFOOredictItem.OreDictValueItem BurntBananaPeel = SHAPED_ITEM.addOreDictItem(1112, "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, dust);
-    public static final GTFOOredictItem.OreDictValueItem AmmoniumPerchlorate = SHAPED_ITEM.addOreDictItem(1113, "ammonium_perchlorate", averageRGB(4, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(), Oxygen.getMaterialRGB(), Hydrogen.getMaterialRGB()), MaterialIconSet.DULL, dust, "NH4ClO4");
-    public static final GTFOOredictItem.OreDictValueItem PotassiumPerchlorate = SHAPED_ITEM.addOreDictItem(1114, "potassium_perchlorate", averageRGB(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "KClO4");
+    public static final GTFOOredictItem.OreDictValueItem BurntBananaPeel = SHAPED_ITEM.addOreDictItem(1112,
+            "burnt_banana_peel", 0x121110, MaterialIconSet.ROUGH, dust);
+    public static final GTFOOredictItem.OreDictValueItem AmmoniumPerchlorate = SHAPED_ITEM.addOreDictItem(1113,
+            "ammonium_perchlorate", averageRGB(4, Ammonia.getMaterialRGB(), Chlorine.getMaterialRGB(),
+                    Oxygen.getMaterialRGB(), Hydrogen.getMaterialRGB()),
+            MaterialIconSet.DULL, dust, "NH4ClO4");
+    public static final GTFOOredictItem.OreDictValueItem PotassiumPerchlorate = SHAPED_ITEM.addOreDictItem(1114,
+            "potassium_perchlorate", averageRGB(2, AmmoniumPerchlorate.getMaterialRGB(), Potassium.getMaterialRGB()),
+            MaterialIconSet.ROUGH, dust, "KClO4");
 
-    public static final GTFOOredictItem.OreDictValueItem MashedPotato = SHAPED_ITEM.addFoodOreDictItem(1115, "mashed_potato", 0xf5d89f, MaterialIconSet.FINE, dust);
+    public static final GTFOOredictItem.OreDictValueItem MashedPotato = SHAPED_ITEM.addFoodOreDictItem(1115,
+            "mashed_potato", 0xf5d89f, MaterialIconSet.FINE, dust);
 
-    public static final GTFOOredictItem.OreDictValueItem ToughMeat = SHAPED_ITEM.addFoodOreDictItem(1116, "tough_meat", 0xa63028, MaterialIconSet.ROUGH, dust);
+    public static final GTFOOredictItem.OreDictValueItem ToughMeat = SHAPED_ITEM.addFoodOreDictItem(1116, "tough_meat",
+            0xa63028, MaterialIconSet.ROUGH, dust);
 
-    public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117, "kubide_meat", 0x9B0600, Organic, dust);
-    public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addFoodOreDictItem(1118, "barg_meat", 0x7F0000, Organic, dust);
-    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addFoodOreDictItem(1119, "fat", 0xFFF200, Organic, ingot, "C57H110O6"); // yea Fat is much more complicated, but I just stick to this formula...
+    public static final GTFOOredictItem.OreDictValueItem KubideMeat = SHAPED_ITEM.addOreDictItem(1117, "kubide_meat",
+            0x9B0600, Organic, dust);
+    public static final GTFOOredictItem.OreDictValueItem BargMeat = SHAPED_ITEM.addFoodOreDictItem(1118, "barg_meat",
+            0x7F0000, Organic, dust);
+    public static final GTFOOredictItem.OreDictValueItem Fat = SHAPED_ITEM.addFoodOreDictItem(1119, "fat", 0xFFF200,
+            Organic, ingot, "C57H110O6"); // yea Fat is much more complicated, but I just stick to this formula...
 
-    public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addFoodOreDictItem(1120, "cooked_meat", 0xa63028, MaterialIconSet.ROUGH, ingot);
-    //public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot", 0x84C873, Organic, OrePrefix.ingot);
+    public static final GTFOOredictItem.OreDictValueItem MeatIngot = SHAPED_ITEM.addFoodOreDictItem(1120, "cooked_meat",
+            0xa63028, MaterialIconSet.ROUGH, ingot);
+    // public static final GTFOOredictItem.OreDictValueItem SlimeIngot = SHAPED_ITEM.addOreDictItem(1120, "slime_ingot",
+    // 0x84C873, Organic, OrePrefix.ingot);
 
-    public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121, "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF), MaterialIconSet.ROUGH, dust, "NaClO4");
-    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate", averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "NaClO3"), 1122, "sodium_chlorate", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("sodium_chlorate")));
+    public static final GTFOOredictItem.OreDictValueItem SodiumPerchlorate = SHAPED_ITEM.addOreDictItem(1121,
+            "sodium_perchlorate", averageRGB(3, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB(), 0xFFFFFF),
+            MaterialIconSet.ROUGH, dust, "NaClO4");
+    public static final GTFOProxyItem SodiumChlorate = new GTFOProxyItem(
+            () -> SHAPED_ITEM.addOreDictItem(1122, "sodium_chlorate",
+                    averageRGB(2, Sodium.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust,
+                    "NaClO3"),
+            1122, "sodium_chlorate",
+            () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("sodium_chlorate")));
 
-    public static final GTFOOredictItem.OreDictValueItem VanillylmandelicAcid = SHAPED_ITEM.addOreDictItem(1123, "vanillylmandelic_acid", 0xf2efbd, MaterialIconSet.ROUGH, dust, "C9H10O5");
-    public static final GTFOOredictItem.OreDictValueItem VanilglycolicAcid = SHAPED_ITEM.addOreDictItem(1124, "vanilglycolic_acid", 0xebe7a4, MaterialIconSet.DULL, dust, "C9H8O5");
-    public static final GTFOOredictItem.OreDictValueItem Vanillin = SHAPED_ITEM.addOreDictItem(1125, "vanillin", 0xfbfbfb, MaterialIconSet.SHINY, OrePrefix.dust, "C8H8O3");
+    public static final GTFOOredictItem.OreDictValueItem VanillylmandelicAcid = SHAPED_ITEM.addOreDictItem(1123,
+            "vanillylmandelic_acid", 0xf2efbd, MaterialIconSet.ROUGH, dust, "C9H10O5");
+    public static final GTFOOredictItem.OreDictValueItem VanilglycolicAcid = SHAPED_ITEM.addOreDictItem(1124,
+            "vanilglycolic_acid", 0xebe7a4, MaterialIconSet.DULL, dust, "C9H8O5");
+    public static final GTFOOredictItem.OreDictValueItem Vanillin = SHAPED_ITEM.addOreDictItem(1125, "vanillin",
+            0xfbfbfb, MaterialIconSet.SHINY, OrePrefix.dust, "C8H8O3");
 
-    public static final GTFOProxyItem ArsenicTrioxide = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1126, "arsenic_trioxide", averageRGB(2, Arsenic.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust, "As2O3"), 1126, "arsenic_trioxide", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("arsenic_trioxide")));
-    public static final GTFOOredictItem.OreDictValueItem CupricHydrogenArsenite = SHAPED_ITEM.addOreDictItem(1127, "cupric_hydrogen_arsenite", 0x0fff00, MaterialIconSet.SHINY, OrePrefix.dust, "CuHAsO3");
-    public static final GTFOOredictItem.OreDictValueItem LaminatedDough = SHAPED_ITEM.addFoodOreDictItem(1128, "laminated_dough", 0xc6b4bb, MaterialIconSet.DULL, plate);
-    public static final MetaOreDictItem.OreDictValueItem CookedMinceMeat = SHAPED_ITEM.addFoodOreDictItem(1129, "cooked_mince_meat", 0x462b25, MaterialIconSet.ROUGH, dust);
-    public static final MetaOreDictItem.OreDictValueItem Aminophenol = SHAPED_ITEM.addOreDictItem(1130, "aminophenol", 0xFFFFFF, MaterialIconSet.SHINY, dust, "C6H7NO");
-    public static final MetaOreDictItem.OreDictValueItem IVNitrophenol = SHAPED_ITEM.addOreDictItem(1131, "ivnitrophenol", 0xFFFFE0, MaterialIconSet.SHINY, dust, "C6H5NO3");
-    public static final MetaOreDictItem.OreDictValueItem IINitrophenol = SHAPED_ITEM.addOreDictItem(1132, "iinitrophenol", 0xFFFF00, MaterialIconSet.SHINY, dust, "C6H5NO3");
-    public static final MetaOreDictItem.OreDictValueItem ShreddedParmesan = SHAPED_ITEM.addFoodOreDictItem(1133, "shredded_parmesan", 0xdbd6b4, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem BlackPepper = SHAPED_ITEM.addFoodOreDictItem(1134, "black_pepper", 0x02030f, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem Nutmeg = SHAPED_ITEM.addFoodOreDictItem(1135, "nutmeg", 0x391A0C, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem GratedHorseradishRoot = SHAPED_ITEM.addFoodOreDictItem(1136, "grated_horseradish_root", 0xE5D2C1, MaterialIconSet.DULL, dust);
-    public static final MetaOreDictItem.OreDictValueItem BoneChinaClay = SHAPED_ITEM.addFoodOreDictItem(1137, "bone_china_clay", 0xEEC1C1, MaterialIconSet.DULL, dust);
+    public static final GTFOProxyItem ArsenicTrioxide = new GTFOProxyItem(
+            () -> SHAPED_ITEM.addOreDictItem(1126, "arsenic_trioxide",
+                    averageRGB(2, Arsenic.getMaterialRGB(), Oxygen.getMaterialRGB()), MaterialIconSet.ROUGH, dust,
+                    "As2O3"),
+            1126, "arsenic_trioxide",
+            () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("arsenic_trioxide")));
+    public static final GTFOOredictItem.OreDictValueItem CupricHydrogenArsenite = SHAPED_ITEM.addOreDictItem(1127,
+            "cupric_hydrogen_arsenite", 0x0fff00, MaterialIconSet.SHINY, OrePrefix.dust, "CuHAsO3");
+    public static final GTFOOredictItem.OreDictValueItem LaminatedDough = SHAPED_ITEM.addFoodOreDictItem(1128,
+            "laminated_dough", 0xc6b4bb, MaterialIconSet.DULL, plate);
+    public static final MetaOreDictItem.OreDictValueItem CookedMinceMeat = SHAPED_ITEM.addFoodOreDictItem(1129,
+            "cooked_mince_meat", 0x462b25, MaterialIconSet.ROUGH, dust);
+    public static final MetaOreDictItem.OreDictValueItem Aminophenol = SHAPED_ITEM.addOreDictItem(1130, "aminophenol",
+            0xFFFFFF, MaterialIconSet.SHINY, dust, "C6H7NO");
+    public static final MetaOreDictItem.OreDictValueItem IVNitrophenol = SHAPED_ITEM.addOreDictItem(1131,
+            "ivnitrophenol", 0xFFFFE0, MaterialIconSet.SHINY, dust, "C6H5NO3");
+    public static final MetaOreDictItem.OreDictValueItem IINitrophenol = SHAPED_ITEM.addOreDictItem(1132,
+            "iinitrophenol", 0xFFFF00, MaterialIconSet.SHINY, dust, "C6H5NO3");
+    public static final MetaOreDictItem.OreDictValueItem ShreddedParmesan = SHAPED_ITEM.addFoodOreDictItem(1133,
+            "shredded_parmesan", 0xdbd6b4, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem BlackPepper = SHAPED_ITEM.addFoodOreDictItem(1134,
+            "black_pepper", 0x02030f, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem Nutmeg = SHAPED_ITEM.addFoodOreDictItem(1135, "nutmeg",
+            0x391A0C, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem GratedHorseradishRoot = SHAPED_ITEM.addFoodOreDictItem(1136,
+            "grated_horseradish_root", 0xE5D2C1, MaterialIconSet.DULL, dust);
+    public static final MetaOreDictItem.OreDictValueItem BoneChinaClay = SHAPED_ITEM.addFoodOreDictItem(1137,
+            "bone_china_clay", 0xEEC1C1, MaterialIconSet.DULL, dust);
 
-    public static final GTFOOredictItem.OreDictValueItem BareCornKernel = SHAPED_ITEM.addFoodOreDictItem(1001, "corn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addFoodOreDictItem(1000, "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem SodiumCyanide = SHAPED_ITEM.addOreDictItem(1138, "sodium_cyanide", averageRGB(2, HydrogenCyanide.getMaterialRGB(), Sodium.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "NaCN");
-    public static final GTFOOredictItem.OreDictValueItem LithiumOxide = SHAPED_ITEM.addOreDictItem(1139, "lithium_oxide", averageRGB(2, Lithium.getMaterialRGB(), 0), MaterialIconSet.DULL, OrePrefix.dust, "Li2O");
-    public static final GTFOProxyItem LithiumCarbonate = new GTFOProxyItem(() -> SHAPED_ITEM.addOreDictItem(1140, "lithium_carbonate", averageRGB(2, Lithium.getMaterialRGB(), CarbonDioxide.getMaterialRGB()), MaterialIconSet.DULL, OrePrefix.dust, "Li2CO3"),
-            1140, "lithium_carbonate", () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("lithium_carbonate")));
+    public static final GTFOOredictItem.OreDictValueItem BareCornKernel = SHAPED_ITEM.addFoodOreDictItem(1001,
+            "corn_kernel_bare", 0xfecb60, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem CornKernel = SHAPED_ITEM.addFoodOreDictItem(1000,
+            "corn_kernel", 0xffea70, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem SodiumCyanide = SHAPED_ITEM.addOreDictItem(1138,
+            "sodium_cyanide", averageRGB(2, HydrogenCyanide.getMaterialRGB(), Sodium.getMaterialRGB()),
+            MaterialIconSet.DULL, OrePrefix.dust, "NaCN");
+    public static final GTFOOredictItem.OreDictValueItem LithiumOxide = SHAPED_ITEM.addOreDictItem(1139,
+            "lithium_oxide", averageRGB(2, Lithium.getMaterialRGB(), 0), MaterialIconSet.DULL, OrePrefix.dust, "Li2O");
+    public static final GTFOProxyItem LithiumCarbonate = new GTFOProxyItem(
+            () -> SHAPED_ITEM.addOreDictItem(1140, "lithium_carbonate",
+                    averageRGB(2, Lithium.getMaterialRGB(), CarbonDioxide.getMaterialRGB()), MaterialIconSet.DULL,
+                    OrePrefix.dust, "Li2CO3"),
+            1140, "lithium_carbonate",
+            () -> OreDictUnifier.get(dust, GregTechAPI.materialManager.getMaterial("lithium_carbonate")));
 
-    public static final GTFOOredictItem.OreDictValueItem BoneAsh = SHAPED_ITEM.addOreDictItem(1141, "bone_ash", 0xFEFDFE, MaterialIconSet.DULL, OrePrefix.dust);
-    public static final MetaOreDictItem.OreDictValueItem UnfiredPorcelainTile = SHAPED_ITEM.addOreDictItem(1142, "unfired_porcelain_tile", 0xC2C2C4, MaterialIconSet.ROUGH, plate);
-    public static final MetaOreDictItem.OreDictValueItem BiscuitPorcelainTile = SHAPED_ITEM.addOreDictItem(1143, "bisque_porcelain_tile", 0xFEFEE8, MaterialIconSet.ROUGH, plate);
-    public static final MetaOreDictItem.OreDictValueItem GlazedPorcelainTile = SHAPED_ITEM.addOreDictItem(1144, "glazed_porcelain_tile", 0xEEEEEE, MaterialIconSet.SHINY, plate);
-    public static final MetaOreDictItem.OreDictValueItem BlackGlazedPorcelainTile = SHAPED_ITEM.addOreDictItem(1145, "black_glazed_porcelain_tile", 0x111111, MaterialIconSet.SHINY, plate);
+    public static final GTFOOredictItem.OreDictValueItem BoneAsh = SHAPED_ITEM.addOreDictItem(1141, "bone_ash",
+            0xFEFDFE, MaterialIconSet.DULL, OrePrefix.dust);
+    public static final MetaOreDictItem.OreDictValueItem UnfiredPorcelainTile = SHAPED_ITEM.addOreDictItem(1142,
+            "unfired_porcelain_tile", 0xC2C2C4, MaterialIconSet.ROUGH, plate);
+    public static final MetaOreDictItem.OreDictValueItem BiscuitPorcelainTile = SHAPED_ITEM.addOreDictItem(1143,
+            "bisque_porcelain_tile", 0xFEFEE8, MaterialIconSet.ROUGH, plate);
+    public static final MetaOreDictItem.OreDictValueItem GlazedPorcelainTile = SHAPED_ITEM.addOreDictItem(1144,
+            "glazed_porcelain_tile", 0xEEEEEE, MaterialIconSet.SHINY, plate);
+    public static final MetaOreDictItem.OreDictValueItem BlackGlazedPorcelainTile = SHAPED_ITEM.addOreDictItem(1145,
+            "black_glazed_porcelain_tile", 0x111111, MaterialIconSet.SHINY, plate);
 
-    public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull", 0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem COCOA_NIB = SHAPED_ITEM.addOreDictItem(1036, "cocoa_nib", 0x635943, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
-    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR = SHAPED_ITEM.addOreDictItem(1037, "chocolate_liquor", 0x635943, GTFOValues.Organic, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_REFINED = SHAPED_ITEM.addOreDictItem(1038, "chocolate_liquor_refined", 0x605528, GTFOValues.Organic, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED = SHAPED_ITEM.addOreDictItem(1039, "chocolate_liquor_dutched", 0x695143, GTFOValues.Organic, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem PRESS_CAKE_DUTCHED = SHAPED_ITEM.addOreDictItem(1040, "press_cake_dutched", 0x997e6e, MaterialIconSet.DULL, OrePrefix.plateDense);
-    public static final GTFOOredictItem.OreDictValueItem PRESS_CAKE = SHAPED_ITEM.addOreDictItem(1041, "press_cake", 0x948881, MaterialIconSet.DULL, OrePrefix.plateDense);
-    public static final GTFOOredictItem.OreDictValueItem PRESS_CAKE_GRADED = SHAPED_ITEM.addOreDictItem(1042, "press_cake_graded", 0xa67f68, MaterialIconSet.DULL, OrePrefix.plateDense);
-    public static final GTFOOredictItem.OreDictValueItem HOT_MILK_CHOCOLATE = SHAPED_ITEM.addOreDictItem(1043, "milk_chocolate", 0x636c61, MaterialIconSet.DULL, OrePrefix.ingotHot);
-    public static final GTFOOredictItem.OreDictValueItem MATTER_MARSHMALLOW = SHAPED_ITEM.addOreDictItem(1044, "matter_marshmallow", 0xe6e0dc, GTFOValues.Organic, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem MATTER_GRAHAM = SHAPED_ITEM.addOreDictItem(1045, "matter_graham", 0xf0c25d, GTFOValues.Organic, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem MATTER_GRAHAM_HOT = SHAPED_ITEM.addOreDictItem(1046, "matter_graham_hot", 0xffe1a1, GTFOValues.Organic, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem CHUNK_GRAHAM_HOT = SHAPED_ITEM.addOreDictItem(1047, "matter_graham_hot", 0xffe1a1, MaterialIconSet.DULL, OrePrefix.plateDense);
-    public static final GTFOOredictItem.OreDictValueItem WAFER_GRAHAM_HOT = SHAPED_ITEM.addOreDictItem(1048, "matter_graham_hot", 0xffe1a1, MaterialIconSet.DULL, OrePrefix.plate);
-    public static final GTFOOredictItem.OreDictValueItem CRACKER_GRAHAM_UNGRADED = SHAPED_ITEM.addOreDictItem(1049, "cracker_graham_ungraded", 0xf0c25d, MaterialIconSet.DULL, OrePrefix.plate);
-    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_PRESSED = SHAPED_ITEM.addOreDictItem(1050, "chocolate_liquor_pressed", 0xa6795a, GTFOValues.Organic, OrePrefix.crushed);
-    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = SHAPED_ITEM.addOreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem COCOA_HULL = SHAPED_ITEM.addOreDictItem(1035, "cocoa_hull",
+            0x362c25, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem COCOA_NIB = SHAPED_ITEM.addOreDictItem(1036, "cocoa_nib",
+            0x635943, MaterialIconSet.GEM_HORIZONTAL, OrePrefix.gemChipped);
+    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR = SHAPED_ITEM.addOreDictItem(1037,
+            "chocolate_liquor", 0x635943, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_REFINED = SHAPED_ITEM.addOreDictItem(1038,
+            "chocolate_liquor_refined", 0x605528, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED = SHAPED_ITEM.addOreDictItem(1039,
+            "chocolate_liquor_dutched", 0x695143, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem PRESS_CAKE_DUTCHED = SHAPED_ITEM.addOreDictItem(1040,
+            "press_cake_dutched", 0x997e6e, MaterialIconSet.DULL, OrePrefix.plateDense);
+    public static final GTFOOredictItem.OreDictValueItem PRESS_CAKE = SHAPED_ITEM.addOreDictItem(1041, "press_cake",
+            0x948881, MaterialIconSet.DULL, OrePrefix.plateDense);
+    public static final GTFOOredictItem.OreDictValueItem PRESS_CAKE_GRADED = SHAPED_ITEM.addOreDictItem(1042,
+            "press_cake_graded", 0xa67f68, MaterialIconSet.DULL, OrePrefix.plateDense);
+    public static final GTFOOredictItem.OreDictValueItem HOT_MILK_CHOCOLATE = SHAPED_ITEM.addOreDictItem(1043,
+            "milk_chocolate", 0x636c61, MaterialIconSet.DULL, OrePrefix.ingotHot);
+    public static final GTFOOredictItem.OreDictValueItem MATTER_MARSHMALLOW = SHAPED_ITEM.addOreDictItem(1044,
+            "matter_marshmallow", 0xe6e0dc, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem MATTER_GRAHAM = SHAPED_ITEM.addOreDictItem(1045,
+            "matter_graham", 0xf0c25d, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem MATTER_GRAHAM_HOT = SHAPED_ITEM.addOreDictItem(1046,
+            "matter_graham_hot", 0xffe1a1, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem CHUNK_GRAHAM_HOT = SHAPED_ITEM.addOreDictItem(1047,
+            "matter_graham_hot", 0xffe1a1, MaterialIconSet.DULL, OrePrefix.plateDense);
+    public static final GTFOOredictItem.OreDictValueItem WAFER_GRAHAM_HOT = SHAPED_ITEM.addOreDictItem(1048,
+            "matter_graham_hot", 0xffe1a1, MaterialIconSet.DULL, OrePrefix.plate);
+    public static final GTFOOredictItem.OreDictValueItem CRACKER_GRAHAM_UNGRADED = SHAPED_ITEM.addOreDictItem(1049,
+            "cracker_graham_ungraded", 0xf0c25d, MaterialIconSet.DULL, OrePrefix.plate);
+    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_PRESSED = SHAPED_ITEM.addOreDictItem(1050,
+            "chocolate_liquor_pressed", 0xa6795a, GTFOValues.Organic, OrePrefix.crushed);
+    public static final GTFOOredictItem.OreDictValueItem CHOCOLATE_LIQUOR_DUTCHED_PRESSED = SHAPED_ITEM
+            .addOreDictItem(1051, "chocolate_liquor_dutched_pressed", 0xab7550, GTFOValues.Organic, OrePrefix.crushed);
 
     public static final Material Paracetamol = new Material.Builder(21900, gtfoId("paracetamol")).dust()
             .color(0x0045A0).iconSet(MaterialIconSet.SHINY)
@@ -665,12 +785,15 @@ public class GTFOMaterialHandler {
         FOOD_RELATED_MATERIALS.put(id, true);
         return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().temperature(temp));
     }
+
     public static Material.Builder fluidBuilderCustom(int id, String name) {
         return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().customStill());
     }
+
     public static Material.Builder gasBuilder(int id, String name, int temp) {
         return new Material.Builder(id, gtfoId("gtfo_" + name)).gas(new FluidBuilder().temperature(temp));
     }
+
     public static Material.Builder fluidBuilder(int id, String name, FluidAttribute attribute) {
         return new Material.Builder(id, gtfoId("gtfo_" + name)).liquid(new FluidBuilder().attribute(attribute));
     }
@@ -683,13 +806,16 @@ public class GTFOMaterialHandler {
         for (Material material : GregTechAPI.materialManager.getRegisteredMaterials()) {
             FertilizerProperty fertilizerProperty = material.getProperty(FERTILIZER);
             if (fertilizerProperty != null)
-                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.fertilizer", fertilizerProperty.getBoostPercentage())));
+                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils
+                        .format("gregtechfoodoption.fluid.fertilizer", fertilizerProperty.getBoostPercentage())));
             LacingProperty lacingProperty = material.getProperty(LACING);
             if (lacingProperty != null)
-                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.lacing")));
+                FluidTooltipUtil.registerTooltip(material.getFluid(),
+                        () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.lacing")));
             CleanerProperty cleanerProperty = material.getProperty(CLEANER);
             if (cleanerProperty != null)
-                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils.format("gregtechfoodoption.fluid.cleaning", cleanerProperty.getCleaningPower())));
+                FluidTooltipUtil.registerTooltip(material.getFluid(), () -> Collections.singletonList(LocalizationUtils
+                        .format("gregtechfoodoption.fluid.cleaning", cleanerProperty.getCleaningPower())));
         }
     }
 

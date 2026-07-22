@@ -9,9 +9,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class GTFOSprinkle extends Particle {
+
     private double posXFinal, posYFinal, posZFinal;
 
-    public GTFOSprinkle(World worldIn, double posXIn, double posYIn, double posZIn, double posXFinal, double posYFinal, double posZFinal, int color) {
+    public GTFOSprinkle(World worldIn, double posXIn, double posYIn, double posZIn, double posXFinal, double posYFinal,
+                        double posZFinal, int color) {
         super(worldIn, posXIn, posYIn, posZIn);
         this.particleRed = (float) (color - (color % (256 * 256))) / (256 * 256 * 256);
         this.particleGreen = (float) (color % (256 * 256) - color % 256) / (256 * 256);
@@ -22,10 +24,9 @@ public class GTFOSprinkle extends Particle {
         this.posZFinal = posZFinal;
 
         this.setParticleTextureIndex(113);
-        //this.setSize(0.01F, 0.01F);
+        // this.setSize(0.01F, 0.01F);
         this.particleGravity = 0.06F;
         this.particleMaxAge = 10;
-
     }
 
     public void onUpdate() {
@@ -33,16 +34,19 @@ public class GTFOSprinkle extends Particle {
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
 
-/*        if (this.bobTimer-- > 0) {
-            this.motionX *= 0.02;
-            this.motionY *= 0.02;
-            this.motionZ *= 0.02;
-            this.setParticleTextureIndex(113);
-        } else {
-            this.setParticleTextureIndex(112);
-        }*/
+        /*
+         * if (this.bobTimer-- > 0) {
+         * this.motionX *= 0.02;
+         * this.motionY *= 0.02;
+         * this.motionZ *= 0.02;
+         * this.setParticleTextureIndex(113);
+         * } else {
+         * this.setParticleTextureIndex(112);
+         * }
+         */
 
-        this.move((posXFinal - posX) / particleMaxAge, (posYFinal - posY) / particleMaxAge, (posZFinal - posZ) / particleMaxAge);
+        this.move((posXFinal - posX) / particleMaxAge, (posYFinal - posY) / particleMaxAge,
+                (posZFinal - posZ) / particleMaxAge);
 
         if (this.particleMaxAge-- <= 0) {
             this.setExpired();
@@ -57,14 +61,12 @@ public class GTFOSprinkle extends Particle {
                 d0 = BlockLiquid.getLiquidHeightPercent(iblockstate.getValue(BlockLiquid.LEVEL));
             }
 
-            double d1 = (double)(MathHelper.floor(this.posY) + 1) - d0;
+            double d1 = (double) (MathHelper.floor(this.posY) + 1) - d0;
             if (this.posY < d1) {
                 this.setExpired();
             }
         }
-
     }
-
 
     @Override
     public boolean isAlive() {

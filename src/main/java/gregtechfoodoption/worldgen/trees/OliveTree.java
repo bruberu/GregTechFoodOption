@@ -1,10 +1,9 @@
 package gregtechfoodoption.worldgen.trees;
 
-import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.condition.BiomeCondition;
-import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
+import static gregtechfoodoption.item.GTFOMetaItem.OLIVE;
+
+import java.util.Random;
+
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -14,11 +13,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
-import static gregtechfoodoption.item.GTFOMetaItem.OLIVE;
+import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class OliveTree extends GTFOTree {
+
     public static int LEAVES_COLOR = 0x828E5A;
 
     public OliveTree() {
@@ -27,11 +29,11 @@ public class OliveTree extends GTFOTree {
         this.addCondition(new BiomeCondition(Biomes.FOREST, 2, 0.65));
         this.addCondition(new BiomeCondition(Biomes.PLAINS, 1, 0.88));
         this.addCondition(new TemperatureRainfallCondition(3, 1.5, 0.6, 0.6, 0.3));
-
     }
 
     @Override
-    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random,
+                                 TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos upN = GTFOUtils.copy(pos);
         BlockPos.MutableBlockPos upNSplit = GTFOUtils.copy(upN);
         EnumFacing splitDirection = EnumFacing.byHorizontalIndex(random.nextInt(4));
@@ -58,7 +60,8 @@ public class OliveTree extends GTFOTree {
     }
 
     @Override
-    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int trunkHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int trunkHeight, Random random,
+                                  TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos currentYPos = GTFOUtils.copy(pos);
         currentYPos.move(EnumFacing.UP, trunkHeight);
         for (int i = 25; i > 0; i -= (random.nextInt(8) + 13)) {
@@ -68,7 +71,8 @@ public class OliveTree extends GTFOTree {
                     currentYPos.offset(EnumFacing.SOUTH, layerSize).offset(EnumFacing.EAST, layerSize));
             int finalI = i;
             iterator.forEach(leavesPos -> {
-                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <= Math.sqrt(finalI))
+                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <=
+                        Math.sqrt(finalI))
                     notifier.accept(world, leavesPos, getNaturalLeavesState());
             });
             currentYPos.move(EnumFacing.UP);
@@ -101,7 +105,6 @@ public class OliveTree extends GTFOTree {
         }
         return ItemStack.EMPTY;
     }
-
 
     @Override
     public ItemStack getApple() {

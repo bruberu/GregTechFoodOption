@@ -3,6 +3,7 @@ package gregtechfoodoption.potion;
 import net.minecraft.entity.EntityLivingBase;
 
 public class AntiSchizoPotion extends GTFOPotion {
+
     public static AntiSchizoPotion INSTANCE = null;
 
     public AntiSchizoPotion() {

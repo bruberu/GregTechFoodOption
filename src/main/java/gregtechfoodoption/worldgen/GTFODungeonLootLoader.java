@@ -1,13 +1,15 @@
 package gregtechfoodoption.worldgen;
 
-import gregtech.loaders.dungeon.ChestGenHooks;
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.item.GTFOMetaItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.storage.loot.LootTableList;
 
+import gregtech.loaders.dungeon.ChestGenHooks;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.item.GTFOMetaItem;
+
 public class GTFODungeonLootLoader {
+
     public static void init() {
         if (GTFOConfig.gtfoMiscConfig.addDungeonFoods) {
             addItem(GTFOMetaItem.SANDWICH_STEAK.getStackForm(), 2, 8, 20);

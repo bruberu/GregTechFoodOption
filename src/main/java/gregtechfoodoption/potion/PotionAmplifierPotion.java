@@ -1,8 +1,10 @@
 package gregtechfoodoption.potion;
 
 public class PotionAmplifierPotion extends GTFOPotion {
+
     public static final String TAG_NAME = "gregtechfoodoption - amplifier";
     public static PotionAmplifierPotion INSTANCE = null;
+
     public PotionAmplifierPotion() {
         super("amplifier", false, 0x69FF56, 5);
         INSTANCE = this;
@@ -17,5 +19,4 @@ public class PotionAmplifierPotion extends GTFOPotion {
     protected boolean canRender() {
         return true;
     }
-
 }

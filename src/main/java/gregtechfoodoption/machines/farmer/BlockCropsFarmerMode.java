@@ -26,6 +26,4 @@ public class BlockCropsFarmerMode extends CustomCropFarmerMode {
     public boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer, BlockPos pos, World world) {
         return state.getBlock().isAssociatedBlock(crop) && ((BlockCrops) crop).isMaxAge(state);
     }
-
-
 }

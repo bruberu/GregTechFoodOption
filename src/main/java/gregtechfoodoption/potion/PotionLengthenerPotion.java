@@ -1,8 +1,10 @@
 package gregtechfoodoption.potion;
 
 public class PotionLengthenerPotion extends GTFOPotion {
+
     public static final String TAG_NAME = "gregtechfoodoption - lengthener";
     public static PotionLengthenerPotion INSTANCE = null;
+
     public PotionLengthenerPotion() {
         super("lengthener", false, 0x69FF56, 6);
         INSTANCE = this;
@@ -17,5 +19,4 @@ public class PotionLengthenerPotion extends GTFOPotion {
     protected boolean canRender() {
         return true;
     }
-
 }

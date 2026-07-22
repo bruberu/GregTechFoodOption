@@ -1,13 +1,9 @@
 package gregtechfoodoption.item;
 
-import gregtech.api.items.metaitem.stats.IFoodBehavior;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtech.api.util.RandomPotionEffect;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
-import gregtechfoodoption.potion.LacingEntry;
-import gregtechfoodoption.utils.GTFOUtils;
-import it.unimi.dsi.fastutil.objects.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
@@ -16,13 +12,17 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.fml.common.Loader;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.function.Supplier;
+import gregtech.api.items.metaitem.stats.IFoodBehavior;
+import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtech.api.util.RandomPotionEffect;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import gregtechfoodoption.potion.LacingEntry;
+import gregtechfoodoption.utils.GTFOUtils;
+import it.unimi.dsi.fastutil.objects.*;
 
 public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These names suck
+
     protected int foodLevel;
     protected float saturation;
     protected boolean isDrink;
@@ -32,8 +32,8 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
     public Object2FloatMap<String> nutrients = new Object2FloatArrayMap<>();
     protected int eatingDuration = 32;
 
-
-    public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, Supplier<ItemStack> itemStackSupplier, RandomPotionEffect... potionEffects) {
+    public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible,
+                         Supplier<ItemStack> itemStackSupplier, RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
         this.saturation = saturation;
         this.isDrink = isDrink;
@@ -42,7 +42,8 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         this.potionEffects = potionEffects;
     }
 
-    public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, ItemStack stack, RandomPotionEffect... potionEffects) {
+    public GTFOFoodStats(int foodLevel, float saturation, boolean isDrink, boolean alwaysEdible, ItemStack stack,
+                         RandomPotionEffect... potionEffects) {
         this.foodLevel = foodLevel;
         this.saturation = saturation;
         this.isDrink = isDrink;
@@ -92,7 +93,8 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
 
         if (Loader.isModLoaded(GTFOValues.MODID_AP)) {
             itemStack.grow(1);
-            GTFOAppleCoreCompat.sendEatenEvent(player, itemStack, getFoodLevel(itemStack, player), getSaturation(itemStack, player));
+            GTFOAppleCoreCompat.sendEatenEvent(player, itemStack, getFoodLevel(itemStack, player),
+                    getSaturation(itemStack, player));
             itemStack.shrink(1);
         }
         for (RandomPotionEffect potionEffect : this.potionEffects) {
@@ -125,7 +127,8 @@ public class GTFOFoodStats implements IFoodBehavior, IItemBehaviour { // These n
         }
         // list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.lacing").getFormattedText());
         if (this.eatingDuration != 32) {
-            list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.duration", this.eatingDuration).getFormattedText());
+            list.add(new TextComponentTranslation("gregtechfoodoption.tooltip.food.duration", this.eatingDuration)
+                    .getFormattedText());
         }
     }
 

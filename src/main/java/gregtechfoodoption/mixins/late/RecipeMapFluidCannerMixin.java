@@ -1,5 +1,19 @@
 package gregtechfoodoption.mixins.late;
 
+import static gregtech.api.recipes.RecipeMaps.CANNER_RECIPES;
+
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
+
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
@@ -7,18 +21,6 @@ import gregtech.api.recipes.machines.RecipeMapFluidCanner;
 import gregtechfoodoption.item.GTFOFoodStats;
 import gregtechfoodoption.potion.LacingEntry;
 import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.List;
-
-import static gregtech.api.recipes.RecipeMaps.CANNER_RECIPES;
 
 @SuppressWarnings("unused")
 
@@ -26,25 +28,34 @@ import static gregtech.api.recipes.RecipeMaps.CANNER_RECIPES;
 public class RecipeMapFluidCannerMixin {
 
     @Inject(method = "findRecipe",
-            at = /*@At(value = "JUMP",
-                    opcode = Opcodes.GOTO,
-                    ordinal = 0),*/
-            @At(value = "RETURN", ordinal = 1), cancellable = true)
-    private void checkLacingRecipes(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir) {
+            at = /*
+                  * @At(value = "JUMP",
+                  * opcode = Opcodes.GOTO,
+                  * ordinal = 0),
+                  */
+            @At(value = "RETURN", ordinal = 1),
+            cancellable = true)
+    private void checkLacingRecipes(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs,
+                                    boolean exactVoltage, CallbackInfoReturnable<Recipe> cir) {
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
     @Inject(method = "findRecipe",
-            at = /*@At(value = "JUMP",
-                    opcode = Opcodes.GOTO,
-                    ordinal = 0),*/
-            @At(value = "RETURN", ordinal = 4), cancellable = true)
-    private void checkLacingRecipes2(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs, boolean exactVoltage, CallbackInfoReturnable<Recipe> cir) {
+            at = /*
+                  * @At(value = "JUMP",
+                  * opcode = Opcodes.GOTO,
+                  * ordinal = 0),
+                  */
+            @At(value = "RETURN", ordinal = 4),
+            cancellable = true)
+    private void checkLacingRecipes2(long voltage, List<ItemStack> inputs, List<FluidStack> fluidInputs,
+                                     boolean exactVoltage, CallbackInfoReturnable<Recipe> cir) {
         findLacingRecipe(inputs, fluidInputs, cir);
     }
 
     @Unique
-    public void findLacingRecipe(List<ItemStack> inputs, List<FluidStack> fluidInputs, CallbackInfoReturnable<Recipe> cir) {
+    public void findLacingRecipe(List<ItemStack> inputs, List<FluidStack> fluidInputs,
+                                 CallbackInfoReturnable<Recipe> cir) {
         ItemStack inputStack = ItemStack.EMPTY;
         ItemStack lacingWith = ItemStack.EMPTY;
         ItemStack outputStack;
@@ -82,25 +93,27 @@ public class RecipeMapFluidCannerMixin {
             NBTTagCompound gtfoStatsTag = overallTag.getCompoundTag("gtfoStats");
 
             switch (inputFluid.getUnlocalizedName()) {
-/*                case "material.gtfo_hydrogen_cyanide": {
-                    gtfoStatsTag.setBoolean("5dkcap/2/4/", true);
-                    break;
-                }*/
+                /*
+                 * case "material.gtfo_hydrogen_cyanide": {
+                 * gtfoStatsTag.setBoolean("5dkcap/2/4/", true);
+                 * break;
+                 * }
+                 */
                 default: {
                     return;
                 }
             }
-/*
-            overallTag.setTag("gtfoStats", gtfoStatsTag);
-            outputStack.setTagCompound(overallTag);
-            cir.setReturnValue(CANNER_RECIPES.recipeBuilder()
-                    //we can reuse recipe as long as input container stack fully matches our one
-                    .inputs(GTRecipeItemInput.getOrCreate(inputStack, 1))
-                    .fluidInputs(inputFluid)
-                    .outputs(outputStack)
-                    .duration(Math.max(16, inputFluid.amount / 64)).EUt(4)
-                    .build().getResult());
-*/
+            /*
+             * overallTag.setTag("gtfoStats", gtfoStatsTag);
+             * outputStack.setTagCompound(overallTag);
+             * cir.setReturnValue(CANNER_RECIPES.recipeBuilder()
+             * //we can reuse recipe as long as input container stack fully matches our one
+             * .inputs(GTRecipeItemInput.getOrCreate(inputStack, 1))
+             * .fluidInputs(inputFluid)
+             * .outputs(outputStack)
+             * .duration(Math.max(16, inputFluid.amount / 64)).EUt(4)
+             * .build().getResult());
+             */
         }
 
         if (!lacingWith.isEmpty()) {
@@ -127,12 +140,11 @@ public class RecipeMapFluidCannerMixin {
             overallTag.setTag("gtfoStats", gtfoStatsTag);
             outputStack.setTagCompound(overallTag);
             cir.setReturnValue(CANNER_RECIPES.recipeBuilder()
-                    //we can reuse recipe as long as input container stack fully matches our one
+                    // we can reuse recipe as long as input container stack fully matches our one
                     .inputs(GTRecipeItemInput.getOrCreate(inputStack, 1), GTRecipeItemInput.getOrCreate(lacingWith, 1))
                     .outputs(outputStack)
                     .duration(16).EUt(4)
                     .build().getResult());
         }
-
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class GroundClearingFarmerMode implements FarmerMode {
+
     protected final Block crop;
 
     public GroundClearingFarmerMode(Block crop) {

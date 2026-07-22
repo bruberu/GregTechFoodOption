@@ -1,11 +1,13 @@
 package gregtechfoodoption.client.particle;
 
-import gregtechfoodoption.covers.CoverSprinkler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
 
+import gregtechfoodoption.covers.CoverSprinkler;
+
 public class GTFOSprinkleMaker extends Particle {
+
     private CoverSprinkler sprinkler;
 
     public GTFOSprinkleMaker(World worldIn, double posXIn, double posYIn, double posZIn, CoverSprinkler sprinkler) {
@@ -19,7 +21,8 @@ public class GTFOSprinkleMaker extends Particle {
             this.setExpired();
         }
         if (this.sprinkler.canShowSprinkles()) {
-            float chance = Minecraft.getMinecraft().gameSettings.particleSetting == 0 ? 1f : Minecraft.getMinecraft().gameSettings.particleSetting == 1 ? 0.5f : 0.1f;
+            float chance = Minecraft.getMinecraft().gameSettings.particleSetting == 0 ? 1f :
+                    Minecraft.getMinecraft().gameSettings.particleSetting == 1 ? 0.5f : 0.1f;
             if (Math.random() < chance) {
                 Minecraft.getMinecraft().effectRenderer.addEffect(
                         new GTFOSprinkle(this.world,

@@ -1,5 +1,15 @@
 package gregtechfoodoption.recipe.chain;
 
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.Paper;
+import static gregtech.api.unification.material.Materials.Water;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
+
 import de.ellpeck.actuallyadditions.mod.blocks.InitBlocks;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import gregtech.api.recipes.ModHandler;
@@ -11,17 +21,9 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.jei.JEIGTFOPlugin;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
-
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.Paper;
-import static gregtech.api.unification.material.Materials.Water;
-import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
 
 public class CoffeeChain {
+
     public static void init() {
         if (GTFOConfig.gtfoaaConfig.disableCoffeeMaker)
             ModHandler.removeRecipeByOutput(new ItemStack(InitBlocks.blockCoffeeMachine));
@@ -154,7 +156,6 @@ public class CoffeeChain {
                 .duration(10)
                 .buildAndRegister();
 
-
         GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOMaterialHandler.LARGE_WET_COFFEE.getItemStack(32))
                 .outputs(GTFOMaterialHandler.LARGE_DRIED_COFFEE.getItemStack(32))
@@ -215,6 +216,6 @@ public class CoffeeChain {
                 .duration(20)
                 .buildAndRegister();
 
-        //RecipeUtils.addGreenHouseRecipes(new ItemStack(InitItems.itemCoffeeSeed), InitItems.itemCoffeeBean);
+        // RecipeUtils.addGreenHouseRecipes(new ItemStack(InitItems.itemCoffeeSeed), InitItems.itemCoffeeBean);
     }
 }
