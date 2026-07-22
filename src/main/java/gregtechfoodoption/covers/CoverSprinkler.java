@@ -9,16 +9,15 @@ import gregtech.api.GTValues;
 import gregtech.api.GregTechAPI;
 import gregtech.api.cover.CoverBase;
 import gregtech.api.cover.CoverDefinition;
-import gregtech.api.cover.CoverWithUI;
 import gregtech.api.cover.CoverableView;
-import gregtech.api.gui.ModularUI;
 import gregtech.api.unification.material.Material;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.client.particle.GTFOSprinkle;
 import gregtechfoodoption.client.particle.GTFOSprinkleMaker;
 import gregtechfoodoption.materials.FertilizerProperty;
+import gregtechfoodoption.utils.GTFOFireSuppressantProperty;
 import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.BlockFire;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -30,6 +29,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -51,6 +51,9 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     private boolean wasWorking = false;
     private static final int LENGTH = 9;
     private boolean showsSprinkles = true;
+
+    private int fireSuppressTimer = 0;
+    private static final int FIRE_SUPPRESSION_HEIGHT = 9;
 
     @SideOnly(Side.CLIENT)
     private GTFOSprinkleMaker sprinkleMaker;
@@ -137,6 +140,57 @@ public class CoverSprinkler extends CoverBase implements ITickable {
         IBlockState farmlandState = this.getCoverableView().getWorld().getBlockState(operationPosition.down());
         if (farmlandState.getBlock() instanceof BlockFarmland) {
             this.getCoverableView().getWorld().setBlockState(operationPosition.down(), farmlandState.withProperty(MOISTURE, Math.min(7, farmlandState.getValue(MOISTURE) + 2)));
+        }
+
+        // Fire suppression logic, extracted from susy mixin directly into gtfo
+        if (!this.getWorld().isRemote) {
+            if (++fireSuppressTimer >= 20) {
+                fireSuppressTimer = 0;
+
+                IFluidHandler suppressFluidHandler = this.getCoverableView()
+                        .getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, getAttachedSide());
+                if (suppressFluidHandler != null) {
+                    FluidStack suppressFluid = suppressFluidHandler.drain(Integer.MAX_VALUE, false);
+                    if (suppressFluid != null) {
+                        boolean canSuppressFire = false;
+                        Material mat = GregTechAPI.materialManager.getMaterial(suppressFluid.getFluid().getName());
+                        if (mat != null) {
+                            GTFOFireSuppressantProperty fireProp = mat.getProperty(GTFOFireSuppressantProperty.FIRE_SUPPRESSANT);
+                            if (fireProp != null) {
+                                canSuppressFire = true;
+                            }
+                        }
+                        if (canSuppressFire) {
+                            suppressFire(this.getWorld(), this.getCoverableView().getPos());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void suppressFire(World world, BlockPos basePos) {
+        AxisAlignedBB area = new AxisAlignedBB(
+                basePos.offset(EnumFacing.SOUTH, 4).offset(EnumFacing.EAST, 4),
+                basePos.offset(EnumFacing.NORTH, 4).offset(EnumFacing.WEST, 4)
+        ).grow(0.1);
+
+        int minX = (int) Math.floor(area.minX);
+        int minZ = (int) Math.floor(area.minZ);
+        int maxX = (int) Math.ceil(area.maxX);
+        int maxZ = (int) Math.ceil(area.maxZ);
+        int minY = basePos.getY() - FIRE_SUPPRESSION_HEIGHT + 1;
+        int maxY = basePos.getY();
+
+        for (int scanY = minY; scanY <= maxY; scanY++) {
+            for (int x = minX; x <= maxX; x++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    BlockPos candidate = new BlockPos(x, scanY, z);
+                    if (world.getBlockState(candidate).getBlock() instanceof BlockFire) {
+                        world.setBlockToAir(candidate);
+                    }
+                }
+            }
         }
     }
 
@@ -253,6 +307,4 @@ public class CoverSprinkler extends CoverBase implements ITickable {
         }
         return EnumActionResult.SUCCESS;
     }
-
-
 }
