@@ -24,15 +24,19 @@ public class GTFORootCropProvider implements IProbeInfoProvider {
             GTFORootCrop crop = (GTFORootCrop) blockState.getBlock();
 
             if (crop.cropHarvestable(blockState)) {
-                probeInfo.text(TextStyleClass.OK + "Crop may be harvested");
+                probeInfo.text(TextStyleClass.OK +
+                        "{*gregtechfoodoption.top.crop_harvestable*}");
             } else {
-                probeInfo.text(TextStyleClass.ERROR + "Crop cannot be harvested");
+                probeInfo.text(TextStyleClass.ERROR +
+                        "{*gregtechfoodoption.top.crop_unharvestable*}");
             }
 
             if (crop.seedHarvestable(blockState)) {
-                probeInfo.text(TextStyleClass.OK + "Seed may be harvested");
+                probeInfo.text(TextStyleClass.OK +
+                        "{*gregtechfoodoption.top.seed_harvestable*}");
             } else {
-                probeInfo.text(TextStyleClass.ERROR + "Seed cannot be harvested");
+                probeInfo.text(TextStyleClass.ERROR +
+                        "{*gregtechfoodoption.top.seed_unharvestable*}");
             }
         }
     }
