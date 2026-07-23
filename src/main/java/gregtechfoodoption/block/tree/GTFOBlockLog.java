@@ -1,9 +1,7 @@
 package gregtechfoodoption.block.tree;
 
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtechfoodoption.worldgen.trees.GTFOTree;
-import gregtechfoodoption.block.IVariantNamed;
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -13,9 +11,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import javax.annotation.Nonnull;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.block.IVariantNamed;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
 
 public class GTFOBlockLog extends BlockLog implements IVariantNamed {
+
     public static final PropertyInteger VARIANT = PropertyInteger.create("variant", 0, 3);
     private final int offset;
 

@@ -1,7 +1,9 @@
 package gregtechfoodoption.block;
 
 import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.GregTechFoodOption;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -18,9 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import gregtechfoodoption.GregTechFoodOption;
 
 public class GTFOCrop extends BlockCrops {
 
@@ -57,7 +57,8 @@ public class GTFOCrop extends BlockCrops {
         return 5;
     }
 
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state,
+                         int fortune) {
         int age = this.getAge(state);
         Random rand = world instanceof World ? ((World) world).rand : new Random();
 
@@ -82,7 +83,6 @@ public class GTFOCrop extends BlockCrops {
                 drops.add(crop);
             }
         }
-
     }
 
     public Item getSeed() {
@@ -133,7 +133,8 @@ public class GTFOCrop extends BlockCrops {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand,
+                                    EnumFacing facing, float hitX, float hitY, float hitZ) {
         Random rand = world instanceof World ? world.rand : new Random();
         int age = this.getAge(state);
 

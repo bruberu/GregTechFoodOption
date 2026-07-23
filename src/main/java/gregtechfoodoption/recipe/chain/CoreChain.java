@@ -1,25 +1,6 @@
 package gregtechfoodoption.recipe.chain;
 
-//Used for cross-chain materials, as well as smaller chains.
-
-import gregtech.api.items.metaitem.MetaItem;
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.ore.OrePrefix;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.items.MetaItems;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+// Used for cross-chain materials, as well as smaller chains.
 
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
@@ -32,7 +13,28 @@ import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.REINFORCED_ADO
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+
+import gregtech.api.items.metaitem.MetaItem;
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.ore.OrePrefix;
+import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.utils.GTFOUtils;
+
 public class CoreChain {
+
     public static void init() {
         zest();
         caneSyrup();
@@ -48,8 +50,6 @@ public class CoreChain {
         lithiumCarbonate();
         cotton();
     }
-
-
 
     public static void zest() {
         EXTRACTOR_RECIPES.recipeBuilder()
@@ -73,10 +73,14 @@ public class CoreChain {
                 .EUt(5)
                 .duration(100)
                 .buildAndRegister();
-        //Hand recipe for early game (veeeery inefficient) P.S: I don't think anyone should use this tbh but i don't want people to feel forced, so have a crappy yield recipe :D
-        ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON, LEMON, LEMON, LEMON, OreDictUnifier.get("craftingToolMortar"));
-        ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME, LIME, LIME, LIME, OreDictUnifier.get("craftingToolMortar"));
-        ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE, ORANGE, ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
+        // Hand recipe for early game (veeeery inefficient) P.S: I don't think anyone should use this tbh but i don't
+        // want people to feel forced, so have a crappy yield recipe :D
+        ModHandler.addShapelessRecipe("gtfo_hand_zest1", GTFOMaterialHandler.Zest.getItemStack(), LEMON, LEMON, LEMON,
+                LEMON, OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest2", GTFOMaterialHandler.Zest.getItemStack(), LIME, LIME, LIME,
+                LIME, OreDictUnifier.get("craftingToolMortar"));
+        ModHandler.addShapelessRecipe("gtfo_hand_zest3", GTFOMaterialHandler.Zest.getItemStack(), ORANGE, ORANGE,
+                ORANGE, ORANGE, OreDictUnifier.get("craftingToolMortar"));
     }
 
     public static void caneSyrup() {
@@ -113,7 +117,6 @@ public class CoreChain {
     }
 
     public static void slicerBlades() {
-
         ModHandler.addShapedRecipe("slicer_flat", SLICER_BLADE_FLAT.getStackForm(),
                 "hPS", " M ", "fPs",
                 'P', new UnificationEntry(plate, Iron),
@@ -133,7 +136,6 @@ public class CoreChain {
     }
 
     public static void liquidFoodExtracts() {
-
         FLUID_HEATER_RECIPES.recipeBuilder()
                 .fluidInputs(SeedOil.getFluid(16))
                 .fluidOutputs(GTFOMaterialHandler.FryingOil.getFluid(16))
@@ -337,8 +339,10 @@ public class CoreChain {
                 .buildAndRegister();
 
         FurnaceRecipes.instance().addSmeltingRecipe(MUD_BRICK.getStackForm(), ADOBE_BRICK.getStackForm(), 0);
-        ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1), "XX", "XX", 'X', ADOBE_BRICK);
-        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
+        ModHandler.addShapedRecipe("casing_adobe_bricks", GTFOMetaBlocks.GTFO_CASING.getItemVariant(ADOBE_BRICKS, 1),
+                "XX", "XX", 'X', ADOBE_BRICK);
+        ModHandler.addShapedRecipe("casing_reinforced_adobe_bricks",
+                GTFOMetaBlocks.GTFO_CASING.getItemVariant(REINFORCED_ADOBE_BRICKS, 1),
                 " h ", "ABA", " C ",
                 'A', ADOBE_BRICK,
                 'B', new UnificationEntry(plate, Bronze),
@@ -367,7 +371,8 @@ public class CoreChain {
         slicingArray.put(ONION, ONION_SLICE);
         slicingArray.put(AUBERGINE, EGGPLANT_SLICE);
         for (Map.Entry<MetaItem<?>.MetaValueItem, MetaItem<?>.MetaValueItem> entry : slicingArray.entrySet()) {
-            ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().unlocalizedName, entry.getValue().getStackForm(4), 'k', entry.getKey());
+            ModHandler.addShapelessRecipe("gtfo_slice_" + entry.getKey().unlocalizedName,
+                    entry.getValue().getStackForm(4), 'k', entry.getKey());
             SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                     .inputs(entry.getKey().getStackForm())
                     .notConsumable(SLICER_BLADE_FLAT.getStackForm())
@@ -375,7 +380,7 @@ public class CoreChain {
                     .buildAndRegister();
 
             // TODO: Since we already have our crops, we might as well register their green house recipes here
-            //RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey());
+            // RecipeUtils.addGreenHouseRecipes(entry.getKey().getStackForm(), entry.getKey());
         }
         // Do The Minecraft fruit slicing
         {
@@ -393,7 +398,8 @@ public class CoreChain {
                     .buildAndRegister();
         }
         // Get the mushroom done separately. And don't use red mushrooms.
-        ModHandler.addShapelessRecipe("gtfo_slice_mushroom", MUSHROOM_SLICE.getStackForm(4), 'k', Blocks.BROWN_MUSHROOM);
+        ModHandler.addShapelessRecipe("gtfo_slice_mushroom", MUSHROOM_SLICE.getStackForm(4), 'k',
+                Blocks.BROWN_MUSHROOM);
         SLICER_RECIPES.recipeBuilder().EUt(18).duration(30)
                 .input(Blocks.BROWN_MUSHROOM)
                 .notConsumable(SLICER_BLADE_FLAT.getStackForm())
@@ -409,7 +415,6 @@ public class CoreChain {
 
         GTFOUtils.addBakingOvenRecipes(UNCOOKED_BACON.getStackForm(), BACON.getStackForm(), 500, 435, 1);
     }
-
 
     public static void airRecipes() {
         MIXER_RECIPES.recipeBuilder().duration(60).EUt(8)
@@ -429,7 +434,8 @@ public class CoreChain {
         MIXER_RECIPES.recipeBuilder().duration(100).EUt(24)
                 .fluidInputs(GTFOMaterialHandler.Sludge.getFluid(100))
                 .inputs(ROTTEN_FISH.getStackForm(1))
-                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1),
+                        new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
                 .outputs(CHUM.getStackForm(3))
                 .buildAndRegister();
 
@@ -437,14 +443,16 @@ public class CoreChain {
                 .fluidInputs(GTFOMaterialHandler.Sludge.getFluid(100))
                 .fluidInputs(PurpleDrink.getFluid(100))
                 .inputs(ROTTEN_FISH.getStackForm(1))
-                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1),
+                        new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
                 .outputs(CHUM.getStackForm(6))
                 .buildAndRegister();
 
         MIXER_RECIPES.recipeBuilder().duration(100).EUt(24)
                 .fluidInputs(GTFOMaterialHandler.Sludge.getFluid(100))
                 .inputs(ROTTEN_MEAT.getStackForm(1))
-                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1),
+                        new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
                 .outputs(CHUM.getStackForm(3))
                 .buildAndRegister();
 
@@ -452,7 +460,8 @@ public class CoreChain {
                 .fluidInputs(GTFOMaterialHandler.Sludge.getFluid(100))
                 .fluidInputs(PurpleDrink.getFluid(100))
                 .inputs(ROTTEN_MEAT.getStackForm(1))
-                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1), new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
+                .inputs(new ItemStack(Blocks.RED_MUSHROOM, 1), new ItemStack(Items.POISONOUS_POTATO, 1),
+                        new ItemStack(Items.FERMENTED_SPIDER_EYE, 1))
                 .outputs(CHUM.getStackForm(6))
                 .buildAndRegister();
 
@@ -486,22 +495,23 @@ public class CoreChain {
                     .fluidInputs(SulfuricAcid.getFluid(200))
                     .fluidOutputs(GTFOMaterialHandler.Sludge.getFluid(200))
                     .buildAndRegister();
-            /*MIXER_RECIPES.recipeBuilder().duration(125).EUt(16) TODO
-                    .inputs(stack)
-                    .fluidInputs(PiranhaSolution.getFluid(100))
-                    .fluidOutputs(GTFOMaterialHandler.Sludge.getFluid(400))
-                    .buildAndRegister();*/
+            /*
+             * MIXER_RECIPES.recipeBuilder().duration(125).EUt(16) TODO
+             * .inputs(stack)
+             * .fluidInputs(PiranhaSolution.getFluid(100))
+             * .fluidOutputs(GTFOMaterialHandler.Sludge.getFluid(400))
+             * .buildAndRegister();
+             */
         }
 
-
-        ModHandler.addShapelessRecipe("chum_on_a_stick", CHUM_ON_A_STICK.getStackForm(), CHUM.getStackForm(), new ItemStack(Items.STICK));
+        ModHandler.addShapelessRecipe("chum_on_a_stick", CHUM_ON_A_STICK.getStackForm(), CHUM.getStackForm(),
+                new ItemStack(Items.STICK));
         ASSEMBLER_RECIPES.recipeBuilder().EUt(4).duration(5)
                 .input(Items.STICK)
                 .inputs(CHUM.getStackForm())
                 .outputs(CHUM_ON_A_STICK.getStackForm())
                 .buildAndRegister();
     }
-
 
     public static void misc() {
         CANNER_RECIPES.recipeBuilder()
@@ -539,7 +549,6 @@ public class CoreChain {
                 .duration(60)
                 .buildAndRegister();
 
-
         MACERATOR_RECIPES.recipeBuilder().EUt(4).duration(40)
                 .input(Items.POTATO)
                 .outputs(MashedPotato.getItemStack())
@@ -552,7 +561,8 @@ public class CoreChain {
                 .outputs(GTFOMaterialHandler.ToughMeat.getItemStack(2))
                 .buildAndRegister();
 
-        GTFOUtils.addBakingOvenRecipes(GTFOMaterialHandler.ToughMeat.getItemStack(), GTFOMaterialHandler.MeatIngot.getItemStack(), 200, 400, 1);
+        GTFOUtils.addBakingOvenRecipes(GTFOMaterialHandler.ToughMeat.getItemStack(),
+                GTFOMaterialHandler.MeatIngot.getItemStack(), 200, 400, 1);
 
         EXTRUDER_RECIPES.recipeBuilder().EUt(28).duration(20)
                 .input(dust, Meat)
@@ -612,12 +622,11 @@ public class CoreChain {
         ModHandler.addShapelessRecipe("gtfo_hand_corn_kernel", CornKernel.getItemStack(10), CORN_EAR.getStackForm());
     }
 
-    public static void lithiumCarbonate() {
-
-    }
+    public static void lithiumCarbonate() {}
 
     public static void cotton() {
-        ModHandler.addShapelessRecipe("gtfo_cotton_to_string", new ItemStack(Items.STRING, 1), COTTON.getStackForm(), COTTON.getStackForm(), COTTON.getStackForm());
+        ModHandler.addShapelessRecipe("gtfo_cotton_to_string", new ItemStack(Items.STRING, 1), COTTON.getStackForm(),
+                COTTON.getStackForm(), COTTON.getStackForm());
         ModHandler.addShapelessRecipe("gtfo_hand_cotton_seed", COTTON_SEED.getStackForm(), COTTON.getStackForm());
     }
 }

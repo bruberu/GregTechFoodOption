@@ -1,5 +1,8 @@
 package gregtechfoodoption.recipe.chain;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.OreDictUnifier;
@@ -8,15 +11,15 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
-import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 
 public class RussianChain {
-    public static void init() {
-        ModHandler.addShapelessRecipe("pelmeni_hand", GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(), GTFOMetaItem.DOUGH.getStackForm(), OreDictUnifier.get(OrePrefix.dust, Materials.Meat));
-        ModHandler.addShapelessRecipe("pelmeni_hand_3", GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(3), GTFOMetaItem.DOUGH.getStackForm(3), OreDictUnifier.get(OrePrefix.dust, Materials.Meat), new ItemStack(Blocks.BROWN_MUSHROOM));
 
+    public static void init() {
+        ModHandler.addShapelessRecipe("pelmeni_hand", GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(),
+                GTFOMetaItem.DOUGH.getStackForm(), OreDictUnifier.get(OrePrefix.dust, Materials.Meat));
+        ModHandler.addShapelessRecipe("pelmeni_hand_3", GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(3),
+                GTFOMetaItem.DOUGH.getStackForm(3), OreDictUnifier.get(OrePrefix.dust, Materials.Meat),
+                new ItemStack(Blocks.BROWN_MUSHROOM));
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(100)
                 .inputs(GTFOMetaItem.DOUGH.getStackForm())
@@ -38,7 +41,6 @@ public class RussianChain {
                 .fluidOutputs(GTFOMaterialHandler.LacticAcidBacteria.getFluid(2))
                 .buildAndRegister();
 
-
         RecipeMaps.MIXER_RECIPES.recipeBuilder().EUt(4).duration(3000)
                 .fluidInputs(GTFOMaterialHandler.PasteurizedMilk.getFluid(8000))
                 .notConsumable(GTFOMaterialHandler.LacticAcidBacteria.getFluid(8))
@@ -46,7 +48,9 @@ public class RussianChain {
                 .buildAndRegister();
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(24).duration(100)
-                .inputs(GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(), GTFOMaterialHandler.GratedHorseradishRoot.getItemStack(), GTFOMaterialHandler.BlackPepper.getItemStack())
+                .inputs(GTFOMetaItem.UNCOOKED_PELMENI.getStackForm(),
+                        GTFOMaterialHandler.GratedHorseradishRoot.getItemStack(),
+                        GTFOMaterialHandler.BlackPepper.getItemStack())
                 .fluidInputs(GTFOMaterialHandler.SourCream.getFluid(100))
                 .outputs(GTFOMetaItem.UNCOOKED_SEASONED_PELMENI.getStackForm())
                 .buildAndRegister();
@@ -63,6 +67,5 @@ public class RussianChain {
                 .outputs(GTFOMetaItem.SEASONED_PELMENI.getStackForm())
                 .circuitMeta(2)
                 .buildAndRegister();
-
     }
 }

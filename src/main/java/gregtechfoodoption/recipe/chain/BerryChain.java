@@ -1,20 +1,17 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.api.unification.OreDictUnifier;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
-import net.minecraft.init.Blocks;
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtechfoodoption.GTFOMaterialHandler.LemonLimeSludge;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
+import gregtech.api.recipes.ModHandler;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
 
 public class BerryChain {
+
     public static void init() {
         MIXER_RECIPES.recipeBuilder()
                 .fluidInputs(CranberrySludge.getFluid(500))
@@ -46,18 +43,24 @@ public class BerryChain {
                 .buildAndRegister();
 
         ModHandler.addShapelessRecipe("gtfo_berry_medley_1x_a", BERRY_MEDLEY.getStackForm(),
-                BLUEBERRY.getStackForm(), BLACKBERRY.getStackForm(), LINGONBERRY.getStackForm(), new ItemStack(Items.BOWL));
+                BLUEBERRY.getStackForm(), BLACKBERRY.getStackForm(), LINGONBERRY.getStackForm(),
+                new ItemStack(Items.BOWL));
         ModHandler.addShapelessRecipe("gtfo_berry_medley_1x_b", BERRY_MEDLEY.getStackForm(),
-                RASPBERRY.getStackForm(), STRAWBERRY.getStackForm(), BLACK_CURRANT.getStackForm(), new ItemStack(Items.BOWL));
+                RASPBERRY.getStackForm(), STRAWBERRY.getStackForm(), BLACK_CURRANT.getStackForm(),
+                new ItemStack(Items.BOWL));
         ModHandler.addShapelessRecipe("gtfo_berry_medley_1x_c", BERRY_MEDLEY.getStackForm(),
-                CRANBERRY.getStackForm(), RED_CURRANT.getStackForm(), WHITE_CURRANT.getStackForm(), new ItemStack(Items.BOWL));
+                CRANBERRY.getStackForm(), RED_CURRANT.getStackForm(), WHITE_CURRANT.getStackForm(),
+                new ItemStack(Items.BOWL));
 
         ModHandler.addShapelessRecipe("gtfo_berry_medley_2x_a", BERRY_MEDLEY.getStackForm(2),
-                BLUEBERRY.getStackForm(), RASPBERRY.getStackForm(), WHITE_CURRANT.getStackForm(), LINGONBERRY.getStackForm(), new ItemStack(Items.BOWL), new ItemStack(Items.BOWL));
+                BLUEBERRY.getStackForm(), RASPBERRY.getStackForm(), WHITE_CURRANT.getStackForm(),
+                LINGONBERRY.getStackForm(), new ItemStack(Items.BOWL), new ItemStack(Items.BOWL));
         ModHandler.addShapelessRecipe("gtfo_berry_medley_2x_b", BERRY_MEDLEY.getStackForm(2),
-                STRAWBERRY.getStackForm(), CRANBERRY.getStackForm(), BLACK_CURRANT.getStackForm(), BLACKBERRY.getStackForm(), new ItemStack(Items.BOWL), new ItemStack(Items.BOWL));
+                STRAWBERRY.getStackForm(), CRANBERRY.getStackForm(), BLACK_CURRANT.getStackForm(),
+                BLACKBERRY.getStackForm(), new ItemStack(Items.BOWL), new ItemStack(Items.BOWL));
         ModHandler.addShapelessRecipe("gtfo_berry_medley_2x_c", BERRY_MEDLEY.getStackForm(2),
-                RASPBERRY.getStackForm(), CRANBERRY.getStackForm(), RED_CURRANT.getStackForm(), LINGONBERRY.getStackForm(), new ItemStack(Items.BOWL), new ItemStack(Items.BOWL));
+                RASPBERRY.getStackForm(), CRANBERRY.getStackForm(), RED_CURRANT.getStackForm(),
+                LINGONBERRY.getStackForm(), new ItemStack(Items.BOWL), new ItemStack(Items.BOWL));
 
         GTFORecipeMaps.MULTICOOKER_RECIPES.recipeBuilder()
                 .EUt(16).duration(240)

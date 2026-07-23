@@ -1,5 +1,15 @@
 package gregtechfoodoption.recipe.chain;
 
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.Paper;
+import static gregtech.api.unification.material.Materials.Water;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
+
 import de.ellpeck.actuallyadditions.mod.blocks.InitBlocks;
 import de.ellpeck.actuallyadditions.mod.items.InitItems;
 import gregtech.api.recipes.ModHandler;
@@ -11,17 +21,9 @@ import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.integration.jei.JEIGTFOPlugin;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.Loader;
-
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.Paper;
-import static gregtech.api.unification.material.Materials.Water;
-import static gregtech.api.unification.ore.OrePrefix.dust;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
 
 public class CoffeeChain {
+
     public static void init() {
         if (GTFOConfig.gtfoaaConfig.disableCoffeeMaker)
             ModHandler.removeRecipeByOutput(new ItemStack(InitBlocks.blockCoffeeMachine));
@@ -154,11 +156,10 @@ public class CoffeeChain {
                 .duration(10)
                 .buildAndRegister();
 
-
         GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOMaterialHandler.LARGE_WET_COFFEE.getItemStack(32))
                 .outputs(GTFOMaterialHandler.LARGE_DRIED_COFFEE.getItemStack(32))
-                .fluidOutputs(Water.getFluid(16000))
+                .fluidOutputs(Water.getFluid(8000))
                 .EUt(30)
                 .duration(3600)
                 .buildAndRegister();
@@ -166,7 +167,7 @@ public class CoffeeChain {
         GTFOUtils.chemicalDehydratorProxy().recipeBuilder()
                 .inputs(GTFOMaterialHandler.SMALL_WET_COFFEE.getItemStack(64))
                 .outputs(GTFOMaterialHandler.SMALL_DRIED_COFFEE.getItemStack(64))
-                .fluidOutputs(Water.getFluid(16000))
+                .fluidOutputs(Water.getFluid(8000))
                 .EUt(30)
                 .duration(1800)
                 .buildAndRegister();
@@ -174,7 +175,7 @@ public class CoffeeChain {
         CHEMICAL_BATH_RECIPES.recipeBuilder()
                 .inputs(GTFOMaterialHandler.LARGE_BASIC_COFFEE.getItemStack(32))
                 .outputs(GTFOMaterialHandler.LARGE_WET_COFFEE.getItemStack(32))
-                .fluidInputs(Water.getFluid(16000))
+                .fluidInputs(Water.getFluid(8000))
                 .EUt(60)
                 .duration(3600)
                 .buildAndRegister();
@@ -182,7 +183,7 @@ public class CoffeeChain {
         CHEMICAL_BATH_RECIPES.recipeBuilder()
                 .inputs(GTFOMaterialHandler.SMALL_BASIC_COFFEE.getItemStack(64))
                 .outputs(GTFOMaterialHandler.SMALL_WET_COFFEE.getItemStack(64))
-                .fluidInputs(Water.getFluid(16000))
+                .fluidInputs(Water.getFluid(8000))
                 .EUt(60)
                 .duration(3600)
                 .buildAndRegister();
@@ -215,6 +216,6 @@ public class CoffeeChain {
                 .duration(20)
                 .buildAndRegister();
 
-        //RecipeUtils.addGreenHouseRecipes(new ItemStack(InitItems.itemCoffeeSeed), InitItems.itemCoffeeBean);
+        // RecipeUtils.addGreenHouseRecipes(new ItemStack(InitItems.itemCoffeeSeed), InitItems.itemCoffeeBean);
     }
 }

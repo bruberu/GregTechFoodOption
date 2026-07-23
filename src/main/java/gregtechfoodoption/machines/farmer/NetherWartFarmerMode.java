@@ -8,10 +8,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class NetherWartFarmerMode implements FarmerMode {
+
     public static final int NETHER_WART_MAX_AGE = 3;
+
     @Override
     public boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer, BlockPos pos, World world) {
-        return state.getBlock() instanceof BlockNetherWart && state.getBlock().getMetaFromState(state) == NETHER_WART_MAX_AGE;
+        return state.getBlock() instanceof BlockNetherWart &&
+                state.getBlock().getMetaFromState(state) == NETHER_WART_MAX_AGE;
     }
 
     @Override

@@ -27,3 +27,4 @@ forge*changelog.txt
 *.log
 /src/main/resources/assets/gregtech/models/item/metaitems/.json
 /src/main/resources/assets/gregtech/textures/items/metaitems/.png
+.clawdea/REPO_STATE.md

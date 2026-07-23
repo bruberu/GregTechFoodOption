@@ -1,6 +1,7 @@
 package gregtechfoodoption.block;
 
 public class GTFOCrops {
+
     public static GTFOCrop CROP_COFFEE = GTFOCrop.create("coffee");
     public static GTFOCrop CROP_TOMATO = GTFOCrop.create("tomato");
     public static GTFOCrop CROP_ONION = GTFORootCrop.create("onion");
@@ -32,9 +33,6 @@ public class GTFOCrops {
     public static GTFOBerryBush BUSH_ELDERBERRY = GTFOBerryBush.create("elderberry");
     public static GTFOBerryBush BUSH_CRANBERRY = GTFOBerryBush.create("cranberry");
 
-
-    //public static GTFOCrop CROP_HOPS = GTFOCrop.create("hops");
-    public static void init() {
-
-    }
+    // public static GTFOCrop CROP_HOPS = GTFOCrop.create("hops");
+    public static void init() {}
 }

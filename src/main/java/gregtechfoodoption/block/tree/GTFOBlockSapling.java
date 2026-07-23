@@ -1,9 +1,11 @@
 package gregtechfoodoption.block.tree;
 
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtechfoodoption.worldgen.trees.GTFOTree;
-import gregtechfoodoption.block.IVariantNamed;
+import static net.minecraft.block.BlockSapling.STAGE;
+
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -20,10 +22,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
-import javax.annotation.Nonnull;
-import java.util.Random;
-
-import static net.minecraft.block.BlockSapling.STAGE;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.block.IVariantNamed;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
 
 public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNamed {
 
@@ -81,22 +83,26 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
     @Nonnull
     @Override
     @SuppressWarnings("deprecation")
-    public AxisAlignedBB getBoundingBox(@Nonnull IBlockState state, @Nonnull IBlockAccess source, @Nonnull BlockPos pos) {
+    public AxisAlignedBB getBoundingBox(@Nonnull IBlockState state, @Nonnull IBlockAccess source,
+                                        @Nonnull BlockPos pos) {
         return SAPLING_AABB;
     }
 
     @Override
-    public boolean canGrow(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull IBlockState iBlockState, boolean b) {
+    public boolean canGrow(@Nonnull World world, @Nonnull BlockPos blockPos, @Nonnull IBlockState iBlockState,
+                           boolean b) {
         return true;
     }
 
     @Override
-    public boolean canUseBonemeal(@Nonnull World world, @Nonnull Random random, @Nonnull BlockPos blockPos, @Nonnull IBlockState iBlockState) {
+    public boolean canUseBonemeal(@Nonnull World world, @Nonnull Random random, @Nonnull BlockPos blockPos,
+                                  @Nonnull IBlockState iBlockState) {
         return true;
     }
 
     @Override
-    public boolean canBeReplacedByLeaves(@Nonnull IBlockState state, @Nonnull IBlockAccess world, @Nonnull BlockPos pos) {
+    public boolean canBeReplacedByLeaves(@Nonnull IBlockState state, @Nonnull IBlockAccess world,
+                                         @Nonnull BlockPos pos) {
         return true;
     }
 
@@ -125,16 +131,14 @@ public class GTFOBlockSapling extends BlockBush implements IGrowable, IVariantNa
         return state.getValue(VARIANT) << 1;
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        if (!worldIn.isRemote)
-        {
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        if (!worldIn.isRemote) {
             super.updateTick(worldIn, pos, state, rand);
 
             if (rand.nextInt(7) != 0) return; // Short-circuit the rest of this (looking at you, BlockSapling)
-            if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-            if (worldIn.getLightFromNeighbors(pos.up()) >= 9)
-            {
+            if (!worldIn.isAreaLoaded(pos, 1)) return; // Forge: prevent loading unloaded chunks when checking
+                                                       // neighbor's light
+            if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
                 this.grow(worldIn, rand, pos, state);
             }
         }

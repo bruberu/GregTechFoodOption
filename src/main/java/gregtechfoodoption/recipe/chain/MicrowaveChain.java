@@ -1,11 +1,13 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtechfoodoption.item.GTFOMetaItem;
-import net.minecraft.init.Items;
-
 import static gregtechfoodoption.recipe.GTFORecipeMaps.MICROWAVE_RECIPES;
 
+import net.minecraft.init.Items;
+
+import gregtechfoodoption.item.GTFOMetaItem;
+
 public class MicrowaveChain {
+
     public static void init() {
         MICROWAVE_RECIPES.recipeBuilder().EUt(16).duration(200)
                 .input(Items.MUSHROOM_STEW)

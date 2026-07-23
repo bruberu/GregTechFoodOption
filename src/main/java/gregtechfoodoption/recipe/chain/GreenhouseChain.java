@@ -1,5 +1,14 @@
 package gregtechfoodoption.recipe.chain;
 
+import static gregtech.api.unification.material.Materials.Steel;
+import static gregtechfoodoption.recipe.GTFORecipeMaps.GREENHOUSE_RECIPES;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.unification.ore.OrePrefix;
@@ -7,14 +16,6 @@ import gregtech.api.util.GTUtility;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOMaterialHandler;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
-import static gregtech.api.unification.material.Materials.Steel;
-import static gregtechfoodoption.recipe.GTFORecipeMaps.GREENHOUSE_RECIPES;
 
 public class GreenhouseChain {
 
@@ -35,7 +36,8 @@ public class GreenhouseChain {
                 new ItemStack(Blocks.LEAVES2, 1, 1), new ItemStack(Items.STICK));
         registerVanillaLargeTreeRecipe(new ItemStack(Blocks.SAPLING, 1, 5), new ItemStack(Blocks.LOG2, 1, 1),
                 new ItemStack(Items.STICK));
-        registerTappingRecipes(new ItemStack(MetaBlocks.RUBBER_SAPLING, 1, 0), new ItemStack(MetaBlocks.RUBBER_LOG, 1, 0),
+        registerTappingRecipes(new ItemStack(MetaBlocks.RUBBER_SAPLING, 1, 0),
+                new ItemStack(MetaBlocks.RUBBER_LOG, 1, 0),
                 new ItemStack(MetaBlocks.RUBBER_LEAVES, 1, 0), GTFOMaterialHandler.RubberSap.getFluid());
 
         // Sap processing
@@ -117,7 +119,7 @@ public class GreenhouseChain {
                 .outputs(GTUtility.copy(64, log))
                 .outputs(GTUtility.copy(6, sapling))
                 .chancedOutput(GTUtility.copy(4, sapling), 1000, 500)
-                .outputs(GTUtility.copy(4,  crop))
+                .outputs(GTUtility.copy(4, crop))
                 .buildAndRegister();
     }
 }

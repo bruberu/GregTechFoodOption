@@ -1,5 +1,13 @@
 package gregtechfoodoption.recipe.chain;
 
+import static gregtech.api.recipes.RecipeMaps.*;
+import static gregtech.api.unification.material.Materials.*;
+import static gregtech.api.unification.ore.OrePrefix.dust;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+
 import gregtech.api.recipes.ingredients.GTRecipeItemInput;
 import gregtech.api.unification.OreDictUnifier;
 import gregtech.api.unification.material.Materials;
@@ -11,33 +19,27 @@ import gregtechfoodoption.GTFOMaterialHandler;
 import gregtechfoodoption.block.GTFOBlockCasing;
 import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.item.GTFOMetaItem;
-import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
-
-import static gregtech.api.recipes.RecipeMaps.*;
-import static gregtech.api.unification.material.Materials.*;
-import static gregtech.api.unification.ore.OrePrefix.dust;
 
 public class PlateChain {
+
     public static void init() {
-        GTRecipeItemInput[] feldspars = new GTRecipeItemInput[]{
+        GTRecipeItemInput[] feldspars = new GTRecipeItemInput[] {
                 new GTRecipeItemInput(OreDictUnifier.get(OrePrefix.dust, Materials.Stone, 8)),
-                new GTRecipeItemInput(new ItemStack[]{OreDictUnifier.get(OrePrefix.dust, Materials.Granite),
+                new GTRecipeItemInput(new ItemStack[] { OreDictUnifier.get(OrePrefix.dust, Materials.Granite),
                         OreDictUnifier.get(OrePrefix.dust, Materials.GraniteRed),
-                        OreDictUnifier.get(OrePrefix.dust, Materials.GraniteBlack)}, 3),
+                        OreDictUnifier.get(OrePrefix.dust, Materials.GraniteBlack) }, 3),
                 new GTRecipeItemInput(OreDictUnifier.get(OrePrefix.dust, Materials.PotassiumFeldspar))
         };
 
-        GTRecipeItemInput[] calciums = new GTRecipeItemInput[]{
+        GTRecipeItemInput[] calciums = new GTRecipeItemInput[] {
                 new GTRecipeItemInput(OreDictUnifier.get(OrePrefix.dust, Materials.Apatite, 6)),
                 new GTRecipeItemInput(OreDictUnifier.get(OrePrefix.dust, Materials.TricalciumPhosphate, 4)),
                 new GTRecipeItemInput(new ItemStack(Items.DYE, 3, 15)),
                 new GTRecipeItemInput(GTFOMaterialHandler.BoneAsh.getItemStack())
         };
 
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(Items.DYE, 1, 15), GTFOMaterialHandler.BoneAsh.getItemStack(), 0f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(Items.DYE, 1, 15),
+                GTFOMaterialHandler.BoneAsh.getItemStack(), 0f);
 
         for (GTRecipeItemInput feldspar : feldspars) {
             for (GTRecipeItemInput calcium : calciums) {
@@ -99,9 +101,9 @@ public class PlateChain {
                 .buildAndRegister();
 
         BLAST_RECIPES.recipeBuilder().EUt(120).duration(800).blastFurnaceTemp(1600)
-            .inputs(GTFOMaterialHandler.UnfiredPorcelainTile.getItemStack())
-            .outputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
-            .buildAndRegister();
+                .inputs(GTFOMaterialHandler.UnfiredPorcelainTile.getItemStack())
+                .outputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
+                .buildAndRegister();
         BLAST_RECIPES.recipeBuilder().EUt(120).duration(500).blastFurnaceTemp(1600)
                 .inputs(GTFOMaterialHandler.BiscuitPorcelainTile.getItemStack())
                 .circuitMeta(1)
@@ -128,5 +130,4 @@ public class PlateChain {
                 .outputs(GTFOMetaBlocks.GTFO_CASING.getItemVariant(GTFOBlockCasing.CasingType.DARK_PORCELAIN_TILE))
                 .buildAndRegister();
     }
-
 }

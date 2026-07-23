@@ -1,20 +1,22 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.RecipeMaps;
-import gregtech.common.items.MetaItems;
-import gregtechfoodoption.item.GTFOMetaItem;
-import gregtechfoodoption.recipe.GTFORecipeMaps;
-import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.item.ItemStack;
-
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.api.unification.ore.OrePrefix.dustTiny;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 
+import net.minecraft.item.ItemStack;
+
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.RecipeMaps;
+import gregtech.common.items.MetaItems;
+import gregtechfoodoption.item.GTFOMetaItem;
+import gregtechfoodoption.recipe.GTFORecipeMaps;
+import gregtechfoodoption.utils.GTFOUtils;
+
 public class BritishChain {
+
     public static void init() {
         RecipeMaps.CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(300)
                 .input(dust, SodaAsh, 6)
@@ -49,14 +51,16 @@ public class BritishChain {
                     .outputs(FRIED_FISH.getStackForm())
                     .buildAndRegister();
 
-        ModHandler.addShapelessRecipe("fish_and_chips", FISH_AND_CHIPS.getStackForm(1), FRIED_FISH.getStackForm(), FRENCH_FRIES.getStackForm());
+        ModHandler.addShapelessRecipe("fish_and_chips", FISH_AND_CHIPS.getStackForm(1), FRIED_FISH.getStackForm(),
+                FRENCH_FRIES.getStackForm());
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(8).duration(10)
                 .inputs(FRIED_FISH.getStackForm(), FRENCH_FRIES.getStackForm())
                 .outputs(FISH_AND_CHIPS.getStackForm())
                 .buildAndRegister();
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(64).duration(200)
-                .inputs(BACON.getStackForm(), BAKED_BEANS.getStackForm(), MUSHROOM_SLICE.getStackForm(8), TOAST.getStackForm(), TOMATO_SLICE.getStackForm(2))
+                .inputs(BACON.getStackForm(), BAKED_BEANS.getStackForm(), MUSHROOM_SLICE.getStackForm(8),
+                        TOAST.getStackForm(), TOMATO_SLICE.getStackForm(2))
                 .outputs(FULL_BREAKFAST.getStackForm())
                 .buildAndRegister();
 
@@ -67,7 +71,8 @@ public class BritishChain {
                 .buildAndRegister();
         GTFOUtils.addBakingOvenRecipes(BEANS_WITH_SAUCE.getStackForm(), BAKED_BEANS.getStackForm(),
                 1000, 450, 3);
-        ModHandler.addShapelessRecipe("beans_on_toast", BEANS_ON_TOAST.getStackForm(1), BAKED_BEANS.getStackForm(), TOAST.getStackForm());
+        ModHandler.addShapelessRecipe("beans_on_toast", BEANS_ON_TOAST.getStackForm(1), BAKED_BEANS.getStackForm(),
+                TOAST.getStackForm());
 
         GTFORecipeMaps.CUISINE_ASSEMBLER_RECIPES.recipeBuilder().EUt(64).duration(200)
                 .inputs(MashedPotato.getItemStack(), CookedMinceMeat.getItemStack(), PEAS.getStackForm())

@@ -1,6 +1,7 @@
 package gregtechfoodoption.block;
 
-import gregtech.api.util.GTUtility;
+import java.util.Random;
+
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,9 +13,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import gregtech.api.util.GTUtility;
 
 public class GTFORootCrop extends GTFOCrop {
+
     protected static final PropertyInteger DEFAULT_AGE_ROOT = PropertyInteger.create("age", 0, 7);
 
     protected GTFORootCrop(String name) {
@@ -25,7 +27,8 @@ public class GTFORootCrop extends GTFOCrop {
         return new GTFORootCrop(name);
     }
 
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state,
+                         int fortune) {
         int age = this.getAge(state);
         Random rand = world instanceof World ? ((World) world).rand : new Random();
 
@@ -36,7 +39,6 @@ public class GTFORootCrop extends GTFOCrop {
         } else if (age >= this.getMaxAge()) {
             drops.add(GTUtility.copy(3 + fortune, this.seed));
         }
-
     }
 
     public int getMinHarvestingAge() {
@@ -60,7 +62,8 @@ public class GTFORootCrop extends GTFOCrop {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand,
+                                    EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (this.getAge(state) >= this.getMaxAge()) {
             Random rand = world.rand;
             spawnAsEntity(world, pos, GTUtility.copy(rand.nextInt(2) + 1, this.seed));
@@ -72,6 +75,6 @@ public class GTFORootCrop extends GTFOCrop {
 
     @Override
     public PropertyInteger getAgeProperty() {
-       return DEFAULT_AGE_ROOT;
+        return DEFAULT_AGE_ROOT;
     }
 }

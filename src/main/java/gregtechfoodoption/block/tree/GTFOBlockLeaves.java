@@ -1,12 +1,10 @@
 package gregtechfoodoption.block.tree;
 
-import com.google.common.collect.Lists;
-import gregtech.core.CoreModule;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtechfoodoption.worldgen.trees.GTFOTree;
-import gregtechfoodoption.worldgen.trees.GTFOTrees;
-import gregtechfoodoption.block.IVariantNamed;
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.properties.PropertyInteger;
@@ -26,9 +24,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Random;
+import com.google.common.collect.Lists;
+
+import gregtech.core.CoreModule;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.block.IVariantNamed;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
+import gregtechfoodoption.worldgen.trees.GTFOTrees;
 
 public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
@@ -113,8 +116,12 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
     @SideOnly(Side.CLIENT)
     public void registerColors() {
-        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> this.getTreeFromState(state).getBlockColor(state, worldIn, pos, tintIndex), this);
-        Minecraft.getMinecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> this.getTreeFromState(this.getStateFromMeta(stack.getItemDamage())).getItemColor(stack, tintIndex), this);
+        Minecraft.getMinecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> this
+                .getTreeFromState(state).getBlockColor(state, worldIn, pos, tintIndex), this);
+        Minecraft.getMinecraft().getItemColors()
+                .registerItemColorHandler((stack, tintIndex) -> this
+                        .getTreeFromState(this.getStateFromMeta(stack.getItemDamage())).getItemColor(stack, tintIndex),
+                        this);
     }
 
     @Override
@@ -148,7 +155,8 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
     @Override
     @SuppressWarnings("deprecation")
-    public boolean shouldSideBeRendered(@Nonnull IBlockState blockState, @Nonnull IBlockAccess blockAccess, @Nonnull BlockPos pos, @Nonnull EnumFacing side) {
+    public boolean shouldSideBeRendered(@Nonnull IBlockState blockState, @Nonnull IBlockAccess blockAccess,
+                                        @Nonnull BlockPos pos, @Nonnull EnumFacing side) {
         if (!fancyLeaves()) {
             return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
         }
@@ -161,7 +169,7 @@ public class GTFOBlockLeaves extends BlockLeaves implements IVariantNamed {
 
     @Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
-        spawnAsEntity(worldIn, pos, ((GTFOBlockLeaves)state.getBlock()).getTreeFromState(state).getAppleDrop(chance));
+        spawnAsEntity(worldIn, pos, ((GTFOBlockLeaves) state.getBlock()).getTreeFromState(state).getAppleDrop(chance));
     }
 
     // Primarily for getting the correct sapling type.

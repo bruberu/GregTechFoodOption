@@ -7,12 +7,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /*
-NOTE: the following is not my code! This is copied from Forestry's own LeafDecayHelper, created for the most part by mezz.
-mezz gives permission to use this code at: https://www.reddit.com/r/feedthebeast/comments/6tztx9/comment/dlov4jp/?utm_source=share&utm_medium=web2x&context=3
+ * NOTE: the following is not my code! This is copied from Forestry's own LeafDecayHelper, created for the most part by
+ * mezz.
+ * mezz gives permission to use this code at:
+ * https://www.reddit.com/r/feedthebeast/comments/6tztx9/comment/dlov4jp/?utm_source=share&utm_medium=web2x&context=3
  */
 
-
 public class LeafDecayHelper {
+
     private static final byte SUSTAINS_LEAVES = 0;
     private static final byte NOT_SUSTAINS_LEAVES = -1;
     private static final byte IS_LEAVES = -2;
@@ -46,12 +48,15 @@ public class LeafDecayHelper {
                             Block block = blockState.getBlock();
                             if (!block.canSustainLeaves(blockState, world, blockPos)) {
                                 if (block.isLeaves(blockState, world, blockPos)) {
-                                    leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset] = IS_LEAVES;
+                                    leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                            arrayOffset] = IS_LEAVES;
                                 } else {
-                                    leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset] = NOT_SUSTAINS_LEAVES;
+                                    leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                            arrayOffset] = NOT_SUSTAINS_LEAVES;
                                 }
                             } else {
-                                leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset] = SUSTAINS_LEAVES;
+                                leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                        arrayOffset] = SUSTAINS_LEAVES;
                             }
                         }
                     }
@@ -61,29 +66,42 @@ public class LeafDecayHelper {
                     for (int xOffset = -radius; xOffset <= radius; ++xOffset) {
                         for (int yOffset = -radius; yOffset <= radius; ++yOffset) {
                             for (int zOffset = -radius; zOffset <= radius; ++zOffset) {
-                                if (leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset] == sustainedValue - 1) {
-                                    if (leafDecayValues[(xOffset + arrayOffset - 1)][yOffset + arrayOffset][zOffset + arrayOffset] == IS_LEAVES) {
-                                        leafDecayValues[(xOffset + arrayOffset - 1)][yOffset + arrayOffset][zOffset + arrayOffset] = sustainedValue;
+                                if (leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                        arrayOffset] == sustainedValue - 1) {
+                                    if (leafDecayValues[(xOffset + arrayOffset - 1)][yOffset + arrayOffset][zOffset +
+                                            arrayOffset] == IS_LEAVES) {
+                                        leafDecayValues[(xOffset + arrayOffset - 1)][yOffset + arrayOffset][zOffset +
+                                                arrayOffset] = sustainedValue;
                                     }
 
-                                    if (leafDecayValues[(xOffset + arrayOffset + 1)][yOffset + arrayOffset][zOffset + arrayOffset] == IS_LEAVES) {
-                                        leafDecayValues[(xOffset + arrayOffset + 1)][yOffset + arrayOffset][zOffset + arrayOffset] = sustainedValue;
+                                    if (leafDecayValues[(xOffset + arrayOffset + 1)][yOffset + arrayOffset][zOffset +
+                                            arrayOffset] == IS_LEAVES) {
+                                        leafDecayValues[(xOffset + arrayOffset + 1)][yOffset + arrayOffset][zOffset +
+                                                arrayOffset] = sustainedValue;
                                     }
 
-                                    if (leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset - 1)][zOffset + arrayOffset] == IS_LEAVES) {
-                                        leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset - 1)][zOffset + arrayOffset] = sustainedValue;
+                                    if (leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset - 1)][zOffset +
+                                            arrayOffset] == IS_LEAVES) {
+                                        leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset - 1)][zOffset +
+                                                arrayOffset] = sustainedValue;
                                     }
 
-                                    if (leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset + 1)][zOffset + arrayOffset] == IS_LEAVES) {
-                                        leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset + 1)][zOffset + arrayOffset] = sustainedValue;
+                                    if (leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset + 1)][zOffset +
+                                            arrayOffset] == IS_LEAVES) {
+                                        leafDecayValues[xOffset + arrayOffset][(yOffset + arrayOffset + 1)][zOffset +
+                                                arrayOffset] = sustainedValue;
                                     }
 
-                                    if (leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset - 1] == IS_LEAVES) {
-                                        leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset - 1] = sustainedValue;
+                                    if (leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                            arrayOffset - 1] == IS_LEAVES) {
+                                        leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                                arrayOffset - 1] = sustainedValue;
                                     }
 
-                                    if (leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset + 1] == IS_LEAVES) {
-                                        leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset + arrayOffset + 1] = sustainedValue;
+                                    if (leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                            arrayOffset + 1] == IS_LEAVES) {
+                                        leafDecayValues[xOffset + arrayOffset][yOffset + arrayOffset][zOffset +
+                                                arrayOffset + 1] = sustainedValue;
                                     }
                                 }
                             }

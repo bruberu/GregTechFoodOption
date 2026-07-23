@@ -1,10 +1,9 @@
 package gregtechfoodoption.worldgen.trees;
 
-import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.condition.BiomeCondition;
-import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
+import static gregtechfoodoption.item.GTFOMetaItem.MANGO;
+
+import java.util.Random;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
@@ -14,20 +13,25 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
-import java.util.Random;
-
-import static gregtechfoodoption.item.GTFOMetaItem.MANGO;
+import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class MangoTree extends GTFOTree {
+
     public static int LEAVES_COLOR = 0x7D921E;
+
     public MangoTree() {
         super("mango", 2);
-        this.addCondition(new BiomeCondition(new Biome[]{Biomes.MUTATED_JUNGLE_EDGE, Biomes.JUNGLE_EDGE}, 4, 0.2));
+        this.addCondition(new BiomeCondition(new Biome[] { Biomes.MUTATED_JUNGLE_EDGE, Biomes.JUNGLE_EDGE }, 4, 0.2));
         this.addCondition(new TemperatureRainfallCondition(2, 1.5, 0.9, 0.9, 0.3));
     }
 
     @Override
-    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int trunkHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int trunkHeight, Random random,
+                                  TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos currentYPos = GTFOUtils.copy(pos);
         currentYPos.move(EnumFacing.UP, trunkHeight - 2);
         for (int i = 13; i > 0; i -= (random.nextInt(4) + 4)) {
@@ -37,12 +41,18 @@ public class MangoTree extends GTFOTree {
                     currentYPos.offset(EnumFacing.SOUTH, layerSize).offset(EnumFacing.EAST, layerSize));
             int finalI = i;
             iterator.forEach(leavesPos -> {
-                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <= Math.sqrt(finalI))
+                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <=
+                        Math.sqrt(finalI))
                     notifier.accept(world, leavesPos, getNaturalLeavesState());
             });
             currentYPos.move(EnumFacing.UP);
         }
-        notifier.accept(world, GTFOUtils.copy(pos).move(EnumFacing.UP, trunkHeight), getNaturalLeavesState()); // In case the top isn't covered.
+        notifier.accept(world, GTFOUtils.copy(pos).move(EnumFacing.UP, trunkHeight), getNaturalLeavesState()); // In
+                                                                                                               // case
+                                                                                                               // the
+                                                                                                               // top
+                                                                                                               // isn't
+                                                                                                               // covered.
     }
 
     @Override

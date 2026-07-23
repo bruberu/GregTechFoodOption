@@ -1,16 +1,17 @@
 package gregtechfoodoption;
 
+import static gregtech.api.capability.GregtechDataCodes.assignId;
+
+import java.util.Random;
+
 import gregtech.api.unification.material.info.MaterialIconSet;
 import gregtech.api.items.toolitem.ToolHelper;
 import gregtech.api.unification.material.Materials;
 import gregtech.api.util.BaseCreativeTab;
 import gregtechfoodoption.item.GTFOMetaItem;
 
-import java.util.Random;
-
-import static gregtech.api.capability.GregtechDataCodes.assignId;
-
 public class GTFOValues {
+
     public static final String MODID = "gregtechfoodoption",
             MODID_GCYS = "gcys",
             MODID_AA = "actuallyadditions",
@@ -35,8 +36,10 @@ public class GTFOValues {
     public static final int UPDATE_KITCHEN_STATUS = assignId();
     public static final int UPDATE_KITCHEN_ORDER = assignId();
 
-    public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main", () -> GTFOMetaItem.DOUGH.getStackForm(), true);
-    public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food", () -> GTFOMetaItem.BANANA.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO = new BaseCreativeTab("gregtechfoodoption.main",
+            () -> GTFOMetaItem.DOUGH.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food",
+            () -> GTFOMetaItem.BANANA.getStackForm(), true);
     public static final BaseCreativeTab TAB_GTFO_CROPS = new BaseCreativeTab("gregtechfoodoption.crops", () -> GTFOMetaItem.ONION_SEED.getStackForm(), true);
     public static final BaseCreativeTab TAB_GTFO_TOOLS = new BaseCreativeTab("gregtechfoodoption.tools", () -> ToolHelper.getAndSetToolData(GTFOMetaItem.ROLLING_PIN, Materials.Wood, 1, 1, 1F, 1F), true);
     public static final BaseCreativeTab TAB_GTFO_BLOCKS = new BaseCreativeTab("gregtechfoodoption.blocks", () -> GTFOMetaItem.ADOBE_BRICK.getStackForm(), true);

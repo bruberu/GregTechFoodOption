@@ -1,5 +1,7 @@
 package gregtechfoodoption.tools;
 
+import net.minecraft.init.Enchantments;
+
 import gregtech.api.GTValues;
 import gregtech.api.items.toolitem.ItemGTSword;
 import gregtech.api.items.toolitem.ItemGTTool;
@@ -27,16 +29,18 @@ public class GTFOToolItems {
                 .oreDict("craftingToolRollingPin")
                 .toolClasses(ROLLING_PIN_CLASS));
         ((Item) GTFOMetaItem.ROLLING_PIN).setCreativeTab(GTFOValues.TAB_GTFO_TOOLS);
-        GTFOMetaItem.BUTCHERY_KNIFE_HV = ToolItems.register(ItemGTSword.Builder.of(GTFOValues.MODID, "butchery_knife.hv")
-                .toolStats(b -> b.crafting().attacking().brokenStack(ToolHelper.SUPPLY_POWER_UNIT_HV).defaultEnchantment(Enchantments.LOOTING, 5))
-                .sound(GTSoundEvents.CUT)
-                .toolClasses(ToolClasses.BUTCHERY_KNIFE)
-                .electric(GTValues.HV));
+        GTFOMetaItem.BUTCHERY_KNIFE_HV = ToolItems
+                .register(ItemGTSword.Builder.of(GTFOValues.MODID, "butchery_knife.hv")
+                        .toolStats(b -> b.crafting().attacking().brokenStack(ToolHelper.SUPPLY_POWER_UNIT_HV)
+                                .defaultEnchantment(Enchantments.LOOTING, 5))
+                        .sound(GTSoundEvents.CUT)
+                        .toolClasses(ToolClasses.BUTCHERY_KNIFE)
+                        .electric(GTValues.HV));
         ((Item) GTFOMetaItem.BUTCHERY_KNIFE_HV).setCreativeTab(GTFOValues.TAB_GTFO_TOOLS);
     }
 
     public static void registerCustomRecipes() {
-        Material[] rollingPinMaterials = new Material[]{
+        Material[] rollingPinMaterials = new Material[] {
                 Materials.Wood, Materials.Rubber, Materials.Polyethylene, Materials.Polytetrafluoroethylene
         };
 
@@ -46,7 +50,8 @@ public class GTFOToolItems {
             Material solidMaterial = rollingPinMaterials[i];
             if (ModHandler.isMaterialWood(solidMaterial))
                 ModHandler.addMirroredShapedRecipe(String.format("soft_mallet_%s", solidMaterial),
-                        ToolHelper.getAndSetToolData(GTFOMetaItem.ROLLING_PIN, solidMaterial, 128 * (1 << i), 1, 1F, 1F),
+                        ToolHelper.getAndSetToolData(GTFOMetaItem.ROLLING_PIN, solidMaterial, 128 * (1 << i), 1, 1F,
+                                1F),
                         "  R", " P ", "R f",
                         'P', new UnificationEntry(OrePrefix.plank, solidMaterial),
                         'R', stick);
@@ -58,5 +63,4 @@ public class GTFOToolItems {
                         'R', stick);
         }
     }
-
 }

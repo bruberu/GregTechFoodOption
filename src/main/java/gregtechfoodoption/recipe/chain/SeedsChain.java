@@ -1,5 +1,11 @@
 package gregtechfoodoption.recipe.chain;
 
+import static gregtech.api.unification.material.Materials.*;
+import static gregtechfoodoption.GTFOMaterialHandler.*;
+import static gregtechfoodoption.item.GTFOMetaItem.*;
+
+import net.minecraft.item.ItemStack;
+
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.recipes.RecipeMaps;
 import gregtech.api.unification.material.Materials;
@@ -7,24 +13,21 @@ import gregtech.api.unification.ore.OrePrefix;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOConfig;
 import gregtechfoodoption.block.GTFOCrop;
-import gregtechfoodoption.worldgen.trees.GTFOTrees;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.recipe.GTFORecipeMaps;
-import net.minecraft.item.ItemStack;
-
-import static gregtech.api.unification.material.Materials.*;
-import static gregtechfoodoption.GTFOMaterialHandler.*;
-import static gregtechfoodoption.item.GTFOMetaItem.*;
+import gregtechfoodoption.worldgen.trees.GTFOTrees;
 
 public class SeedsChain {
+
     public static void init() {
         /*
-        RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
-                .inputs(MetaItems.PLANT_BALL.getStackForm())
-                .chancedOutput(GTFOMaterialHandler.PopcornKernel.getItemStack(), 2000, 250)
-                .buildAndRegister();*/
+         * RecipeMaps.CENTRIFUGE_RECIPES.recipeBuilder().EUt(6).duration(20)
+         * .inputs(MetaItems.PLANT_BALL.getStackForm())
+         * .chancedOutput(GTFOMaterialHandler.PopcornKernel.getItemStack(), 2000, 250)
+         * .buildAndRegister();
+         */
 
-        ItemStack[] crops = new ItemStack[]{
+        ItemStack[] crops = new ItemStack[] {
                 LEMON.getStackForm(),
                 LIME.getStackForm(),
                 TOMATO.getStackForm(),
@@ -33,7 +36,7 @@ public class SeedsChain {
                 ONION.getStackForm(),
                 BANANA.getStackForm(),
                 ORANGE.getStackForm(),
-                //GRAPES.getStackForm(),  Done in AlcoholChain
+                // GRAPES.getStackForm(), Done in AlcoholChain
                 MANGO.getStackForm(),
                 APRICOT.getStackForm(),
                 PEA_POD.getStackForm(),
@@ -136,7 +139,6 @@ public class SeedsChain {
                 "   ", "   ", " SS",
                 'S', GTFOMetaItem.UNKNOWN_SEED);
 
-
         ModHandler.addShapelessRecipe("gtfo_seed_soy_extraction", GTFOMetaItem.SOYBEAN_SEED.getStackForm(),
                 GTFOMetaItem.SOYBEAN);
         ModHandler.addShapelessRecipe("gtfo_seed_tomato_extraction", GTFOMetaItem.TOMATO_SEED.getStackForm(),
@@ -207,7 +209,6 @@ public class SeedsChain {
                 .outputs(PEAS.getStackForm(8))
                 .buildAndRegister();
 
-
         ModHandler.addShapelessRecipe("gtfo_black_pepper", BlackPepper.getItemStack(),
                 BLACK_PEPPERCORN, 'm');
         RecipeMaps.MACERATOR_RECIPES.recipeBuilder().EUt(8).duration(80)
@@ -227,16 +228,15 @@ public class SeedsChain {
                 .chancedOutput(GTFOTrees.NUTMEG_TREE.getSaplingStack(), 5000, 0)
                 .buildAndRegister();
 
-/*
-        RecipeUtils.addGreenHouseRecipes(LEMON.getStackForm(), LEMON);
-        RecipeUtils.addGreenHouseRecipes(LIME.getStackForm(), LIME);
-        RecipeUtils.addGreenHouseRecipes(TOMATO.getStackForm(), TOMATO);
-        RecipeUtils.addGreenHouseRecipes(CUCUMBER.getStackForm(), CUCUMBER);
-        RecipeUtils.addGreenHouseRecipes(ONION.getStackForm(), ONION);
-        RecipeUtils.addGreenHouseRecipes(GRAPES.getStackForm(), GRAPES);
-
-        RecipeUtils.addGreenHouseRecipes(PopcornKernel.getItemStack(), POPCORN_EAR);
-*/
-
+        /*
+         * RecipeUtils.addGreenHouseRecipes(LEMON.getStackForm(), LEMON);
+         * RecipeUtils.addGreenHouseRecipes(LIME.getStackForm(), LIME);
+         * RecipeUtils.addGreenHouseRecipes(TOMATO.getStackForm(), TOMATO);
+         * RecipeUtils.addGreenHouseRecipes(CUCUMBER.getStackForm(), CUCUMBER);
+         * RecipeUtils.addGreenHouseRecipes(ONION.getStackForm(), ONION);
+         * RecipeUtils.addGreenHouseRecipes(GRAPES.getStackForm(), GRAPES);
+         * 
+         * RecipeUtils.addGreenHouseRecipes(PopcornKernel.getItemStack(), POPCORN_EAR);
+         */
     }
 }

@@ -1,13 +1,8 @@
 package gregtechfoodoption.integration.agricraft;
 
-import com.infinityraider.agricraft.api.v1.AgriApi;
-import com.infinityraider.agricraft.api.v1.crop.IAgriCrop;
-import com.infinityraider.agricraft.api.v1.util.MethodResult;
-import com.infinityraider.agricraft.tiles.TileEntityCrop;
-import com.infinityraider.infinitylib.utility.WorldHelper;
-import gregtechfoodoption.machines.farmer.FarmerMode;
-import gregtechfoodoption.machines.farmer.FarmerModeRegistry;
-import gregtechfoodoption.machines.farmer.MetaTileEntityFarmer;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -15,21 +10,31 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.infinityraider.agricraft.api.v1.AgriApi;
+import com.infinityraider.agricraft.api.v1.crop.IAgriCrop;
+import com.infinityraider.agricraft.api.v1.util.MethodResult;
+import com.infinityraider.agricraft.tiles.TileEntityCrop;
+import com.infinityraider.infinitylib.utility.WorldHelper;
+
+import gregtechfoodoption.machines.farmer.FarmerMode;
+import gregtechfoodoption.machines.farmer.FarmerModeRegistry;
+import gregtechfoodoption.machines.farmer.MetaTileEntityFarmer;
 
 public class GTFOAgriCraftFarmerMode implements FarmerMode {
+
     public GTFOAgriCraftFarmerMode() {
         FarmerModeRegistry.canUseAirOptimization = false;
     }
 
     @Override
     public boolean canOperate(IBlockState state, MetaTileEntityFarmer farmer, BlockPos pos, World world) {
-        return WorldHelper.getTile(world, pos, IAgriCrop.class).isPresent() && WorldHelper.getTile(world, pos, IAgriCrop.class).get().isMature();
+        return WorldHelper.getTile(world, pos, IAgriCrop.class).isPresent() &&
+                WorldHelper.getTile(world, pos, IAgriCrop.class).get().isMature();
     }
 
     @Override
-    public boolean canPlaceAt(BlockPos.MutableBlockPos operationPos, BlockPos.MutableBlockPos farmerPos, EnumFacing facing, World world) {
+    public boolean canPlaceAt(BlockPos.MutableBlockPos operationPos, BlockPos.MutableBlockPos farmerPos,
+                              EnumFacing facing, World world) {
         return WorldHelper.getTile(world, operationPos, IAgriCrop.class).isPresent() &&
                 !WorldHelper.getTile(world, operationPos, IAgriCrop.class).get().hasSeed();
     }
@@ -40,7 +45,8 @@ public class GTFOAgriCraftFarmerMode implements FarmerMode {
     }
 
     @Override
-    public EnumActionResult place(ItemStack stack, World world, BlockPos.MutableBlockPos pos, MetaTileEntityFarmer farmer) {
+    public EnumActionResult place(ItemStack stack, World world, BlockPos.MutableBlockPos pos,
+                                  MetaTileEntityFarmer farmer) {
         final MethodResult result = WorldHelper.getTile(world, pos, IAgriCrop.class).get()
                 .onApplySeeds(AgriApi.getSeedRegistry().valueOf(stack).get(), farmer.fakePlayer);
         return convertMethodResult(result);
@@ -53,9 +59,10 @@ public class GTFOAgriCraftFarmerMode implements FarmerMode {
     }
 
     @Override
-    public List<ItemStack> getDrops(IBlockState state, World world, BlockPos.MutableBlockPos pos, MetaTileEntityFarmer farmer) {
+    public List<ItemStack> getDrops(IBlockState state, World world, BlockPos.MutableBlockPos pos,
+                                    MetaTileEntityFarmer farmer) {
         final List<ItemStack> products = new ArrayList<>();
-        ((TileEntityCrop)(WorldHelper.getTile(world, pos, IAgriCrop.class).get()))
+        ((TileEntityCrop) (WorldHelper.getTile(world, pos, IAgriCrop.class).get()))
                 .getDrops(products::add, false, false, true);
         return products;
     }

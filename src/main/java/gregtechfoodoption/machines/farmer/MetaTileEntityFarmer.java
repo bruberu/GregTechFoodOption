@@ -1,5 +1,33 @@
 package gregtechfoodoption.machines.farmer;
 
+import static gregtech.api.capability.GregtechDataCodes.*;
+import static gregtechfoodoption.GTFOValues.UPDATE_FARMER_OUTPUT_FACING;
+import static gregtechfoodoption.GTFOValues.UPDATE_OPERATION_POS;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandlerModifiable;
+
 import codechicken.lib.raytracer.CuboidRayTraceResult;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.pipeline.IVertexOperation;
@@ -31,32 +59,6 @@ import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.client.particle.GTFOFarmingLaserBeamParticle;
 import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandlerModifiable;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static gregtech.api.capability.GregtechDataCodes.*;
-import static gregtechfoodoption.GTFOValues.UPDATE_FARMER_OUTPUT_FACING;
-import static gregtechfoodoption.GTFOValues.UPDATE_OPERATION_POS;
 
 public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IControllable, IActiveOutputSide {
 
@@ -77,7 +79,6 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
 
     private static final int BASE_EU_CONSUMPTION = 16;
     protected final GTItemStackHandler chargerInventory;
-
 
     public MetaTileEntityFarmer(ResourceLocation metaTileEntityId, int tier, int ticksPerAction) {
         super(metaTileEntityId, tier);
@@ -121,7 +122,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     @SideOnly(Side.CLIENT)
     public void operateClient() {
         GTParticleManager.INSTANCE.addEffect(new GTFOFarmingLaserBeamParticle(this,
-                new Vector3(new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
+                new Vector3(
+                        new Vec3d(getPos()).add(GTFOUtils.getScaledFacingVec(getFrontFacing(), .4)).add(.5, .7, .5)),
                 new Vector3(new Vec3d(operationPosition)).add(.5, .0, .5),
                 ticksPerAction * 3));
     }
@@ -161,15 +163,18 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
         if (!getWorld().isAirBlock(operationPosition)) {
             boolean canHarvestBlock = true;
             if (!cachedMode.canOperate(blockState, this, GTFOUtils.copy(operationPosition), getWorld())) {
-                FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this, GTFOUtils.copy(operationPosition), getWorld());
+                FarmerMode mode = FarmerModeRegistry.findSuitableFarmerMode(blockState, this,
+                        GTFOUtils.copy(operationPosition), getWorld());
                 if (mode != null) {
                     cachedMode = mode;
                 } else {
                     canHarvestBlock = false;
                 }
             }
-            if (canHarvestBlock && !unusableHarvestingModes.contains(cachedMode) && !GTFOUtils.isFull(getExportItems())) {
-                List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
+            if (canHarvestBlock && !unusableHarvestingModes.contains(cachedMode) &&
+                    !GTFOUtils.isFull(getExportItems())) {
+                List<ItemStack> drops = cachedMode.getDrops(blockState, getWorld(), GTFOUtils.copy(operationPosition),
+                        this);
                 if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, drops)) {
                     GTTransferUtils.addItemsToItemHandler(getExportItems(), false, drops);
                     cachedMode.harvest(blockState, getWorld(), GTFOUtils.copy(operationPosition), this);
@@ -186,16 +191,19 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public boolean placeSeed() {
         if (isCropSpaceEmpty() && (!seedsAreEmpty || !this.getNotifiedItemInputList().isEmpty())) {
             seedsAreEmpty = false; // At least, I hope
-            seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1); // It loops around if it doesn't find anything after
+            seedSlot = GTFOUtils.getFirstUnemptyItemSlot(getImportItems(), seedSlot + 1); // It loops around if it
+                                                                                          // doesn't find anything after
             if (seedSlot == -1) {
                 seedsAreEmpty = true;
             } else {
                 ItemStack seedItem = getImportItems().extractItem(seedSlot, 1, true);
                 boolean canPlaceSeed = true;
-                if (!cachedMode.canPlaceItem(seedItem) || !cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld())) {
+                if (!cachedMode.canPlaceItem(seedItem) || !cachedMode.canPlaceAt(GTFOUtils.copy(operationPosition),
+                        new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld())) {
                     FarmerMode mode;
 
-                    mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem, GTFOUtils.copy(operationPosition), new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld());
+                    mode = FarmerModeRegistry.findSuitableFarmerMode(seedItem, GTFOUtils.copy(operationPosition),
+                            new MutableBlockPos(this.getPos()), this.getFrontFacing(), getWorld());
                     if (mode != null) {
                         cachedMode = mode;
                     } else {
@@ -203,16 +211,20 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
 
                         if (FarmerModeRegistry.findSuitableFarmerMode(seedItem) == null) {
                             // Move this unusable stack to the output
-                            ItemStack junkStack = getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), true);
-                            if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true, Collections.singletonList(junkStack))) {
+                            ItemStack junkStack = getImportItems().extractItem(seedSlot,
+                                    getImportItems().getStackInSlot(seedSlot).getCount(), true);
+                            if (GTTransferUtils.addItemsToItemHandler(getExportItems(), true,
+                                    Collections.singletonList(junkStack))) {
                                 GTTransferUtils.addItemsToItemHandler(getExportItems(), false,
-                                        Collections.singletonList(getImportItems().extractItem(seedSlot, getImportItems().getStackInSlot(seedSlot).getCount(), false)));
+                                        Collections.singletonList(getImportItems().extractItem(seedSlot,
+                                                getImportItems().getStackInSlot(seedSlot).getCount(), false)));
                             }
                         }
                     }
                 }
                 if (canPlaceSeed) {
-                    EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition), this);
+                    EnumActionResult result = cachedMode.place(seedItem, getWorld(), GTFOUtils.copy(operationPosition),
+                            this);
                     if (result == EnumActionResult.SUCCESS) {
                         getImportItems().extractItem(seedSlot, 1, false);
                         return true;
@@ -241,7 +253,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
             if (!isOperationPositionInsideWorkingArea()) {
                 setDefaultOperationPosition();
                 unusableHarvestingModes.clear(); // Try again in case some other random thing changed
-                if (!isOperationPositionInsideWorkingArea() && !getWorld().isRemote) { // This is needed for persistent working areas
+                if (!isOperationPositionInsideWorkingArea() && !getWorld().isRemote) { // This is needed for persistent
+                                                                                       // working areas
                     setupWorkingArea();
                 }
             }
@@ -249,10 +262,14 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     }
 
     private void setupWorkingArea() {
-        workingArea = new AxisAlignedBB(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2),
-                this.getPos().offset(this.getFrontFacing(), LENGTH).offset(this.getFrontFacing().rotateYCCW(), LENGTH / 2))
-                .grow(.1);
-        if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to weirdness in how the facing is set.
+        workingArea = new AxisAlignedBB(
+                this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2),
+                this.getPos().offset(this.getFrontFacing(), LENGTH).offset(this.getFrontFacing().rotateYCCW(),
+                        LENGTH / 2))
+                                .grow(.1);
+        if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to
+                                                                                    // weirdness in how the facing is
+                                                                                    // set.
             setDefaultOperationPosition();
             writeCustomData(UPDATE_OPERATION_POS, buf -> buf.writeBlockPos(operationPosition));
         }
@@ -286,43 +303,47 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public void setFrontFacing(EnumFacing frontFacing) {
         super.setFrontFacing(frontFacing);
         if (this.outputFacing == null) {
-            //set initial output facing as opposite to front
+            // set initial output facing as opposite to front
             setOutputFacing(frontFacing.getOpposite());
         }
         setupWorkingArea();
         setDefaultOperationPosition();
     }
 
-
     protected IItemHandlerModifiable createImportItemHandler() {
         return new NotifiableItemStackHandler(this, 9, this, false);
     }
 
     protected IItemHandlerModifiable createExportItemHandler() {
-        return new NotifiableItemStackHandler(this,9, this, true);
+        return new NotifiableItemStackHandler(this, 9, this, true);
     }
 
     @Override
     protected ModularUI createUI(EntityPlayer entityPlayer) {
         ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 176, 183)
-                .label(10, 5, this.getMetaFullName()).widget(new SlotWidget(chargerInventory, 0, 79, 80, true, true, false)
+                .label(10, 5, this.getMetaFullName())
+                .widget(new SlotWidget(chargerInventory, 0, 79, 80, true, true, false)
                         .setBackgroundTexture(GuiTextures.SLOT, GuiTextures.CHARGER_OVERLAY)
-                        .setTooltipText("gregtech.gui.charger_slot.tooltip", GTValues.VNF[getTier()], GTValues.VNF[getTier()]));
+                        .setTooltipText("gregtech.gui.charger_slot.tooltip", GTValues.VNF[getTier()],
+                                GTValues.VNF[getTier()]));
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 int index = i * 3 + j;
-                builder.widget(new SlotWidget(this.importItems, index, 28 + j * 18, 18 + i * 18, true, true).setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.SEED_OVERLAY));
-                builder.widget(new SlotWidget(this.exportItems, index, 94 + j * 18, 18 + i * 18, true, false).setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.CROP_OVERLAY));
+                builder.widget(new SlotWidget(this.importItems, index, 28 + j * 18, 18 + i * 18, true, true)
+                        .setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.SEED_OVERLAY));
+                builder.widget(new SlotWidget(this.exportItems, index, 94 + j * 18, 18 + i * 18, true, false)
+                        .setBackgroundTexture(GuiTextures.SLOT, GTFOGuiTextures.CROP_OVERLAY));
             }
         }
 
         builder.widget(new ToggleButtonWidget(7, 80, 18, 18,
-                GuiTextures.BUTTON_ITEM_OUTPUT, this::isAutoOutputItems, this::setAutoOutputItems).shouldUseBaseBackground()
-                .setTooltipText("gregtech.gui.item_auto_output.tooltip"));
+                GuiTextures.BUTTON_ITEM_OUTPUT, this::isAutoOutputItems, this::setAutoOutputItems)
+                        .shouldUseBaseBackground()
+                        .setTooltipText("gregtech.gui.item_auto_output.tooltip"));
 
         builder.widget(new ImageWidget(152, 80, 17, 17,
                 GTValues.XMAS.get() ? GTFOGuiTextures.GTFO_LOGO_XMAS : GTFOGuiTextures.GTFO_LOGO)
-                .setIgnoreColor(true));
+                        .setIgnoreColor(true));
 
         builder.bindPlayerInventory(entityPlayer.inventory, GuiTextures.SLOT, 7, 101);
         return builder.build(this.getHolder(), entityPlayer);
@@ -332,7 +353,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     public void renderMetaTileEntity(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline) {
         super.renderMetaTileEntity(renderState, translation, pipeline);
         OrientedOverlayRenderer renderer = GTFOClientHandler.FARMER_OVERLAY;
-        renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking, isWorkingEnabled);
+        renderer.renderOrientedState(renderState, translation, pipeline, Cuboid6.full, this.getFrontFacing(), isWorking,
+                isWorkingEnabled);
         if (outputFacing != null) {
             Textures.PIPE_OUT_OVERLAY.renderSided(outputFacing, renderState, translation, pipeline);
             if (isAutoOutputItems()) {
@@ -388,19 +410,23 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     }
 
     private boolean isOperationPositionInsideWorkingArea() {
-        return workingArea.contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()));
+        return workingArea
+                .contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()));
     }
 
     private void setDefaultOperationPosition() {
-        operationPosition = new MutableBlockPos(this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
+        operationPosition = new MutableBlockPos(
+                this.getPos().offset(this.getFrontFacing()).offset(this.getFrontFacing().rotateY(), LENGTH / 2));
         writeCustomData(UPDATE_OPERATION_POS, buf -> buf.writeBlockPos(operationPosition));
     }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
-        tooltip.add(I18n.format("gregtech.universal.tooltip.voltage_in", energyContainer.getInputVoltage(), GTValues.VNF[getTier()]));
-        tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity", energyContainer.getEnergyCapacity(), GTValues.VNF[getTier()]));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.voltage_in", energyContainer.getInputVoltage(),
+                GTValues.VNF[getTier()]));
+        tooltip.add(I18n.format("gregtech.universal.tooltip.energy_storage_capacity",
+                energyContainer.getEnergyCapacity(), GTValues.VNF[getTier()]));
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.flavor"));
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.consumption", getEnergyConsumedPerTick()));
         tooltip.add(I18n.format("gregtechfoodoption.machine.farmer.tooltip.working"));
@@ -450,16 +476,19 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     }
 
     @Override
-    public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult) {
+    public boolean onScrewdriverClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
+                                      CuboidRayTraceResult hitResult) {
         EnumFacing hitFacing = CoverRayTracer.determineGridSideHit(hitResult);
         if (facing == getOutputFacing() || (hitFacing == getOutputFacing() && playerIn.isSneaking())) {
             if (!getWorld().isRemote) {
                 if (isAllowInputFromOutputSideItems()) {
                     setAllowInputFromOutputSide(false);
-                    playerIn.sendMessage(new TextComponentTranslation("gregtech.machine.basic.input_from_output_side.disallow"));
+                    playerIn.sendMessage(
+                            new TextComponentTranslation("gregtech.machine.basic.input_from_output_side.disallow"));
                 } else {
                     setAllowInputFromOutputSide(true);
-                    playerIn.sendMessage(new TextComponentTranslation("gregtech.machine.basic.input_from_output_side.allow"));
+                    playerIn.sendMessage(
+                            new TextComponentTranslation("gregtech.machine.basic.input_from_output_side.allow"));
                 }
             }
             return true;
@@ -475,7 +504,8 @@ public class MetaTileEntityFarmer extends TieredMetaTileEntity implements IContr
     }
 
     @Override
-    public boolean onWrenchClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing, CuboidRayTraceResult hitResult) {
+    public boolean onWrenchClick(EntityPlayer playerIn, EnumHand hand, EnumFacing facing,
+                                 CuboidRayTraceResult hitResult) {
         if (!playerIn.isSneaking()) {
             if (getOutputFacing() == facing || getFrontFacing() == facing) {
                 return false;

@@ -1,24 +1,11 @@
 package gregtechfoodoption.covers;
 
-import codechicken.lib.raytracer.CuboidRayTraceResult;
-import codechicken.lib.render.CCRenderState;
-import codechicken.lib.render.pipeline.IVertexOperation;
-import codechicken.lib.vec.Cuboid6;
-import codechicken.lib.vec.Matrix4;
-import gregtech.api.GTValues;
-import gregtech.api.GregTechAPI;
-import gregtech.api.cover.CoverBase;
-import gregtech.api.cover.CoverDefinition;
-import gregtech.api.cover.CoverWithUI;
-import gregtech.api.cover.CoverableView;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.unification.material.Material;
-import gregtechfoodoption.GTFOMaterialHandler;
-import gregtechfoodoption.client.GTFOClientHandler;
-import gregtechfoodoption.client.particle.GTFOSprinkle;
-import gregtechfoodoption.client.particle.GTFOSprinkleMaker;
-import gregtechfoodoption.materials.FertilizerProperty;
+import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_DATA;
+import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_EXISTENCE;
+import static net.minecraft.block.BlockFarmland.MOISTURE;
+
 import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.BlockFire;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -30,19 +17,35 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.jetbrains.annotations.NotNull;
 
-import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_DATA;
-import static gregtechfoodoption.GTFOValues.UPDATE_SPRINKLER_EXISTENCE;
-import static net.minecraft.block.BlockFarmland.MOISTURE;
+import codechicken.lib.raytracer.CuboidRayTraceResult;
+import codechicken.lib.render.CCRenderState;
+import codechicken.lib.render.pipeline.IVertexOperation;
+import codechicken.lib.vec.Cuboid6;
+import codechicken.lib.vec.Matrix4;
+import gregtech.api.GTValues;
+import gregtech.api.GregTechAPI;
+import gregtech.api.cover.CoverBase;
+import gregtech.api.cover.CoverDefinition;
+import gregtech.api.cover.CoverableView;
+import gregtech.api.unification.material.Material;
+import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.client.GTFOClientHandler;
+import gregtechfoodoption.client.particle.GTFOSprinkleMaker;
+import gregtechfoodoption.materials.FertilizerProperty;
+import gregtechfoodoption.utils.GTFOFireSuppressantProperty;
 
 public class CoverSprinkler extends CoverBase implements ITickable {
+
     private int tier;
 
     public BlockPos.MutableBlockPos operationPosition;
@@ -52,6 +55,9 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     private static final int LENGTH = 9;
     private boolean showsSprinkles = true;
 
+    private int fireSuppressTimer = 0;
+    private static final int FIRE_SUPPRESSION_HEIGHT = 9;
+
     @SideOnly(Side.CLIENT)
     private GTFOSprinkleMaker sprinkleMaker;
 
@@ -60,15 +66,17 @@ public class CoverSprinkler extends CoverBase implements ITickable {
         this.tier = tier;
     }
 
-
     @SideOnly(Side.CLIENT)
     @Override
-    public void renderCover(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline, Cuboid6 plateBox, BlockRenderLayer blockRenderLayer) {
+    public void renderCover(CCRenderState renderState, Matrix4 translation, IVertexOperation[] pipeline,
+                            Cuboid6 plateBox, BlockRenderLayer blockRenderLayer) {
         if (sprinkleMaker == null || !sprinkleMaker.isAlive()) {
-            sprinkleMaker = new GTFOSprinkleMaker(this.getWorld(), this.getCoverableView().getPos().getX(), this.getCoverableView().getPos().getY(), this.getCoverableView().getPos().getZ(), this);
+            sprinkleMaker = new GTFOSprinkleMaker(this.getWorld(), this.getCoverableView().getPos().getX(),
+                    this.getCoverableView().getPos().getY(), this.getCoverableView().getPos().getZ(), this);
             Minecraft.getMinecraft().effectRenderer.addEffect(sprinkleMaker);
         }
-        GTFOClientHandler.SPRINKLER_OVERLAY.renderSided(this.getAttachedSide(), plateBox, renderState, pipeline, translation);
+        GTFOClientHandler.SPRINKLER_OVERLAY.renderSided(this.getAttachedSide(), plateBox, renderState, pipeline,
+                translation);
     }
 
     @Override
@@ -96,7 +104,8 @@ public class CoverSprinkler extends CoverBase implements ITickable {
 
     @Override
     public void update() {
-        IFluidHandler fluidHandler = this.getCoverableView().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, getAttachedSide());
+        IFluidHandler fluidHandler = this.getCoverableView()
+                .getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, getAttachedSide());
         if (fluidHandler == null)
             return;
         FluidStack fluid = fluidHandler.drain(1, true);
@@ -127,8 +136,10 @@ public class CoverSprinkler extends CoverBase implements ITickable {
         }
         IBlockState cropState = this.getCoverableView().getWorld().getBlockState(operationPosition);
         if (GTValues.RNG.nextInt(100) < percentageChance) {
-            if (cropState.getBlock() instanceof IGrowable && ((IGrowable) cropState.getBlock()).canGrow(this.getCoverableView().getWorld(), operationPosition, cropState, false)) {
-                ((IGrowable) cropState.getBlock()).grow(this.getCoverableView().getWorld(), GTValues.RNG, operationPosition, cropState);
+            if (cropState.getBlock() instanceof IGrowable && ((IGrowable) cropState.getBlock())
+                    .canGrow(this.getCoverableView().getWorld(), operationPosition, cropState, false)) {
+                ((IGrowable) cropState.getBlock()).grow(this.getCoverableView().getWorld(), GTValues.RNG,
+                        operationPosition, cropState);
             } else if (cropState.getBlock() instanceof IPlantable) {
                 (cropState.getBlock()).updateTick(getWorld(), operationPosition, cropState, GTValues.RNG);
             }
@@ -136,13 +147,67 @@ public class CoverSprinkler extends CoverBase implements ITickable {
 
         IBlockState farmlandState = this.getCoverableView().getWorld().getBlockState(operationPosition.down());
         if (farmlandState.getBlock() instanceof BlockFarmland) {
-            this.getCoverableView().getWorld().setBlockState(operationPosition.down(), farmlandState.withProperty(MOISTURE, Math.min(7, farmlandState.getValue(MOISTURE) + 2)));
+            this.getCoverableView().getWorld().setBlockState(operationPosition.down(),
+                    farmlandState.withProperty(MOISTURE, Math.min(7, farmlandState.getValue(MOISTURE) + 2)));
+        }
+
+        // Fire suppression logic, extracted from susy mixin directly into gtfo
+        if (!this.getWorld().isRemote) {
+            if (++fireSuppressTimer >= 20) {
+                fireSuppressTimer = 0;
+
+                IFluidHandler suppressFluidHandler = this.getCoverableView()
+                        .getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, getAttachedSide());
+                if (suppressFluidHandler != null) {
+                    FluidStack suppressFluid = suppressFluidHandler.drain(Integer.MAX_VALUE, false);
+                    if (suppressFluid != null) {
+                        boolean canSuppressFire = false;
+                        Material mat = GregTechAPI.materialManager.getMaterial(suppressFluid.getFluid().getName());
+                        if (mat != null) {
+                            GTFOFireSuppressantProperty fireProp = mat
+                                    .getProperty(GTFOFireSuppressantProperty.FIRE_SUPPRESSANT);
+                            if (fireProp != null) {
+                                canSuppressFire = true;
+                            }
+                        }
+                        if (canSuppressFire) {
+                            suppressFire(this.getWorld(), this.getCoverableView().getPos());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void suppressFire(World world, BlockPos basePos) {
+        AxisAlignedBB area = new AxisAlignedBB(
+                basePos.offset(EnumFacing.SOUTH, 4).offset(EnumFacing.EAST, 4),
+                basePos.offset(EnumFacing.NORTH, 4).offset(EnumFacing.WEST, 4)).grow(0.1);
+
+        int minX = (int) Math.floor(area.minX);
+        int minZ = (int) Math.floor(area.minZ);
+        int maxX = (int) Math.ceil(area.maxX);
+        int maxZ = (int) Math.ceil(area.maxZ);
+        int minY = basePos.getY() - FIRE_SUPPRESSION_HEIGHT + 1;
+        int maxY = basePos.getY();
+
+        for (int scanY = minY; scanY <= maxY; scanY++) {
+            for (int x = minX; x <= maxX; x++) {
+                for (int z = minZ; z <= maxZ; z++) {
+                    BlockPos candidate = new BlockPos(x, scanY, z);
+                    if (world.getBlockState(candidate).getBlock() instanceof BlockFire) {
+                        world.setBlockToAir(candidate);
+                    }
+                }
+            }
         }
     }
 
     @Override
     public boolean canAttach(@NotNull CoverableView coverHolder, @NotNull EnumFacing attachedSide) {
-        return getAttachedSide() == EnumFacing.DOWN && getCoverableView().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, getAttachedSide()) != null;
+        return getAttachedSide() == EnumFacing.DOWN &&
+                getCoverableView().getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, getAttachedSide()) !=
+                        null;
     }
 
     public void updateOperationPosition() {
@@ -151,7 +216,11 @@ public class CoverSprinkler extends CoverBase implements ITickable {
             operationPosition.move(EnumFacing.WEST, LENGTH).move(EnumFacing.SOUTH);
             if (!isOperationPositionInsideWorkingArea()) {
                 setDefaultOperationPosition();
-                if (!isOperationPositionInsideWorkingArea() && !getCoverableView().getWorld().isRemote) { // This is needed for persistent working areas
+                if (!isOperationPositionInsideWorkingArea() && !getCoverableView().getWorld().isRemote) { // This is
+                                                                                                          // needed for
+                                                                                                          // persistent
+                                                                                                          // working
+                                                                                                          // areas
                     setupWorkingArea();
                 }
             }
@@ -159,21 +228,26 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     }
 
     private boolean isOperationPositionInsideWorkingArea() {
-        return workingArea.contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()));
+        return workingArea
+                .contains(new Vec3d(operationPosition.getX(), operationPosition.getY(), operationPosition.getZ()));
     }
 
     private void setupWorkingArea() {
-        workingArea = new AxisAlignedBB(this.getPos().offset(EnumFacing.SOUTH, LENGTH / 2).offset(EnumFacing.EAST, LENGTH / 2),
+        workingArea = new AxisAlignedBB(
+                this.getPos().offset(EnumFacing.SOUTH, LENGTH / 2).offset(EnumFacing.EAST, LENGTH / 2),
                 this.getPos().offset(EnumFacing.NORTH, LENGTH / 2).offset(EnumFacing.WEST, LENGTH / 2))
-                .grow(.1);
-        if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to weirdness in how the facing is set.
+                        .grow(.1);
+        if (operationPosition == null || !isOperationPositionInsideWorkingArea()) { // The second part is needed due to
+                                                                                    // weirdness in how the facing is
+                                                                                    // set.
             setDefaultOperationPosition();
         }
     }
 
     private void setDefaultOperationPosition() {
-        operationPosition = new BlockPos.MutableBlockPos(this.getPos().offset(EnumFacing.NORTH, LENGTH / 2).offset(EnumFacing.WEST, LENGTH / 2));
-        //writeCustomData(UPDATE_OPERATION_POS, buf -> buf.writeBlockPos(operationPosition));
+        operationPosition = new BlockPos.MutableBlockPos(
+                this.getPos().offset(EnumFacing.NORTH, LENGTH / 2).offset(EnumFacing.WEST, LENGTH / 2));
+        // writeCustomData(UPDATE_OPERATION_POS, buf -> buf.writeBlockPos(operationPosition));
     }
 
     public BlockPos getPos() {
@@ -249,10 +323,9 @@ public class CoverSprinkler extends CoverBase implements ITickable {
     public EnumActionResult onSoftMalletClick(EntityPlayer playerIn, EnumHand hand, CuboidRayTraceResult hitResult) {
         this.showsSprinkles = !this.showsSprinkles;
         if (!this.getWorld().isRemote) {
-            playerIn.sendMessage(new TextComponentTranslation(showsSprinkles ? "gregtechfoodoption.sprinkler.particles.on" : "gregtechfoodoption.sprinkler.particles.off"));
+            playerIn.sendMessage(new TextComponentTranslation(showsSprinkles ?
+                    "gregtechfoodoption.sprinkler.particles.on" : "gregtechfoodoption.sprinkler.particles.off"));
         }
         return EnumActionResult.SUCCESS;
     }
-
-
 }

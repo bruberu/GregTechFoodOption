@@ -11,6 +11,5 @@ public class GTFOLog {
 
     public static Logger logger = LogManager.getLogger("GregTechFoodOption");
 
-    private GTFOLog() {
-    }
+    private GTFOLog() {}
 }

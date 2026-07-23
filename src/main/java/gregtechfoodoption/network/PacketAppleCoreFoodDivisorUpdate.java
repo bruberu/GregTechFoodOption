@@ -1,21 +1,21 @@
 package gregtechfoodoption.network;
 
-import gregtech.api.network.IClientExecutor;
-import gregtech.api.network.IPacket;
-import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
+import java.util.UUID;
+
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.PacketBuffer;
 
-import java.util.UUID;
+import gregtech.api.network.IClientExecutor;
+import gregtech.api.network.IPacket;
+import gregtechfoodoption.integration.applecore.GTFOAppleCoreCompat;
 
 public class PacketAppleCoreFoodDivisorUpdate implements IPacket, IClientExecutor {
+
     public UUID uuid;
     public float divisor;
 
-    public PacketAppleCoreFoodDivisorUpdate() {
+    public PacketAppleCoreFoodDivisorUpdate() {}
 
-    }
-    
     public PacketAppleCoreFoodDivisorUpdate(UUID uuid, float divisor) {
         this.uuid = uuid;
         this.divisor = divisor;

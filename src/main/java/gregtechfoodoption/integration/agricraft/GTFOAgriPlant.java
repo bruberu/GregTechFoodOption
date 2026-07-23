@@ -1,19 +1,12 @@
 package gregtechfoodoption.integration.agricraft;
 
-import com.infinityraider.agricraft.api.v1.AgriApi;
-import com.infinityraider.agricraft.api.v1.crop.IAgriCrop;
-import com.infinityraider.agricraft.api.v1.plant.IAgriPlant;
-import com.infinityraider.agricraft.api.v1.render.RenderMethod;
-import com.infinityraider.agricraft.api.v1.requirement.IGrowthReqBuilder;
-import com.infinityraider.agricraft.api.v1.requirement.IGrowthRequirement;
-import com.infinityraider.agricraft.api.v1.stat.IAgriStat;
-import com.infinityraider.agricraft.api.v1.util.FuzzyStack;
-import com.infinityraider.agricraft.farming.growthrequirement.GrowthReqBuilder;
-import com.infinityraider.agricraft.renderers.PlantRenderer;
-import com.infinityraider.infinitylib.render.tessellation.ITessellator;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOBerryBush;
-import gregtechfoodoption.block.GTFOCrop;
+import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.I18n;
@@ -25,20 +18,32 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Function;
+import com.infinityraider.agricraft.api.v1.AgriApi;
+import com.infinityraider.agricraft.api.v1.crop.IAgriCrop;
+import com.infinityraider.agricraft.api.v1.plant.IAgriPlant;
+import com.infinityraider.agricraft.api.v1.render.RenderMethod;
+import com.infinityraider.agricraft.api.v1.requirement.IGrowthReqBuilder;
+import com.infinityraider.agricraft.api.v1.requirement.IGrowthRequirement;
+import com.infinityraider.agricraft.api.v1.stat.IAgriStat;
+import com.infinityraider.agricraft.api.v1.util.FuzzyStack;
+import com.infinityraider.agricraft.farming.growthrequirement.GrowthReqBuilder;
+import com.infinityraider.agricraft.renderers.PlantRenderer;
+import com.infinityraider.infinitylib.render.tessellation.ITessellator;
+
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOBerryBush;
+import gregtechfoodoption.block.GTFOCrop;
 
 public class GTFOAgriPlant implements IAgriPlant {
+
     private GTFOCrop wrap;
     private List<FuzzyStack> seeds;
 
     public GTFOAgriPlant(GTFOCrop wrap) {
         this.wrap = wrap;
         this.seeds = new ArrayList<>();
-        this.seeds.add(new FuzzyStack(wrap.getSeedStack(), false, false, "agri_growth", "agri_gain", "agri_strength", "agri_analyzed"));
+        this.seeds.add(new FuzzyStack(wrap.getSeedStack(), false, false, "agri_growth", "agri_gain", "agri_strength",
+                "agri_analyzed"));
     }
 
     @Nonnull
@@ -140,7 +145,8 @@ public class GTFOAgriPlant implements IAgriPlant {
         if (wrap instanceof GTFOBerryBush) {
             builder.addSoil(AgriApi.getSoilRegistry().get(Blocks.GRASS.getDefaultState()).get());
         }
-        builder.addSoil(AgriApi.getSoilRegistry().get(Blocks.FARMLAND.getDefaultState()).get()); // How could this go wrong??? :troll:
+        builder.addSoil(AgriApi.getSoilRegistry().get(Blocks.FARMLAND.getDefaultState()).get()); // How could this go
+                                                                                                 // wrong??? :troll:
         return builder.build();
     }
 
@@ -150,7 +156,8 @@ public class GTFOAgriPlant implements IAgriPlant {
     }
 
     @Override
-    public void getHarvestProducts(@Nonnull Consumer<ItemStack> consumer, @Nonnull IAgriCrop iAgriCrop, @Nonnull IAgriStat iAgriStat, @Nonnull Random random) {
+    public void getHarvestProducts(@Nonnull Consumer<ItemStack> consumer, @Nonnull IAgriCrop iAgriCrop,
+                                   @Nonnull IAgriStat iAgriStat, @Nonnull Random random) {
         if (iAgriCrop.isMature()) {
             for (int i = 0; i < 3; ++i) {
                 if (random.nextInt(2 * wrap.getMaxAge()) <= iAgriCrop.getGrowthStage()) {
@@ -158,7 +165,6 @@ public class GTFOAgriPlant implements IAgriPlant {
                 }
             }
         }
-
     }
 
     @Nullable
@@ -182,9 +188,11 @@ public class GTFOAgriPlant implements IAgriPlant {
     @Override
     public ResourceLocation getPrimaryPlantTexture(int i) {
         if (wrap instanceof GTFOBerryBush) {
-            return i < 3 ? new ResourceLocation(GTFOValues.MODID, "blocks/berry/ungrown") : new ResourceLocation(GTFOValues.MODID, "blocks/berry/" + this.wrap.getName() + "_ripe");
+            return i < 3 ? new ResourceLocation(GTFOValues.MODID, "blocks/berry/ungrown") :
+                    new ResourceLocation(GTFOValues.MODID, "blocks/berry/" + this.wrap.getName() + "_ripe");
         } else {
-            int possibleAge = Math.min(i, wrap.getMaxAge()); // Required for clippings to render correctly (they assume all crops have 7 stages... the fools)
+            int possibleAge = Math.min(i, wrap.getMaxAge()); // Required for clippings to render correctly (they assume
+                                                             // all crops have 7 stages... the fools)
             return new ResourceLocation(GTFOValues.MODID, "crop/crop_" + this.wrap.getName() + "/stage" + possibleAge);
         }
     }
@@ -197,9 +205,11 @@ public class GTFOAgriPlant implements IAgriPlant {
 
     @Nonnull
     @Override
-    public List<BakedQuad> getPlantQuads(IExtendedBlockState iExtendedBlockState, int growthStage, EnumFacing enumFacing, Function<ResourceLocation, TextureAtlasSprite> textureToIcon) {
+    public List<BakedQuad> getPlantQuads(IExtendedBlockState iExtendedBlockState, int growthStage,
+                                         EnumFacing enumFacing,
+                                         Function<ResourceLocation, TextureAtlasSprite> textureToIcon) {
         if (textureToIcon instanceof ITessellator) {
-            PlantRenderer.renderPlant((ITessellator)textureToIcon, this, growthStage);
+            PlantRenderer.renderPlant((ITessellator) textureToIcon, this, growthStage);
         }
 
         return Collections.emptyList();

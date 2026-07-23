@@ -1,18 +1,17 @@
 package gregtechfoodoption.worldgen;
 
-import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.utils.GTFOLog;
-import gregtechfoodoption.worldgen.condition.FeatureCondition;
-import gregtechfoodoption.worldgen.trees.GTFOTree;
-import gregtechfoodoption.worldgen.trees.GTFOTreeGen;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.NoiseGeneratorSimplex;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.utils.GTFOLog;
+import gregtechfoodoption.worldgen.condition.FeatureCondition;
 
 public abstract class GTFOFeature {
 
@@ -25,6 +24,7 @@ public abstract class GTFOFeature {
 
     private int totalChunksChecked;
     private int totalChunksPlaced;
+
     public GTFOFeature(int seed) {
         this.seed = seed;
         FEATURES.add(this);
@@ -49,11 +49,14 @@ public abstract class GTFOFeature {
             totalChunksPlaced++;
         }
         if (totalChunksChecked % 1000 == 0) {
-            GTFOLog.logger.info("Feature " + this + " has been placed successfully in chunks " + ((double) totalChunksPlaced / (totalChunksChecked / 100)) + " percent of the time out of " + totalChunksChecked + " chunks checked");
+            GTFOLog.logger.info("Feature " + this + " has been placed successfully in chunks " +
+                    ((double) totalChunksPlaced / (totalChunksChecked / 100)) + " percent of the time out of " +
+                    totalChunksChecked + " chunks checked");
         }
     }
 
-    public abstract boolean generate(World world, BlockPos.MutableBlockPos pos, Random random, TriConsumer<World, BlockPos, IBlockState> notifier);
+    public abstract boolean generate(World world, BlockPos.MutableBlockPos pos, Random random,
+                                     TriConsumer<World, BlockPos, IBlockState> notifier);
 
     public GTFOFeatureGen getWorldGenInstance() {
         return WORLD_GEN_INSTANCE;

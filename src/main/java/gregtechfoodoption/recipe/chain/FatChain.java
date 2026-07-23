@@ -1,22 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.ModHandler;
-import gregtech.api.recipes.Recipe;
-import gregtech.api.recipes.ingredients.IntCircuitIngredient;
-import gregtech.api.unification.OreDictUnifier;
-import gregtech.api.unification.material.Materials;
-import gregtech.api.unification.stack.UnificationEntry;
-import gregtech.common.items.MetaItems;
-import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.material.Materials.Calcite;
@@ -27,9 +10,28 @@ import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.GTFOMaterialHandler.Sludge;
 import static gregtechfoodoption.item.GTFOMetaItem.SCRAP_MEAT;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+
+import gregtech.api.recipes.ModHandler;
+import gregtech.api.recipes.Recipe;
+import gregtech.api.recipes.ingredients.IntCircuitIngredient;
+import gregtech.api.unification.OreDictUnifier;
+import gregtech.api.unification.stack.UnificationEntry;
+import gregtech.common.items.MetaItems;
+import gregtechfoodoption.utils.GTFOUtils;
+
 public class FatChain {
+
     public static void init() {
-        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"), new UnificationEntry(dust, Meat), new UnificationEntry(dust, Meat), FluidUtil.getFilledBucket(new FluidStack(FluidRegistry.WATER, 1000)));
+        ModHandler.addShapelessRecipe("meat_hand_recipe", ToughMeat.getItemStack(2), OreDictUnifier.get("dustWheat"),
+                new UnificationEntry(dust, Meat), new UnificationEntry(dust, Meat),
+                FluidUtil.getFilledBucket(new FluidStack(FluidRegistry.WATER, 1000)));
         GTFOUtils.getMeat().forEach(itemStack -> {
             ArrayList<ItemStack> input = new ArrayList<>();
             input.add(itemStack);
@@ -55,7 +57,8 @@ public class FatChain {
                     .fluidOutputs(Stearin.getFluid(3200), Sludge.getFluid(12000), Chlorine.getFluid(12000))
                     .buildAndRegister();
 
-            ModHandler.addShapelessRecipe("gtfo_hand_mince_meat" + itemStack.getDisplayName(), OreDictUnifier.get(dust, Meat), itemStack, OreDictUnifier.get("craftingToolMortar"));
+            ModHandler.addShapelessRecipe("gtfo_hand_mince_meat" + itemStack.getDisplayName(),
+                    OreDictUnifier.get(dust, Meat), itemStack, OreDictUnifier.get("craftingToolMortar"));
         });
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
@@ -126,21 +129,26 @@ public class FatChain {
                 .fluidOutputs(SodiumStearate.getFluid(3000), Glycerol.getFluid(1000))
                 .buildAndRegister();
 
-        //"Stearic acid is used along with simple sugar or corn syrup as a hardener in candies. In fireworks, stearic acid is often used to coat metal powders such as aluminium and iron. This prevents oxidation, allowing compositions to be stored for a longer period of time"
-/*        DISTILLATION_RECIPES.recipeBuilder().EUt(32).duration(10)
-                .fluidInputs(SodiumStearate.getFluid(100))
-                .fluidOutputs(StearicAcid.getFluid(100))
-                .output(dustTiny, SodiumHydroxide, 1)
-                .buildAndRegister();*/
+        // "Stearic acid is used along with simple sugar or corn syrup as a hardener in candies. In fireworks, stearic
+        // acid is often used to coat metal powders such as aluminium and iron. This prevents oxidation, allowing
+        // compositions to be stored for a longer period of time"
+        /*
+         * DISTILLATION_RECIPES.recipeBuilder().EUt(32).duration(10)
+         * .fluidInputs(SodiumStearate.getFluid(100))
+         * .fluidOutputs(StearicAcid.getFluid(100))
+         * .output(dustTiny, SodiumHydroxide, 1)
+         * .buildAndRegister();
+         */
 
-        /*FLUID_SOLIDFICATION_RECIPES.recipeBuilder().EUt(32).duration(100)
-                .fluidInputs(StearicAcidSoap.getFluid(1000))
-                .output(soap)
-                .buildAndRegister();
-                //TODO: Maybe do soaps with this :p (this works as a food addtive soap? with stearin atleast idk)
-                */
+        /*
+         * FLUID_SOLIDFICATION_RECIPES.recipeBuilder().EUt(32).duration(100)
+         * .fluidInputs(StearicAcidSoap.getFluid(1000))
+         * .output(soap)
+         * .buildAndRegister();
+         * //TODO: Maybe do soaps with this :p (this works as a food addtive soap? with stearin atleast idk)
+         */
 
-        //TODO: make it refine to Fertilizer Later! & Biosolids
+        // TODO: make it refine to Fertilizer Later! & Biosolids
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(30).duration(800)
                 .fluidInputs(Sludge.getFluid(24000))
                 .fluidInputs(Bacteria.getFluid(1000))
@@ -153,5 +161,4 @@ public class FatChain {
                 .notConsumable(new IntCircuitIngredient(2))
                 .buildAndRegister();
     }
-
 }

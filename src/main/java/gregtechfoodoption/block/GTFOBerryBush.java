@@ -1,6 +1,7 @@
 package gregtechfoodoption.block;
 
-import gregtechfoodoption.utils.GTFOLog;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -19,14 +20,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import gregtechfoodoption.utils.GTFOLog;
 
 public class GTFOBerryBush extends GTFOCrop {
+
     public static final PropertyInteger EFFICIENCY_GTFO = PropertyInteger.create("efficiency", 0, 4);
     private static final AxisAlignedBB SMALL_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5625D, 0.75D);
-    private static final AxisAlignedBB LARGE_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
+    private static final AxisAlignedBB LARGE_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D,
+            0.9375D);
     private static final AxisAlignedBB STEM_AABB = new AxisAlignedBB(0.4325D, 0.0D, 0.4325D, 0.5675D, 0.25D, 0.5675D);
 
     protected static final PropertyInteger DEFAULT_AGE_BUSH = PropertyInteger.create("age", 0, 2);
@@ -52,7 +56,8 @@ public class GTFOBerryBush extends GTFOCrop {
         return new BlockStateContainer(this, getAgeProperty(), EFFICIENCY_GTFO);
     }
 
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state,
+                         int fortune) {
         int age = this.getAge(state);
         int efficiency = this.getEfficiency(state);
         Random rand = world instanceof World ? ((World) world).rand : new Random();
@@ -83,8 +88,7 @@ public class GTFOBerryBush extends GTFOCrop {
         int i = this.getAge(state) + this.getBonemealAgeIncrease(worldIn);
         int j = this.getMaxAge();
 
-        if (i > j)
-        {
+        if (i > j) {
             i = j;
         }
 
@@ -112,7 +116,8 @@ public class GTFOBerryBush extends GTFOCrop {
     public IBlockState withEfficiency(IBlockState state, int efficiency) {
         if (efficiency > 4) {
             efficiency = 4;
-            GTFOLog.logger.warn("Somehow, you managed to get your berry's efficiency higher than 4, which is really cool (or the result of a hacked mod/bug), but it's currently not available in GTFO. Please report this to the mod author, along with a screenshot of how great your berry setup is.");
+            GTFOLog.logger.warn(
+                    "Somehow, you managed to get your berry's efficiency higher than 4, which is really cool (or the result of a hacked mod/bug), but it's currently not available in GTFO. Please report this to the mod author, along with a screenshot of how great your berry setup is.");
         }
         return state.withProperty(EFFICIENCY_GTFO, Integer.valueOf(efficiency));
     }
@@ -149,8 +154,6 @@ public class GTFOBerryBush extends GTFOCrop {
         entityIn.motionZ *= distanceFromCenter;
     }
 
-
-
     public GTFOBerryBush setThorny(boolean thorny) {
         isThorny = thorny;
         return this;
@@ -172,7 +175,8 @@ public class GTFOBerryBush extends GTFOCrop {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+                                    EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (this.isMaxAge(state)) {
             int berries = 1;
             for (int i = 0; i < 2 + getEfficiency(state); ++i) {
@@ -207,13 +211,13 @@ public class GTFOBerryBush extends GTFOCrop {
         if (!(worldIn.getBlockState(fromPos).getBlock() instanceof GTFOBerryBush)) {
             // We don't want crops transmuting to higher efficiencies.
             int newEfficiency = Math.min(calcEfficiency(worldIn, pos), getEfficiency(state));
-            worldIn.setBlockState(pos, state.withProperty(EFFICIENCY_GTFO, newEfficiency), 3);
+            worldIn.setBlockState(pos, state.withProperty(EFFICIENCY_GTFO, newEfficiency), 2);
         }
         super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
     }
 
     @Override
     public PropertyInteger getAgeProperty() {
-       return DEFAULT_AGE_BUSH;
+        return DEFAULT_AGE_BUSH;
     }
 }

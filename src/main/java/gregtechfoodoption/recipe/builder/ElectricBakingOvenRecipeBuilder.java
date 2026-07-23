@@ -1,22 +1,23 @@
 package gregtechfoodoption.recipe.builder;
 
+import javax.annotation.Nonnull;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.recipeproperties.RecipeProperty;
 import gregtech.api.util.EnumValidationResult;
 import gregtech.api.util.GTLog;
 import gregtechfoodoption.machines.multiblock.MetaTileEntityElectricBakingOven;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
-import javax.annotation.Nonnull;
 
 public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakingOvenRecipeBuilder> {
 
     private int temp;
 
-    public ElectricBakingOvenRecipeBuilder() {
-    }
+    public ElectricBakingOvenRecipeBuilder() {}
 
     public ElectricBakingOvenRecipeBuilder(RecipeBuilder<ElectricBakingOvenRecipeBuilder> recipeBuilder) {
         super(recipeBuilder);
@@ -65,7 +66,6 @@ public class ElectricBakingOvenRecipeBuilder extends RecipeBuilder<ElectricBakin
         public static final String KEY = "temperature";
 
         private static TemperatureProperty INSTANCE;
-
 
         protected TemperatureProperty() {
             super(KEY, Integer.class);

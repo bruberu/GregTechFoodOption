@@ -1,10 +1,5 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.common.items.MetaItems;
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.utils.GTFOUtils;
-import net.minecraft.init.Items;
-
 import static gregtech.api.recipes.RecipeMaps.*;
 import static gregtech.api.unification.material.Materials.*;
 import static gregtech.api.unification.ore.OrePrefix.*;
@@ -13,7 +8,14 @@ import static gregtechfoodoption.GTFOMaterialHandler.*;
 import static gregtechfoodoption.item.GTFOMetaItem.*;
 import static gregtechfoodoption.recipe.GTFORecipeMaps.SLICER_RECIPES;
 
+import net.minecraft.init.Items;
+
+import gregtech.common.items.MetaItems;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.utils.GTFOUtils;
+
 public class CheeseChain {
+
     public static void init() {
         SLICER_RECIPES.recipeBuilder().EUt(24).duration(80)
                 .input(Items.BEEF)
@@ -213,7 +215,7 @@ public class CheeseChain {
             FLUID_SOLIDFICATION_RECIPES.recipeBuilder().EUt(16).duration(150)
                     .fluidInputs(ParmigianoReggianoStarter.getFluid(1000))
                     .inputs(CHEESE_ROLL_FORM.getStackForm())
-                    .outputs(BRINED_PARMIGIANO_ROLL.getStackForm())
+                    .outputs(BRINED_PARMIGIANO.getStackForm())
                     .buildAndRegister();
         }
         FLUID_HEATER_RECIPES.recipeBuilder().EUt(48).duration(300)

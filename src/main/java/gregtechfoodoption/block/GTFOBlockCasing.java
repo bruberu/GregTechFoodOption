@@ -10,6 +10,8 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+import gregtech.api.block.VariantBlock;
+
 public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
 
     public GTFOBlockCasing() {
@@ -24,7 +26,8 @@ public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
     }
 
     @Override
-    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type) {
+    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos,
+                                    EntityLiving.SpawnPlacementType type) {
         return false;
     }
 
@@ -50,7 +53,5 @@ public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
         public String getName() {
             return this.name;
         }
-
     }
-
 }

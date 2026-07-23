@@ -1,5 +1,29 @@
 package gregtechfoodoption;
 
+import static gregtechfoodoption.block.GTFOCrop.CROP_BLOCKS;
+
+import java.util.Objects;
+import java.util.function.Function;
+
+import javax.annotation.Nonnull;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
+
 import crazypants.enderio.api.farm.IFarmerJoe;
 import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
 import gregtech.api.block.VariantItemBlock;
@@ -24,30 +48,6 @@ import gregtechfoodoption.recipe.GTFORecipeAddition;
 import gregtechfoodoption.recipe.GTFORecipeHandler;
 import gregtechfoodoption.recipe.GTFORecipeRemoval;
 import gregtechfoodoption.utils.GTFOLog;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.potion.PotionEffect;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Config;
-import net.minecraftforge.common.config.ConfigManager;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.registries.IForgeRegistry;
-
-import javax.annotation.Nonnull;
-import java.util.Objects;
-import java.util.function.Function;
-
-import static gregtechfoodoption.block.GTFOCrop.CROP_BLOCKS;
 
 @Mod.EventBusSubscriber(modid = GregTechFoodOption.MODID)
 public class CommonProxy {
@@ -65,22 +65,26 @@ public class CommonProxy {
         RecipeMaps.COMPRESSOR_RECIPES.setMaxFluidOutputs(1);
     }
 
-    public void onLoad() {
-    }
+    public void onLoad() {}
 
     public void onPostLoad() {
-        MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
+        if (GTFOConfig.gtfoMiscConfig.unknownSeedsWeight > 0) {
+            MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(),
+                    GTFOConfig.gtfoMiscConfig.unknownSeedsWeight);
+        }
 
-        LacingEntry.LACING_REGISTRY.register(0, "cyanide", new LacingEntry(GTFOMaterialHandler.SodiumCyanide.getItemStack(),
-                new PotionEffect(CyanidePoisoningPotion.INSTANCE, 1300, 0),
-                "5dkcap/2/4/"));
-        LacingEntry.LACING_REGISTRY.register(1, "antischizo", new LacingEntry(GTFOMaterialHandler.LithiumCarbonate.getItemStack(),
-                new PotionEffect(AntiSchizoPotion.INSTANCE, 1000, 0),
-                "14hez98zk7/2/3/5/9/10/"));
-        LacingEntry.LACING_REGISTRY.register(2, "lungcancer", new LacingEntry(OreDictUnifier.get(OrePrefix.dust, Materials.Asbestos),
-                new PotionEffect(LungCancerPotion.INSTANCE, 99999999, 0),
-                "17aaqe0i1q/1/2/3/7/10/"));
-
+        LacingEntry.LACING_REGISTRY.register(0, "cyanide",
+                new LacingEntry(GTFOMaterialHandler.SodiumCyanide.getItemStack(),
+                        new PotionEffect(CyanidePoisoningPotion.INSTANCE, 1300, 0),
+                        "5dkcap/2/4/"));
+        LacingEntry.LACING_REGISTRY.register(1, "antischizo",
+                new LacingEntry(GTFOMaterialHandler.LithiumCarbonate.getItemStack(),
+                        new PotionEffect(AntiSchizoPotion.INSTANCE, 1000, 0),
+                        "14hez98zk7/2/3/5/9/10/"));
+        LacingEntry.LACING_REGISTRY.register(2, "lungcancer",
+                new LacingEntry(OreDictUnifier.get(OrePrefix.dust, Materials.Asbestos),
+                        new PotionEffect(LungCancerPotion.INSTANCE, 99999999, 0),
+                        "17aaqe0i1q/1/2/3/7/10/"));
 
         if (Loader.isModLoaded(GTFOValues.MODID_NUGT) && GTFOConfig.gtfoOtherFoodModConfig.enableGTFONutrition) {
             GTFONutritionCompatibility.init();
@@ -131,11 +135,14 @@ public class CommonProxy {
         registry.register(createItemBlock(GTFOMetaBlocks.PIZZA_BOX_MINCEMEAT, ItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.PIZZA_BOX_CHEESE, ItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.PIZZA_BOX_VEGGIE, ItemBlock::new));
-        GTFOMetaBlocks.GTFO_LEAVES.forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
-        GTFOMetaBlocks.GTFO_LOGS.forEach(log -> registry.register(createItemBlock(log, GTFOSpecialVariantItemBlock::new)));
-        GTFOMetaBlocks.GTFO_SAPLINGS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
-        GTFOMetaBlocks.GTFO_PLANKS.forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
-
+        GTFOMetaBlocks.GTFO_LEAVES
+                .forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_LOGS
+                .forEach(log -> registry.register(createItemBlock(log, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_SAPLINGS
+                .forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
+        GTFOMetaBlocks.GTFO_PLANKS
+                .forEach(sapling -> registry.register(createItemBlock(sapling, GTFOSpecialVariantItemBlock::new)));
     }
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
@@ -150,16 +157,15 @@ public class CommonProxy {
         GTFORecipeAddition.lowInit();
     }
 
-
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerOrePrefix(RegistryEvent.Register<IRecipe> event) {
         GTFOLog.logger.info("Registering ore prefix...");
         GTFOOreDictRegistration.init();
 
-        //GTFOMetaItems.registerOreDict();
+        // GTFOMetaItems.registerOreDict();
         GTFOMetaBlocks.registerOreDict();
 
-        //OrePrefix.runMaterialHandlers();
+        // OrePrefix.runMaterialHandlers();
     }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {
@@ -175,7 +181,7 @@ public class CommonProxy {
         GTFORecipeAddition.compatInit();
     }
 
-        @SubscribeEvent
+    @SubscribeEvent
     @Optional.Method(modid = "enderio")
     public static void registerEIOFarmerJoes(@Nonnull RegistryEvent.Register<IFarmerJoe> event) {
         for (GTFOCrop crop : CROP_BLOCKS) {
@@ -199,24 +205,23 @@ public class CommonProxy {
     // meaning they will follow the recipes in the map with CraftTweaker changes,
     // being significantly easier for modpack authors.
 
-
     /*
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!event.player.world.isRemote) {
-        }
-    }
-
-    @SubscribeEvent
-    public static void onSave(WorldEvent.Save event) {
-        MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
-        ((MetaPrefixItem)OreDictUnifier.get("plateIron").getItem()).getItem(OreDictUnifier.get("plateIron"))
-                .addComponents(new GTFOFoodStats(0, 0, false, false, ItemStack.EMPTY));
-    }
-
-    @SubscribeEvent
-    public static void onUnload(WorldEvent.Unload event) {
-
-    }
-    */
+     * @SubscribeEvent(priority = EventPriority.HIGH)
+     * public static void onLogin(PlayerEvent.PlayerLoggedInEvent event) {
+     * if (!event.player.world.isRemote) {
+     * }
+     * }
+     *
+     * @SubscribeEvent
+     * public static void onSave(WorldEvent.Save event) {
+     * MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
+     * ((MetaPrefixItem)OreDictUnifier.get("plateIron").getItem()).getItem(OreDictUnifier.get("plateIron"))
+     * .addComponents(new GTFOFoodStats(0, 0, false, false, ItemStack.EMPTY));
+     * }
+     *
+     * @SubscribeEvent
+     * public static void onUnload(WorldEvent.Unload event) {
+     *
+     * }
+     */
 }

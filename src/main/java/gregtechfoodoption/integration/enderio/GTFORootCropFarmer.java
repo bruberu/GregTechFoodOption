@@ -1,18 +1,20 @@
 package gregtechfoodoption.integration.enderio;
 
-import crazypants.enderio.api.farm.IFarmer;
-import crazypants.enderio.api.farm.IHarvestResult;
-import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
-import gregtechfoodoption.block.GTFORootCrop;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import crazypants.enderio.api.farm.IFarmer;
+import crazypants.enderio.api.farm.IHarvestResult;
+import crazypants.enderio.base.farming.farmers.CustomSeedFarmer;
+import gregtechfoodoption.block.GTFORootCrop;
 
 public class GTFORootCropFarmer extends CustomSeedFarmer {
+
     public GTFORootCropFarmer(@Nonnull Block plantedBlock, @Nonnull ItemStack seeds) {
         super(plantedBlock, seeds);
     }

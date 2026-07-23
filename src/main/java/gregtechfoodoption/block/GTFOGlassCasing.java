@@ -2,6 +2,9 @@ package gregtechfoodoption.block;
 
 import gregtech.api.block.VariantActiveBlock;
 import gregtechfoodoption.GTFOValues;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -14,8 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
+import gregtech.api.block.VariantActiveBlock;
 
 @ParametersAreNonnullByDefault
 public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingType> {
@@ -32,7 +34,8 @@ public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingTy
     }
 
     @Override
-    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type) {
+    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos,
+                                    EntityLiving.SpawnPlacementType type) {
         return false;
     }
 
@@ -85,6 +88,5 @@ public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingTy
         public String getName() {
             return this.name;
         }
-
     }
 }

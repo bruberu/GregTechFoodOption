@@ -1,16 +1,16 @@
 package gregtechfoodoption.recipe.builder;
 
+import javax.annotation.Nonnull;
+
 import gregtech.api.recipes.Recipe;
 import gregtech.api.recipes.RecipeBuilder;
 import gregtech.api.recipes.recipeproperties.PrimitiveProperty;
 import gregtech.api.util.ValidationResult;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import javax.annotation.Nonnull;
-
 public class BakingOvenRecipeBuilder extends RecipeBuilder<BakingOvenRecipeBuilder> {
-    public BakingOvenRecipeBuilder() {
-    }
+
+    public BakingOvenRecipeBuilder() {}
 
     private BakingOvenRecipeBuilder(BakingOvenRecipeBuilder bakingOvenRecipeBuilder) {
         super(bakingOvenRecipeBuilder);
@@ -42,7 +42,6 @@ public class BakingOvenRecipeBuilder extends RecipeBuilder<BakingOvenRecipeBuild
         return super.applyProperty(key, value);
     }
 
-
     @ZenMethod
     public BakingOvenRecipeBuilder temperature(int temperature) {
         this.applyProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), temperature);
@@ -51,6 +50,7 @@ public class BakingOvenRecipeBuilder extends RecipeBuilder<BakingOvenRecipeBuild
 
     @ZenMethod
     public int getTemperature() {
-        return this.recipePropertyStorage == null ? -1 : this.recipePropertyStorage.getRecipePropertyValue(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), -1);
+        return this.recipePropertyStorage == null ? -1 : this.recipePropertyStorage
+                .getRecipePropertyValue(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), -1);
     }
 }

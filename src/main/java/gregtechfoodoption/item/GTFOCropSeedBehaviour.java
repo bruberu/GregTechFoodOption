@@ -1,13 +1,7 @@
 package gregtechfoodoption.item;
 
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOCrop;
-import gregtechfoodoption.block.GTFORootCrop;
-import gregtechfoodoption.integration.sereneseasons.GTFOSSTooltipHandler;
-import gregtechfoodoption.block.GTFOWaterCrop;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import java.util.List;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -17,16 +11,18 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLContainer;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.relauncher.Side;
-import sereneseasons.core.SereneSeasons;
 
-import java.util.List;
+import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOCrop;
+import gregtechfoodoption.block.GTFORootCrop;
+import gregtechfoodoption.block.GTFOWaterCrop;
+import gregtechfoodoption.integration.sereneseasons.GTFOSSTooltipHandler;
 
 // bri'ish class
 public class GTFOCropSeedBehaviour implements IItemBehaviour {
+
     protected final GTFOCrop crop;
 
     public GTFOCropSeedBehaviour(GTFOCrop cropBlock, ItemStack seed, ItemStack crop) {
@@ -36,9 +32,11 @@ public class GTFOCropSeedBehaviour implements IItemBehaviour {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public ActionResult<ItemStack> onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand,
+                                             EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (crop instanceof GTFOWaterCrop) {
-            if (world.isAirBlock(pos.up(2)) && this.crop.getDefaultState().getBlock().canPlaceBlockAt(world, pos.up(2))) {
+            if (world.isAirBlock(pos.up(2)) &&
+                    this.crop.getDefaultState().getBlock().canPlaceBlockAt(world, pos.up(2))) {
                 world.setBlockState(pos.up(2), this.crop.getDefaultState());
                 ItemStack heldItem = player.getHeldItem(hand);
                 heldItem.shrink(1);

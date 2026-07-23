@@ -1,7 +1,5 @@
 package gregtechfoodoption.client;
 
-import dev.tianmi.sussypatches.client.renderer.textures.cube.VisualStateRenderer;
-
 import static dev.tianmi.sussypatches.client.renderer.textures.ConnectedTextures.SOLID_STEEL_CASING_CTM;
 import static dev.tianmi.sussypatches.client.renderer.textures.cube.VisualStateRenderer.from;
 import static gregtechfoodoption.block.GTFOBlockCasing.CasingType.ADOBE_BRICKS;
@@ -10,6 +8,8 @@ import static gregtechfoodoption.block.GTFOMetaBlocks.GTFO_CASING;
 import static gregtechfoodoption.block.GTFOMetaBlocks.GTFO_METAL_CASING;
 import static gregtechfoodoption.block.GTFOMetalCasing.CasingType.BISMUTH_BRONZE_CASING;
 import static gregtechfoodoption.machines.GTFOTileEntities.location;
+
+import dev.tianmi.sussypatches.client.renderer.textures.cube.VisualStateRenderer;
 
 public class GTFOConnectedTextures {
 

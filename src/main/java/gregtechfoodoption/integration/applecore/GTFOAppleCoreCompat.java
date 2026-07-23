@@ -1,8 +1,7 @@
 package gregtechfoodoption.integration.applecore;
 
-import gregtech.api.GTValues;
-import gregtechfoodoption.GTFOConfig;
-import gregtechfoodoption.GTFOValues;
+import java.util.*;
+
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,23 +15,29 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import gregtech.api.GTValues;
+import gregtechfoodoption.GTFOConfig;
+import gregtechfoodoption.GTFOValues;
 import squeek.applecore.api.food.FoodEvent;
 import squeek.applecore.api.food.FoodValues;
 import squeek.applecore.api.food.IEdible;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import java.util.*;
-
 public class GTFOAppleCoreCompat {
+
     private static final ArrayList<Item> sparedItems = new ArrayList<>();
     private static final HashMap<Item, FoodValues> sparedItemsFoodValues = new HashMap<>();
-    private static final TreeMap<Float, ResourceLocation> foodReductionMap = new TreeMap() {{
-        put(1.25f, new ResourceLocation(GTValues.MODID, "low_voltage/lv_root"));
-        put(1.5f, new ResourceLocation(GTValues.MODID, "low_voltage/23_lv_assembler"));
-        put(2f, new ResourceLocation(GTValues.MODID, "high_voltage/41_vacuum_freezer"));
-        put(3f, new ResourceLocation(GTValues.MODID, "extreme_voltage/47_nichrome_coil"));
-        put(5f, new ResourceLocation(GTValues.MODID, "insane_voltage/57_tungstensteel_coil"));
-    }};
+    private static final TreeMap<Float, ResourceLocation> foodReductionMap = new TreeMap() {
+
+        {
+            put(1.25f, new ResourceLocation(GTValues.MODID, "low_voltage/lv_root"));
+            put(1.5f, new ResourceLocation(GTValues.MODID, "low_voltage/23_lv_assembler"));
+            put(2f, new ResourceLocation(GTValues.MODID, "high_voltage/41_vacuum_freezer"));
+            put(3f, new ResourceLocation(GTValues.MODID, "extreme_voltage/47_nichrome_coil"));
+            put(5f, new ResourceLocation(GTValues.MODID, "insane_voltage/57_tungstensteel_coil"));
+        }
+    };
     public static final Map<UUID, Float> clientDivisorsMap = new HashMap<>();
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
@@ -57,11 +62,13 @@ public class GTFOAppleCoreCompat {
     }
 
     private FoodValues getModifiedFoodValues(FoodValues foodValues, float modifier) {
-        return new FoodValues((int) Math.max(1, (float) foodValues.hunger / modifier), (float) Math.max(0.1, foodValues.saturationModifier / modifier));
+        return new FoodValues((int) Math.max(1, (float) foodValues.hunger / modifier),
+                (float) Math.max(0.1, foodValues.saturationModifier / modifier));
     }
 
     private float getFoodModifier(EntityPlayer player, ItemStack actualFood) {
-        return actualFood.getItem().getRegistryName().getNamespace().equals("gregtechfoodoption") ? 1 : getForeignFoodDivisor(player);
+        return actualFood.getItem().getRegistryName().getNamespace().equals("gregtechfoodoption") ? 1 :
+                getForeignFoodDivisor(player);
     }
 
     private float getForeignFoodDivisor(EntityPlayer player) {
@@ -75,7 +82,11 @@ public class GTFOAppleCoreCompat {
         Map.Entry<Float, ResourceLocation> highestAdvancement = foodReductionMap.lastEntry();
         EntityPlayerMP serverPlayer = (EntityPlayerMP) player;
         while (true) {
-            if (resourceLocationToAdvancement(highestAdvancement.getValue(), serverPlayer.getEntityWorld()) != null && serverPlayer.getAdvancements().getProgress(resourceLocationToAdvancement(highestAdvancement.getValue(), serverPlayer.world)).isDone())
+            if (resourceLocationToAdvancement(highestAdvancement.getValue(), serverPlayer.getEntityWorld()) != null &&
+                    serverPlayer.getAdvancements()
+                            .getProgress(
+                                    resourceLocationToAdvancement(highestAdvancement.getValue(), serverPlayer.world))
+                            .isDone())
                 return highestAdvancement.getKey();
             highestAdvancement = foodReductionMap.lowerEntry(highestAdvancement.getKey());
             if (highestAdvancement == null) // When the map runs out
@@ -92,7 +103,8 @@ public class GTFOAppleCoreCompat {
     }
 
     private static Advancement resourceLocationToAdvancement(ResourceLocation location, World world) {
-        AdvancementManager advManager = ObfuscationReflectionHelper.getPrivateValue(World.class, world, "field_191951_C");
+        AdvancementManager advManager = ObfuscationReflectionHelper.getPrivateValue(World.class, world,
+                "field_191951_C");
         return advManager.getAdvancement(location);
     }
 
@@ -110,7 +122,8 @@ public class GTFOAppleCoreCompat {
 
     @Optional.Method(modid = GTFOValues.MODID_AP)
     public static void sendEatenEvent(EntityPlayer player, ItemStack itemStack, int hunger, float sat) {
-        MinecraftForge.EVENT_BUS.post(new FoodEvent.FoodEaten(player, itemStack, new FoodValues(hunger, sat), hunger, sat));
+        MinecraftForge.EVENT_BUS
+                .post(new FoodEvent.FoodEaten(player, itemStack, new FoodValues(hunger, sat), hunger, sat));
     }
 
     public static boolean isAppleCoreEdible(ItemStack stack) {

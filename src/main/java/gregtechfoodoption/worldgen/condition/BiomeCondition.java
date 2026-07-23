@@ -1,10 +1,11 @@
 package gregtechfoodoption.worldgen.condition;
 
-import net.minecraft.world.biome.Biome;
-
 import java.util.Arrays;
 
+import net.minecraft.world.biome.Biome;
+
 public class BiomeCondition extends FeatureCondition {
+
     private Biome[] biomes;
     private double perlinCutoff;
 
@@ -15,7 +16,7 @@ public class BiomeCondition extends FeatureCondition {
     }
 
     public BiomeCondition(Biome biome, int maxAmount, double perlinCutoff) {
-        this(new Biome[]{biome}, maxAmount, perlinCutoff);
+        this(new Biome[] { biome }, maxAmount, perlinCutoff);
     }
 
     @Override

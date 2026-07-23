@@ -1,5 +1,16 @@
 package gregtechfoodoption.machines.multiblock;
 
+import static gregtech.api.unification.material.Materials.Steel;
+
+import javax.annotation.Nonnull;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ResourceLocation;
+
+import org.jetbrains.annotations.NotNull;
+
 import gregtech.api.GTValues;
 import gregtech.api.capability.impl.SteamMultiWorkable;
 import gregtech.api.gui.resources.TextureArea;
@@ -20,18 +31,11 @@ import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.client.GTFOClientHandler;
 import gregtechfoodoption.client.GTFOGuiTextures;
 import gregtechfoodoption.recipe.builder.ElectricBakingOvenRecipeBuilder;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nonnull;
-
-import static gregtech.api.unification.material.Materials.Steel;
 
 public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockController {
-    public MetaTileEntitySteamBakingOven(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap, double conversionRate) {
+
+    public MetaTileEntitySteamBakingOven(ResourceLocation metaTileEntityId, RecipeMap<?> recipeMap,
+                                         double conversionRate) {
         super(metaTileEntityId, recipeMap, conversionRate);
         this.recipeMapWorkable = new SteamBakingOvenWorkable(this, CONVERSION_RATE);
         this.recipeMapWorkable.setParallelLimit(1);
@@ -47,7 +51,14 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
 
     @Override
     protected BlockPattern createStructurePattern() {
-        return FactoryBlockPattern.start().aisle("XXXX", "XGGX", "XXXX").aisle("XXXX", "GFFG", "XFFX").aisle("XXXX", "GFFG", "XFFX").aisle("XXXX", "YGGX", "XXXX").where('X', states(getCasingState()).or(this.autoAbilities(true, false, true, true, false))).where('F', states(getFrameState())).where('#', air()).where(' ', any()).where('Y', selfPredicate()).where('G', states(getCasingState()).or(states(MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.TEMPERED_GLASS)))).build();
+        return FactoryBlockPattern.start().aisle("XXXX", "XGGX", "XXXX").aisle("XXXX", "GFFG", "XFFX")
+                .aisle("XXXX", "GFFG", "XFFX").aisle("XXXX", "YGGX", "XXXX")
+                .where('X', states(getCasingState()).or(this.autoAbilities(true, false, true, true, false)))
+                .where('F', states(getFrameState())).where('#', air()).where(' ', any()).where('Y', selfPredicate())
+                .where('G',
+                        states(getCasingState()).or(states(
+                                MetaBlocks.TRANSPARENT_CASING.getState(BlockGlassCasing.CasingType.TEMPERED_GLASS))))
+                .build();
     }
 
     @Override
@@ -104,12 +115,13 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
         @Override
         protected void setupRecipe(Recipe recipe) {
             super.setupRecipe(recipe);
-            recipeSteamT = previousRecipe == null ? 0 : this.previousRecipe.getProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), 0) / 100;
+            recipeSteamT = previousRecipe == null ? 0 : this.previousRecipe
+                    .getProperty(ElectricBakingOvenRecipeBuilder.TemperatureProperty.getInstance(), 0) / 100;
         }
 
         @Override
         protected int[] calculateOverclock(Recipe recipe) {
-            return new int[]{0, recipe.getDuration() * 4};
+            return new int[] { 0, recipe.getDuration() * 4 };
         }
 
         protected boolean drawEnergy(int recipeEUt, boolean simulate) {
@@ -141,12 +153,9 @@ public class MetaTileEntitySteamBakingOven extends RecipeMapSteamMultiblockContr
             recipeSteamT = buf.readInt();
         }
 
-
-
         public long getMaxVoltage() {
             return GTValues.V[4];
         }
-
     }
 
     @Override

@@ -1,9 +1,5 @@
 package gregtechfoodoption.block.tree;
 
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.block.GTFOMetaBlocks;
-import gregtechfoodoption.worldgen.trees.GTFOTree;
-import gregtechfoodoption.block.IVariantNamed;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -14,7 +10,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.block.GTFOMetaBlocks;
+import gregtechfoodoption.block.IVariantNamed;
+import gregtechfoodoption.worldgen.trees.GTFOTree;
+
 public class GTFOBlockPlanks extends Block implements IVariantNamed {
+
     public static final PropertyInteger VARIANT = PropertyInteger.create("variant", 0, 15);
 
     private final int offset;

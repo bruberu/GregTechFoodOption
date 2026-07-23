@@ -1,12 +1,12 @@
 package gregtechfoodoption;
 
+import static gregtechfoodoption.item.GTFOMetaItem.SCRAP_MEAT;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.*;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import static gregtechfoodoption.item.GTFOMetaItem.SCRAP_MEAT;
 
 public class GTFODropsEventHandler {
 
@@ -24,7 +24,8 @@ public class GTFODropsEventHandler {
                                 entity.getPosition().getX(),
                                 entity.getPosition().getY() + 1,
                                 entity.getPosition().getZ(),
-                                SCRAP_MEAT.getStackForm(event.getLootingLevel() == 0 ? 1 : GTFOValues.rand.nextInt(event.getLootingLevel()) + 1)));
+                                SCRAP_MEAT.getStackForm(event.getLootingLevel() == 0 ? 1 :
+                                        GTFOValues.rand.nextInt(event.getLootingLevel()) + 1)));
             }
         }
     }

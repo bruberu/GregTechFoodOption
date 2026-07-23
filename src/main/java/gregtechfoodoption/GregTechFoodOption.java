@@ -1,6 +1,12 @@
 package gregtechfoodoption;
 
-import gregtech.api.GTValues;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
 import gregtech.api.GregTechAPI;
 import gregtech.api.util.Mods;
 import gregtechfoodoption.block.GTFOMetaBlocks;
@@ -16,17 +22,13 @@ import gregtechfoodoption.network.PacketAppleCoreFoodDivisorUpdate;
 import gregtechfoodoption.utils.GTFOConfigOverrider;
 import gregtechfoodoption.worldgen.GTFODungeonLootLoader;
 import gregtechfoodoption.worldgen.GTFOWorldGenerator;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = GregTechFoodOption.MODID, name = GregTechFoodOption.NAME, version = GregTechFoodOption.VERSION,
-        dependencies = "required-after:gregtech@[2.8.0-beta,);" + "after:gcy_science;after:" + GTFOValues.MODID_NU)
+@Mod(modid = GregTechFoodOption.MODID,
+     name = GregTechFoodOption.NAME,
+     version = GregTechFoodOption.VERSION,
+     dependencies = "required-after:gregtech@[2.8.0-beta,);" + "after:gcy_science;after:" + GTFOValues.MODID_NU)
 public class GregTechFoodOption {
+
     public static final String MODID = "gregtechfoodoption";
     public static final String NAME = "GregTech Food Option";
     public static final String VERSION = Tags.VERSION;
@@ -34,10 +36,10 @@ public class GregTechFoodOption {
     @Mod.Instance
     public static GregTechFoodOption instance;
 
-
-    @SidedProxy(modId = MODID, clientSide = "gregtechfoodoption.ClientProxy", serverSide = "gregtechfoodoption.CommonProxy")
+    @SidedProxy(modId = MODID,
+                clientSide = "gregtechfoodoption.ClientProxy",
+                serverSide = "gregtechfoodoption.CommonProxy")
     public static CommonProxy proxy;
-
 
     @Mod.EventHandler
     public void onStartup(FMLConstructionEvent event) {
@@ -56,7 +58,7 @@ public class GregTechFoodOption {
 
         MinecraftForge.EVENT_BUS.register(new GTFOEntities()); // For entity registration through EntityEntries!
 
-        if(GTFOConfig.gtfoOtherFoodModConfig.appleCoreCompat)
+        if (GTFOConfig.gtfoOtherFoodModConfig.appleCoreCompat)
             MinecraftForge.EVENT_BUS.register(new GTFOAppleCoreCompat());
 
         GTFOClientHandler.registerSounds();
@@ -69,8 +71,7 @@ public class GregTechFoodOption {
         FarmerModeRegistry.registerDefaultModes();
         try {
             proxy.onLoad();
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         if (Loader.isModLoaded(Mods.Names.THE_ONE_PROBE)) {
             GTFOTOPCompatibility.registerCompatibility();
         }

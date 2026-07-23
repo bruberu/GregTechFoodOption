@@ -1,16 +1,17 @@
 package gregtechfoodoption.integration.appleskin;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import gregtech.api.items.metaitem.FoodUseManager;
 import gregtech.api.items.metaitem.MetaItem;
 import gregtech.api.items.metaitem.stats.IFoodBehavior;
 import gregtech.api.items.metaitem.stats.IItemUseManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import squeek.appleskin.helpers.FoodHelper;
 
-//Code yoinked from @idcppl (Zook) of Greg's Harvestcraft
+// Code yoinked from @idcppl (Zook) of Greg's Harvestcraft
 public class GTFOMetaFoodHelper extends FoodHelper {
+
     public static boolean isFood(ItemStack stackInHand) {
         if (stackInHand.getItem() instanceof MetaItem) {
             MetaItem<?>.MetaValueItem metaValueItem = ((MetaItem) stackInHand.getItem()).getItem(stackInHand);

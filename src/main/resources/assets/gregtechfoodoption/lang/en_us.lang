@@ -700,7 +700,7 @@ gregtechfoodoption.machine.farmer.tooltip.speed=Works on one Block every %d Tick
 metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
 metaitem.sodium_chlorate_dust.name=Sodium Chlorate
 
-itemGroup.gregtechfoodoption.main=GTFO
+itemGroup.gregtechfoodoption.main=GregTech Food Option
 itemGroup.gregtechfoodoption.food=GTFO Foods
 itemGroup.gregtechfoodoption.crops=GTFO Crops
 itemGroup.gregtechfoodoption.blocks=GTFO Blocks
@@ -1242,3 +1242,9 @@ tile.pizza_box_veggie.name=Pizza Box (Veggie)
 tile.pizza_mincemeat.name=Pizza (Mincemeat)
 tile.pizza_cheese.name=Pizza (Cheese)
 tile.pizza_veggie.name=Pizza (Veggie)
+# TOP
+gregtechfoodoption.top.crop_harvestable=Crop may be harvested
+gregtechfoodoption.top.crop_unharvestable=Crop cannot be harvested
+gregtechfoodoption.top.seed_harvestable=Seed may be harvested
+gregtechfoodoption.top.seed_unharvestable=Seed cannot be harvested
+

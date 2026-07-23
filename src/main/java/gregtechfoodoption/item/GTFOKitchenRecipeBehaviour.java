@@ -1,11 +1,7 @@
 package gregtechfoodoption.item;
 
-import gregtech.api.gui.GuiTextures;
-import gregtech.api.gui.ModularUI;
-import gregtech.api.items.gui.ItemUIFactory;
-import gregtech.api.items.gui.PlayerInventoryHolder;
-import gregtech.api.items.metaitem.stats.IItemBehaviour;
-import gregtechfoodoption.gui.widgets.KitchenRecipeWidget;
+import java.util.List;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,9 +11,15 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
-import java.util.List;
+import gregtech.api.gui.GuiTextures;
+import gregtech.api.gui.ModularUI;
+import gregtech.api.items.gui.ItemUIFactory;
+import gregtech.api.items.gui.PlayerInventoryHolder;
+import gregtech.api.items.metaitem.stats.IItemBehaviour;
+import gregtechfoodoption.gui.widgets.KitchenRecipeWidget;
 
 public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour {
+
     @Override
     public ModularUI createUI(PlayerInventoryHolder playerInventoryHolder, EntityPlayer entityPlayer) {
         ModularUI.Builder builder = ModularUI.builder(GuiTextures.BACKGROUND, 220, 240);
@@ -98,6 +100,7 @@ public class GTFOKitchenRecipeBehaviour implements ItemUIFactory, IItemBehaviour
             return null;
         return new ItemStack(stack.getTagCompound().getCompoundTag("finalresult"));
     }
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
         ItemStack heldItem = player.getHeldItem(hand);

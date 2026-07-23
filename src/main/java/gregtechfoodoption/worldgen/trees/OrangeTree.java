@@ -1,10 +1,9 @@
 package gregtechfoodoption.worldgen.trees;
 
-import gregtech.api.util.function.TriConsumer;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.utils.GTFOUtils;
-import gregtechfoodoption.worldgen.condition.BiomeCondition;
-import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
+import static gregtechfoodoption.item.GTFOMetaItem.ORANGE;
+
+import java.util.Random;
+
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Biomes;
@@ -14,11 +13,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
-import static gregtechfoodoption.item.GTFOMetaItem.ORANGE;
+import gregtech.api.util.function.TriConsumer;
+import gregtechfoodoption.GTFOValues;
+import gregtechfoodoption.utils.GTFOUtils;
+import gregtechfoodoption.worldgen.condition.BiomeCondition;
+import gregtechfoodoption.worldgen.condition.TemperatureRainfallCondition;
 
 public class OrangeTree extends GTFOTree {
+
     public static int LEAVES_COLOR = 0x76c92c;
 
     public OrangeTree() {
@@ -34,20 +36,23 @@ public class OrangeTree extends GTFOTree {
     }
 
     @Override
-    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateTrunk(World world, BlockPos.MutableBlockPos pos, int maxHeight, Random random,
+                                 TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos upN = GTFOUtils.copy(pos);
         for (int height = 0; height < maxHeight; ++height) {
             notifier.accept(world, upN, logState.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.Y));
             if (height > 0) {
                 EnumFacing randomFacing = EnumFacing.byHorizontalIndex(random.nextInt(4));
-                notifier.accept(world, upN.offset(randomFacing), logState.withProperty(BlockLog.LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(randomFacing.getAxis())));
+                notifier.accept(world, upN.offset(randomFacing), logState.withProperty(BlockLog.LOG_AXIS,
+                        BlockLog.EnumAxis.fromFacingAxis(randomFacing.getAxis())));
             }
             upN.move(EnumFacing.UP);
         }
     }
 
     @Override
-    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int trunkHeight, Random random, TriConsumer<World, BlockPos, IBlockState> notifier) {
+    protected void generateLeaves(World world, BlockPos.MutableBlockPos pos, int trunkHeight, Random random,
+                                  TriConsumer<World, BlockPos, IBlockState> notifier) {
         BlockPos.MutableBlockPos currentYPos = GTFOUtils.copy(pos);
         currentYPos.move(EnumFacing.UP);
         for (int i = 0; i < trunkHeight + 1; i++) {
@@ -56,8 +61,10 @@ public class OrangeTree extends GTFOTree {
                     currentYPos.offset(EnumFacing.SOUTH, 2).offset(EnumFacing.EAST, 2));
             int finalI = i;
             iterator.forEach(leavesPos -> {
-                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) < 3 &&
-                        (finalI < trunkHeight || ((Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) == 1 || random.nextInt(2) == 0))))
+                if (Math.abs(leavesPos.getX() - currentYPos.getX()) + Math.abs(leavesPos.getZ() - currentYPos.getZ()) <
+                        3 &&
+                        (finalI < trunkHeight || ((Math.abs(leavesPos.getX() - currentYPos.getX()) +
+                                Math.abs(leavesPos.getZ() - currentYPos.getZ()) == 1 || random.nextInt(2) == 0))))
                     notifier.accept(world, leavesPos, getNaturalLeavesState());
             });
             currentYPos.move(EnumFacing.UP);
@@ -96,5 +103,4 @@ public class OrangeTree extends GTFOTree {
     public ItemStack getApple() {
         return ORANGE.getStackForm();
     }
-
 }

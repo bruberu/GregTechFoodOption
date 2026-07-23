@@ -4,14 +4,14 @@ import gregtech.api.block.VariantBlock;
 import gregtech.api.unification.material.Material;
 import gregtech.client.renderer.ICubeRenderer;
 import gregtechfoodoption.GTFOValues;
+import static gregtech.api.unification.material.Materials.BismuthBronze;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-
-import static gregtech.api.unification.material.Materials.BismuthBronze;
 
 public class GTFOMetalCasing extends VariantBlock<GTFOMetalCasing.CasingType> {
 
@@ -27,14 +27,14 @@ public class GTFOMetalCasing extends VariantBlock<GTFOMetalCasing.CasingType> {
     }
 
     @Override
-    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos, EntityLiving.SpawnPlacementType type) {
+    public boolean canCreatureSpawn(IBlockState state, IBlockAccess world, BlockPos pos,
+                                    EntityLiving.SpawnPlacementType type) {
         return false;
     }
 
     public enum CasingType implements IStringSerializable {
 
         BISMUTH_BRONZE_CASING("casing_bismuth_bronze", BismuthBronze);
-
 
         private final String name;
         private final Material material;
@@ -43,6 +43,7 @@ public class GTFOMetalCasing extends VariantBlock<GTFOMetalCasing.CasingType> {
             this.name = name;
             this.material = material;
         }
+
         @Override
         public String getName() {
             return this.name;

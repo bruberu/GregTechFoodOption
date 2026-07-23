@@ -1,9 +1,7 @@
 package gregtechfoodoption.machines.farmer;
 
-import gregtechfoodoption.utils.GTFOUtils;
-import it.unimi.dsi.fastutil.PriorityQueue;
-import it.unimi.dsi.fastutil.objects.ObjectArrayPriorityQueue;
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChorusFlower;
 import net.minecraft.block.BlockChorusPlant;
@@ -14,15 +12,17 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.*;
-
+import it.unimi.dsi.fastutil.PriorityQueue;
+import it.unimi.dsi.fastutil.objects.ObjectArrayPriorityQueue;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 
 public class ChorusFarmerMode implements FarmerMode {
+
     @Override
     public boolean canOperate(IBlockState blockState, MetaTileEntityFarmer farmer, BlockPos pos, World world) {
         if (blockState.getBlock() != Blocks.CHORUS_PLANT && blockState.getBlock() != Blocks.CHORUS_FLOWER)
             return false;
-        for (Iterator<BlockPos> it = getChorusIterator(pos, world); it.hasNext(); ) {
+        for (Iterator<BlockPos> it = getChorusIterator(pos, world); it.hasNext();) {
             IBlockState state = world.getBlockState(it.next());
             if (state.getBlock() == Blocks.CHORUS_FLOWER && state.getValue(BlockChorusFlower.AGE) != 5) {
                 return false; // Let all flowers grow
@@ -33,7 +33,8 @@ public class ChorusFarmerMode implements FarmerMode {
 
     private Iterator<BlockPos> getChorusIterator(BlockPos pos, World world) {
         return new Iterator<>() {
-            final PriorityQueue<BlockPos> plantQueue = new ObjectArrayPriorityQueue<>(new BlockPos[]{pos});
+
+            final PriorityQueue<BlockPos> plantQueue = new ObjectArrayPriorityQueue<>(new BlockPos[] { pos });
             final Set<BlockPos> visited = new ObjectOpenHashSet<>();
 
             final World myWorld = world;
@@ -78,9 +79,10 @@ public class ChorusFarmerMode implements FarmerMode {
     }
 
     @Override
-    public List<ItemStack> getDrops(IBlockState blockState, World world, BlockPos.MutableBlockPos pos, MetaTileEntityFarmer farmer) {
+    public List<ItemStack> getDrops(IBlockState blockState, World world, BlockPos.MutableBlockPos pos,
+                                    MetaTileEntityFarmer farmer) {
         NonNullList<ItemStack> drops = NonNullList.create();
-        for (Iterator<BlockPos> it = getChorusIterator(pos, world); it.hasNext(); ) {
+        for (Iterator<BlockPos> it = getChorusIterator(pos, world); it.hasNext();) {
             IBlockState state = world.getBlockState(it.next());
             if (state.getBlock() == Blocks.CHORUS_FLOWER) {
                 drops.add(new ItemStack(Blocks.CHORUS_FLOWER, 1)); // Because the normal function isn't very nice.
@@ -99,7 +101,7 @@ public class ChorusFarmerMode implements FarmerMode {
     @Override
     public void harvest(IBlockState state, World world, BlockPos.MutableBlockPos pos, MetaTileEntityFarmer farmer) {
         List<BlockPos> blocks = new ArrayList<>();
-        for (Iterator<BlockPos> it = getChorusIterator(pos, world); it.hasNext(); ) {
+        for (Iterator<BlockPos> it = getChorusIterator(pos, world); it.hasNext();) {
             blocks.add(it.next());
         }
         Collections.sort(blocks);

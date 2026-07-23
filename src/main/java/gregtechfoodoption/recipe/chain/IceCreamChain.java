@@ -1,17 +1,16 @@
 package gregtechfoodoption.recipe.chain;
 
-import gregtech.api.recipes.RecipeMaps;
-import gregtechfoodoption.GTFOValues;
-import gregtechfoodoption.item.GTFOMetaItem;
-import net.minecraftforge.fml.common.Loader;
-
 import static gregtech.api.unification.material.Materials.Milk;
 import static gregtech.api.unification.material.Materials.Sugar;
 import static gregtech.api.unification.ore.OrePrefix.dust;
 import static gregtech.common.items.MetaItems.SHAPE_MOLD_BALL;
 import static gregtechfoodoption.GTFOMaterialHandler.*;
 
+import gregtech.api.recipes.RecipeMaps;
+import gregtechfoodoption.item.GTFOMetaItem;
+
 public class IceCreamChain {
+
     public static void init() {
         RecipeMaps.FLUID_HEATER_RECIPES.recipeBuilder().EUt(16).duration(800)
                 .fluidInputs(Milk.getFluid(4000))
