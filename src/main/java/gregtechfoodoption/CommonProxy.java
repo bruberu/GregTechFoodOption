@@ -108,6 +108,12 @@ public class CommonProxy {
         registry.register(GTFOMetaBlocks.GTFO_CASING);
         registry.register(GTFOMetaBlocks.GTFO_METAL_CASING);
         registry.register(GTFOMetaBlocks.GTFO_GLASS_CASING);
+        registry.register(GTFOMetaBlocks.PIZZA_MINCEMEAT);
+        registry.register(GTFOMetaBlocks.PIZZA_CHEESE);
+        registry.register(GTFOMetaBlocks.PIZZA_VEGGIE);
+        registry.register(GTFOMetaBlocks.PIZZA_BOX_MINCEMEAT);
+        registry.register(GTFOMetaBlocks.PIZZA_BOX_CHEESE);
+        registry.register(GTFOMetaBlocks.PIZZA_BOX_VEGGIE);
 
         CROP_BLOCKS.forEach(registry::register);
         GTFOMetaBlocks.GTFO_LEAVES.forEach(registry::register);
@@ -126,6 +132,9 @@ public class CommonProxy {
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_METAL_CASING, VariantItemBlock::new));
         registry.register(createItemBlock(GTFOMetaBlocks.GTFO_GLASS_CASING, VariantItemBlock::new));
+        registry.register(createItemBlock(GTFOMetaBlocks.PIZZA_BOX_MINCEMEAT, ItemBlock::new));
+        registry.register(createItemBlock(GTFOMetaBlocks.PIZZA_BOX_CHEESE, ItemBlock::new));
+        registry.register(createItemBlock(GTFOMetaBlocks.PIZZA_BOX_VEGGIE, ItemBlock::new));
         GTFOMetaBlocks.GTFO_LEAVES
                 .forEach(leaves -> registry.register(createItemBlock(leaves, GTFOSpecialVariantItemBlock::new)));
         GTFOMetaBlocks.GTFO_LOGS
@@ -202,17 +211,17 @@ public class CommonProxy {
      * if (!event.player.world.isRemote) {
      * }
      * }
-     * 
+     *
      * @SubscribeEvent
      * public static void onSave(WorldEvent.Save event) {
      * MinecraftForge.addGrassSeed(GTFOMetaItem.UNKNOWN_SEED.getStackForm(), 5);
      * ((MetaPrefixItem)OreDictUnifier.get("plateIron").getItem()).getItem(OreDictUnifier.get("plateIron"))
      * .addComponents(new GTFOFoodStats(0, 0, false, false, ItemStack.EMPTY));
      * }
-     * 
+     *
      * @SubscribeEvent
      * public static void onUnload(WorldEvent.Unload event) {
-     * 
+     *
      * }
      */
 }

@@ -1,9 +1,9 @@
 package gregtechfoodoption.block;
 
+import gregtechfoodoption.GTFOValues;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -37,6 +37,7 @@ public class GTFOCrop extends BlockCrops {
         CROP_BLOCKS.add(this);
         this.name = name;
         this.setTranslationKey("gtfo_crop_" + name);
+        this.setCreativeTab(GTFOValues.TAB_GTFO_CROPS);
     }
 
     public static GTFOCrop create(String name) {

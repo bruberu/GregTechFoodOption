@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "bites=0": { "model": "gregtechfoodoption:pizza_veggie_bite0" },
+    "bites=1": { "model": "gregtechfoodoption:pizza_veggie_bite1" },
+    "bites=2": { "model": "gregtechfoodoption:pizza_veggie_bite2" },
+    "bites=3": { "model": "gregtechfoodoption:pizza_veggie_bite3" }
+  }
+}

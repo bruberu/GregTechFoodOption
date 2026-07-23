@@ -53,3 +53,11 @@ metaitem.food.lasagna.pesto.tooltip=Italians only capitalise the first letter of
 gregtech.material.gtfo_unpasteurized_skimmed_milk=Unpasteurised Skimmed Milk
 
 tile.gtfo_crop_corn.name=Maize
+itemGroup.gregtechfoodoption.main=GTFO
+itemGroup.gregtechfoodoption.food=GTFO Foods
+itemGroup.gregtechfoodoption.crops=GTFO Crops
+itemGroup.gregtechfoodoption.blocks=GTFO Blocks
+itemGroup.gregtechfoodoption.tools=GTFO Tools
+itemGroup.gregtechfoodoption.funnystuff=GTFO Booze & Pills
+itemGroup.gregtechfoodoption.drinks=GTFO Drinks
+itemGroup.gregtechfoodoption.fruitsvegetables=GTFO Fruits & Vegetables

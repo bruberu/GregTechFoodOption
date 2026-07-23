@@ -700,8 +700,14 @@ gregtechfoodoption.machine.farmer.tooltip.speed=Opera su un blocco ogni %d Tick
 metaitem.sodium_perchlorate_dust.name=Perclorato di sodio
 metaitem.sodium_chlorate_dust.name=Clorato di Sodio
 
-itemGroup.gregtechfoodoption.main=GregTech Food Option
-itemGroup.gregtechfoodoption.food=GregTech Food Option Cibi
+itemGroup.gregtechfoodoption.main=GTFO
+itemGroup.gregtechfoodoption.food=GTFO Cibi
+itemGroup.gregtechfoodoption.crops=GTFO Colture
+itemGroup.gregtechfoodoption.blocks=GTFO Blocchi
+itemGroup.gregtechfoodoption.tools=GTFO Strumenti
+itemGroup.gregtechfoodoption.funnystuff=GTFO Alcolici e Pillole
+itemGroup.gregtechfoodoption.drinks=GTFO Bevande
+itemGroup.gregtechfoodoption.fruits=GTFO Frutti
 
 gregtechfoodoption.leaves.banana.name=Foglie di Banano  
 gregtechfoodoption.log.banana.name=Fusto di Banano  
