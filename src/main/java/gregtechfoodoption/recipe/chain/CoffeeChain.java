@@ -47,11 +47,11 @@ public class CoffeeChain {
                 .buildAndRegister();
 
         BLAST_RECIPES.recipeBuilder()
-                .inputs(UNFIRED_CUP.getStackForm(16))
-                .outputs(EMPTY_CUP.getStackForm(16))
+                .inputs(UNFIRED_CUP.getStackForm(1))
+                .outputs(EMPTY_CUP.getStackForm(1))
                 .blastFurnaceTemp(1033)
                 .EUt(120)
-                .duration(1200)
+                .duration(20)
                 .buildAndRegister();
 
         CANNER_RECIPES.recipeBuilder()
