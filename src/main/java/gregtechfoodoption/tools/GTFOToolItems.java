@@ -16,6 +16,8 @@ import gregtech.common.items.ToolItems;
 import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOMetaItem;
+import net.minecraft.init.Enchantments;
+import net.minecraft.item.Item;
 
 public class GTFOToolItems {
 
@@ -26,6 +28,7 @@ public class GTFOToolItems {
                 .toolStats(b -> b.crafting())
                 .oreDict("craftingToolRollingPin")
                 .toolClasses(ROLLING_PIN_CLASS));
+        ((Item) GTFOMetaItem.ROLLING_PIN).setCreativeTab(GTFOValues.TAB_GTFO_TOOLS);
         GTFOMetaItem.BUTCHERY_KNIFE_HV = ToolItems
                 .register(ItemGTSword.Builder.of(GTFOValues.MODID, "butchery_knife.hv")
                         .toolStats(b -> b.crafting().attacking().brokenStack(ToolHelper.SUPPLY_POWER_UNIT_HV)
@@ -33,6 +36,7 @@ public class GTFOToolItems {
                         .sound(GTSoundEvents.CUT)
                         .toolClasses(ToolClasses.BUTCHERY_KNIFE)
                         .electric(GTValues.HV));
+        ((Item) GTFOMetaItem.BUTCHERY_KNIFE_HV).setCreativeTab(GTFOValues.TAB_GTFO_TOOLS);
     }
 
     public static void registerCustomRecipes() {

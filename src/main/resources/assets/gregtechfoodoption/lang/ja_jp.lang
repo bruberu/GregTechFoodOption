@@ -706,7 +706,13 @@ metaitem.sodium_perchlorate_dust.name=過塩素酸ナトリウム
 metaitem.sodium_chlorate_dust.name=塩素酸ナトリウム 
 
 itemGroup.gregtechfoodoption.main=GregTech Food Option
-itemGroup.gregtechfoodoption.food=GregTech Food Option 食料
+itemGroup.gregtechfoodoption.food=GTFO 食料
+itemGroup.gregtechfoodoption.crops=GTFO 作物
+itemGroup.gregtechfoodoption.blocks=GTFO ブロック
+itemGroup.gregtechfoodoption.tools=GTFO ツール
+itemGroup.gregtechfoodoption.funnystuff=GTFO アルコール・錠剤
+itemGroup.gregtechfoodoption.drinks=GTFO 飲み物
+itemGroup.gregtechfoodoption.fruitsvegetables=GTFO 果物と野菜
 
 gregtechfoodoption.leaves.banana.name=バナナの葉
 gregtechfoodoption.log.banana.name=バナナの幹

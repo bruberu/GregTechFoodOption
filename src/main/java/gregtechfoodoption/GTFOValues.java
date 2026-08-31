@@ -5,6 +5,8 @@ import static gregtech.api.capability.GregtechDataCodes.assignId;
 import java.util.Random;
 
 import gregtech.api.unification.material.info.MaterialIconSet;
+import gregtech.api.items.toolitem.ToolHelper;
+import gregtech.api.unification.material.Materials;
 import gregtech.api.util.BaseCreativeTab;
 import gregtechfoodoption.item.GTFOMetaItem;
 
@@ -38,6 +40,12 @@ public class GTFOValues {
             () -> GTFOMetaItem.DOUGH.getStackForm(), true);
     public static final BaseCreativeTab TAB_GTFO_FOOD = new BaseCreativeTab("gregtechfoodoption.food",
             () -> GTFOMetaItem.BANANA.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_CROPS = new BaseCreativeTab("gregtechfoodoption.crops", () -> GTFOMetaItem.ONION_SEED.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_TOOLS = new BaseCreativeTab("gregtechfoodoption.tools", () -> ToolHelper.getAndSetToolData(GTFOMetaItem.ROLLING_PIN, Materials.Wood, 1, 1, 1F, 1F), true);
+    public static final BaseCreativeTab TAB_GTFO_BLOCKS = new BaseCreativeTab("gregtechfoodoption.blocks", () -> GTFOMetaItem.ADOBE_BRICK.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_DRUGSALCOHOL = new BaseCreativeTab("gregtechfoodoption.funnystuff", () -> GTFOMetaItem.BEER.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_DRINKS = new BaseCreativeTab("gregtechfoodoption.drinks", () -> GTFOMetaItem.ORANGE_JUICE.getStackForm(), true);
+    public static final BaseCreativeTab TAB_GTFO_FRUITSVEGETABLES = new BaseCreativeTab("gregtechfoodoption.fruitsvegetables", () -> GTFOMetaItem.MANGO.getStackForm(), true);
 
     public static final Random rand = new Random();
 }

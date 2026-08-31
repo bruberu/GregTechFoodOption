@@ -701,7 +701,13 @@ metaitem.sodium_perchlorate_dust.name=Sodium Perchlorate
 metaitem.sodium_chlorate_dust.name=Sodium Chlorate
 
 itemGroup.gregtechfoodoption.main=GregTech Food Option
-itemGroup.gregtechfoodoption.food=GregTech Food Option Foods
+itemGroup.gregtechfoodoption.food=GTFO Foods
+itemGroup.gregtechfoodoption.crops=GTFO Crops
+itemGroup.gregtechfoodoption.blocks=GTFO Blocks
+itemGroup.gregtechfoodoption.tools=GTFO Tools
+itemGroup.gregtechfoodoption.funnystuff=GTFO Booze & Pills
+itemGroup.gregtechfoodoption.drinks=GTFO Drinks
+itemGroup.gregtechfoodoption.fruitsvegetables=GTFO Fruits & Vegetables
 
 gregtechfoodoption.leaves.banana.name=Banana Leaves
 gregtechfoodoption.log.banana.name=Banana Pseudostem
@@ -1230,6 +1236,12 @@ gregtech.material.gtfo_vibrant_extract=Vibrant Extract
 gregtech.material.gtfo_apricot_extract=Apricot Extract
 gregtech.material.gtfo_grape_extract=Grape Extract
 
+tile.pizza_box_mincemeat.name=Pizza Box (Mincemeat)
+tile.pizza_box_cheese.name=Pizza Box (Cheese)
+tile.pizza_box_veggie.name=Pizza Box (Veggie)
+tile.pizza_mincemeat.name=Pizza (Mincemeat)
+tile.pizza_cheese.name=Pizza (Cheese)
+tile.pizza_veggie.name=Pizza (Veggie)
 # TOP
 gregtechfoodoption.top.crop_harvestable=Crop may be harvested
 gregtechfoodoption.top.crop_unharvestable=Crop cannot be harvested
