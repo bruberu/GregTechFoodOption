@@ -40,6 +40,9 @@ public class FatChain {
                 MACERATOR_RECIPES.removeRecipe(conflict);
             }
 
+            ModHandler.addShapelessRecipe("gtfo_hand_mince_meat" + itemStack.getDisplayName(),
+                    OreDictUnifier.get(dust, Meat), itemStack, OreDictUnifier.get("craftingToolMortar"));
+
             itemStack.setCount(8);
 
             MACERATOR_RECIPES.recipeBuilder().EUt(20).duration(400)
@@ -57,8 +60,6 @@ public class FatChain {
                     .fluidOutputs(Stearin.getFluid(3200), Sludge.getFluid(12000), Chlorine.getFluid(12000))
                     .buildAndRegister();
 
-            ModHandler.addShapelessRecipe("gtfo_hand_mince_meat" + itemStack.getDisplayName(),
-                    OreDictUnifier.get(dust, Meat), itemStack, OreDictUnifier.get("craftingToolMortar"));
         });
 
         LARGE_CHEMICAL_RECIPES.recipeBuilder().EUt(256).duration(1000)
