@@ -933,11 +933,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         EGGPLANT_SLICE = addItem(317, "component.eggplant_slice").addComponents(new GTFOFoodStats(1, 0.0f)
                 .nutrients(0f, 0f, 0f, 0f, 0.75f));
 
-        APPLE_JUICE = addItem(153, "food.cider.apple")
+        APPLE_JUICE = addItem(153, "food.juice.apple")
                 .addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                         new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45))
                                 .nutrients(0f, 1f, 0f, 0f, 0f));
-        APPLE_CIDER = addItem(153, "food.juice.apple")
+        APPLE_CIDER = addItem(153, "food.cider.apple")
                 .addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                         new RandomPotionEffect(MobEffects.SPEED, 500, 2, 100 - 45)).
                         new RandomPotionEffect(MobEffects.HASTE, 500, 2, 0)
