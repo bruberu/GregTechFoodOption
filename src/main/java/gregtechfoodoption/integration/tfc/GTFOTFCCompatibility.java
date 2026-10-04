@@ -131,6 +131,8 @@ public class GTFOTFCCompatibility {
                 .setFoodData(0, 0, 0, 0, 8, 0).register();
         new TFCComponentPreparer(APPLE_JUICE)
                 .setFoodData(4, 0, 2, 0, 0, 0).register();
+        new TFCComponentPreparer(APPLE_CIDER)
+                .setFoodData(4, 0, 2, 0, 0, 0).register();
         new TFCComponentPreparer(ORANGE_JUICE)
                 .setFoodData(4, 0, 2, 0, 0, 0).register();
         new TFCComponentPreparer(TOMATO_SLICE)
