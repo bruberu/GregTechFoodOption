@@ -229,6 +229,14 @@ public class CoreChain {
                 .buildAndRegister();
 
         CANNER_RECIPES.recipeBuilder()
+                .outputs(APPLE_CIDER.getStackForm())
+                .fluidInputs(AppleCider.getFluid(100))
+                .input(Items.GLASS_BOTTLE, 1)
+                .EUt(12)
+                .duration(30)
+                .buildAndRegister();
+
+        CANNER_RECIPES.recipeBuilder()
                 .outputs(ORANGE_JUICE.getStackForm())
                 .fluidInputs(OrangeExtract.getFluid(100))
                 .input(Items.GLASS_BOTTLE, 1)

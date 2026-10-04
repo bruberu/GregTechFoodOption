@@ -606,6 +606,8 @@ metaitem.food.juice.apple.name=Apple Juice
 metaitem.food.juice.orange.name=Orange Juice
 metaitem.food.juice.apple.tooltip=cause Minecraft apples are yellow
 metaitem.food.juice.orange.tooltip=WaterPortuguese
+metaitem.food.cider.apple.name=Apple Cider
+metaitem.food.cider.apple.tooltip=What if we took apple juice and made it even better
 
 gregtech.material.gtfo_stearin=Liquid Fat (Stearin)
 gregtech.material.gtfo_stearic_acid=Stearic Acid

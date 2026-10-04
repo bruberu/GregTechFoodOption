@@ -423,6 +423,7 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
     public static MetaItem<?>.MetaValueItem CHORUS_CAPLET;
     public static MetaItem<?>.MetaValueItem VIBRANT_CAPLET;
     public static MetaItem<?>.MetaValueItem SANDWICH_VIBRANT;
+    public static MetaItem<?>.MetaValueItem APPLE_CIDER;
 
     public GTFOMetaItem() {
         super((short) 0);
@@ -935,6 +936,11 @@ public class GTFOMetaItem extends MetaItem<GTFOMetaItem.GTFOMetaValueItem> imple
         APPLE_JUICE = addItem(153, "food.juice.apple")
                 .addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
                         new RandomPotionEffect(MobEffects.SPEED, 500, 1, 100 - 45))
+                                .nutrients(0f, 1f, 0f, 0f, 0f));
+        APPLE_CIDER = addItem(358, "food.cider.apple")
+                .addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
+                        new RandomPotionEffect(MobEffects.SPEED, 500, 2, 100 - 45),
+                        new RandomPotionEffect(MobEffects.HASTE, 500, 2, 0))
                                 .nutrients(0f, 1f, 0f, 0f, 0f));
         ORANGE_JUICE = addItem(155, "food.juice.orange")
                 .addComponents(new GTFOFoodStats(3, 0.2f, true, true, new ItemStack(Items.GLASS_BOTTLE),
