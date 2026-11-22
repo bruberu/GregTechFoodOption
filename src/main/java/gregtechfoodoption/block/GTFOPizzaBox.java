@@ -1,6 +1,5 @@
 package gregtechfoodoption.block;
 
-import gregtechfoodoption.GTFOValues;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -11,7 +10,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+import gregtechfoodoption.GTFOValues;
+
 public class GTFOPizzaBox extends Block {
+
     private static final AxisAlignedBB PIZZA_BOX_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
     private final Block pizzaBlock;
 

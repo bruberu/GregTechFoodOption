@@ -12,11 +12,11 @@ import net.minecraft.init.Items;
 
 import gregtech.api.recipes.ModHandler;
 import gregtech.api.unification.material.Materials;
-import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtech.common.blocks.BlockCleanroomCasing;
 import gregtech.common.blocks.MetaBlocks;
 import gregtech.common.items.MetaItems;
 import gregtechfoodoption.GTFOMaterialHandler;
+import gregtechfoodoption.block.GTFOMetaBlocks;
 import gregtechfoodoption.item.GTFOMetaItem;
 import gregtechfoodoption.utils.GTFOUtils;
 

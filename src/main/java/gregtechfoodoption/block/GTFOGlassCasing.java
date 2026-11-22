@@ -1,7 +1,5 @@
 package gregtechfoodoption.block;
 
-import gregtech.api.block.VariantActiveBlock;
-import gregtechfoodoption.GTFOValues;
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -18,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import gregtech.api.block.VariantActiveBlock;
+import gregtechfoodoption.GTFOValues;
 
 @ParametersAreNonnullByDefault
 public class GTFOGlassCasing extends VariantActiveBlock<GTFOGlassCasing.CasingType> {

@@ -1,9 +1,9 @@
 package gregtechfoodoption.block;
 
-import gregtechfoodoption.GTFOValues;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -20,6 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
+import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.GregTechFoodOption;
 
 public class GTFOCrop extends BlockCrops {

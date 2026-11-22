@@ -1,6 +1,7 @@
 package gregtechfoodoption.tools;
 
 import net.minecraft.init.Enchantments;
+import net.minecraft.item.Item;
 
 import gregtech.api.GTValues;
 import gregtech.api.items.toolitem.ItemGTSword;
@@ -16,8 +17,6 @@ import gregtech.common.items.ToolItems;
 import gregtech.core.sound.GTSoundEvents;
 import gregtechfoodoption.GTFOValues;
 import gregtechfoodoption.item.GTFOMetaItem;
-import net.minecraft.init.Enchantments;
-import net.minecraft.item.Item;
 
 public class GTFOToolItems {
 
