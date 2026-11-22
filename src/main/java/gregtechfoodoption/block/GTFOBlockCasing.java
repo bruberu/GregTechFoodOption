@@ -1,7 +1,5 @@
 package gregtechfoodoption.block;
 
-import gregtech.api.block.VariantBlock;
-import gregtechfoodoption.GTFOValues;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 import gregtech.api.block.VariantBlock;
+import gregtechfoodoption.GTFOValues;
 
 public class GTFOBlockCasing extends VariantBlock<GTFOBlockCasing.CasingType> {
 

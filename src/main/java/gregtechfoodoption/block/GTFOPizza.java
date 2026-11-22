@@ -1,6 +1,5 @@
 package gregtechfoodoption.block;
 
-import gregtechfoodoption.GTFOValues;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -18,7 +17,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import gregtechfoodoption.GTFOValues;
+
 public class GTFOPizza extends Block {
+
     public static final PropertyInteger BITES = PropertyInteger.create("bites", 0, 3);
     private static final AxisAlignedBB PIZZA_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 
@@ -62,7 +64,8 @@ public class GTFOPizza extends Block {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand,
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+                                    EnumHand hand,
                                     EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote) {
             return true;
